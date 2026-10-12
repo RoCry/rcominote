@@ -25,6 +25,7 @@ from .code_guards import (
 )
 from .code_references import FIXED_BLOCKS, read_block
 from .log_probe import ACK, NOTIFY, PREPARE, SERVICE, WRITE
+from .nor_readback import NOR_PHASES
 from .read_sets import (
     DISK_PHASES,
     HANDLER_BLOCKS,
@@ -147,7 +148,9 @@ async def capture(
     disk_code: bool = False,
     card_code: bool = False,
     boot_code: bool = False,
+    nor_code: bool = False,
 ) -> dict:
+    boot_code = boot_code or nor_code
     card_code = card_code or boot_code
     disk_code = disk_code or card_code
     storage_code = storage_code or disk_code
@@ -234,6 +237,7 @@ async def capture(
                     *(flushed_phases(DISK_PHASES) if disk_code else []),
                     *(flushed_phases(CARD_PHASES) if card_code else []),
                     *(flushed_phases(BOOT_PHASES) if boot_code else []),
+                    *(flushed_phases(NOR_PHASES) if nor_code else []),
                 ]
                 if device_info_code
                 else []

@@ -41,3 +41,5 @@
 最新：[SD/MMC驱动状态](card-state-readback.md)已将录音存储追到SD协议类别、512 B逻辑扇区；累计2916 B独立一致。仍未知启动固件介质/分区，下一步优先追踪实际启动分区表引用，或SD初始化/CID处理。Android登录按用户要求暂缓。CLI没有完整备份、烧录、恢复能力。
 
 [device表与独立Flash](boot-storage-device-readback.md)：实机31个对象，spi_flash ready且配置32 MiB；read wrapper实际位于RAM。下一跳是literal100bc294的底层Flash函数表；启动分区另走[已知sdfs帮助→实际shell descriptor→partition getter](partition-reference-route.md)。没有依据执行read callback、重启或烧录。
+
+[NOR缓存ID](nor-driver-readback.md)已读：16405e，匹配Zbit 32 Mbit／4 MiB系列，driver32 MiB配置并非物理容量实证。下一份关键证据仍是启动分区；从已读logsrv分支1000bf3c→1000bf58追timer callback，比继续追分配器更直接。

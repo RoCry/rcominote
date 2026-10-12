@@ -57,7 +57,7 @@ common transfer `100335e0`经device+10取得data。已读指令检查+171、用+
 
 ## 复现、工具与后续
 
-`./bin/comi diag capture card-code --out NEW`；两份结果经`diag compare-references FIRST SECOND --card --out REPORT`核对。固定2031 B，较disk-code新增544 B；累计2916不同映射字节。每层先核对当前指针/指令，再读取既定后继地址；没有任意地址接口。离线输出增加`card_metadata`；两个跳转表均排除出代码解码。
+`uv run comi diag capture card-code --out NEW`；两份结果经`diag compare-references FIRST SECOND --card --out REPORT`核对。固定2031 B，较disk-code新增544 B；累计2916不同映射字节。每层先核对当前指针/指令，再读取既定后继地址；没有任意地址接口。离线输出增加`card_metadata`；两个跳转表均排除出代码解码。
 
 [首次](evidence/card-first-2026-10-12.json)、[重读](evidence/card-second-2026-10-12.json)、[分析](evidence/card-analysis-2026-10-12.json)。RAM是非原子的时间点样本；一致性不保证重启后仍适用。[结束状态](evidence/card-final-state-2026-10-12.json)另行查询。REA provider不可用，本轮实际使用仓库Capstone解码器和本地固定SDK源码，未声称REA反编译。
 

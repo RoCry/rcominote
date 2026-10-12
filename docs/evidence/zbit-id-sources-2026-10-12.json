@@ -1,0 +1,30 @@
+{
+  "retrieved_date": "2026-10-12",
+  "index_url": "https://zbitsemi.com/en/m/display.php?id=17",
+  "sources": [
+    {
+      "document": "ZB25VQ32B",
+      "url": "https://zbitsemi.com/upload/file/20240319/20240319153145_95803.pdf",
+      "bytes": 1152199,
+      "sha256": "6ccf16074ecec7b3ebf81a91b90c2a09e91536c43e96cb15423d660e137b3271",
+      "id_table_pdf_page": 32,
+      "spi_jedec_id_hex": "5e4016",
+      "density_bits": 33554432
+    },
+    {
+      "document": "ZB25VQ32D_DTR",
+      "url": "https://zbitsemi.com/upload/file/20240319/20240319153157_94471.pdf",
+      "bytes": 1698256,
+      "sha256": "70478fcb2e5114bdf30f82a357d7ab0ddb5aae609621ea973383fdcc717f7559",
+      "id_table_pdf_page": 34,
+      "spi_jedec_id_hex": "5e8016",
+      "density_bits": 33554432
+    }
+  ],
+  "verification": "B page 32 rendered and visually verified; D page 34 extracted with Poppler. pdf2md native failed token-fidelity preflight; failed conversion not used.",
+  "limits": [
+    "Device value is firmware cached chip ID, not a fresh JEDEC command",
+    "Shared family ID does not establish package or revision",
+    "32 MiB driver configuration differs from 4 MiB device-family density"
+  ]
+}

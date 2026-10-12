@@ -49,6 +49,8 @@ device数组不包含`SYS_INIT`函数指针。不能向数组前面倒扫、或�
 
 ## 证据与复现
 
-`./bin/comi diag capture boot-code --out NEW`继承card-code的父引用检查，新增device/Flash固定引用；`diag compare-references FIRST SECOND --boot --out REPORT`离线核对，输出`device_names`和`flash_configuration`。profile共2931读取字节；新读取900 B中有33 B字符串重叠，故新增867不同映射字节、累计3783 B。不能把传输字节总数当独立覆盖量。
+`uv run comi diag capture boot-code --out NEW`继承card-code的父引用检查，新增device/Flash固定引用；`diag compare-references FIRST SECOND --boot --out REPORT`离线核对，输出`device_names`和`flash_configuration`。profile共2931读取字节；新读取900 B中有33 B字符串重叠，故新增867不同映射字节、累计3783 B。不能把传输字节总数当独立覆盖量。
 
 [首次](evidence/boot-first-2026-10-12.json)、[重读](evidence/boot-second-2026-10-12.json)、[分析](evidence/boot-analysis-2026-10-12.json)、[结束状态](evidence/boot-final-state-2026-10-12.json)。RAM非原子快照；重新启动/布局变化即需重新定位。使用实际Capstone解码及本地固定SDK源码，不声称REA provider结果。完整固件备份、烧录和独立恢复均未实现。
+
+后续[缓存ID实读](nor-driver-readback.md)匹配Zbit 32 Mbit／4 MiB系列，与本页32 MiB编译配置不一致。不要将配置容量用作实际备份范围。

@@ -212,3 +212,30 @@ def test_moved_device_name_pointer_blocks_old_string_read():
         frame["text"] = frame.get("text", "").replace("100ba000: e9 10 0c 10", "100ba000: 00 00 00 00")
     with pytest.raises(ValueError, match="device name pointer code changed"):
         observed_storage_reference(capture["frames"], "dbg mdb 100c10e9 10")
+
+
+def test_nor_read_stops_at_actual_return_and_id_load_uses_cached_offset():
+    report = inspect_references(
+        EVIDENCE / "nor-first-2026-10-12.json",
+        EVIDENCE / "nor-second-2026-10-12.json",
+        nor=True,
+    )
+    # The captured POP at d58 returns; d5c starts an unrelated function.
+    region = next(row for row in report["code_regions"] if row["address"] == "0x18000d10")
+    assert (region["length"], region["instructions"][-1]["address"]) == (76, "0x18000d58")
+    instructions = {
+        row["address"]: row for region in report["code_regions"] for row in region["instructions"]
+    }
+    assert instructions["0x18000c5c"]["operands"] == "r2, [r0, #0x20]"
+
+
+def test_changed_nor_id_offset_blocks_cached_state_read():
+    from rcominote.code_guards import observed_storage_reference
+
+    capture = json.loads((EVIDENCE / "nor-first-2026-10-12.json").read_text())
+    for frame in capture["frames"]:
+        frame["text"] = frame.get("text", "").replace(
+            "18000c58: 03 4b 42 62 02 6a", "18000c58: 03 4b 42 62 42 6a"
+        )
+    with pytest.raises(ValueError, match="NOR cached chip-ID load and comparison code changed"):
+        observed_storage_reference(capture["frames"], "dbg mdb 18001a9c 8")

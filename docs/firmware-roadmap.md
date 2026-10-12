@@ -27,19 +27,19 @@
 ## 最小采集步骤
 
 ```sh
-./bin/comi scan
-./bin/comi gatt --out artifacts/before.json
-./bin/comi info
+uv run comi scan
+uv run comi gatt --out artifacts/before.json
+uv run comi info
 # 全 USB 树，能包含非串口设备；不发送复位/探测指令。
-./bin/comi usb snapshot --out artifacts/usb-before.json
+uv run comi usb snapshot --out artifacts/usb-before.json
 # 人工使用已确认的数据线连接指定 CoMi 后再次采集。
-./bin/comi usb snapshot --out artifacts/usb-after.json
-./bin/comi usb diff artifacts/usb-before.json artifacts/usb-after.json
+uv run comi usb snapshot --out artifacts/usb-after.json
+uv run comi usb diff artifacts/usb-before.json artifacts/usb-after.json
 ```
 
 有人工动作时记录动作、线材和屏幕状态；没有插拔对照的 USB 快照不能给接口归属定论。此前 `/dev/cu.usbmodem1201` 已识别为另一台 Hiveton，不能用它测试 CoMi。
 
-当前 Mac 的 `system_profiler` USB 清单为空但 IOKit 可见设备，故使用 `./bin/comi usb`，不能把前者空输出当作无设备。
+当前 Mac 的 `system_profiler` USB 清单为空但 IOKit 可见设备，故使用 `uv run comi usb`，不能把前者空输出当作无设备。
 
 日志通道已核对 framing、实际 shell 返回及固定代码行；工具不提供通用命令执行器。长输出可能在设备端丢失，固定代码profile因此另验证完整数据行。将来添加 flash 目标时必须先有准确目标选择、分区保护、失败不自动启动和实机验收，当前 `just` 默认只列出命令。
 

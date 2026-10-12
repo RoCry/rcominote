@@ -11,6 +11,7 @@ from capstone import CS_ARCH_ARM, CS_MODE_THUMB, Cs
 
 from .boot_readback import BOOT_BLOCKS, BOOT_NAME_POINTERS
 from .card_readback import CARD_BLOCKS
+from .nor_readback import NOR_BLOCKS
 from .output import emit, new_output
 from .read_sets import BLOCKS, DISK_BLOCKS, HANDLER_BLOCKS, INFO_BLOCKS, INFO_STORAGE, VENDOR_BLOCKS
 from .vendor_dispatch import BASE, TABLE, TABLE_END, inspect_dispatch
@@ -26,6 +27,7 @@ FIXED_BLOCKS = tuple(
             *DISK_BLOCKS,
             *CARD_BLOCKS,
             *BOOT_BLOCKS,
+            *NOR_BLOCKS,
         )
     )
 )
@@ -129,6 +131,18 @@ def flash_configuration(capture: dict) -> dict:
     }
 
 
+def nor_state(capture: dict) -> dict:
+    """Cached driver identity and mode flags; does not issue JEDEC/SPI commands."""
+    data = read_block(capture, 0x18001A9C, 8)
+    return {
+        "scope": "cached NOR chip ID located by actual mode-helper loads, not a fresh bus query",
+        "cached_chip_id": hex(int.from_bytes(data[:4], "little")),
+        "cached_chip_id_bytes_le": data[:4].hex(),
+        "flags": hex(int.from_bytes(data[4:], "little")),
+        "mode_exception_id": hex(int.from_bytes(read_block(capture, 0x18000C68, 4), "little")),
+    }
+
+
 def inspect_references(
     first: Path,
     second: Path,
@@ -140,12 +154,14 @@ def inspect_references(
     disk: bool = False,
     card: bool = False,
     boot: bool = False,
+    nor: bool = False,
 ) -> dict:
     captures = [json.loads(path.read_text()) for path in (first, second)]
     stamps = [capture.get("captured_at") for capture in captures]
     if not all(stamps) or stamps[0] == stamps[1]:
         raise ValueError("Two distinct capture records are required")
     blocks = []
+    boot = boot or nor
     card = card or boot
     disk = disk or card
     storage = storage or disk
@@ -160,6 +176,8 @@ def inspect_references(
         selected = (*selected, *CARD_BLOCKS)
     if boot:
         selected = (*selected, *BOOT_BLOCKS)
+    if nor:
+        selected = (*selected, *NOR_BLOCKS)
     for address, length, reason, code in selected:
         data = read_block(captures[0], address, length)
         if data != read_block(captures[1], address, length):
@@ -217,6 +235,8 @@ def inspect_references(
     if boot:
         report["device_names"] = device_names(captures[0])
         report["flash_configuration"] = flash_configuration(captures[0])
+    if nor:
+        report["nor_state"] = nor_state(captures[0])
     if vendor:
         # Decode contiguous bytes together: 32-bit Thumb instructions can cross
         # 16-byte transport rows. Never resume decoding in their second half.
@@ -285,8 +305,9 @@ def main(
     disk: bool = False,
     card: bool = False,
     boot: bool = False,
+    nor: bool = False,
 ):
-    """Compare fixed --vendor, --handler, --info, --storage, --disk, --card or --boot reads."""
+    """Compare fixed --vendor/--handler/--info/--storage/--disk/--card/--boot/--nor reads."""
     new_output(out)
     report = inspect_references(
         first,
@@ -298,6 +319,7 @@ def main(
         disk=disk,
         card=card,
         boot=boot,
+        nor=nor,
     )
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("x") as handle:

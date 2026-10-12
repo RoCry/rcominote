@@ -129,3 +129,7 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## 独立Flash对象与device表
 
 [首次](boot-first-2026-10-12.json)、[重读](boot-second-2026-10-12.json)、[分析](boot-analysis-2026-10-12.json)：2931 B一致；新增867不同映射字节，累计3783 B。31项设备表含spi_flash、sim_flash、CDC_ACM；spi_flash ready、布局配置32 MiB，尚未验证JEDEC ID或启动来源。[报告](../boot-storage-device-readback.md)、[结束状态](boot-final-state-2026-10-12.json)。
+
+## NOR缓存ID与配置容量差异
+
+[首次](nor-first-2026-10-12.json)、[重读](nor-second-2026-10-12.json)、[分析](nor-analysis-2026-10-12.json)：3101 B一致，新增170 B，累计3953不同映射字节。缓存ID16405e、flags0；Zbit原厂32 Mbit系列资料与ID相符，不能把driver32 MiB配置视作物理容量。[报告](../nor-driver-readback.md)、[原厂来源](zbit-id-sources-2026-10-12.json)、[结束状态](nor-final-state-2026-10-12.json)。
