@@ -1,0 +1,73 @@
+{
+  "scope": "first 16 KiB mapped body; no full checksum claim",
+  "sessions": [
+    {
+      "capture_sha256": "274c6799d02979fcfd1889ad1c800e8a6dccbbd07fa64e14f6aa53820c0a7de6",
+      "captured_at": "2026-10-12T06:42:22.432897+00:00",
+      "indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "ack_count": 30,
+      "end_received": true,
+      "body_sha256": "fd038a79de8a0c4089351b97a288494d4aad5f719e4d06f020b5ad15a7c96571"
+    },
+    {
+      "capture_sha256": "7b7450d853a81f886dc21f3bb04f08f2f7d10b57c09b0490bf7eb73877934b40",
+      "captured_at": "2026-10-12T06:42:33.492018+00:00",
+      "indices": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "ack_count": 30,
+      "end_received": true,
+      "body_sha256": "ac042a760f8e68626d031a24cce3cd1fc19989ba56de24a0b50b2c8a2e9cc68a"
+    },
+    {
+      "capture_sha256": "d9c732d41a65a46dab16c12ff7a33810961ade7cf87f1e5caac7978d54074bbc",
+      "captured_at": "2026-10-12T06:42:44.025332+00:00",
+      "indices": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "ack_count": 30,
+      "end_received": true,
+      "body_sha256": "926a182dc32d40039fc13b9ad1b4c3f418a9ec8f5a5bc37969fbc2a502461d7d"
+    },
+    {
+      "capture_sha256": "5c3980ce6def8ddd4d2a5550d81dcb4c64c36e4e45339d792dda5e2e0cee3018",
+      "captured_at": "2026-10-12T06:42:54.380004+00:00",
+      "indices": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "ack_count": 30,
+      "end_received": true,
+      "body_sha256": "6e740e362704eea8e29ebf664f077c4618eefe62a7a48ee8b7fe0706dcbb0240"
+    }
+  ]
+}

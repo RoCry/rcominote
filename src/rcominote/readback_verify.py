@@ -1,9 +1,14 @@
 """Require every memory row, independently of transport ACKs."""
 
-import hashlib
-
 from .code_references import FIXED_BLOCKS, read_block
-from .range_readback import HEADER_PROBE_RANGES, read_range
+from .range_readback import (
+    BODY_PROBE_RANGES,
+    HEADER_PROBE_RANGES,
+    image_ranges,
+    read_range,
+    scoped_capture,
+    validate_known_header,
+)
 
 
 def verify_readback(result: dict) -> None:
@@ -14,9 +19,19 @@ def verify_readback(result: dict) -> None:
         for block in FIXED_BLOCKS
         if f"dbg mdb {block[0]:x} {block[1]:x}" in result["fixed_text_commands"]
     ]
-    ranges = [
-        (a, n) for a, n in HEADER_PROBE_RANGES if f"dbg mdb {a:x} {n:x}" in result["fixed_text_commands"]
-    ]
+    ranges = list(
+        dict.fromkeys(
+            [
+                (a, n)
+                for a, n in (
+                    *HEADER_PROBE_RANGES,
+                    *BODY_PROBE_RANGES,
+                    *image_ranges(result.get("image_chunk_indices", [])),
+                )
+                if f"dbg mdb {a:x} {n:x}" in result["fixed_text_commands"]
+            ]
+        )
+    )
     if not reads and not ranges:
         return
     result["readback_complete"] = False
@@ -25,12 +40,11 @@ def verify_readback(result: dict) -> None:
     try:
         for address, length in ranges:
             data = read_range(result, address, length)
-            if length == 512 and hashlib.sha256(data).hexdigest() != (
-                "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5"
-            ):
-                raise ValueError("Mapped header differs from independently validated FW010004 header")
+            if address == 0x10000000 and length == 512:
+                validate_known_header(data)
         for address, length, *_ in reads:
-            read_block(result, address, length)
+            command = f"dbg mdb {address:x} {length:x}"
+            read_block(scoped_capture(result, command), address, length)
     except ValueError as error:
         result["error"] = str(error)
         result["ok"] = False

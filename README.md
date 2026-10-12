@@ -93,3 +93,5 @@ uv run --locked tools/build_sdk.py \
 [实际映射镜像头](docs/image-header-readback.md)：512 B头部校验通过且reset向量匹配，声明正文927120 B；flags/TLV长度均0，正文和raw Flash尚未校验。
 
 [512 B多行读取验证](docs/header-batch-readback.md)：`uv run comi diag capture header-batch --out ...`，固定重读已知镜像头并逐行/hash验收；尚非正文导出。
+
+[固定映射镜像导出](docs/mapped-image-export.md)：四块正文独立复读一致；已跨进程续读保存52 KiB，256/512 B请求均捕获过截断。新增`uv run comi image export`断点读取与最终checksum门槛，尚未完成全正文校验；不等于原始Flash备份或可恢复。

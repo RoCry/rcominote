@@ -7,7 +7,7 @@ import sys
 
 from bleak.exc import BleakError
 
-from . import diagnostics, gatt, settings, usb_inventory, verification
+from . import diagnostics, gatt, image_export, settings, usb_inventory, verification
 from .device_commands import app
 from .output import emit
 
@@ -16,6 +16,7 @@ app.pretty_exceptions_enable = False
 app.add_typer(settings.app, name="settings", help="Read settings or explicitly change one with readback.")
 app.add_typer(diagnostics.app, name="diag", help="Fixed diagnostic profiles and offline code comparison.")
 app.add_typer(usb_inventory.app, name="usb", help="Host descriptor snapshots/diffs; no device writes.")
+app.add_typer(image_export.app, name="image", help="Fixed mapped-system export; not a raw Flash backup.")
 app.command("gatt")(gatt.main)
 app.command("verify")(verification.main)
 
@@ -32,7 +33,7 @@ def doctor():
             },
             "bluetooth_permission": "not_probed; run scan to test host access",
             "usb_snapshot": "available" if sys.platform == "darwin" else "macOS only; diff remains offline",
-            "firmware_backup": "not_available; only fixed mapped-code sample",
+            "firmware_backup": "not_available; resumable mapped-system export available, full checksum not yet observed",
             "flash_recovery": "not_verified",
         }
     )
@@ -51,12 +52,13 @@ def capabilities():
                 "noise setting write/readback/restore",
                 "log/version/help",
                 "NVRAM fixed name getter",
-                "997 unique mapped bytes across fixed code/reference/dispatcher profiles",
+                "ACPT table CRC, mapped ACTH header, and 52 KiB body checkpoint",
             ],
             "implemented_requires_explicit_selection": [
                 "record start/pause/resume/stop",
                 "clock synchronization",
                 "settings with readback",
+                "fixed mapped-system image export with resume and checksum gate",
             ],
             "not_implemented": [
                 "arbitrary shell/memory",

@@ -25,7 +25,14 @@ from .code_guards import (
 )
 from .log_probe import ACK, NOTIFY, PREPARE, SERVICE, WRITE
 from .nor_readback import NOR_PHASES
-from .range_readback import HEADER_BATCH_READS
+from .range_readback import (
+    BODY_PROBE_RANGES,
+    HEADER_BATCH_READS,
+    image_ranges,
+    range_commands,
+    read_range,
+    validate_known_header,
+)
 from .read_sets import (
     DISK_PHASES,
     HANDLER_BLOCKS,
@@ -119,7 +126,11 @@ async def capture(
     nor_code: bool = False,
     shell_code: bool = False,
     header_batch: bool = False,
+    body_probe: bool = False,
+    image_chunks: tuple[int, ...] = (),
 ) -> dict:
+    selected_ranges = image_ranges(image_chunks)
+    header_batch = header_batch or body_probe or bool(selected_ranges)
     code_references = code_references or shell_code or header_batch
     boot_code = boot_code or nor_code
     card_code = card_code or boot_code
@@ -138,6 +149,8 @@ async def capture(
         "captured_at": datetime.now(UTC).isoformat(),
         "serial": serial,
         "duration_seconds": duration,
+        "image_chunk_indices": list(image_chunks),
+        "range_frame_spans": {},
         "scope": "PREPARE/DEFAULT_START/STOP; fixed diagnostics and optional bounded reads; no storage writes/reboot",
         "fixed_text_commands": (
             (["kernel version", "device levels", "device levels"] if device_info else [])
@@ -223,6 +236,8 @@ async def capture(
             )
             + (flushed_phases(SHELL_PHASES) if shell_code else [])
             + (flushed_reads(HEADER_BATCH_READS) if header_batch else [])
+            + (range_commands(BODY_PROBE_RANGES) if body_probe else [])
+            + range_commands(selected_ranges)
         ),
         "notifications": [],
         "writes": [],
@@ -343,6 +358,10 @@ async def capture(
                     async with asyncio.timeout(5):
                         while not observed_logsrv_literals(stream.frames):
                             await pump(timeout=5)
+                if (body_probe and command == "dbg mdb 10000200 200") or command in {
+                    f"dbg mdb {a:x} {n:x}" for a, n in selected_ranges
+                }:
+                    validate_known_header(read_range(result | {"ok": True}, 0x10000000, 512))
                 encoded = command.encode("ascii")
                 if storage_code or shell_code:
                     async with asyncio.timeout(5):
@@ -416,21 +435,30 @@ async def capture(
                             "command 0x3a literal load",
                         ):
                             await pump(timeout=5)
+                frame_start = len(stream.frames)
+                if header_batch and command.startswith("dbg mdb "):
+                    result["range_frame_spans"][command] = [frame_start, None]
                 tlv = b"\x01" + len(encoded).to_bytes(2, "little") + encoded
                 await request(b"\x1d\x10\x81" + len(tlv).to_bytes(2, "little") + tlv)
-                if vendor_handler or device_info_code:
+                if vendor_handler or device_info_code or header_batch:
                     if command.startswith("dbg mdb "):
                         _, _, address, length = command.split()
-                        pending_reads.append((int(address, 16), int(length, 16)))
+                        a, n = int(address, 16), int(length, 16)
+                        pending_reads.extend(
+                            (a + offset, min(16, n - offset), frame_start) for offset in range(0, n, 16)
+                        )
                     elif command == "help":
                         # A captured long burst lost row b504 with all ACKs.
                         # Require this batch's actual rows before issuing more reads.
                         async with asyncio.timeout(5):
                             while any(
-                                observed_block(stream.frames, address, length) is None
-                                for address, length in pending_reads
+                                observed_block(stream.frames[start:], address, length) is None
+                                for address, length, start in pending_reads
                             ):
                                 await pump(timeout=5)
+                        for span in result["range_frame_spans"].values():
+                            if span[1] is None:
+                                span[1] = len(stream.frames)
                         pending_reads.clear()
             deadline = time.monotonic() + duration
             while (remaining := deadline - time.monotonic()) > 0:
