@@ -169,3 +169,7 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## 完整recovery与应用交接（2026-10-13）
 
 [报告](../recovery-complete.md)；[原始镜像](recovery-complete-2026-10-13/recovery-raw.bin)、[明文镜像](recovery-complete-2026-10-13/recovery-decoded.bin)、[真实采集报告](recovery-complete-2026-10-13/acquisition-report.json)、[修正版离线复验](recovery-complete-2026-10-13/report.json)、[全部62组基线/结果](recovery-complete-2026-10-13/captures.tar.gz)、[124个SD文件清单](recovery-complete-2026-10-13/sd-files.json)、[六模块指令与literal](recovery-complete-2026-10-13/handoff.json)。63,288 B头/正文校验通过；未执行新代码、写NOR或验证恢复。
+
+## 自建M4镜像与实际checker（2026-10-13）
+
+[方法/边界](../minimal-firmware-image.md)；[构建记录](minimal-image-2026-10-13/build-report.json)、[重复构建](minimal-image-2026-10-13/reproducibility.json)、[原厂正例gzip](minimal-image-2026-10-13/original-system.bin.gz)、[正例来源/哈希](minimal-image-2026-10-13/original-system.json)、[自建948 B ACTH](minimal-image-2026-10-13/minimal-acth.bin)、[实际checker结果矩阵](minimal-image-2026-10-13/gate-results.json)。无设备I/O；局部准入，不等于硬件启动或恢复能力。

@@ -1,0 +1,9 @@
+{
+  "scope": "Previously complete checksum-verified mapped system, not raw NOR or a restore image",
+  "source": "docs/evidence/mapped-system-complete-2026-10-12.json",
+  "image_bytes": 927632,
+  "image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "gzip_bytes": 604812,
+  "gzip_sha256": "d2b8b18d2e1c6248815b91a9c094d0608364607eda4685b3f8f1b4bb5d517d4e",
+  "compression": "gzip, mtime=0"
+}

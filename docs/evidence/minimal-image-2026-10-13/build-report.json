@@ -1,0 +1,63 @@
+{
+  "scope": "Offline M4 ELF + ACTH fixture; not a CoMi BSP, raw NOR image, OTA package or hardware execution proof",
+  "compiler": "arm-none-eabi-gcc (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)",
+  "command": [
+    "/home/rocry/.cache/rcominote/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc",
+    "-mcpu=cortex-m4",
+    "-mthumb",
+    "-mfloat-abi=soft",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-common",
+    "-fno-unwind-tables",
+    "-fno-asynchronous-unwind-tables",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-Os",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-nostdlib",
+    "-Wl,--build-id=none,--gc-sections",
+    "-Wl,-Map=/home/rocry/w/_tmp/rcominote-minimal-20261013/artifacts/run-c/minimal.map",
+    "-T/home/rocry/w/_tmp/rcominote-minimal-20261013/firmware/minimal/linker.ld",
+    "/home/rocry/w/_tmp/rcominote-minimal-20261013/firmware/minimal/startup.S",
+    "/home/rocry/w/_tmp/rcominote-minimal-20261013/firmware/minimal/main.c",
+    "-o",
+    "/home/rocry/w/_tmp/rcominote-minimal-20261013/artifacts/run-c/minimal.elf"
+  ],
+  "source_sha256": {
+    "startup.S": "9d04896777b032f5dd3a5c570cf65af6e45b29aa562b9cfd0e8f50f833cc8e57",
+    "main.c": "af244b883b6fd4632fa87356c444c0a1c87b835acaf373da040e0d4f02fe8d25",
+    "linker.ld": "ba2e4b598c038f35388dfa1444625dfd90a794e2450c1a74839269acab78c55d"
+  },
+  "cpu": "Cortex-M4 / ARMv7E-M",
+  "float_abi": "soft; no media/BLE vendor libraries",
+  "addresses": {
+    "Reset_Handler": "0x10000341",
+    "vector_table": "0x10000200",
+    "__stack_top": "0x1002b40",
+    "__stack_bottom": "0x1002340",
+    "__data_load": "0x100003b0",
+    "__data_start": "0x1001b40",
+    "__data_end": "0x1001b44",
+    "__bss_start": "0x1001b44",
+    "__bss_end": "0x1001b48",
+    "fixture_marker": "0x1001b44"
+  },
+  "memory_basis": "Original app uses01001b40..01002340 init stack and01002b40 vector SP; fixture layout only, not free live RAM",
+  "artifacts": {
+    "minimal.elf": {
+      "bytes": 8136,
+      "sha256": "4ecafa291f01ebbfff499adf1ecd43bfe944fc3144b4e067676179d616b20f60"
+    },
+    "minimal-body.bin": {
+      "bytes": 436,
+      "sha256": "0ec6f42bc63d90f6d1513523000ba79f461bb1fbdec052b614db3277afab5c31"
+    },
+    "minimal-acth.bin": {
+      "bytes": 948,
+      "sha256": "487b3873d9b62a32afde64305e99d7b6940fcc67b9740fcd769a9e2cf96c685b"
+    }
+  }
+}

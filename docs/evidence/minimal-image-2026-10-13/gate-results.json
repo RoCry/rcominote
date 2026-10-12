@@ -1,0 +1,188 @@
+[
+  {
+    "case": "original",
+    "recovery_decoded_sha256": "19625b7b70eb8e4a91c889792c0ca383f51ea205629e67565b59c47d15e09906",
+    "candidate_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+    "candidate_bytes": 927632,
+    "rc": 0,
+    "accepted_by_local_checker": true,
+    "entry_out_initial": "0x1100000f",
+    "entry_out": "0x1002d819",
+    "global_sp": "0x1002b40",
+    "diagnostic_args": [
+      "0x0",
+      "0x1002b40",
+      "0x1002d819"
+    ],
+    "instructions": 1159610,
+    "input_read_end_exclusive": "0x100e2790",
+    "model": {
+      "engine": "Unicorn 2.1.4 ARM Thumb MCLASS",
+      "entry": "0x18000101",
+      "size_limit_argument": 0,
+      "code_range": [
+        "0x180000e8",
+        "0x1800020c"
+      ],
+      "literal_range": [
+        "0x1800020c",
+        "0x18000218"
+      ],
+      "input": "Read-only, exact file extent; mapped-page padding inaccessible",
+      "workspace": "Synthetic 256-byte stack, four-byte entry_out and global180018dc only",
+      "only_interception": "18000078: record r0, return to LR; actual helper formats a hex diagnostic",
+      "instruction_budget": 4000000,
+      "timeout_us": 15000000,
+      "limits": "No candidate execution, mapping/preparation helpers, ROM, MMIO, UART or hardware state; local acceptance does not establish boot authorization, usable stack, execution or recovery"
+    }
+  },
+  {
+    "case": "own-minimal",
+    "recovery_decoded_sha256": "19625b7b70eb8e4a91c889792c0ca383f51ea205629e67565b59c47d15e09906",
+    "candidate_sha256": "487b3873d9b62a32afde64305e99d7b6940fcc67b9740fcd769a9e2cf96c685b",
+    "candidate_bytes": 948,
+    "rc": 0,
+    "accepted_by_local_checker": true,
+    "entry_out_initial": "0x1100000f",
+    "entry_out": "0x10000341",
+    "global_sp": "0x1002b40",
+    "diagnostic_args": [
+      "0x0",
+      "0x1002b40",
+      "0x10000341"
+    ],
+    "instructions": 1255,
+    "input_read_end_exclusive": "0x100003b4",
+    "model": {
+      "engine": "Unicorn 2.1.4 ARM Thumb MCLASS",
+      "entry": "0x18000101",
+      "size_limit_argument": 0,
+      "code_range": [
+        "0x180000e8",
+        "0x1800020c"
+      ],
+      "literal_range": [
+        "0x1800020c",
+        "0x18000218"
+      ],
+      "input": "Read-only, exact file extent; mapped-page padding inaccessible",
+      "workspace": "Synthetic 256-byte stack, four-byte entry_out and global180018dc only",
+      "only_interception": "18000078: record r0, return to LR; actual helper formats a hex diagnostic",
+      "instruction_budget": 4000000,
+      "timeout_us": 15000000,
+      "limits": "No candidate execution, mapping/preparation helpers, ROM, MMIO, UART or hardware state; local acceptance does not establish boot authorization, usable stack, execution or recovery"
+    }
+  },
+  {
+    "case": "body-damaged",
+    "recovery_decoded_sha256": "19625b7b70eb8e4a91c889792c0ca383f51ea205629e67565b59c47d15e09906",
+    "candidate_sha256": "6a22dd0b7e2ce32ae4951e58480696d7e21a68e2d924824b3e096867df7cbad8",
+    "candidate_bytes": 927632,
+    "rc": -15,
+    "accepted_by_local_checker": false,
+    "entry_out_initial": "0x1100000f",
+    "entry_out": "0x1002d819",
+    "global_sp": "0x1002b40",
+    "diagnostic_args": [
+      "0x15",
+      "0xffffff"
+    ],
+    "instructions": 1159606,
+    "input_read_end_exclusive": "0x100e2790",
+    "model": {
+      "engine": "Unicorn 2.1.4 ARM Thumb MCLASS",
+      "entry": "0x18000101",
+      "size_limit_argument": 0,
+      "code_range": [
+        "0x180000e8",
+        "0x1800020c"
+      ],
+      "literal_range": [
+        "0x1800020c",
+        "0x18000218"
+      ],
+      "input": "Read-only, exact file extent; mapped-page padding inaccessible",
+      "workspace": "Synthetic 256-byte stack, four-byte entry_out and global180018dc only",
+      "only_interception": "18000078: record r0, return to LR; actual helper formats a hex diagnostic",
+      "instruction_budget": 4000000,
+      "timeout_us": 15000000,
+      "limits": "No candidate execution, mapping/preparation helpers, ROM, MMIO, UART or hardware state; local acceptance does not establish boot authorization, usable stack, execution or recovery"
+    }
+  },
+  {
+    "case": "header-damaged",
+    "recovery_decoded_sha256": "19625b7b70eb8e4a91c889792c0ca383f51ea205629e67565b59c47d15e09906",
+    "candidate_sha256": "06b4a1d8146cd85a59cbbf0d6ab30be48b4b1e86c21391e00fa22fc0e82f816e",
+    "candidate_bytes": 927632,
+    "rc": -14,
+    "accepted_by_local_checker": false,
+    "entry_out_initial": "0x1100000f",
+    "entry_out": "0x1002d819",
+    "global_sp": "0x1002b40",
+    "diagnostic_args": [
+      "0x14"
+    ],
+    "instructions": 686,
+    "input_read_end_exclusive": "0x10000208",
+    "model": {
+      "engine": "Unicorn 2.1.4 ARM Thumb MCLASS",
+      "entry": "0x18000101",
+      "size_limit_argument": 0,
+      "code_range": [
+        "0x180000e8",
+        "0x1800020c"
+      ],
+      "literal_range": [
+        "0x1800020c",
+        "0x18000218"
+      ],
+      "input": "Read-only, exact file extent; mapped-page padding inaccessible",
+      "workspace": "Synthetic 256-byte stack, four-byte entry_out and global180018dc only",
+      "only_interception": "18000078: record r0, return to LR; actual helper formats a hex diagnostic",
+      "instruction_budget": 4000000,
+      "timeout_us": 15000000,
+      "limits": "No candidate execution, mapping/preparation helpers, ROM, MMIO, UART or hardware state; local acceptance does not establish boot authorization, usable stack, execution or recovery"
+    }
+  },
+  {
+    "case": "entry-even",
+    "recovery_decoded_sha256": "19625b7b70eb8e4a91c889792c0ca383f51ea205629e67565b59c47d15e09906",
+    "candidate_sha256": "48fba127cd715b72e321036d7838dd33bec190fc3f94e14f33c2cfb458e579c5",
+    "candidate_bytes": 927632,
+    "rc": -12,
+    "accepted_by_local_checker": false,
+    "entry_out_initial": "0x1100000f",
+    "entry_out": "0x1100000f",
+    "global_sp": "0x1002b40",
+    "diagnostic_args": [
+      "0x12",
+      "0x1002d818"
+    ],
+    "instructions": 32,
+    "input_read_end_exclusive": "0x10000208",
+    "model": {
+      "engine": "Unicorn 2.1.4 ARM Thumb MCLASS",
+      "entry": "0x18000101",
+      "size_limit_argument": 0,
+      "code_range": [
+        "0x180000e8",
+        "0x1800020c"
+      ],
+      "literal_range": [
+        "0x1800020c",
+        "0x18000218"
+      ],
+      "input": "Read-only, exact file extent; mapped-page padding inaccessible",
+      "workspace": "Synthetic 256-byte stack, four-byte entry_out and global180018dc only",
+      "only_interception": "18000078: record r0, return to LR; actual helper formats a hex diagnostic",
+      "instruction_budget": 4000000,
+      "timeout_us": 15000000,
+      "limits": "No candidate execution, mapping/preparation helpers, ROM, MMIO, UART or hardware state; local acceptance does not establish boot authorization, usable stack, execution or recovery"
+    }
+  },
+  {
+    "case": "original-truncated-one-byte",
+    "model_error": "Out-of-contract read at 0x100e278c+4, pc=0x180000f8",
+    "checker_result": null
+  }
+]

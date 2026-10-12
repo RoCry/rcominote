@@ -4,6 +4,8 @@
 
 新增：[完整recovery63,288 B及应用交接契约](recovery-complete.md)已取得，头/正文校验通过；不等于整机备份或恢复证明。
 
+新增：[最小M4镜像构建与本机实际checker仿真](minimal-firmware-image.md)已接通，可重复产出ELF与ACTH；仅局部准入，不代表硬件启动或可刷。
+
 当前进度：已完整导出927632 B实机系统映射镜像并通过checksum，Ubuntu静态分析可复现；实际ACPT有18项NOR分区、逻辑范围4 MiB，录音介质是独立SD路径。两次console快照及实际指令把fread正文路径定位到UART_0 DMA。USB数据接口、raw NOR完整备份、独立恢复和自写固件启动仍未验证。[镜像](offline-system-analysis.md) · [分区](partition-readback.md) · [输出路径](console-target-followup.md) · [物理映射缺口](mapping-candidate-audit.md) · [参考板构建](build-feasibility.md)。
 
 ## 证据决定路径

@@ -40,6 +40,10 @@ Current deliverables, in order:
    independent escape. Enumeration, helper execution and Flash writes have
    separate evidence gates; complete restoration is not a prerequisite for
    an enumeration-only experiment with an independently established exit.
+   [Offline M4 image construction](minimal-firmware-image.md) now closes the
+   compiler/linker/ACTH/local-checker path: original and self-built images pass
+   actual checker emulation; corruptions reject. This is not target execution,
+   a matched BSP, full-chain authorization or a proposed flash experiment.
 
 Client edge cases, backend acquisition, exact timer units and peripheral
 details remain recorded below; they do not take priority over matching platform

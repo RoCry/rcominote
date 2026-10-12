@@ -50,6 +50,7 @@
 | [SDK生产包生成链](production-package-contract.md) | 默认外层ACTTEST0 `.fw`、内层maker upgrade.fw、后处理raw、独立AOTA已区分；ATF源打包器离线验证 | LARK旧布局缺当前必需字段，未生成CoMi生产包；需最终生效配置/helper/host，不能按扩展名或混用cfg选择工具 |
 | [量产工具DLL/INF](host-selection-followup.md) | 有 WinUSB、ADFU API及驱动ID，可指导匹配host | 尚无本机芯片→host选择→ROM协议闭环；不能直接套旧ATJ包格式 |
 | 本机system / boot / DSP | 实际ABI、驱动、启动、安全/OTA约束；本机代码强于不匹配参考默认值 | 反汇编不等于源码；DSP提取不证明可在自写固件中加载执行或再分发 |
+| [自建M4 ELF / ACTH与实际checker oracle](minimal-firmware-image.md) | 948 B自建镜像可重复构建，通过原厂recovery实际指令的离线局部准入检查；原厂正/损坏负例校准 | 仅镜像fixture；缺BSP/原始表示/早期授权/可恢复入口，未执行候选代码或证明RAM可用 |
 | [原厂RAM→SD→Boyi通道](sd-file-bridge.md) | 固定4KiB RAM与单次boot0 ring导出均匹配独立原始字节，绕过数百次mdb小读 | [recovery缺失30扇区均双读一致且完整校验](recovery-complete.md)；留SD测试文件，流程仍不适合整片备份；直接XIP源失败原因暂存 |
 
 ## 下一阶段只抓三个交付物

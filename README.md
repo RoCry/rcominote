@@ -19,6 +19,7 @@
 | 存储 | [18项ACPT配置覆盖4 MiB NOR](docs/partition-readback.md)；[录音SD路径](docs/card-state-readback.md)独立，容量约64 GB |
 | 已取得固件 | 完整[927632 B系统映射镜像](docs/offline-system-analysis.md)、[boot](docs/boot-complete.md)、[110148 B录音DSP](docs/record-dsp-export.md)、分区表；[recovery完整63,288 B](docs/recovery-complete.md)，头及正文校验通过。不是整片原始备份 |
 | 恢复/刷写 | 已分析[实际boot](docs/actual-boot-flow.md)、[ROM下载入口](docs/actual-rom-adfu-entry.md)、[OTA容器](docs/ota-container-contract.md)；无匹配官方恢复包、实测ROM传输或恢复证明 |
+| 自写镜像 | [最小M4 ELF与948 B ACTH镜像](docs/minimal-firmware-image.md)可重复构建，通过本机recovery真实checker离线仿真；未在硬件运行 |
 | USB | 已知数据线拔插对照未发现CoMi枚举；ROM模式未试，不能断言接口只充电 |
 | 客户端 | BLE状态、录音控制、文件下载、部分配置已实测；[短窗口实时流与离线MP3逐字节相同](docs/realtime-live.md)，不保证长时无丢失 |
 

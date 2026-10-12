@@ -1,0 +1,42 @@
+{
+  "scope": "Two fresh output directories, same GNU Arm10.3.1 compiler and tracked sources; compiler artifacts compared byte-for-byte remotely",
+  "compiler": "arm-none-eabi-gcc (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)",
+  "source_sha256": {
+    "startup.S": "9d04896777b032f5dd3a5c570cf65af6e45b29aa562b9cfd0e8f50f833cc8e57",
+    "main.c": "af244b883b6fd4632fa87356c444c0a1c87b835acaf373da040e0d4f02fe8d25",
+    "linker.ld": "ba2e4b598c038f35388dfa1444625dfd90a794e2450c1a74839269acab78c55d"
+  },
+  "first_output": "run-c",
+  "second_output": "run-d",
+  "artifacts_first": {
+    "minimal.elf": {
+      "bytes": 8136,
+      "sha256": "4ecafa291f01ebbfff499adf1ecd43bfe944fc3144b4e067676179d616b20f60"
+    },
+    "minimal-body.bin": {
+      "bytes": 436,
+      "sha256": "0ec6f42bc63d90f6d1513523000ba79f461bb1fbdec052b614db3277afab5c31"
+    },
+    "minimal-acth.bin": {
+      "bytes": 948,
+      "sha256": "487b3873d9b62a32afde64305e99d7b6940fcc67b9740fcd769a9e2cf96c685b"
+    }
+  },
+  "artifacts_second": {
+    "minimal.elf": {
+      "bytes": 8136,
+      "sha256": "4ecafa291f01ebbfff499adf1ecd43bfe944fc3144b4e067676179d616b20f60"
+    },
+    "minimal-body.bin": {
+      "bytes": 436,
+      "sha256": "0ec6f42bc63d90f6d1513523000ba79f461bb1fbdec052b614db3277afab5c31"
+    },
+    "minimal-acth.bin": {
+      "bytes": 948,
+      "sha256": "487b3873d9b62a32afde64305e99d7b6940fcc67b9740fcd769a9e2cf96c685b"
+    }
+  },
+  "elf_equal": true,
+  "acth_equal": true,
+  "fix": "Explicit assembler .file startup.S avoids random cc*.o local ELF FILE symbol; body/ACTH were already identical before this fix"
+}

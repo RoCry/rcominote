@@ -7,3 +7,13 @@ default:
 [group('dev')]
 check:
     bash tools/check.sh
+
+# Linux compiler only; creates an offline fixture, never contacts a device.
+[group('firmware')]
+build-minimal toolchain out:
+    uv run tools/build_minimal_firmware.py "{{toolchain}}" "{{out}}"
+
+# Run the recovered local checker in an offline CPU model; rejection exits1.
+[group('firmware')]
+check-image image:
+    uv run tools/check_recovery_image.py docs/evidence/recovery-complete-2026-10-13/recovery-decoded.bin "{{image}}"

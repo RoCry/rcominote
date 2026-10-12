@@ -1,0 +1,51 @@
+
+/home/rocry/w/_tmp/rcominote-minimal-20261013/artifacts/run-c/minimal.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+10000340 <Reset_Handler>:
+10000340:	b672      	cpsid	i
+10000342:	2000      	movs	r0, #0
+10000344:	f380 8814 	msr	CONTROL, r0
+10000348:	f3bf 8f6f 	isb	sy
+1000034c:	480c      	ldr	r0, [pc, #48]	; (10000380 <Reset_Handler+0x40>)
+1000034e:	f380 8808 	msr	MSP, r0
+10000352:	480c      	ldr	r0, [pc, #48]	; (10000384 <Reset_Handler+0x44>)
+10000354:	490c      	ldr	r1, [pc, #48]	; (10000388 <Reset_Handler+0x48>)
+10000356:	4a0d      	ldr	r2, [pc, #52]	; (1000038c <Reset_Handler+0x4c>)
+10000358:	4291      	cmp	r1, r2
+1000035a:	d204      	bcs.n	10000366 <Reset_Handler+0x26>
+1000035c:	f850 3b04 	ldr.w	r3, [r0], #4
+10000360:	f841 3b04 	str.w	r3, [r1], #4
+10000364:	e7f8      	b.n	10000358 <Reset_Handler+0x18>
+10000366:	490a      	ldr	r1, [pc, #40]	; (10000390 <Reset_Handler+0x50>)
+10000368:	4a0a      	ldr	r2, [pc, #40]	; (10000394 <Reset_Handler+0x54>)
+1000036a:	2300      	movs	r3, #0
+1000036c:	4291      	cmp	r1, r2
+1000036e:	d202      	bcs.n	10000376 <Reset_Handler+0x36>
+10000370:	f841 3b04 	str.w	r3, [r1], #4
+10000374:	e7fa      	b.n	1000036c <Reset_Handler+0x2c>
+10000376:	f000 f811 	bl	1000039c <fixture_main>
+1000037a:	f000 b80d 	b.w	10000398 <Default_Handler>
+1000037e:	0000      	.short	0x0000
+10000380:	01002b40 	.word	0x01002b40
+10000384:	100003b0 	.word	0x100003b0
+10000388:	01001b40 	.word	0x01001b40
+1000038c:	01001b44 	.word	0x01001b44
+10000390:	01001b44 	.word	0x01001b44
+10000394:	01001b48 	.word	0x01001b48
+
+10000398 <Default_Handler>:
+10000398:	e7fe      	b.n	10000398 <Default_Handler>
+	...
+
+1000039c <fixture_main>:
+1000039c:	4b02      	ldr	r3, [pc, #8]	; (100003a8 <fixture_main+0xc>)
+1000039e:	681a      	ldr	r2, [r3, #0]
+100003a0:	4b02      	ldr	r3, [pc, #8]	; (100003ac <fixture_main+0x10>)
+100003a2:	601a      	str	r2, [r3, #0]
+100003a4:	bf00      	nop
+100003a6:	e7fd      	b.n	100003a4 <fixture_main+0x8>
+100003a8:	01001b40 	.word	0x01001b40
+100003ac:	01001b44 	.word	0x01001b44
