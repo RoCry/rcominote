@@ -1,0 +1,13 @@
+{
+  "source_commit": "26f51e584940d5b141cd1d09d2629d69b595f579",
+  "source_path": "action_technology_sdk/zephyr/tools/build_ota_image.py",
+  "source_sha256": "4417c069ee759428c51a514e3938a98aaf126abb72b7b6fba8161633c0e301ac",
+  "producer": "unmodified ota_fw().pack([ota.xml,payload.bin],output)",
+  "fixture_sha256": "6c8ccca1ba8e3a37f86badb5dd7565097c671258a637f824d86aff0ff9b936d4",
+  "fixture_bytes": 2048,
+  "inputs": {
+    "ota.xml": "<ota_firmware><firmware_version><version_name>fixture-only</version_name><version_code>0x01020304</version_code><version_res>0x05060708</version_res><board_name>test-not-comi</board_name></firmware_version></ota_firmware>\n",
+    "payload.bin": "abc"
+  },
+  "scope": "synthetic offline container oracle; not official CoMi firmware and never send to device"
+}

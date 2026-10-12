@@ -65,6 +65,22 @@ uv run comi realtime --record --duration 5 --out artifacts/live-test.bin
 连接期间保留e5e3订阅，结束采集只移除本地接收处理，再断开连接。
 原因及实测见[共享CCC状态](realtime-ccc-gating.md)、[实时MP3比对](realtime-live.md)。
 
+## 离线 OTA 包检查
+
+```sh
+uv run comi inspect-ota /path/to/ota.bin
+# 仓库自带的合成格式样本；不是CoMi固件
+uv run comi inspect-ota tests/fixtures/ota-sdk-golden.bin
+```
+
+不扫描、不连接设备、不解包或烧录。检查AOTA头部、完整数据和各文件CRC，
+以及目录数量、名称、文件范围和重叠。输出XML中的板名／版本作为元数据；
+不把“容器完整”当作“本机接受”“签名有效”或“可以恢复”。
+检查器增加了设备解析器中未见的目录／文件边界校验，见[实际容器检查](ota-container-contract.md)。
+它没有复刻全部设备验收条件：例如设备要求清单以`<?xml`开头且长度小于2048，
+本工具只做有界XML元数据解析。自带样本没有XML声明，也进一步说明CRC通过不等于设备接受。
+加密或整体压缩的外层文件不自动猜测、解密或展开。
+
 ## 设置
 
 ```sh

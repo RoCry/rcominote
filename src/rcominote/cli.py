@@ -7,7 +7,7 @@ import sys
 
 from bleak.exc import BleakError
 
-from . import diagnostics, gatt, image_export, realtime, settings, usb_inventory, verification
+from . import diagnostics, gatt, image_export, ota_package, realtime, settings, usb_inventory, verification
 from .device_commands import app
 from .output import emit
 
@@ -20,6 +20,7 @@ app.add_typer(image_export.app, name="image", help="Fixed mapped-system export; 
 app.command("gatt")(gatt.main)
 app.command("verify")(verification.main)
 app.command("realtime")(realtime.main)
+app.command("inspect-ota")(ota_package.main)
 
 
 @app.command()
