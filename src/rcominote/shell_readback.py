@@ -185,6 +185,10 @@ SHELL_PARTITION_TABLE = tuple(
     )
     for address in range(0x01000050, 0x01000328, 16)
 )
+SHELL_BOOT_INFO_CANDIDATE = tuple(
+    (address, 16, "SDK boot-info candidate in corroborated boot SRAM; layout not instruction-proven", False)
+    for address in range(0x01000000, 0x01000040, 16)
+)
 SHELL_PHASES = (
     SHELL_INIT_SUCCESS,
     SHELL_STREAM_SUCCESS,
@@ -222,9 +226,17 @@ SHELL_PHASES = (
     SHELL_PARTITION_POINTER,
     SHELL_PARTITION_HEADER,
     SHELL_PARTITION_TABLE,
+    SHELL_BOOT_INFO_CANDIDATE,
 )
 SHELL_BLOCKS = tuple(block for phase in SHELL_PHASES for block in phase)
 SHELL_GUARDS = (
+    (
+        SHELL_BOOT_INFO_CANDIDATE,
+        (
+            (0x1800ECB4, "40000001", "boot SRAM partition pointer corroboration"),
+            (0x01000040, "414350540101e8021200180000000000", "boot SRAM ACPT header corroboration"),
+        ),
+    ),
     (
         SHELL_PARTITION_TABLE,
         ((0x01000040, "414350540101e8021200180000000000", "ACPT header magic and table bounds"),),

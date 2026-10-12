@@ -153,3 +153,7 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## 启动安全标志源码审计
 
 [固定SDK来源摘录与原文件SHA256](boot-security-source-audit-2026-10-12.json)、[解释及实机边界](../boot-security-source-audit.md)。无新增设备I/O；区分ACPT加密声明、镜像签名路径、CRC映射和OTA写标志。
+
+## 启动SRAM候选交叉核对
+
+[首次](boot-info-first-2026-10-12.json)、[重读](boot-info-second-2026-10-12.json)、[分析](boot-info-analysis-2026-10-12.json)：3051 B一致，新增64 B，累计6935不同映射字节。SDK-layout候选的param_save/system/nor字段匹配实机ACPT，param_phy=0不匹配；不等于完整ABI证明。[报告](../boot-info-readback.md)、[结束状态](boot-info-final-state-2026-10-12.json)。

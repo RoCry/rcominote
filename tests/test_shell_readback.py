@@ -9,8 +9,8 @@ from rcominote.code_guards import observed_storage_reference
 from rcominote.code_references import inspect_references
 
 EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence"
-FIRST = EVIDENCE / "partition-first-2026-10-12.json"
-SECOND = EVIDENCE / "partition-second-2026-10-12.json"
+FIRST = EVIDENCE / "boot-info-first-2026-10-12.json"
+SECOND = EVIDENCE / "boot-info-second-2026-10-12.json"
 
 
 def test_actual_timer_and_header_edges():
@@ -89,3 +89,13 @@ def test_changed_partition_pointer_blocks_stale_header():
         frame["text"] = frame.get("text", "").replace("1800ecb4: 40 00 00 01", "1800ecb4: 50 00 00 01")
     with pytest.raises(ValueError, match="live partition table pointer code changed"):
         observed_storage_reference(capture["frames"], "dbg mdb 1000040 10")
+
+
+def test_boot_candidate_correlations_keep_param_mismatch_visible():
+    report = inspect_references(FIRST, SECOND, shell=True)["boot_info_candidate"]
+    # Actual words 0x01000040/0x24000/0 conflict with a blindly assumed complete SDK ABI.
+    assert report["candidate_fields"]["param_save_addr"] == "0x1000040"
+    assert report["candidate_fields"]["system_phy_addr"] == "0x24000"
+    assert report["candidate_fields"]["param_phy_addr"] == "0x0"
+    assert report["system_matches"] == [5]
+    assert report["param_matches"] == []

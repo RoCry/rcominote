@@ -9,6 +9,7 @@ from typing import Annotated
 import typer
 from capstone import CS_ARCH_ARM, CS_MODE_THUMB, Cs
 
+from .boot_info import inspect_boot_info
 from .boot_readback import BOOT_BLOCKS, BOOT_NAME_POINTERS
 from .card_readback import CARD_BLOCKS
 from .nor_readback import NOR_BLOCKS
@@ -249,6 +250,10 @@ def inspect_references(
             for address in range(0x01000040, 0x01000328, 16)
         )
         report["partition_table"] = inspect_acpt(table)
+        boot_data = b"".join(
+            read_block(captures[0], address, 16) for address in range(0x01000000, 0x01000040, 16)
+        )
+        report["boot_info_candidate"] = inspect_boot_info(boot_data, report["partition_table"])
     if vendor or shell:
         # Decode contiguous bytes together: 32-bit Thumb instructions can cross
         # 16-byte transport rows. Never resume decoding in their second half.

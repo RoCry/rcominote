@@ -4,7 +4,7 @@
 
 | 问题 | 当前状态 | 下一份决定性证据 |
 |---|---|---|
-| BLE可否返回存储内容 | 已独立核对6871不同映射字节，含744 B ACPT | 实际物理读取与映射视图的对应关系 |
+| BLE可否返回存储内容 | 已独立核对6935不同映射字节，含744 B ACPT | 实际物理读取与映射视图的对应关系 |
 | fread为何只有状态行 | 源码解释明确，实机输出路由仍有限 | 可返回原始Flash内容的确认路径 |
 | 精确SoC/板级/分区 | 18项NOR配置覆盖4 MiB，缓存ID匹配Zbit系列；板级仍未知 | 当前boot-info、镜像头、控制器/板号 |
 | 自写镜像是否可启动 | 未解决；ACPT flag2不能证明实机签名/加密状态 | 实际boot检查分支、映射与header |
@@ -45,3 +45,5 @@
 [device表与独立Flash](boot-storage-device-readback.md)：实机31个对象，spi_flash ready且配置32 MiB；read wrapper实际位于RAM。下一跳是literal100bc294的底层Flash函数表；启动分区另走[已知sdfs帮助→实际shell descriptor→partition getter](partition-reference-route.md)。没有依据执行read callback、重启或烧录。
 
 [NOR缓存ID](nor-driver-readback.md)已读：16405e，匹配Zbit 32 Mbit／4 MiB系列，driver32 MiB配置并非物理容量实证。下一份关键证据仍是启动分区；从已读logsrv分支1000bf3c→1000bf58追timer callback，比继续追分配器更直接。
+
+[boot-info候选](boot-info-readback.md)：system/nor offset24000与ACPT相符，但param_phy字段为0；下步核对实际getter/镜像头与映射，不根据候选布局直接扩成整片备份。
