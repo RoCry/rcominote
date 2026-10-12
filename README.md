@@ -147,3 +147,5 @@ uv run --locked tools/build_sdk.py \
 [DSP文件加载器](docs/dsp-file-loader.md)：540 B头部、`xhqy`磁盘魔数与分段读取；指令模拟确认空sections可通过、初始seek错误未检查，不能以加载器成功替代备份完整性验证。
 
 [录音下载路径](docs/recording-download-path.md)：实际拼接`/SD:/RECORDER/Call-或Note-<name>.mp3`，不是绝对路径文件接口，不能直接用于NOR DSP资源导出。
+
+[应用ADFU重启路径](docs/application-reboot-path.md)：实际写重启标记并触发watchdog；尚不证明应用损坏后的独立恢复。当前优先级与证据缺口见[研究清单](docs/next-investigation.md)。
