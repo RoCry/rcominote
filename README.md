@@ -43,6 +43,8 @@ uv run comi diag capture platform --out artifacts/platform-NEW.json
 
 包在 `src/rcominote/`。JSON输出，错误非零退出，按序列号选设备；下载校验完整长度后原子保存，拒绝覆盖。下载／同步中Ctrl-C保留标注不完整的文件和元数据，断开连接、退出130。诊断只开放固定profile，没有任意shell、刷机或恢复命令。
 
+[实际CLI取消验证](docs/download-cancel-contract.md#actual-cli-sigint-validation-2026-10-13)：真机上一次SIGINT保存4,416 B正确前缀、退出130；新连接完整下载与指定偏移下载均逐字节符合旧完整基线，设备状态及7项录音列表不变。不是自动续传或设备线程退出证明。
+
 macOS需蓝牙权限，官方App先断开；Linux需本机BlueZ/适配器。APK、SDK、原始录音、完整日志在忽略的 `artifacts/`；仓库不依赖rlcdv、Obsidian或临时交接文件。
 
 显式单文件删除见[CLI说明](docs/cli.md)：必填serial和文件名确认，只以完整列表中目标消失为验收；尚未实机执行。`maintenance`提供绑定／解绑／格式化／恢复出厂／手机类型的显式请求；退出3表示提交但效果未验证，没有实机执行这些管理操作。

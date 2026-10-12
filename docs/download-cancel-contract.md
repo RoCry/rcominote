@@ -128,6 +128,46 @@ actual saved bytes against a fixed SHA-256 oracle; CLI tests verify cancellation
 output, disconnect and exit130. These are host tests against the earlier protocol
 evidence, not a new device runtime proof or cancel→resume claim.
 
+## Actual CLI SIGINT validation, 2026-10-13
+
+[One live trial](evidence/cli-download-cancel-hil-2026-10-13.json) on owned
+C261CF0430/FW010004 exercises the actual CLI process at c733e0b, not a fake
+connection or direct call to its cancellation helper:
+
+- Independent baseline: earlier complete recording20261012112429,56,912 B,
+  SHA-256`85e79226449750809978094b3c07cdc33c1941e1755dd0349c70e077a66d690d`.
+- Observed buffered temporary file at3,928 B, then sent exactly one SIGINT to
+  the CLI Python process. This is not a first-packet trigger.
+- Exit130; STOP request sent and reply observed, no stop error.
+  Preserved4,416 B exactly equal to baseline prefix; saved metadata/hash agree.
+  No completeMP3 or temporary`.part` left in cancelled export directory.
+- Fresh CLI connection: complete56,912 B byte-for-byte equal to old baseline.
+  Another fresh connection at explicit offset4,416:52,496 B exactly equal to
+  baseline suffix. No automatic resume or same-session restart exercised.
+- Before/after: idle; identity/binding, capacity/settings and all7 listed
+  recordings unchanged. No forced process cleanup, retry or recording mutation.
+
+This closes actual CLI cancellation/prefix publication plus subsequent reads
+for one observed sequence. It does not establish device-worker exit, universal
+cancel/EOF race safety, or firmware backup/recovery. Keep the earlier raw
+protocol observation below separate: it used a different trigger and receiver.
+
+Reproduce on the owned idle firmware with an independently completed baseline:
+
+```sh
+uv run -m rcominote.experiments.download_cancel \
+  artifacts/cancel-NEW artifacts/cli-download.json
+```
+
+Manifest identifies`name,path,bytes,sha256`; path is relative to working directory.
+Experiment uses separate actual CLI subprocess/connection per command,45-second
+host bounds, oneSIGINT and no retry. A missed cancellation window fails rather
+than silently rerunning. Raw logs/audio remain in ignored output directory.
+After this trial, host acceptance was tightened to require successful STOP
+observations and reject partial/offset baselines; retained evidence passed those
+checks without another device transfer. Context-manager formatting also changed;
+production CLI code was unchanged.
+
 ## Bounded live observation
 
 Owned C261CF0430, existing listed recording20261012112429 (56,912 B). Waited for

@@ -75,6 +75,14 @@ do not expand it into automatic cancellation/resume while platform work has prio
 Explicit download/sync Ctrl-C now uses the [existing stop contract](download-cancel-contract.md#implemented-host-boundary-2026-10-13):
 labeled partial bytes, bounded stop attempt and disconnect. This closes a known
 client capability without claiming worker-idle, reliable resume or firmware backup.
+[Actual CLI SIGINT acceptance](download-cancel-contract.md#actual-cli-sigint-validation-2026-10-13)
+now verifies one device cancellation, exact preserved prefix and fresh full/offset
+reads against an independent baseline. User-directed acceptance policy: normal
+read/control/client changes need a bounded real-device check of their claimed
+effect; offline tests alone remain host evidence. Skip repeated hardware checks
+without a new question. Destructive management and unmatched firmware are not
+ordinary smoke tests; retain explicit unverified status. This trial closes the
+new CLI acceptance gap without reopening automatic-resume research.
 [Explicit single-file deletion](file-deletion.md) now covers another documented
 client operation: source-backed request, serial/name confirmation, complete list
 readback, unknown outcome on interrupted exchange. Host tested only; no device

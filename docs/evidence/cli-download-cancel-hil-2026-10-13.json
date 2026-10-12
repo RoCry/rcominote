@@ -1,0 +1,128 @@
+{
+  "started_utc": "2026-10-12T23:17:01.428226+00:00",
+  "local_date": "2026-10-13",
+  "cli_commit": "c733e0b90102a141002726b6a1983d0050257ca6",
+  "scope": "one real CLI SIGINT; read-only recording exports; separate BLE connection per command",
+  "outcome": "passed",
+  "trials": 1,
+  "automatic_retries": 0,
+  "device": {
+    "serial": "C261CF0430",
+    "version": "010004"
+  },
+  "baseline": {
+    "name": "20261012112429",
+    "bytes": 56912,
+    "sha256": "85e79226449750809978094b3c07cdc33c1941e1755dd0349c70e077a66d690d"
+  },
+  "commands": [
+    {
+      "label": "before-info",
+      "sigint_sent": false,
+      "exit_code": 0,
+      "elapsed_seconds": 3.02316
+    },
+    {
+      "label": "before-files",
+      "sigint_sent": false,
+      "exit_code": 0,
+      "elapsed_seconds": 2.340628
+    },
+    {
+      "label": "cancel",
+      "sigint_sent": true,
+      "trigger_file_bytes": 3928,
+      "trigger_seconds": 5.197791,
+      "exit_code": 130,
+      "elapsed_seconds": 5.746752
+    },
+    {
+      "label": "complete",
+      "sigint_sent": false,
+      "exit_code": 0,
+      "elapsed_seconds": 5.401304
+    },
+    {
+      "label": "suffix",
+      "sigint_sent": false,
+      "exit_code": 0,
+      "elapsed_seconds": 5.818692
+    },
+    {
+      "label": "after-info",
+      "sigint_sent": false,
+      "exit_code": 0,
+      "elapsed_seconds": 2.265784
+    },
+    {
+      "label": "after-files",
+      "sigint_sent": false,
+      "exit_code": 0,
+      "elapsed_seconds": 3.203921
+    }
+  ],
+  "cancel": {
+    "ok": false,
+    "status": "cancelled",
+    "name": "20261012112429",
+    "offset": 0,
+    "bytes": 4416,
+    "listed_size": 56912,
+    "declared_size": 56912,
+    "sha256": "a5aaa31cc9d57d6569fadd06a5dbdc70a9b97b69770085718e474287c7f78329",
+    "scope": "incomplete_recording_prefix",
+    "stop": {
+      "request_attempted": true,
+      "request_sent": true,
+      "response_received": true,
+      "error": null,
+      "worker_exit_verified": false
+    },
+    "automatic_resume": false
+  },
+  "partial_comparison": {
+    "bytes": 4416,
+    "sha256": "a5aaa31cc9d57d6569fadd06a5dbdc70a9b97b69770085718e474287c7f78329",
+    "equals_baseline_prefix": true
+  },
+  "complete_comparison": {
+    "bytes": 56912,
+    "sha256": "85e79226449750809978094b3c07cdc33c1941e1755dd0349c70e077a66d690d",
+    "equals_baseline": true
+  },
+  "suffix_comparison": {
+    "offset": 4416,
+    "bytes": 52496,
+    "sha256": "9b8a83b1882cf97b4c21b5ceec601b8595058d627c71125279065ccd0da72904",
+    "equals_baseline_suffix": true,
+    "automatic_resume": false
+  },
+  "postconditions": {
+    "idle_before_and_after": true,
+    "identity_and_binding_unchanged": true,
+    "unchanged_device_fields": [
+      "version",
+      "recording_state",
+      "total_capacity",
+      "free_capacity",
+      "usb_mode",
+      "mode",
+      "indicator_light",
+      "noise_reduction",
+      "voice_control",
+      "segment_duration",
+      "screen_backlight"
+    ],
+    "recording_list_equal": true,
+    "recording_count_before": 7,
+    "recording_count_after": 7
+  },
+  "acceptance_review": "After run: stricter STOP and complete-baseline input checks added; retained outputs pass both. No additional device I/O.",
+  "limits": [
+    "One observed SIGINT during download, not general race coverage",
+    "STOP reply does not prove worker exit",
+    "Fresh connections isolate host queues; no device queue-flush proof",
+    "Explicit offset suffix comparison is not automatic resume",
+    "No firmware backup, execution, flashing or restoration"
+  ]
+}

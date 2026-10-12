@@ -201,3 +201,10 @@ Gitee REC_JX3完整仓库及ATS3085E已编译ELF。新的平台选择/构建仍�
 ## 官方剩余管理请求与完整接口表（2026-10-13）
 
 [固定源码合同](../remaining-client-contracts.md)：bind/unbind/format/factory-reset/phone-type的准确片段哈希、7个官方纯函数独立golden、23请求opcode覆盖表。管理CLI一次性补齐4个opcode／5项动作；提交后仍效果未验证、退出3。只做主机测试，无设备管理请求、登录、重置或擦除；不改变M4 BSP、整机备份和恢复缺口。
+## Actual CLI SIGINT acceptance, 2026-10-13
+
+[Single real-device trial](cli-download-cancel-hil-2026-10-13.json): productionCLI
+c733e0b, ownedFW010004, exit130,4,416 B exact baseline prefix; fresh full56,912 B
+and explicit offset suffix52,496 B match independent old export. Idle/settings/
+7-file list unchanged. Raw audio/logs ignored; no automatic resume, worker-exit,
+firmware backup or flashing claim. [Method and limits](../download-cancel-contract.md#actual-cli-sigint-validation-2026-10-13).
