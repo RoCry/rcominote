@@ -35,7 +35,16 @@ ENTRY = 0x10027E84
 END = 0x10027F8E
 
 
-def run_case(image: bytes, *, width: int, height: int, x: int, y: int, pixels: list[int]) -> dict:
+def run_case(
+    image: bytes,
+    *,
+    width: int,
+    height: int,
+    x: int,
+    y: int,
+    pixels: list[int],
+    fail_first_transfer: bool = False,
+) -> dict:
     machine = Uc(UC_ARCH_ARM, UC_MODE_THUMB | UC_MODE_MCLASS)
     machine.mem_map(BASE, 0x100000)
     machine.mem_write(BASE, image)
@@ -77,7 +86,9 @@ def run_case(image: bytes, *, width: int, height: int, x: int, y: int, pixels: l
                 if not 1 <= length <= 200:
                     raise RuntimeError(f"Unexpected transfer length: {length}")
                 transfers.append(bytes(cpu.mem_read(cpu.reg_read(UC_ARM_REG_R1), length)).hex())
-                cpu.reg_write(UC_ARM_REG_R0, 0)
+                # Actual data helper returns -22 on bus failure; inject at its return boundary.
+                status = -22 if fail_first_transfer and len(transfers) == 1 else 0
+                cpu.reg_write(UC_ARM_REG_R0, status & 0xFFFFFFFF)
             case _:
                 raise RuntimeError(f"Unexpected execution outside callback: {address:#x}")
         cpu.reg_write(UC_ARM_REG_PC, cpu.reg_read(UC_ARM_REG_LR))
@@ -134,9 +145,55 @@ def main(image_path: Path) -> None:
             "transfers": ["4000"],
         },
     ]
+    cases.extend(
+        [
+            {
+                "name": "full_frame_only_bottom_right_pixel",
+                "width": 72,
+                "height": 40,
+                "x": 0,
+                "y": 0,
+                "pixels": [0] * 2879 + [0xFFFF],
+                "commands": [
+                    0xAF,
+                    0xB0,
+                    0x11,
+                    0x0C,
+                    0xB1,
+                    0x11,
+                    0x0C,
+                    0xB2,
+                    0x11,
+                    0x0C,
+                    0xB3,
+                    0x11,
+                    0x0C,
+                    0xB4,
+                    0x11,
+                    0x0C,
+                ],
+                "transfers": ["40" + "00" * 72] * 4 + ["40" + "00" * 71 + "80"],
+            },
+            {
+                "name": "failed_first_page_still_sends_second_and_clears_busy",
+                "width": 1,
+                "height": 16,
+                "x": 0,
+                "y": 0,
+                "pixels": [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xFFFF],
+                "fail_first_transfer": True,
+                "commands": [0xAF, 0xB0, 0x11, 0x0C, 0xB1, 0x11, 0x0C],
+                "transfers": ["4001", "4080"],
+            },
+        ]
+    )
     reports = []
     for case in cases:
-        result = run_case(image, **{key: case[key] for key in ("width", "height", "x", "y", "pixels")})
+        result = run_case(
+            image,
+            **{key: case[key] for key in ("width", "height", "x", "y", "pixels")},
+            fail_first_transfer=case.get("fail_first_transfer", False),
+        )
         expected = {
             "commands": case["commands"],
             "transfers": case["transfers"],
@@ -146,7 +203,13 @@ def main(image_path: Path) -> None:
         }
         if result["observed"] != expected:
             raise RuntimeError(f"{case['name']}: expected {expected}, observed {result}")
-        reports.append({"name": case["name"], **result})
+        reports.append(
+            {
+                "name": case["name"],
+                "first_transfer_status": -22 if case.get("fail_first_transfer") else 0,
+                **result,
+            }
+        )
     print(
         json.dumps(
             {
