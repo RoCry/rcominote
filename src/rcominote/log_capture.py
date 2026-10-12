@@ -8,7 +8,8 @@ from bleak import BleakClient
 from bleak.exc import BleakError
 
 from .ble_target import OWNED_SERIAL, find_device
-from .card_readback import CARD_BLOCKS, CARD_PHASES
+from .boot_readback import BOOT_PHASES
+from .card_readback import CARD_PHASES
 from .code_guards import (
     observed_block,
     observed_capacity_entries,
@@ -22,11 +23,9 @@ from .code_guards import (
     observed_vendor_code,
     observed_vendor_entries,
 )
-from .code_references import read_block
+from .code_references import FIXED_BLOCKS, read_block
 from .log_probe import ACK, NOTIFY, PREPARE, SERVICE, WRITE
 from .read_sets import (
-    BLOCKS,
-    DISK_BLOCKS,
     DISK_PHASES,
     HANDLER_BLOCKS,
     HANDLER_CORE_BLOCKS,
@@ -96,17 +95,7 @@ def verify_readback(result: dict) -> None:
     result["transport_ok"] = result["ok"]
     reads = [
         block
-        for block in dict.fromkeys(
-            (
-                *BLOCKS,
-                *VENDOR_BLOCKS,
-                *HANDLER_BLOCKS,
-                *INFO_BLOCKS,
-                *INFO_STORAGE,
-                *DISK_BLOCKS,
-                *CARD_BLOCKS,
-            )
-        )
+        for block in FIXED_BLOCKS
         if f"dbg mdb {block[0]:x} {block[1]:x}" in result["fixed_text_commands"]
     ]
     if not reads:
@@ -157,7 +146,9 @@ async def capture(
     storage_code: bool = False,
     disk_code: bool = False,
     card_code: bool = False,
+    boot_code: bool = False,
 ) -> dict:
+    card_code = card_code or boot_code
     disk_code = disk_code or card_code
     storage_code = storage_code or disk_code
     device_info_code = device_info_code or storage_code
@@ -242,6 +233,7 @@ async def capture(
                     *(flushed_reads(INFO_STORAGE_CALLBACK_TAIL) if storage_code else []),
                     *(flushed_phases(DISK_PHASES) if disk_code else []),
                     *(flushed_phases(CARD_PHASES) if card_code else []),
+                    *(flushed_phases(BOOT_PHASES) if boot_code else []),
                 ]
                 if device_info_code
                 else []

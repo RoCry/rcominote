@@ -32,6 +32,7 @@ class Profile(StrEnum):
     storage_code = "storage-code"
     disk_code = "disk-code"
     card_code = "card-code"
+    boot_code = "boot-code"
     nor_header = "nor-header"
 
 
@@ -51,6 +52,7 @@ PROFILE_FLAGS = {
     "storage-code": "storage_code",
     "disk-code": "disk_code",
     "card-code": "card_code",
+    "boot-code": "boot_code",
     "nor-header": "flash_header",
 }
 

@@ -183,3 +183,32 @@ def test_changed_card_state_offset_prevents_ram_read():
         frame["text"] = frame.get("text", "").replace("94 f8 70 31", "94 f8 71 31")
     with pytest.raises(ValueError, match="SD state field offsets code changed"):
         observed_storage_reference(capture["frames"], "dbg mdb 18005d58 10")
+
+
+def test_device_names_stop_at_nul_and_flash_literal_is_not_code():
+    report = inspect_references(
+        EVIDENCE / "boot-first-2026-10-12.json",
+        EVIDENCE / "boot-second-2026-10-12.json",
+        boot=True,
+    )
+    # Actual overlapping strings: PMUDAC_0 and DAC_0 share suffix bytes;
+    # the remainder of each 16-byte read must not become part of its name.
+    names = {row["device_address"]: row["name_prefix"] for row in report["device_names"]}
+    assert [names[address] for address in ("0x100ba060", "0x100ba120", "0x100ba300")] == [
+        "PMUDAC_0",
+        "DAC_0",
+        "CDC_ACM",
+    ]
+    # Captured LDR/BX is four bytes; its following pointer is data.
+    region = next(row for row in report["code_regions"] if row["address"] == "0x10031440")
+    assert (region["length"], [row["mnemonic"] for row in region["instructions"]]) == (4, ["ldr", "bx"])
+
+
+def test_moved_device_name_pointer_blocks_old_string_read():
+    from rcominote.code_guards import observed_storage_reference
+
+    capture = json.loads((EVIDENCE / "boot-first-2026-10-12.json").read_text())
+    for frame in capture["frames"]:
+        frame["text"] = frame.get("text", "").replace("100ba000: e9 10 0c 10", "100ba000: 00 00 00 00")
+    with pytest.raises(ValueError, match="device name pointer code changed"):
+        observed_storage_reference(capture["frames"], "dbg mdb 100c10e9 10")

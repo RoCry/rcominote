@@ -125,3 +125,7 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## SD/MMC状态与卡类别
 
 [首次](card-first-2026-10-12.json)、[重读](card-second-2026-10-12.json)、[分析](card-analysis-2026-10-12.json)：2031 B一致，新增544 B，累计2916不同映射字节。实际指令定位driver状态，type=0与SD枚举/低功耗类型分支吻合；512 B、122138624扇区与disk_info一致。控制器配置base常量40058000；未访问MMIO。[报告](../card-state-readback.md)、[结束状态](card-final-state-2026-10-12.json)。
+
+## 独立Flash对象与device表
+
+[首次](boot-first-2026-10-12.json)、[重读](boot-second-2026-10-12.json)、[分析](boot-analysis-2026-10-12.json)：2931 B一致；新增867不同映射字节，累计3783 B。31项设备表含spi_flash、sim_flash、CDC_ACM；spi_flash ready、布局配置32 MiB，尚未验证JEDEC ID或启动来源。[报告](../boot-storage-device-readback.md)、[结束状态](boot-final-state-2026-10-12.json)。

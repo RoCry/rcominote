@@ -131,3 +131,5 @@ APK固定样本提取仍用`uv run tools/apk_evidence.py ...`。这些研究脚�
 ./bin/comi diag compare-references artifacts/card-first.json artifacts/card-second.json \
   --card --out artifacts/card-analysis.json
 ```
+
+`boot-code`继承card-code校验，沿实际device_get_binding→31项device表→Flash实例/回调读取2931 B；其中字符串区有重叠。`diag compare-references FIRST SECOND --boot --out REPORT`输出`device_names`、`flash_configuration`；32 MiB是配置容量，不是芯片容量实测，也不是完整固件备份。[证据](boot-storage-device-readback.md)。裸`just`仅列命令；`just check`才执行检查。

@@ -9,10 +9,26 @@ from typing import Annotated
 import typer
 from capstone import CS_ARCH_ARM, CS_MODE_THUMB, Cs
 
+from .boot_readback import BOOT_BLOCKS, BOOT_NAME_POINTERS
 from .card_readback import CARD_BLOCKS
 from .output import emit, new_output
 from .read_sets import BLOCKS, DISK_BLOCKS, HANDLER_BLOCKS, INFO_BLOCKS, INFO_STORAGE, VENDOR_BLOCKS
 from .vendor_dispatch import BASE, TABLE, TABLE_END, inspect_dispatch
+
+FIXED_BLOCKS = tuple(
+    dict.fromkeys(
+        (
+            *BLOCKS,
+            *VENDOR_BLOCKS,
+            *HANDLER_BLOCKS,
+            *INFO_BLOCKS,
+            *INFO_STORAGE,
+            *DISK_BLOCKS,
+            *CARD_BLOCKS,
+            *BOOT_BLOCKS,
+        )
+    )
+)
 
 
 def read_block(capture: dict, address: int, length: int) -> bytes:
@@ -78,6 +94,41 @@ def card_metadata(capture: dict) -> dict:
     }
 
 
+def device_names(capture: dict) -> list[dict]:
+    """Report the bounded observed table; names alone do not establish readiness."""
+    entries = [(parent, name, 16) for parent, name in BOOT_NAME_POINTERS]
+    entries.extend(((0x100BA100, 0x100CAEE9, 10), (0x100BA160, 0x100CAEF3, 3)))
+    devices = []
+    for parent, name, length in sorted(entries):
+        raw = read_block(capture, name, length)
+        prefix, separator, _ = raw.partition(b"\0")
+        devices.append(
+            {
+                "device_address": hex(parent),
+                "name_address": hex(name),
+                "name_prefix": prefix.decode("ascii"),
+                "name_complete": bool(separator),
+            }
+        )
+    return devices
+
+
+def flash_configuration(capture: dict) -> dict:
+    """Configuration/state only: no chip-ID command or physical-capacity verification."""
+    config = read_block(capture, 0x100BC258, 16)
+    state = int.from_bytes(read_block(capture, 0x18002E70, 2), "little")
+    return {
+        "scope": "registered spi_flash configuration, not chip-ID or boot-medium proof",
+        "device_state_halfword": hex(state),
+        "ready_by_decoded_helper": state & 0x1FF == 0x100,
+        "layout_page_count": int.from_bytes(config[:4], "little"),
+        "layout_page_bytes": int.from_bytes(config[4:8], "little"),
+        "sdk_config_chip_bytes": int.from_bytes(config[8:12], "little"),
+        "sdk_config_page_bytes": int.from_bytes(config[12:16], "little"),
+        "data_prefix_hex": read_block(capture, 0x18001A7C, 16).hex(),
+    }
+
+
 def inspect_references(
     first: Path,
     second: Path,
@@ -88,12 +139,14 @@ def inspect_references(
     storage: bool = False,
     disk: bool = False,
     card: bool = False,
+    boot: bool = False,
 ) -> dict:
     captures = [json.loads(path.read_text()) for path in (first, second)]
     stamps = [capture.get("captured_at") for capture in captures]
     if not all(stamps) or stamps[0] == stamps[1]:
         raise ValueError("Two distinct capture records are required")
     blocks = []
+    card = card or boot
     disk = disk or card
     storage = storage or disk
     info = info or storage
@@ -105,6 +158,8 @@ def inspect_references(
         selected = (*selected, *DISK_BLOCKS)
     if card:
         selected = (*selected, *CARD_BLOCKS)
+    if boot:
+        selected = (*selected, *BOOT_BLOCKS)
     for address, length, reason, code in selected:
         data = read_block(captures[0], address, length)
         if data != read_block(captures[1], address, length):
@@ -136,8 +191,12 @@ def inspect_references(
         elif not code:
             row["ascii"] = data.decode("ascii")
         blocks.append(row)
+    read_bytes = sum(block[1] for block in selected)
+    unique_bytes = len({address + offset for address, length, *_ in selected for offset in range(length)})
     report = {
-        "scope": f"{sum(block[1] for block in selected)} noncontiguous mapped bytes, not a physical flash backup",
+        "scope": f"{unique_bytes} distinct mapped bytes from {read_bytes} fixed-read bytes, not a physical flash backup",
+        "read_bytes": read_bytes,
+        "unique_mapped_bytes": unique_bytes,
         "independent_reads_match": True,
         "captures": [
             {"captured_at": capture["captured_at"], "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
@@ -155,6 +214,9 @@ def inspect_references(
         report["disk_metadata"] = disk_metadata(captures[0])
     if card:
         report["card_metadata"] = card_metadata(captures[0])
+    if boot:
+        report["device_names"] = device_names(captures[0])
+        report["flash_configuration"] = flash_configuration(captures[0])
     if vendor:
         # Decode contiguous bytes together: 32-bit Thumb instructions can cross
         # 16-byte transport rows. Never resume decoding in their second half.
@@ -222,11 +284,20 @@ def main(
     storage: bool = False,
     disk: bool = False,
     card: bool = False,
+    boot: bool = False,
 ):
-    """Compare fixed --vendor, --handler, --info, --storage, --disk or --card reads."""
+    """Compare fixed --vendor, --handler, --info, --storage, --disk, --card or --boot reads."""
     new_output(out)
     report = inspect_references(
-        first, second, vendor=vendor, handler=handler, info=info, storage=storage, disk=disk, card=card
+        first,
+        second,
+        vendor=vendor,
+        handler=handler,
+        info=info,
+        storage=storage,
+        disk=disk,
+        card=card,
+        boot=boot,
     )
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("x") as handle:
