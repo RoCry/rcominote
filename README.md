@@ -111,3 +111,5 @@ uv run --locked tools/build_sdk.py \
 [原始映射缺口审计](docs/mapping-candidate-audit.md)：完整镜像中限定搜索未建立raw NOR换算依据；[35项实机dbg目录](docs/actual-dbg-command-inventory.md)检查遗漏返回路径，实际长度/副作用以handler证据为准。
 
 [实机初始化与音频入口](docs/init-audio-board-evidence.md)：71项初始化表定位31个设备，audio_in明确绑定ADC_0；[显示板级证据](docs/display-board-evidence.md)：CH1115驱动标签、72×40配置、I2C_0/0x3c与GPIOA24/25，物理身份及完整初始化时序仍待验证。
+
+[实际屏幕命令序列](docs/display-command-sequence.md)：28字节初始化表、GPIO逻辑复位顺序、条件AF命令及五页×72字节fill路径；等待单位和电气极性尚未核实。
