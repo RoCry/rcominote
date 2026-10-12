@@ -141,3 +141,5 @@ uv run --locked tools/build_sdk.py \
 [实际codec分派](docs/recorder-codec-dispatch.md)：format1编码方向选择`mp3e`硬件记录、`aeRECORD.dsp`及DSP路径；支持MP3配置判断。DSP资源导出与加载执行仍未验证。
 
 [DSP资源路径](docs/dsp-resource-path.md)：实际拼接`/NOR:K/aeRECORD.dsp`，K对应ACPT的`sdfs_k`分区（704 KiB）；尚未读取目录/文件，现有system导出未证明覆盖该资源。
+
+[SDFS NOR读取](docs/sdfs-nor-read-path.md)：目录相对offset加分区offset，经Flash API读取。原始指令模拟确认读失败与EOF均返回0；未来导出必须核对预期长度。

@@ -1,0 +1,33 @@
+{
+  "image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "engine": "Unicorn 2.1.4 Thumb MCLASS",
+  "scope": "Actual sd_fread; flash and logging intercepted; no hardware or DSP data",
+  "short_file_then_eof": [
+    {
+      "return": 3,
+      "cursor": 2359557,
+      "buffer": "XYZ?????",
+      "flash_calls": 1
+    },
+    {
+      "return": 0,
+      "cursor": 2359557,
+      "buffer": "XYZ?????",
+      "flash_calls": 0
+    }
+  ],
+  "failed_read_then_retry": [
+    {
+      "return": 0,
+      "cursor": 2359554,
+      "buffer": "????????",
+      "flash_calls": 1
+    },
+    {
+      "return": 0,
+      "cursor": 2359554,
+      "buffer": "????????",
+      "flash_calls": 1
+    }
+  ]
+}
