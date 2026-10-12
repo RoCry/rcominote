@@ -2,7 +2,6 @@
 
 import asyncio
 import json
-import re
 import time
 from datetime import UTC, datetime
 from pathlib import Path
@@ -13,7 +12,25 @@ from bleak import BleakClient
 from bleak.exc import BleakError
 
 from .ble_target import OWNED_SERIAL, find_device
-from .code_references import BLOCKS, VENDOR_BLOCKS, read_block
+from .code_guards import (
+    observed_block,
+    observed_code,
+    observed_handler_entry,
+    observed_logsrv_code,
+    observed_logsrv_entry,
+    observed_logsrv_literals,
+    observed_vendor_call,
+    observed_vendor_code,
+    observed_vendor_entries,
+)
+from .code_references import (
+    BLOCKS,
+    HANDLER_BLOCKS,
+    HANDLER_CORE_BLOCKS,
+    SPECIAL_BLOCKS,
+    VENDOR_BLOCKS,
+    read_block,
+)
 from .log_probe import ACK, NOTIFY, PREPARE, SERVICE, WRITE
 
 START = bytes.fromhex("1d108105000002002000")
@@ -60,67 +77,12 @@ class Stream:
             self.frames.append(row)
 
 
-def observed_logsrv_entry(frames: list[dict]) -> bool:
-    text = "".join(frame.get("text", "") for frame in frames)
-    match = re.search(r"(?m)^\*0x[0-9a-f]+ logsrv[ \t]*\r?\n[^\n]*\n[^\n]*entry: (0x[0-9a-f]+)", text)
-    if match and match[1] != "0x1000bf21":
-        raise ValueError(f"Live logsrv entry changed: {match[1]}; fixed sample is not applicable")
-    return match is not None
-
-
-def observed_vendor_entries(frames: list[dict]) -> bool:
-    """Both exact live thread names/entries must precede fixed vendor code reads."""
-    text = "".join(frame.get("text", "") for frame in frames)
-    complete = True
-    for name, expected in (("vendor_read", "0x1000a01d"), ("vendor", "0x10009e9d")):
-        entries = re.findall(
-            rf"(?m)^[ *]0x[0-9a-f]+ {name}[ \t]*\r?\n[^\n]*\n[^\n]*entry: (0x[0-9a-f]+)",
-            text,
-        )
-        if entries and entries != [expected]:
-            raise ValueError(f"Live {name} entry changed or repeated: {entries}")
-        complete = complete and bool(entries)
-    return complete
-
-
-def observed_vendor_code(frames: list[dict]) -> bool:
-    text = "".join(frame.get("text", "") for frame in frames)
-    if not re.search(r"(?m)^1000a01c:[^\r\n]*\r?\n", text):
-        return False
-    # Entry captured independently twice before deriving these six literal addresses.
-    capture = {
-        "serial": OWNED_SERIAL,
-        "ok": True,
-        "fixed_text_commands": ["dbg mdb 1000a01c 10"],
-        "frames": frames,
-    }
-    if read_block(capture, 0x1000A01C, 16).hex() != "8fb5544c544b55485549564fdff88081":
-        raise ValueError("Live vendor_read code changed; fixed literals are not applicable")
-    return True
-
-
-def observed_logsrv_code(frames: list[dict]) -> bool:
-    text = "".join(frame.get("text", "") for frame in frames)
-    rows = re.findall(r"(?m)^1000bf20: ((?:[0-9a-f]{2} ){15}[0-9a-f]{2}) {2,}", text)
-    if rows and rows != ["2d e9 f0 47 61 49 62 4e 86 b0 50 20 a1 f0 ab fa"]:
-        raise ValueError("Live logsrv code changed or repeated; literal addresses are not applicable")
-    return bool(rows)
-
-
-def observed_logsrv_literals(frames: list[dict]) -> bool:
-    text = "".join(frame.get("text", "") for frame in frames)
-    rows = re.findall(r"(?m)^1000c0ac: ((?:[0-9a-f]{2} ){7}[0-9a-f]{2}) {2,}", text)
-    if rows and rows != ["ba 26 0c 10 1c a5 0b 10"]:
-        raise ValueError("Live logsrv literals changed or repeated; references are not applicable")
-    return bool(rows)
-
-
 def verify_readback(result: dict) -> None:
     """Transport completion does not prove shell output survived firmware buffering."""
     result["transport_ok"] = result["ok"]
     reads = [
         block
-        for block in (*BLOCKS, *VENDOR_BLOCKS)
+        for block in dict.fromkeys((*BLOCKS, *VENDOR_BLOCKS, *HANDLER_BLOCKS))
         if f"dbg mdb {block[0]:x} {block[1]:x}" in result["fixed_text_commands"]
     ]
     if not reads:
@@ -138,6 +100,15 @@ def verify_readback(result: dict) -> None:
         result["readback_complete"] = True
 
 
+def flushed_reads(blocks: tuple) -> list[str]:
+    """Bound bursts; help flushes the firmware's short-output buffer after each batch."""
+    commands = []
+    for offset in range(0, len(blocks), 4):
+        commands.extend(f"dbg mdb {b[0]:x} {b[1]:x}" for b in blocks[offset : offset + 4])
+        commands.append("help")
+    return commands
+
+
 async def capture(
     *,
     serial: str,
@@ -153,8 +124,11 @@ async def capture(
     code_literals: bool = False,
     code_references: bool = False,
     vendor_code: bool = False,
+    vendor_handler: bool = False,
 ) -> dict:
-    if (code_sample or code_literals or code_references or vendor_code) and serial != OWNED_SERIAL:
+    if (
+        code_sample or code_literals or code_references or vendor_code or vendor_handler
+    ) and serial != OWNED_SERIAL:
         raise ValueError("Code sample address is evidenced only for owned C261CF0430 FW 1.0.4")
     code_literals = code_literals or code_references
     queue = asyncio.Queue()
@@ -170,7 +144,7 @@ async def capture(
             + (["help", "dbg"] if commands else [])
             + (["dbg fread spi_flash 0", "help"] if flash_header else [])
             + (
-                ["app", "system", "dbg nvram FW_VERION", "dbg nvram BT_LE_NAME", "help"]
+                ["app", "system", "dbg nvram FW_VERION", "dbg nvram BT_LE_NAME", "dbg nvram BT_NAME", "help"]
                 if platform_info
                 else []
             )
@@ -187,6 +161,30 @@ async def capture(
                 else []
             )
             + (["kernel", "kernel uptime", "help"] if kernel_info else [])
+            + (
+                [
+                    "kernel threads",
+                    "dbg mdb 1000a01c 10",
+                    "help",
+                    "dbg mdb 1000a14c 10",
+                    "help",
+                    *(f"dbg mdb {b[0]:x} {b[1]:x}" for b in HANDLER_BLOCKS[2:4]),
+                    # Firmware buffers short log output. Flush entry rows before
+                    # the guard needs their bytes, otherwise ACK alone stalls it.
+                    "help",
+                    *flushed_reads(HANDLER_CORE_BLOCKS[4:]),
+                    *(f"dbg mdb {b[0]:x} {b[1]:x}" for b in SPECIAL_BLOCKS[:2]),
+                    "help",
+                    *(f"dbg mdb {b[0]:x} {b[1]:x}" for b in SPECIAL_BLOCKS[2:4]),
+                    "help",
+                    *(f"dbg mdb {b[0]:x} {b[1]:x}" for b in SPECIAL_BLOCKS[4:6]),
+                    "help",
+                    *(f"dbg mdb {b[0]:x} {b[1]:x}" for b in SPECIAL_BLOCKS[6:]),
+                    "help",
+                ]
+                if vendor_handler
+                else []
+            )
             + (["kernel uptime", "kernel threads", "kernel uptime", "help"] if threads else [])
             + (["kernel stacks", "help"] if stacks else [])
             + (["kernel threads", "dbg mdb 1000bf20 10", "help"] if code_sample or code_literals else [])
@@ -245,6 +243,7 @@ async def capture(
             await request(PREPARE)
             start_attempted = True
             await request(START)
+            pending_reads = []
             for command in result["fixed_text_commands"]:
                 # Fixed source-audited queries only. Help/duplicate table output may
                 # fill the SDK's 504-byte initial buffer; never infer failure from silence.
@@ -267,6 +266,48 @@ async def capture(
                     async with asyncio.timeout(5):
                         while not observed_logsrv_code(stream.frames):
                             await pump(timeout=5)
+                if command in {f"dbg mdb {b[0]:x} {b[1]:x}" for b in HANDLER_BLOCKS[2:]}:
+                    async with asyncio.timeout(5):
+                        while not observed_vendor_call(stream.frames):
+                            await pump(timeout=5)
+                if command in {f"dbg mdb {b[0]:x} {b[1]:x}" for b in HANDLER_BLOCKS[4:]}:
+                    async with asyncio.timeout(5):
+                        while not observed_handler_entry(stream.frames):
+                            await pump(timeout=5)
+                if command in {f"dbg mdb {b[0]:x} {b[1]:x}" for b in SPECIAL_BLOCKS}:
+                    async with asyncio.timeout(5):
+                        while not (
+                            observed_code(
+                                stream.frames,
+                                0x1000B444,
+                                "9a9a9a9a9a9521463046fff77dfad5e7",
+                                "dispatch table tail",
+                            )
+                            and observed_code(
+                                stream.frames,
+                                0x1000B534,
+                                "fff792fd62e721463046fff7bffd5de7",
+                                "command 0x3a call",
+                            )
+                        ):
+                            await pump(timeout=5)
+                if command in {f"dbg mdb {b[0]:x} {b[1]:x}" for b in SPECIAL_BLOCKS[2:]}:
+                    async with asyncio.timeout(5):
+                        while not (
+                            observed_code(
+                                stream.frames,
+                                0x1000B0C0,
+                                "30b58bb004460d461c22002103a80291",
+                                "command 0x3a entry",
+                            )
+                            and observed_code(
+                                stream.frames,
+                                0x1000B0D0,
+                                "aef0fafaa11c2023aa1e02a8aef0c7fa",
+                                "command 0x3a continuation",
+                            )
+                        ):
+                            await pump(timeout=5)
                 if command in {"dbg mdb 100c26ba d", "dbg mdb 100ad486 10", "dbg mdb 1000bf30 10"}:
                     # Pinned r1 literal, BL target, and BL return address. Do not
                     # follow arbitrary pointer values or infer physical offsets.
@@ -274,8 +315,37 @@ async def capture(
                         while not observed_logsrv_literals(stream.frames):
                             await pump(timeout=5)
                 encoded = command.encode("ascii")
+                if command in {f"dbg mdb {b[0]:x} {b[1]:x}" for b in SPECIAL_BLOCKS[6:]}:
+                    async with asyncio.timeout(5):
+                        while not observed_code(
+                            stream.frames, 0x1000B110, "bb220c10", "command 0x3a r0 literal"
+                        ):
+                            await pump(timeout=5)
+                if command in {f"dbg mdb {b[0]:x} {b[1]:x}" for b in SPECIAL_BLOCKS[4:]}:
+                    async with asyncio.timeout(5):
+                        while not observed_code(
+                            stream.frames,
+                            0x1000B0E0,
+                            "02a8f5f7fbfd02a9421c0948a2f073f9",
+                            "command 0x3a literal load",
+                        ):
+                            await pump(timeout=5)
                 tlv = b"\x01" + len(encoded).to_bytes(2, "little") + encoded
                 await request(b"\x1d\x10\x81" + len(tlv).to_bytes(2, "little") + tlv)
+                if vendor_handler:
+                    if command.startswith("dbg mdb "):
+                        _, _, address, length = command.split()
+                        pending_reads.append((int(address, 16), int(length, 16)))
+                    elif command == "help":
+                        # A captured long burst lost row b504 with all ACKs.
+                        # Require this batch's actual rows before issuing more reads.
+                        async with asyncio.timeout(5):
+                            while any(
+                                observed_block(stream.frames, address, length) is None
+                                for address, length in pending_reads
+                            ):
+                                await pump(timeout=5)
+                        pending_reads.clear()
             deadline = time.monotonic() + duration
             while (remaining := deadline - time.monotonic()) > 0:
                 try:
@@ -328,7 +398,7 @@ def main(
         bool, typer.Option(help="Read only NOR offset 0, fixed 512 bytes; not a backup")
     ] = False,
     platform_info: Annotated[
-        bool, typer.Option(help="Fixed app/system help and two bounded NVRAM getters")
+        bool, typer.Option(help="Fixed app/system help and three bounded NVRAM getters")
     ] = False,
     kernel_info: Annotated[bool, typer.Option(help="Fixed kernel help and uptime queries")] = False,
     threads: Annotated[

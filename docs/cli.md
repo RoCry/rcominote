@@ -84,6 +84,8 @@ uv run comi diag text artifacts/platform.json
 
 `vendor-code`核对本次会话的`vendor`与`vendor_read`入口，读取固定380 B：两个入口、后者至已证实常量池前的连续代码及六个常量。常量/后续代码读取前还要求入口字节精确吻合。两次采集用`diag compare-references FIRST SECOND --vendor --out REPORT`比较；连续Thumb代码合并后解码，避免16 B传输行拆断32位指令。[实机代码分析](vendor-code-readback.md)。
 
+`vendor-handler`读取固定580 B，含32 B已有调用链校验、实际命令分发表和`0x3a`处理函数/引用。逐层核对入口、BL、表尾和literal；每四行刷出并等待正文，失败停止后续读取。两份捕获用`diag compare-references FIRST SECOND --handler --out REPORT`比较，输出58项分发表，明确将TBB表与literal排除出代码。[分发表及未知边界](vendor-dispatch-followup.md)。不发送`0x3a`或其他新增应用命令。`platform`增加固定只读`BT_NAME`查询，与`BT_LE_NAME`分别报告。
+
 code只读固定映射地址的16 B，并在同会话核对当前logsrv入口；不接受任意地址、长度或shell文本。离线比较拒绝重复采集身份（包括复制同一文件），要求两次样本一致，返回解码与hash，不执行机器码。此能力不等于完整flash dump、板级适配或可恢复备份。
 
 ## 一键只读验收

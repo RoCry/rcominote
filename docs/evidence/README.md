@@ -91,3 +91,11 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## 第九轮：实机vendor接收代码
 
 [首次](vendor-code-first-2026-10-12.json)、[重读](vendor-code-second-2026-10-12.json)、[合并解码](vendor-code-analysis-2026-10-12.json)：380 B一致，实机`vendor_read`检查D22D帧头，接收payload后调用1000b3b4；不同于公开SDK上传解析器。完整推导与限制见[报告](../vendor-code-readback.md)。未向F5F0发送命令；[App产物定界搜索](../f5f0-artifact-search.md)未找到它的handler。
+
+## 第十轮：实机命令分发表与BT_NAME路径
+
+[首次](vendor-handler-first-2026-10-12.json)、[重读](vendor-handler-second-2026-10-12.json)、[分析](vendor-handler-analysis-2026-10-12.json)：580 B一致，包含已有32 B校验点；新增548 B，累计997个不同映射字节。58项TBB表中24个非默认命令，23个与官方App请求编号对应；`3a`路径引用`BT_NAME`。[报告](../vendor-dispatch-followup.md)。
+
+两项实际失败均保留：[入口短日志未刷出](vendor-handler-buffered-entry-2026-10-12.json)导致guard超时、未发送后续读取；[长突发丢失b504行](vendor-handler-lost-row-2026-10-12.json)虽ACK/结束帧完整仍失败。新profile在依赖guard前刷出短日志；每四行后刷出并等待本批完整数据，避免继续积压。最终两个会话56 ACK、正文完整。此方法不是任意长度dump性能或可靠性保证。
+
+[配置只读查询](vendor-bt-name-query-2026-10-12.json)：`BT_NAME`与`BT_LE_NAME`均返回14 B `CoMi Note 2F01`；`FW_VERION`仍失败。没有执行`3a`或改名。最终Boyi状态FW010004、idle、容量59634/59632、noise9；未重启/刷写。

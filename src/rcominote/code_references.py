@@ -10,6 +10,7 @@ import typer
 from capstone import CS_ARCH_ARM, CS_MODE_THUMB, Cs
 
 from .output import emit, new_output
+from .vendor_dispatch import BASE, TABLE, TABLE_END, inspect_dispatch
 
 # Lengths are hexadecimal in the device's mdb commands; decimal here.
 BLOCKS = (
@@ -34,6 +35,29 @@ VENDOR_BLOCKS = (
     ),
 )
 
+HANDLER_CORE_BLOCKS = (
+    (0x1000A01C, 16, "vendor_read entry prerequisite", True),
+    (0x1000A14C, 16, "direct BL to packet-processing callee", True),
+    (0x1000B3B4, 16, "packet-processing callee entry", True),
+    (0x1000B3C4, 16, "packet-processing callee continuation", True),
+    *(
+        (address, min(16, 0x1000B558 - address), "callee span before evidenced literal pool", True)
+        for address in range(0x1000B3D4, 0x1000B558, 16)
+    ),
+    (0x1000B558, 12, "three callee PC-relative literals", False),
+)
+SPECIAL_BLOCKS = (
+    (0x1000B0C0, 16, "command 0x3a direct callee entry", True),
+    (0x1000B0D0, 16, "command 0x3a callee continuation", True),
+    (0x1000B0E0, 16, "command 0x3a after observed BL return", True),
+    (0x1000B0F0, 16, "command 0x3a continuation", True),
+    (0x1000B100, 16, "command 0x3a final branch targets", True),
+    (0x1000B110, 4, "command 0x3a r0 PC-relative literal", False),
+    (0x100C22BB, 16, "command 0x3a r0 literal target prefix", False),
+    (0x100AD3D6, 16, "command 0x3a direct helper callee", True),
+)
+HANDLER_BLOCKS = (*HANDLER_CORE_BLOCKS, *SPECIAL_BLOCKS)
+
 
 def read_block(capture: dict, address: int, length: int) -> bytes:
     command = f"dbg mdb {address:x} {length:x}"
@@ -53,13 +77,14 @@ def read_block(capture: dict, address: int, length: int) -> bytes:
     return bytes.fromhex(match[1])
 
 
-def inspect_references(first: Path, second: Path, *, vendor: bool = False) -> dict:
+def inspect_references(first: Path, second: Path, *, vendor: bool = False, handler: bool = False) -> dict:
     captures = [json.loads(path.read_text()) for path in (first, second)]
     stamps = [capture.get("captured_at") for capture in captures]
     if not all(stamps) or stamps[0] == stamps[1]:
         raise ValueError("Two distinct capture records are required")
     blocks = []
-    selected = VENDOR_BLOCKS if vendor else BLOCKS
+    vendor = vendor or handler
+    selected = HANDLER_BLOCKS if handler else VENDOR_BLOCKS if vendor else BLOCKS
     for address, length, reason, code in selected:
         data = read_block(captures[0], address, length)
         if data != read_block(captures[1], address, length):
@@ -119,6 +144,29 @@ def inspect_references(first: Path, second: Path, *, vendor: bool = False) -> di
             else:
                 regions.append((address, bytearray(data)))
         report["code_regions"] = []
+        if handler:
+            # Actual TBB embeds 58 data bytes inside executable address space.
+            # Do not decode its offsets as Thumb instructions or stop there.
+            split_regions = []
+            for address, data in regions:
+                if address == BASE:
+                    report["dispatch"] = inspect_dispatch(bytes(data))
+                    report["data_regions"] = [
+                        {
+                            "address": hex(TABLE),
+                            "kind": "TBB byte offsets",
+                            "hex": data[TABLE - BASE : TABLE_END - BASE].hex(),
+                        }
+                    ]
+                    split_regions.extend(
+                        [
+                            (address, data[: TABLE - BASE]),
+                            (TABLE_END, data[TABLE_END - BASE :]),
+                        ]
+                    )
+                else:
+                    split_regions.append((address, data))
+            regions = split_regions
         for address, data in regions:
             insns = list(Cs(CS_ARCH_ARM, CS_MODE_THUMB).disasm(data, address))
             report["code_regions"].append(
@@ -140,10 +188,16 @@ def inspect_references(first: Path, second: Path, *, vendor: bool = False) -> di
     return report
 
 
-def main(first: Path, second: Path, out: Annotated[Path, typer.Option()], vendor: bool = False):
-    """Compare fixed code-references rows, or vendor code/literal rows with --vendor."""
+def main(
+    first: Path,
+    second: Path,
+    out: Annotated[Path, typer.Option()],
+    vendor: bool = False,
+    handler: bool = False,
+):
+    """Compare fixed references; --vendor selects receive loop, --handler its dispatcher."""
     new_output(out)
-    report = inspect_references(first, second, vendor=vendor)
+    report = inspect_references(first, second, vendor=vendor, handler=handler)
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("x") as handle:
         handle.write(json.dumps(report, ensure_ascii=False, indent=2) + "\n")

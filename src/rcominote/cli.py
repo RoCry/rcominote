@@ -51,7 +51,7 @@ def capabilities():
                 "noise setting write/readback/restore",
                 "log/version/help",
                 "NVRAM fixed name getter",
-                "449-byte fixed mapped code/literal/reference readback across two profiles",
+                "997 unique mapped bytes across fixed code/reference/dispatcher profiles",
             ],
             "implemented_requires_explicit_selection": [
                 "record start/pause/resume/stop",
