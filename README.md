@@ -125,3 +125,5 @@ uv run --locked tools/build_sdk.py \
 [实机早期pinmux表](docs/board-pinmux-evidence.md)：三张表25项，GPIO14/15的3808配置支持I2C0候选；SCL/SDA身份与物理连线仍待确认。
 
 [像素指令仿真](docs/display-pixel-path.md#实际指令仿真验收)：`uv run tools/verify_display_pixels.py artifacts/mapped-system/mapped-system.bin`，固定镜像SHA；五组手工golden/失败序列验证实际Thumb callback，外部I2C/分配调用被拦截，无硬件I/O。
+
+[音频open与板级输入映射](docs/audio-open-path.md)：实际ADC分支、宽度约束与7项输入映射表；尚未取得录音调用者的真实参数，不能推定麦克风数量/类型。
