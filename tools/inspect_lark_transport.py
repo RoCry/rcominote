@@ -41,10 +41,38 @@ SPECS = {
 }
 
 
-def main(directory: Path):
+def main(directory: Path, usb_storage: bool = False):
     decoder = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
     files = []
-    for name, (sha, regions, tables) in SPECS.items():
+    specs = SPECS
+    if usb_storage:
+        specs = {
+            "adfus_u.bin": (
+                SPECS["adfus_u.bin"][0],
+                [
+                    (0x25E0, 0x2612),
+                    (0x3E9C, 0x3EB6),
+                    (0x3E2C, 0x3E86),
+                    (0x4200, 0x445C),
+                    (0x3F70, 0x3FAE),
+                    (0x3FB0, 0x3FD4),
+                    (0x5634, 0x5640),
+                    (0x53B4, 0x55C6),
+                    (0x55E0, 0x55FC),
+                    (0x4C5C, 0x4CBA),
+                    (0x500C, 0x505E),
+                    (0x25C0, 0x25D8),
+                    (0x26F0, 0x2772),
+                    (0x483C, 0x4850),
+                    (0x265C, 0x2674),
+                    (0x4A3C, 0x4A50),
+                    (0x4A6C, 0x4A7A),
+                    (0x3110, 0x3118),
+                ],
+                [(0xA24, 0xA40), (0xB50, 0xB78), (0x3EB8, 0x3ED0), (0xE06, 0xE68)],
+            )
+        }
+    for name, (sha, regions, tables) in specs.items():
         data = (directory / name).read_bytes()
         if hashlib.sha256(data).hexdigest() != sha:
             raise ValueError(f"Wrong pinned zephyr LARK artifact: {name}")

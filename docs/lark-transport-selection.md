@@ -79,4 +79,5 @@ reference. Do not assume offsets, status-write behavior or storage callbacks are
 identical across these files merely because much code looks similar. Next
 resolve USB-specific initializer and negotiation/exit path, then compare actual
 ROM entry/host framing. Existing rejection of unchanged adfus.bin init+rs as a
-read-only backup stands; USB variant has not thereby been proved safe or unsafe.
+read-only backup stands; A subsequent [independent USB storage/exit audit](lark-usb-storage-exit.md)
+confirms its own status writes and non-restoring selector0 exit.
