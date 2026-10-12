@@ -1,0 +1,139 @@
+{
+  "captured_at": "2026-10-12T02:18:21.177242+00:00",
+  "selection": {
+    "advertised_serial": "C261CF0430",
+    "address": "558F895F-4A40-5246-0F99-415DAA59173D",
+    "name": "CoMi Note 2F01"
+  },
+  "method": "BLE connect and GATT discovery only; no application characteristic operations",
+  "mtu": 247,
+  "actions_log_service_present": true,
+  "actions_ota_service_present": false,
+  "services": [
+    {
+      "uuid": "0000180f-0000-1000-8000-00805f9b34fb",
+      "characteristics": [
+        {
+          "uuid": "00002a19-0000-1000-8000-00805f9b34fb",
+          "handle": 17,
+          "properties": [
+            "notify",
+            "read"
+          ],
+          "descriptors": [
+            {
+              "uuid": "00002902-0000-1000-8000-00805f9b34fb",
+              "handle": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "e49a3001-f69a-11e8-8eb2-f2801f1b9fd1",
+      "characteristics": [
+        {
+          "uuid": "e49a3002-f69a-11e8-8eb2-f2801f1b9fd1",
+          "handle": 21,
+          "properties": [
+            "write-without-response",
+            "write"
+          ],
+          "descriptors": []
+        },
+        {
+          "uuid": "e49a3003-f69a-11e8-8eb2-f2801f1b9fd1",
+          "handle": 23,
+          "properties": [
+            "notify"
+          ],
+          "descriptors": [
+            {
+              "uuid": "00002902-0000-1000-8000-00805f9b34fb",
+              "handle": 25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "0000f5f0-0000-1000-8000-00805f9b34fb",
+      "characteristics": [
+        {
+          "uuid": "0000f5f1-0000-1000-8000-00805f9b34fb",
+          "handle": 27,
+          "properties": [
+            "write-without-response",
+            "write"
+          ],
+          "descriptors": []
+        },
+        {
+          "uuid": "0000f5f2-0000-1000-8000-00805f9b34fb",
+          "handle": 29,
+          "properties": [
+            "notify"
+          ],
+          "descriptors": [
+            {
+              "uuid": "00002902-0000-1000-8000-00805f9b34fb",
+              "handle": 31
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "0000e5e0-0000-1000-8000-00805f9b34fb",
+      "characteristics": [
+        {
+          "uuid": "0000e5e1-0000-1000-8000-00805f9b34fb",
+          "handle": 33,
+          "properties": [
+            "write-without-response"
+          ],
+          "descriptors": []
+        },
+        {
+          "uuid": "0000e5e2-0000-1000-8000-00805f9b34fb",
+          "handle": 35,
+          "properties": [
+            "notify"
+          ],
+          "descriptors": [
+            {
+              "uuid": "00002902-0000-1000-8000-00805f9b34fb",
+              "handle": 37
+            }
+          ]
+        },
+        {
+          "uuid": "0000e5e3-0000-1000-8000-00805f9b34fb",
+          "handle": 38,
+          "properties": [
+            "notify"
+          ],
+          "descriptors": [
+            {
+              "uuid": "00002902-0000-1000-8000-00805f9b34fb",
+              "handle": 40
+            }
+          ]
+        },
+        {
+          "uuid": "0000e5e4-0000-1000-8000-00805f9b34fb",
+          "handle": 41,
+          "properties": [
+            "notify"
+          ],
+          "descriptors": [
+            {
+              "uuid": "00002902-0000-1000-8000-00805f9b34fb",
+              "handle": 43
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
