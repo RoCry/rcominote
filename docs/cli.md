@@ -47,6 +47,24 @@ uv run comi set-time
 
 录音测试产生的原文件不会自动删除；没有实现设备删除/格式化/解绑命令。
 
+## 实时音频
+
+```sh
+# 被动采集；不开始或停止设备录音
+uv run comi realtime --duration 10 --out artifacts/live.bin
+# 显式创建短录音，采集后停止；设备必须先处于 idle
+uv run comi realtime --record --duration 5 --out artifacts/live-test.bin
+```
+
+最长300秒、最多16 MiB，输出拒绝覆盖；失败不发布成功文件。
+原样保存 e5e3 通知拼接字节，JSON 报告字节数、包数、hash及录音身份。
+`.bin`表示指定时间窗口的实时数据，不保证完整录音；MP3已在当前模式短录音中验证，
+其他模式/长时丢包未验证。需要完整文件时按报告中的录音名另行 `download` 对照。
+被动采集可能得到零字节；不会因此自行启动录音。
+
+连接期间保留e5e3订阅，结束采集只移除本地接收处理，再断开连接。
+原因及实测见[共享CCC状态](realtime-ccc-gating.md)、[实时MP3比对](realtime-live.md)。
+
 ## 设置
 
 ```sh

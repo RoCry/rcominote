@@ -7,7 +7,7 @@ import sys
 
 from bleak.exc import BleakError
 
-from . import diagnostics, gatt, image_export, settings, usb_inventory, verification
+from . import diagnostics, gatt, image_export, realtime, settings, usb_inventory, verification
 from .device_commands import app
 from .output import emit
 
@@ -19,6 +19,7 @@ app.add_typer(usb_inventory.app, name="usb", help="Host descriptor snapshots/dif
 app.add_typer(image_export.app, name="image", help="Fixed mapped-system export; not a raw Flash backup.")
 app.command("gatt")(gatt.main)
 app.command("verify")(verification.main)
+app.command("realtime")(realtime.main)
 
 
 @app.command()
@@ -33,7 +34,7 @@ def doctor():
             },
             "bluetooth_permission": "not_probed; run scan to test host access",
             "usb_snapshot": "available" if sys.platform == "darwin" else "macOS only; diff remains offline",
-            "firmware_backup": "not_available; resumable mapped-system export available, full checksum not yet observed",
+            "firmware_backup": "not_available; mapped-system checksum verified, not full physical Flash",
             "flash_recovery": "not_verified",
         }
     )
@@ -57,6 +58,7 @@ def capabilities():
             "implemented_requires_explicit_selection": [
                 "record start/pause/resume/stop",
                 "clock synchronization",
+                "bounded realtime capture; explicit --record owns a short recording",
                 "settings with readback",
                 "fixed mapped-system image export with resume and checksum gate",
             ],

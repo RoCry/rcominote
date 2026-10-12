@@ -1,12 +1,17 @@
 """Boyi BLE transactions and complete, atomic recording export."""
 
+from __future__ import annotations
+
 import asyncio
 import hashlib
+import math
 import os
 import struct
 import sys
 import tempfile
 from collections.abc import Callable
+from contextlib import asynccontextmanager
+from dataclasses import dataclass
 from pathlib import Path
 
 from bleak import BleakClient
@@ -14,6 +19,47 @@ from bleak import BleakClient
 from . import protocol as P
 
 BUFFER_LIMIT = 256
+REALTIME_BYTE_LIMIT = 16 * 1024 * 1024
+
+
+@dataclass(slots=True)
+class RealtimeCapture:
+    """Local capture accounting; sink failure must not prevent recording cleanup."""
+
+    connection: Connection
+    sink: Callable[[bytes], int]
+    bytes: int = 0
+    packets: int = 0
+    error: Exception | None = None
+
+    def receive(self, data: bytes) -> None:
+        if self.error is not None:
+            return
+        try:
+            if self.bytes + len(data) > REALTIME_BYTE_LIMIT:
+                raise RuntimeError("Realtime capture exceeded 16 MiB")
+            if self.sink(data) != len(data):
+                raise OSError("Short write while saving realtime audio")
+            self.bytes += len(data)
+            self.packets += 1
+        except Exception as error:  # noqa: BLE001 - propagate callback failure to capture owner
+            self.error = error
+
+    def check(self) -> None:
+        self.connection._check_failure()
+        if self.error is not None:
+            raise self.error
+
+    async def wait(self, duration: float) -> None:
+        if not math.isfinite(duration) or not 0 < duration <= 300:
+            raise ValueError("Realtime duration must be finite, >0 and <=300 seconds")
+        deadline = asyncio.get_running_loop().time() + duration
+        while True:
+            self.check()
+            remaining = deadline - asyncio.get_running_loop().time()
+            if remaining <= 0:
+                return
+            await asyncio.sleep(min(remaining, 0.1))
 
 
 def validate_filename(name: str) -> bytes:
@@ -49,6 +95,29 @@ class Connection:
         self._failure: Exception | None = None
         self.client = BleakClient(device, timeout=20, disconnected_callback=self._dropped)
         self._transaction = asyncio.Lock()
+        self._realtime_enabled = False
+        self._realtime_capture: RealtimeCapture | None = None
+
+    def _received_realtime(self, _characteristic, data: bytearray) -> None:
+        if self._realtime_capture is not None:
+            self._realtime_capture.receive(bytes(data))
+
+    @asynccontextmanager
+    async def realtime_capture(self, sink: Callable[[bytes], int]):
+        """Capture raw chunks; retain CCC subscription until disconnect (FW010004)."""
+        self._check_failure()
+        if self._realtime_capture is not None:
+            raise RuntimeError("A realtime capture is already active on this connection")
+        capture = RealtimeCapture(self, sink)
+        self._realtime_capture = capture
+        try:
+            if not self._realtime_enabled:
+                await self.client.start_notify(P.NOTIFY_REALTIME, self._received_realtime)
+                self._realtime_enabled = True
+            yield capture
+            capture.check()
+        finally:
+            self._realtime_capture = None
 
     def _dropped(self, _client):
         self._fail(ConnectionError("CoMi disconnected before completing the request"))

@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-12",
+  "command": "uv run comi realtime --record --duration 3 --out artifacts/realtime-cli-live.bin",
+  "capture": {
+    "serial": "C261CF0430",
+    "path": "artifacts/realtime-cli-live.bin",
+    "bytes": 12126,
+    "packets": 85,
+    "sha256": "5e8a7bc261391229c15e9675cb8e324be910faad67c93f4f8ed50ad832c8d2b9",
+    "requested_seconds": 3.0,
+    "capture_seconds": 4.750234958017245,
+    "scope": "realtime_notification_window",
+    "completeness": "unverified; no offline recording comparison",
+    "recording": {
+      "start": {
+        "action": "start",
+        "name": "20261012223225",
+        "reply_hex": "00323032363130313232323332323501"
+      },
+      "stop": {
+        "action": "stop",
+        "name": "20261012223225",
+        "reply_hex": "00323032363130313232323332323500002f5e0101",
+        "size": 12126,
+        "need_sync": true,
+        "ok": true,
+        "state_before": "recording",
+        "state_after": "idle"
+      },
+      "tail_seconds": 1
+    }
+  },
+  "offline": {
+    "name": "20261012223225",
+    "path": "artifacts/realtime-cli-offline/20261012223225.mp3",
+    "bytes": 12126,
+    "sha256": "5e8a7bc261391229c15e9675cb8e324be910faad67c93f4f8ed50ad832c8d2b9",
+    "offset": 0,
+    "scope": "complete_recording"
+  },
+  "exact_match": true,
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "mp3",
+        "sample_rate": "16000",
+        "channels": 1,
+        "bit_rate": "32000"
+      }
+    ],
+    "format": {
+      "duration": "3.031500",
+      "size": "12126"
+    }
+  },
+  "ffmpeg_full_decode_exit_code": 0,
+  "limits": [
+    "single short recording",
+    "raw audio not published",
+    "CLI itself does not verify offline equality"
+  ]
+}

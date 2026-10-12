@@ -7,7 +7,7 @@
 ## Observed
 
 - Initial recording state idle; e5e3 subscription then2 s idle: zero bytes.
-- Empty06 started recording `20261012222510`; approximately5 s later09 stopped
+- Empty06 started recording `20261012222510`; approximately5 s later07 stopped
   it, reported20204 B and readback idle. No setting change or file deletion.
 - 141 notifications, lengths108–166 B;139 while recording and2 during stop.
   No packet after stop during the1 s observation tail.
@@ -38,5 +38,7 @@ does not independently identify which queued request it answers.
 Client implementation should keep notification subscriptions for the connection
 lifetime and stop consuming audio at the application layer. Do not implement
 capture cleanup by disabling e5e3 while expecting other transactions to continue.
-Disconnect still ends the session. This result is research evidence; no reusable
-realtime CLI is advertised yet.
+Disconnect still ends the session. The reusable [realtime CLI](cli.md#实时音频)
+now implements this lifetime, bounded capture and explicit recording ownership;
+its own acceptance run is retained separately in
+[CLI evidence](evidence/realtime-cli-live-2026-10-12.json).

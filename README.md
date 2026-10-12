@@ -11,6 +11,7 @@
 | 设备 | 自有 `C261CF0430`，广播 `CoMi Note 2F01`，固件 `1.0.4`；包装样本型号 `SY-N2A3F-5H2` 尚需和实机底标核对 |
 | 平台 | GATT 与 Actions（炬芯）SDK 的日志服务匹配，固定 PREPARE/ACK 也已实测相容；具体 SoC、板号仍未知 |
 | 数据通路 | Boyi BLE 协议已验证，状态/列表/下载不需绑定；既往实测录音为 16 kHz 单声道、32 kbps MP3 |
+| 实时音频 | e5e3短录音采集与同一离线MP3逐字节一致；`comi realtime`可有界采集，`--record`显式创建录音；共享CCC状态要求连接期间保留订阅。[证据](docs/realtime-live.md) |
 | 新鲜实机证据 | 本轮重新枚举 GATT、读取状态；MTU 247，4 个服务，普通模式未见 Actions OTA UUID，`usb_mode=true` |
 | USB | 用户确认数据线后做拔插对照，仍未见明确 CoMi 枚举；`usb_mode=true` 不等于主机数据接口已启用，板级走线/其他模式待查 |
 | 日志/shell | 实机执行 `kernel version` 返回 Zephyr 2.7.0；`help`/`dbg` 列出存储读取与 ADFU 重启命令，后者未执行 |
