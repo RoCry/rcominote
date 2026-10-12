@@ -1,0 +1,108 @@
+{
+  "image": {"scope": "mapped-system image; not a raw Flash backup", "base": "0x10000000", "bytes": 927632, "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f", "header_sha256": "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5", "body_word_sum": "0xb18576b5", "stored_body_checksum": "0x4e7a894a", "checksum_verified": true, "limits": ["No physical Flash mapping proven", "No complete device backup or restore validation"]},
+  "scope": "Complete direct helper follow-up for early pinmux initializer; offline only",
+  "regions": [
+    {
+      "address": "0x100a426c",
+      "end_exclusive": "0x100a4290",
+      "hex": "08b54ff4805123207df7c0fb4ff4805122207df7bbfbbde808404ff4805121207df7b4bb",
+      "sha256": "2361d45f4dfe2b35a7345a948a4daaedbec8bcb64732543c7495dcdd9bb8d0a1",
+      "instructions": [
+        {
+          "address": "0x100a426c",
+          "bytes": "08b5",
+          "instruction": "push {r3, lr}"
+        },
+        {"address": "0x100a426e", "bytes": "4ff48051", "instruction": "mov.w r1, #0x1000"},
+        {"address": "0x100a4272", "bytes": "2320", "instruction": "movs r0, #0x23"},
+        {"address": "0x100a4274", "bytes": "7df7c0fb", "instruction": "bl #0x100219f8"},
+        {"address": "0x100a4278", "bytes": "4ff48051", "instruction": "mov.w r1, #0x1000"},
+        {"address": "0x100a427c", "bytes": "2220", "instruction": "movs r0, #0x22"},
+        {"address": "0x100a427e", "bytes": "7df7bbfb", "instruction": "bl #0x100219f8"},
+        {
+          "address": "0x100a4282",
+          "bytes": "bde80840",
+          "instruction": "pop.w {r3, lr}"
+        },
+        {"address": "0x100a4286", "bytes": "4ff48051", "instruction": "mov.w r1, #0x1000"},
+        {"address": "0x100a428a", "bytes": "2120", "instruction": "movs r0, #0x21"},
+        {"address": "0x100a428c", "bytes": "7df7b4bb", "instruction": "b.w #0x100219f8"}
+      ]
+    },
+    {
+      "address": "0x100a4290",
+      "end_exclusive": "0x100a42aa",
+      "hex": "08b54ff4805110207df7aefbbde808404ff4805111207df7a7bb",
+      "sha256": "5b20ec744566fb7e17cf5c5bdca3605c4bf52fb663cd795e0f25033e601b7601",
+      "instructions": [
+        {
+          "address": "0x100a4290",
+          "bytes": "08b5",
+          "instruction": "push {r3, lr}"
+        },
+        {"address": "0x100a4292", "bytes": "4ff48051", "instruction": "mov.w r1, #0x1000"},
+        {"address": "0x100a4296", "bytes": "1020", "instruction": "movs r0, #0x10"},
+        {"address": "0x100a4298", "bytes": "7df7aefb", "instruction": "bl #0x100219f8"},
+        {
+          "address": "0x100a429c",
+          "bytes": "bde80840",
+          "instruction": "pop.w {r3, lr}"
+        },
+        {"address": "0x100a42a0", "bytes": "4ff48051", "instruction": "mov.w r1, #0x1000"},
+        {"address": "0x100a42a4", "bytes": "1120", "instruction": "movs r0, #0x11"},
+        {"address": "0x100a42a6", "bytes": "7df7a7bb", "instruction": "b.w #0x100219f8"}
+      ]
+    },
+    {
+      "address": "0x1002dd74",
+      "end_exclusive": "0x1002dd96",
+      "hex": "084b47f240021a60d3f8d82103f5ec7320b142f400721a600020704722f40072f9e7",
+      "sha256": "622965056d4042d8a971978f409150f4b87ee1156024e71bfeab4dcc32161df0",
+      "instructions": [
+        {"address": "0x1002dd74", "bytes": "084b", "instruction": "ldr r3, [pc, #0x20]"},
+        {"address": "0x1002dd76", "bytes": "47f24002", "instruction": "movw r2, #0x7040"},
+        {"address": "0x1002dd7a", "bytes": "1a60", "instruction": "str r2, [r3]"},
+        {"address": "0x1002dd7c", "bytes": "d3f8d821", "instruction": "ldr.w r2, [r3, #0x1d8]"},
+        {"address": "0x1002dd80", "bytes": "03f5ec73", "instruction": "add.w r3, r3, #0x1d8"},
+        {"address": "0x1002dd84", "bytes": "20b1", "instruction": "cbz r0, #0x1002dd90"},
+        {"address": "0x1002dd86", "bytes": "42f40072", "instruction": "orr r2, r2, #0x200"},
+        {"address": "0x1002dd8a", "bytes": "1a60", "instruction": "str r2, [r3]"},
+        {"address": "0x1002dd8c", "bytes": "0020", "instruction": "movs r0, #0"},
+        {"address": "0x1002dd8e", "bytes": "7047", "instruction": "bx lr"},
+        {"address": "0x1002dd90", "bytes": "22f40072", "instruction": "bic r2, r2, #0x200"},
+        {"address": "0x1002dd94", "bytes": "f9e7", "instruction": "b #0x1002dd8a"}
+      ]
+    },
+    {"address": "0x1002dd98", "end_exclusive": "0x1002dd9c", "hex": "28800640", "sha256": "8f3c26f5f4b62251c606afea1178e753c1294937fd115a3af832cdf80ff6c471"},
+    {
+      "address": "0x100219cc",
+      "end_exclusive": "0x100219f2",
+      "hex": "094b012819680bd004280cbf4ff44070002021f4407202431a60c1f3012070474ff48070f5e7",
+      "sha256": "ba280ef5cdb9aeaf55aeafa47ed048015750d7ca313999d0b86cc90abb7ed6a5",
+      "instructions": [
+        {"address": "0x100219cc", "bytes": "094b", "instruction": "ldr r3, [pc, #0x24]"},
+        {"address": "0x100219ce", "bytes": "0128", "instruction": "cmp r0, #1"},
+        {"address": "0x100219d0", "bytes": "1968", "instruction": "ldr r1, [r3]"},
+        {"address": "0x100219d2", "bytes": "0bd0", "instruction": "beq #0x100219ec"},
+        {"address": "0x100219d4", "bytes": "0428", "instruction": "cmp r0, #4"},
+        {"address": "0x100219d6", "bytes": "0cbf", "instruction": "ite eq"},
+        {"address": "0x100219d8", "bytes": "4ff44070", "instruction": "moveq.w r0, #0x300"},
+        {"address": "0x100219dc", "bytes": "0020", "instruction": "movne r0, #0"},
+        {"address": "0x100219de", "bytes": "21f44072", "instruction": "bic r2, r1, #0x300"},
+        {"address": "0x100219e2", "bytes": "0243", "instruction": "orrs r2, r0"},
+        {"address": "0x100219e4", "bytes": "1a60", "instruction": "str r2, [r3]"},
+        {"address": "0x100219e6", "bytes": "c1f30120", "instruction": "ubfx r0, r1, #8, #2"},
+        {"address": "0x100219ea", "bytes": "7047", "instruction": "bx lr"},
+        {"address": "0x100219ec", "bytes": "4ff48070", "instruction": "mov.w r0, #0x100"},
+        {"address": "0x100219f0", "bytes": "f5e7", "instruction": "b #0x100219de"}
+      ]
+    },
+    {"address": "0x100219f4", "end_exclusive": "0x100219f8", "hex": "00100040", "sha256": "1c2380d4bb0c463eb005c21aa00e87e0e0e2496819a298db5f530c64a0508f1a"},
+    {"address": "0x1002ddec", "end_exclusive": "0x1002ddf0", "hex": "04830640", "sha256": "4146a932d911034eb379a83465e149bab50a076d157950a937b1dd204fe281aa"}
+  ],
+  "limits": [
+    "No whole-firmware exclusion of later pinmux writes",
+    "SCL/SDA identity unresolved",
+    "No current register or electrical measurement"
+  ]
+}

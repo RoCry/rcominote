@@ -35,3 +35,24 @@ write32(address, new_value)
 固定SDK [pinctrl_leopard.h](https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/include/drivers/cfg_drv/pinctrl_leopard.h#L43-L47)定义MFP0_I2C=8。实际3808的低6bit为8；结合本机[注册I2C_0与屏幕绑定](display-i2c-config.md)，支持14/15为其候选pinmux。不是直接套参考板的GPIO57/58配置。
 
 尚缺相应SoC精确pin-function矩阵、SCL/SDA方向身份、后续重配置排除、实物引脚和电压测量。本轮对SDK cfg_drv目录的限定文本搜索没有找到14/15与SCL/SDA的独立映射；该未命中不证明资料或映射不存在。其他表项暂只保留数值，不按功能号猜测麦克风、存储或按键。
+
+## 后续helper补查：该initializer结束前的覆盖
+
+[补充字节证据](evidence/board-pinmux-overrides-2026-10-12.json)完整展开本initializer此前未审计的四个直接helper，另存三个literal窗口。与前篇原始initializer合并后，其所有直接调用目标都有代码依据：三次表helper、两次批量覆盖、一次pin9控制、pin62 setter及最终控制寄存器helper。
+
+按三张表之后的执行顺序：
+
+| 入口/操作 | 实际行为 |
+|---|---|
+| `100a426c..100a4290` | 依次调用setter，pin35、34、33各写mode1000 |
+| `100a4290..100a42aa` | pin16、17各写mode1000 |
+| `1002dd74..1002dd96`，参数0 | `40068028 ← 7040`，对应pin9 control；对`40068200`读改写，清bit9 |
+| initializer直接setter | pin62写mode303c，即control地址400680fc |
+| initializer直接STR | `40068304 ← 5880`；不擅自命名寄存器用途 |
+| `100219cc..100219f2`，参数1 | `40001000`读改写bits8..9为1，保留其他位；用途未独立核对 |
+
+因此在这个initializer内，pin16/17最终mode来源是1000，pin33/34/35亦为1000，pin9 control最终是7040；不能再仅引用第一张表的4126、3103、3040作为最终配置。setter仍保留mode掩码之外的原寄存器位，mode1000不等于完整寄存器值1000。
+
+这些后续操作没有命中pin14/15 control地址`4006803c/40068040`。所以已排除**这个initializer的后续直接调用路径**覆盖14/15的可能；没有排除其他initializer、应用或低功耗路径在稍后重新配置。静态执行路径亦不等于当前RAM/MMIO状态。
+
+SDK整个树中限定C/header/XML/DTS/text/JSON文件的GPIO14/15与SCL/SDA同一行文本搜索仍未找到独立方向映射。此类搜索不覆盖压缩文档、图片、间接表或别名命名，不能据此断言资料不存在。下一步可沿相关板级函数的调用者寻找运行期切换，或查精确SoC pin-function资料；不应猜SCL/SDA方向。
