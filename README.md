@@ -139,3 +139,5 @@ uv run --locked tools/build_sdk.py \
 [编码输出stream分支](docs/recorder-stream-path.md)：同步文件write与异步ring消费者；后者后端未定。
 
 [实际codec分派](docs/recorder-codec-dispatch.md)：format1编码方向选择`mp3e`硬件记录、`aeRECORD.dsp`及DSP路径；支持MP3配置判断。DSP资源导出与加载执行仍未验证。
+
+[DSP资源路径](docs/dsp-resource-path.md)：实际拼接`/NOR:K/aeRECORD.dsp`，K对应ACPT的`sdfs_k`分区（704 KiB）；尚未读取目录/文件，现有system导出未证明覆盖该资源。
