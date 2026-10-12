@@ -29,6 +29,7 @@ def save(tmp_path, capture):
         ("system", 0x24000, "dbg fread spi_flash 0x24000"),
         ("dsp", 0x240000, "dbg fread spi_flash 0x240000"),
         ("record-dsp", 0x24D400, "dbg fread spi_flash 0x24d400"),
+        ("record-dsp-header-end", 0x24D600, "dbg fread spi_flash 0x24d600"),
     ],
 )
 def test_named_targets_use_acpt_offsets_and_explicit_hex(target, offset, command):

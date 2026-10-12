@@ -32,3 +32,5 @@
 字段位置来自[实际DSP加载器](dsp-file-loader.md)。它读取540 B头；当前仅取得64 B，不能验证完整bank表、sections或文件校验和。
 
 下一步价值最高：在已知文件/分区范围内扩展可靠导出，取得完整录音DSP与boot/recovery内容；查清raw与映射表示转换，再验证独立恢复入口。当前CLI仍不支持整机备份或烧录；Android登录按用户选择暂缓。
+
+后续：[完整540 B录音DSP头已取得](record-dsp-header.md)，含完整bank指针表；本文64 B为早期采集边界。

@@ -11,6 +11,7 @@ import typer
 from . import (
     code_references,
     code_sample,
+    dsp_header,
     log_capture,
     log_probe,
     nor_batch_cli,
@@ -139,3 +140,4 @@ app.command("assemble-nor-sector")(nor_windows.main)
 app.command("inspect-dsp-directory")(sdfs_directory.main)
 
 app.command("capture-nor-sector")(nor_batch_cli.main)
+app.command("inspect-dsp-header")(dsp_header.main)

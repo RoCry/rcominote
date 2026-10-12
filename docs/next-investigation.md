@@ -9,7 +9,7 @@
 | 已提取什么 | [完整system映射镜像](mapped-image-export.md)，927632 B，头/正文checksum通过 | [原始system前64 B已独立双读](nor-partition-prefixes.md)，与映射头不同；具体转换仍未知 |
 | 固件存储布局 | [实际ACPT](partition-readback.md)：18项覆盖4 MiB；[缓存JEDEC线索](nor-driver-readback.md)匹配Zbit系列 | 原始boot、recovery、资源、配置等分区内容 |
 | 录音数据存储 | [SD协议后端](card-state-readback.md)，与启动NOR分离 | 不应把录音sync当整机备份 |
-| 保留录音能力 | 实际[MP3 DSP选择](recorder-codec-dispatch.md)，[资源路径](dsp-resource-path.md)指向NOR K区704 KiB | [完整目录已取得](nor-partition-prefixes.md)：aerecord.dsp位于24d400、110148 B；前64 B已双读确认xhqy头；仍缺完整文件正文及加载运行验收 |
+| 保留录音能力 | 实际[MP3 DSP选择](recorder-codec-dispatch.md)，[资源路径](dsp-resource-path.md)指向NOR K区704 KiB | [完整目录已取得](nor-partition-prefixes.md)：aerecord.dsp位于24d400、110148 B；[完整540 B头已双读确认](record-dsp-header.md)，含3组非零bank；仍缺完整文件正文及加载运行验收 |
 | 显示/音频BSP | [显示](display-board-evidence.md)、[pinmux](board-pinmux-evidence.md)、[音频](audio-open-path.md)实际指令与配置线索 | 物理引脚/外围型号、真实采样/显示、自写镜像启动 |
 | 软件ADFU入口 | [实际应用重启代码](application-reboot-path.md)写ADFU标记并触发watchdog | 应用损坏时的独立入口、恢复态身份和可验证退出 |
 | 启动校验 | [SDK安全启动能力](boot-security-source-audit.md)及实际镜像头 | CoMi boot/ROM实际策略、签名/加密处理及可接受镜像 |

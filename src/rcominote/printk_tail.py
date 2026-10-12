@@ -18,6 +18,7 @@ class NorTarget(StrEnum):
     system = "system"
     dsp = "dsp"
     record_dsp = "record-dsp"
+    record_dsp_header_end = "record-dsp-header-end"
 
 
 TARGET_OFFSETS = {
@@ -26,6 +27,7 @@ TARGET_OFFSETS = {
     NorTarget.system: 0x24000,
     NorTarget.dsp: 0x240000,
     NorTarget.record_dsp: 0x24D400,
+    NorTarget.record_dsp_header_end: 0x24D600,
 }
 MARKER = f"dbg mdb {printk_ring.CONTEXT:x} 1c"
 
