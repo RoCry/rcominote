@@ -116,8 +116,11 @@ state-change route, so subscribing is not a proven read-only diagnostic.
 
 ## Remaining boundary
 
-No F5F0 traffic sent. Exact protocol dispatcher, package validation, Flash write
-path, interruption handling and independent recovery remain unverified here.
+No F5F0 traffic sent. Follow-up [actual wire dispatcher](ota-wire-contract.md)
+establishes device-pull image input, not a Flash readback command table;
+[actual version policy](ota-version-policy.md) traces no-version-control
+initialization and the independent board-name gate. Remaining package validation,
+Flash write path, interruption handling and independent recovery are unverified.
 The identified backend operates inside the main firmware; its existence alone
 cannot demonstrate recovery after that firmware stops booting. Firmware backup
 still requires an independently established content-export path.

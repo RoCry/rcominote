@@ -42,7 +42,7 @@ OTA 实际提交链也不包含“新应用运行健康后才确认”：
 - 写完及文件校验通过后更新 firmware version，保存 `UPGRADE_DONE`，再向 backend 报告成功；这个时点尚未运行新应用。[提交顺序][ota-commit]
 - breakpoint 记录写入状态/偏移并 sync 存储，`DONE/PENDING` 清除文件状态；这是升级续传/写入完成机制，不能等同运行失败回滚。[断点保存][breakpoint]
 - 本树 `OTA_FULL_UPGRADE=1` 路径可把 boot/param 写到 mirror 后**擦除当前副本**；布局/manifest 是否提供这些文件决定是否走此路径。[开关][full-flag] [最后写 boot/param][ota-write]
-- 版本检查默认拒绝同版/旧版，patch 还要求匹配旧版本。即使持有原厂 OTA，也需确认本机允许回装原版，不能假设通用 OTA 会降级。[版本检查][version-check]
+- 参考SDK版本检查默认拒绝同版/旧版，patch 还要求匹配旧版本。[版本检查][version-check] **后续实际固件修正：CoMi初始化显式设置no-version-control，并有实际跳过版本比较的分支**，见[版本策略](ota-version-policy.md)。这推翻“默认拒绝必然适用本机”的假设，仍未验证原厂包回装或恢复成功。
 
 ## “刷坏”分别意味着什么
 
