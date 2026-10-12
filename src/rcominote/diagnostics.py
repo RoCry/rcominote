@@ -8,7 +8,17 @@ from typing import Annotated
 
 import typer
 
-from . import code_references, code_sample, log_capture, log_probe, nor_windows, printk_ring, printk_state
+from . import (
+    code_references,
+    code_sample,
+    log_capture,
+    log_probe,
+    nor_windows,
+    printk_ring,
+    printk_state,
+    printk_tail,
+    sdfs_directory,
+)
 from .ble_target import OWNED_SERIAL
 from .output import emit, new_output
 
@@ -71,9 +81,17 @@ PROFILE_FLAGS = {
 }
 
 
-async def capture_profile(profile: Profile, serial: str, duration: float, ring_window: int = 0) -> dict:
+async def capture_profile(
+    profile: Profile,
+    serial: str,
+    duration: float,
+    ring_window: int = 0,
+    nor_target: printk_tail.NorTarget = printk_tail.NorTarget.boot,
+) -> dict:
     flags = {PROFILE_FLAGS[profile.value]: True} if profile.value in PROFILE_FLAGS else {}
-    return await log_capture.capture(serial=serial, duration=duration, ring_window=ring_window, **flags)
+    return await log_capture.capture(
+        serial=serial, duration=duration, ring_window=ring_window, nor_target=nor_target, **flags
+    )
 
 
 @app.command("capture")
@@ -83,10 +101,11 @@ def capture(
     serial: str = OWNED_SERIAL,
     duration: Annotated[float, typer.Option(min=1, max=30)] = 5,
     ring_window: Annotated[int, typer.Option(min=0, max=10)] = 0,
+    nor_target: printk_tail.NorTarget = printk_tail.NorTarget.boot,
 ):
     """Capture fixed diagnostics; code profiles validate exact bytes, nor-header may lack data."""
     new_output(out)
-    result = asyncio.run(capture_profile(profile, serial, duration, ring_window))
+    result = asyncio.run(capture_profile(profile, serial, duration, ring_window, nor_target))
     encoded = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("x") as handle:
@@ -115,3 +134,5 @@ app.command("inspect-printk")(printk_state.main)
 app.command("inspect-printk-ring")(printk_ring.main)
 
 app.command("assemble-nor-sector")(nor_windows.main)
+
+app.command("inspect-dsp-directory")(sdfs_directory.main)

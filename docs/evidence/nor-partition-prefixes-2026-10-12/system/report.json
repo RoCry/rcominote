@@ -1,0 +1,88 @@
+{
+  "scope": "Guarded, non-atomic fixed NOR-target log rows; no full-device backup or recovery proof",
+  "producer": "dbg fread spi_flash 0x24000",
+  "target": "system",
+  "offset": 147456,
+  "input_files": 4,
+  "distinct_sources": 4,
+  "required_rows": 32,
+  "observed_rows": 4,
+  "confirmed_rows": 4,
+  "missing_rows": [
+    "0x40",
+    "0x50",
+    "0x60",
+    "0x70",
+    "0x80",
+    "0x90",
+    "0xa0",
+    "0xb0",
+    "0xc0",
+    "0xd0",
+    "0xe0",
+    "0xf0",
+    "0x100",
+    "0x110",
+    "0x120",
+    "0x130",
+    "0x140",
+    "0x150",
+    "0x160",
+    "0x170",
+    "0x180",
+    "0x190",
+    "0x1a0",
+    "0x1b0",
+    "0x1c0",
+    "0x1d0",
+    "0x1e0",
+    "0x1f0"
+  ],
+  "unconfirmed_rows": [],
+  "conflicts": [],
+  "complete": false,
+  "rows": [
+    {
+      "offset": "0x0",
+      "variants": [
+        {
+          "hex": "dbd5f9a38960bfdc414dbffb62161a36",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x10",
+      "variants": [
+        {
+          "hex": "bba61937b4600558f2c094630828a80b",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x20",
+      "variants": [
+        {
+          "hex": "9293f2e2ddcd887343e59b22143e8c5b",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x30",
+      "variants": [
+        {
+          "hex": "c4f805cbb40e8efb270f6c4b752edd78",
+          "sources": 2
+        }
+      ]
+    }
+  ],
+  "captures": [
+    "nor-system-prefix10-first.json",
+    "nor-system-prefix10-second.json",
+    "nor-system-prefix9-first.json",
+    "nor-system-prefix9-second.json"
+  ]
+}

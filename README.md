@@ -167,3 +167,5 @@ uv run --locked tools/build_sdk.py \
 [NOR短窗口读回](docs/printk-nor-tail.md)：固定`printk-nor-tail`实验两次取得offset0读取的末尾32 B一致数据；尚无完整扇区或备份。
 
 [完整NOR offset0扇区](docs/nor-sector-zero.md)：重叠日志窗口两轮22次采集，512 B全部双重覆盖、无冲突；新增离线`diag assemble-nor-sector`，仍非整片备份。
+
+[分区前缀与DSP目录](docs/nor-partition-prefixes.md)：system原始64 B与映射头不同；NOR K完整256 B目录双重校验，定位`aerecord.dsp`于`0x24d400`、110148 B；正文尚未导出。

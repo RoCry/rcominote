@@ -1,4 +1,7 @@
-"""Single fixed NOR-offset probe followed by a bounded retained-log tail."""
+"""Named fixed NOR-offset probe followed by a bounded retained-log tail."""
+
+import re
+from enum import StrEnum
 
 from . import printk_ring
 from .range_readback import range_commands
@@ -7,17 +10,74 @@ GUARDS = (
     (0x10025348, "2de9f043032985b00546144606d0294a"),
     (0x100BB960, "636b0c10696b0c100000000049530210"),
 )
-PRODUCER = "dbg fread spi_flash 0"
+
+
+class NorTarget(StrEnum):
+    boot = "boot"
+    backup_boot = "backup-boot"
+    system = "system"
+    dsp = "dsp"
+
+
+TARGET_OFFSETS = {
+    NorTarget.boot: 0,
+    NorTarget.backup_boot: 0x2000,
+    NorTarget.system: 0x24000,
+    NorTarget.dsp: 0x240000,
+}
 MARKER = f"dbg mdb {printk_ring.CONTEXT:x} 1c"
-INITIAL = (
-    range_commands(printk_ring.READS[: len(printk_ring.GUARDS) + 1])
-    + range_commands(tuple((a, len(bytes.fromhex(v))) for a, v in GUARDS))
-    + [PRODUCER, MARKER]
-    + ["kernel version"] * 8
-)
+
+
+def validate_options(value: NorTarget, window: int, enabled: bool) -> NorTarget:
+    if type(window) is not int or not 0 <= window <= 10 or (window and not enabled):
+        raise ValueError("Ring window 0..10 is only available with printk-nor-tail")
+    value = NorTarget(value)
+    if value != NorTarget.boot and not enabled:
+        raise ValueError("NOR target is only available with printk-nor-tail")
+    return value
+
+
+def target(capture: dict) -> NorTarget:
+    value = NorTarget(capture.get("nor_target", NorTarget.boot))
+    offset = capture.get("nor_offset", TARGET_OFFSETS[value])
+    if type(offset) is not int or offset != TARGET_OFFSETS[value]:
+        raise ValueError("NOR target and offset do not match fixed firmware profile")
+    return value
+
+
+def producer(value: NorTarget = NorTarget.boot) -> str:
+    offset = TARGET_OFFSETS[value]
+    return f"dbg fread spi_flash {hex(offset) if offset else '0'}"
+
+
+PRODUCER = producer()
+
+
+def initial(value: NorTarget) -> list[str]:
+    return (
+        range_commands(printk_ring.READS[: len(printk_ring.GUARDS) + 1])
+        + range_commands(tuple((a, len(bytes.fromhex(v))) for a, v in GUARDS))
+        + [producer(value), MARKER]
+        + ["kernel version"] * 8
+    )
+
+
+def verify_producer(capture: dict) -> NorTarget:
+    value = target(capture)
+    expected = producer(value)
+    commands = capture["fixed_text_commands"]
+    if not isinstance(commands, list) or not all(isinstance(command, str) for command in commands):
+        raise ValueError("Invalid fixed producer command list")
+    if commands.count(expected) != 1 or any(
+        command.startswith("dbg fread ") and command != expected for command in commands
+    ):
+        description = "offset-zero" if value == NorTarget.boot else value.value
+        raise ValueError(f"Expected exactly one fixed {description} NOR producer")
+    return value
 
 
 def verify(capture: dict) -> None:
+    verify_producer(capture)
     printk_ring.verify(capture, payload=True)
     for address, expected in GUARDS:
         if printk_ring.read(capture, address, len(bytes.fromhex(expected))).hex() != expected:
@@ -59,18 +119,36 @@ def append_tail(capture: dict) -> None:
         capture["tail_appended"] = True
 
 
+def verify_producer_output(capture: dict, value: NorTarget) -> None:
+    last_guard = f"dbg mdb {GUARDS[-1][0]:x} {len(bytes.fromhex(GUARDS[-1][1])):x}"
+    spans = capture["range_frame_spans"]
+    start, end = spans[last_guard][1], spans[MARKER][1]
+    if type(start) is not int or type(end) is not int or not 0 <= start < end <= len(capture["frames"]):
+        raise ValueError("Invalid NOR producer output frame interval")
+    text = "".join(frame.get("text", "") for frame in capture["frames"][start:end])
+    command = producer(value)
+    status = re.search(rf"\r\nfread 512b: offset=0x{TARGET_OFFSETS[value]:x}, buf=0x[0-9a-f]+\r\n", text)
+    echo = f"logsrv: cmd({len(command)}) {command}\r\n"
+    if status is None or text.find(echo, status.end()) < 0:
+        raise ValueError("Captured NOR producer status/echo does not match declared target")
+
+
 def inspect(capture: dict) -> dict:
     verify(capture)
     if not capture.get("tail_appended"):
         raise ValueError("Missing dynamically bounded tail reads")
+    value = target(capture)
+    verify_producer_output(capture, value)
     raw = b"".join(printk_ring.read(capture, a, n) for a, n in tail_ranges(capture))
     return {
-        "producer": PRODUCER,
+        "producer": producer(value),
+        "target": value.value,
+        "offset": TARGET_OFFSETS[value],
         "window": capture.get("ring_window", 0),
         "context": printk_ring.context(capture, 28),
         "ranges": tail_ranges(capture),
         "bytes": len(raw),
         "hex": raw.hex(),
         "text": raw.decode("ascii", errors="replace"),
-        "scope": "Non-atomic 256 B log tail after fixed offset-zero read; no raw-data completeness claim",
+        "scope": "Non-atomic 256 B log tail after fixed named NOR read; no raw-data completeness claim",
     }

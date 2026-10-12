@@ -98,9 +98,9 @@ async def capture(
     printk_buffer: bool = False,
     printk_tail_probe: bool = False,
     ring_window: int = 0,
+    nor_target: printk_tail.NorTarget = printk_tail.NorTarget.boot,
 ) -> dict:
-    if type(ring_window) is not int or not 0 <= ring_window <= 10 or (ring_window and not printk_tail_probe):
-        raise ValueError("Ring window 0..10 is only available with printk-nor-tail")
+    nor_target = printk_tail.validate_options(nor_target, ring_window, printk_tail_probe)
     printk_state = printk_state or printk_buffer or printk_tail_probe
     selected_ranges = image_ranges(image_chunks)
     image_header = image_header or bool(selected_ranges) or printk_state
@@ -129,6 +129,8 @@ async def capture(
         "printk_buffer": printk_buffer,
         "printk_tail": printk_tail_probe,
         "ring_window": ring_window,
+        "nor_target": nor_target.value,
+        "nor_offset": printk_tail.TARGET_OFFSETS[nor_target],
         "range_frame_spans": {},
         "scope": "PREPARE/DEFAULT_START/STOP; fixed diagnostics and optional bounded reads; no storage writes/reboot",
         "fixed_text_commands": (
@@ -223,7 +225,7 @@ async def capture(
             + range_commands(selected_ranges)
             + (range_commands(PRINTK_READS) if printk_state else [])
             + (range_commands(printk_ring.READS) if printk_buffer else [])
-            + (printk_tail.INITIAL if printk_tail_probe else [])
+            + (printk_tail.initial(nor_target) if printk_tail_probe else [])
         ),
         "notifications": [],
         "writes": [],
@@ -360,7 +362,7 @@ async def capture(
                     )
                 if printk_tail_probe and command == f"dbg mdb {printk_ring.CONTEXT:x} 14":
                     printk_ring.verify(result | {"ok": True})
-                if printk_tail_probe and command == printk_tail.PRODUCER:
+                if printk_tail_probe and command == printk_tail.producer(nor_target):
                     printk_tail.verify(result | {"ok": True})
                 encoded = command.encode("ascii")
                 if storage_code or shell_code:

@@ -1,0 +1,110 @@
+{
+  "scope": "Directory metadata only; file bodies and checksum algorithm not verified",
+  "partition_offset": 2359296,
+  "partition_bytes": 720896,
+  "file_count": 7,
+  "volume_bytes": 519744,
+  "directory_bytes": 256,
+  "directory_sha256": "778e2e882fbfc0cd1f4d8ce67005aae3f4c8c3a2b3303f335fbbdaf2a906a755",
+  "header_reserved": [
+    0,
+    4010499645
+  ],
+  "header_checksum_word": "0xff2a3fa3",
+  "checksum_verified": false,
+  "files": [
+    {
+      "name": "tst.bin",
+      "relative_offset": 256,
+      "absolute_offset": 2359552,
+      "size": 4196,
+      "relative_end": 4452,
+      "absolute_end": 2363748,
+      "reserved": [
+        0,
+        0
+      ],
+      "checksum_word": "0xe80ef73"
+    },
+    {
+      "name": "sdfs.txt",
+      "relative_offset": 4480,
+      "absolute_offset": 2363776,
+      "size": 10,
+      "relative_end": 4490,
+      "absolute_end": 2363786,
+      "reserved": [
+        0,
+        0
+      ],
+      "checksum_word": "0x6c6a6866"
+    },
+    {
+      "name": "logo.sty",
+      "relative_offset": 4544,
+      "absolute_offset": 2363840,
+      "size": 196,
+      "relative_end": 4740,
+      "absolute_end": 2364036,
+      "reserved": [
+        0,
+        0
+      ],
+      "checksum_word": "0xa591f35a"
+    },
+    {
+      "name": "logo.res",
+      "relative_offset": 4800,
+      "absolute_offset": 2364096,
+      "size": 416,
+      "relative_end": 5216,
+      "absolute_end": 2364512,
+      "reserved": [
+        0,
+        0
+      ],
+      "checksum_word": "0x28214aff"
+    },
+    {
+      "name": "fcc.bin",
+      "relative_offset": 5248,
+      "absolute_offset": 2364544,
+      "size": 49008,
+      "relative_end": 54256,
+      "absolute_end": 2413552,
+      "reserved": [
+        0,
+        0
+      ],
+      "checksum_word": "0x72651ca2"
+    },
+    {
+      "name": "aerecord.dsp",
+      "relative_offset": 54272,
+      "absolute_offset": 2413568,
+      "size": 110148,
+      "relative_end": 164420,
+      "absolute_end": 2523716,
+      "reserved": [
+        0,
+        0
+      ],
+      "checksum_word": "0x96d685bb"
+    },
+    {
+      "name": "admusic.dsp",
+      "relative_offset": 164480,
+      "absolute_offset": 2523776,
+      "size": 355248,
+      "relative_end": 519728,
+      "absolute_end": 2879024,
+      "reserved": [
+        0,
+        0
+      ],
+      "checksum_word": "0xad4fd6db"
+    }
+  ],
+  "input_files": 12,
+  "distinct_sources": 12
+}

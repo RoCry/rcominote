@@ -46,3 +46,5 @@ uv run tools/verify_sdfs_read.py artifacts/mapped-system/mapped-system.bin
 | 失败后重试同一对象 | 再次调用相同offset/length；仍返回0 |
 
 这是原始ARM函数行为测试，不是Flash、目录或DSP资源实测。未来导出至少须对照可信文件长度、实际累计字节数和读回一致性；不能把这套模拟作为备份成功证据。现有CLI仍未获得该资源：shell的printk正文回传限制见[读取通路](readback-routes.md)。
+
+后续[原始分区读回](nor-partition-prefixes.md)：system前64 B双读与映射头不同；NOR K的256 B目录双重校验，定位aerecord.dsp绝对offset24d400、size1ae44。文件正文与恢复仍未验收。

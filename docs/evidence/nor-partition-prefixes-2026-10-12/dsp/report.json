@@ -1,0 +1,200 @@
+{
+  "scope": "Guarded, non-atomic fixed NOR-target log rows; no full-device backup or recovery proof",
+  "producer": "dbg fread spi_flash 0x240000",
+  "target": "dsp",
+  "offset": 2359296,
+  "input_files": 12,
+  "distinct_sources": 12,
+  "required_rows": 32,
+  "observed_rows": 17,
+  "confirmed_rows": 17,
+  "missing_rows": [
+    "0x110",
+    "0x120",
+    "0x130",
+    "0x140",
+    "0x150",
+    "0x160",
+    "0x170",
+    "0x180",
+    "0x190",
+    "0x1a0",
+    "0x1b0",
+    "0x1c0",
+    "0x1d0",
+    "0x1e0",
+    "0x1f0"
+  ],
+  "unconfirmed_rows": [],
+  "conflicts": [],
+  "complete": false,
+  "rows": [
+    {
+      "offset": "0x0",
+      "variants": [
+        {
+          "hex": "736466732e62696e0000000007000000",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x10",
+      "variants": [
+        {
+          "hex": "40ee0700000000003d5e0befa33f2aff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x20",
+      "variants": [
+        {
+          "hex": "7473742e62696e000000000000010000",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x30",
+      "variants": [
+        {
+          "hex": "64100000000000000000000073ef800e",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x40",
+      "variants": [
+        {
+          "hex": "736466732e7478740000000080110000",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x50",
+      "variants": [
+        {
+          "hex": "0a000000000000000000000066686a6c",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x60",
+      "variants": [
+        {
+          "hex": "6c6f676f2e73747900000000c0110000",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x70",
+      "variants": [
+        {
+          "hex": "c400000000000000000000005af391a5",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x80",
+      "variants": [
+        {
+          "hex": "6c6f676f2e72657300000000c0120000",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x90",
+      "variants": [
+        {
+          "hex": "a00100000000000000000000ff4a2128",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0xa0",
+      "variants": [
+        {
+          "hex": "6663632e62696e000000000080140000",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0xb0",
+      "variants": [
+        {
+          "hex": "70bf00000000000000000000a21c6572",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0xc0",
+      "variants": [
+        {
+          "hex": "61657265636f72642e64737000d40000",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0xd0",
+      "variants": [
+        {
+          "hex": "44ae01000000000000000000bb85d696",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0xe0",
+      "variants": [
+        {
+          "hex": "61646d757369632e6473700080820200",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0xf0",
+      "variants": [
+        {
+          "hex": "b06b05000000000000000000dbd64fad",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x100",
+      "variants": [
+        {
+          "hex": "63666700000000000000000000000000",
+          "sources": 2
+        }
+      ]
+    }
+  ],
+  "captures": [
+    "nor-dsp-prefix10-first.json",
+    "nor-dsp-prefix10-second.json",
+    "nor-dsp-prefix5-first.json",
+    "nor-dsp-prefix5-second.json",
+    "nor-dsp-prefix6-first.json",
+    "nor-dsp-prefix6-second.json",
+    "nor-dsp-prefix7-first.json",
+    "nor-dsp-prefix7-second.json",
+    "nor-dsp-prefix8-first.json",
+    "nor-dsp-prefix8-second.json",
+    "nor-dsp-prefix9-first.json",
+    "nor-dsp-prefix9-second.json"
+  ]
+}

@@ -1,4 +1,4 @@
-"""Offline assembly of repeated, guarded NOR-offset-zero log windows."""
+"""Offline assembly of repeated, guarded fixed NOR-target log windows."""
 
 import hashlib
 import json
@@ -49,16 +49,10 @@ def analyze(paths: list[Path]) -> dict:
         raw = path.read_bytes()
         try:
             capture = json.loads(raw)
-            commands = capture["fixed_text_commands"]
-            if not isinstance(commands, list) or not all(isinstance(command, str) for command in commands):
-                raise ValueError("Invalid fixed producer command list")
-            if commands.count(printk_tail.PRODUCER) != 1 or any(
-                command.startswith("dbg fread ") and command != printk_tail.PRODUCER for command in commands
-            ):
-                raise ValueError("Expected exactly one fixed offset-zero NOR producer")
+            value = printk_tail.verify_producer(capture)
+            if records and value.value != records[0]["target"]:
+                raise ValueError("Cannot assemble mixed NOR targets")
             tail = printk_tail.inspect(capture)
-            if tail["producer"] != printk_tail.PRODUCER:
-                raise ValueError("Unexpected NOR producer")
             aliases = [("digest", hashlib.sha256(raw).hexdigest())]
             if digest := capture.get("source_capture_sha256"):
                 if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
@@ -72,7 +66,7 @@ def analyze(paths: list[Path]) -> dict:
                 if alias in identities:
                     parents[root(index)] = root(identities[alias])
                 identities[alias] = index
-            records.append({"path": str(path), "rows": _rows(tail["text"])})
+            records.append({"path": str(path), "target": tail["target"], "rows": _rows(tail["text"])})
         except (KeyError, TypeError, ValueError) as error:
             raise ValueError(f"Invalid NOR window capture {path}: {error}") from error
 
@@ -89,8 +83,10 @@ def analyze(paths: list[Path]) -> dict:
     ]
     complete = not (conflicts or missing or unconfirmed)
     report = {
-        "scope": "Guarded, non-atomic NOR offset-zero log rows; no full-device backup or recovery proof",
-        "producer": printk_tail.PRODUCER,
+        "scope": "Guarded, non-atomic fixed NOR-target log rows; no full-device backup or recovery proof",
+        "producer": printk_tail.producer(printk_tail.NorTarget(records[0]["target"])),
+        "target": records[0]["target"],
+        "offset": printk_tail.TARGET_OFFSETS[printk_tail.NorTarget(records[0]["target"])],
         "input_files": len(paths),
         "distinct_sources": len({root(index) for index in range(len(paths))}),
         "required_rows": 32,
