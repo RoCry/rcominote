@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>IOObjectClass</key>
+		<string>IOUSBHostDevice</string>
+		<key>IORegistryEntryChildren</key>
+		<array>
+			<dict>
+				<key>IOObjectClass</key>
+				<string>IOUSBHostInterface</string>
+				<key>IORegistryEntryName</key>
+				<string>Hiveton App Serial</string>
+				<key>USB Product Name</key>
+				<string>Hiveton App Serial</string>
+				<key>USB Serial Number</key>
+				<string>HVR_APP_SERIAL4</string>
+				<key>USB Vendor Name</key>
+				<string>Hiveton</string>
+				<key>bInterfaceClass</key>
+				<integer>2</integer>
+				<key>bInterfaceNumber</key>
+				<integer>0</integer>
+				<key>bInterfaceProtocol</key>
+				<integer>0</integer>
+				<key>bInterfaceSubClass</key>
+				<integer>2</integer>
+				<key>idProduct</key>
+				<integer>65534</integer>
+				<key>idVendor</key>
+				<integer>14580</integer>
+				<key>locationID</key>
+				<integer>1179648</integer>
+			</dict>
+			<dict>
+				<key>IOObjectClass</key>
+				<string>IOUSBHostInterface</string>
+				<key>IORegistryEntryName</key>
+				<string>IOUSBHostInterface</string>
+				<key>USB Product Name</key>
+				<string>Hiveton App Serial</string>
+				<key>USB Serial Number</key>
+				<string>HVR_APP_SERIAL4</string>
+				<key>USB Vendor Name</key>
+				<string>Hiveton</string>
+				<key>bInterfaceClass</key>
+				<integer>10</integer>
+				<key>bInterfaceNumber</key>
+				<integer>1</integer>
+				<key>bInterfaceProtocol</key>
+				<integer>0</integer>
+				<key>bInterfaceSubClass</key>
+				<integer>0</integer>
+				<key>idProduct</key>
+				<integer>65534</integer>
+				<key>idVendor</key>
+				<integer>14580</integer>
+				<key>locationID</key>
+				<integer>1179648</integer>
+			</dict>
+		</array>
+		<key>IORegistryEntryName</key>
+		<string>Hiveton App Serial</string>
+		<key>USB Product Name</key>
+		<string>Hiveton App Serial</string>
+		<key>USB Serial Number</key>
+		<string>HVR_APP_SERIAL4</string>
+		<key>USB Vendor Name</key>
+		<string>Hiveton</string>
+		<key>UsbDeviceSignature</key>
+		<data>
+		9Dj+/wMCSFZSX0FQUF9TRVJJQUw07wIBAgIACgAA
+		</data>
+		<key>bDeviceClass</key>
+		<integer>239</integer>
+		<key>idProduct</key>
+		<integer>65534</integer>
+		<key>idVendor</key>
+		<integer>14580</integer>
+		<key>locationID</key>
+		<integer>1179648</integer>
+	</dict>
+</array>
+</plist>

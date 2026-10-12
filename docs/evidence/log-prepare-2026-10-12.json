@@ -1,0 +1,11 @@
+{
+  "captured_at": "2026-10-12T02:28:16.543627+00:00",
+  "advertised_serial": "C261CF0430",
+  "request_hex": "1d108105000002000100",
+  "expected_ack_hex": "1d108107007f0400a0860100",
+  "notifications_hex": [
+    "1d108107007f0400a0860100"
+  ],
+  "scope": "PREPARE only; no console text, log mode, dump, reset, or storage command",
+  "ok": true
+}

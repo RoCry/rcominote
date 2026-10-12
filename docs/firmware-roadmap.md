@@ -2,6 +2,9 @@
 
 更新：2026-10-12。此文是研究路线，不代表已经验证能刷机。
 
+第二轮进度：已做用户确认数据线的 USB 拔插对照、固定日志 PREPARE 握手；[实测结果](usb-log-probe.md)。
+仍未定位 CoMi USB 数据接口，握手成功不代表 shell 已开放。构建依赖与恢复 host 另见 [构建](build-feasibility.md)、[恢复](recovery-transport.md)。
+
 ## 证据决定路径
 
 | 次序 | 要回答的问题 | 具体动作与产物 | 推进条件 |
@@ -29,15 +32,17 @@ just scan
 just gatt --out artifacts/before.json
 just comi info
 # 全 USB 树，能包含非串口设备；不发送复位/探测指令。
-system_profiler SPUSBDataType -json > artifacts/usb-before.json
+just usb snapshot --out artifacts/usb-before.json
 # 人工使用已确认的数据线连接指定 CoMi 后再次采集。
-system_profiler SPUSBDataType -json > artifacts/usb-after.json
-diff -u artifacts/usb-before.json artifacts/usb-after.json
+just usb snapshot --out artifacts/usb-after.json
+just usb diff artifacts/usb-before.json artifacts/usb-after.json
 ```
 
 有人工动作时记录动作、线材和屏幕状态；没有插拔对照的 USB 快照不能给接口归属定论。此前 `/dev/cu.usbmodem1201` 已识别为另一台 Hiveton，不能用它测试 CoMi。
 
-将来尝试日志通道时，先核对 framing 与编译路径，再限定最小诊断动作；本轮不提供通用命令执行器。将来添加 flash 目标时必须先有准确目标选择、分区保护、失败不自动启动和实机验收，当前 `just` 默认只列出命令。
+当前 Mac 的 `system_profiler` USB 清单为空但 IOKit 可见设备，故使用 `just usb`，不能把前者空输出当作无设备。
+
+日志通道现已核对 framing 并验证固定 PREPARE；工具不提供通用命令执行器。将来添加 flash 目标时必须先有准确目标选择、分区保护、失败不自动启动和实机验收，当前 `just` 默认只列出命令。
 
 ## 明确未知
 
