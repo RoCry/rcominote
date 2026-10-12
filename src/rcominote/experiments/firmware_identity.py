@@ -1,6 +1,7 @@
 """Read only fixed FW010004 getter evidence and its cached parameter version block."""
 
 import asyncio
+import hashlib
 import json
 import re
 from datetime import UTC, datetime
@@ -20,7 +21,12 @@ from rcominote.range_readback import read_range
 
 
 async def capture(
-    report: dict, *, cpu: bool = False, rom_table: bool = False, rom_entry: bool = False
+    report: dict,
+    *,
+    cpu: bool = False,
+    rom_table: bool = False,
+    rom_entry: bool = False,
+    rom_flow: bool = False,
 ) -> None:
     async with Connection(await find_device(serial=OWNED_SERIAL, seconds=12)) as conn:
         identity = await read_info(conn, OWNED_SERIAL)
@@ -122,7 +128,7 @@ async def capture(
                     "part": f"0x{(value >> 4) & 0xFFF:03x}",
                     "revision": value & 15,
                 }
-            if rom_table or rom_entry:
+            if rom_table or rom_entry or rom_flow:
                 # Exact table entries referenced by checksum-verified actual boot.
                 table = {address: await read(address, 16) for address in (0x190, 0x1B0, 0x1C0)}
                 report["rom_table_blocks"] = {f"0x{a:08x}": raw.hex() for a, raw in table.items()}
@@ -132,10 +138,19 @@ async def capture(
                     offset = address & 15
                     pointer = int.from_bytes(block[offset : offset + 4], "little")
                     report["rom_entries"][name] = f"0x{pointer:08x}"
-            if rom_entry:
+            if rom_entry or rom_flow:
                 if report["rom_entries"]["adfu"] != "0x00001a51":
                     raise RuntimeError("ROM ADFU table entry changed; fixed code read refused")
                 report["rom_adfu_prefix_hex"] = (await read(0x1A50, 64) + await read(0x1A90, 64)).hex()
+            if rom_flow:
+                prefix = bytes.fromhex(report["rom_adfu_prefix_hex"])
+                if hashlib.sha256(prefix).hexdigest() != (
+                    "3e089a1137768e844ed0f299e5feda85abe0a53305d7b8898fcd7e8e00066098"
+                ):
+                    raise RuntimeError("ROM entry changed; fixed callee reads refused")
+                chunks = [await read(address, 64) for address in range(0x1900, 0x1A40, 64)]
+                chunks.append(await read(0x1A40, 16))
+                report["rom_flow_hex"] = b"".join(chunks).hex()
             boot = await read(0x01000000, 16)
             if int.from_bytes(boot[4:8], "little") != 0x01000040:
                 raise RuntimeError("Parameter pointer differs; no pointer chasing performed")
@@ -159,13 +174,15 @@ async def capture(
         raise RuntimeError("Incomplete log transport")
 
 
-def main(out: Path, cpu: bool = False, rom_table: bool = False, rom_entry: bool = False):
+def main(
+    out: Path, cpu: bool = False, rom_table: bool = False, rom_entry: bool = False, rom_flow: bool = False
+):
     """Read identity; optional fixed CPUID or boot-referenced ROM table reads only."""
     if out.exists():
         raise FileExistsError(out)
     report = {"serial": OWNED_SERIAL, "captured_at": datetime.now(UTC).isoformat(), "ok": False}
     try:
-        asyncio.run(capture(report, cpu=cpu, rom_table=rom_table, rom_entry=rom_entry))
+        asyncio.run(capture(report, cpu=cpu, rom_table=rom_table, rom_entry=rom_entry, rom_flow=rom_flow))
         report["ok"] = True
     except BaseException as error:
         report["error"] = f"{type(error).__name__}: {error}"
@@ -177,7 +194,7 @@ def main(out: Path, cpu: bool = False, rom_table: bool = False, rom_entry: bool 
     summary = {key: report[key] for key in ("ok", "board_name", "version_name")}
     if cpu:
         summary["cpuid"] = report["cpuid"]
-    if rom_table or rom_entry:
+    if rom_table or rom_entry or rom_flow:
         summary["rom_entries"] = report["rom_entries"]
     print(json.dumps(summary, ensure_ascii=False))
 

@@ -1,0 +1,297 @@
+{
+  "scope": "actual readback, offline analysis; no mode entry or exit execution",
+  "sha256": "0dda0a4532813627df78b506bfa1f7e5dc8ae4b9886cc32173265592defcaa67",
+  "base": "0x1900",
+  "regions": [
+    {
+      "name": "exit condition",
+      "start": "0x1908",
+      "end_exclusive": "0x1930",
+      "hex": "70b5044608480068002801d0002070bd02f030fe054601f02ff8291b884201d9002070bd012070bd",
+      "instructions": [
+        {
+          "at": "0x1908",
+          "asm": "push {r4, r5, r6, lr}"
+        },
+        {
+          "at": "0x190a",
+          "asm": "mov r4, r0"
+        },
+        {
+          "at": "0x190c",
+          "asm": "ldr r0, [pc, #0x20]"
+        },
+        {
+          "at": "0x190e",
+          "asm": "ldr r0, [r0]"
+        },
+        {
+          "at": "0x1910",
+          "asm": "cmp r0, #0"
+        },
+        {
+          "at": "0x1912",
+          "asm": "beq #0x1918"
+        },
+        {
+          "at": "0x1914",
+          "asm": "movs r0, #0"
+        },
+        {
+          "at": "0x1916",
+          "asm": "pop {r4, r5, r6, pc}"
+        },
+        {
+          "at": "0x1918",
+          "asm": "bl #0x457c"
+        },
+        {
+          "at": "0x191c",
+          "asm": "mov r5, r0"
+        },
+        {
+          "at": "0x191e",
+          "asm": "bl #0x2980"
+        },
+        {
+          "at": "0x1922",
+          "asm": "subs r1, r5, r4"
+        },
+        {
+          "at": "0x1924",
+          "asm": "cmp r0, r1"
+        },
+        {
+          "at": "0x1926",
+          "asm": "bls #0x192c"
+        },
+        {
+          "at": "0x1928",
+          "asm": "movs r0, #0"
+        },
+        {
+          "at": "0x192a",
+          "asm": "pop {r4, r5, r6, pc}"
+        },
+        {
+          "at": "0x192c",
+          "asm": "movs r0, #1"
+        },
+        {
+          "at": "0x192e",
+          "asm": "pop {r4, r5, r6, pc}"
+        }
+      ]
+    },
+    {
+      "name": "entry state save",
+      "start": "0x1934",
+      "end_exclusive": "0x196e",
+      "hex": "10b50e48016821f00f01491d01600c494a680c4848310260ca6e8265c96fc1654ff080410968416028220021064801f0b4f9bde8104001f001b9",
+      "instructions": [
+        {
+          "at": "0x1934",
+          "asm": "push {r4, lr}"
+        },
+        {
+          "at": "0x1936",
+          "asm": "ldr r0, [pc, #0x38]"
+        },
+        {
+          "at": "0x1938",
+          "asm": "ldr r1, [r0]"
+        },
+        {
+          "at": "0x193a",
+          "asm": "bic r1, r1, #0xf"
+        },
+        {
+          "at": "0x193e",
+          "asm": "adds r1, r1, #5"
+        },
+        {
+          "at": "0x1940",
+          "asm": "str r1, [r0]"
+        },
+        {
+          "at": "0x1942",
+          "asm": "ldr r1, [pc, #0x30]"
+        },
+        {
+          "at": "0x1944",
+          "asm": "ldr r2, [r1, #4]"
+        },
+        {
+          "at": "0x1946",
+          "asm": "ldr r0, [pc, #0x30]"
+        },
+        {
+          "at": "0x1948",
+          "asm": "adds r1, #0x48"
+        },
+        {
+          "at": "0x194a",
+          "asm": "str r2, [r0]"
+        },
+        {
+          "at": "0x194c",
+          "asm": "ldr r2, [r1, #0x6c]"
+        },
+        {
+          "at": "0x194e",
+          "asm": "str r2, [r0, #0x58]"
+        },
+        {
+          "at": "0x1950",
+          "asm": "ldr r1, [r1, #0x7c]"
+        },
+        {
+          "at": "0x1952",
+          "asm": "str r1, [r0, #0x5c]"
+        },
+        {
+          "at": "0x1954",
+          "asm": "mov.w r1, #0x40000000"
+        },
+        {
+          "at": "0x1958",
+          "asm": "ldr r1, [r1]"
+        },
+        {
+          "at": "0x195a",
+          "asm": "str r1, [r0, #4]"
+        },
+        {
+          "at": "0x195c",
+          "asm": "movs r2, #0x28"
+        },
+        {
+          "at": "0x195e",
+          "asm": "movs r1, #0"
+        },
+        {
+          "at": "0x1960",
+          "asm": "ldr r0, [pc, #0x18]"
+        },
+        {
+          "at": "0x1962",
+          "asm": "bl #0x2cce"
+        },
+        {
+          "at": "0x1966",
+          "asm": "pop.w {r4, lr}"
+        },
+        {
+          "at": "0x196a",
+          "asm": "b.w #0x2b70"
+        }
+      ]
+    },
+    {
+      "name": "restore and return",
+      "start": "0x1980",
+      "end_exclusive": "0x19b4",
+      "hex": "00b50b2000f0ecfe0b2000f0f5fd09480949026841f8442c826dca66c26dca67c906406808600548016821f00f01891c016000bd",
+      "instructions": [
+        {
+          "at": "0x1980",
+          "asm": "push {lr}"
+        },
+        {
+          "at": "0x1982",
+          "asm": "movs r0, #0xb"
+        },
+        {
+          "at": "0x1984",
+          "asm": "bl #0x2760"
+        },
+        {
+          "at": "0x1988",
+          "asm": "movs r0, #0xb"
+        },
+        {
+          "at": "0x198a",
+          "asm": "bl #0x2578"
+        },
+        {
+          "at": "0x198e",
+          "asm": "ldr r0, [pc, #0x24]"
+        },
+        {
+          "at": "0x1990",
+          "asm": "ldr r1, [pc, #0x24]"
+        },
+        {
+          "at": "0x1992",
+          "asm": "ldr r2, [r0]"
+        },
+        {
+          "at": "0x1994",
+          "asm": "str r2, [r1, #-0x44]"
+        },
+        {
+          "at": "0x1998",
+          "asm": "ldr r2, [r0, #0x58]"
+        },
+        {
+          "at": "0x199a",
+          "asm": "str r2, [r1, #0x6c]"
+        },
+        {
+          "at": "0x199c",
+          "asm": "ldr r2, [r0, #0x5c]"
+        },
+        {
+          "at": "0x199e",
+          "asm": "str r2, [r1, #0x7c]"
+        },
+        {
+          "at": "0x19a0",
+          "asm": "lsls r1, r1, #0x1b"
+        },
+        {
+          "at": "0x19a2",
+          "asm": "ldr r0, [r0, #4]"
+        },
+        {
+          "at": "0x19a4",
+          "asm": "str r0, [r1]"
+        },
+        {
+          "at": "0x19a6",
+          "asm": "ldr r0, [pc, #0x14]"
+        },
+        {
+          "at": "0x19a8",
+          "asm": "ldr r1, [r0]"
+        },
+        {
+          "at": "0x19aa",
+          "asm": "bic r1, r1, #0xf"
+        },
+        {
+          "at": "0x19ae",
+          "asm": "adds r1, r1, #2"
+        },
+        {
+          "at": "0x19b0",
+          "asm": "str r1, [r0]"
+        },
+        {
+          "at": "0x19b2",
+          "asm": "pop {pc}"
+        }
+      ]
+    }
+  ],
+  "literals": {
+    "0x1930": "0x1000908",
+    "0x1970": "0x40004100",
+    "0x1974": "0x40001000",
+    "0x1978": "0x1000010",
+    "0x197c": "0x1000908",
+    "0x19b4": "0x1000010",
+    "0x19b8": "0x40001048",
+    "0x19bc": "0x40004100"
+  }
+}

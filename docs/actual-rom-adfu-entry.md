@@ -64,3 +64,5 @@ Inspect actual1908 condition and1980 continuation, then selected entry callees.
 These are real-device addresses, unlike public helper transport speculation.
 Still missing: ROM upload grammar, accepted RAM helper/security restrictions,
 physical USB entry, independent exit/recovery and complete firmware backup.
+
+[Follow-up actual condition/restore readback](actual-rom-exit-condition.md) shows state-gated unsigned count comparison and register restoration followed by return; timing units and boot continuation remain unknown.
