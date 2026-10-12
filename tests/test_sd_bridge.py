@@ -3,7 +3,26 @@
 import unittest
 from pathlib import Path
 
-from rcominote.experiments.sd_bridge import console_packet, sector_from_ring
+import typer
+
+from rcominote.experiments.factory_rw import main as factory_backup
+from rcominote.experiments.sd_bridge import Source, console_packet, main, sector_from_ring
+from rcominote.printk_tail import NorTarget
+
+
+class PrivateCaptureTests(unittest.TestCase):
+    def test_direct_factory_capture_cannot_bypass_outer_private_path_guard(self):
+        # Review found the direct sd_bridge entry bypassed factory_rw's guard.
+        # Missing image ensures path rejection happens before image/device I/O.
+        for entry, options in (
+            (factory_backup, {"create_sd_files": True}),
+            (main, {"create_sd_file": True, "source": Source.nor_ring, "nor_target": NorTarget.factory_rw}),
+        ):
+            with (
+                self.subTest(entry=entry.__module__),
+                self.assertRaisesRegex(typer.BadParameter, "must stay under repo artifacts"),
+            ):
+                entry(image=Path("missing-system.bin"), out=Path("docs/private-capture"), **options)
 
 
 class ConsoleLengthTests(unittest.TestCase):

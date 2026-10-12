@@ -49,6 +49,10 @@ Current deliverables, in order:
    SYS_PARAM/storage_id and differs from actual layout. Acquire the final assembled
    package/configuration, not another isolated family blob.
 2. Firmware/recovery overview: [complete actual recovery and RAM handoff](recovery-complete.md) now joins system/boot/DSP/ACPT;
+   [factory-RW8KiB private backup](factory-rw-backup.md) preserves another critical
+   restoration dependency:16 paired sectors,12 records with valid CRCs, second
+   segment fullyFF. No atomic snapshot, active-config or writeback claim; do not
+   expand this bounded acquisition into another whole-NOR log export.
    compare ROM→helper→NOR routes. If justified, acquire one bounded ROM corpus
    for offline analysis instead of one live experiment per callee.
 3. A concrete first-run experiment with identified target, entry effects and

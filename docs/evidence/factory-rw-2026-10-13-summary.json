@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-13",
+  "scope": "Owned-device factory-RW raw backup only; no NOR writes or restoration proof",
+  "physical_range_exclusive": [
+    "0x1ec000",
+    "0x1ee000"
+  ],
+  "raw_bytes": 8192,
+  "independent_pairs": 16,
+  "source_reads": 32,
+  "first_capture_utc": "2026-10-12T23:45:38.806491+00:00",
+  "last_capture_end_estimate_utc": "2026-10-12T23:55:50.219756+00:00",
+  "capture_span_seconds": 611.413265,
+  "sum_source_experiment_seconds": 600.146155,
+  "distinct_retained_sd_paths": 64,
+  "sd_file_payload_bytes": 262144,
+  "normal_recording_count": 7,
+  "normal_recording_lists_unchanged": true,
+  "segments": [
+    {
+      "physical_offset": "0x1ec000",
+      "classification": "nvsr_header",
+      "state": "valid_marker",
+      "item_count": 12,
+      "erased_tail_bytes": 3680,
+      "header_crc_valid": true
+    },
+    {
+      "physical_offset": "0x1ed000",
+      "classification": "erased_segment",
+      "state": null,
+      "item_count": 0,
+      "erased_tail_bytes": 4096,
+      "header_crc_valid": false
+    }
+  ],
+  "all_item_crcs_valid": true,
+  "offline_replay_new_device_reads": 0,
+  "private_artifact_directory": "artifacts/factory-rw-2026-10-13",
+  "withheld": [
+    "raw bytes",
+    "raw frames/ring",
+    "keys",
+    "value/region hashes"
+  ],
+  "limitations": [
+    "No atomic snapshot",
+    "No runtime active-segment selection",
+    "No full physical NOR backup",
+    "No writeback or restoration verification"
+  ]
+}

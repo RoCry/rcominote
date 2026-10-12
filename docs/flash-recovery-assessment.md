@@ -16,7 +16,7 @@ SDK 固定为 `lvgl/lv_port_actions_technology@26f51e584940d5b141cd1d09d2629d69b
 | 能烧录自己的固件吗？ | [实际OTA写入/提交链](ota-write-commit.md)、[boot→ROM入口](actual-boot-flow.md)已定位；本机为M4，公开完整参考BSP为M33 | 匹配传输、板级初始化、镜像格式与启动授权后才可能运行 | 更早启动授权、交接运行态、ROM加载权限、匹配M4 BSP/库、独立恢复仍未闭合；没有可直接使用的CoMi烧录配方 |
 | 烧进去之后会怎样？ | [实际boot](actual-boot-flow.md)加载recovery；[完整recovery](recovery-complete.md)揭示slot0映射、加法验收与PSP/BX，晚期失败不能保证旧映射恢复 | 包可能被拒绝；已写入镜像也可能不能启动；错误外设初始化可能使BLE/显示/录音失效 | 尚无自写镜像的实机写入/启动，不能用参考板编译或OTA CRC通过预测结果 |
 | 失败后能恢复官方吗？ | 实际分区只有一个system；boot/param有镜像，另有recovery/TEMP；[成功通知早于新固件启动](ota-write-commit.md) | 有应用之外的入口、匹配完整内容与可验证写回方式，才有恢复基础 | 独立入口/退出与官方回刷未验证；boot/param双槽不是整套系统回滚 |
-| 能提取正在运行的固件吗？ | system、boot、DSP和ACPT已取得；system映射字节不是整片物理NOR；recovery完整校验 | 可靠bulk读回与逐区完整性验收可以进一步形成可恢复备份 | 个体配置、其余资源、分区副本仍未齐；[慢速日志NOR批量导出已退役](nor-efficiency.md)，不继续盲目长跑 |
+| 能提取正在运行的固件吗？ | system、boot、DSP和ACPT已取得；system映射字节不是整片物理NOR；recovery完整校验；[factory-RW8KiB私有备份](factory-rw-backup.md)完成 | 可靠bulk读回与逐区完整性验收可以进一步形成可恢复备份 | factory-RO/user NVRAM、其余资源、分区副本仍未齐；[慢速日志NOR批量导出已退役](nor-efficiency.md)，不继续盲目长跑 |
 
 ## 启动授权问题：缺的材料与不能替代它的产物
 

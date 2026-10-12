@@ -17,6 +17,7 @@ class NorTarget(StrEnum):
     backup_boot = "backup-boot"
     param0 = "param0"
     param1 = "param1"
+    factory_rw = "factory-rw"
     recovery = "recovery"
     system = "system"
     dsp = "dsp"
@@ -29,6 +30,7 @@ TARGET_OFFSETS = {
     NorTarget.backup_boot: 0x2000,
     NorTarget.param0: 0x1000,
     NorTarget.param1: 0x3000,
+    NorTarget.factory_rw: 0x1EC000,
     NorTarget.recovery: 0x4000,
     NorTarget.system: 0x24000,
     NorTarget.dsp: 0x240000,
@@ -47,6 +49,7 @@ def block_offset(value: NorTarget, block: int = 0) -> int:
         NorTarget.boot: 0x1000,
         NorTarget.param0: 0x1000,
         NorTarget.param1: 0x1000,
+        NorTarget.factory_rw: 0x2000,
         NorTarget.record_dsp: RECORD_DSP_BYTES,
         NorTarget.recovery: RECOVERY_BYTES,
     }.get(value, 512)

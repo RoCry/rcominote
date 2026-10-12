@@ -293,7 +293,7 @@ async def capture(report: dict, image: bytes, oracle: bytes | None, out: Path) -
     else:
         compared = data
     if oracle is None:
-        report["oracle_comparison"] = "Unavailable; requires independent repeat and complete image checksum"
+        report["oracle_comparison"] = "Unavailable; requires independent repeat and target-format validation"
         return
     if compared != oracle:
         raise ValueError("SD bridge bytes differ from independently acquired source oracle")
@@ -310,6 +310,10 @@ def main(
 ):
     if not create_sd_file:
         raise typer.BadParameter("Requires --create-sd-file; leaves non-audio .mp3 files on device SD")
+    if nor_target == NorTarget.factory_rw:
+        private_root = Path(__file__).resolve().parents[3] / "artifacts"
+        if not out.resolve().is_relative_to(private_root.resolve()):
+            raise typer.BadParameter("Sensitive factory-RW captures must stay under repo artifacts/")
     data = image.read_bytes()
     inspect_image(data)
     if hashlib.sha256(data).hexdigest() != SHA:
@@ -326,13 +330,13 @@ def main(
         elif nor_target == NorTarget.recovery and 93 <= nor_block <= 123:
             oracle_path = Path("docs/evidence/recovery-raw-prefix-2026-10-12.bin")
             oracle_sha = "20a8547720d14eb92339643f48e93ce5248023e142457990076f95eca03a63e8"
-        elif nor_target in (NorTarget.param0, NorTarget.param1):
-            block_offset(nor_target, nor_block)  # Fixed actual ACPT4KiB slots only.
+        elif nor_target in (NorTarget.param0, NorTarget.param1, NorTarget.factory_rw):
+            block_offset(nor_target, nor_block)  # Fixed extents from actual ACPT only.
             oracle_path = None
         else:
-            raise typer.BadParameter("Only boot0, bounded recovery tail or actual4KiB param slots supported")
+            raise typer.BadParameter("Only boot0, bounded recovery tail, param slots or factory-RW supported")
         if oracle_path is None:
-            oracle = None  # Requires paired reads plus actual ACPT/FVER checks.
+            oracle = None  # Requires paired reads plus independent target-format checks.
         else:
             known = oracle_path.read_bytes()
             if hashlib.sha256(known).hexdigest() != oracle_sha:

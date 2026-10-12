@@ -27,7 +27,7 @@
 | `000000..004000` | boot / param，各有两个槽 | boot0完整原始4KiB与明文3672B；[boot转换512B](boot-complete.md)。[两个param完整原始各4KiB](param-slots.md)：主槽元数据32B转换/双CRC匹配缓存，备用槽全FF、没有有效副本；boot1仍未完整备份 |
 | `004000..024000` | recovery | [原始/明文63,288 B完整校验](recovery-complete.md)；应用映射、加法验收、PSP/BX交接已静态解释，未执行新镜像 |
 | `024000..1c9000` | system | 完整927632 B映射镜像已校验；映射字节与物理NOR字节存在转换，不可直接当恢复包 |
-| `1c9000..200000` | user_rw / SDFS / factory与user NVRAM / 日志 / coredump | 含个体配置与状态；尚无完整备份 |
+| `1c9000..200000` | user_rw / SDFS / factory与user NVRAM / 日志 / coredump | [factory-RW8KiB已私有备份](factory-rw-backup.md)，12条记录CRC通过；其余区域未完整备份 |
 | `200000..2f0000` | res_a / sdfs_k | 录音DSP完整110148 B已校验，整个资源分区未备份 |
 | `2f0000..400000` | OTA TEMP / runtime log | 临时区不是第二套system；当前无完整 A/B 回滚证据 |
 

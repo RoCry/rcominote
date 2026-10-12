@@ -56,3 +56,13 @@ def test_parameter_slot_last_sector_matches_actual_acpt(target, last_sector):
 def test_parameter_slot_read_cannot_cross_actual_acpt_extent(target):
     with pytest.raises(ValueError, match="exceeds the known target extent"):
         block_offset(target, 8)
+
+
+def test_factory_rw_last_sector_matches_actual_acpt():
+    # Actual ACPT ID7:1ec000..1ee000,512B fread; adjacent ID8 must stay unread.
+    assert producer(NorTarget.factory_rw, 15) == "dbg fread spi_flash 0x1ede00"
+
+
+def test_factory_rw_read_cannot_enter_adjacent_user_nvram():
+    with pytest.raises(ValueError, match="exceeds the known target extent"):
+        block_offset(NorTarget.factory_rw, 16)

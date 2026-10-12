@@ -109,3 +109,17 @@ bitfield lead with reference-derived semantics, **not verified hard reset**.
 Value4 is not a demonstrated reset duration; reference8/12s uses a different bit.
 Physical button association, duration and validity after ROM entry remain unknown.
 Park here; no further callee capture or mode experiment follows from this lead.
+
+Context-pointer resolution from the same retained system closes the register
+address: getter`10021a38..10021a62` initializes context`1800bf48`, with
+`ctx+40=40004100`; both updates access`[ctx+40]+8`, hence`40004108`.
+This matches the recovered LARK PMU layout's`SYSTEM_SET_SVCC` offset108.
+Helper`100a0a0a..100a0a26` also replaces a zero bits19..20 field with1.
+LEOPARD source assigns1 to reset,2 to restart; this bit meaning still comes
+from a different M33 platform, not a matched LARK silicon specification.
+
+Owner reports one button, long press for normal power on/off; manual pending.
+Normal firmware shutdown does not demonstrate an independent physical reset
+after ROM entry. No button operation or live PMU-register snapshot was performed
+for this follow-up: an enabled bit alone cannot prove button routing, hold time,
+reset scope or retention after the ROM changes clocks/power state.

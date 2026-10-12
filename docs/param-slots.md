@@ -94,6 +94,7 @@ uv run -m rcominote.experiments.param_slots \
 
 ## 尚未证明
 
-两槽原始内容不等于完整NOR备份；boot1、factory/user NVRAM、完整资源等
+两槽原始内容不等于完整NOR备份；[factory-RW已另存8KiB私有备份](factory-rw-backup.md)，
+boot1、factory-RO、user NVRAM、完整资源等
 仍有缺口。没有尝试复位、ROM进入、运行上传代码、NOR写入或恢复。
 即使参数检查通过，也还缺匹配的完整包/工具、早期启动约束与独立退出路径。

@@ -10,6 +10,13 @@
 证明。采集32次、SD临时路径64个；7个正常录音不变，结束idle。
 [方法、CRC覆盖与纯离线复验](../param-slots.md)。
 
+## Factory-RW私有备份，2026-10-13
+
+[脱敏摘要](factory-rw-2026-10-13-summary.json)：实际ID7范围1ec000..1ee000，
+完整8KiB，16块独立双读一致；第一段12条记录CRC通过，第二段全FF。
+原始配置、capture和hash留本地忽略目录，未进入Git；仅合成packer oracle
+纳入测试。[方法、私有离线复验和限制](../factory-rw-backup.md)。不是完整NOR或恢复证明。
+
 ## 首轮实测（419b628）
 
 - [gatt-2026-10-12.json](gatt-2026-10-12.json)：`uv run tools/gatt.py --out artifacts/gatt-2026-10-12.json`，UTC 02:18:21；广告序列号选中 `C261CF0430`，连接后枚举，无应用特征读写/通知订阅。4 个服务，MTU 247，日志服务存在，普通模式 OTA 服务未出现。macOS 缓存/设备当前模式限制仍适用，不是所有模式的证明。
