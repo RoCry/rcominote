@@ -37,7 +37,7 @@ async def export_image(directory: Path, max_sessions: int) -> dict:
     missing = store.missing_chunks()
     sessions = 0
     while missing and (not max_sessions or sessions < max_sessions):
-        batch = missing[:8]
+        batch = missing[:32]
         result = await capture_saved(directory, tuple(offset // CHUNK_BYTES for offset, _ in batch))
         for offset, _ in batch:
             store.add_chunk(offset, read_image_chunk(result, offset // CHUNK_BYTES))

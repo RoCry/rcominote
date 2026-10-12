@@ -94,7 +94,7 @@ uv run --locked tools/build_sdk.py \
 
 [512 B多行读取验证](docs/header-batch-readback.md)：`uv run comi diag capture header-batch --out ...`，固定重读已知镜像头并逐行/hash验收；尚非正文导出。
 
-[固定映射镜像导出](docs/mapped-image-export.md)：四块正文独立复读一致；已跨进程续读保存52 KiB，256/512 B请求均捕获过截断。新增`uv run comi image export`断点读取与最终checksum门槛，尚未完成全正文校验；不等于原始Flash备份或可恢复。
+[固定映射镜像导出](docs/mapped-image-export.md)：四块正文独立复读一致，跨进程续读已验证；256/512 B请求均捕获过截断。新增`uv run comi image export`断点读取与最终checksum门槛，尚未完成全正文校验；不等于原始Flash备份或可恢复。
 
 [日志缓冲计数器回绕](docs/log-buffer-wrap.md)：实机Thumb指令确认8位计数器相减后的无符号比较缺陷；64 B正文与头部分段已实测，完整导出继续进行，终检仍待全部块到齐。
 
