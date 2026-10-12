@@ -5,9 +5,9 @@ from pathlib import Path
 
 import pytest
 
-from rcominote.archive.recovery_export import verify
 from rcominote.nor_codec import decode
 from rcominote.printk_tail import NorTarget, block_offset
+from rcominote.recovery_image import verify
 
 EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence"
 
@@ -40,3 +40,8 @@ def test_captured_header_alone_is_not_complete_recovery():
         verify(raw)
     with pytest.raises(ValueError, match="body checksum failed"):
         verify(raw + bytes(63288 - len(raw)))
+
+
+def test_complete_real_recovery_passes_its_stored_checksum():
+    # Device-stored header/body checksums are the independent acceptance oracle.
+    verify((EVIDENCE / "recovery-complete-2026-10-13/recovery-raw.bin").read_bytes())

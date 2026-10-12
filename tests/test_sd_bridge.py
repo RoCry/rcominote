@@ -3,7 +3,7 @@
 import unittest
 from pathlib import Path
 
-from rcominote.experiments.sd_bridge import boot_sector_from_ring, console_packet
+from rcominote.experiments.sd_bridge import console_packet, sector_from_ring
 
 
 class ConsoleLengthTests(unittest.TestCase):
@@ -36,14 +36,26 @@ class CircularSectorTests(unittest.TestCase):
         logical = ("\r\n" + "".join(self.lines)).encode().ljust(4096, b"x")
         for cut in (1, 2, 1000):
             with self.subTest(cut=cut):
-                self.assertEqual(boot_sector_from_ring(logical[cut:] + logical[:cut]), self.sector)
+                self.assertEqual(sector_from_ring(logical[cut:] + logical[:cut]), self.sector)
 
     def test_old_rows_and_separate_new_row_cannot_be_assembled(self):
         mixed = ("\r\n" + "".join(self.lines[:31]) + "unrelated log\r\n" + self.lines[31]).encode()
         with self.assertRaisesRegex(ValueError, "found 0"):
-            boot_sector_from_ring(mixed.ljust(4096, b"x"))
+            sector_from_ring(mixed.ljust(4096, b"x"))
 
     def test_two_complete_generations_are_ambiguous_even_if_equal(self):
         duplicate = ("\r\n" + "".join(self.lines) * 2).encode()
         with self.assertRaisesRegex(ValueError, "found 2"):
-            boot_sector_from_ring(duplicate.ljust(4096, b"x"))
+            sector_from_ring(duplicate.ljust(4096, b"x"))
+
+    def test_real_capture_binds_status_rows_and_current_dump_marker(self):
+        raw = Path("docs/evidence/sd-bridge-2026-10-13/boot-ring-download.bin").read_bytes()
+        commands = {
+            "producer_command": "dbg fread spi_flash 0",
+            "dump_command": "dbg dumpbuf 402910729 4096 /SD:/RECORDER/Call-rcb61b078de5.mp3",
+        }
+        self.assertEqual(sector_from_ring(raw, nor_offset=0, **commands), self.sector)
+        with self.assertRaisesRegex(ValueError, "found 0"):
+            sector_from_ring(raw, nor_offset=0xFA00, **commands)
+        with self.assertRaisesRegex(ValueError, "found 0"):
+            sector_from_ring(raw, nor_offset=0, **(commands | {"dump_command": "different live marker"}))

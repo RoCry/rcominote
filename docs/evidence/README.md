@@ -165,3 +165,7 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## 多行header读取验证
 
 [64 B](header-batch64-first-2026-10-12.json)、[256 B](header-batch256-first-2026-10-12.json)、[512 B首次](header-batch512-first-2026-10-12.json)、[重读](header-batch512-second-2026-10-12.json)、[分析](header-batch-analysis-2026-10-12.json)：均与独立单行头部一致，无新增覆盖；[报告](../header-batch-readback.md)、[结束状态](header-batch-final-state-2026-10-12.json)。
+
+## 完整recovery与应用交接（2026-10-13）
+
+[报告](../recovery-complete.md)；[原始镜像](recovery-complete-2026-10-13/recovery-raw.bin)、[明文镜像](recovery-complete-2026-10-13/recovery-decoded.bin)、[真实采集报告](recovery-complete-2026-10-13/acquisition-report.json)、[修正版离线复验](recovery-complete-2026-10-13/report.json)、[全部62组基线/结果](recovery-complete-2026-10-13/captures.tar.gz)、[124个SD文件清单](recovery-complete-2026-10-13/sd-files.json)、[六模块指令与literal](recovery-complete-2026-10-13/handoff.json)。63,288 B头/正文校验通过；未执行新代码、写NOR或验证恢复。

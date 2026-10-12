@@ -3,6 +3,7 @@
 import asyncio
 import hashlib
 import json
+import re
 import secrets
 import struct
 import sys
@@ -14,7 +15,6 @@ from itertools import pairwise
 from pathlib import Path
 
 import typer
-from bleak import BleakClient
 
 from rcominote.ble_target import OWNED_SERIAL, find_device
 from rcominote.code_guards import observed_block
@@ -29,6 +29,7 @@ from rcominote.printk_ring import BUFFER, CAPACITY, CONTEXT
 from rcominote.printk_ring import GUARDS as RING_GUARDS
 from rcominote.printk_state import GUARDS as STATE_GUARDS
 from rcominote.printk_tail import GUARDS as FREAD_GUARDS
+from rcominote.printk_tail import NorTarget, block_offset, producer
 
 SHA = "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f"
 SIZE = 4096
@@ -37,14 +38,14 @@ SIZE = 4096
 class Source(StrEnum):
     mapped = "mapped"
     ram = "ram"
-    boot_ring = "boot-ring"
+    nor_ring = "nor-ring"
 
 
 # RAM source: independently decoded startup memcpy(18000000,100dd500,12c8).
 SOURCES = {
     Source.mapped: (0x10000000, 0),
     Source.ram: (0x18000000, 0xDD500),
-    Source.boot_ring: (BUFFER, None),
+    Source.nor_ring: (BUFFER, None),
 }
 
 
@@ -61,7 +62,9 @@ def ring_rows(data: bytes):
     return rows
 
 
-def boot_sector_from_ring(data: bytes) -> bytes:
+def sector_from_ring(
+    data: bytes, *, nor_offset: int | None = None, producer_command: str = "", dump_command: str = ""
+) -> bytes:
     rows = ring_rows(data)
     candidates = []
     for index, (start, _, offset, _) in enumerate(rows):
@@ -74,9 +77,23 @@ def boot_sector_from_ring(data: bytes) -> bytes:
             continue
         if window[-1][1] - (start - 2) > CAPACITY:
             continue
+        if nor_offset is not None:
+            text = (data * 3).decode("latin1")
+            first, last = start + CAPACITY, window[-1][1] + CAPACITY
+            status = re.search(
+                rf"\r\nfread 512b: offset=0x{nor_offset:x}, buf=0x[0-9a-f]+\r\n(?:\r\n)*$",
+                text[:first],
+            )
+            if status is None:
+                continue
+            # Bound the entire producer/status/rows/unique dump echo to one circle.
+            suffix = text[last : status.start() + CAPACITY]
+            echo = re.search(rf"logsrv: cmd\([0-9]+\) {re.escape(producer_command)}\n\r\n", suffix)
+            if echo is None or dump_command not in suffix[echo.end() :]:
+                continue
         candidates.append(bytes(int(token, 16) for row in window for token in row[3].split()))
     if len(candidates) != 1:
-        raise ValueError(f"Expected one contiguous circular boot sector; found {len(candidates)}")
+        raise ValueError(f"Expected one contiguous circular NOR sector; found {len(candidates)}")
     return candidates[0]
 
 
@@ -95,7 +112,7 @@ def require_idle(identity: dict) -> None:
         raise RuntimeError("SD bridge requires owned idle FW010004")
 
 
-async def create_file(device, report: dict, image: bytes) -> None:
+async def create_file(conn: Connection, report: dict, image: bytes) -> None:
     queue = asyncio.Queue(maxsize=2048)
     stream = Stream()
     report["frames"] = stream.frames
@@ -109,13 +126,8 @@ async def create_file(device, report: dict, image: bytes) -> None:
         except asyncio.QueueFull:
             failure = RuntimeError("SD bridge notification queue overflow")
 
-    def disconnected(_client):
-        nonlocal failure
-        failure = failure or ConnectionError("SD bridge log connection lost")
-        if not queue.full():
-            queue.put_nowait(None)
-
     async def pump():
+        conn._check_failure()
         if failure is not None:
             raise failure
         packet = await asyncio.wait_for(queue.get(), timeout=5)
@@ -125,94 +137,95 @@ async def create_file(device, report: dict, image: bytes) -> None:
         if len(stream.frames) > 2048:
             raise RuntimeError("SD bridge log frame limit exceeded")
 
-    async with BleakClient(device, disconnected_callback=disconnected) as client:
-        if client.services.get_service(SERVICE) is None:
-            raise RuntimeError("Missing Actions log service")
-        await client.start_notify(NOTIFY, receive)
+    client = conn.client
+    if client.services.get_service(SERVICE) is None:
+        raise RuntimeError("Missing Actions log service")
+    await client.start_notify(NOTIFY, receive)
 
-        async def request(packet):
-            nonlocal expected
-            expected += 1
-            await client.write_gatt_char(WRITE, packet, response=True)
-            async with asyncio.timeout(5):
-                while stream.acks < expected:
+    async def request(packet):
+        nonlocal expected
+        expected += 1
+        await client.write_gatt_char(WRITE, packet, response=True)
+        async with asyncio.timeout(5):
+            while stream.acks < expected:
+                await pump()
+
+    async def text(command):
+        packet = console_packet(command)
+        report["fixed_text_commands"].append(command)
+        await request(packet)
+
+    async def read_live(address, length):
+        start = len(stream.frames)
+        await text(f"dbg mdb {address:x} {length:x}")
+        await text("help")
+        async with asyncio.timeout(5):
+            result = bytearray()
+            for offset in range(0, length, 16):
+                count = min(16, length - offset)
+                while (raw := observed_block(stream.frames[start:], address + offset, count)) is None:
                     await pump()
+                result.extend(raw)
+            return bytes(result)
 
-        async def text(command):
-            packet = console_packet(command)
-            report["fixed_text_commands"].append(command)
-            await request(packet)
+    async def verify(address, length, image_offset=None):
+        raw = await read_live(address, length)
+        index = address - 0x10000000 if image_offset is None else image_offset
+        if raw != image[index : index + length]:
+            raise ValueError(f"Live code/header differs at {address:#x}")
 
-        async def read_live(address, length):
-            start = len(stream.frames)
-            await text(f"dbg mdb {address:x} {length:x}")
-            await text("help")
-            async with asyncio.timeout(5):
-                result = bytearray()
-                for offset in range(0, length, 16):
-                    count = min(16, length - offset)
-                    while (raw := observed_block(stream.frames[start:], address + offset, count)) is None:
+    attempted = False
+    try:
+        await request(PREPARE)
+        attempted = True
+        await request(START)
+        # Fixed mapped header prefix and entire dumpbuf handler/literals.
+        # All addresses lie within the independently verified system image.
+        await verify(0x10000000, 32)
+        for address, length in ((0x10024A20, 64), (0x10024A60, 64), (0x10024AA0, 32)):
+            await verify(address, length)
+        if report["source"] == Source.ram:
+            await verify(0x18000000, 32, image_offset=0xDD500)
+        if report["source"] == Source.nor_ring:
+            for address, expected_hex in (*RING_GUARDS, *STATE_GUARDS, *FREAD_GUARDS):
+                await verify(address, len(bytes.fromhex(expected_hex)))
+            raw = await read_live(CONTEXT, 28)
+            r, w, used, capacity, buffer = struct.unpack("<5I", raw[:20])
+            if (capacity, buffer) != (CAPACITY, BUFFER) or max(r, w, used) > CAPACITY:
+                raise ValueError("Live printk ring differs from fixed profile")
+            if raw[20:22] != b"\x01\x00":
+                raise ValueError("Live printk ring is not in normal DMA mode")
+            report["ring_context_before"] = raw.hex()
+            report["transfer_phase_start"] = time.monotonic()
+            if report.get("phase") != "baseline":
+                await text(report["producer"])
+        command = report["dump_command"]
+        report["sd_write_attempted"] = True
+        await text(command)
+        # ACK/done are not write-integrity evidence: download comparison is.
+        await text("help")
+        if report["source"] == Source.nor_ring:
+            report["ring_context_after"] = (await read_live(CONTEXT, 28)).hex()
+    finally:
+        original = sys.exception()
+        if attempted:
+            try:
+                await request(STOP)
+                async with asyncio.timeout(5):
+                    while not stream.ended:
                         await pump()
-                    result.extend(raw)
-                return bytes(result)
-
-        async def verify(address, length, image_offset=None):
-            raw = await read_live(address, length)
-            index = address - 0x10000000 if image_offset is None else image_offset
-            if raw != image[index : index + length]:
-                raise ValueError(f"Live code/header differs at {address:#x}")
-
-        attempted = False
-        try:
-            await request(PREPARE)
-            attempted = True
-            await request(START)
-            # Fixed mapped header prefix and entire dumpbuf handler/literals.
-            # All addresses lie within the independently verified system image.
-            await verify(0x10000000, 32)
-            for address, length in ((0x10024A20, 64), (0x10024A60, 64), (0x10024AA0, 32)):
-                await verify(address, length)
-            if report["source"] == Source.ram:
-                await verify(0x18000000, 32, image_offset=0xDD500)
-            if report["source"] == Source.boot_ring:
-                for address, expected_hex in (*RING_GUARDS, *STATE_GUARDS, *FREAD_GUARDS):
-                    await verify(address, len(bytes.fromhex(expected_hex)))
-                raw = await read_live(CONTEXT, 28)
-                r, w, used, capacity, buffer = struct.unpack("<5I", raw[:20])
-                if (capacity, buffer) != (CAPACITY, BUFFER) or max(r, w, used) > CAPACITY:
-                    raise ValueError("Live printk ring differs from fixed profile")
-                if raw[20:22] != b"\x01\x00":
-                    raise ValueError("Live printk ring is not in normal DMA mode")
-                report["ring_context_before"] = raw.hex()
-                report["transfer_phase_start"] = time.monotonic()
-                if report.get("phase") != "baseline":
-                    await text("dbg fread spi_flash 0")
-            command = report["dump_command"]
-            report["sd_write_attempted"] = True
-            await text(command)
-            # ACK/done are not write-integrity evidence: download comparison is.
-            await text("help")
-            if report["source"] == Source.boot_ring:
-                report["ring_context_after"] = (await read_live(CONTEXT, 28)).hex()
-        finally:
-            original = sys.exception()
-            if attempted:
-                try:
-                    await request(STOP)
-                    async with asyncio.timeout(5):
-                        while not stream.ended:
-                            await pump()
-                    if stream.pending or stream.acks != expected:
-                        raise RuntimeError("Incomplete SD bridge Actions session")
-                    report["log_session_complete"] = True
-                except BaseException as cleanup_error:
-                    if original is None:
-                        raise
-                    report["cleanup_error"] = f"{type(cleanup_error).__name__}: {cleanup_error}"
-                    original.add_note(f"Actions STOP cleanup also failed: {cleanup_error}")
+                if stream.pending or stream.acks != expected:
+                    raise RuntimeError("Incomplete SD bridge Actions session")
+                report["log_session_complete"] = True
+            except BaseException as cleanup_error:
+                if original is None:
+                    raise
+                report["cleanup_error"] = f"{type(cleanup_error).__name__}: {cleanup_error}"
+                original.add_note(f"Actions STOP cleanup also failed: {cleanup_error}")
+    await client.stop_notify(NOTIFY)
 
 
-async def capture(report: dict, image: bytes, oracle: bytes, out: Path) -> None:
+async def capture(report: dict, image: bytes, oracle: bytes | None, out: Path) -> None:
     device = await find_device(serial=OWNED_SERIAL, seconds=12)
     async with Connection(device) as conn:
         identity = await read_info(conn, OWNED_SERIAL)
@@ -222,8 +235,7 @@ async def capture(report: dict, image: bytes, oracle: bytes, out: Path) -> None:
         report["files_before"] = [asdict(entry) for entry in entries]
         if report["name"] in {entry.name for entry in entries}:
             raise FileExistsError("Random SD bridge filename already listed; no write attempted")
-    await create_file(device, report, image)
-    async with Connection(device) as conn:
+        await create_file(conn, report, image)
         require_idle(await read_info(conn, OWNED_SERIAL))
         data = bytearray()
 
@@ -244,7 +256,7 @@ async def capture(report: dict, image: bytes, oracle: bytes, out: Path) -> None:
         report["after"] = await read_info(conn, OWNED_SERIAL)
         require_idle(report["after"])
         report["files_after"] = [asdict(entry) for entry in await conn.file_list()]
-    if report["source"] == Source.boot_ring:
+    if report["source"] == Source.nor_ring:
         if report.get("phase") == "baseline":
             if report["dump_command"].encode("ascii") not in data + data:
                 raise ValueError("Baseline lacks its unique live console command; stop without fread")
@@ -253,40 +265,62 @@ async def capture(report: dict, image: bytes, oracle: bytes, out: Path) -> None:
             report["live_marker_present"] = True
             report["no_nor_rows"] = True
             return
-        compared = boot_sector_from_ring(data)
+        compared = sector_from_ring(
+            data,
+            nor_offset=report["nor_offset"],
+            producer_command=report["producer"],
+            dump_command=report["dump_command"],
+        )
         with (out / "sector.bin").open("xb") as handle:
             handle.write(compared)
         report["sector_sha256"] = hashlib.sha256(compared).hexdigest()
     else:
         compared = data
+    if oracle is None:
+        report["oracle_comparison"] = "Unavailable; requires independent repeat and complete image checksum"
+        return
     if compared != oracle:
         raise ValueError("SD bridge bytes differ from independently acquired mapped image")
     report["exact_match"] = True
 
 
-def main(image: Path, out: Path, create_sd_file: bool = False, source: Source = Source.ram):
+def main(
+    image: Path,
+    out: Path,
+    create_sd_file: bool = False,
+    source: Source = Source.ram,
+    nor_target: NorTarget = NorTarget.boot,
+    nor_block: int = 0,
+):
     if not create_sd_file:
         raise typer.BadParameter("Requires --create-sd-file; leaves non-audio .mp3 files on device SD")
     data = image.read_bytes()
     inspect_image(data)
     if hashlib.sha256(data).hexdigest() != SHA:
         raise typer.BadParameter("Requires exact independently acquired FW010004 image")
-    out.mkdir(parents=True, exist_ok=False)
+    if (nor_target != NorTarget.boot or nor_block) and source != Source.nor_ring:
+        raise typer.BadParameter("NOR options require --source nor-ring")
     name = "rc" + secrets.token_hex(5)
     device_path = f"/SD:/RECORDER/Call-{name}.mp3"
     address, offset = SOURCES[source]
-    if source == Source.boot_ring:
-        raw_boot = Path("docs/evidence/boot-complete-2026-10-12/raw.bin").read_bytes()
-        if (
-            hashlib.sha256(raw_boot).hexdigest()
-            != "782c26c3ba9bee07a8b0b464898fb963a76eb35a2916586b854f8f45993f4166"
-        ):
-            raise ValueError("Independent boot oracle changed")
-        oracle = raw_boot[:512]
+    if source == Source.nor_ring:
+        if nor_target == NorTarget.boot and nor_block == 0:
+            oracle_path = Path("docs/evidence/boot-complete-2026-10-12/raw.bin")
+            oracle_sha = "782c26c3ba9bee07a8b0b464898fb963a76eb35a2916586b854f8f45993f4166"
+        elif nor_target == NorTarget.recovery and 93 <= nor_block <= 123:
+            oracle_path = Path("docs/evidence/recovery-raw-prefix-2026-10-12.bin")
+            oracle_sha = "20a8547720d14eb92339643f48e93ce5248023e142457990076f95eca03a63e8"
+        else:
+            raise typer.BadParameter("Only boot0 or bounded recovery blocks93..123 are supported")
+        known = oracle_path.read_bytes()
+        if hashlib.sha256(known).hexdigest() != oracle_sha:
+            raise ValueError("Independent NOR oracle changed")
+        oracle = known[nor_block * 512 : (nor_block + 1) * 512] or None
     else:
         oracle = data[offset : offset + SIZE]
     command = f"dbg dumpbuf {address} 4096 {device_path}"
     console_packet(command)  # Pure preflight, before any device I/O.
+    out.mkdir(parents=True, exist_ok=False)
     report = {
         "captured_at": datetime.now(UTC).isoformat(),
         "serial": OWNED_SERIAL,
@@ -298,16 +332,23 @@ def main(image: Path, out: Path, create_sd_file: bool = False, source: Source = 
         "oracle_file_offset": offset,
         "source_bytes": SIZE,
         "source_image_sha256": SHA,
-        "expected_sha256": hashlib.sha256(oracle).hexdigest(),
+        "expected_sha256": hashlib.sha256(oracle).hexdigest() if oracle is not None else None,
         "fixed_text_commands": [],
         "sd_write_attempted": False,
         "residue_policy": "Retained SD test file; no audited safe deletion command; not valid audio",
         "scope": "Fixed transfer proof; not full NOR backup or atomic printk snapshot",
         "ok": False,
     }
+    if source == Source.nor_ring:
+        report.update(
+            nor_target=nor_target.value,
+            nor_block=nor_block,
+            nor_offset=block_offset(nor_target, nor_block),
+            producer=producer(nor_target, nor_block),
+        )
     started = time.monotonic()
     try:
-        if source == Source.boot_ring:
+        if source == Source.nor_ring:
             baseline_out = out / "baseline"
             baseline_out.mkdir()
             baseline_name = "rc" + secrets.token_hex(5)
@@ -318,6 +359,7 @@ def main(image: Path, out: Path, create_sd_file: bool = False, source: Source = 
                 "device_path": baseline_path,
                 "dump_command": f"dbg dumpbuf {address} 4096 {baseline_path}",
                 "fixed_text_commands": [],
+                "expected_sha256": None,
             }
             try:
                 asyncio.run(capture(baseline, data, oracle, baseline_out))

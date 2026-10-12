@@ -1,0 +1,138 @@
+{
+  "scope": "Complete recovery acquisition/checksum only; no execution, NOR write or restore proof",
+  "prefix_sha256": "20a8547720d14eb92339643f48e93ce5248023e142457990076f95eca03a63e8",
+  "completed_pairs": [
+    {
+      "block": 93,
+      "sha256": "26beb8820476ce103faec331af750b6a4017c5cd6c94dcf00e6fe27e9bd33566"
+    },
+    {
+      "block": 112,
+      "sha256": "4c0654d3c95989916dcf569d3b1e0448e78e6229e88e8484585ac4f5c1df608f"
+    },
+    {
+      "block": 113,
+      "sha256": "6ac1594bd16b246f786751f7ff746e5ab52d2bb4d117c2e3fdc950daa2b1eedc"
+    },
+    {
+      "block": 114,
+      "sha256": "c08a7cc1e2885ee88bb657d1fd88fdb091c9a7d5749480a94f7e9d660faca989"
+    },
+    {
+      "block": 115,
+      "sha256": "1aa9c60017bca1ce277917125bb069b0c8d75629cff34fce16aab7ef73016092"
+    },
+    {
+      "block": 116,
+      "sha256": "50efaa20b8d2aba54e6810d5820cc1bf40342e3b71ef07e06f3c5e0f796d1bc8"
+    },
+    {
+      "block": 117,
+      "sha256": "8174a8338a3170a662877b0e93221086fac2f393513b50f49d159dfe1975bd03"
+    },
+    {
+      "block": 118,
+      "sha256": "49f386420a97da106737064aab57f929febc6aae8218fe435c73410b607af9c3"
+    },
+    {
+      "block": 119,
+      "sha256": "495b268802ad631d7d6b4ba26d8b84bba83e02cae383842f55b3974e6c83b8c8"
+    },
+    {
+      "block": 120,
+      "sha256": "d6ff7a0b8b4f8618a0774b04ebf01fe30ac1f27e68bb02234ef4d7bd9cdee694"
+    },
+    {
+      "block": 121,
+      "sha256": "41d9f7b73e78c65941d95588fcd205707e4c133f4cffa7f9f0e7b24c85e79128"
+    },
+    {
+      "block": 122,
+      "sha256": "879dbd9f1f7b50842c6c578d8e022507d32590ad8f0ec413194b286aab591e82"
+    },
+    {
+      "block": 123,
+      "sha256": "a99730167d1bc02933035d02e4867fc6dc531ad155133f1be8a8df7208eb7fca"
+    },
+    {
+      "block": 94,
+      "sha256": "24afa51d38458398ccf44a817f49140398b248074685af09c88f235905b9467e"
+    },
+    {
+      "block": 95,
+      "sha256": "7e21b9f91eca82f671880b6e38b7e43a6526d98179295a2042ba400d9b2b82c0"
+    },
+    {
+      "block": 96,
+      "sha256": "3222b1fa39276c464460258f2e405ada09dfef6d0cc8b727edfeef5bfc68b6cb"
+    },
+    {
+      "block": 97,
+      "sha256": "106b12aa8f5e2d504df826d275fd48846021088ea0a3a8db1bf9017372637abd"
+    },
+    {
+      "block": 98,
+      "sha256": "eb4d05619fd3bb26fd587a8856997b250c3f43006ee693fb678d93c05819f5f4"
+    },
+    {
+      "block": 99,
+      "sha256": "db61060224bb228c2b9322cd56fa125c182990168659e3a16b6b59f002057c12"
+    },
+    {
+      "block": 100,
+      "sha256": "d5369671370edba9071aacac4714749369f3c6d22304aa285223d9caf6d25623"
+    },
+    {
+      "block": 101,
+      "sha256": "6bd7b3f6112398afb72a9a1f6f7e76ee6b13e903876509993f73c7d426f8afe7"
+    },
+    {
+      "block": 102,
+      "sha256": "7c75a0a1bc2b1c9bb59cbe73e5ea8de4502d05b3a6da89d213834277b916ae90"
+    },
+    {
+      "block": 103,
+      "sha256": "cc3ebd42305f2e1ea4c4f96c07a02065641e5fc9e1bc95687cd03337bbbd1cdb"
+    },
+    {
+      "block": 104,
+      "sha256": "4a29174704442192a9cf9dd486cfbf7a58f9e7a5571cdffce24f5e24465c5703"
+    },
+    {
+      "block": 105,
+      "sha256": "f0141c0476cfb9b280b43b5bfc2a48cbc7f80faa9d5e1b7485d0cbfafcd817dd"
+    },
+    {
+      "block": 106,
+      "sha256": "e3bf2c226a3fb36739374f83e93baba9897db11c69796a83b5d6ea49ac894a4b"
+    },
+    {
+      "block": 107,
+      "sha256": "6cb4cfd1a56f8e5779039f861979aee20c9094c75fdc1b3dbbb95bcd04f83733"
+    },
+    {
+      "block": 108,
+      "sha256": "a13bb21633bc74d47882b7b9efd8f6575cf7f273c7783fe831d2bf9baacc0080"
+    },
+    {
+      "block": 109,
+      "sha256": "cc1bd95a999df204284908032694e3742b79692c0f4bbd722892dcb688a1074d"
+    },
+    {
+      "block": 110,
+      "sha256": "4234d229aa06f6bbb629caf0e0767b7da66a58e02239b77eefe7bab98309db0e"
+    },
+    {
+      "block": 111,
+      "sha256": "c1f78aecb8537df9585953b15c84b39ab22966c5b472c8e0ff0ccab317808eb2"
+    }
+  ],
+  "complete": true,
+  "elapsed_seconds": 1090.4111990829697,
+  "raw_sha256": "14a899d181c38430931649169671a4812fa44e7a32978f2c3beded51472b1a01",
+  "decoded_sha256": "19625b7b70eb8e4a91c889792c0ca383f51ea205629e67565b59c47d15e09906",
+  "header_checksum_valid": true,
+  "body_checksum_valid": true,
+  "decode_reset_bytes": 32,
+  "image_bytes": 63288
+}

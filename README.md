@@ -17,7 +17,7 @@
 | 平台 | [实机CPUID](docs/cpu-identity.md)为Cortex-M4 r0p1；[固件板名](docs/firmware-board-identity.md)为 `ats3085l_dvb_watch_ext_nor_max`；实体SoC丝印仍未知 |
 | SDK | 公开SDK的M33参考板已在Ubuntu构建；不能作为CoMi固件。[LARK材料](docs/lark-helper-candidate.md)更接近M4，但缺完整BSP |
 | 存储 | [18项ACPT配置覆盖4 MiB NOR](docs/partition-readback.md)；[录音SD路径](docs/card-state-readback.md)独立，容量约64 GB |
-| 已取得固件 | 完整[927632 B系统映射镜像](docs/offline-system-analysis.md)、[boot](docs/boot-complete.md)、[110148 B录音DSP](docs/record-dsp-export.md)、分区表；recovery部分读回。不是整片原始备份 |
+| 已取得固件 | 完整[927632 B系统映射镜像](docs/offline-system-analysis.md)、[boot](docs/boot-complete.md)、[110148 B录音DSP](docs/record-dsp-export.md)、分区表；[recovery完整63,288 B](docs/recovery-complete.md)，头及正文校验通过。不是整片原始备份 |
 | 恢复/刷写 | 已分析[实际boot](docs/actual-boot-flow.md)、[ROM下载入口](docs/actual-rom-adfu-entry.md)、[OTA容器](docs/ota-container-contract.md)；无匹配官方恢复包、实测ROM传输或恢复证明 |
 | USB | 已知数据线拔插对照未发现CoMi枚举；ROM模式未试，不能断言接口只充电 |
 | 客户端 | BLE状态、录音控制、文件下载、部分配置已实测；[短窗口实时流与离线MP3逐字节相同](docs/realtime-live.md)，不保证长时无丢失 |

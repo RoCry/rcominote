@@ -7,21 +7,20 @@ SDK 固定为 `lvgl/lv_port_actions_technology@26f51e584940d5b141cd1d09d2629d69b
 **理论上存在自写固件与恢复路径；当前还没有 CoMi 可烧录、可完整备份、失败后可恢复的实证。**
 编译成功只满足第一环。闭环还需匹配板配置、实际写入入口、启动授权、完整原厂资料及独立恢复入口。
 
-当前实证：Cortex-M4 r0p1；固件板名`ats3085l_dvb_watch_ext_nor_max`；ACPT覆盖4 MiB NOR，录音另走SD。完整system927632 B、boot3672 B、录音DSP110148 B已校验；recovery仅48128/63288 B，尚缺完整正文校验。仍无整片原始备份、匹配官方恢复包、烧录或独立恢复验收。优先级以[研究路线](research-routes.md)为准。
+当前实证：Cortex-M4 r0p1；固件板名`ats3085l_dvb_watch_ext_nor_max`；ACPT覆盖4 MiB NOR，录音另走SD。完整system927632 B、boot3672 B、录音DSP110148 B已校验；[recovery原始/明文63,288 B完整校验](recovery-complete.md)，应用交接已静态解释。仍无整片原始备份、匹配官方恢复包、烧录或独立恢复验收。优先级以[研究路线](research-routes.md)为准。
 
 ## 四个问题的直接答案
 
 | 问题 | 已确认事实 | 条件推断 | CoMi 未知 |
 |---|---|---|---|
-| 能烧录自己的固件吗？ | [实际OTA写入/提交链](ota-write-commit.md)、[boot→ROM入口](actual-boot-flow.md)已定位；本机为M4，公开完整参考BSP为M33 | 匹配传输、板级初始化、镜像格式与启动授权后才可能运行 | recovery的system验收/交接、ROM加载权限、匹配M4 BSP/库、独立恢复仍未闭合；没有可直接使用的CoMi烧录配方 |
-| 烧进去之后会怎样？ | [实际boot](actual-boot-flow.md)加载recovery；[保留recovery](recovery-entry-candidate.md)调用的system RAM交接代码位于缺失尾部 | 包可能被拒绝；已写入镜像也可能不能启动；错误外设初始化可能使BLE/显示/录音失效 | 尚无自写镜像的实机写入/启动，不能用参考板编译或OTA CRC通过预测结果 |
+| 能烧录自己的固件吗？ | [实际OTA写入/提交链](ota-write-commit.md)、[boot→ROM入口](actual-boot-flow.md)已定位；本机为M4，公开完整参考BSP为M33 | 匹配传输、板级初始化、镜像格式与启动授权后才可能运行 | 更早启动授权、交接运行态、ROM加载权限、匹配M4 BSP/库、独立恢复仍未闭合；没有可直接使用的CoMi烧录配方 |
+| 烧进去之后会怎样？ | [实际boot](actual-boot-flow.md)加载recovery；[完整recovery](recovery-complete.md)揭示slot0映射、加法验收与PSP/BX，晚期失败不能保证旧映射恢复 | 包可能被拒绝；已写入镜像也可能不能启动；错误外设初始化可能使BLE/显示/录音失效 | 尚无自写镜像的实机写入/启动，不能用参考板编译或OTA CRC通过预测结果 |
 | 失败后能恢复官方吗？ | 实际分区只有一个system；boot/param有镜像，另有recovery/TEMP；[成功通知早于新固件启动](ota-write-commit.md) | 有应用之外的入口、匹配完整内容与可验证写回方式，才有恢复基础 | 独立入口/退出与官方回刷未验证；boot/param双槽不是整套系统回滚 |
-| 能提取正在运行的固件吗？ | system、boot、DSP和ACPT已取得；system映射字节不是整片物理NOR；recovery仅部分 | 可靠bulk读回与逐区完整性验收可以进一步形成可恢复备份 | 个体配置、其余资源、分区副本及完整recovery未齐；[慢速日志NOR批量导出已退役](nor-efficiency.md)，不继续盲目长跑 |
+| 能提取正在运行的固件吗？ | system、boot、DSP和ACPT已取得；system映射字节不是整片物理NOR；recovery完整校验 | 可靠bulk读回与逐区完整性验收可以进一步形成可恢复备份 | 个体配置、其余资源、分区副本仍未齐；[慢速日志NOR批量导出已退役](nor-efficiency.md)，不继续盲目长跑 |
 
 ## 启动授权问题：缺的材料与不能替代它的产物
 
-实际recovery调用RAM `18000451`；按启动复制形状，其源为镜像`1100e4e8`，超出保留前缀末端`1100bc00`。[候选证据](recovery-entry-candidate.md)尚未通过完整正文checksum。
-这段缺失同时挡住system映射最终状态与应用验收判断，先备注暂停；不恢复旧慢速导出，也不把system的OTA接收链当作启动验签。
+此前缺失的镜像`1100e4e8`现已包含于[完整校验recovery](recovery-complete.md)，静态对应RAM `18000450`。局部checker只做向量/尺寸/加法检查，未见参考验签分支；这不证明更早ROM/boot无授权。slot0写入与PSP/BX已解释，复制和执行仍未实测；晚期校验失败存在旧映射局部被entry覆盖的问题。保留独立恢复门槛，不把OTA CRC当作启动验签。
 固定SDK的应用构建在`CONFIG_FLASH_LOAD_OFFSET==0`时取消`CONFIG_SOC_SIGN_ENABLE`（[审计](boot-security-source-audit.md)）；即便找到应用中的同源成功stub，也不能推成recovery接受未签名镜像。
 
 另一个已取得产物是SDK [`boot_recovery.app`][lark-recovery-blob]，不能按文件名当作CoMi recovery。
@@ -38,7 +37,7 @@ SDK 固定为 `lvgl/lv_port_actions_technology@26f51e584940d5b141cd1d09d2629d69b
 | 最后写`4000c020=5f`并永久循环 | 观察到复位请求形状，未验证实际复位效果或独立退出 |
 
 主流程不是普通system校验后跳转的替代模块；追加载荷与外层生成/调用契约仍缺。
-停止这份stub的callee扩展：保留为LARK恢复打包、ROM NOR接口参考，**不作为CoMi救砖镜像，不补齐实际recovery尾部，不证明未签名镜像可启动**。
+停止这份stub的callee扩展：保留为LARK恢复打包、ROM NOR接口参考，**不作为CoMi救砖镜像，不替代已完整实读的本机recovery，不证明未签名镜像可启动**。
 
 ## 参考 SDK：recovery 不等于自动回滚
 
@@ -48,7 +47,7 @@ SDK 固定为 `lvgl/lv_port_actions_technology@26f51e584940d5b141cd1d09d2629d69b
 2. 检查配置的 GPIO/TXRX ADFU 入口；成功才设置标志并重启到 ADFU。[入口][recovery-main]
 3. 只有 pstore OTA 标志或 NVRAM `REC_OTA_FLAG=yes` 才运行暂存包的 recovery；不是每次应用崩溃都会触发。[许可判断][recovery-allowed]
 4. `board.c:boot_to_application()` 固定调用 `boot_to_app(0, BOOT_FLASH_ID_NOR)`，并未根据试启动结果切换 SYSTEM A/B。[板级启动][board-boot]
-5. NOR 路径执行镜像检查；失败会恢复 boot 映射并返回，成功才跳转应用。调用返回后 recovery 请求 `GOTO_OTA` 重启。[NOR 路径][nor-boot] [入口][recovery-main]
+5. NOR 路径执行镜像检查；失败路径尝试恢复 boot 映射并返回，成功才跳转应用；但saved map/entry_out别名使晚期校验失败不保证恢复原值，见[实际完整交接复核](recovery-complete.md)。调用返回后 recovery 请求 `GOTO_OTA` 重启。[NOR 路径][nor-boot] [入口][recovery-main]
 6. 下一次的 `ota_main()` **实际只有无限日志/睡眠循环**。外层虽写了“OTA 失败→ADFU，成功→正常重启”，这个 callee 不返回，不能把注释/外层分支当作可用修复功能。独立 `ota_app` 目录的同名实现也如此。[recovery 占位][ota-stub] [ota_app 占位][ota-app-stub]
 
 镜像检查发生在跳转前；“checksum 正确，但应用立即死循环/访问错误外设”不属于该检查的能力。

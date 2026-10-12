@@ -1,5 +1,7 @@
 # Recovery second-stage entry: retained-prefix candidate
 
+2026-10-13后续：[完整本机recovery与应用交接](recovery-complete.md)已取得并通过头/正文校验，补齐此前缺失尾部。下文保留阶段证据；缺字节/未绑定实际交接的限制以新报告为准，运行与整机恢复仍未验证。
+
 2026-10-12. Offline only. Input: 48128 B partial decoded recovery,
 SHA256 `cff7225f49d502a3e6cf52a8d2df12cbee44625cc2120c3c7a03a96d77e577b7`.
 **Full body checksum remains unavailable. All instruction interpretations below

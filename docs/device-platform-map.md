@@ -2,7 +2,7 @@
 
 2026-10-13。面向自写固件的知识地图；链接指向已有证据，历史报告的“下一步”不作为执行计划。
 
-**主线已收敛到 ATS3085L / Cortex-M4 与 LARK 工具谱系。尚缺可构建的匹配 BSP、匹配量产下载链、完整原厂恢复内容。** 单个函数的解释不能替代这三项。
+**主线已收敛到 ATS3085L / Cortex-M4 与 LARK 工具谱系。尚缺可构建的匹配 BSP、匹配量产下载链、整机原厂恢复包。** [本机recovery已完整取得](recovery-complete.md)，不等于整机恢复包。单个函数的解释不能替代这三项。
 
 ## 设备是什么
 
@@ -25,7 +25,7 @@
 | NOR 范围；末端不含 | 内容 | 当前理解 |
 |---|---|---|
 | `000000..004000` | boot / param，各有两个槽 | boot0已有完整原始4 KiB与明文3672 B；[校验与512 B转换规则](boot-complete.md)已验证 |
-| `004000..024000` | recovery | 已定位镜像；原始读取48128 / 声明63288 B，[尚未完整验收](recovery-export.md) |
+| `004000..024000` | recovery | [原始/明文63,288 B完整校验](recovery-complete.md)；应用映射、加法验收、PSP/BX交接已静态解释，未执行新镜像 |
 | `024000..1c9000` | system | 完整927632 B映射镜像已校验；映射字节与物理NOR字节存在转换，不可直接当恢复包 |
 | `1c9000..200000` | user_rw / SDFS / factory与user NVRAM / 日志 / coredump | 含个体配置与状态；尚无完整备份 |
 | `200000..2f0000` | res_a / sdfs_k | 录音DSP完整110148 B已校验，整个资源分区未备份 |
@@ -46,11 +46,11 @@
 | [Vela官方移植指南](platform-source-followup.md#public-history-and-vela-provenance-bounded-acquisition-result) | 含ATS3085X宏、ARMv7-M与内存地址示例；芯片层可由独立vendor包提供 | 不指明L型号或CoMi；未取得Actions vendor包，不采用示例长度/入口，不改变本机Zephyr事实 |
 | [LARK调试loader与ATT源码](platform-source-followup.md#nor-comparison-host-selector-cache-window-and-initialization) | ELF给出 `BAREMETAL_CMSIS/lark_sdk`、NOR/SD接口与类型；两种存储接口已对照，另有M4编译配方、时钟/蓝牙源码 | NOR读依赖重建缓存映射、初始化改变硬件/NOR模式；SD固定SD0而本机用SD1，且wrapper吞读错；原样不能作可靠备份 |
 | LARK `adfus.bin` / `adfus_u.bin` | 前者UART、后者USB；有真正的内存/存储读取handler | [初始化会写NOR状态寄存器](lark-nor-init-side-effects.md)，未经修改不可作为只读备份；同名不同版本不能混用 |
-| [LARK `boot_recovery.app`](flash-recovery-assessment.md#启动授权问题缺的材料与不能替代它的产物) | 已核对6792 B参考stub：依赖文件末尾追加压缩块，执行NOR擦写、param复制及复位请求 | 不是本机63288 B recovery，不是完整独立恢复包，不补齐system启动验收/交接缺口 |
+| [LARK `boot_recovery.app`](flash-recovery-assessment.md#启动授权问题缺的材料与不能替代它的产物) | 已核对6792 B参考stub：依赖文件末尾追加压缩块，执行NOR擦写、param复制及复位请求 | 不是本机63288 B recovery，不是完整独立恢复包；本机交接现已由完整实读镜像独立解释 |
 | [SDK生产包生成链](production-package-contract.md) | 默认外层ACTTEST0 `.fw`、内层maker upgrade.fw、后处理raw、独立AOTA已区分；ATF源打包器离线验证 | LARK旧布局缺当前必需字段，未生成CoMi生产包；需最终生效配置/helper/host，不能按扩展名或混用cfg选择工具 |
 | [量产工具DLL/INF](host-selection-followup.md) | 有 WinUSB、ADFU API及驱动ID，可指导匹配host | 尚无本机芯片→host选择→ROM协议闭环；不能直接套旧ATJ包格式 |
 | 本机system / boot / DSP | 实际ABI、驱动、启动、安全/OTA约束；本机代码强于不匹配参考默认值 | 反汇编不等于源码；DSP提取不证明可在自写固件中加载执行或再分发 |
-| [原厂RAM→SD→Boyi通道](sd-file-bridge.md) | 固定4KiB RAM与单次boot0 ring导出均匹配独立原始字节，绕过数百次mdb小读 | 留SD测试文件；未验证其他offset、重复可靠性或完整备份；直接XIP源失败原因暂存 |
+| [原厂RAM→SD→Boyi通道](sd-file-bridge.md) | 固定4KiB RAM与单次boot0 ring导出均匹配独立原始字节，绕过数百次mdb小读 | [recovery缺失30扇区均双读一致且完整校验](recovery-complete.md)；留SD测试文件，流程仍不适合整片备份；直接XIP源失败原因暂存 |
 
 ## 下一阶段只抓三个交付物
 
@@ -65,7 +65,7 @@
 | 问题 | 已保留什么 | 重新推进条件 |
 |---|---|---|
 | ROM计数单位、回绕、调用者返回 | [固定代码与两次读回](actual-rom-exit-condition.md)；没有“超时会回到App”的保证 | 决定具体模式实验且无独立reset退出；或取得完整ROM/匹配文档后批量离线分析 |
-| system启动验收与最终映射 | [recovery交接候选](recovery-entry-candidate.md)指向缺失尾部`1100e4e8`；完整system与公共writer不能替代 | 有效完整recovery或已确认匹配的模块；不继续应用OTA CRC微审计来代替启动验签 |
+| system启动验收与最终映射 | [完整recovery局部契约](recovery-complete.md)已补齐：slot0替换、加法校验、PSP/BX；晚期失败有映射局部别名风险 | 更早ROM/boot授权、运行态与独立恢复仍缺；不以局部无验签分支推断全链无签名 |
 | SCL/SDA、屏幕等待、单个寄存器语义 | 板级专题证据 | 匹配SoC资料或进入屏幕bring-up |
 | 长窗口实时流、cancel竞态、云端API | 客户端能力表与真实失败记录 | 独立客户端成为当前交付重点；不阻塞芯片/SDK研究 |
 | 后台JAR获取 | [致远部署手册](seeyon-backend-reference.md)，包域名曾解析到私网 | 新的外部下载入口；目前无固件分发证据，不作为固件主线依赖 |

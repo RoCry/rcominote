@@ -46,10 +46,10 @@ ring解析要求起点在第一物理圈、offset按0..1f0顺序、相邻行字�
 [实验模块](../src/rcominote/experiments/sd_bridge.py)固定镜像SHA、地址、长度、版本/idle、handler/ring/fread代码guards；无任意offset、重启、ROM进入或NOR写入接口。需显式 `--create-sd-file`：
 
 ```sh
-uv run -m rcominote.experiments.sd_bridge artifacts/mapped-system/mapped-system.bin artifacts/NEW --create-sd-file --source boot-ring
+uv run -m rcominote.experiments.sd_bridge artifacts/mapped-system/mapped-system.bin artifacts/NEW --create-sd-file --source nor-ring
 ```
 
-boot-ring模式创建两份文件。现有实验留下以下非音频测试文件，未删除；当前没有审计过的安全删除命令：
+当前CLI用 `nor-ring` 替代初轮 `boot-ring` 名称；默认仍固定boot0，另外只允许recovery块93..123。每次读取创建两份文件。初轮实验留下以下非音频测试文件，未删除；当前没有审计过的安全删除命令：
 
 - `/SD:/RECORDER/Call-rcd66e84e42a.mp3`：全零映射源失败文件。
 - `/SD:/RECORDER/Call-rc8d6174d379.mp3`：有效RAM测试文件。
@@ -67,3 +67,7 @@ boot oracle来自[先前独立备份](evidence/boot-complete-2026-10-12/raw.bin)
 新通道保留为后续补齐recovery/个体配置的候选，不恢复旧长任务。
 仅当补齐关键固件区域成为下一项明确交付时，才做少量不同扇区的重复读/失败行为验证，再决定批量工具。
 当前主线仍是匹配ATS3085L BSP、原厂完整包与独立恢复入口；直接XIP→SD失败原因、通用文件管理和吞吐调优暂存。
+
+## 后续：关键固件产物已交付
+
+[完整recovery](recovery-complete.md)通过同一桥接路线补齐30个缺失扇区，各双读一致，并通过完整头/正文校验。当前命令、基线绑定及缓存复验见该报告；本篇首次单块结果保留为历史。未改进为整片NOR批量备份，也未继续追直接XIP失败。

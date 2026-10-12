@@ -1,0 +1,2 @@
+# Exact raw/decoded device evidence; never normalize line endings.
+*.bin binary
