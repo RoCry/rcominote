@@ -1,0 +1,42 @@
+{
+  "image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "engine": "Unicorn 2.1.4 Thumb MCLASS",
+  "scope": "Actual header loader; synthetic empty-section headers; intercepted file I/O and log",
+  "limits": "No DSP resource or segment data verified; no hardware or DSP execution",
+  "cases": {
+    "empty_sections": {
+      "return": 0,
+      "entry": 305419896,
+      "calls": [
+        "seek",
+        "read"
+      ]
+    },
+    "short_header": {
+      "return": 4294967274,
+      "entry": 4294967295,
+      "calls": [
+        "seek",
+        "read",
+        "log"
+      ]
+    },
+    "bad_magic": {
+      "return": 4294967274,
+      "entry": 4294967295,
+      "calls": [
+        "seek",
+        "read",
+        "log"
+      ]
+    },
+    "failed_seek_full_read": {
+      "return": 0,
+      "entry": 305419896,
+      "calls": [
+        "seek",
+        "read"
+      ]
+    }
+  }
+}
