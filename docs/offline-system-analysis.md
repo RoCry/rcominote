@@ -6,6 +6,7 @@
 
 - `uv run comi image inspect PATH`：长度先验927632 B，头512 B必须匹配已读SHA，正文927120 B按ACTH的LE u32加法checksum验证；输出完整SHA与scope。与导出finalize共用实现，避免两个校验规则漂移。
 - 截断、多余字节、错误头、错误正文均有离线拒绝测试，oracle为实读头与实际字段。没有构造伪造checksum成功镜像。
+- Ubuntu实测把公开56108 B的adfus.bin误传给系统镜像入口：明确报927632 B长度不符、非零退出，未创建分析目录。远端repo已fast-forward同步，工作树干净。
 - 完整实机镜像仍在导出，成功路径与完整反编译**尚待真实文件验收**。
 - `SystemImage.java`已用Ubuntu现有Ghidra12.1.4/JDK21.0.12.1+1的真实类库编译通过；这只证明API/Java编译，不证明headless分析或反编译已完成。
 

@@ -26,6 +26,12 @@
       "sha256": "c76cbbf95f1858dc8f9fbc5dca435cb87902b8de718e9d1dfdaefe73318fa6d7",
       "body_offset": "0xc000",
       "bytes_sha256": "aa4ccfaec46cd6f0bbca672147e7ea01c8503e0221e34b166fb13bfea84b4920"
+    },
+    {
+      "path": "artifacts/mapped-system/chunks/0009ec00.json",
+      "sha256": "d6a93fa91ec8afc443279c07b81f8e3103fab652782a3cf1102b0cd832f412c7",
+      "body_offset": "0x9ec00",
+      "bytes_sha256": "e35e8f229218c223f5552c7bc3e3a811ffdb36ffb32800a7deda0d684f21bd92"
     }
   ],
   "regions": [
@@ -353,6 +359,43 @@
       "little_endian_words": [
         "0x1009ef2d"
       ]
+    },
+    {
+      "address": "0x1009ef12",
+      "length": 26,
+      "label": "Atomic increment helper called on drop",
+      "hex": "0346bff35b8f53e8000f421c43e800210029f8d1bff35b8f7047",
+      "sha256": "3341b77c9f4740d9cb91cef49aab2408a5516b20609a7d334033e42cae527789",
+      "kind": "code",
+      "instructions": [
+        {"address": "0x1009ef12", "bytes": "0346", "mnemonic": "mov", "operands": "r3, r0"},
+        {"address": "0x1009ef14", "bytes": "bff35b8f", "mnemonic": "dmb", "operands": "ish"},
+        {"address": "0x1009ef18", "bytes": "53e8000f", "mnemonic": "ldrex", "operands": "r0, [r3]"},
+        {"address": "0x1009ef1c", "bytes": "421c", "mnemonic": "adds", "operands": "r2, r0, #1"},
+        {"address": "0x1009ef1e", "bytes": "43e80021", "mnemonic": "strex", "operands": "r1, r2, [r3]"},
+        {"address": "0x1009ef22", "bytes": "0029", "mnemonic": "cmp", "operands": "r1, #0"},
+        {"address": "0x1009ef24", "bytes": "f8d1", "mnemonic": "bne", "operands": "#0x1009ef18"},
+        {"address": "0x1009ef26", "bytes": "bff35b8f", "mnemonic": "dmb", "operands": "ish"},
+        {"address": "0x1009ef2a", "bytes": "7047", "mnemonic": "bx", "operands": "lr"}
+      ]
+    },
+    {
+      "address": "0x1009ef2c",
+      "length": 20,
+      "label": "Registered default backend callback tail-calls saver",
+      "hex": "10b4144653790a46014620465df8044b6cf7d6be",
+      "sha256": "bd76958b6b20c9d4b21c1d1fcee229ef78c2eff2d35cd96aef7a6ec6b5ac800a",
+      "kind": "code",
+      "instructions": [
+        {"address": "0x1009ef2c", "bytes": "10b4", "mnemonic": "push", "operands": "{r4}"},
+        {"address": "0x1009ef2e", "bytes": "1446", "mnemonic": "mov", "operands": "r4, r2"},
+        {"address": "0x1009ef30", "bytes": "5379", "mnemonic": "ldrb", "operands": "r3, [r2, #5]"},
+        {"address": "0x1009ef32", "bytes": "0a46", "mnemonic": "mov", "operands": "r2, r1"},
+        {"address": "0x1009ef34", "bytes": "0146", "mnemonic": "mov", "operands": "r1, r0"},
+        {"address": "0x1009ef36", "bytes": "2046", "mnemonic": "mov", "operands": "r0, r4"},
+        {"address": "0x1009ef38", "bytes": "5df8044b", "mnemonic": "ldr", "operands": "r4, [sp], #4"},
+        {"address": "0x1009ef3c", "bytes": "6cf7d6be", "mnemonic": "b.w", "operands": "#0x1000bcec"}
+      ]
     }
   ],
   "ring_layout": {
@@ -407,10 +450,11 @@
     }
   ],
   "limits": [
-    "Actual registered callback pointer is0x1009ef2d (Thumb code0x1009ef2c); its body outside current saved coverage",
+    "Registered callback body decoded: tail-branches directly to saver; no local drain/retry. Caller return consumption not established by this body alone.",
     "Saver identity inferred from its complete ring-copy algorithm, constants and traverse callback call/retry pattern; no symbol table",
     "No runtime rd/wr snapshot at either failure; occurrence attribution remains inference",
     "BLE stream writer callee0x100517fc and print callee0x100a3a10 not decoded here",
     "Mapped chunks individually SHA-verified; complete body checksum not yet obtained"
-  ]
+  ],
+  "callback_followup": "2026-10-12: 20 bytes at1009ef2c and26 bytes at1009ef12 decoded with Capstone5.0.6 THUMB|MCLASS; no device I/O."
 }
