@@ -119,8 +119,8 @@ Control methods: `[236151,238428)`; parser: `[221179,223211)`.
 | Serial | Empty `01` request; app requires >=16 reply bytes, strips NUL | `getSerial` `[243257,243735)` |
 | Bind-state | Empty `02`; app treats any nonzero reply byte as bound | `[243735,244253)`; not identity authentication |
 | Files | Empty `0a`; status0 + name14 + size4 + kind1; status1 fail; status2 end | `[238428,240494)`; require explicit end |
-| Download / resume | `0b` payload name14 NUL-padded + offset u32 BE; status0 + total-size4, status1 fail, status2 end; bytes on e5e4 | `[240849,243257)`; verify exact expected received length; no block checksum/sequence field established |
-| Stop transfer | Empty `0c`; generic matching-response success only | `[244253,244532)` |
+| Download / byte offset | `0b` payload name14 NUL-padded + offset u32 BE; status0 + full-size4, status1 fail, status2 end; bytes on e5e4 | `[240849,243257)`; [live offset17 suffix matches full file](download-offset.md); automatic persistent resume and per-block checksum remain absent |
+| Stop transfer | Empty `0c`; immediate reply and possible worker-exit reply both00; first ACK is not a completion barrier | `[244253,244532)`; [actual worker and bounded live cancellation](download-cancel-contract.md); no general cancel/reuse API yet |
 | Set time | `04`: local year-2000,month,day,hour,minute,second, each one byte | `[234663,235121)`; generic response, no readback established |
 | Device events | `0f`: >=20 payload; charging0,battery1,USB-mode2,mode3,power-off4,noise5,voice6,indicator7,segment8,backlight9,USB-connected10 | `Y8` `[220352,220806)`; [client watch implemented](client-events.md), replay verified; passive live sample observed zero events |
 | Voice events | `19`: >=5; enabled byte0==1,size u32BE bytes1..4 | `Z8` `[220806,220992)`; app emits no public event; our client preserves it, live field semantics unverified |

@@ -1,0 +1,11 @@
+{
+  "serial": "C261CF0430",
+  "file": "20261012093123",
+  "full_bytes": 1916,
+  "offset": 17,
+  "suffix_bytes": 1899,
+  "full_sha256": "bace0a8f6b7a01324e1f3c27bb94a54106b2eaefe72374e70a9acb41c119909d",
+  "suffix_sha256": "d0c326f919e995f6530a3784e77688a860d46e4f9488dd4149354623c4f260a8",
+  "exact_suffix_match": true,
+  "scope": "Live fixed-file byte-offset proof; no automatic partial-file identity/resume or cancellation claim. Audio payload remains local."
+}

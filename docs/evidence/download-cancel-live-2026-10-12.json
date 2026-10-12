@@ -1,0 +1,376 @@
+{
+  "serial": "C261CF0430",
+  "file": "20261012112429",
+  "listed_bytes": 56912,
+  "declared_bytes": 56912,
+  "observed_bytes": 20210,
+  "bytes_after_stop_send": 19966,
+  "observation_seconds_after_stop": 3,
+  "trace": [
+    {
+      "seconds": 0.058978,
+      "command": 11,
+      "payload_hex": "000000de50",
+      "frame_hex": "d22d010b05000000de5046f7"
+    },
+    {
+      "seconds": 0.15145,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.151717,
+      "action": "sent_stop_get_file_once"
+    },
+    {
+      "seconds": 0.182061,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.182181,
+      "offline_bytes": 24
+    },
+    {
+      "seconds": 0.182229,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.183717,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.185864,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.212812,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.242008,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.242114,
+      "offline_bytes": 24
+    },
+    {
+      "seconds": 0.242123,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.24349,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.245495,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.273578,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.302163,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.302249,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.30334,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.331322,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.331429,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.332471,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.361525,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.361711,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.362593,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.363799,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.365073,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.389741,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.390744,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.392445,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.421097,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.421158,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.42212,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.423541,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.424807,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.451129,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.451228,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.452137,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.453492,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.454739,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.481303,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.509677,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.510986,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.512502,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.513577,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.514878,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.541034,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.541085,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.542074,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.543539,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.571376,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.601101,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.601123,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.602128,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.603591,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.604791,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.631106,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.631174,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.632276,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.633593,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.634717,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.661673,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.661805,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.662277,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.663596,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.665101,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.692175,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.692817,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.693112,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.694181,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.69533,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.723131,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.723179,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.724204,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.751145,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.751203,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.752401,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.75354,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.754754,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.78106,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.781078,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.782058,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.783505,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.784845,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.810664,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.840694,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.842593,
+      "offline_bytes": 244
+    },
+    {
+      "seconds": 0.842694,
+      "offline_bytes": 154
+    },
+    {
+      "seconds": 0.843794,
+      "command": 12,
+      "payload_hex": "00",
+      "frame_hex": "d22d010c01007e1b"
+    },
+    {
+      "seconds": 0.843934,
+      "command": 12,
+      "payload_hex": "00",
+      "frame_hex": "d22d010c01007e1b"
+    }
+  ],
+  "post_observation_info_received": true,
+  "post_recording_state": "idle",
+  "limits": "One bounded cancellation observation. Quiet interval and info response do not prove worker-idle or safe immediate next download. No new download on this connection; audio payload not saved."
+}

@@ -33,6 +33,13 @@ def validate_filename(name: str) -> bytes:
     return raw
 
 
+def recording_output_name(name: str, offset: int = 0) -> str:
+    validate_filename(name)
+    if type(offset) is not int or not 0 <= offset <= 0xFFFFFFFF:
+        raise ValueError("Recording offset must be an integer in 0..4294967295")
+    return f"{name}.offset-{offset}.bin" if offset else f"{name}.mp3"
+
+
 class Connection:
     """One session, one transaction at a time; disconnect interrupts waiters."""
 
@@ -177,14 +184,17 @@ class Connection:
                 names.add(entry.name)
                 entries.append(entry)
 
-    async def download(self, name: str, sink: Callable[[bytes], int | None], timeout: float = 15.0) -> int:
-        """Require size declaration, exact bytes and explicit transfer terminator.
+    async def download(
+        self, name: str, sink: Callable[[bytes], int | None], timeout: float = 15.0, *, offset: int = 0
+    ) -> int:
+        """Require full-size declaration, exact suffix bytes and explicit terminator.
 
         Timeout measures inactivity of this transfer. Unrelated command traffic
         cannot keep an incomplete download alive. Offline bytes have no file ID,
         so they are accepted only after this request's declaration.
         """
-        payload = validate_filename(name).ljust(14, b"\0") + struct.pack(">I", 0)
+        recording_output_name(name, offset)
+        payload = validate_filename(name).ljust(14, b"\0") + struct.pack(">I", offset)
         async with self._transaction:
             await self._write(P.GET_FILE_DATA, payload)
             received = 0
@@ -197,8 +207,8 @@ class Connection:
                         raise ValueError("Recording data arrived before its size declaration")
                     if not packet:
                         continue
-                    if received + len(packet) > declared:
-                        raise ValueError(f"Download exceeds declared size {declared}")
+                    if received + len(packet) > declared - offset:
+                        raise ValueError(f"Download exceeds declared remaining size {declared - offset}")
                     written = sink(packet)
                     if written is not None and written != len(packet):
                         raise OSError("Recording output accepted a partial write")
@@ -215,32 +225,38 @@ class Connection:
                         if len(data) != 5 or declared is not None:
                             raise ValueError("Malformed or duplicate recording size declaration")
                         (declared,) = struct.unpack_from(">I", data, 1)
+                        if offset > declared:
+                            raise ValueError(f"Recording offset {offset} exceeds file size {declared}")
                         deadline = asyncio.get_running_loop().time() + timeout
                     case 1:
                         raise RuntimeError(f"Device reports recording download failure: {name}")
                     case 2:
                         if len(data) != 1 or declared is None:
                             raise ValueError("Recording ended without a valid size declaration")
-                        if received != declared:
-                            raise RuntimeError(f"Short download: {received}/{declared} bytes")
+                        if received != declared - offset:
+                            raise RuntimeError(f"Short download: {received}/{declared - offset} bytes")
                         return received
                     case _:
                         raise ValueError(f"Unknown GET_FILE_DATA status: {data[0]}")
 
 
-async def export_recording(conn: Connection, name: str, out: Path, expected_size: int | None = None) -> dict:
-    """Publish a verified complete transfer without replacing an existing file.
+async def export_recording(
+    conn: Connection, name: str, out: Path, expected_size: int | None = None, *, offset: int = 0
+) -> dict:
+    """Publish a complete requested range without replacing an existing file.
 
     SHA-256 identifies downloaded bytes; the device supplies no hash oracle.
     Sync may skip existing same-size files, but must describe that as size-only
     matching, not verified identical content. This helper never skips a file.
     """
-    validate_filename(name)
+    filename = recording_output_name(name, offset)
     if expected_size is not None and expected_size < 0:
         raise ValueError("Expected recording size must be nonnegative")
+    if expected_size is not None and offset > expected_size:
+        raise ValueError("Recording offset exceeds listed file size")
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
-    target = out / f"{name}.mp3"
+    target = out / filename
     if target.exists() or target.is_symlink():
         raise FileExistsError(f"Recording output already exists: {target}")
     descriptor, temporary = tempfile.mkstemp(prefix=f".{name}.", suffix=".part", dir=out)
@@ -254,14 +270,21 @@ async def export_recording(conn: Connection, name: str, out: Path, expected_size
                 digest.update(data[:count])
                 return count
 
-            received = await conn.download(name, write)
-            if expected_size is not None and received != expected_size:
+            received = await conn.download(name, write, offset=offset)
+            if expected_size is not None and received + offset != expected_size:
                 raise ValueError(f"File-list size changed: expected {expected_size}, received {received}")
             handle.flush()
             os.fsync(handle.fileno())
         # Both names are on one filesystem. link() atomically fails if another
         # exporter creates target; replace()/rename() could overwrite its work.
         os.link(part, target)
-        return {"name": name, "path": str(target), "bytes": received, "sha256": digest.hexdigest()}
+        return {
+            "name": name,
+            "path": str(target),
+            "bytes": received,
+            "sha256": digest.hexdigest(),
+            "offset": offset,
+            "scope": "recording_suffix" if offset else "complete_recording",
+        }
     finally:
         part.unlink(missing_ok=True)

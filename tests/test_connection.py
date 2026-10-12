@@ -79,6 +79,41 @@ class ConnectionTests(unittest.IsolatedAsyncioTestCase):
         received = await conn.download("empty", lambda _data: self.fail("Unexpected bytes"))
         self.assertEqual(received, 0)
 
+    async def test_nonzero_offset_uses_total_size_and_exports_only_suffix(self):
+        conn = self.replay(("cmd", SIZE_THREE), ("off", b"bc"), ("cmd", DOWNLOAD_END))
+        with tempfile.TemporaryDirectory() as directory:
+            result = await export_recording(conn, "recording", Path(directory), expected_size=3, offset=1)
+            self.assertEqual(Path(result["path"]).name, "recording.offset-1.bin")
+            self.assertEqual(Path(result["path"]).read_bytes(), b"bc")
+            self.assertEqual(result["scope"], "recording_suffix")
+        wire = conn.client.write_gatt_char.call_args.args[1]
+        self.assertEqual(wire[5:-2], b"recording\0\0\0\0\0\x00\x00\x00\x01")
+
+    async def test_offset_at_eof_requires_explicit_end_and_no_data(self):
+        conn = self.replay(("cmd", SIZE_THREE), ("cmd", DOWNLOAD_END))
+        self.assertEqual(
+            await conn.download("recording", lambda _: self.fail("Unexpected bytes"), offset=3), 0
+        )
+
+    async def test_suffix_size_and_offset_fail_before_accepting_wrong_bytes(self):
+        for offset, events, message in (
+            (4, [("cmd", SIZE_THREE)], "exceeds file size"),
+            (1, [("cmd", SIZE_THREE), ("off", b"abc")], "exceeds declared remaining size"),
+            (1, [("cmd", SIZE_THREE), ("off", b"b"), ("cmd", DOWNLOAD_END)], "Short download"),
+        ):
+            with (
+                self.subTest(offset=offset, message=message),
+                self.assertRaisesRegex((ValueError, RuntimeError), message),
+            ):
+                await self.replay(*events).download("recording", lambda _: None, offset=offset)
+
+    async def test_invalid_offset_never_sends_request(self):
+        for offset in (-1, 0x100000000, True, 1.5):
+            conn = self.replay()
+            with self.subTest(offset=offset), self.assertRaisesRegex(ValueError, "offset must"):
+                await conn.download("recording", lambda _: None, offset=offset)
+            conn.client.write_gatt_char.assert_not_awaited()
+
     async def test_invalid_transfer_sequences_fail(self):
         sequences = [
             ([("cmd", DOWNLOAD_END)], ValueError, "without a valid size"),

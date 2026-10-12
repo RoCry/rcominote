@@ -34,6 +34,7 @@ uv run comi record resume
 uv run comi record stop
 uv run comi files
 uv run comi download NAME_FROM_FILES --out artifacts/recordings
+uv run comi download NAME_FROM_FILES --offset 17 --out artifacts/recording-ranges
 uv run comi sync --out artifacts/recordings
 uv run comi set-time
 ```

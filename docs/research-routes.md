@@ -9,7 +9,7 @@ then own firmware. No single artifact or passing test substitutes for these goal
 
 | Workstream | Reuse now | Next decisive evidence |
 |---|---|---|
-| Client/protocol completeness | [CLI capability ledger](cli-capabilities.md), actual Android code, verified BLE controls/download | Preserve unsolicited0f/19 events first; then explicit realtime e5e3 capture and nonzero-offset/cancel download, each with independent evidence |
+| Client/protocol completeness | [CLI capability ledger](cli-capabilities.md), event-preserving connection, [live byte-offset suffix](download-offset.md), verified BLE controls/download | Explicit realtime e5e3 capture; cancellation completion/race contract and persistent-resume identity; correlated live event fields |
 | Efficient native transfer | SDK log/ABTP/USB/tool sources + complete mapped system; [CDC worker negative](usb-cdc-command-inventory.md) | Matching production host/script or actual mapped alias evidence; do not enable CDC in hope of a hidden bulk command |
 | Production host/ADFU | [Host selection](host-selection-followup.md), [actual helper read handlers](helper-static-followup.md), [actual boot](actual-boot-flow.md) | Matching production firmware scripts/caller parameters, exact SoC/host selection; device ROM USB identity and exit path before helper execution |
 | Full backup | Verified mapped system, boot, DSP, partition table, partial raw recovery | Reliable bulk route; all required physical partitions and unique configuration, repeated reads and integrity checks |

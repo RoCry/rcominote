@@ -13,7 +13,7 @@ from bleak import BleakScanner
 
 from . import protocol as P
 from .ble_target import OWNED_SERIAL, advertised_serial, find_device
-from .connection import Connection, export_recording, validate_filename
+from .connection import Connection, export_recording, recording_output_name, validate_filename
 from .output import emit, new_output
 
 app = typer.Typer(no_args_is_help=True)
@@ -99,10 +99,16 @@ def watch(
 
 
 @app.command()
-def download(name: str, out: Path = DEFAULT_OUT, serial: str = OWNED_SERIAL, seconds: ScanSeconds = 12):
-    """Export one exact listed filename atomically; refuse existing destination."""
+def download(
+    name: str,
+    out: Path = DEFAULT_OUT,
+    serial: str = OWNED_SERIAL,
+    seconds: ScanSeconds = 12,
+    offset: Annotated[int, typer.Option(min=0, max=0xFFFFFFFF)] = 0,
+):
+    """Export a listed recording; nonzero offset saves a .bin suffix, never a complete MP3."""
     validate_filename(name)
-    target = out / f"{name}.mp3"
+    target = out / recording_output_name(name, offset)
     if target.exists() or target.is_symlink():
         raise FileExistsError(f"Recording output already exists: {target}")
 
@@ -113,7 +119,7 @@ def download(name: str, out: Path = DEFAULT_OUT, serial: str = OWNED_SERIAL, sec
             entry = next((entry for entry in entries if entry.name == name), None)
             if entry is None:
                 raise ValueError(f"Recording not listed: {name}")
-            return await export_recording(conn, name, out, expected_size=entry.size)
+            return await export_recording(conn, name, out, expected_size=entry.size, offset=offset)
 
     emit(asyncio.run(run()))
 
