@@ -113,3 +113,5 @@ uv run --locked tools/build_sdk.py \
 [实机初始化与音频入口](docs/init-audio-board-evidence.md)：71项初始化表定位31个设备，audio_in明确绑定ADC_0；[显示板级证据](docs/display-board-evidence.md)：CH1115驱动标签、72×40配置、I2C_0/0x3c与GPIOA24/25，物理身份及完整初始化时序仍待验证。
 
 [实际屏幕命令序列](docs/display-command-sequence.md)：28字节初始化表、GPIO逻辑复位顺序、条件AF命令及五页×72字节fill路径；等待单位和电气极性尚未核实。
+
+[像素提交与页转换](docs/display-pixel-path.md)：实际u16非零→垂直页bit转换、窗口限制、旧descriptor ABI差异及buffer地址alias转换；尚无实屏验收。
