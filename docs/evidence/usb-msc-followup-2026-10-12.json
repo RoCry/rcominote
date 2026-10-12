@@ -1,0 +1,63 @@
+{
+  "image": {"scope": "mapped-system image; not a raw Flash backup", "base": "0x10000000", "bytes": 927632, "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f", "header_sha256": "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5", "body_word_sum": "0xb18576b5", "stored_body_checksum": "0x4e7a894a", "checksum_verified": true, "limits": ["No physical Flash mapping proven", "No complete device backup or restore validation"]},
+  "scope": "Bounded offline MSC follow-up; no memory or device reads",
+  "regions": [
+    {
+      "address": "0x10054590",
+      "end_exclusive": "0x100545bc",
+      "kind": "partial MSC ejected branch",
+      "hex": "45f03cff00283ff442af0d4b0e48184904221a7001233b700a4bc01a400100f47f4040f0e37040f0310089e7",
+      "sha256": "ea4e9e8dd86f4b38d5bcc54103cd8102123d2331584bb0f35602a2c7bd68c398",
+      "instructions": [
+        {"address": "0x10054590", "bytes": "45f03cff", "instruction": "bl #0x1009a40c"},
+        {"address": "0x10054594", "bytes": "0028", "instruction": "cmp r0, #0"},
+        {"address": "0x10054596", "bytes": "3ff442af", "instruction": "beq.w #0x1005441e"},
+        {"address": "0x1005459a", "bytes": "0d4b", "instruction": "ldr r3, [pc, #0x34]"},
+        {"address": "0x1005459c", "bytes": "0e48", "instruction": "ldr r0, [pc, #0x38]"},
+        {"address": "0x1005459e", "bytes": "1849", "instruction": "ldr r1, [pc, #0x60]"},
+        {"address": "0x100545a0", "bytes": "0422", "instruction": "movs r2, #4"},
+        {"address": "0x100545a2", "bytes": "1a70", "instruction": "strb r2, [r3]"},
+        {"address": "0x100545a4", "bytes": "0123", "instruction": "movs r3, #1"},
+        {"address": "0x100545a6", "bytes": "3b70", "instruction": "strb r3, [r7]"},
+        {"address": "0x100545a8", "bytes": "0a4b", "instruction": "ldr r3, [pc, #0x28]"},
+        {"address": "0x100545aa", "bytes": "c01a", "instruction": "subs r0, r0, r3"},
+        {"address": "0x100545ac", "bytes": "4001", "instruction": "lsls r0, r0, #5"},
+        {"address": "0x100545ae", "bytes": "00f47f40", "instruction": "and r0, r0, #0xff00"},
+        {"address": "0x100545b2", "bytes": "40f0e370", "instruction": "orr r0, r0, #0x1c60000"},
+        {"address": "0x100545b6", "bytes": "40f03100", "instruction": "orr r0, r0, #0x31"},
+        {"address": "0x100545ba", "bytes": "89e7", "instruction": "b #0x100544d0"}
+      ]
+    },
+    {"address": "0x10054600", "end_exclusive": "0x10054604", "kind": "log literal", "hex": "b7100d10", "sha256": "ffbf1cb6d29cea38adab1e926a7aa39884c7b3f7800ec7c2f90e050ca136dede"},
+    {"address": "0x100d10b7", "end_exclusive": "0x100d10c7", "kind": "log string", "hex": "757362206d736320656a656374656400", "sha256": "801b816dc39030b8fce2fe1dd23699d4af581e001d446074a555e06b9a6c4c04"},
+    {
+      "address": "0x1009a40c",
+      "end_exclusive": "0x1009a416",
+      "kind": "complete ejected flag getter",
+      "hex": "024b1878c0f380007047",
+      "sha256": "3d719b020dce465dfdfadb2300006559f563d3914334c651c92074de7c0a8221",
+      "instructions": [
+        {"address": "0x1009a40c", "bytes": "024b", "instruction": "ldr r3, [pc, #8]"},
+        {"address": "0x1009a40e", "bytes": "1878", "instruction": "ldrb r0, [r3]"},
+        {"address": "0x1009a410", "bytes": "c0f38000", "instruction": "ubfx r0, r0, #2, #1"},
+        {"address": "0x1009a414", "bytes": "7047", "instruction": "bx lr"}
+      ]
+    },
+    {"address": "0x1009a418", "end_exclusive": "0x1009a41c", "kind": "state global literal", "hex": "44520418", "sha256": "d61aed3c298e918a6e104efac35f98263b8b7cb9fec1c4f183118fc71425bb28"}
+  ],
+  "search": {
+    "contiguous_device_config_candidates": [
+      {"address": "0x100dcd4a", "config_bytes": 75, "vid": "0x10d6", "pid": "0xb00a"},
+      {"address": "0x100dcda7", "config_bytes": 75, "vid": "0x10d6", "pid": "0xb00a"}
+    ],
+    "direct_bl_bw_to_1009a200": [
+      "0x1009a67a"
+    ],
+    "method": "Scan each byte for 18-byte device immediately followed by 9-byte config header; total9..4096; walk bLength to exact end. Scan aligned Thumb BL/B.W candidates in body to known registration helper."
+  },
+  "limits": [
+    "Misses separately stored, generated, encoded, external or non-contiguous descriptors",
+    "Branch scan misses indirect calls and other images; may scan data",
+    "No MSC backend or init chain identified; does not prove MSC absent"
+  ]
+}

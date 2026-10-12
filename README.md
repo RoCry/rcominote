@@ -157,3 +157,5 @@ uv run --locked tools/build_sdk.py \
 [CDC启动与测试协议](docs/usb-cdc-startup.md)：测试标志→事件门→CDC线程，等待DTR后处理自定义命令；已确认部分命令写TEST_ITEM，不能作为只读shell直接探测。
 
 [CDC命令表](docs/usb-cdc-command-map.md)：固定身份字段、状态查询、模式重启与SD格式化路径；默认命令也写TEST_ITEM，未建立固件/DSP导出能力。
+
+[MSC线索边界](docs/usb-msc-followup.md)：实际只有弹出状态getter得到定位；限定描述符/注册搜索只命中CDC，尚未建立MSC到磁盘后端的链路。
