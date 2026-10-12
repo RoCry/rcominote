@@ -1,8 +1,3 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# requires-python = ">=3.13"
-# dependencies = ["bleak>=1.1,<2", "typer>=0.16,<1"]
-# ///
 """Bounded Actions logs and fixed diagnostic queries; no arbitrary shell, storage writes, or reboot."""
 
 import asyncio
@@ -14,9 +9,11 @@ from pathlib import Path
 from typing import Annotated
 
 import typer
-from ble_target import OWNED_SERIAL, find_device
 from bleak import BleakClient
-from log_probe import ACK, NOTIFY, PREPARE, SERVICE, WRITE
+from bleak.exc import BleakError
+
+from .ble_target import OWNED_SERIAL, find_device
+from .log_probe import ACK, NOTIFY, PREPARE, SERVICE, WRITE
 
 START = bytes.fromhex("1d108105000002002000")
 STOP = bytes.fromhex("1d108105000002002100")
@@ -97,7 +94,11 @@ async def capture(
             (["kernel version", "device levels", "device levels"] if device_info else [])
             + (["help", "dbg"] if commands else [])
             + (["dbg fread spi_flash 0", "help"] if flash_header else [])
-            + (["app", "system", "dbg nvram FW_VERION", "dbg nvram BT_LE_NAME", "help"] if platform_info else [])
+            + (
+                ["app", "system", "dbg nvram FW_VERION", "dbg nvram BT_LE_NAME", "help"]
+                if platform_info
+                else []
+            )
             + (["kernel", "kernel uptime", "help"] if kernel_info else [])
             + (["kernel uptime", "kernel threads", "kernel uptime", "help"] if threads else [])
             + (["kernel stacks", "help"] if stacks else [])
@@ -127,7 +128,9 @@ async def capture(
                 await pump(timeout=5)
 
     device = await find_device(serial=serial, seconds=12)
-    async with BleakClient(device, timeout=20, disconnected_callback=lambda _: queue.put_nowait(None)) as client:
+    async with BleakClient(
+        device, timeout=20, disconnected_callback=lambda _: queue.put_nowait(None)
+    ) as client:
         if client.services.get_service(SERVICE) is None:
             raise ValueError("Selected device has no Actions log service")
         await client.start_notify(NOTIFY, receive)
@@ -166,7 +169,7 @@ async def capture(
                     await pump(timeout=remaining)
                 except TimeoutError:
                     break
-        except Exception as error:
+        except (ValueError, RuntimeError, OSError, BleakError) as error:
             result["error"] = str(error) or type(error).__name__
         finally:
             if start_attempted and client.is_connected:
@@ -175,7 +178,7 @@ async def capture(
                     async with asyncio.timeout(5):
                         while not stream.ended:
                             await pump(timeout=5)
-                except Exception as error:
+                except (ValueError, RuntimeError, OSError, BleakError) as error:
                     result["stop_error"] = str(error) or type(error).__name__
             if client.is_connected:
                 await client.stop_notify(NOTIFY)
@@ -183,7 +186,9 @@ async def capture(
         "ack_count": stream.acks,
         "end_received": stream.ended,
         "pending_hex": stream.pending.hex(),
-        "text_bytes": sum(len(bytes.fromhex(row["hex"])) - 8 for row in stream.frames if row["command"] == 0xF0),
+        "text_bytes": sum(
+            len(bytes.fromhex(row["hex"])) - 8 for row in stream.frames if row["command"] == 0xF0
+        ),
     }
     result["ok"] = (
         "error" not in result
@@ -202,11 +207,19 @@ def main(
     device_info: Annotated[
         bool, typer.Option(help="Also request fixed kernel version and device levels (twice)")
     ] = False,
-    commands: Annotated[bool, typer.Option(help="Also request fixed help and bare dbg command listings")] = False,
-    flash_header: Annotated[bool, typer.Option(help="Read only NOR offset 0, fixed 512 bytes; not a backup")] = False,
-    platform_info: Annotated[bool, typer.Option(help="Fixed app/system help and two bounded NVRAM getters")] = False,
+    commands: Annotated[
+        bool, typer.Option(help="Also request fixed help and bare dbg command listings")
+    ] = False,
+    flash_header: Annotated[
+        bool, typer.Option(help="Read only NOR offset 0, fixed 512 bytes; not a backup")
+    ] = False,
+    platform_info: Annotated[
+        bool, typer.Option(help="Fixed app/system help and two bounded NVRAM getters")
+    ] = False,
     kernel_info: Annotated[bool, typer.Option(help="Fixed kernel help and uptime queries")] = False,
-    threads: Annotated[bool, typer.Option(help="Fixed thread listing bracketed by uptime; verify help first")] = False,
+    threads: Annotated[
+        bool, typer.Option(help="Fixed thread listing bracketed by uptime; verify help first")
+    ] = False,
     stacks: Annotated[bool, typer.Option(help="Compact thread stack-usage table; no stack contents")] = False,
     code_sample: Annotated[
         bool, typer.Option(help="Owned FW1.0.4 only: 16 bytes at observed logsrv code entry")

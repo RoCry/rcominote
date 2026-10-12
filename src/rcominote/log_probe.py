@@ -1,8 +1,3 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# requires-python = ">=3.13"
-# dependencies = ["bleak>=1.1,<2", "typer>=0.16,<1"]
-# ///
 """One fixed Actions log PREPARE handshake. No shell, logging mode, dump or reset commands."""
 
 import asyncio
@@ -12,8 +7,9 @@ from pathlib import Path
 from typing import Annotated
 
 import typer
-from ble_target import OWNED_SERIAL, find_device
 from bleak import BleakClient
+
+from .ble_target import OWNED_SERIAL, find_device
 
 SERVICE = "e49a3001-f69a-11e8-8eb2-f2801f1b9fd1"
 WRITE = "e49a3002-f69a-11e8-8eb2-f2801f1b9fd1"

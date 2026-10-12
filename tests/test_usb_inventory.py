@@ -1,14 +1,9 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# requires-python = ">=3.13"
-# dependencies = ["typer>=0.16,<1"]
-# ///
 """Real IOKit descriptor subset: interfaces repeat IDs; plist includes binary data."""
 
 import unittest
 from pathlib import Path
 
-from usb_inventory import parse_registry
+from rcominote.usb_inventory import parse_registry
 
 FIXTURE = Path(__file__).parent / "fixtures/ioreg-hiveton.plist"
 EXPECTED = {

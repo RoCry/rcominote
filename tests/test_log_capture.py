@@ -1,15 +1,10 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# requires-python = ">=3.13"
-# dependencies = ["bleak>=1.1,<2", "typer>=0.16,<1"]
-# ///
 """Oracle: actual CoMi notification fragments and observed shell response."""
 
 import json
 import unittest
 from pathlib import Path
 
-from log_capture import Stream, observed_logsrv_entry
+from rcominote.log_capture import Stream, observed_logsrv_entry
 
 EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence"
 
@@ -40,7 +35,8 @@ class LogTests(unittest.TestCase):
         frames = capture["frames"]
         self.assertTrue(observed_logsrv_entry(frames))
         changed = [
-            dict(row, text=row.get("text", "").replace("entry: 0x1000bf21", "entry: 0x1000cf21")) for row in frames
+            dict(row, text=row.get("text", "").replace("entry: 0x1000bf21", "entry: 0x1000cf21"))
+            for row in frames
         ]
         with self.assertRaisesRegex(ValueError, "entry changed"):
             observed_logsrv_entry(changed)

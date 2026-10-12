@@ -1,0 +1,159 @@
+# CLI capability and settings specification
+
+2026-10-12. Static evidence from official CoMi 1.1.2 APK; existing owned-device
+observations cited separately. Boyi only. App source establishes request bytes
+and app interpretation, not whether this firmware accepts every operation.
+
+## Source identity and reproduction
+
+APK SHA-256: `b6f1409ccaa054406c47350b4c6b05231334633778a84dfe59d4fc5c5bd95118`.
+Decompressed ZIP member `assets/public/assets/index-Btih_BUR.js`: 588,988 bytes,
+SHA-256 `167d837a68310664ecec8de6960fd96f6962036cf21a101cc546b1d9c489cc9c`.
+All ranges below: zero-based **bytes**, end exclusive, in this member. Extract
+with [apk_evidence.py](../tools/apk_evidence.py); verify member digest before
+interpreting slices. Source acquisition and prior REA coverage:
+[app-upgrade.md](app-upgrade.md). No fresh APK execution or device I/O performed
+for this specification.
+
+| Source region | Range | Purpose |
+|---|---|---|
+| `ue.CMD`, `ry`, `ho` | `[217643,219336)` | Complete Boyi command constants, CRC, frame builder |
+| `V8` | `[219336,219782)` | Response header/version/length/CRC checks |
+| `Y8`, `Z8` | `[220352,220992)` | Device/voice-control event payloads |
+| `il` | `[221179,223211)` | Recording/file response status and layouts |
+| `eC.sendCommand` | `[232509,233642)` | Request completion semantics |
+| `eC.syncTime` | `[234663,235121)` | Six-byte local calendar clock |
+| `eC.getDeviceStatus` | `[235121,236151)` | Settings getters inside device-info reply |
+| `eC.getRecordingInfo` | `[246291,246953)` | Recording-info request and parsed result |
+
+## Settings: explicit setters plus readback
+
+Get all current settings using `GET_DEVICE_INFO=0x05`, empty request payload;
+reply must contain at least 44 bytes. There are no separate settings-getter
+opcodes in this Boyi table. All six setters below send **exactly one byte**.
+
+| CLI setting | Opcode | Accepted CLI values / payload byte | GET_DEVICE_INFO byte | Setter range |
+|---|---:|---|---:|---|
+| `usb` | `0x13` | off `00`, on `01` | 14 | `[245599,245939)` |
+| `indicator` | `0x11` | off `00`, on `01` | 16 | `[244817,245156)` |
+| `voice-control` | `0x14` | off `00`, on `01` | 40 | `[245939,246291)` |
+| `segment` | `0x16` | 30min `00`, 1h `01`, 2h `02`, 3h `03` | 41 | `[246953,247358)` |
+| `noise-reduction` | `0x17` | integer 0 through 16 inclusive | 39 | `[247358,247787)` |
+| `backlight` | `0x1a` | off `00`, on `01` | 42 | `[248131,248489)` |
+
+Boolean getters: indicator/voice-control/backlight return null for `ff`, true for
+`01`, false otherwise. USB is true only for `01`; source has no null handling.
+Noise and segment getter bytes remain raw integers. Preserve raw replies for
+investigation; a null/unknown readback cannot prove successful mutation.
+
+Noise setter explicitly rejects numbers outside 0..16. Require integers in CLI;
+JavaScript's Uint8Array conversion is not a specification for fractional inputs.
+No meanings for individual noise levels were established. Segment setter labels
+0 as 30 minutes, 1 as 1 hour, 2 as 2 hours, **all other values** as 3 hours; it does
+not validate a 0..3 range. A CLI restricted to 0..3 is a conservative inference
+from those four labels, not proof that firmware rejects other bytes. Search of
+every `assets/public/assets/*.js` member in the pinned APK found no settings UI
+caller establishing a narrower domain; the main member contains setters and
+wrappers. Backlight source label is “屏幕常亮”: always-on toggle, not brightness.
+USB toggle means “USB support”; USB class/enumeration must be observed separately.
+
+Setter slice SHA-256 values:
+
+| Setting | SHA-256 |
+|---|---|
+| USB | `d9fddecd10e8e0890780f749491c37b6634e4547b1bac7d23b7a1ea99af30fd3` |
+| Indicator | `c51b51f6ade9bc1031d4a848d99211fa0478c2b4f258fd2dc0fb2622240edc78` |
+| Voice-control | `ce7fb210aa2c971ff8db7685a64f5e3e5bcc9afd9063cd19d655254be5defe59` |
+| Segment | `1d710ae7cb1d03b1b47cab2fd357d6ea26555f6334d6ccaab47f521d5ba95c7f` |
+| Noise-reduction | `51453ef5f8932ac4a0e90ac212065eebb1e51f427197a13f22def959035ae929` |
+| Backlight | `f18daa20d0f5f3936750d8ee1c92d7f935efbd86880bdba9b16752a3f5de18db` |
+
+`SET_PHONE_TYPE=0x18` also sends one byte; source labels 0 Android, otherwise iOS
+(`[247787,248131)`). No matching readback field or evidence of effect found.
+Omit from initial settings CLI; do not assign host OS automatically.
+
+### ACK and error contract
+
+`sendCommand` resolves `{success:true,data:replyPayload}` when a frame passes `V8`
+and the opcode matches. **It does not inspect setter result bytes.** All six
+setters propagate this generic success without further validation. Consequently,
+neither empty reply nor first byte `00` has established application-level ACK
+meaning for these setters. Do not invent one from recording/file status codes.
+
+CLI should report the raw matching response, then issue device-info again and
+require requested field equality. Distinguish `response_received` from
+`verified_by_readback`. Timeout, disconnect, CRC/length error, unsupported/null
+readback, or mismatch must fail clearly. If before equals requested value,
+readback verifies retained state but cannot prove an actual change occurred.
+Readback alone does not prove persistence across reboot or physical effect.
+
+## Recording controls and status
+
+All requests below have empty payload. ASCII names occupy 14 bytes; numeric
+file sizes are u32 big-endian. Kind 0 means call, any other value note. Record
+state and recording mode are different fields.
+
+| Opcode | Request | Valid reply payload |
+|---:|---|---|
+| `0x06` | start | At least 16 bytes: status `00`, name `[1,15)`, kind byte 15 |
+| `0x07` | stop | At least 21: status `00`, name `[1,15)`, size `[15,19)`, mode byte 19 (`01` call, else memo), need-sync byte 20 (`01` true) |
+| `0x08` | pause | At least 16: status `00`, name `[1,15)`, kind byte 15 |
+| `0x09` | resume | Same layout as pause |
+| `0x15` | recording-info | Exact `01`: idle. Otherwise at least 20: status `00` recording / `02` paused, name `[1,15)`, size `[15,19)`, kind byte 19 |
+
+For start/stop/pause/resume, exact payload `01` is explicit failure. Other
+unknown statuses, truncated payloads, or malformed framing must fail. App's
+START parser checks `<15` although subsequently accessing byte 15; CLI should
+require 16, avoiding the source off-by-one. Do not treat status `02` as success
+for a recording-control reply merely because it means paused in recording-info.
+
+Device-info byte 10 maps 0 idle / 1 recording / all others paused in app source.
+The recording-info request provides stricter status evidence and current file.
+Control methods: `[236151,238428)`; parser: `[221179,223211)`.
+
+## Discovery, files, events and diagnostics
+
+| Capability | Source / wire contract | Evidence boundary |
+|---|---|---|
+| Scan / serial / bind-state / device-info | Company 14172; e5e0/e5e1/e5e2; `01`,`02`,`05` | Existing owned-device read-only verification in [protocol.md](protocol.md) |
+| Serial | Empty `01` request; app requires >=16 reply bytes, strips NUL | `getSerial` `[243257,243735)` |
+| Bind-state | Empty `02`; app treats any nonzero reply byte as bound | `[243735,244253)`; not identity authentication |
+| Files | Empty `0a`; status0 + name14 + size4 + kind1; status1 fail; status2 end | `[238428,240494)`; require explicit end |
+| Download / resume | `0b` payload name14 NUL-padded + offset u32 BE; status0 + total-size4, status1 fail, status2 end; bytes on e5e4 | `[240849,243257)`; verify exact expected received length; no block checksum/sequence field established |
+| Stop transfer | Empty `0c`; generic matching-response success only | `[244253,244532)` |
+| Set time | `04`: local year-2000,month,day,hour,minute,second, each one byte | `[234663,235121)`; generic response, no readback established |
+| Device events | `0f`: >=20 payload; charging0,battery1,USB-mode2,mode3,power-off4,noise5,voice6,indicator7,segment8,backlight9,USB-connected10 | `Y8` `[220352,220806)`; app event emitter exposes fewer fields than parser |
+| Voice events | `19`: >=5; enabled byte0==1,size u32BE bytes1..4 | `Z8` `[220806,220992)`; app parser exists but emits no public event |
+| Realtime audio | Raw notifications on e5e3, forwarded as bytes | No packet/codec decoder established by this app handler; compare captured payload to known MP3 separately |
+| Logs / fixed diagnostics / bounded code sample | Separate Actions e49a3001 service | [device-diagnostics.md](device-diagnostics.md), [mapped-code-readback.md](mapped-code-readback.md); does not establish whole-flash backup |
+
+### Excluded from capability verification
+
+Source declares `BIND=03` (17 bytes: user-id16 + delete-files byte), `DELETE_FILE=0d`
+(raw ASCII name), `FORMAT_DEVICE=10` (empty), `RESET=12` (empty). Unbind reuses
+`03` with zero user-id and optional delete flag. Reset/unbind deliberately do not
+wait for response because device disconnects. These alter ownership/storage or
+reset state; existence is documented, not justification to run them while
+verifying read-only/ordinary control capabilities. No Boyi `0e` defined. No Boyi
+upgrade opcode, firmware signer, complete backup, or restore CLI established.
+Mova OTA declarations and UUIDs cannot be applied to Boyi.
+
+## Verification ledger
+
+- **Verified on owned device, previous work:** discovery/status, file listing and
+  recording export; previous recording controls/time evidence retained in repo.
+  See [protocol.md](protocol.md) and [evidence index](evidence/README.md).
+- **Source-only in this specification:** six settings setter encodings/domains,
+  current-recording request layout, full event parser. Live readback must promote
+  individual capabilities; avoid claiming all setters tested together.
+- **Firmware investigation verified separately:** Zephyr version shell output,
+  NVRAM configuration read, two matching 16-byte code samples. Each has its own
+  bounded evidence; none is a restorable official firmware image.
+- **Unresolved:** full physical storage map/size, complete firmware readback,
+  independent recovery path, official image acquisition, signing restrictions,
+  exact board/SoC identity. A comprehensive device CLI helps collect evidence for
+  these questions but does not itself settle them.
+
+## Unified CLI live validation
+
+The package implements the source-derived explicit setters with readback and rejects unavailable values. This pass additionally observed recording start/pause/resume/stop, recording-info, complete download/sync, and noise9→8→9 with matching state readback. All other setters retain their source-only write-status boundary. Clock synchronization has no known readback getter and was not live-tested. See [validation](evidence/cli-validation-2026-10-12.json) and [usage](cli.md).

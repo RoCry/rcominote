@@ -30,7 +30,9 @@ def output(command: list[str]) -> str:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--sdk", type=Path, required=True, help="Public lv_port_actions_technology checkout")
-    parser.add_argument("--toolchain", type=Path, required=True, help="GNU Arm Embedded 10.3-2021.10 directory")
+    parser.add_argument(
+        "--toolchain", type=Path, required=True, help="GNU Arm Embedded 10.3-2021.10 directory"
+    )
     parser.add_argument("--out", type=Path, default=Path("artifacts/sdk-build"))
     parser.add_argument("--jobs", type=int, default=4)
     args = parser.parse_args()
@@ -87,7 +89,9 @@ def main():
         "python": sys.version,
         "cmake": output(["cmake", "--version"]).splitlines()[0],
         "ninja": output(["ninja", "--version"]),
-        "python_packages": {dist.metadata["Name"]: dist.version for dist in importlib.metadata.distributions()},
+        "python_packages": {
+            dist.metadata["Name"]: dist.version for dist in importlib.metadata.distributions()
+        },
         "commands": commands,
         "status": "running",
         "scope": "reference-board compilation only; no packaging or hardware operations",
@@ -98,7 +102,9 @@ def main():
         with log_path.open("w", encoding="utf-8") as log:
             for command in commands:
                 print(f"Running {command[0]} {command[1]}; log: {log_path}", flush=True)
-                subprocess.run(command, env=environment, cwd=zephyr, stdout=log, stderr=subprocess.STDOUT, check=True)
+                subprocess.run(
+                    command, env=environment, cwd=zephyr, stdout=log, stderr=subprocess.STDOUT, check=True
+                )
         manifest["artifacts"] = {}
         for name in ("zephyr.elf", "zephyr.bin", "zephyr.hex", ".config"):
             path = destination / "zephyr" / name

@@ -1,7 +1,8 @@
 """Select the owned Boyi unit by advertised serial, never first manufacturer match."""
 
 from bleak import BleakScanner
-from protocol import COMPANY_ID
+
+from .protocol import COMPANY_ID
 
 OWNED_SERIAL = "C261CF0430"
 

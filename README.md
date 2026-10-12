@@ -38,28 +38,27 @@
 14. [实机代码读回](docs/mapped-code-readback.md)：16字节独立重读一致、Thumb解码、实时入口检查和长输出丢失。
 15. [官方产物继续核查](docs/official-acquisition-followup.md)：远程页面配置、发布包与加固壳边界。
 
-## 可直接运行
-
-需要 `uv`、Python ≥3.13（由 uv 解析脚本依赖）；`just`、`ruff` 用于开发检查。macOS 的启动终端/宿主进程需有蓝牙权限，官方 App 先断开连接。
+## 统一 uv CLI
 
 ```sh
-just check                            # 格式、lint、协议/USB/日志流测试；不连接设备
-just scan                             # 只扫描广播
-just gatt --out artifacts/gatt.json    # 连接并枚举；不读写应用特征，不订阅通知
-just comi info                        # 通过 Boyi 查询序列号、绑定和状态
-just comi files
-just comi download NAME_FROM_FILES
-just comi sync
-just comi record start                # 明确改变设备录音状态；stop/pause/resume 同理
-just comi set-time                    # 明确写入主机本地时间
-just usb snapshot --out artifacts/usb.json  # macOS IOKit 描述符；不向设备发请求
-just log-probe --out artifacts/log.json     # 固定 PREPARE/ACK，会改变日志会话状态
-just log-capture --commands --out artifacts/commands.json # 固定 help/dbg；临时开启日志后 STOP
-# Ubuntu / Linux x86_64：
-just sdk-setup                        # 固定 SDK + 带 SHA-256 校验的 GNU Arm 工具链
-just sdk-build                        # 参考板应用编译；不打包、不刷机
+uv sync --all-extras
+uv run comi --help
+uv run comi scan
+uv run comi info
+uv run comi files
+uv run comi record start              # 明确开始录音；stop/pause/resume 同理
+uv run comi download NAME --out artifacts/recordings
+uv run comi settings show
+uv run comi diag capture platform --out artifacts/platform.json
+uv run comi verify --code --out artifacts/verification-NEW
 ```
 
-连接操作默认只选广播序列号 `C261CF0430`；其他自有设备用 `--serial SERIAL`，如 `just comi info --serial SERIAL`。录音默认输出到 `~/.local/share/comi-research`；临时样本、APK、SDK、原始采集放进 git 忽略的 `artifacts/`。工具没有删除、格式化、刷写或任意 shell 命令入口。
+[完整使用说明](docs/cli.md) · [命令协议与支持边界](docs/cli-capabilities.md)。支持 `uv tool install .` 后直接运行 `comi`。
 
-工具及捕获帧测试从 rlcdv 迁入，运行不再依赖该项目、Obsidian 或交接临时文件。外部 SDK/APK 按研究文档中的固定版本单独获取；未将整个 SDK 或 APK 提交到仓库。
+包代码在 `src/rcominote/`；采集工具已统一迁入，不再维护独立 `tools/comi.py` 等副本。JSON输出，错误非零退出；按序列号选设备。下载校验完整长度后原子保存，拒绝覆盖。诊断只开放固定profile，代码读取仍限定经当前入口核对的16字节；没有刷机、任意shell、完整固件备份或恢复命令。
+
+实机已验证录音start/pause/resume/stop、完整导出/sync、noise设置读回与恢复，以及一键只读诊断。其他setter源于固定App源码、按设备读回决定成功；时钟设置无已知getter，不能宣称回读验证。
+
+macOS宿主需有蓝牙权限，官方App先断开；Linux需要本机BlueZ/适配器。APK/SDK/原始录音/完整日志放忽略的`artifacts/`；不依赖rlcdv、Obsidian或临时交接文件。
+
+开发：`just check`，打包：`just build`。参考板Linux构建仍为`just sdk-setup`、`just sdk-build`，不打包或刷写CoMi。旧研究记录中的脚本命令对应其历史提交，当前命令以[CLI说明](docs/cli.md)为准。

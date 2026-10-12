@@ -1,0 +1,241 @@
+{
+  "date": "2026-10-12",
+  "serial": "C261CF0430",
+  "firmware": "010004",
+  "read_only_verification": {
+    "captured_at": "2026-10-12T03:23:18.129276+00:00",
+    "serial": "C261CF0430",
+    "scope": "read-only queries and temporary log sessions; no recording/setter/reboot/flash",
+    "steps": [
+      {
+        "name": "info-before",
+        "file": "info-before.json"
+      },
+      {
+        "name": "gatt",
+        "file": "gatt.json"
+      },
+      {
+        "name": "platform",
+        "file": "platform.json"
+      },
+      {
+        "name": "code-first",
+        "file": "code-first.json"
+      },
+      {
+        "name": "code-second",
+        "file": "code-second.json"
+      },
+      {
+        "name": "code-analysis",
+        "file": "code-analysis.json"
+      },
+      {
+        "name": "info-after",
+        "file": "info-after.json"
+      }
+    ],
+    "ok": true,
+    "limits": [
+      "Diagnostic ok means transport completion, not complete shell output",
+      "No complete firmware backup or recovery validation",
+      "No new recording tested"
+    ]
+  },
+  "code_sample": {
+    "scope": "16 mapped bytes only; Thumb decoding is inference, not full firmware or physical flash backup",
+    "capture_sha256": [
+      "36c930c006e0fb4465b0015b31af12dc3f63fd8c10cf062094b9d04e7e6e53f5",
+      "de08ade36e6f2670042a76346ecc418824fef4a7562f374b553d274e3c55f912"
+    ],
+    "address": "0x1000bf20",
+    "length": 16,
+    "hex": "2de9f0476149624e86b05020a1f0abfa",
+    "sha256": "3314944ac8ca0faa67e68af9cff62b0daa5959ae0a1f1d9b0ea00bbf689e1cef",
+    "independent_reads_match": true,
+    "decoder": "Capstone 5.0.6, ARM Thumb little-endian",
+    "decoded_bytes": 16,
+    "instructions": [
+      {
+        "address": "0x1000bf20",
+        "bytes": "2de9f047",
+        "mnemonic": "push.w",
+        "operands": "{r4, r5, r6, r7, r8, sb, sl, lr}"
+      },
+      {
+        "address": "0x1000bf24",
+        "bytes": "6149",
+        "mnemonic": "ldr",
+        "operands": "r1, [pc, #0x184]"
+      },
+      {
+        "address": "0x1000bf26",
+        "bytes": "624e",
+        "mnemonic": "ldr",
+        "operands": "r6, [pc, #0x188]"
+      },
+      {
+        "address": "0x1000bf28",
+        "bytes": "86b0",
+        "mnemonic": "sub",
+        "operands": "sp, #0x18"
+      },
+      {
+        "address": "0x1000bf2a",
+        "bytes": "5020",
+        "mnemonic": "movs",
+        "operands": "r0, #0x50"
+      },
+      {
+        "address": "0x1000bf2c",
+        "bytes": "a1f0abfa",
+        "mnemonic": "bl",
+        "operands": "#0x100ad486"
+      }
+    ],
+    "limitations": [
+      "Does not execute code",
+      "No physical offset or image extent established"
+    ]
+  },
+  "recording_transitions": [
+    {
+      "action": "start",
+      "name": "20261012112429",
+      "reply_hex": "00323032363130313231313234323901",
+      "ok": true,
+      "state_before": "idle",
+      "state_after": "recording"
+    },
+    {
+      "action": "pause",
+      "name": "20261012112429",
+      "reply_hex": "00323032363130313231313234323901",
+      "ok": true,
+      "state_before": "recording",
+      "state_after": "paused"
+    },
+    {
+      "action": "resume",
+      "name": "20261012112429",
+      "reply_hex": "00323032363130313231313234323901",
+      "ok": true,
+      "state_before": "paused",
+      "state_after": "recording"
+    },
+    {
+      "action": "stop",
+      "name": "20261012112429",
+      "reply_hex": "0032303236313031323131323432390000de500101",
+      "size": 56912,
+      "need_sync": true,
+      "ok": true,
+      "state_before": "recording",
+      "state_after": "idle"
+    }
+  ],
+  "recording_info": {
+    "recording_state": "recording",
+    "name": "20261012112429",
+    "size": 44382,
+    "kind": "note",
+    "raw": "0032303236313031323131323432390000ad5e01"
+  },
+  "export": {
+    "name": "20261012112429",
+    "bytes": 56912,
+    "sha256": "85e79226449750809978094b3c07cdc33c1941e1755dd0349c70e077a66d690d"
+  },
+  "media_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "mp3",
+        "sample_rate": "16000",
+        "channels": 1
+      }
+    ],
+    "format": {
+      "duration": "14.228000",
+      "size": "56912"
+    }
+  },
+  "sync": {
+    "downloaded": 3,
+    "size_only_skipped": 1
+  },
+  "settings_roundtrip": [
+    {
+      "setting": "noise",
+      "before": 9,
+      "value": 8,
+      "changed": true,
+      "reply_hex": "00",
+      "verification": "device_readback"
+    },
+    {
+      "setting": "noise",
+      "before": 8,
+      "value": 9,
+      "changed": true,
+      "reply_hex": "00",
+      "verification": "device_readback"
+    }
+  ],
+  "final_info": {
+    "serial": "C261CF0430",
+    "bound": false,
+    "device": {
+      "total_capacity": 59634,
+      "free_capacity": 59632,
+      "charging": true,
+      "battery": 100,
+      "recording_state": "idle",
+      "version": "010004",
+      "usb_mode": true,
+      "mode": "call",
+      "indicator_light": null,
+      "noise_reduction": 9,
+      "voice_control": null,
+      "segment_duration": 3,
+      "screen_backlight": false,
+      "raw": "0000e8f20000e8f00264000100040101ff78696e6b5f746573740000000000000000000000000009ff0300010000000000000000"
+    }
+  },
+  "linux_offline": {
+    "python": "3.13.15",
+    "platform": "Linux",
+    "versions": {
+      "rcominote": "0.1.0",
+      "bleak": "1.1.1",
+      "typer": "0.27.3",
+      "capstone": "5.0.6"
+    },
+    "bluetooth_permission": "not_probed; run scan to test host access",
+    "usb_snapshot": "macOS only; diff remains offline",
+    "firmware_backup": "not_available; only fixed mapped-code sample",
+    "flash_recovery": "not_verified"
+  },
+  "checks": {
+    "tests_passed": 42,
+    "subtests_passed": 22,
+    "ruff": "pass",
+    "wheel_and_sdist": "built"
+  },
+  "limits": [
+    "Recording audio stays in ignored artifacts; not committed",
+    "New test recording retained on device",
+    "Other setting writes and clock command not live-tested",
+    "Linux test was offline only",
+    "No complete firmware dump, reboot, ADFU or flashing"
+  ],
+  "linux_code_comparison": {
+    "length": 16,
+    "sha256": "3314944ac8ca0faa67e68af9cff62b0daa5959ae0a1f1d9b0ea00bbf689e1cef",
+    "independent_reads_match": true,
+    "decoded_bytes": 16,
+    "decoder": "Capstone 5.0.6, ARM Thumb little-endian"
+  }
+}

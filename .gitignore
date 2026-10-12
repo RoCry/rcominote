@@ -4,3 +4,6 @@ __pycache__/
 artifacts/
 *.mp3
 *.apk
+.pytest_cache/
+dist/
+*.egg-info/

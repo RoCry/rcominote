@@ -1,8 +1,3 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# requires-python = ">=3.13"
-# dependencies = ["typer>=0.16,<1"]
-# ///
 """Snapshot/diff macOS USB registry descriptors; never open a device or send USB requests."""
 
 import hashlib
@@ -22,7 +17,7 @@ app = typer.Typer(no_args_is_help=True, pretty_exceptions_enable=False)
 def parse_registry(raw: bytes) -> list[dict]:
     roots = plistlib.loads(raw)
     if not isinstance(roots, list):
-        raise ValueError("Expected ioreg IOUSBHostDevice plist array")
+        raise TypeError("Expected ioreg IOUSBHostDevice plist array")
     devices = {}
 
     def walk(nodes: list[dict]):
@@ -76,7 +71,9 @@ def compare(before: list[dict], after: list[dict]) -> dict:
         "removed": [value for key, value in old.items() if key not in new],
         "added": [value for key, value in new.items() if key not in old],
         "changed": [
-            {"before": old[key], "after": value} for key, value in new.items() if key in old and old[key] != value
+            {"before": old[key], "after": value}
+            for key, value in new.items()
+            if key in old and old[key] != value
         ],
     }
 

@@ -1,8 +1,3 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# requires-python = ">=3.13"
-# dependencies = ["capstone==5.0.6", "typer>=0.16,<1"]
-# ///
 """Offline inspection of the fixed 16-byte CoMi sample; never connects to hardware."""
 
 import hashlib
@@ -30,23 +25,26 @@ def read_sample(path: Path) -> bytes:
     return bytes.fromhex(rows[0])
 
 
-def main(
-    first: Path,
-    second: Path,
-    out: Annotated[Path, typer.Option(help="New JSON report")],
-):
-    if out.exists():
-        raise FileExistsError(out)
+def inspect_samples(first: Path, second: Path) -> dict:
+    captures = [json.loads(path.read_text()) for path in (first, second)]
+    identities = [(capture.get("serial"), capture.get("captured_at")) for capture in captures]
+    if any(not identity[1] for identity in identities) or identities[0] == identities[1]:
+        raise ValueError("Two distinct capture records are required; duplicate or missing capture identity")
     sample = read_sample(first)
     if read_sample(second) != sample:
         raise ValueError("Independent samples differ; refusing to treat them as stable code")
     decoder = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_LITTLE_ENDIAN)
     instructions = [
-        {"address": hex(ins.address), "bytes": ins.bytes.hex(), "mnemonic": ins.mnemonic, "operands": ins.op_str}
+        {
+            "address": hex(ins.address),
+            "bytes": ins.bytes.hex(),
+            "mnemonic": ins.mnemonic,
+            "operands": ins.op_str,
+        }
         for ins in decoder.disasm(sample, ADDRESS)
     ]
     decoded = sum(len(bytes.fromhex(ins["bytes"])) for ins in instructions)
-    report = {
+    return {
         "scope": "16 mapped bytes only; Thumb decoding is inference, not full firmware or physical flash backup",
         "capture_sha256": [hashlib.sha256(path.read_bytes()).hexdigest() for path in (first, second)],
         "address": hex(ADDRESS),
@@ -59,11 +57,21 @@ def main(
         "instructions": instructions,
         "limitations": ["Does not execute code", "No physical offset or image extent established"],
     }
+
+
+def main(
+    first: Path,
+    second: Path,
+    out: Annotated[Path, typer.Option(help="New JSON report")],
+):
+    if out.exists():
+        raise FileExistsError(out)
+    report = inspect_samples(first, second)
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("x") as handle:
         handle.write(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps(report, ensure_ascii=False, indent=2))
-    if decoded != len(sample):
+    if report["decoded_bytes"] != report["length"]:
         raise typer.Exit(code=1)
 
 

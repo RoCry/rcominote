@@ -1,15 +1,10 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# requires-python = ">=3.13"
-# dependencies = ["bleak>=1.1,<2", "typer>=0.16,<1"]
-# ///
 """Oracles: frames captured live from the owned CoMi Note (serial C261CF0430,
 macOS, 2026-10-12) and the app's documented layout. Expected values are decoded
 by hand, never by replaying protocol.py's own output."""
 
 import unittest
 
-import protocol as P
+from rcominote import protocol as P
 
 # Captured 2026-10-12 off the real device (see research note).
 SERIAL_REPLY = bytes.fromhex("d22d01010a4332363143463034333060bb")

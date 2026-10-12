@@ -39,7 +39,7 @@ TERMS = (
     b"firmware",
     "固件".encode(),
 )
-IMAGE_NAME = re.compile(r"firmware|\.(?:bin|fw|hex|img|dfu|ufw|upd)$", re.I)
+IMAGE_NAME = re.compile(r"firmware|\.(?:bin|fw|hex|img|dfu|ufw|upd)$", re.IGNORECASE)
 
 
 def digest(data: bytes) -> str:
@@ -112,14 +112,18 @@ def inspect(apk: Path, out: Path) -> dict:
     out.mkdir(parents=True)
     for filename, data in extracted.items():
         (out / filename).write_bytes(data)
-    (out / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (out / "manifest.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
     return manifest
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("apk", type=Path, help="Local APK; never fetched or executed")
-    parser.add_argument("--out", required=True, type=Path, help="New output directory (use ignored artifacts/)")
+    parser.add_argument(
+        "--out", required=True, type=Path, help="New output directory (use ignored artifacts/)"
+    )
     args = parser.parse_args()
     try:
         manifest = inspect(apk=args.apk, out=args.out)
