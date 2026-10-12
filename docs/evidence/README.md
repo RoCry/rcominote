@@ -178,3 +178,7 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 
 [ROM方法/边界](../rom-sd-bridge.md)；[首读](rom-sd-bridge-2026-10-13/first-download.bin)、[重读](rom-sd-bridge-2026-10-13/second-download.bin)、[首读帧/状态](rom-sd-bridge-2026-10-13/first-report.json)、[重读帧/状态](rom-sd-bridge-2026-10-13/second-report.json)、[复验分析](rom-sd-bridge-2026-10-13/analysis.json)：两份336 B与旧ROM oracle完全一致，留下两个非音频SD文件，无模式切换或NOR写入。
 [正常态入口结论](../normal-ram-entry-inventory.md)、[全部表项与候选直接代码](normal-ram-entry-2026-10-13.json)：13 root、15表、81子命令；host-only，未建立RAM执行合同。
+
+## 部分LARK芯片定义恢复（2026-10-13）
+
+[方法与边界](../lark-register-recovery.md)、[全部选定DWARF布局/来源](lark-register-layouts-2026-10-13.json)、[提取与M4编译验证](lark-register-validation-2026-10-13.json)。12组外设结构、47 IRQ常量，自包含header入库；9类跨ELF一致，未恢复base/bit/startup或建立CoMi兼容性。[正式DFP索引限定负结果](../platform-next-route-review.md)。无设备I/O。

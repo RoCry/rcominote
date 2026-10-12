@@ -10,6 +10,8 @@ The source/build/dependency inventory below replaces the narrower ATT/loader-onl
 view. A complete ATS3085L/CoMi BSP, chip programming manual,
 matched production host package and official CoMi firmware remain unacquired.
 
+Follow-up: [12 register layouts/47 IRQ values recovered from existing DWARF](lark-register-recovery.md), with self-contained partial header and compiler checks; [official CMSIS Pack index check](platform-next-route-review.md) acquired no matching package. Neither closes the BSP gap.
+
 ## Rebuildability: peripheral source survives, platform closure does not
 
 Read the fixed tracked tree and its CMake/Kconfig selectors, not filenames alone.

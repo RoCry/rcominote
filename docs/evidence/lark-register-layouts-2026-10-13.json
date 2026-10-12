@@ -1,0 +1,3848 @@
+{
+  "scope": "Partial reference definitions; not full lark.h, silicon confirmation or CoMi BSP",
+  "sources": {
+    "flash": {
+      "sha256": "588386943adff3ea2ea8163fa5148b4686d5e3a568acd632028c46628bfb3584",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/tools/flash_loader/JLink/Devices/Actions/LARK/lark_flash.elf",
+      "types": {
+        "SCB_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 140,
+            "members": [
+              {
+                "name": "CPUID",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "ICSR",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "VTOR",
+                "offset": 8,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "AIRCR",
+                "offset": 12,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "SCR",
+                "offset": 16,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "CCR",
+                "offset": 20,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "SHP",
+                "offset": 24,
+                "c_type": "uint8_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  12
+                ],
+                "element_bytes": 1,
+                "bytes": 12
+              },
+              {
+                "name": "SHCSR",
+                "offset": 36,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "CFSR",
+                "offset": 40,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "HFSR",
+                "offset": 44,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DFSR",
+                "offset": 48,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "MMFAR",
+                "offset": 52,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "BFAR",
+                "offset": 56,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "AFSR",
+                "offset": 60,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "PFR",
+                "offset": 64,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              },
+              {
+                "name": "DFR",
+                "offset": 72,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "ADR",
+                "offset": 76,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "MMFR",
+                "offset": 80,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  4
+                ],
+                "element_bytes": 4,
+                "bytes": 16
+              },
+              {
+                "name": "ISAR",
+                "offset": 96,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  5
+                ],
+                "element_bytes": 4,
+                "bytes": 20
+              },
+              {
+                "name": "RESERVED0",
+                "offset": 116,
+                "c_type": "uint32_t",
+                "qualifiers": [],
+                "dimensions": [
+                  5
+                ],
+                "element_bytes": 4,
+                "bytes": 20
+              },
+              {
+                "name": "CPACR",
+                "offset": 136,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x273",
+              "cu_offset": "0x0",
+              "source_file": "core_cm4.h",
+              "source_line": 468
+            }
+          ]
+        },
+        "CMUA_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 36,
+            "members": [
+              {
+                "name": "RESERVED",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  7
+                ],
+                "element_bytes": 4,
+                "bytes": 28
+              },
+              {
+                "name": "AVDDLDO_CTL",
+                "offset": 28,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "COREPLL_CTL",
+                "offset": 32,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x2ec",
+              "cu_offset": "0x0",
+              "source_file": "lark.h",
+              "source_line": 219
+            }
+          ]
+        },
+        "CMUD_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 280,
+            "members": [
+              {
+                "name": "SYSCLK",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DEVCLKEN0",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DEVCLKEN1",
+                "offset": 8,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED",
+                "offset": 12,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  5
+                ],
+                "element_bytes": 4,
+                "bytes": 20
+              },
+              {
+                "name": "SPICLK",
+                "offset": 32,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  4
+                ],
+                "element_bytes": 4,
+                "bytes": 16
+              },
+              {
+                "name": "DECLK",
+                "offset": 48,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "LCDCLK",
+                "offset": 52,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED1",
+                "offset": 56,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              },
+              {
+                "name": "TIMERCLK",
+                "offset": 64,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  5
+                ],
+                "element_bytes": 4,
+                "bytes": 20
+              },
+              {
+                "name": "RESERVED2",
+                "offset": 84,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  11
+                ],
+                "element_bytes": 4,
+                "bytes": 44
+              },
+              {
+                "name": "I2CCLK",
+                "offset": 128,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              },
+              {
+                "name": "RESERVED3",
+                "offset": 136,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  10
+                ],
+                "element_bytes": 4,
+                "bytes": 40
+              },
+              {
+                "name": "MEMCLKEN0",
+                "offset": 176,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "MEMCLKEN1",
+                "offset": 180,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED4",
+                "offset": 184,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              },
+              {
+                "name": "MEMCLKSRC0",
+                "offset": 192,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "MEMCLKSRC1",
+                "offset": 196,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED5",
+                "offset": 200,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  14
+                ],
+                "element_bytes": 4,
+                "bytes": 56
+              },
+              {
+                "name": "SPIMTCLK",
+                "offset": 256,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              },
+              {
+                "name": "RESERVED6",
+                "offset": 264,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              },
+              {
+                "name": "I2CMTCLK",
+                "offset": 272,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x48a",
+              "cu_offset": "0x0",
+              "source_file": "lark.h",
+              "source_line": 254
+            },
+            {
+              "typedef_die": "0x316f",
+              "cu_offset": "0x2ec5",
+              "source_file": "lark.h",
+              "source_line": 254
+            },
+            {
+              "typedef_die": "0x388b",
+              "cu_offset": "0x35d1",
+              "source_file": "lark.h",
+              "source_line": 254
+            },
+            {
+              "typedef_die": "0x458a",
+              "cu_offset": "0x405a",
+              "source_file": "lark.h",
+              "source_line": 254
+            }
+          ]
+        },
+        "PMU_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 288,
+            "members": [
+              {
+                "name": "VOUT_CTL0",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "VOUT_CTL1_S1",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "VOUT_CTL1_S2",
+                "offset": 8,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "VOUT_CTL1_S3",
+                "offset": 12,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "PMU_DET",
+                "offset": 16,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED",
+                "offset": 20,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  3
+                ],
+                "element_bytes": 4,
+                "bytes": 12
+              },
+              {
+                "name": "DCDC_VC18_CTL",
+                "offset": 32,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DCDC_VC12_CTL",
+                "offset": 36,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DCDC_VDD_CTL",
+                "offset": 40,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED1",
+                "offset": 44,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "PWRGATE_DIG",
+                "offset": 48,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "PWRGATE_DIG_ACK",
+                "offset": 52,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "PWRGATE_RAM",
+                "offset": 56,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "PWRGATE_RAM_ACK",
+                "offset": 60,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "PMU_INTMASK",
+                "offset": 64,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED2",
+                "offset": 68,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  47
+                ],
+                "element_bytes": 4,
+                "bytes": 188
+              },
+              {
+                "name": "CHG_CTL_SVCC",
+                "offset": 256,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "BDG_CTL_SVCC",
+                "offset": 260,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "SYSTEM_SET_SVCC",
+                "offset": 264,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "POWER_CTL_SVCC",
+                "offset": 268,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "WAKE_CTL_SVCC",
+                "offset": 272,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "WAKE_PD_SVCC",
+                "offset": 276,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "COUNTER8HZ_SVCC",
+                "offset": 280,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "ALARM8HZ_SVCC",
+                "offset": 284,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x62e",
+              "cu_offset": "0x0",
+              "source_file": "lark.h",
+              "source_line": 314
+            }
+          ]
+        },
+        "RTC_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 36,
+            "members": [
+              {
+                "name": "RESERVED",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  8
+                ],
+                "element_bytes": 4,
+                "bytes": 32
+              },
+              {
+                "name": "WD",
+                "offset": 32,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x67b",
+              "cu_offset": "0x0",
+              "source_file": "lark.h",
+              "source_line": 330
+            },
+            {
+              "typedef_die": "0x4963",
+              "cu_offset": "0x48b0",
+              "source_file": "lark.h",
+              "source_line": 330
+            }
+          ]
+        },
+        "MEM_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 784,
+            "members": [
+              {
+                "name": "CTL",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "CPU_ERR_ADDR",
+                "offset": 8,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED1",
+                "offset": 12,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  5
+                ],
+                "element_bytes": 4,
+                "bytes": 20
+              },
+              {
+                "name": "CTL2",
+                "offset": 32,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED2",
+                "offset": 36,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  183
+                ],
+                "element_bytes": 4,
+                "bytes": 732
+              },
+              {
+                "name": "SPICACHE_MAPPING_ADDR0",
+                "offset": 768,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "SPICACHE_ADDR0_ENTRY",
+                "offset": 772,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "SPICACHE_MAPPING_ADDR1",
+                "offset": 776,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "SPICACHE_ADDR1_ENTRY",
+                "offset": 780,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x73e",
+              "cu_offset": "0x0",
+              "source_file": "lark.h",
+              "source_line": 373
+            },
+            {
+              "typedef_die": "0x324b",
+              "cu_offset": "0x2ec5",
+              "source_file": "lark.h",
+              "source_line": 373
+            }
+          ]
+        },
+        "GPIO_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 784,
+            "members": [
+              {
+                "name": "JTAG",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "CTL",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  78
+                ],
+                "element_bytes": 4,
+                "bytes": 312
+              },
+              {
+                "name": "RESERVED",
+                "offset": 316,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  49
+                ],
+                "element_bytes": 4,
+                "bytes": 196
+              },
+              {
+                "name": "ODAT",
+                "offset": 512,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  3
+                ],
+                "element_bytes": 4,
+                "bytes": 12
+              },
+              {
+                "name": "RESERVED1",
+                "offset": 524,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "BSR",
+                "offset": 528,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  3
+                ],
+                "element_bytes": 4,
+                "bytes": 12
+              },
+              {
+                "name": "RESERVED2",
+                "offset": 540,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "BRR",
+                "offset": 544,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  3
+                ],
+                "element_bytes": 4,
+                "bytes": 12
+              },
+              {
+                "name": "RESERVED3",
+                "offset": 556,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "IDAT",
+                "offset": 560,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  3
+                ],
+                "element_bytes": 4,
+                "bytes": 12
+              },
+              {
+                "name": "RESERVED4",
+                "offset": 572,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "PD",
+                "offset": 576,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  3
+                ],
+                "element_bytes": 4,
+                "bytes": 12
+              },
+              {
+                "name": "RESERVED5",
+                "offset": 588,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  45
+                ],
+                "element_bytes": 4,
+                "bytes": 180
+              },
+              {
+                "name": "WIOCTL",
+                "offset": 768,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  4
+                ],
+                "element_bytes": 4,
+                "bytes": 16
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x884",
+              "cu_offset": "0x0",
+              "source_file": "lark.h",
+              "source_line": 574
+            },
+            {
+              "typedef_die": "0x4e0a",
+              "cu_offset": "0x49c0",
+              "source_file": "lark.h",
+              "source_line": 574
+            }
+          ]
+        },
+        "RMU_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 8,
+            "members": [
+              {
+                "name": "MRCR0",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "MRCR1",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x2fd1",
+              "cu_offset": "0x2ec5",
+              "source_file": "lark.h",
+              "source_line": 202
+            },
+            {
+              "typedef_die": "0x36ed",
+              "cu_offset": "0x35d1",
+              "source_file": "lark.h",
+              "source_line": 202
+            },
+            {
+              "typedef_die": "0x43ec",
+              "cu_offset": "0x405a",
+              "source_file": "lark.h",
+              "source_line": 202
+            }
+          ]
+        },
+        "SPI0CACHE_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 56,
+            "members": [
+              {
+                "name": "CTL",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "INVALIDATE",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED",
+                "offset": 8,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              },
+              {
+                "name": "TOTAL_MISS",
+                "offset": 16,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "TOTAL_HIT",
+                "offset": 20,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "PROFILE_IDX_START",
+                "offset": 24,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "PROFILE_IDX_END",
+                "offset": 28,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RANGE_IDX_MISS",
+                "offset": 32,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RANGE_IDX_HIT",
+                "offset": 36,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "PROFILE_START",
+                "offset": 40,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "PROFILE_END",
+                "offset": 44,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RANGE_MISS",
+                "offset": 48,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RANGE_HIT",
+                "offset": 52,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x3319",
+              "cu_offset": "0x2ec5",
+              "source_file": "lark.h",
+              "source_line": 400
+            }
+          ]
+        },
+        "SPI1CACHE_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 68,
+            "members": [
+              {
+                "name": "CTL",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "OPERATE",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "CPU_UNCACHE_START",
+                "offset": 8,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "CPU_UNCACHE_END",
+                "offset": 12,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "M4F_MISS",
+                "offset": 16,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "M4F_HIT",
+                "offset": 20,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "M4F_WRITEBACK",
+                "offset": 24,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED",
+                "offset": 28,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  3
+                ],
+                "element_bytes": 4,
+                "bytes": 12
+              },
+              {
+                "name": "DMA_MISS",
+                "offset": 40,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DMA_HIT",
+                "offset": 44,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DMA_WRITEBACK",
+                "offset": 48,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED1",
+                "offset": 52,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              },
+              {
+                "name": "PROFILE_START",
+                "offset": 60,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "PROFILE_END",
+                "offset": 64,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x33f5",
+              "cu_offset": "0x2ec5",
+              "source_file": "lark.h",
+              "source_line": 428
+            }
+          ]
+        },
+        "SPI0_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 24,
+            "members": [
+              {
+                "name": "CTL",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "STA",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "TXDAT",
+                "offset": 8,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RXDAT",
+                "offset": 12,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "BC",
+                "offset": 16,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "SEED",
+                "offset": 20,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x3460",
+              "cu_offset": "0x2ec5",
+              "source_file": "lark.h",
+              "source_line": 448
+            },
+            {
+              "typedef_die": "0x38f5",
+              "cu_offset": "0x35d1",
+              "source_file": "lark.h",
+              "source_line": 448
+            }
+          ]
+        },
+        "SPI1_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 60,
+            "members": [
+              {
+                "name": "CTL",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "STA",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "TXDAT",
+                "offset": 8,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RXDAT",
+                "offset": 12,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "BC",
+                "offset": 16,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED",
+                "offset": 20,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DDR_MODE_CTL",
+                "offset": 24,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED1",
+                "offset": 28,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DDR_CMD",
+                "offset": 32,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DDR_START",
+                "offset": 36,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DDR_STATUS",
+                "offset": 40,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DDR_ADDR0",
+                "offset": 44,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DDR_ADDR1",
+                "offset": 48,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DDR_TRXLEN",
+                "offset": 52,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "CLKGATING",
+                "offset": 56,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x3549",
+              "cu_offset": "0x2ec5",
+              "source_file": "lark.h",
+              "source_line": 477
+            }
+          ]
+        },
+        "IRQn_Type": {
+          "layout": {
+            "kind": "enum",
+            "bytes": 1,
+            "values": [
+              {
+                "name": "Reset_IRQn",
+                "value": -15
+              },
+              {
+                "name": "NonMaskableInt_IRQn",
+                "value": -14
+              },
+              {
+                "name": "HardFault_IRQn",
+                "value": -13
+              },
+              {
+                "name": "MemoryManagement_IRQn",
+                "value": -12
+              },
+              {
+                "name": "BusFault_IRQn",
+                "value": -11
+              },
+              {
+                "name": "UsageFault_IRQn",
+                "value": -10
+              },
+              {
+                "name": "SVCall_IRQn",
+                "value": -5
+              },
+              {
+                "name": "DebugMonitor_IRQn",
+                "value": -4
+              },
+              {
+                "name": "PendSV_IRQn",
+                "value": -2
+              },
+              {
+                "name": "SysTick_IRQn",
+                "value": -1
+              },
+              {
+                "name": "WD_2HZ_IRQn",
+                "value": 1
+              },
+              {
+                "name": "TIMER0_IRQn",
+                "value": 2
+              },
+              {
+                "name": "TIMER1_IRQn",
+                "value": 3
+              },
+              {
+                "name": "TIMER2_IRQn",
+                "value": 4
+              },
+              {
+                "name": "TIMER3_IRQn",
+                "value": 5
+              },
+              {
+                "name": "TIMER4_IRQn",
+                "value": 6
+              },
+              {
+                "name": "RTC_IRQn",
+                "value": 7
+              },
+              {
+                "name": "SPI0_IRQn",
+                "value": 12
+              },
+              {
+                "name": "SPI1_IRQn",
+                "value": 13
+              },
+              {
+                "name": "SPI2_IRQn",
+                "value": 14
+              },
+              {
+                "name": "SPI3_IRQn",
+                "value": 15
+              },
+              {
+                "name": "I2C0_IRQn",
+                "value": 18
+              },
+              {
+                "name": "I2C1_IRQn",
+                "value": 19
+              },
+              {
+                "name": "UART0_IRQn",
+                "value": 22
+              },
+              {
+                "name": "UART1_IRQn",
+                "value": 23
+              },
+              {
+                "name": "UART2_IRQn",
+                "value": 24
+              },
+              {
+                "name": "DMA0_IRQn",
+                "value": 27
+              },
+              {
+                "name": "DMA1_IRQn",
+                "value": 28
+              },
+              {
+                "name": "DMA2_IRQn",
+                "value": 29
+              },
+              {
+                "name": "DMA3_IRQn",
+                "value": 30
+              },
+              {
+                "name": "DMA4_IRQn",
+                "value": 31
+              },
+              {
+                "name": "DMA5_IRQn",
+                "value": 32
+              },
+              {
+                "name": "DMA6_IRQn",
+                "value": 33
+              },
+              {
+                "name": "DMA7_IRQn",
+                "value": 34
+              },
+              {
+                "name": "DMA8_IRQn",
+                "value": 35
+              },
+              {
+                "name": "DMA9_IRQn",
+                "value": 36
+              },
+              {
+                "name": "GPIO_IRQn",
+                "value": 37
+              },
+              {
+                "name": "LCD_IRQn",
+                "value": 43
+              },
+              {
+                "name": "DE_IRQn",
+                "value": 49
+              },
+              {
+                "name": "BT_IRQn",
+                "value": 56
+              },
+              {
+                "name": "ANCDSP0_IRQn",
+                "value": 57
+              },
+              {
+                "name": "TWS_IRQn",
+                "value": 58
+              },
+              {
+                "name": "ANCDSP1_IRQn",
+                "value": 59
+              },
+              {
+                "name": "SPI0MT_IRQn",
+                "value": 60
+              },
+              {
+                "name": "SPI1MT_IRQn",
+                "value": 61
+              },
+              {
+                "name": "I2C0MT_IRQn",
+                "value": 62
+              },
+              {
+                "name": "I2C1MT_IRQn",
+                "value": 63
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x41ea",
+              "cu_offset": "0x405a",
+              "source_file": "lark.h",
+              "source_line": 109
+            },
+            {
+              "typedef_die": "0x4b15",
+              "cu_offset": "0x49c0",
+              "source_file": "lark.h",
+              "source_line": 109
+            }
+          ]
+        },
+        "NVIC_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 3588,
+            "members": [
+              {
+                "name": "ISER",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  8
+                ],
+                "element_bytes": 4,
+                "bytes": 32
+              },
+              {
+                "name": "RESERVED0",
+                "offset": 32,
+                "c_type": "uint32_t",
+                "qualifiers": [],
+                "dimensions": [
+                  24
+                ],
+                "element_bytes": 4,
+                "bytes": 96
+              },
+              {
+                "name": "ICER",
+                "offset": 128,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  8
+                ],
+                "element_bytes": 4,
+                "bytes": 32
+              },
+              {
+                "name": "RESERVED1",
+                "offset": 160,
+                "c_type": "uint32_t",
+                "qualifiers": [],
+                "dimensions": [
+                  24
+                ],
+                "element_bytes": 4,
+                "bytes": 96
+              },
+              {
+                "name": "ISPR",
+                "offset": 256,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  8
+                ],
+                "element_bytes": 4,
+                "bytes": 32
+              },
+              {
+                "name": "RESERVED2",
+                "offset": 288,
+                "c_type": "uint32_t",
+                "qualifiers": [],
+                "dimensions": [
+                  24
+                ],
+                "element_bytes": 4,
+                "bytes": 96
+              },
+              {
+                "name": "ICPR",
+                "offset": 384,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  8
+                ],
+                "element_bytes": 4,
+                "bytes": 32
+              },
+              {
+                "name": "RESERVED3",
+                "offset": 416,
+                "c_type": "uint32_t",
+                "qualifiers": [],
+                "dimensions": [
+                  24
+                ],
+                "element_bytes": 4,
+                "bytes": 96
+              },
+              {
+                "name": "IABR",
+                "offset": 512,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  8
+                ],
+                "element_bytes": 4,
+                "bytes": 32
+              },
+              {
+                "name": "RESERVED4",
+                "offset": 544,
+                "c_type": "uint32_t",
+                "qualifiers": [],
+                "dimensions": [
+                  56
+                ],
+                "element_bytes": 4,
+                "bytes": 224
+              },
+              {
+                "name": "IP",
+                "offset": 768,
+                "c_type": "uint8_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  240
+                ],
+                "element_bytes": 1,
+                "bytes": 240
+              },
+              {
+                "name": "RESERVED5",
+                "offset": 1008,
+                "c_type": "uint32_t",
+                "qualifiers": [],
+                "dimensions": [
+                  644
+                ],
+                "element_bytes": 4,
+                "bytes": 2576
+              },
+              {
+                "name": "STIR",
+                "offset": 3584,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x4363",
+              "cu_offset": "0x405a",
+              "source_file": "core_cm4.h",
+              "source_line": 426
+            },
+            {
+              "typedef_die": "0x4caf",
+              "cu_offset": "0x49c0",
+              "source_file": "core_cm4.h",
+              "source_line": 426
+            }
+          ]
+        },
+        "UART_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 16384,
+            "members": [
+              {
+                "name": "CTL",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RXDAT",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "TXDAT",
+                "offset": 8,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "STA",
+                "offset": 12,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "BR",
+                "offset": 16,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED",
+                "offset": 20,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  4091
+                ],
+                "element_bytes": 4,
+                "bytes": 16364
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x4610",
+              "cu_offset": "0x405a",
+              "source_file": "lark.h",
+              "source_line": 518
+            }
+          ]
+        }
+      }
+    },
+    "sd": {
+      "sha256": "ccfb3ffc17ce11e853c6539ccc1810657709c48cb72f7d1ab775915874b7c4ee",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/tools/flash_loader/JLink/Devices/Actions/LARK/lark_sd.elf",
+      "types": {
+        "SCB_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 140,
+            "members": [
+              {
+                "name": "CPUID",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "ICSR",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "VTOR",
+                "offset": 8,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "AIRCR",
+                "offset": 12,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "SCR",
+                "offset": 16,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "CCR",
+                "offset": 20,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "SHP",
+                "offset": 24,
+                "c_type": "uint8_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  12
+                ],
+                "element_bytes": 1,
+                "bytes": 12
+              },
+              {
+                "name": "SHCSR",
+                "offset": 36,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "CFSR",
+                "offset": 40,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "HFSR",
+                "offset": 44,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DFSR",
+                "offset": 48,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "MMFAR",
+                "offset": 52,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "BFAR",
+                "offset": 56,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "AFSR",
+                "offset": 60,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "PFR",
+                "offset": 64,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              },
+              {
+                "name": "DFR",
+                "offset": 72,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "ADR",
+                "offset": 76,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "MMFR",
+                "offset": 80,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  4
+                ],
+                "element_bytes": 4,
+                "bytes": 16
+              },
+              {
+                "name": "ISAR",
+                "offset": 96,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  5
+                ],
+                "element_bytes": 4,
+                "bytes": 20
+              },
+              {
+                "name": "RESERVED0",
+                "offset": 116,
+                "c_type": "uint32_t",
+                "qualifiers": [],
+                "dimensions": [
+                  5
+                ],
+                "element_bytes": 4,
+                "bytes": 20
+              },
+              {
+                "name": "CPACR",
+                "offset": 136,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x38e",
+              "cu_offset": "0x138",
+              "source_file": "core_cm4.h",
+              "source_line": 468
+            }
+          ]
+        },
+        "CMUA_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 36,
+            "members": [
+              {
+                "name": "RESERVED",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  7
+                ],
+                "element_bytes": 4,
+                "bytes": 28
+              },
+              {
+                "name": "AVDDLDO_CTL",
+                "offset": 28,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "COREPLL_CTL",
+                "offset": 32,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x400",
+              "cu_offset": "0x138",
+              "source_file": "lark.h",
+              "source_line": 219
+            }
+          ]
+        },
+        "CMUD_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 280,
+            "members": [
+              {
+                "name": "SYSCLK",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DEVCLKEN0",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "DEVCLKEN1",
+                "offset": 8,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED",
+                "offset": 12,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  5
+                ],
+                "element_bytes": 4,
+                "bytes": 20
+              },
+              {
+                "name": "SPICLK",
+                "offset": 32,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  4
+                ],
+                "element_bytes": 4,
+                "bytes": 16
+              },
+              {
+                "name": "DECLK",
+                "offset": 48,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "LCDCLK",
+                "offset": 52,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED1",
+                "offset": 56,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              },
+              {
+                "name": "TIMERCLK",
+                "offset": 64,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  5
+                ],
+                "element_bytes": 4,
+                "bytes": 20
+              },
+              {
+                "name": "RESERVED2",
+                "offset": 84,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  11
+                ],
+                "element_bytes": 4,
+                "bytes": 44
+              },
+              {
+                "name": "I2CCLK",
+                "offset": 128,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              },
+              {
+                "name": "RESERVED3",
+                "offset": 136,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  10
+                ],
+                "element_bytes": 4,
+                "bytes": 40
+              },
+              {
+                "name": "MEMCLKEN0",
+                "offset": 176,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "MEMCLKEN1",
+                "offset": 180,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED4",
+                "offset": 184,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              },
+              {
+                "name": "MEMCLKSRC0",
+                "offset": 192,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "MEMCLKSRC1",
+                "offset": 196,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED5",
+                "offset": 200,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  14
+                ],
+                "element_bytes": 4,
+                "bytes": 56
+              },
+              {
+                "name": "SPIMTCLK",
+                "offset": 256,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              },
+              {
+                "name": "RESERVED6",
+                "offset": 264,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              },
+              {
+                "name": "I2CMTCLK",
+                "offset": 272,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  2
+                ],
+                "element_bytes": 4,
+                "bytes": 8
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x59e",
+              "cu_offset": "0x138",
+              "source_file": "lark.h",
+              "source_line": 254
+            },
+            {
+              "typedef_die": "0x1976",
+              "cu_offset": "0x1446",
+              "source_file": "lark.h",
+              "source_line": 254
+            },
+            {
+              "typedef_die": "0x2a3a",
+              "cu_offset": "0x2794",
+              "source_file": "lark.h",
+              "source_line": 254
+            }
+          ]
+        },
+        "RTC_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 36,
+            "members": [
+              {
+                "name": "RESERVED",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  8
+                ],
+                "element_bytes": 4,
+                "bytes": 32
+              },
+              {
+                "name": "WD",
+                "offset": 32,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x5ea",
+              "cu_offset": "0x138",
+              "source_file": "lark.h",
+              "source_line": 330
+            },
+            {
+              "typedef_die": "0x1d4f",
+              "cu_offset": "0x1c9c",
+              "source_file": "lark.h",
+              "source_line": 330
+            }
+          ]
+        },
+        "GPIO_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 784,
+            "members": [
+              {
+                "name": "JTAG",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "CTL",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  78
+                ],
+                "element_bytes": 4,
+                "bytes": 312
+              },
+              {
+                "name": "RESERVED",
+                "offset": 316,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  49
+                ],
+                "element_bytes": 4,
+                "bytes": 196
+              },
+              {
+                "name": "ODAT",
+                "offset": 512,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  3
+                ],
+                "element_bytes": 4,
+                "bytes": 12
+              },
+              {
+                "name": "RESERVED1",
+                "offset": 524,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "BSR",
+                "offset": 528,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  3
+                ],
+                "element_bytes": 4,
+                "bytes": 12
+              },
+              {
+                "name": "RESERVED2",
+                "offset": 540,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "BRR",
+                "offset": 544,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  3
+                ],
+                "element_bytes": 4,
+                "bytes": 12
+              },
+              {
+                "name": "RESERVED3",
+                "offset": 556,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "IDAT",
+                "offset": 560,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  3
+                ],
+                "element_bytes": 4,
+                "bytes": 12
+              },
+              {
+                "name": "RESERVED4",
+                "offset": 572,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "PD",
+                "offset": 576,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  3
+                ],
+                "element_bytes": 4,
+                "bytes": 12
+              },
+              {
+                "name": "RESERVED5",
+                "offset": 588,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  45
+                ],
+                "element_bytes": 4,
+                "bytes": 180
+              },
+              {
+                "name": "WIOCTL",
+                "offset": 768,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  4
+                ],
+                "element_bytes": 4,
+                "bytes": 16
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x730",
+              "cu_offset": "0x138",
+              "source_file": "lark.h",
+              "source_line": 574
+            },
+            {
+              "typedef_die": "0x21f6",
+              "cu_offset": "0x1dac",
+              "source_file": "lark.h",
+              "source_line": 574
+            }
+          ]
+        },
+        "IRQn_Type": {
+          "layout": {
+            "kind": "enum",
+            "bytes": 1,
+            "values": [
+              {
+                "name": "Reset_IRQn",
+                "value": -15
+              },
+              {
+                "name": "NonMaskableInt_IRQn",
+                "value": -14
+              },
+              {
+                "name": "HardFault_IRQn",
+                "value": -13
+              },
+              {
+                "name": "MemoryManagement_IRQn",
+                "value": -12
+              },
+              {
+                "name": "BusFault_IRQn",
+                "value": -11
+              },
+              {
+                "name": "UsageFault_IRQn",
+                "value": -10
+              },
+              {
+                "name": "SVCall_IRQn",
+                "value": -5
+              },
+              {
+                "name": "DebugMonitor_IRQn",
+                "value": -4
+              },
+              {
+                "name": "PendSV_IRQn",
+                "value": -2
+              },
+              {
+                "name": "SysTick_IRQn",
+                "value": -1
+              },
+              {
+                "name": "WD_2HZ_IRQn",
+                "value": 1
+              },
+              {
+                "name": "TIMER0_IRQn",
+                "value": 2
+              },
+              {
+                "name": "TIMER1_IRQn",
+                "value": 3
+              },
+              {
+                "name": "TIMER2_IRQn",
+                "value": 4
+              },
+              {
+                "name": "TIMER3_IRQn",
+                "value": 5
+              },
+              {
+                "name": "TIMER4_IRQn",
+                "value": 6
+              },
+              {
+                "name": "RTC_IRQn",
+                "value": 7
+              },
+              {
+                "name": "SPI0_IRQn",
+                "value": 12
+              },
+              {
+                "name": "SPI1_IRQn",
+                "value": 13
+              },
+              {
+                "name": "SPI2_IRQn",
+                "value": 14
+              },
+              {
+                "name": "SPI3_IRQn",
+                "value": 15
+              },
+              {
+                "name": "I2C0_IRQn",
+                "value": 18
+              },
+              {
+                "name": "I2C1_IRQn",
+                "value": 19
+              },
+              {
+                "name": "UART0_IRQn",
+                "value": 22
+              },
+              {
+                "name": "UART1_IRQn",
+                "value": 23
+              },
+              {
+                "name": "UART2_IRQn",
+                "value": 24
+              },
+              {
+                "name": "DMA0_IRQn",
+                "value": 27
+              },
+              {
+                "name": "DMA1_IRQn",
+                "value": 28
+              },
+              {
+                "name": "DMA2_IRQn",
+                "value": 29
+              },
+              {
+                "name": "DMA3_IRQn",
+                "value": 30
+              },
+              {
+                "name": "DMA4_IRQn",
+                "value": 31
+              },
+              {
+                "name": "DMA5_IRQn",
+                "value": 32
+              },
+              {
+                "name": "DMA6_IRQn",
+                "value": 33
+              },
+              {
+                "name": "DMA7_IRQn",
+                "value": 34
+              },
+              {
+                "name": "DMA8_IRQn",
+                "value": 35
+              },
+              {
+                "name": "DMA9_IRQn",
+                "value": 36
+              },
+              {
+                "name": "GPIO_IRQn",
+                "value": 37
+              },
+              {
+                "name": "LCD_IRQn",
+                "value": 43
+              },
+              {
+                "name": "DE_IRQn",
+                "value": 49
+              },
+              {
+                "name": "BT_IRQn",
+                "value": 56
+              },
+              {
+                "name": "ANCDSP0_IRQn",
+                "value": 57
+              },
+              {
+                "name": "TWS_IRQn",
+                "value": 58
+              },
+              {
+                "name": "ANCDSP1_IRQn",
+                "value": 59
+              },
+              {
+                "name": "SPI0MT_IRQn",
+                "value": 60
+              },
+              {
+                "name": "SPI1MT_IRQn",
+                "value": 61
+              },
+              {
+                "name": "I2C0MT_IRQn",
+                "value": 62
+              },
+              {
+                "name": "I2C1MT_IRQn",
+                "value": 63
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x15d6",
+              "cu_offset": "0x1446",
+              "source_file": "lark.h",
+              "source_line": 109
+            },
+            {
+              "typedef_die": "0x1f01",
+              "cu_offset": "0x1dac",
+              "source_file": "lark.h",
+              "source_line": 109
+            }
+          ]
+        },
+        "NVIC_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 3588,
+            "members": [
+              {
+                "name": "ISER",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  8
+                ],
+                "element_bytes": 4,
+                "bytes": 32
+              },
+              {
+                "name": "RESERVED0",
+                "offset": 32,
+                "c_type": "uint32_t",
+                "qualifiers": [],
+                "dimensions": [
+                  24
+                ],
+                "element_bytes": 4,
+                "bytes": 96
+              },
+              {
+                "name": "ICER",
+                "offset": 128,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  8
+                ],
+                "element_bytes": 4,
+                "bytes": 32
+              },
+              {
+                "name": "RESERVED1",
+                "offset": 160,
+                "c_type": "uint32_t",
+                "qualifiers": [],
+                "dimensions": [
+                  24
+                ],
+                "element_bytes": 4,
+                "bytes": 96
+              },
+              {
+                "name": "ISPR",
+                "offset": 256,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  8
+                ],
+                "element_bytes": 4,
+                "bytes": 32
+              },
+              {
+                "name": "RESERVED2",
+                "offset": 288,
+                "c_type": "uint32_t",
+                "qualifiers": [],
+                "dimensions": [
+                  24
+                ],
+                "element_bytes": 4,
+                "bytes": 96
+              },
+              {
+                "name": "ICPR",
+                "offset": 384,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  8
+                ],
+                "element_bytes": 4,
+                "bytes": 32
+              },
+              {
+                "name": "RESERVED3",
+                "offset": 416,
+                "c_type": "uint32_t",
+                "qualifiers": [],
+                "dimensions": [
+                  24
+                ],
+                "element_bytes": 4,
+                "bytes": 96
+              },
+              {
+                "name": "IABR",
+                "offset": 512,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  8
+                ],
+                "element_bytes": 4,
+                "bytes": 32
+              },
+              {
+                "name": "RESERVED4",
+                "offset": 544,
+                "c_type": "uint32_t",
+                "qualifiers": [],
+                "dimensions": [
+                  56
+                ],
+                "element_bytes": 4,
+                "bytes": 224
+              },
+              {
+                "name": "IP",
+                "offset": 768,
+                "c_type": "uint8_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [
+                  240
+                ],
+                "element_bytes": 1,
+                "bytes": 240
+              },
+              {
+                "name": "RESERVED5",
+                "offset": 1008,
+                "c_type": "uint32_t",
+                "qualifiers": [],
+                "dimensions": [
+                  644
+                ],
+                "element_bytes": 4,
+                "bytes": 2576
+              },
+              {
+                "name": "STIR",
+                "offset": 3584,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x174f",
+              "cu_offset": "0x1446",
+              "source_file": "core_cm4.h",
+              "source_line": 426
+            },
+            {
+              "typedef_die": "0x209b",
+              "cu_offset": "0x1dac",
+              "source_file": "core_cm4.h",
+              "source_line": 426
+            }
+          ]
+        },
+        "RMU_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 8,
+            "members": [
+              {
+                "name": "MRCR0",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "MRCR1",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x17d8",
+              "cu_offset": "0x1446",
+              "source_file": "lark.h",
+              "source_line": 202
+            },
+            {
+              "typedef_die": "0x289c",
+              "cu_offset": "0x2794",
+              "source_file": "lark.h",
+              "source_line": 202
+            }
+          ]
+        },
+        "UART_Type": {
+          "layout": {
+            "kind": "struct",
+            "bytes": 16384,
+            "members": [
+              {
+                "name": "CTL",
+                "offset": 0,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RXDAT",
+                "offset": 4,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "TXDAT",
+                "offset": 8,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "STA",
+                "offset": 12,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "BR",
+                "offset": 16,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "volatile"
+                ],
+                "dimensions": [],
+                "element_bytes": 4,
+                "bytes": 4
+              },
+              {
+                "name": "RESERVED",
+                "offset": 20,
+                "c_type": "uint32_t",
+                "qualifiers": [
+                  "const",
+                  "volatile"
+                ],
+                "dimensions": [
+                  4091
+                ],
+                "element_bytes": 4,
+                "bytes": 16364
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "typedef_die": "0x19fc",
+              "cu_offset": "0x1446",
+              "source_file": "lark.h",
+              "source_line": 518
+            }
+          ]
+        }
+      }
+    }
+  },
+  "shared_equal_types": [
+    "CMUA_Type",
+    "CMUD_Type",
+    "GPIO_Type",
+    "IRQn_Type",
+    "NVIC_Type",
+    "RMU_Type",
+    "RTC_Type",
+    "SCB_Type",
+    "UART_Type"
+  ],
+  "emitted_register_structs": [
+    "CMUA_Type",
+    "CMUD_Type",
+    "GPIO_Type",
+    "MEM_Type",
+    "PMU_Type",
+    "RMU_Type",
+    "RTC_Type",
+    "SPI0CACHE_Type",
+    "SPI0_Type",
+    "SPI1CACHE_Type",
+    "SPI1_Type",
+    "UART_Type"
+  ],
+  "irq_values": 47,
+  "not_recovered": [
+    "MMIO bases/macros",
+    "register bit semantics",
+    "startup/vector bindings",
+    "clock/reset IDs",
+    "CoMi wiring",
+    "full ROM extent"
+  ],
+  "outputs": {
+    "lark_registers.h": "293e6ef2ddbe2a73bbf22f311874a12f487f06123056192efabc22333261b2b7",
+    "lark_layout_assertions.c": "8179ec453a0766dd50a855599d3ad260c813637a3b5040147f4cd03ef8646eb4"
+  }
+}

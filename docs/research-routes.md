@@ -27,6 +27,11 @@ Current deliverables, in order:
    acquired no complete package: five historical SDK trees and current forks/refs
    add no LARK BSP; Vela guide supplies ATS3085X/vendor-package provenance only.
    Resume these acquisition routes on a new concrete package/ref, not another generic search.
+   [Partial chip definitions recovered from DWARF](lark-register-recovery.md)
+   now supply12 register layouts/47 IRQ values, cross-ELF and compiler checked;
+   they do not restore missing startup/base/bit/board definitions.
+   [Official CMSIS Pack index pass](platform-next-route-review.md) supplies no
+   matched package metadata; stop that acquisition route until a concrete new link.
    [Production package contract](production-package-contract.md) now traces the
    default outer ACTTEST0 `.fw`, inner maker package, raw and separate AOTA paths.
    Default production includes fw_product, not the legacy fw_maker_ext; no new

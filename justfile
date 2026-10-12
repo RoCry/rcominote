@@ -17,3 +17,8 @@ build-minimal toolchain out:
 [group('firmware')]
 check-image image:
     uv run tools/check_recovery_image.py docs/evidence/recovery-complete-2026-10-13/recovery-decoded.bin "{{image}}"
+
+# Partial reference definitions only; compile layout assertions without linking/running.
+[group('firmware')]
+check-lark toolchain:
+    "{{toolchain}}/bin/arm-none-eabi-gcc" -mcpu=cortex-m4 -mthumb -mfloat-abi=soft -ffreestanding -std=c11 -Wall -Wextra -Werror -pedantic -fsyntax-only firmware/reference/lark_layout_assertions.c

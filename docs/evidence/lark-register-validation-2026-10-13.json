@@ -1,0 +1,57 @@
+{
+  "scope": "Host-only extraction and target compiler layout verification; no target execution or MMIO",
+  "tool_sha256": "21ae64f26098f0a49a690e0031c032dd649a0c6ff5c7b4d4269f8a79cb24b7ab",
+  "repeat_outputs_equal": true,
+  "outputs_sha256": {
+    "lark_layout_assertions.c": "8179ec453a0766dd50a855599d3ad260c813637a3b5040147f4cd03ef8646eb4",
+    "lark_registers.h": "293e6ef2ddbe2a73bbf22f311874a12f487f06123056192efabc22333261b2b7",
+    "layouts.json": "c89aad08c9da58732d88335a15b282c9b9829efc803b18329be8290117af090f"
+  },
+  "damaged_input": {
+    "mutation": "Last byte of pinned flash ELF XOR1",
+    "exit": 1,
+    "error": "flash ELF hash mismatch",
+    "output_absent": true
+  },
+  "existing_output": {
+    "exit": 1,
+    "error": "FileExistsError",
+    "files_unchanged": true
+  },
+  "target_compiler": {
+    "version": "GNU Arm Embedded10.3.1 20210824 (release)",
+    "host": "Ubuntu",
+    "command": [
+      "arm-none-eabi-gcc",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-mfloat-abi=soft",
+      "-ffreestanding",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-fsyntax-only",
+      "lark_layout_assertions.c"
+    ],
+    "exit": 0,
+    "sizeof_assertions": 12,
+    "offsetof_assertions": 130
+  },
+  "independent_oracle": {
+    "tool": "LLVM dwarfdump, independent of generator parser",
+    "reviewer": "Astra",
+    "fields": [
+      "Flash CMUD21/GPIO14/PMU24/UART6",
+      "SD CMUD/GPIO/UART",
+      "all47 IRQ values in each ELF"
+    ],
+    "matched": true
+  },
+  "limits": [
+    "Reference declaration/layout only; cv qualifiers are not a silicon side-effect contract",
+    "Shared reference ancestry, not independent silicon specifications",
+    "No MMIO base, bit semantics, startup, complete BSP or CoMi compatibility proof"
+  ]
+}
