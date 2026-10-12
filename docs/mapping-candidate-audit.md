@@ -32,4 +32,4 @@
 
 [fread运行时输出](console-target-followup.md)已定位到UART_0 DMA链；[完整dbg目录](actual-dbg-command-inventory.md)用于检查另一条可返回字节的路径。官方包路线仍受[用户暂不登录](android-runtime-followup.md)边界约束。这些限制分别属于数据返回、物理映射和原厂资料，不能以某一项进展替代恢复验收。
 
-后续[原始分区读回](nor-partition-prefixes.md)：system前64 B双读与映射头不同；NOR K的256 B目录双重校验，定位aerecord.dsp绝对offset24d400、size1ae44。文件正文与恢复仍未验收。
+后续[原始分区读回](nor-partition-prefixes.md)：system前64 B双读与映射头不同；已进一步取得[完整512 B原始头及32 B重复块证据](raw-header-block-pattern.md)。录音DSP正文已[完整取得](record-dsp-export.md)，但恢复仍未验收。

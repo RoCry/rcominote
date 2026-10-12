@@ -21,6 +21,8 @@
 
 ## 阅读顺序
 
+新增：[system原始头32 B重复块](docs/raw-header-block-pattern.md)：完整512 B双读和映射头对照，排除若干简单重复XOR候选；算法尚未确定。
+
 新增：[boot/recovery原始前缀](docs/boot-recovery-prefixes.md)：备用boot前512 B全FF；recovery双读通过，与boot/system共享原始8 B前缀，存储转换仍未知。
 
 1. [固件研究路线与待解问题](docs/firmware-roadmap.md)：哪些证据决定下一步。

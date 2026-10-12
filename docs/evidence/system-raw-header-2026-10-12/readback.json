@@ -1,0 +1,309 @@
+{
+  "scope": "Guarded, non-atomic fixed NOR-target log rows; no full-device backup or recovery proof",
+  "producer": "dbg fread spi_flash 0x24000",
+  "target": "system",
+  "offset": 147456,
+  "input_files": 44,
+  "distinct_sources": 44,
+  "required_rows": 32,
+  "observed_rows": 32,
+  "confirmed_rows": 32,
+  "missing_rows": [],
+  "unconfirmed_rows": [],
+  "conflicts": [],
+  "complete": true,
+  "rows": [
+    {
+      "offset": "0x0",
+      "variants": [
+        {
+          "hex": "dbd5f9a38960bfdc414dbffb62161a36",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x10",
+      "variants": [
+        {
+          "hex": "bba61937b4600558f2c094630828a80b",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x20",
+      "variants": [
+        {
+          "hex": "9293f2e2ddcd887343e59b22143e8c5b",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x30",
+      "variants": [
+        {
+          "hex": "c4f805cbb40e8efb270f6c4b752edd78",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x40",
+      "variants": [
+        {
+          "hex": "9a96adebc3b1f281a166da651e2a254a",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x50",
+      "variants": [
+        {
+          "hex": "851eedbd5974d9b4d9973f8c7efb6207",
+          "sources": 3
+        }
+      ]
+    },
+    {
+      "offset": "0x60",
+      "variants": [
+        {
+          "hex": "9a96adebc3b1f281a166da651e2a254a",
+          "sources": 3
+        }
+      ]
+    },
+    {
+      "offset": "0x70",
+      "variants": [
+        {
+          "hex": "851eedbd5974d9b4d9973f8c7efb6207",
+          "sources": 5
+        }
+      ]
+    },
+    {
+      "offset": "0x80",
+      "variants": [
+        {
+          "hex": "9a96adebc3b1f281a166da651e2a254a",
+          "sources": 5
+        }
+      ]
+    },
+    {
+      "offset": "0x90",
+      "variants": [
+        {
+          "hex": "851eedbd5974d9b4d9973f8c7efb6207",
+          "sources": 5
+        }
+      ]
+    },
+    {
+      "offset": "0xa0",
+      "variants": [
+        {
+          "hex": "9a96adebc3b1f281a166da651e2a254a",
+          "sources": 5
+        }
+      ]
+    },
+    {
+      "offset": "0xb0",
+      "variants": [
+        {
+          "hex": "851eedbd5974d9b4d9973f8c7efb6207",
+          "sources": 5
+        }
+      ]
+    },
+    {
+      "offset": "0xc0",
+      "variants": [
+        {
+          "hex": "9a96adebc3b1f281a166da651e2a254a",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0xd0",
+      "variants": [
+        {
+          "hex": "851eedbd5974d9b4d9973f8c7efb6207",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0xe0",
+      "variants": [
+        {
+          "hex": "9a96adebc3b1f281a166da651e2a254a",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0xf0",
+      "variants": [
+        {
+          "hex": "851eedbd5974d9b4d9973f8c7efb6207",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x100",
+      "variants": [
+        {
+          "hex": "9a96adebc3b1f281a166da651e2a254a",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x110",
+      "variants": [
+        {
+          "hex": "851eedbd5974d9b4d9973f8c7efb6207",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x120",
+      "variants": [
+        {
+          "hex": "9a96adebc3b1f281a166da651e2a254a",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x130",
+      "variants": [
+        {
+          "hex": "851eedbd5974d9b4d9973f8c7efb6207",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x140",
+      "variants": [
+        {
+          "hex": "9a96adebc3b1f281a166da651e2a254a",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x150",
+      "variants": [
+        {
+          "hex": "851eedbd5974d9b4d9973f8c7efb6207",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x160",
+      "variants": [
+        {
+          "hex": "9a96adebc3b1f281a166da651e2a254a",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x170",
+      "variants": [
+        {
+          "hex": "851eedbd5974d9b4d9973f8c7efb6207",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x180",
+      "variants": [
+        {
+          "hex": "9a96adebc3b1f281a166da651e2a254a",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x190",
+      "variants": [
+        {
+          "hex": "851eedbd5974d9b4d9973f8c7efb6207",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x1a0",
+      "variants": [
+        {
+          "hex": "9a96adebc3b1f281a166da651e2a254a",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x1b0",
+      "variants": [
+        {
+          "hex": "851eedbd5974d9b4d9973f8c7efb6207",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x1c0",
+      "variants": [
+        {
+          "hex": "9a96adebc3b1f281a166da651e2a254a",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x1d0",
+      "variants": [
+        {
+          "hex": "851eedbd5974d9b4d9973f8c7efb6207",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x1e0",
+      "variants": [
+        {
+          "hex": "9a96adebc3b1f281a166da651e2a254a",
+          "sources": 4
+        }
+      ]
+    },
+    {
+      "offset": "0x1f0",
+      "variants": [
+        {
+          "hex": "851eedbd5974d9b4d9973f8c7efb6207",
+          "sources": 4
+        }
+      ]
+    }
+  ],
+  "sector_hex": "dbd5f9a38960bfdc414dbffb62161a36bba61937b4600558f2c094630828a80b9293f2e2ddcd887343e59b22143e8c5bc4f805cbb40e8efb270f6c4b752edd789a96adebc3b1f281a166da651e2a254a851eedbd5974d9b4d9973f8c7efb62079a96adebc3b1f281a166da651e2a254a851eedbd5974d9b4d9973f8c7efb62079a96adebc3b1f281a166da651e2a254a851eedbd5974d9b4d9973f8c7efb62079a96adebc3b1f281a166da651e2a254a851eedbd5974d9b4d9973f8c7efb62079a96adebc3b1f281a166da651e2a254a851eedbd5974d9b4d9973f8c7efb62079a96adebc3b1f281a166da651e2a254a851eedbd5974d9b4d9973f8c7efb62079a96adebc3b1f281a166da651e2a254a851eedbd5974d9b4d9973f8c7efb62079a96adebc3b1f281a166da651e2a254a851eedbd5974d9b4d9973f8c7efb62079a96adebc3b1f281a166da651e2a254a851eedbd5974d9b4d9973f8c7efb62079a96adebc3b1f281a166da651e2a254a851eedbd5974d9b4d9973f8c7efb62079a96adebc3b1f281a166da651e2a254a851eedbd5974d9b4d9973f8c7efb62079a96adebc3b1f281a166da651e2a254a851eedbd5974d9b4d9973f8c7efb62079a96adebc3b1f281a166da651e2a254a851eedbd5974d9b4d9973f8c7efb62079a96adebc3b1f281a166da651e2a254a851eedbd5974d9b4d9973f8c7efb6207",
+  "sha256": "28b2e50ba95630f6485bd5e3ccfbd8ebe5f1406ffa36d6c0c4e35c4c71af0678",
+  "bytes": 512,
+  "output": "artifacts/system-raw-prefix.bin"
+}
