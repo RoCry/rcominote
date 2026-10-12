@@ -38,3 +38,5 @@ uv run tools/inspect_boot_flow.py docs/evidence/boot-complete-2026-10-12/decoded
 ```
 
 脚本SHA绑定真实镜像、只反汇编列出的已追踪范围，完整解码失败即报错。静态分支可达性不是硬件执行或恢复验收。
+
+后续[实机ROM表与入口读回](actual-rom-adfu-entry.md)已确认19c→00001a51并取得入口前128 B；目标地址不再未知，调用子函数/USB协议/退出仍待核查。
