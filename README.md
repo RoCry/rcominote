@@ -149,3 +149,5 @@ uv run --locked tools/build_sdk.py \
 [录音下载路径](docs/recording-download-path.md)：实际拼接`/SD:/RECORDER/Call-或Note-<name>.mp3`，不是绝对路径文件接口，不能直接用于NOR DSP资源导出。
 
 [应用ADFU重启路径](docs/application-reboot-path.md)：实际写重启标记并触发watchdog；尚不证明应用损坏后的独立恢复。当前优先级与证据缺口见[研究清单](docs/next-investigation.md)。
+
+[USB_COPY设置](docs/usb-copy-setting.md)：实际0x13只在handler中更新配置并flush；ACK不携带flush失败，状态位不是USB枚举证明。连接事件与实际USB后端仍待核对。
