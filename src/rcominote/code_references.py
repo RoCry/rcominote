@@ -12,6 +12,7 @@ from capstone import CS_ARCH_ARM, CS_MODE_THUMB, Cs
 from .boot_info import inspect_boot_info
 from .boot_readback import BOOT_BLOCKS, BOOT_NAME_POINTERS
 from .card_readback import CARD_BLOCKS
+from .image_header import inspect_image_header
 from .nor_readback import NOR_BLOCKS
 from .output import emit, new_output
 from .partition_table import inspect_acpt
@@ -254,6 +255,12 @@ def inspect_references(
             read_block(captures[0], address, 16) for address in range(0x01000000, 0x01000040, 16)
         )
         report["boot_info_candidate"] = inspect_boot_info(boot_data, report["partition_table"])
+        image_header = b"".join(
+            read_block(captures[0], address, 16) for address in range(0x10000000, 0x10000200, 16)
+        )
+        report["mapped_image_header"] = inspect_image_header(
+            image_header, read_block(captures[0], 0x10000200, 8)
+        )
     if vendor or shell:
         # Decode contiguous bytes together: 32-bit Thumb instructions can cross
         # 16-byte transport rows. Never resume decoding in their second half.

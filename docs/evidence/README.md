@@ -157,3 +157,7 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## 启动SRAM候选交叉核对
 
 [首次](boot-info-first-2026-10-12.json)、[重读](boot-info-second-2026-10-12.json)、[分析](boot-info-analysis-2026-10-12.json)：3051 B一致，新增64 B，累计6935不同映射字节。SDK-layout候选的param_save/system/nor字段匹配实机ACPT，param_phy=0不匹配；不等于完整ABI证明。[报告](../boot-info-readback.md)、[结束状态](boot-info-final-state-2026-10-12.json)。
+
+## 当前映射ACTH镜像头
+
+[首次](image-header-first-2026-10-12.json)、[重读](image-header-second-2026-10-12.json)、[分析](image-header-analysis-2026-10-12.json)：3571 B一致，新增520 B，累计7455不同映射字节。512 B头部加法校验通过，vector reset与entry1002d819匹配；正文checksum尚未验证。[报告](../image-header-readback.md)、[结束状态](image-header-final-state-2026-10-12.json)。

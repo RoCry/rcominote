@@ -9,8 +9,8 @@ from rcominote.code_guards import observed_storage_reference
 from rcominote.code_references import inspect_references
 
 EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence"
-FIRST = EVIDENCE / "boot-info-first-2026-10-12.json"
-SECOND = EVIDENCE / "boot-info-second-2026-10-12.json"
+FIRST = EVIDENCE / "image-header-first-2026-10-12.json"
+SECOND = EVIDENCE / "image-header-second-2026-10-12.json"
 
 
 def test_actual_timer_and_header_edges():

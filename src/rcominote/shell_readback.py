@@ -189,6 +189,17 @@ SHELL_BOOT_INFO_CANDIDATE = tuple(
     (address, 16, "SDK boot-info candidate in corroborated boot SRAM; layout not instruction-proven", False)
     for address in range(0x01000000, 0x01000040, 16)
 )
+SHELL_IMAGE_PREFIX = tuple(
+    (address, 16, "bounded SDK image-base candidate corroborated by actual code and boot metadata", False)
+    for address in range(0x10000000, 0x10000040, 16)
+)
+SHELL_IMAGE_HEADER_REST = (
+    *(
+        (address, 16, "ACTH header-sized remainder for additive checksum", False)
+        for address in range(0x10000040, 0x10000200, 16)
+    ),
+    (0x10000200, 8, "vector SP and reset entry after observed 512-byte ACTH header", False),
+)
 SHELL_PHASES = (
     SHELL_INIT_SUCCESS,
     SHELL_STREAM_SUCCESS,
@@ -227,9 +238,25 @@ SHELL_PHASES = (
     SHELL_PARTITION_HEADER,
     SHELL_PARTITION_TABLE,
     SHELL_BOOT_INFO_CANDIDATE,
+    SHELL_IMAGE_PREFIX,
+    SHELL_IMAGE_HEADER_REST,
 )
 SHELL_BLOCKS = tuple(block for phase in SHELL_PHASES for block in phase)
 SHELL_GUARDS = (
+    (
+        SHELL_IMAGE_HEADER_REST,
+        (
+            (0x10000000, "414354484854434119d8021062000000", "ACTH magic and entry prefix"),
+            (0x10000020, "0807da07000200000000000000000000", "ACTH 512-byte header size and flags"),
+        ),
+    ),
+    (
+        SHELL_IMAGE_PREFIX,
+        (
+            (0x01000000, "00000000400000010040020000000000", "boot metadata system offset corroboration"),
+            (0x01000020, "00000000000000000040020000000000", "boot metadata NOR offset corroboration"),
+        ),
+    ),
     (
         SHELL_BOOT_INFO_CANDIDATE,
         (
