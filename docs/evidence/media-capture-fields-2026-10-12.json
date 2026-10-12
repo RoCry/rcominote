@@ -1,0 +1,57 @@
+{
+  "image": {
+    "scope": "mapped-system image; not a raw Flash backup",
+    "base": "0x10000000",
+    "bytes": 927632,
+    "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+    "header_sha256": "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5",
+    "body_word_sum": "0xb18576b5",
+    "stored_body_checksum": "0x4e7a894a",
+    "checksum_verified": true,
+    "limits": [
+      "No physical Flash mapping proven",
+      "No complete device backup or restore validation"
+    ]
+  },
+  "scope": "Only media capture field-access fragments, not complete function",
+  "regions": [
+    {
+      "address": "0x10062118",
+      "hex": "287e84f89a00ab7e84f89b306b7e84f89c302a7f84f89d206b7f002b08bf134684f89e302b8ca4f8a030",
+      "sha256": "f5d098bb5cdd978d1eb04fcd9d04d79b5ceda10b5958531bd61e2604bb60b05d",
+      "instructions": [
+        "10062118: ldrb r0, [r5, #0x18]",
+        "1006211a: strb.w r0, [r4, #0x9a]",
+        "1006211e: ldrb r3, [r5, #0x1a]",
+        "10062120: strb.w r3, [r4, #0x9b]",
+        "10062124: ldrb r3, [r5, #0x19]",
+        "10062126: strb.w r3, [r4, #0x9c]",
+        "1006212a: ldrb r2, [r5, #0x1c]",
+        "1006212c: strb.w r2, [r4, #0x9d]",
+        "10062130: ldrb r3, [r5, #0x1d]",
+        "10062132: cmp r3, #0",
+        "10062134: it eq",
+        "10062136: moveq r3, r2",
+        "10062138: strb.w r3, [r4, #0x9e]",
+        "1006213c: ldrh r3, [r5, #0x20]",
+        "1006213e: strh.w r3, [r4, #0xa0]"
+      ]
+    },
+    {
+      "address": "0x100622bc",
+      "hex": "94f89ac0236daa7e697e0193ffb200976346f4f7dfff",
+      "sha256": "e62b9bbd097b5607034989d7441aec2d90cbfc71cbd4566d29eab21b53e2ee63",
+      "instructions": [
+        "100622bc: ldrb.w ip, [r4, #0x9a]",
+        "100622c0: ldr r3, [r4, #0x50]",
+        "100622c2: ldrb r2, [r5, #0x1a]",
+        "100622c4: ldrb r1, [r5, #0x19]",
+        "100622c6: str r3, [sp, #4]",
+        "100622c8: uxtb r7, r7",
+        "100622ca: str r7, [sp]",
+        "100622cc: mov r3, ip",
+        "100622ce: bl #0x10057290"
+      ]
+    }
+  ]
+}

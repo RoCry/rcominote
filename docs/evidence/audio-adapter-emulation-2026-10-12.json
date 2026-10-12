@@ -1,0 +1,31 @@
+{
+  "image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "engine": "Unicorn 2.1.4 Thumb MCLASS",
+  "scope": "Actual adapter; intercepted memset, log, ADC open; no hardware",
+  "adc_fixture": {
+    "open_calls": [
+      {
+        "device": 269197824,
+        "rate": 48,
+        "channel": 8,
+        "width": 0,
+        "adc": [
+          16384,
+          -12,
+          -12,
+          -12,
+          -12
+        ],
+        "callback": 268439553,
+        "context": 402788352,
+        "buffer": 402784256,
+        "length": 2048
+      }
+    ],
+    "return": 402849792
+  },
+  "unsupported_fixture": {
+    "open_calls": [],
+    "return": 0
+  }
+}

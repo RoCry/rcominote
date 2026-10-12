@@ -131,3 +131,5 @@ uv run --locked tools/build_sdk.py \
 [录音参数适配层](docs/audio-parameter-adapter.md)：实际adapter固定16-bit、ADC key按stream type选择，采样率来自上层调用参数；仍未确认录音应用具体值。
 
 [ABTP测试的16 kHz路径](docs/audio-fixed-rate-path.md)：实际命令7161→type1→rate16、stream5→ADC key4000、adapter16-bit；普通录音配置与ABTP可达性仍未知。
+
+[音频适配层指令仿真](docs/audio-parameter-adapter.md#指令仿真验证字段搬运)：`uv run tools/verify_audio_adapter.py artifacts/mapped-system/mapped-system.bin`，验证字段搬运、固定width0和拒绝非ADC通道；48 kHz仅为测试输入。
