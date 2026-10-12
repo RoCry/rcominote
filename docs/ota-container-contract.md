@@ -131,5 +131,8 @@ the needed reference for update/restore experiments.
 Initialization is also outside a no-write claim: actual initializer
 `10066a9e..10066aa0` calls `100655bc` before image-object initialization.
 The corresponding SDK preparation path can erase partitions or save breakpoints.
-Its complete actual side effects are unaudited here. A future client must not
-assume that merely entering update mode or rejecting a package is storage-neutral.
+The follow-up [actual initialization audit](ota-initialization-side-effects.md)
+traces conditional temporary-partition erase and breakpoint persistence before
+image validation. It distinguishes startup initialization from the BLE attach
+callback; do not assume a rejected package or upgrade-state transition is
+storage-neutral without auditing that specific path and current state.
