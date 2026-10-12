@@ -13,6 +13,7 @@ from . import (
     code_sample,
     dsp_export,
     dsp_header,
+    dsp_sections,
     log_capture,
     log_probe,
     nor_batch_cli,
@@ -143,3 +144,4 @@ app.command("inspect-dsp-directory")(sdfs_directory.main)
 app.command("capture-nor-sector")(nor_batch_cli.main)
 app.command("inspect-dsp-header")(dsp_header.main)
 app.command("export-record-dsp")(dsp_export.main)
+app.command("inspect-dsp-image")(dsp_sections.main)

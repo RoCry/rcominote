@@ -12,7 +12,7 @@ import typer
 
 from . import nor_windows
 from .ble_target import OWNED_SERIAL
-from .dsp_header import inspect_header
+from .dsp_sections import inspect_image
 from .nor_batch_cli import capture_sector
 from .output import emit
 from .printk_tail import RECORD_DSP_BYTES, NorTarget, block_offset
@@ -93,7 +93,7 @@ async def export(out: Path, *, serial: str, max_new_blocks: int, attempts: int) 
     }
     if report["complete"]:
         raw = b"".join(blocks)[:RECORD_DSP_BYTES]
-        report["header"] = inspect_header(raw[:540], file_size=len(raw))
+        report["image"] = inspect_image(raw)
         checksum = checksum32(raw)
         if checksum != 0x96D685BB:
             raise ValueError(f"Recording DSP checksum differs from captured SDFS directory: {checksum:#x}")

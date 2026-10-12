@@ -1,0 +1,85 @@
+{
+  "sdk_commit": "26f51e584940d5b141cd1d09d2629d69b595f579",
+  "scope": "Pinned SDK shipped DSPs, not CoMi runtime validation",
+  "samples": [
+    {
+      "sha256": "74c34b87e9679197ad00d6b1abbed64de131d6b8a8bf585508ff23ab942e318b",
+      "paths": [
+        "action_technology_sdk/application/app_demo/bt_call_demo/boards/ats3085e_dev_watch_ext_nor/sdfs_k/adMUSIC.dsp",
+        "action_technology_sdk/application/app_demo/bt_music_demo/boards/ats3085e_dev_watch_ext_nor/sdfs_k/adMUSIC.dsp",
+        "action_technology_sdk/application/app_demo/bt_music_demo/boards/ats3085s_dev_watch_ext_nor/sdfs_k/adMUSIC.dsp",
+        "action_technology_sdk/application/app_demo/local_music_demo/boards/ats3085e_dev_watch_ext_nor/sdfs_k/adMUSIC.dsp",
+        "action_technology_sdk/application/app_demo/local_music_demo/boards/ats3085s_dev_watch_ext_nor/sdfs_k/adMUSIC.dsp"
+      ],
+      "bytes": 390756,
+      "ok": true,
+      "tables": 54,
+      "sections": 61
+    },
+    {
+      "sha256": "ac8bc03ffe92209fabb743e554f4169bc20c5416a7aa8ca052b215013adfe828",
+      "paths": [
+        "action_technology_sdk/application/app_demo/lvgl_demo/boards/ats3085s4_dev_watch_ext_nor/sdfs_k/adMUSIC.dsp",
+        "action_technology_sdk/application/app_demo/lvgl_demo/boards/ats3085s_dev_watch_ext_nor/sdfs_k/adMUSIC.dsp",
+        "action_technology_sdk/application/app_demo/lvgl_demo/boards/ats3089_dev_watch/sdfs_k/adMUSIC.dsp",
+        "action_technology_sdk/application/app_demo/lvgl_demo/boards/ats3089c_dev_watch/sdfs_k/adMUSIC.dsp",
+        "action_technology_sdk/application/app_demo/lvgl_demo/boards/ats3089p_dev_watch/sdfs_k/adMUSIC.dsp",
+        "action_technology_sdk/application/app_demo/lvgl_demo/boards/ats3089p_dev_watch_sdnand/sdfs_k/adMUSIC.dsp",
+        "action_technology_sdk/application/app_demo/lvgl_demo/boards/ats3089p_dev_watch_sdnand_8b/sdfs_k/adMUSIC.dsp"
+      ],
+      "bytes": 390748,
+      "ok": true,
+      "tables": 54,
+      "sections": 61
+    },
+    {
+      "sha256": "8cf32f9046059b00272983aac181939281b65e05cd87dc075fb09ff69ea4daa5",
+      "paths": [
+        "action_technology_sdk/application/app_demo/noise_cancel_demo/fs_sdfs/sdfs_k/aeOPUS.dsp"
+      ],
+      "bytes": 181476,
+      "ok": true,
+      "tables": 14,
+      "sections": 37
+    },
+    {
+      "sha256": "37bd9a7b1bf7ee07b25b46adfab79a009ee9c65a87cefd372f457cc9a7e555e0",
+      "paths": [
+        "action_technology_sdk/application/bt_watch/boards/ats3089p_dev_watch_sdnand/sdfs_k/aeOPUS.dsp",
+        "action_technology_sdk/application/bt_watch/boards/ats3089p_dev_watch_sdnand_8b/sdfs_k/aeOPUS.dsp"
+      ],
+      "bytes": 178476,
+      "ok": true,
+      "tables": 14,
+      "sections": 20
+    },
+    {
+      "sha256": "7c9b93012315112d00fb69c943a8fef55b744448b14706f144a8b9e0d4c07193",
+      "paths": [
+        "action_technology_sdk/application/bt_watch/fs_sdfs/sdfs_k/adMUSIC.dsp"
+      ],
+      "bytes": 499212,
+      "ok": true,
+      "tables": 54,
+      "sections": 79
+    },
+    {
+      "sha256": "d5355b23471f9df1b6c40847f3894026edc3896e202695ad6c2530e4a959f6c2",
+      "paths": [
+        "action_technology_sdk/thirdparty/crypto/mbedtls/mbedtls/scripts/data_files/vs6-app-template.dsp"
+      ],
+      "bytes": 4330,
+      "ok": false,
+      "error": "DSP header magic differs from xhqy"
+    },
+    {
+      "sha256": "78f80aacd3dca32824e26c1e49c93c088bdd66c5f9afffb6fa1d87205a06d6b9",
+      "paths": [
+        "action_technology_sdk/thirdparty/crypto/mbedtls/mbedtls/scripts/data_files/vs6-main-template.dsp"
+      ],
+      "bytes": 2805,
+      "ok": false,
+      "error": "DSP header magic differs from xhqy"
+    }
+  ]
+}

@@ -22,3 +22,11 @@ uv run comi diag capture-nor-sector --nor-target record-dsp --block 2 --out arti
 - 没有擦除、写flash、ADFU、OTA或DSP运行。此命令只覆盖一个资源文件，不构成整机备份/恢复。
 
 完整文件取得后仍须解析section链、检查长度和目标地址；不能用头部和校验和代替自写固件的硬件运行或恢复验收。
+
+## Section验收工具
+
+`uv run comi diag inspect-dsp-image PATH`逐一遍历主code/data及非零bank指针：非空段必须完整包含8 B头和size字节数据，之后继续读下一段；零size终止。四字节零size位于EOF可接受，与[已核对的实际加载器](dsp-file-loader.md)一致；非空短头严格拒绝，不照搬固件的宽松条件。输出每段文件偏移、声明DSP地址、长度和SHA256；不把DSP地址映射或运行成功当作已验证。
+
+已对固定SDK中的5个不同哈希二进制DSP文件完成结构扫描，分别遍历61、61、37、20、79段；[样本哈希、路径与结果](evidence/sdk-dsp-sections-2026-10-12.json)。同后缀的两个非xhqy文件被拒绝。这是格式解析实测，样本不是CoMi录音DSP，不能替代正在导出的文件验收。
+
+当前完整导出进程启动于分段检查功能加入之前，运行中代码不会自动更新；完成后须对实际输出单独运行上述命令，再记录验收结果。后续新启动的导出命令已把分段检查纳入发布前检查。
