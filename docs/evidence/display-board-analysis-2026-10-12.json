@@ -1,0 +1,485 @@
+{
+  "date": "2026-10-12",
+  "scope": "Offline complete checksum-verified mapped image; two descriptors/API windows and three functions; no device I/O, handler execution, RAM pointer following or MMIO access",
+  "image": {
+    "scope": "mapped-system image; not a raw Flash backup",
+    "base": "0x10000000",
+    "bytes": 927632,
+    "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+    "header_sha256": "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5",
+    "body_word_sum": "0xb18576b5",
+    "stored_body_checksum": "0x4e7a894a",
+    "checksum_verified": true,
+    "limits": [
+      "No physical Flash mapping proven",
+      "No complete device backup or restore validation"
+    ]
+  },
+  "decoder": {
+    "name": "Capstone",
+    "version": "5.0.6",
+    "mode": "ARM Thumb + MCLASS, little-endian"
+  },
+  "provenance": {
+    "device_table": "0x100b9f40..0x100ba320 exclusive; stride32, previously verified",
+    "device_table_report": "docs/boot-storage-device-readback.md",
+    "init_table": "Parent independently verified kernel target 0x1009a7ac loads fn/device pairs, stride8; level bounds 0x100b9d08,0x100b9da8,0x100b9dd0,0x100b9ef0,0x100b9f40",
+    "init_entries": "Actual initializer pointers taken from fn/device pairs, not descriptor+0x18 (PM control)"
+  },
+  "regions": [
+    {
+      "name": "lcd_panel_descriptor",
+      "address": "0x100ba2c0",
+      "file_offset": "0xba2c0",
+      "length": 32,
+      "hex": "46890c10000000002cbc0b1028290018f056001800000000ed7b021030290018",
+      "sha256": "5cafa2b08e5f2c0690e486cfa7e5479e61be3d0765f8eb0c0b6c13c46a78840b"
+    },
+    {
+      "name": "lcdc_acts_descriptor",
+      "address": "0x100ba1e0",
+      "file_offset": "0xba1e0",
+      "length": 32,
+      "hex": "2aa40c1000000000e0c20b10402f0018a8f9001800000000c1180310482f0018",
+      "sha256": "398f91c21cd594b9009ca1f9395817dc4a10c6d766e3c4b1682cd8bfd040f4f9"
+    },
+    {
+      "name": "lcd_panel_api_pointer_window",
+      "address": "0x100bbc2c",
+      "file_offset": "0xbbc2c",
+      "length": 48,
+      "hex": "297b0210897c0210557a021033200a1039200a10617902103d200a10397a0210017a0210cd79021043200a1053200a10",
+      "sha256": "0e3f3484899b15d3404a40c3617055c0bf35b747ada8f60b2a44c9d411c21eee"
+    },
+    {
+      "name": "lcdc_api_pointer_window",
+      "address": "0x100bc2e0",
+      "file_offset": "0xbc2e0",
+      "length": 36,
+      "hex": "054b0a1091190310711903104d1f0310991a03102916031071170310ff4a0a10351b0310",
+      "sha256": "bfa4027f2b0a70e9daf4d855c7c4537658eb4dd47f9c4edfbed895de1e5c9875"
+    },
+    {
+      "name": "lcd_panel_init_entry",
+      "address": "0x100b9ed0",
+      "file_offset": "0xb9ed0",
+      "length": 8,
+      "hex": "997f0210c0a20b10",
+      "sha256": "755e201cc1bb94108b5bb0debab8b51463eaff48e3f5156dd53abe3a345e801f"
+    },
+    {
+      "name": "lcdc_init_entry",
+      "address": "0x100b9e90",
+      "file_offset": "0xb9e90",
+      "length": 8,
+      "hex": "174b0a10e0a10b10",
+      "sha256": "ce24ab3d169f6a4cb5ed05bf690b3c59a321ba3bc66612456aea7b80775f273e"
+    },
+    {
+      "name": "panel_log_module_entry",
+      "address": "0x100ba574",
+      "file_offset": "0xba574",
+      "length": 8,
+      "hex": "517b0c1003000000",
+      "sha256": "5cb3584ef413a67704483a8a49df4812262ed4437b84bdf1fca2940ba0435528"
+    },
+    {
+      "name": "panel_capabilities_shaped_output",
+      "address": "0x10027a38",
+      "file_offset": "0x27a38",
+      "length": 24,
+      "hex": "054a0023c1e9002320201022c1e90220cb740a828b747047",
+      "sha256": "45199e61e54272eec7134b45e890c409255d3a3b32400936bbf3cd3054601bf3",
+      "instructions": [
+        {"address": "0x10027a38", "bytes": "054a", "mnemonic": "ldr", "operands": "r2, [pc, #0x14]"},
+        {"address": "0x10027a3a", "bytes": "0023", "mnemonic": "movs", "operands": "r3, #0"},
+        {"address": "0x10027a3c", "bytes": "c1e90023", "mnemonic": "strd", "operands": "r2, r3, [r1]"},
+        {"address": "0x10027a40", "bytes": "2020", "mnemonic": "movs", "operands": "r0, #0x20"},
+        {"address": "0x10027a42", "bytes": "1022", "mnemonic": "movs", "operands": "r2, #0x10"},
+        {"address": "0x10027a44", "bytes": "c1e90220", "mnemonic": "strd", "operands": "r2, r0, [r1, #8]"},
+        {"address": "0x10027a48", "bytes": "cb74", "mnemonic": "strb", "operands": "r3, [r1, #0x13]"},
+        {"address": "0x10027a4a", "bytes": "0a82", "mnemonic": "strh", "operands": "r2, [r1, #0x10]"},
+        {"address": "0x10027a4c", "bytes": "8b74", "mnemonic": "strb", "operands": "r3, [r1, #0x12]"},
+        {"address": "0x10027a4e", "bytes": "7047", "mnemonic": "bx", "operands": "lr"}
+      ]
+    },
+    {
+      "name": "capabilities_literal",
+      "address": "0x10027a50",
+      "file_offset": "0x27a50",
+      "length": 4,
+      "hex": "48002800",
+      "sha256": "bbc4278b4c4fa125764c3918e6d0d9dbc9840fe0ffa3b4930f33d8f456da0e04"
+    },
+    {
+      "name": "panel_command_write",
+      "address": "0x10027ad0",
+      "file_offset": "0x27ad0",
+      "length": 74,
+      "hex": "1fb500228df8002002228df80110cdf804d002928df80c20836801225c6801a93c23a04778b1094a094b0a499b1a5b0103f47f43024643f4090040f011002ef03ffa6ff0150004b010bd",
+      "sha256": "7412511f69b24df322df9570f8d3498760e337522190665759a30f4998f8fc35",
+      "instructions": [
+        {"address": "0x10027ad0", "bytes": "1fb5", "mnemonic": "push", "operands": "{r0, r1, r2, r3, r4, lr}"},
+        {"address": "0x10027ad2", "bytes": "0022", "mnemonic": "movs", "operands": "r2, #0"},
+        {"address": "0x10027ad4", "bytes": "8df80020", "mnemonic": "strb.w", "operands": "r2, [sp]"},
+        {"address": "0x10027ad8", "bytes": "0222", "mnemonic": "movs", "operands": "r2, #2"},
+        {"address": "0x10027ada", "bytes": "8df80110", "mnemonic": "strb.w", "operands": "r1, [sp, #1]"},
+        {"address": "0x10027ade", "bytes": "cdf804d0", "mnemonic": "str.w", "operands": "sp, [sp, #4]"},
+        {"address": "0x10027ae2", "bytes": "0292", "mnemonic": "str", "operands": "r2, [sp, #8]"},
+        {"address": "0x10027ae4", "bytes": "8df80c20", "mnemonic": "strb.w", "operands": "r2, [sp, #0xc]"},
+        {"address": "0x10027ae8", "bytes": "8368", "mnemonic": "ldr", "operands": "r3, [r0, #8]"},
+        {"address": "0x10027aea", "bytes": "0122", "mnemonic": "movs", "operands": "r2, #1"},
+        {"address": "0x10027aec", "bytes": "5c68", "mnemonic": "ldr", "operands": "r4, [r3, #4]"},
+        {"address": "0x10027aee", "bytes": "01a9", "mnemonic": "add", "operands": "r1, sp, #4"},
+        {"address": "0x10027af0", "bytes": "3c23", "mnemonic": "movs", "operands": "r3, #0x3c"},
+        {"address": "0x10027af2", "bytes": "a047", "mnemonic": "blx", "operands": "r4"},
+        {"address": "0x10027af4", "bytes": "78b1", "mnemonic": "cbz", "operands": "r0, #0x10027b16"},
+        {"address": "0x10027af6", "bytes": "094a", "mnemonic": "ldr", "operands": "r2, [pc, #0x24]"},
+        {"address": "0x10027af8", "bytes": "094b", "mnemonic": "ldr", "operands": "r3, [pc, #0x24]"},
+        {"address": "0x10027afa", "bytes": "0a49", "mnemonic": "ldr", "operands": "r1, [pc, #0x28]"},
+        {"address": "0x10027afc", "bytes": "9b1a", "mnemonic": "subs", "operands": "r3, r3, r2"},
+        {"address": "0x10027afe", "bytes": "5b01", "mnemonic": "lsls", "operands": "r3, r3, #5"},
+        {"address": "0x10027b00", "bytes": "03f47f43", "mnemonic": "and", "operands": "r3, r3, #0xff00"},
+        {"address": "0x10027b04", "bytes": "0246", "mnemonic": "mov", "operands": "r2, r0"},
+        {"address": "0x10027b06", "bytes": "43f40900", "mnemonic": "orr", "operands": "r0, r3, #0x890000"},
+        {"address": "0x10027b0a", "bytes": "40f01100", "mnemonic": "orr", "operands": "r0, r0, #0x11"},
+        {"address": "0x10027b0e", "bytes": "2ef03ffa", "mnemonic": "bl", "operands": "#0x10055f90"},
+        {"address": "0x10027b12", "bytes": "6ff01500", "mnemonic": "mvn", "operands": "r0, #0x15"},
+        {"address": "0x10027b16", "bytes": "04b0", "mnemonic": "add", "operands": "sp, #0x10"},
+        {"address": "0x10027b18", "bytes": "10bd", "mnemonic": "pop", "operands": "{r4, pc}"}
+      ]
+    },
+    {
+      "name": "command_logging_literals",
+      "address": "0x10027b1c",
+      "file_offset": "0x27b1c",
+      "length": 12,
+      "hex": "6ca30b1074a50b10e0790c10",
+      "sha256": "efb93dbd05ea90e5990aa80a366f36d95fc07d991f30b6161a0fb34bc230f2d4"
+    },
+    {
+      "name": "panel_initializer",
+      "address": "0x10027f98",
+      "file_offset": "0x27f98",
+      "length": 284,
+      "hex": "f0b50469454985b0002204f1180091f052f94348434e72f035fc434a2065b61a760106f47f4648b94049414830432df0e3ff6ff01205284605b0f0bd02698168136843f0807313600b6840f201621821984710b137493848e8e7314872f012fc606510b935493648e0e702698168136823f0007313600b684ff420621921984710b130493048d1e70121084605f08cfe2e4872f0f7fb206038b92d492d4830432df0aaff4ff0ff35c5e7836814211b689847054610b128492848f0e794f8c831a06560f3410384f8c83104f15c07ff2384f8ca313846224990f0b0fe04f16c00204990f0abfe04f17c001f4990f0a6fe04f1900006234ff480621c490095039073f02cfc3946039890f0a1fe46f02e70174940f031002df06fff8ce7",
+      "sha256": "41ccc46e9b6c53a0f95f85d00fe69c01941d2354a145472fdc93270416a69082",
+      "instructions": [
+        {"address": "0x10027f98", "bytes": "f0b5", "mnemonic": "push", "operands": "{r4, r5, r6, r7, lr}"},
+        {"address": "0x10027f9a", "bytes": "0469", "mnemonic": "ldr", "operands": "r4, [r0, #0x10]"},
+        {"address": "0x10027f9c", "bytes": "4549", "mnemonic": "ldr", "operands": "r1, [pc, #0x114]"},
+        {"address": "0x10027f9e", "bytes": "85b0", "mnemonic": "sub", "operands": "sp, #0x14"},
+        {"address": "0x10027fa0", "bytes": "0022", "mnemonic": "movs", "operands": "r2, #0"},
+        {"address": "0x10027fa2", "bytes": "04f11800", "mnemonic": "add.w", "operands": "r0, r4, #0x18"},
+        {"address": "0x10027fa6", "bytes": "91f052f9", "mnemonic": "bl", "operands": "#0x100b924e"},
+        {"address": "0x10027faa", "bytes": "4348", "mnemonic": "ldr", "operands": "r0, [pc, #0x10c]"},
+        {"address": "0x10027fac", "bytes": "434e", "mnemonic": "ldr", "operands": "r6, [pc, #0x10c]"},
+        {"address": "0x10027fae", "bytes": "72f035fc", "mnemonic": "bl", "operands": "#0x1009a81c"},
+        {"address": "0x10027fb2", "bytes": "434a", "mnemonic": "ldr", "operands": "r2, [pc, #0x10c]"},
+        {"address": "0x10027fb4", "bytes": "2065", "mnemonic": "str", "operands": "r0, [r4, #0x50]"},
+        {"address": "0x10027fb6", "bytes": "b61a", "mnemonic": "subs", "operands": "r6, r6, r2"},
+        {"address": "0x10027fb8", "bytes": "7601", "mnemonic": "lsls", "operands": "r6, r6, #5"},
+        {"address": "0x10027fba", "bytes": "06f47f46", "mnemonic": "and", "operands": "r6, r6, #0xff00"},
+        {"address": "0x10027fbe", "bytes": "48b9", "mnemonic": "cbnz", "operands": "r0, #0x10027fd4"},
+        {"address": "0x10027fc0", "bytes": "4049", "mnemonic": "ldr", "operands": "r1, [pc, #0x100]"},
+        {"address": "0x10027fc2", "bytes": "4148", "mnemonic": "ldr", "operands": "r0, [pc, #0x104]"},
+        {"address": "0x10027fc4", "bytes": "3043", "mnemonic": "orrs", "operands": "r0, r6"},
+        {"address": "0x10027fc6", "bytes": "2df0e3ff", "mnemonic": "bl", "operands": "#0x10055f90"},
+        {"address": "0x10027fca", "bytes": "6ff01205", "mnemonic": "mvn", "operands": "r5, #0x12"},
+        {"address": "0x10027fce", "bytes": "2846", "mnemonic": "mov", "operands": "r0, r5"},
+        {"address": "0x10027fd0", "bytes": "05b0", "mnemonic": "add", "operands": "sp, #0x14"},
+        {"address": "0x10027fd2", "bytes": "f0bd", "mnemonic": "pop", "operands": "{r4, r5, r6, r7, pc}"},
+        {"address": "0x10027fd4", "bytes": "0269", "mnemonic": "ldr", "operands": "r2, [r0, #0x10]"},
+        {"address": "0x10027fd6", "bytes": "8168", "mnemonic": "ldr", "operands": "r1, [r0, #8]"},
+        {"address": "0x10027fd8", "bytes": "1368", "mnemonic": "ldr", "operands": "r3, [r2]"},
+        {"address": "0x10027fda", "bytes": "43f08073", "mnemonic": "orr", "operands": "r3, r3, #0x1000000"},
+        {"address": "0x10027fde", "bytes": "1360", "mnemonic": "str", "operands": "r3, [r2]"},
+        {"address": "0x10027fe0", "bytes": "0b68", "mnemonic": "ldr", "operands": "r3, [r1]"},
+        {"address": "0x10027fe2", "bytes": "40f20162", "mnemonic": "movw", "operands": "r2, #0x601"},
+        {"address": "0x10027fe6", "bytes": "1821", "mnemonic": "movs", "operands": "r1, #0x18"},
+        {"address": "0x10027fe8", "bytes": "9847", "mnemonic": "blx", "operands": "r3"},
+        {"address": "0x10027fea", "bytes": "10b1", "mnemonic": "cbz", "operands": "r0, #0x10027ff2"},
+        {"address": "0x10027fec", "bytes": "3749", "mnemonic": "ldr", "operands": "r1, [pc, #0xdc]"},
+        {"address": "0x10027fee", "bytes": "3848", "mnemonic": "ldr", "operands": "r0, [pc, #0xe0]"},
+        {"address": "0x10027ff0", "bytes": "e8e7", "mnemonic": "b", "operands": "#0x10027fc4"},
+        {"address": "0x10027ff2", "bytes": "3148", "mnemonic": "ldr", "operands": "r0, [pc, #0xc4]"},
+        {"address": "0x10027ff4", "bytes": "72f012fc", "mnemonic": "bl", "operands": "#0x1009a81c"},
+        {"address": "0x10027ff8", "bytes": "6065", "mnemonic": "str", "operands": "r0, [r4, #0x54]"},
+        {"address": "0x10027ffa", "bytes": "10b9", "mnemonic": "cbnz", "operands": "r0, #0x10028002"},
+        {"address": "0x10027ffc", "bytes": "3549", "mnemonic": "ldr", "operands": "r1, [pc, #0xd4]"},
+        {"address": "0x10027ffe", "bytes": "3648", "mnemonic": "ldr", "operands": "r0, [pc, #0xd8]"},
+        {"address": "0x10028000", "bytes": "e0e7", "mnemonic": "b", "operands": "#0x10027fc4"},
+        {"address": "0x10028002", "bytes": "0269", "mnemonic": "ldr", "operands": "r2, [r0, #0x10]"},
+        {"address": "0x10028004", "bytes": "8168", "mnemonic": "ldr", "operands": "r1, [r0, #8]"},
+        {"address": "0x10028006", "bytes": "1368", "mnemonic": "ldr", "operands": "r3, [r2]"},
+        {"address": "0x10028008", "bytes": "23f00073", "mnemonic": "bic", "operands": "r3, r3, #0x2000000"},
+        {"address": "0x1002800c", "bytes": "1360", "mnemonic": "str", "operands": "r3, [r2]"},
+        {"address": "0x1002800e", "bytes": "0b68", "mnemonic": "ldr", "operands": "r3, [r1]"},
+        {"address": "0x10028010", "bytes": "4ff42062", "mnemonic": "mov.w", "operands": "r2, #0xa00"},
+        {"address": "0x10028014", "bytes": "1921", "mnemonic": "movs", "operands": "r1, #0x19"},
+        {"address": "0x10028016", "bytes": "9847", "mnemonic": "blx", "operands": "r3"},
+        {"address": "0x10028018", "bytes": "10b1", "mnemonic": "cbz", "operands": "r0, #0x10028020"},
+        {"address": "0x1002801a", "bytes": "3049", "mnemonic": "ldr", "operands": "r1, [pc, #0xc0]"},
+        {"address": "0x1002801c", "bytes": "3048", "mnemonic": "ldr", "operands": "r0, [pc, #0xc0]"},
+        {"address": "0x1002801e", "bytes": "d1e7", "mnemonic": "b", "operands": "#0x10027fc4"},
+        {"address": "0x10028020", "bytes": "0121", "mnemonic": "movs", "operands": "r1, #1"},
+        {"address": "0x10028022", "bytes": "0846", "mnemonic": "mov", "operands": "r0, r1"},
+        {"address": "0x10028024", "bytes": "05f08cfe", "mnemonic": "bl", "operands": "#0x1002dd40"},
+        {"address": "0x10028028", "bytes": "2e48", "mnemonic": "ldr", "operands": "r0, [pc, #0xb8]"},
+        {"address": "0x1002802a", "bytes": "72f0f7fb", "mnemonic": "bl", "operands": "#0x1009a81c"},
+        {"address": "0x1002802e", "bytes": "2060", "mnemonic": "str", "operands": "r0, [r4]"},
+        {"address": "0x10028030", "bytes": "38b9", "mnemonic": "cbnz", "operands": "r0, #0x10028042"},
+        {"address": "0x10028032", "bytes": "2d49", "mnemonic": "ldr", "operands": "r1, [pc, #0xb4]"},
+        {"address": "0x10028034", "bytes": "2d48", "mnemonic": "ldr", "operands": "r0, [pc, #0xb4]"},
+        {"address": "0x10028036", "bytes": "3043", "mnemonic": "orrs", "operands": "r0, r6"},
+        {"address": "0x10028038", "bytes": "2df0aaff", "mnemonic": "bl", "operands": "#0x10055f90"},
+        {"address": "0x1002803c", "bytes": "4ff0ff35", "mnemonic": "mov.w", "operands": "r5, #-1"},
+        {"address": "0x10028040", "bytes": "c5e7", "mnemonic": "b", "operands": "#0x10027fce"},
+        {"address": "0x10028042", "bytes": "8368", "mnemonic": "ldr", "operands": "r3, [r0, #8]"},
+        {"address": "0x10028044", "bytes": "1421", "mnemonic": "movs", "operands": "r1, #0x14"},
+        {"address": "0x10028046", "bytes": "1b68", "mnemonic": "ldr", "operands": "r3, [r3]"},
+        {"address": "0x10028048", "bytes": "9847", "mnemonic": "blx", "operands": "r3"},
+        {"address": "0x1002804a", "bytes": "0546", "mnemonic": "mov", "operands": "r5, r0"},
+        {"address": "0x1002804c", "bytes": "10b1", "mnemonic": "cbz", "operands": "r0, #0x10028054"},
+        {"address": "0x1002804e", "bytes": "2849", "mnemonic": "ldr", "operands": "r1, [pc, #0xa0]"},
+        {"address": "0x10028050", "bytes": "2848", "mnemonic": "ldr", "operands": "r0, [pc, #0xa0]"},
+        {"address": "0x10028052", "bytes": "f0e7", "mnemonic": "b", "operands": "#0x10028036"},
+        {"address": "0x10028054", "bytes": "94f8c831", "mnemonic": "ldrb.w", "operands": "r3, [r4, #0x1c8]"},
+        {"address": "0x10028058", "bytes": "a065", "mnemonic": "str", "operands": "r0, [r4, #0x58]"},
+        {"address": "0x1002805a", "bytes": "60f34103", "mnemonic": "bfi", "operands": "r3, r0, #1, #1"},
+        {"address": "0x1002805e", "bytes": "84f8c831", "mnemonic": "strb.w", "operands": "r3, [r4, #0x1c8]"},
+        {"address": "0x10028062", "bytes": "04f15c07", "mnemonic": "add.w", "operands": "r7, r4, #0x5c"},
+        {"address": "0x10028066", "bytes": "ff23", "mnemonic": "movs", "operands": "r3, #0xff"},
+        {"address": "0x10028068", "bytes": "84f8ca31", "mnemonic": "strb.w", "operands": "r3, [r4, #0x1ca]"},
+        {"address": "0x1002806c", "bytes": "3846", "mnemonic": "mov", "operands": "r0, r7"},
+        {"address": "0x1002806e", "bytes": "2249", "mnemonic": "ldr", "operands": "r1, [pc, #0x88]"},
+        {"address": "0x10028070", "bytes": "90f0b0fe", "mnemonic": "bl", "operands": "#0x100b8dd4"},
+        {"address": "0x10028074", "bytes": "04f16c00", "mnemonic": "add.w", "operands": "r0, r4, #0x6c"},
+        {"address": "0x10028078", "bytes": "2049", "mnemonic": "ldr", "operands": "r1, [pc, #0x80]"},
+        {"address": "0x1002807a", "bytes": "90f0abfe", "mnemonic": "bl", "operands": "#0x100b8dd4"},
+        {"address": "0x1002807e", "bytes": "04f17c00", "mnemonic": "add.w", "operands": "r0, r4, #0x7c"},
+        {"address": "0x10028082", "bytes": "1f49", "mnemonic": "ldr", "operands": "r1, [pc, #0x7c]"},
+        {"address": "0x10028084", "bytes": "90f0a6fe", "mnemonic": "bl", "operands": "#0x100b8dd4"},
+        {"address": "0x10028088", "bytes": "04f19000", "mnemonic": "add.w", "operands": "r0, r4, #0x90"},
+        {"address": "0x1002808c", "bytes": "0623", "mnemonic": "movs", "operands": "r3, #6"},
+        {"address": "0x1002808e", "bytes": "4ff48062", "mnemonic": "mov.w", "operands": "r2, #0x400"},
+        {"address": "0x10028092", "bytes": "1c49", "mnemonic": "ldr", "operands": "r1, [pc, #0x70]"},
+        {"address": "0x10028094", "bytes": "0095", "mnemonic": "str", "operands": "r5, [sp]"},
+        {"address": "0x10028096", "bytes": "0390", "mnemonic": "str", "operands": "r0, [sp, #0xc]"},
+        {"address": "0x10028098", "bytes": "73f02cfc", "mnemonic": "bl", "operands": "#0x1009b8f4"},
+        {"address": "0x1002809c", "bytes": "3946", "mnemonic": "mov", "operands": "r1, r7"},
+        {"address": "0x1002809e", "bytes": "0398", "mnemonic": "ldr", "operands": "r0, [sp, #0xc]"},
+        {"address": "0x100280a0", "bytes": "90f0a1fe", "mnemonic": "bl", "operands": "#0x100b8de6"},
+        {"address": "0x100280a4", "bytes": "46f02e70", "mnemonic": "orr", "operands": "r0, r6, #0x2b80000"},
+        {"address": "0x100280a8", "bytes": "1749", "mnemonic": "ldr", "operands": "r1, [pc, #0x5c]"},
+        {"address": "0x100280aa", "bytes": "40f03100", "mnemonic": "orr", "operands": "r0, r0, #0x31"},
+        {"address": "0x100280ae", "bytes": "2df06fff", "mnemonic": "bl", "operands": "#0x10055f90"},
+        {"address": "0x100280b2", "bytes": "8ce7", "mnemonic": "b", "operands": "#0x10027fce"}
+      ]
+    },
+    {
+      "name": "initializer_literal_pool",
+      "address": "0x100280b4",
+      "file_offset": "0x280b4",
+      "length": 88,
+      "hex": "ad790210957a0c1074a50b106ca30b109b7a0c1011008502b37a0c1011008b02d07a0c1011009302e87a0c1011009902057b0c100b7b0c101100a1022f7b0c101100a602017d0210857e02100d7e021020a20418437b0c10",
+      "sha256": "a6c7ee5b53b371a836cd8e14060ef7e71c60a6134de50305aed8a702d3c44552"
+    }
+  ],
+  "strings": [
+    {"name": "string", "address": "0x100c8946", "file_offset": "0xc8946", "length": 10, "hex": "6c63645f70616e656c00", "sha256": "5f7a726ab69936aab77a82e73a32fc8ad0b65ef6e862deca1e44563fe8a42605", "text": "lcd_panel"},
+    {"name": "string", "address": "0x100ca42a", "file_offset": "0xca42a", "length": 10, "hex": "6c6364635f6163747300", "sha256": "c1be4927f7b9b0be42feb0e43bd5942d659b384c8b78eec75429d43f6e6574d9", "text": "lcdc_acts"},
+    {"name": "string", "address": "0x100c7b51", "file_offset": "0xc7b51", "length": 13, "hex": "70616e656c5f63683131313500", "sha256": "5ff2dd6430554969e966e8a66d03a95eb1e83aa1b755eaac35519231d9fa13ae", "text": "panel_ch1115"},
+    {"name": "string", "address": "0x100c7a95", "file_offset": "0xc7a95", "length": 6, "hex": "4750494f4100", "sha256": "65fb3154964b58aacb22d3c37024da5d095ba3dbe6ae13c8762cbf215e56a55c", "text": "GPIOA"},
+    {"name": "string", "address": "0x100c7a9b", "file_offset": "0xc7a9b", "length": 24, "hex": "436f756c646e27742066696e642072657365742070696e00", "sha256": "1d4c835ee55be5aa53ccd05b4a312d8ce215d1da7a51cb3ade495dad56289ad2", "text": "Couldn't find reset pin"},
+    {"name": "string", "address": "0x100c7ab3", "file_offset": "0xc7ab3", "length": 29, "hex": "436f756c646e277420636f6e6669677572652072657365742070696e00", "sha256": "b1300259d12fca4b8b4d33b66ed9f06a8b9d0d3fd0925c7cf59c86bf396eb391", "text": "Couldn't configure reset pin"},
+    {"name": "string", "address": "0x100c7ad0", "file_offset": "0xc7ad0", "length": 24, "hex": "436f756c646e27742066696e6420706f7765722070696e00", "sha256": "74a74df972f55f48e33281ef2cd3eb2d785f811c292507da69502ce3a3d9f93a", "text": "Couldn't find power pin"},
+    {"name": "string", "address": "0x100c7ae8", "file_offset": "0xc7ae8", "length": 29, "hex": "436f756c646e277420636f6e66696775726520706f7765722070696e00", "sha256": "93d40364cb769be0a4c492f706f11bc9b48308ffd3e1b91a34645d814f738669", "text": "Couldn't configure power pin"},
+    {"name": "string", "address": "0x100c7b05", "file_offset": "0xc7b05", "length": 6, "hex": "4932435f3000", "sha256": "b32cbdb244afe4dd7d17649b79fdbd902ee02e6f302143da061bfd167e9baa44", "text": "I2C_0"},
+    {"name": "string", "address": "0x100c7b0b", "file_offset": "0xc7b0b", "length": 36, "hex": "436f756c64206e6f7420676574204c434420636f6e74726f6c6c65722064657669636500", "sha256": "cf0e7a2784702e9bce3f1792e8642de8f8c8e5f4a7dafd67e9d6350dc357dca2", "text": "Could not get LCD controller device"},
+    {"name": "string", "address": "0x100c7b2f", "file_offset": "0xc7b2f", "length": 20, "hex": "6932635f636f6e666967757265206572726f7200", "sha256": "b1e20e688723c5d840d40f0b9b9690452cf2088621ce16565cb0d8db66797af0", "text": "i2c_configure error"},
+    {"name": "string", "address": "0x100c7b43", "file_offset": "0xc7b43", "length": 14, "hex": "70616e656c20696e6974206f6b00", "sha256": "2c1dfebf1aa31807c557ef38d7dce087b93b389000cd70a4f50721e7d7154b30", "text": "panel init ok"},
+    {"name": "string", "address": "0x100c79e0", "file_offset": "0xc79e0", "length": 23, "hex": "6932635f7772697465206572726f72207265743d256400", "sha256": "795dc7665386bf38716e9ba9149aa24d0b02a3b4c7fbbdb07bd68e0a044a1250", "text": "i2c_write error ret=%d"}
+  ],
+  "literals": [
+    {"address": "0x10027a50", "value": "0x00280048"},
+    {"address": "0x10027b1c", "value": "0x100ba36c"},
+    {"address": "0x10027b20", "value": "0x100ba574"},
+    {"address": "0x10027b24", "value": "0x100c79e0"},
+    {"address": "0x100280b4", "value": "0x100279ad"},
+    {"address": "0x100280b8", "value": "0x100c7a95"},
+    {"address": "0x100280bc", "value": "0x100ba574"},
+    {"address": "0x100280c0", "value": "0x100ba36c"},
+    {"address": "0x100280c4", "value": "0x100c7a9b"},
+    {"address": "0x100280c8", "value": "0x02850011"},
+    {"address": "0x100280cc", "value": "0x100c7ab3"},
+    {"address": "0x100280d0", "value": "0x028b0011"},
+    {"address": "0x100280d4", "value": "0x100c7ad0"},
+    {"address": "0x100280d8", "value": "0x02930011"},
+    {"address": "0x100280dc", "value": "0x100c7ae8"},
+    {"address": "0x100280e0", "value": "0x02990011"},
+    {"address": "0x100280e4", "value": "0x100c7b05"},
+    {"address": "0x100280e8", "value": "0x100c7b0b"},
+    {"address": "0x100280ec", "value": "0x02a10011"},
+    {"address": "0x100280f0", "value": "0x100c7b2f"},
+    {"address": "0x100280f4", "value": "0x02a60011"},
+    {"address": "0x100280f8", "value": "0x10027d01"},
+    {"address": "0x100280fc", "value": "0x10027e85"},
+    {"address": "0x10028100", "value": "0x10027e0d"},
+    {"address": "0x10028104", "value": "0x1804a220"},
+    {"address": "0x10028108", "value": "0x100c7b43"}
+  ],
+  "descriptors": [
+    {"name": "lcd_panel", "address": "0x100ba2c0", "name_pointer": "0x100c8946", "config": "0x00000000", "api": "0x100bbc2c", "state": "0x18002928", "data": "0x180056f0", "pm_control_thumb": "0x10027bed", "init_entry": "0x100b9ed0", "init_thumb": "0x10027f99"},
+    {"name": "lcdc_acts", "address": "0x100ba1e0", "name_pointer": "0x100ca42a", "config": "0x00000000", "api": "0x100bc2e0", "state": "0x18002f40", "data": "0x1800f9a8", "pm_control_thumb": "0x100318c1", "init_entry": "0x100b9e90", "init_thumb": "0x100a4b17"}
+  ],
+  "panel_label": {
+    "module_entry": "0x100ba574",
+    "name_pointer": "0x100c7b51",
+    "name": "panel_ch1115",
+    "references": [
+      "0x10027b20 command helper literal",
+      "0x100280bc initializer literal"
+    ],
+    "meaning": "Actual firmware log-module/driver label linked to analyzed implementation; not physical panel ID read or exact chip revision proof"
+  },
+  "capabilities": {
+    "api_slot": "0x100bbc48 = panel API +0x1c",
+    "thumb": "0x10027a39",
+    "code": "0x10027a38",
+    "instruction_output": [
+      {"offset": 0, "size": 4, "value": "0x00280048"},
+      {"offset": 4, "size": 4, "value": "0x00000000"},
+      {"offset": 8, "size": 4, "value": "0x00000010"},
+      {"offset": 12, "size": 4, "value": "0x00000020"},
+      {"offset": 16, "size": 2, "value": "0x0010"},
+      {"offset": 18, "size": 1, "value": "0x00"},
+      {"offset": 19, "size": 1, "value": "0x00"}
+    ],
+    "first_two_u16": [
+      72,
+      40
+    ],
+    "interpretation": "Capabilities-shaped pure constant output: first two uint16 align with x/y resolution in pinned display_capabilities; strong configured 72x40 evidence. Remaining output layout/API ordering differs from pinned SDK; do not assign unsupported format/orientation semantics.",
+    "limits": [
+      "No physical pixel measurement or runtime call",
+      "No original symbols; role inferred from output shape and API membership",
+      "Pinned display_driver_api has17 slots; actual observed 12-pointer window not assumed same layout"
+    ]
+  },
+  "command_helper": {
+    "code": "0x10027ad0",
+    "length": 74,
+    "parameters": "r0 device, r1 command byte",
+    "message": {
+      "bytes": "00 followed by low8(command)",
+      "length": 2,
+      "flags": 2,
+      "num_messages": 1,
+      "address": "0x3c"
+    },
+    "indirect_call": "device+8 API pointer; API+4; BLX at0x10027af2 with r0=device,r1=&stack_message,r2=1,r3=0x3c",
+    "source_match": "Pinned i2c_msg buf/len/flags and i2c_driver_api configure/transfer offsets exactly fit this use; I2C_MSG_WRITE|I2C_MSG_STOP=2",
+    "result": "Transfer return0 preserved; nonzero logs error then returns -22",
+    "limits": [
+      "No bus transaction executed or physical bus observed",
+      "No assumption that registered lcdc_acts is transport used by this panel"
+    ]
+  },
+  "initializer": {
+    "code": "0x10027f98",
+    "length": 284,
+    "device_argument": "0x100ba2c0 from actual init entry",
+    "data": "[device+0x10] =0x180056f0",
+    "gpio": [
+      {
+        "binding_literal": "GPIOA",
+        "binding_call": "0x10027fae",
+        "stored_pointer": "data+0x50",
+        "configure_call": "0x10027fe8 API first slot",
+        "pin_argument": 24,
+        "flags_argument": "0x601",
+        "error_labels": [
+          "Couldn't find reset pin",
+          "Couldn't configure reset pin"
+        ]
+      },
+      {
+        "binding_literal": "GPIOA (same mapped literal)",
+        "binding_call": "0x10027ff4",
+        "stored_pointer": "data+0x54",
+        "configure_call": "0x10028016 API first slot",
+        "pin_argument": 25,
+        "flags_argument": "0xa00",
+        "error_labels": [
+          "Couldn't find power pin",
+          "Couldn't configure power pin"
+        ]
+      }
+    ],
+    "bus": {
+      "binding_literal": "I2C_0",
+      "binding_call": "0x1002802a target0x1009a81c",
+      "stored_pointer": "data+0x00 at0x1002802e",
+      "configure_call": "0x10028048 device API first slot",
+      "configure_argument": "0x14",
+      "error_labels": [
+        "Could not get LCD controller device",
+        "i2c_configure error"
+      ]
+    },
+    "callbacks_not_expanded": [
+      "0x100279ad",
+      "0x10027d01",
+      "0x10027e85",
+      "0x10027e0d"
+    ],
+    "thread_or_work_storage_argument": "0x1804a220, length0x400 at0x1002808e; not followed",
+    "limits": [
+      "Actual GPIO semantics/pinmux/electrical routing not proven by numeric arguments",
+      "Initializer is static boot-path code, not proof callbacks ran or bindings succeeded",
+      "No controller command initialization sequence expanded"
+    ]
+  },
+  "ram_initial_state": {
+    "data_pointers": [
+      "0x180056f0",
+      "0x1800f9a8"
+    ],
+    "startup_zero_interval": "0x18003ca0..0x18045250 exclusive, previously established",
+    "meaning": "Both data addresses fall inside startup zero interval; no initialized-data payload mapping applies. Zero is startup expectation if reset sequence executed, not current data. Runtime device/buffer fields not read."
+  },
+  "sources": [
+    {
+      "path": "action_technology_sdk/zephyr/include/drivers/i2c.h",
+      "sha256": "26b6a9ddbde474fe0a4cf4898fbfb4bd3d4e4e26ef21c97f74c740115a1ef425",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/include/drivers/i2c.h#L145-L169"
+    },
+    {
+      "path": "action_technology_sdk/zephyr/include/drivers/display.h",
+      "sha256": "4bd3fb164183550e98a998ca96b70854068013ba0edcc96874d7b95d6b5d8a13",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/include/drivers/display.h#L160-L177"
+    },
+    {
+      "path": "action_technology_sdk/zephyr/include/device.h",
+      "sha256": "94c81fed6e860946a44eafc98c2d4b48915704782ad881440c6cc632b1dc39ba",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/include/device.h#L363-L414"
+    }
+  ],
+  "established": [
+    "Actual lcd_panel driver label panel_ch1115 linked by log-module literals",
+    "Capabilities-shaped API output has first two halfwords72,40",
+    "Actual panel init binds I2C_0 and stores bus device at paneldata+0",
+    "Actual command helper matches I2C write of 00+command to0x3c",
+    "Init numeric GPIOA pin24/25 configuration plus reset/power error labels"
+  ],
+  "limits": [
+    "Controller label is not measured hardware identity; exact panel part/revision unknown",
+    "Configured resolution evidence is not physical display measurement",
+    "No color/monochrome format, refresh rate or orientation inferred from unmatched remaining ABI",
+    "No command initialization table or display pixel transport decoded; no complete panel bring-up recipe",
+    "I2C frequency/config flags not hard-coded to pinned semantic enums without actual driver proof",
+    "Registered lcdc_acts existence alone does not prove this panel uses that controller",
+    "No device action, Flash write or recovery capability established"
+  ]
+}

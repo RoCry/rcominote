@@ -109,3 +109,5 @@ uv run --locked tools/build_sdk.py \
 [Console运行时实测](docs/printk-runtime-state.md)：新增`diag capture printk-state`和`diag inspect-printk`；两次固定10 B RAM一致，init=1/panic=0对应DMA分支，当前hook与启动载荷不同；尚未观察物理输出或原始Flash数据。
 
 [原始映射缺口审计](docs/mapping-candidate-audit.md)：完整镜像中限定搜索未建立raw NOR换算依据；[35项实机dbg目录](docs/actual-dbg-command-inventory.md)检查遗漏返回路径，实际长度/副作用以handler证据为准。
+
+[实机初始化与音频入口](docs/init-audio-board-evidence.md)：71项初始化表定位31个设备，audio_in明确绑定ADC_0；[显示板级证据](docs/display-board-evidence.md)：CH1115驱动标签、72×40配置、I2C_0/0x3c与GPIOA24/25，物理身份及完整初始化时序仍待验证。

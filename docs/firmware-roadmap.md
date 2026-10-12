@@ -45,4 +45,8 @@ uv run comi usb diff artifacts/usb-before.json artifacts/usb-after.json
 
 ## 明确未知
 
-SoC 精确料号、物理RAM/PSRAM规格、NOR完整物理映射与板级存储接线、显示控制器/分辨率/引脚、麦克风通道与接口、电池充电/检测电路、按键与唤醒、ROM 下载入口、串口电平、安全启动状态、原厂固件 URL、板级 SDK 授权及闭源库依赖。以上均不能从现有 BLE GATT 单独反推出。
+SoC 精确料号、物理RAM/PSRAM规格、NOR完整物理映射与板级存储接线、显示器物理身份、完整初始化序列与引脚电气映射、麦克风通道与接口、电池充电/检测电路、按键与唤醒、ROM 下载入口、串口电平、安全启动状态、原厂固件 URL、板级 SDK 授权及闭源库依赖。以上均不能从现有 BLE GATT 单独反推出。
+
+## 不依赖App登录的板级推进
+
+完整镜像已提供[71项init表与音频ADC入口](init-audio-board-evidence.md)、[显示驱动与总线配置](display-board-evidence.md)。接下来优先追踪屏幕work callback的命令序列、音频open配置和GPIO pinmux；先获得可复核的BSP约束。Android登录暂缓，不影响这些静态分析。上述结果不替代raw备份、独立恢复入口与签名验证。
