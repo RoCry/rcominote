@@ -9,7 +9,7 @@ import pytest
 from typer.testing import CliRunner
 
 from rcominote.cli import app
-from rcominote.ota_package import inspect_package
+from rcominote.ota_package import _application_gates, inspect_package
 
 FIXTURE = Path(__file__).parent / "fixtures" / "ota-sdk-golden.bin"
 
@@ -133,3 +133,25 @@ def test_cli_is_offline_and_reports_limited_scope():
     result = CliRunner().invoke(app, ["inspect-ota", str(FIXTURE)])
     assert result.exit_code == 0, result.output
     assert "device acceptance and recoverability unverified" in json.loads(result.stdout)["scope"]
+
+
+def test_sdk_container_pass_does_not_hide_actual_firmware_prefix_rejection():
+    # Golden comes from the vendor packer; actual 10067700 requires <?xml.
+    report = inspect_package(FIXTURE.read_bytes())["application_gates"]
+    assert report["known_rejections"] == ["ota.xml must begin with <?xml"]
+
+
+@pytest.mark.parametrize(
+    "length, rejected", [(2047, []), (2048, ["ota.xml length must be less than 2048 bytes"])]
+)
+def test_actual_manifest_length_boundary(length, rejected):
+    # Actual 100677e0 gate: signed length < 2048, not host's metadata limit.
+    report = _application_gates(b"<?xml" + b" " * (length - 5))
+    assert report["known_rejections"] == rejected
+
+
+def test_valid_container_without_manifest_reports_missing_required_file():
+    data = bytearray(FIXTURE.read_bytes())
+    data[512:524] = b"meta.xml" + bytes(4)
+    report = inspect_package(repaired_header(data))["application_gates"]
+    assert report["known_rejections"] == ["missing ota.xml"]

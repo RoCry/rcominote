@@ -130,5 +130,5 @@ SDK references: [write/verify and upgrade control](https://github.com/lvgl/lv_po
 [application callback](https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/application/bt_watch/src/ota/ota_app_foreground.c#L384).
 No OTA transfer, interrupted-write experiment, completed recovery validation or
 new-firmware boot occurred. The write setup additionally calls `100a52d2` with
-`1000` (SDK `nvram_config_clear`); its concrete storage side effects require a
-separate bounded audit before claiming all writes are inventoried here.
+`1000` (SDK `nvram_config_clear`); the subsequent [actual pre-erase audit](ota-nvram-preerase.md)
+traces this to the noncurrent user-NVRAM segment and records unchecked I/O errors.

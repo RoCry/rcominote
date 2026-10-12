@@ -50,6 +50,25 @@ def _xml_metadata(data: bytes) -> dict:
     return {"source": "ota.xml; strings only, no compatibility validation", "versions": versions}
 
 
+def _application_gates(xml: bytes | None) -> dict:
+    """Only three gates proven in FW010004; an empty rejection list is not acceptance."""
+    rejected = []
+    if xml is None:
+        rejected.append("missing ota.xml")
+    else:
+        if len(xml) >= 2048:
+            rejected.append("ota.xml length must be less than 2048 bytes")
+        if not xml.startswith(b"<?xml"):
+            rejected.append("ota.xml must begin with <?xml")
+    return {
+        "firmware": "FW010004",
+        "checked": ["ota.xml presence", "manifest length", "manifest prefix"],
+        "known_rejections": rejected,
+        "acceptance": "unverified",
+        "note": "Manifest semantics, board match, payload targets and recovery remain unchecked",
+    }
+
+
 def inspect_package(data: bytes | bytearray | mmap.mmap) -> dict:
     """Check the fixed SDK layout, all CRCs, and file bounds before returning metadata."""
     if data[:4] == b"LZMA":
@@ -119,6 +138,7 @@ def inspect_package(data: bytes | bytearray | mmap.mmap) -> dict:
             "header_version_area_hex": bytes(view[0x40:DIRECTORY_OFFSET]).hex(),
             "header_version_area_note": "Raw bytes: SDK packer and C version structures differ",
             "metadata": _xml_metadata(xml) if xml is not None else None,
+            "application_gates": _application_gates(xml),
             "entries": entries,
         }
     finally:

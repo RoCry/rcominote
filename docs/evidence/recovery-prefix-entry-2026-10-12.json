@@ -1,0 +1,980 @@
+{
+  "sha256": "cff7225f49d502a3e6cf52a8d2df12cbee44625cc2120c3c7a03a96d77e577b7",
+  "bytes": 48128,
+  "complete_image": false,
+  "body_checksum_verified": false,
+  "scope": "Provisional32-byte decoding; original windows revalidated, full body unavailable",
+  "vector_sp": "0x1004140",
+  "vector_reset": "0x110023d5",
+  "regions": [
+    {
+      "start": "0x110007a4",
+      "end_exclusive": "0x110007dc",
+      "instructions": [
+        {
+          "address": "0x110007a4",
+          "bytes": "07b5",
+          "instruction": "push {r0, r1, r2, lr}"
+        },
+        {
+          "address": "0x110007a6",
+          "bytes": "0422",
+          "instruction": "movs r2, #4"
+        },
+        {
+          "address": "0x110007a8",
+          "bytes": "0021",
+          "instruction": "movs r1, #0"
+        },
+        {
+          "address": "0x110007aa",
+          "bytes": "0deb0200",
+          "instruction": "add.w r0, sp, r2"
+        },
+        {
+          "address": "0x110007ae",
+          "bytes": "09f0f8f8",
+          "instruction": "bl #0x110099a2"
+        },
+        {
+          "address": "0x110007b2",
+          "bytes": "0a4b",
+          "instruction": "ldr r3, [pc, #0x28]",
+          "literal_address": "0x110007dc",
+          "literal_value": "0x1100ad28",
+          "literal_text": "spi_flash"
+        },
+        {
+          "address": "0x110007b4",
+          "bytes": "0a48",
+          "instruction": "ldr r0, [pc, #0x28]",
+          "literal_address": "0x110007e0",
+          "literal_value": "0x11000709"
+        },
+        {
+          "address": "0x110007b6",
+          "bytes": "0193",
+          "instruction": "str r3, [sp, #4]"
+        },
+        {
+          "address": "0x110007b8",
+          "bytes": "01a9",
+          "instruction": "add r1, sp, #4"
+        },
+        {
+          "address": "0x110007ba",
+          "bytes": "03f015ff",
+          "instruction": "bl #0x110045e8"
+        },
+        {
+          "address": "0x110007be",
+          "bytes": "58b9",
+          "instruction": "cbnz r0, #0x110007d8"
+        },
+        {
+          "address": "0x110007c0",
+          "bytes": "0848",
+          "instruction": "ldr r0, [pc, #0x20]",
+          "literal_address": "0x110007e4",
+          "literal_value": "0x1100ad44",
+          "literal_text": "%c: failed to init temp part for ota\n"
+        },
+        {
+          "address": "0x110007c2",
+          "bytes": "4521",
+          "instruction": "movs r1, #0x45"
+        },
+        {
+          "address": "0x110007c4",
+          "bytes": "08f07cff",
+          "instruction": "bl #0x110096c0"
+        },
+        {
+          "address": "0x110007c8",
+          "bytes": "0748",
+          "instruction": "ldr r0, [pc, #0x1c]",
+          "literal_address": "0x110007e8",
+          "literal_value": "0x1100ae6a",
+          "literal_text": "\n"
+        },
+        {
+          "address": "0x110007ca",
+          "bytes": "08f01cfb",
+          "instruction": "bl #0x11008e06"
+        },
+        {
+          "address": "0x110007ce",
+          "bytes": "6ff01200",
+          "instruction": "mvn r0, #0x12"
+        },
+        {
+          "address": "0x110007d2",
+          "bytes": "03b0",
+          "instruction": "add sp, #0xc"
+        },
+        {
+          "address": "0x110007d4",
+          "bytes": "5df804fb",
+          "instruction": "ldr pc, [sp], #4"
+        },
+        {
+          "address": "0x110007d8",
+          "bytes": "0020",
+          "instruction": "movs r0, #0"
+        },
+        {
+          "address": "0x110007da",
+          "bytes": "fae7",
+          "instruction": "b #0x110007d2"
+        }
+      ]
+    },
+    {
+      "start": "0x110007ec",
+      "end_exclusive": "0x1100086c",
+      "instructions": [
+        {
+          "address": "0x110007ec",
+          "bytes": "1fb5",
+          "instruction": "push {r0, r1, r2, r3, r4, lr}"
+        },
+        {
+          "address": "0x110007ee",
+          "bytes": "4921",
+          "instruction": "movs r1, #0x49"
+        },
+        {
+          "address": "0x110007f0",
+          "bytes": "1e48",
+          "instruction": "ldr r0, [pc, #0x78]",
+          "literal_address": "0x1100086c",
+          "literal_value": "0x1100ad6a",
+          "literal_text": "%c: ota app init\n"
+        },
+        {
+          "address": "0x110007f2",
+          "bytes": "08f065ff",
+          "instruction": "bl #0x110096c0"
+        },
+        {
+          "address": "0x110007f6",
+          "bytes": "1e48",
+          "instruction": "ldr r0, [pc, #0x78]",
+          "literal_address": "0x11000870",
+          "literal_value": "0x1100ae6a",
+          "literal_text": "\n"
+        },
+        {
+          "address": "0x110007f8",
+          "bytes": "08f005fb",
+          "instruction": "bl #0x11008e06"
+        },
+        {
+          "address": "0x110007fc",
+          "bytes": "1022",
+          "instruction": "movs r2, #0x10"
+        },
+        {
+          "address": "0x110007fe",
+          "bytes": "0021",
+          "instruction": "movs r1, #0"
+        },
+        {
+          "address": "0x11000800",
+          "bytes": "6846",
+          "instruction": "mov r0, sp"
+        },
+        {
+          "address": "0x11000802",
+          "bytes": "09f0cef8",
+          "instruction": "bl #0x110099a2"
+        },
+        {
+          "address": "0x11000806",
+          "bytes": "1b4b",
+          "instruction": "ldr r3, [pc, #0x6c]",
+          "literal_address": "0x11000874",
+          "literal_value": "0x110006e9"
+        },
+        {
+          "address": "0x11000808",
+          "bytes": "0193",
+          "instruction": "str r3, [sp, #4]"
+        },
+        {
+          "address": "0x1100080a",
+          "bytes": "9df80c30",
+          "instruction": "ldrb.w r3, [sp, #0xc]"
+        },
+        {
+          "address": "0x1100080e",
+          "bytes": "1a48",
+          "instruction": "ldr r0, [pc, #0x68]",
+          "literal_address": "0x11000878",
+          "literal_value": "0x1100ad28",
+          "literal_text": "spi_flash"
+        },
+        {
+          "address": "0x11000810",
+          "bytes": "0090",
+          "instruction": "str r0, [sp]"
+        },
+        {
+          "address": "0x11000812",
+          "bytes": "23f00703",
+          "instruction": "bic r3, r3, #7"
+        },
+        {
+          "address": "0x11000816",
+          "bytes": "43f00703",
+          "instruction": "orr r3, r3, #7"
+        },
+        {
+          "address": "0x1100081a",
+          "bytes": "8df80c30",
+          "instruction": "strb.w r3, [sp, #0xc]"
+        },
+        {
+          "address": "0x1100081e",
+          "bytes": "07f0ebf9",
+          "instruction": "bl #0x11007bf8"
+        },
+        {
+          "address": "0x11000822",
+          "bytes": "0446",
+          "instruction": "mov r4, r0"
+        },
+        {
+          "address": "0x11000824",
+          "bytes": "10b1",
+          "instruction": "cbz r0, #0x1100082c"
+        },
+        {
+          "address": "0x11000826",
+          "bytes": "0021",
+          "instruction": "movs r1, #0"
+        },
+        {
+          "address": "0x11000828",
+          "bytes": "08f0e6fa",
+          "instruction": "bl #0x11008df8"
+        },
+        {
+          "address": "0x1100082c",
+          "bytes": "6846",
+          "instruction": "mov r0, sp"
+        },
+        {
+          "address": "0x1100082e",
+          "bytes": "05f0cdfc",
+          "instruction": "bl #0x110061cc"
+        },
+        {
+          "address": "0x11000832",
+          "bytes": "124b",
+          "instruction": "ldr r3, [pc, #0x48]",
+          "literal_address": "0x1100087c",
+          "literal_value": "0x180017c8"
+        },
+        {
+          "address": "0x11000834",
+          "bytes": "1860",
+          "instruction": "str r0, [r3]"
+        },
+        {
+          "address": "0x11000836",
+          "bytes": "70b9",
+          "instruction": "cbnz r0, #0x11000856"
+        },
+        {
+          "address": "0x11000838",
+          "bytes": "1148",
+          "instruction": "ldr r0, [pc, #0x44]",
+          "literal_address": "0x11000880",
+          "literal_value": "0x1100ad7c",
+          "literal_text": "%c: ota app init error\n"
+        },
+        {
+          "address": "0x1100083a",
+          "bytes": "4921",
+          "instruction": "movs r1, #0x49"
+        },
+        {
+          "address": "0x1100083c",
+          "bytes": "08f040ff",
+          "instruction": "bl #0x110096c0"
+        },
+        {
+          "address": "0x11000840",
+          "bytes": "0b48",
+          "instruction": "ldr r0, [pc, #0x2c]",
+          "literal_address": "0x11000870",
+          "literal_value": "0x1100ae6a",
+          "literal_text": "\n"
+        },
+        {
+          "address": "0x11000842",
+          "bytes": "08f0e0fa",
+          "instruction": "bl #0x11008e06"
+        },
+        {
+          "address": "0x11000846",
+          "bytes": "1cb1",
+          "instruction": "cbz r4, #0x11000850"
+        },
+        {
+          "address": "0x11000848",
+          "bytes": "0121",
+          "instruction": "movs r1, #1"
+        },
+        {
+          "address": "0x1100084a",
+          "bytes": "2046",
+          "instruction": "mov r0, r4"
+        },
+        {
+          "address": "0x1100084c",
+          "bytes": "08f0d4fa",
+          "instruction": "bl #0x11008df8"
+        },
+        {
+          "address": "0x11000850",
+          "bytes": "4ff0ff30",
+          "instruction": "mov.w r0, #-1"
+        },
+        {
+          "address": "0x11000854",
+          "bytes": "05e0",
+          "instruction": "b #0x11000862"
+        },
+        {
+          "address": "0x11000856",
+          "bytes": "34b1",
+          "instruction": "cbz r4, #0x11000866"
+        },
+        {
+          "address": "0x11000858",
+          "bytes": "0121",
+          "instruction": "movs r1, #1"
+        },
+        {
+          "address": "0x1100085a",
+          "bytes": "2046",
+          "instruction": "mov r0, r4"
+        },
+        {
+          "address": "0x1100085c",
+          "bytes": "08f0ccfa",
+          "instruction": "bl #0x11008df8"
+        },
+        {
+          "address": "0x11000860",
+          "bytes": "0020",
+          "instruction": "movs r0, #0"
+        },
+        {
+          "address": "0x11000862",
+          "bytes": "04b0",
+          "instruction": "add sp, #0x10"
+        },
+        {
+          "address": "0x11000864",
+          "bytes": "10bd",
+          "instruction": "pop {r4, pc}"
+        },
+        {
+          "address": "0x11000866",
+          "bytes": "2046",
+          "instruction": "mov r0, r4"
+        },
+        {
+          "address": "0x11000868",
+          "bytes": "fbe7",
+          "instruction": "b #0x11000862"
+        },
+        {
+          "address": "0x1100086a",
+          "bytes": "00bf",
+          "instruction": "nop "
+        }
+      ]
+    },
+    {
+      "start": "0x11000884",
+      "end_exclusive": "0x110008d0",
+      "instructions": [
+        {
+          "address": "0x11000884",
+          "bytes": "07b5",
+          "instruction": "push {r0, r1, r2, lr}"
+        },
+        {
+          "address": "0x11000886",
+          "bytes": "0023",
+          "instruction": "movs r3, #0"
+        },
+        {
+          "address": "0x11000888",
+          "bytes": "01a9",
+          "instruction": "add r1, sp, #4"
+        },
+        {
+          "address": "0x1100088a",
+          "bytes": "0220",
+          "instruction": "movs r0, #2"
+        },
+        {
+          "address": "0x1100088c",
+          "bytes": "cde90033",
+          "instruction": "strd r3, r3, [sp]"
+        },
+        {
+          "address": "0x11000890",
+          "bytes": "00f01afe",
+          "instruction": "bl #0x110014c8"
+        },
+        {
+          "address": "0x11000894",
+          "bytes": "019a",
+          "instruction": "ldr r2, [sp, #4]"
+        },
+        {
+          "address": "0x11000896",
+          "bytes": "52b1",
+          "instruction": "cbz r2, #0x110008ae"
+        },
+        {
+          "address": "0x11000898",
+          "bytes": "0d48",
+          "instruction": "ldr r0, [pc, #0x34]",
+          "literal_address": "0x110008d0",
+          "literal_value": "0x1100ad94",
+          "literal_text": "%c: pstore_flag:%d\n\n"
+        },
+        {
+          "address": "0x1100089a",
+          "bytes": "4921",
+          "instruction": "movs r1, #0x49"
+        },
+        {
+          "address": "0x1100089c",
+          "bytes": "08f010ff",
+          "instruction": "bl #0x110096c0"
+        },
+        {
+          "address": "0x110008a0",
+          "bytes": "0c48",
+          "instruction": "ldr r0, [pc, #0x30]",
+          "literal_address": "0x110008d4",
+          "literal_value": "0x1100ae6a",
+          "literal_text": "\n"
+        },
+        {
+          "address": "0x110008a2",
+          "bytes": "08f0b0fa",
+          "instruction": "bl #0x11008e06"
+        },
+        {
+          "address": "0x110008a6",
+          "bytes": "0120",
+          "instruction": "movs r0, #1"
+        },
+        {
+          "address": "0x110008a8",
+          "bytes": "03b0",
+          "instruction": "add sp, #0xc"
+        },
+        {
+          "address": "0x110008aa",
+          "bytes": "5df804fb",
+          "instruction": "ldr pc, [sp], #4"
+        },
+        {
+          "address": "0x110008ae",
+          "bytes": "0422",
+          "instruction": "movs r2, #4"
+        },
+        {
+          "address": "0x110008b0",
+          "bytes": "6946",
+          "instruction": "mov r1, sp"
+        },
+        {
+          "address": "0x110008b2",
+          "bytes": "0948",
+          "instruction": "ldr r0, [pc, #0x24]",
+          "literal_address": "0x110008d8",
+          "literal_value": "0x1100ada9",
+          "literal_text": "REC_OTA_FLAG"
+        },
+        {
+          "address": "0x110008b4",
+          "bytes": "03f07ef9",
+          "instruction": "bl #0x11003bb4"
+        },
+        {
+          "address": "0x110008b8",
+          "bytes": "0848",
+          "instruction": "ldr r0, [pc, #0x20]",
+          "literal_address": "0x110008dc",
+          "literal_value": "0x1100adb6",
+          "literal_text": "yes"
+        },
+        {
+          "address": "0x110008ba",
+          "bytes": "09f05ef8",
+          "instruction": "bl #0x1100997a"
+        },
+        {
+          "address": "0x110008be",
+          "bytes": "0749",
+          "instruction": "ldr r1, [pc, #0x1c]",
+          "literal_address": "0x110008dc",
+          "literal_value": "0x1100adb6",
+          "literal_text": "yes"
+        },
+        {
+          "address": "0x110008c0",
+          "bytes": "0246",
+          "instruction": "mov r2, r0"
+        },
+        {
+          "address": "0x110008c2",
+          "bytes": "6846",
+          "instruction": "mov r0, sp"
+        },
+        {
+          "address": "0x110008c4",
+          "bytes": "09f065f8",
+          "instruction": "bl #0x11009992"
+        },
+        {
+          "address": "0x110008c8",
+          "bytes": "b0fa80f0",
+          "instruction": "clz r0, r0"
+        },
+        {
+          "address": "0x110008cc",
+          "bytes": "4009",
+          "instruction": "lsrs r0, r0, #5"
+        },
+        {
+          "address": "0x110008ce",
+          "bytes": "ebe7",
+          "instruction": "b #0x110008a8"
+        }
+      ]
+    },
+    {
+      "start": "0x110008e0",
+      "end_exclusive": "0x11000908",
+      "instructions": [
+        {
+          "address": "0x110008e0",
+          "bytes": "70b5",
+          "instruction": "push {r4, r5, r6, lr}"
+        },
+        {
+          "address": "0x110008e2",
+          "bytes": "094e",
+          "instruction": "ldr r6, [pc, #0x24]",
+          "literal_address": "0x11000908",
+          "literal_value": "0x1100adba",
+          "literal_text": "%c: %d ota_main\n\n"
+        },
+        {
+          "address": "0x110008e4",
+          "bytes": "094d",
+          "instruction": "ldr r5, [pc, #0x24]",
+          "literal_address": "0x1100090c",
+          "literal_value": "0x1100ae6a",
+          "literal_text": "\n"
+        },
+        {
+          "address": "0x110008e6",
+          "bytes": "0022",
+          "instruction": "movs r2, #0"
+        },
+        {
+          "address": "0x110008e8",
+          "bytes": "4921",
+          "instruction": "movs r1, #0x49"
+        },
+        {
+          "address": "0x110008ea",
+          "bytes": "3046",
+          "instruction": "mov r0, r6"
+        },
+        {
+          "address": "0x110008ec",
+          "bytes": "541c",
+          "instruction": "adds r4, r2, #1"
+        },
+        {
+          "address": "0x110008ee",
+          "bytes": "08f0e7fe",
+          "instruction": "bl #0x110096c0"
+        },
+        {
+          "address": "0x110008f2",
+          "bytes": "2846",
+          "instruction": "mov r0, r5"
+        },
+        {
+          "address": "0x110008f4",
+          "bytes": "08f087fa",
+          "instruction": "bl #0x11008e06"
+        },
+        {
+          "address": "0x110008f8",
+          "bytes": "4ff4fa70",
+          "instruction": "mov.w r0, #0x1f4"
+        },
+        {
+          "address": "0x110008fc",
+          "bytes": "0021",
+          "instruction": "movs r1, #0"
+        },
+        {
+          "address": "0x110008fe",
+          "bytes": "08f025f8",
+          "instruction": "bl #0x1100894c"
+        },
+        {
+          "address": "0x11000902",
+          "bytes": "2246",
+          "instruction": "mov r2, r4"
+        },
+        {
+          "address": "0x11000904",
+          "bytes": "f0e7",
+          "instruction": "b #0x110008e8"
+        },
+        {
+          "address": "0x11000906",
+          "bytes": "00bf",
+          "instruction": "nop "
+        }
+      ]
+    },
+    {
+      "start": "0x11000910",
+      "end_exclusive": "0x1100099c",
+      "instructions": [
+        {
+          "address": "0x11000910",
+          "bytes": "38b5",
+          "instruction": "push {r3, r4, r5, lr}"
+        },
+        {
+          "address": "0x11000912",
+          "bytes": "01f0e3fa",
+          "instruction": "bl #0x11001edc"
+        },
+        {
+          "address": "0x11000916",
+          "bytes": "214d",
+          "instruction": "ldr r5, [pc, #0x84]",
+          "literal_address": "0x1100099c",
+          "literal_value": "0x180017c8"
+        },
+        {
+          "address": "0x11000918",
+          "bytes": "2148",
+          "instruction": "ldr r0, [pc, #0x84]",
+          "literal_address": "0x110009a0",
+          "literal_value": "0x1100adcc",
+          "literal_text": "%c: ota recovery main\n"
+        },
+        {
+          "address": "0x1100091a",
+          "bytes": "4921",
+          "instruction": "movs r1, #0x49"
+        },
+        {
+          "address": "0x1100091c",
+          "bytes": "08f0d0fe",
+          "instruction": "bl #0x110096c0"
+        },
+        {
+          "address": "0x11000920",
+          "bytes": "2048",
+          "instruction": "ldr r0, [pc, #0x80]",
+          "literal_address": "0x110009a4",
+          "literal_value": "0x1100ae6a",
+          "literal_text": "\n"
+        },
+        {
+          "address": "0x11000922",
+          "bytes": "08f070fa",
+          "instruction": "bl #0x11008e06"
+        },
+        {
+          "address": "0x11000926",
+          "bytes": "fff761ff",
+          "instruction": "bl #0x110007ec"
+        },
+        {
+          "address": "0x1100092a",
+          "bytes": "2868",
+          "instruction": "ldr r0, [r5]"
+        },
+        {
+          "address": "0x1100092c",
+          "bytes": "09f0f9fb",
+          "instruction": "bl #0x1100a122"
+        },
+        {
+          "address": "0x11000930",
+          "bytes": "80b9",
+          "instruction": "cbnz r0, #0x11000954"
+        },
+        {
+          "address": "0x11000932",
+          "bytes": "1d48",
+          "instruction": "ldr r0, [pc, #0x74]",
+          "literal_address": "0x110009a8",
+          "literal_value": "0x1100ade3",
+          "literal_text": "%c: skip ota recovery\n"
+        },
+        {
+          "address": "0x11000934",
+          "bytes": "4921",
+          "instruction": "movs r1, #0x49"
+        },
+        {
+          "address": "0x11000936",
+          "bytes": "08f0c3fe",
+          "instruction": "bl #0x110096c0"
+        },
+        {
+          "address": "0x1100093a",
+          "bytes": "1a48",
+          "instruction": "ldr r0, [pc, #0x68]",
+          "literal_address": "0x110009a4",
+          "literal_value": "0x1100ae6a",
+          "literal_text": "\n"
+        },
+        {
+          "address": "0x1100093c",
+          "bytes": "08f063fa",
+          "instruction": "bl #0x11008e06"
+        },
+        {
+          "address": "0x11000940",
+          "bytes": "1a49",
+          "instruction": "ldr r1, [pc, #0x68]",
+          "literal_address": "0x110009ac",
+          "literal_value": "0x1100adfa",
+          "literal_text": "no"
+        },
+        {
+          "address": "0x11000942",
+          "bytes": "1b48",
+          "instruction": "ldr r0, [pc, #0x6c]",
+          "literal_address": "0x110009b0",
+          "literal_value": "0x1100ada9",
+          "literal_text": "REC_OTA_FLAG"
+        },
+        {
+          "address": "0x11000944",
+          "bytes": "0422",
+          "instruction": "movs r2, #4"
+        },
+        {
+          "address": "0x11000946",
+          "bytes": "03f0fbf8",
+          "instruction": "bl #0x11003b40"
+        },
+        {
+          "address": "0x1100094a",
+          "bytes": "0021",
+          "instruction": "movs r1, #0"
+        },
+        {
+          "address": "0x1100094c",
+          "bytes": "0220",
+          "instruction": "movs r0, #2"
+        },
+        {
+          "address": "0x1100094e",
+          "bytes": "00f065fd",
+          "instruction": "bl #0x1100141c"
+        },
+        {
+          "address": "0x11000952",
+          "bytes": "09e0",
+          "instruction": "b #0x11000968"
+        },
+        {
+          "address": "0x11000954",
+          "bytes": "fff726ff",
+          "instruction": "bl #0x110007a4"
+        },
+        {
+          "address": "0x11000958",
+          "bytes": "4921",
+          "instruction": "movs r1, #0x49"
+        },
+        {
+          "address": "0x1100095a",
+          "bytes": "38b1",
+          "instruction": "cbz r0, #0x1100096c"
+        },
+        {
+          "address": "0x1100095c",
+          "bytes": "1548",
+          "instruction": "ldr r0, [pc, #0x54]",
+          "literal_address": "0x110009b4",
+          "literal_value": "0x1100adfd",
+          "literal_text": "%c: init spinor faild skip ota recovery \n\n"
+        },
+        {
+          "address": "0x1100095e",
+          "bytes": "08f0affe",
+          "instruction": "bl #0x110096c0"
+        },
+        {
+          "address": "0x11000962",
+          "bytes": "1048",
+          "instruction": "ldr r0, [pc, #0x40]",
+          "literal_address": "0x110009a4",
+          "literal_value": "0x1100ae6a",
+          "literal_text": "\n"
+        },
+        {
+          "address": "0x11000964",
+          "bytes": "08f04ffa",
+          "instruction": "bl #0x11008e06"
+        },
+        {
+          "address": "0x11000968",
+          "bytes": "0020",
+          "instruction": "movs r0, #0"
+        },
+        {
+          "address": "0x1100096a",
+          "bytes": "38bd",
+          "instruction": "pop {r3, r4, r5, pc}"
+        },
+        {
+          "address": "0x1100096c",
+          "bytes": "1248",
+          "instruction": "ldr r0, [pc, #0x48]",
+          "literal_address": "0x110009b8",
+          "literal_value": "0x1100ae28",
+          "literal_text": "%c: do ota recovery\n"
+        },
+        {
+          "address": "0x1100096e",
+          "bytes": "08f0a7fe",
+          "instruction": "bl #0x110096c0"
+        },
+        {
+          "address": "0x11000972",
+          "bytes": "0c48",
+          "instruction": "ldr r0, [pc, #0x30]",
+          "literal_address": "0x110009a4",
+          "literal_value": "0x1100ae6a",
+          "literal_text": "\n"
+        },
+        {
+          "address": "0x11000974",
+          "bytes": "08f047fa",
+          "instruction": "bl #0x11008e06"
+        },
+        {
+          "address": "0x11000978",
+          "bytes": "2868",
+          "instruction": "ldr r0, [r5]"
+        },
+        {
+          "address": "0x1100097a",
+          "bytes": "05f005f9",
+          "instruction": "bl #0x11005b88"
+        },
+        {
+          "address": "0x1100097e",
+          "bytes": "0028",
+          "instruction": "cmp r0, #0"
+        },
+        {
+          "address": "0x11000980",
+          "bytes": "ded0",
+          "instruction": "beq #0x11000940"
+        },
+        {
+          "address": "0x11000982",
+          "bytes": "4921",
+          "instruction": "movs r1, #0x49"
+        },
+        {
+          "address": "0x11000984",
+          "bytes": "0d48",
+          "instruction": "ldr r0, [pc, #0x34]",
+          "literal_address": "0x110009bc",
+          "literal_value": "0x1100ae3d",
+          "literal_text": "%c: ota upgrade failed, wait check ota file \n\n"
+        },
+        {
+          "address": "0x11000986",
+          "bytes": "08f09bfe",
+          "instruction": "bl #0x110096c0"
+        },
+        {
+          "address": "0x1100098a",
+          "bytes": "0648",
+          "instruction": "ldr r0, [pc, #0x18]",
+          "literal_address": "0x110009a4",
+          "literal_value": "0x1100ae6a",
+          "literal_text": "\n"
+        },
+        {
+          "address": "0x1100098c",
+          "bytes": "08f03bfa",
+          "instruction": "bl #0x11008e06"
+        },
+        {
+          "address": "0x11000990",
+          "bytes": "4ff47a70",
+          "instruction": "mov.w r0, #0x3e8"
+        },
+        {
+          "address": "0x11000994",
+          "bytes": "08f015ff",
+          "instruction": "bl #0x110097c2"
+        },
+        {
+          "address": "0x11000998",
+          "bytes": "d2e7",
+          "instruction": "b #0x11000940"
+        },
+        {
+          "address": "0x1100099a",
+          "bytes": "00bf",
+          "instruction": "nop "
+        }
+      ]
+    }
+  ],
+  "copy_sources": [
+    {
+      "source": "0x1100f5a0",
+      "destination": "0x18001508",
+      "bytes": 408,
+      "source_in_prefix": false
+    },
+    {
+      "source": "0x1100e098",
+      "destination": "0x18000000",
+      "bytes": 5384,
+      "source_in_prefix": false
+    },
+    {
+      "source": "0x1100f738",
+      "destination": "0x01000400",
+      "bytes": 0,
+      "source_in_prefix": false
+    }
+  ]
+}

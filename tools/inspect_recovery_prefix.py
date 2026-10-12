@@ -18,13 +18,16 @@ SHA256 = "cff7225f49d502a3e6cf52a8d2df12cbee44625cc2120c3c7a03a96d77e577b7"
 BASE = 0x11000000
 
 
-def main(image: Path):
+def main(image: Path, entry: bool = False):
     data = image.read_bytes()
     if len(data) != 48128 or hashlib.sha256(data).hexdigest() != SHA256:
         raise ValueError("Expected the revalidated94-block decoded recovery prefix")
     decoder = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
     regions = []
-    for start, end in ((0x23D4, 0x23FA), (0x1FF8, 0x2040), (0x8AAC, 0x8AD2), (0x999A, 0x99A2)):
+    ranges = ((0x23D4, 0x23FA), (0x1FF8, 0x2040), (0x8AAC, 0x8AD2), (0x999A, 0x99A2))
+    if entry:
+        ranges = ((0x7A4, 0x7DC), (0x7EC, 0x86C), (0x884, 0x8D0), (0x8E0, 0x908), (0x910, 0x99C))
+    for start, end in ranges:
         instructions = []
         cursor = start
         for instruction in decoder.disasm(data[start:end], BASE + start):
@@ -39,7 +42,12 @@ def main(image: Path):
                 if match:
                     address = ((instruction.address + 4) & ~3) + int(match[1], 0)
                     item["literal_address"] = hex(address)
-                    item["literal_value"] = hex(struct.unpack_from("<I", data, address - BASE)[0])
+                    value = struct.unpack_from("<I", data, address - BASE)[0]
+                    item["literal_value"] = hex(value)
+                    if entry and BASE <= value < BASE + len(data):
+                        raw = data[value - BASE : value - BASE + 160].split(b"\0")[0]
+                        if raw and all(32 <= byte < 127 or byte in (10, 13) for byte in raw):
+                            item["literal_text"] = raw.decode("ascii")
             instructions.append(item)
         if cursor != end:
             raise ValueError(f"Incomplete instruction range at {cursor:x}, expected {end:x}")
