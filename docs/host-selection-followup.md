@@ -92,3 +92,5 @@ executing installer code.
 ## Later actual firmware identity
 
 [Two independent parameter reads](firmware-board-identity.md) establish firmware board name `ats3085l_dvb_watch_ext_nor_max`; prioritize matching ATS3085L production artifacts. This supersedes the broad search priority, not the reference ATS3089 facts above. Firmware metadata alone does not prove chip marking or map host enum0..4 to this device.
+
+Follow-up: [LARK retained M4 artifacts](lark-helper-candidate.md) select01010000 and include a different in-image NOR driver. Audit that closer candidate before further generic LEOPARD transport work; compatibility remains unproven.

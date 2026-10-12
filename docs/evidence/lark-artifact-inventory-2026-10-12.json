@@ -1,0 +1,133 @@
+{
+  "source_commit": "26f51e584940d5b141cd1d09d2629d69b595f579",
+  "files": [
+    {
+      "path": "zephyr/tools/prebuilt/lark/bin/mbrec.bin",
+      "size": 3616,
+      "sha256": "b038beb7202ad02a304814755717e8437f171dd909fecf7d0251142f3c28e65c",
+      "header_words": [
+        "0x48544341",
+        "0x41435448",
+        "0x1010000",
+        "0x6572626d",
+        "0x63",
+        "0x1010039",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x38",
+        "0x10000",
+        "0x0",
+        "0x33323135",
+        "0x55000000"
+      ]
+    },
+    {
+      "path": "zephyr/tools/prebuilt/lark/bin/mbrec_old.bin",
+      "size": 3236,
+      "sha256": "233634a7aa7d84a92bdc707203db4e30cd88998064217cadb055a2ee7e4ccb9d",
+      "header_words": [
+        "0x48544341",
+        "0x41435448",
+        "0x1010000",
+        "0x6572626d",
+        "0x63",
+        "0x1010039",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x38",
+        "0x10000",
+        "0x0",
+        "0x33323135",
+        "0x55000000"
+      ]
+    },
+    {
+      "path": "zephyr/tools/prebuilt/lark/common/bin/adfus.bin",
+      "size": 47608,
+      "sha256": "ee57bd899a2b2623d9e9d3b5d8fa7c970ada8df717e69c122c8ce19be3d6f8d8"
+    },
+    {
+      "path": "zephyr/tools/prebuilt/lark/common/bin/adfus_u.bin",
+      "size": 48792,
+      "sha256": "0aefabef3c09374b170d9a784bc5983ab6a1c904e945556de27e1fcb31b8847d"
+    },
+    {
+      "path": "zephyr/tools/prebuilt/lark/common/bin/fw_product.cfg",
+      "size": 382,
+      "sha256": "6294ba17d19fe8fedfc9b3f8990f6d6441ada6e86aeeccb192c8d5dcb8a2879f",
+      "text": "\r\n\r\n// in USB mode, MUST change adfu protocol before production start\r\nUSB_ADFU_PROTOCOL_SWITCH = \"YES\";\r\n\r\n//key   = filename, download address, run address\r\nADFUS   = \"adfus.bin\", 0x01010000, 0x01010001;\r\nADFUS_U = \"adfus_u.bin\", 0x01010000, 0x01010001;\r\n\r\n//key   = filename, download address, storage type\r\nSTORAGE_ID_FILE = \"nand_id.bin\", 0x1022000, 2;\r\n\r\nEFW = \"E_CHECK.FW\";\r\n"
+    },
+    {
+      "path": "zephyr/tools/prebuilt/lark/common/bin/bootloader.ini",
+      "size": 221,
+      "sha256": "964a1a839982f9f1e7e366630e59f76fe88ba9c072d86143a3a663954d1eca0e",
+      "text": "; ACTIONS Bootloader Configuration File\r\n[serial config]\r\nuart_id = 0\r\nuart_mfp = 1\r\nuart_baudrate = 2000000\r\n[jtag config]\r\njtag_groud = 0xff\r\n[psram_config]\r\npsram_mfp = 3\r\n[adfu config]\r\nadfu_txrx = 1\r\nadfu_gpio = 21\r\n"
+    },
+    {
+      "path": "bootloader/tools/prebuilt/lark/bin/mbrec.bin",
+      "size": 3616,
+      "sha256": "b038beb7202ad02a304814755717e8437f171dd909fecf7d0251142f3c28e65c",
+      "header_words": [
+        "0x48544341",
+        "0x41435448",
+        "0x1010000",
+        "0x6572626d",
+        "0x63",
+        "0x1010039",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x38",
+        "0x10000",
+        "0x0",
+        "0x33323135",
+        "0x55000000"
+      ]
+    },
+    {
+      "path": "bootloader/tools/prebuilt/lark/bin/mbrec_old.bin",
+      "size": 3236,
+      "sha256": "233634a7aa7d84a92bdc707203db4e30cd88998064217cadb055a2ee7e4ccb9d",
+      "header_words": [
+        "0x48544341",
+        "0x41435448",
+        "0x1010000",
+        "0x6572626d",
+        "0x63",
+        "0x1010039",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x38",
+        "0x10000",
+        "0x0",
+        "0x33323135",
+        "0x55000000"
+      ]
+    },
+    {
+      "path": "bootloader/tools/prebuilt/lark/common/bin/adfus.bin",
+      "size": 12820,
+      "sha256": "4a2ff5a6966dea75caec16db00c1fe23f8a22e654d457a36c22ed1af1f41c7ae"
+    },
+    {
+      "path": "bootloader/tools/prebuilt/lark/common/bin/adfus_u.bin",
+      "size": 13896,
+      "sha256": "c2b5a010d5c661996ccd80c90690ea544de3b736f03dd143000c8f1eb6961f6e"
+    },
+    {
+      "path": "bootloader/tools/prebuilt/lark/common/bin/fw_product.cfg",
+      "size": 399,
+      "sha256": "e16e5e6290318fcd1b424027a21ce6497a5f72fd168debb6d2369e63e96be440",
+      "text": "\r\n\r\n// in USB mode, MUST change adfu protocol before production start\r\nUSB_ADFU_PROTOCOL_SWITCH = \"YES\";\r\n\r\n//key   = filename, download address, run address\r\nADFUS   = \"adfus.bin\", 0x01010000, 0x01010001;\r\nADFUS_U = \"adfus_u.bin\", 0x01010000, 0x01010001;\r\n\r\n//key   = filename, download address, storage type\r\nSTORAGE_ID_FILE = \"nand_id.bin\", 0x1018000, 2;\r\n\r\nRECOVERY_IM = \"boot_recovery.app\";\r\n\r\n"
+    },
+    {
+      "path": "bootloader/tools/prebuilt/lark/common/bin/bootloader.ini",
+      "size": 221,
+      "sha256": "964a1a839982f9f1e7e366630e59f76fe88ba9c072d86143a3a663954d1eca0e",
+      "text": "; ACTIONS Bootloader Configuration File\r\n[serial config]\r\nuart_id = 0\r\nuart_mfp = 1\r\nuart_baudrate = 2000000\r\n[jtag config]\r\njtag_groud = 0xff\r\n[psram_config]\r\npsram_mfp = 3\r\n[adfu config]\r\nadfu_txrx = 1\r\nadfu_gpio = 21\r\n"
+    }
+  ]
+}
