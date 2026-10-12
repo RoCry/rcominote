@@ -79,6 +79,13 @@ NOR init sends06 then01, replacing status1 with0 and conditionally clearing
 status2 bit6. Unchanged init+rs is rejected as a read-only backup procedure.
 No helper execution occurred.
 
+## Transport selection follow-up
+
+[Startup and callback audit](lark-transport-selection.md) identifies adfus.bin
+as UART and adfus_u.bin as the USB variant. USB artifact descriptors include
+10d6:10d6, not observed CoMi ROM descriptors. Prioritize USB variant for USB
+research; do not carry function offsets across variants.
+
 ## Next decisive work
 
 Prioritize LARK's complete initialization/USB framing paths and compare ROM
