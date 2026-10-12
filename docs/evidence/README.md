@@ -45,3 +45,10 @@ APK/SDK 由各专题文档记录样本哈希、固定版本及复现入口。原
 - [ubuntu-build-2026-10-12.json](ubuntu-build-2026-10-12.json)：804 步干净构建、工具/依赖版本、ELF/BIN/HEX 与配置哈希、SDK 零 tracked 改动。
 - [实测报告](../ubuntu-build.md)：第一次发现 freetype 写回 SDK，外部 CMake hook 修正后第二次干净构建成功；两次 BIN/HEX 哈希相同。
 - 本轮没有 BLE/USB 设备操作，没有打包或刷机；GDB/完整 vendor maker 仍未验证。完整构建日志与镜像留在忽略的 artifacts 目录。
+
+## 第四轮：实机 shell 与有界 NOR 读取尝试
+
+- [诊断报告](../device-diagnostics.md)：默认日志、版本、帮助、NOR 头读取五次独立会话。原始通知/写入/解析文本均存入同目录 `log-{default,device-info,commands,flash-header,flash-header-flushed}-2026-10-12.json`。
+- 版本正文 Zephyr 2.7.0；device 模块未找到；帮助列出 fread/snandr/reboot adfu。NOR 读取仅收到 handler 状态行，未获得512字节数据，不能当固件备份。
+- 每次已收到 STOP ACK/F1；最后 Boyi 查询成功，FW/容量/idle 未变。未重启、擦写、运行恢复入口或 flash helper。
+- `just check`：格式/lint/脚本语法、10 个离线测试通过，包括真实分片日志与中途断流回放。

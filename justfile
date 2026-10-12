@@ -6,6 +6,7 @@ default:
 test:
     uv run tools/test_comi.py
     uv run tools/test_usb_inventory.py
+    uv run tools/test_log_capture.py
 
 # Python style and offline protocol checks, with no device connection.
 check:
@@ -41,3 +42,7 @@ sdk-setup:
 # Compile reference-board hello_world; never package, download, or flash.
 sdk-build *args:
     uv run --locked tools/build_sdk.py --sdk "$HOME/w/_tmp/lv_port_actions_technology" --toolchain "$HOME/.cache/rcominote/gcc-arm-none-eabi-10.3-2021.10" {{args}}
+
+# Bounded log session and explicit fixed diagnostic queries.
+log-capture *args:
+    uv run tools/log_capture.py {{args}}

@@ -1,0 +1,52 @@
+{
+  "captured_at": "2026-10-12T02:51:16.121172+00:00",
+  "serial": "C261CF0430",
+  "duration_seconds": 15.0,
+  "scope": "PREPARE, DEFAULT_START, STOP only; no shell/dump/reset/storage operations",
+  "notifications": [
+    {
+      "seconds": 9.215,
+      "hex": "1d108107007f0400a0860100"
+    },
+    {
+      "seconds": 9.305,
+      "hex": "1d108107007f0400a0860100"
+    },
+    {
+      "seconds": 24.782,
+      "hex": "1d108107007f0400a0860100"
+    },
+    {
+      "seconds": 24.782,
+      "hex": "1df1810000"
+    }
+  ],
+  "writes": [
+    "1d108105000002000100",
+    "1d108105000002002000",
+    "1d108105000002002100"
+  ],
+  "frames": [
+    {
+      "command": 16,
+      "hex": "1d108107007f0400a0860100"
+    },
+    {
+      "command": 16,
+      "hex": "1d108107007f0400a0860100"
+    },
+    {
+      "command": 16,
+      "hex": "1d108107007f0400a0860100"
+    },
+    {
+      "command": 241,
+      "hex": "1df1810000"
+    }
+  ],
+  "ok": true,
+  "ack_count": 3,
+  "end_received": true,
+  "pending_hex": "",
+  "text_bytes": 0
+}

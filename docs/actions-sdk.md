@@ -15,7 +15,7 @@
 | Actions SDK 与 CoMi 暴露相同 `e49a3001/3002/3003` BLE log UUID | 公开源码已核对 [log GATT][log-gatt]；[同轮 CoMi GATT 枚举](evidence/gatt-2026-10-12.json)独立复核 | Actions 软件栈血缘的强证据；不能确定 ATS3085S、ATS3089P 或 ZS308B |
 | `LEOPARD` 是 Cortex-M33，带 DSP 指令、FPU、DWT、MPU | SDK Kconfig 已核对 [CPU][cpu] | 是候选 SDK 的架构；实际 CoMi 型号仍未知 |
 | SDK 内的 Zephyr 版本字段为 2.7.0 | 已核对 [VERSION][version] | 自写固件可以从此 vendor fork 入手；不代表 CoMi 原厂使用完全相同版本 |
-| log 文本 TLV 可进入 `shell_execute_cmd` | SDK 条件路径已核对 [shell dispatch][log-shell] | 需启用 serial 或 RTT shell 后端；未验证 CoMi 路径、命令集合、连接安全策略 |
+| log 文本 TLV 可进入 `shell_execute_cmd` | SDK 条件路径已核对 [shell dispatch][log-shell] | 需启用 serial 或 RTT shell 后端；后续已验证本机版本/帮助命令；完整命令行为与连接安全策略未验证 |
 | OTA GATT/TLV/AOTA/recovery 实现存在 | 公开源码已核对，见下文；同轮 GATT 枚举未见 OTA 服务 | CoMi 当前正常模式未发现同一 OTA 服务；入口与兼容性未知 |
 | 正常 USB 仅见充电，录音 MP3 16 kHz mono 32 kbps，容量约 58 GiB | 交接中已有设备观察；本轮未重测 | 均不能单独确定启动存储、USB 引脚是否接出或 SoC 型号 |
 
@@ -89,7 +89,7 @@ RX `e49a25e0-…` Write/WriteWithoutResponse，TX `e49a28e1-…` Notify。[OTA G
 公开 bt_watch 默认前台 OTA、Bluetooth/SD backend、recovery、temp partition；
 SD NAND 应用板把临时存储指向 `sd`。这是**配置选择**，不是所有 SDK 产品固有行为。[默认 OTA][ota-conf] [SD temp][ota-sd]
 前台实现设置 `flag_use_recovery=1`，结束时给 main 发重启事件；
-独立 ota_app 失败转 ADFU、成功正常重启。CoMi 是否保留此流程尚未知。[前台路径][ota-fg] [ota_app][ota-main]
+独立 ota_app 外层虽写失败转 ADFU、成功正常重启，但实际 `ota_main()` 是无限循环占位实现，不能视为恢复保证；详见 [恢复评估](flash-recovery-assessment.md)。[前台路径][ota-fg] [ota_app][ota-main]
 
 `AOTA` 容器在本提交的关键结构：
 
@@ -121,11 +121,11 @@ C 为 96 B、`board_name[32]`；Python 为 `<32s24s4xIxI`。
 SDK logsrv GATT 权限没有 `WRITE_ENCRYPT`/`WRITE_AUTHEN`；文本 TLV type `0x01` 经解析器送到
 `_logsrv_proc_console_text()`，然后仅在 `CONFIG_SHELL_BACKEND_SERIAL` 或 RTT 下执行 shell。
 64 B 临时 TLV buffer、日志/握手状态机也在此文件中；它不是普通终端裸文本特征。
-**只确认源码存在此路径，尚未确认 CoMi 可执行命令或不需配对。** [GATT][log-gatt] [解析/执行][log-shell]
+**后续实机已执行 `kernel version`、`help` 与 `dbg`，返回 Zephyr 2.7.0 和命令清单；见 [诊断记录](device-diagnostics.md)。这不验证任意命令或所有安全策略。** [GATT][log-gatt] [解析/执行][log-shell]
 
 源码中有准确命令 `dbg reboot adfu`：`shell_dbg.c` 的 `SHELL_STATIC_SUBCMD_SET_CREATE(sub_dbg, …)`
 注册 reboot 子命令，参数 `adfu` 调 `sys_pm_reboot(REBOOT_TYPE_GOTO_ADFU)`。
-这是未来取得可用 shell 后的源码线索，**不是本轮已测试的 CoMi 恢复方法；本轮未发送**。[处理器][adfu-shell]
+本机帮助已列出该命令，**不是本轮已测试的 CoMi 恢复方法；本轮未发送**。[处理器][adfu-shell]
 
 硬件入口也有 SDK 依据：recovery 支持按配置检查 TX/RX 或 GPIO key 进入 ADFU；
 公开 EVK 教程是断电→按住 ADFU 键→上电→Windows 工具选 ADFU0。

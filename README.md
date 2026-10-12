@@ -11,7 +11,7 @@
 | 数据通路 | Boyi BLE 协议已验证，状态/列表/下载不需绑定；既往实测录音为 16 kHz 单声道、32 kbps MP3 |
 | 新鲜实机证据 | 本轮重新枚举 GATT、读取状态；MTU 247，4 个服务，普通模式未见 Actions OTA UUID，`usb_mode=true` |
 | USB | 用户确认数据线后做拔插对照，仍未见明确 CoMi 枚举；`usb_mode=true` 不等于主机数据接口已启用，板级走线/其他模式待查 |
-| 日志/shell | 固定 PREPARE 握手成功；SDK shell 路径受编译条件控制，尚未执行 shell |
+| 日志/shell | 实机执行 `kernel version` 返回 Zephyr 2.7.0；`help`/`dbg` 列出存储读取与 ADFU 重启命令，后者未执行 |
 | 自定义固件 | Actions 有构建、OTA、ADFU 等参考代码，也有签名/安全启动配置；CoMi 是否接受自签/未签名镜像尚未知 |
 | Linux 构建 | Ubuntu 上参考板 hello_world 已生成 ELF/BIN/HEX；SDK 无源码补丁，构建后 tracked 文件干净；尚不是 CoMi 固件 |
 
@@ -28,12 +28,15 @@
 9. [Ubuntu 实测构建](docs/ubuntu-build.md)：已跑通的一键准备/编译、产物与已知限制。
 10. [不拆机诊断](docs/noninvasive-diagnostics.md)：默认日志和只读 shell 候选，包含 ACK/短缓冲陷阱。
 
+11. [烧录、失败恢复与提取评估](docs/flash-recovery-assessment.md)：四个问题、恢复占位代码与完整备份条件。
+12. [实机诊断](docs/device-diagnostics.md)：已执行 shell、命令清单及有限读取结果。
+
 ## 可直接运行
 
 需要 `uv`、Python ≥3.13（由 uv 解析脚本依赖）；`just`、`ruff` 用于开发检查。macOS 的启动终端/宿主进程需有蓝牙权限，官方 App 先断开连接。
 
 ```sh
-just check                            # 格式、lint、8 个协议/USB 测试；不连接设备
+just check                            # 格式、lint、协议/USB/日志流测试；不连接设备
 just scan                             # 只扫描广播
 just gatt --out artifacts/gatt.json    # 连接并枚举；不读写应用特征，不订阅通知
 just comi info                        # 通过 Boyi 查询序列号、绑定和状态
@@ -44,6 +47,7 @@ just comi record start                # 明确改变设备录音状态；stop/pa
 just comi set-time                    # 明确写入主机本地时间
 just usb snapshot --out artifacts/usb.json  # macOS IOKit 描述符；不向设备发请求
 just log-probe --out artifacts/log.json     # 固定 PREPARE/ACK，会改变日志会话状态
+just log-capture --commands --out artifacts/commands.json # 固定 help/dbg；临时开启日志后 STOP
 # Ubuntu / Linux x86_64：
 just sdk-setup                        # 固定 SDK + 带 SHA-256 校验的 GNU Arm 工具链
 just sdk-build                        # 参考板应用编译；不打包、不刷机

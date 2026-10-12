@@ -58,6 +58,8 @@ vendor CDB `cd`，子命令：RAM 写 `13`、storage 写 `10`、切换 helper `2
 - 软件 reboot 把 magic 与 type 写入 `RTC_REMAIN3`，再触发 watchdog；`dbg reboot adfu` 因而是改变设备状态的命令，不是读取身份。[重启实现][reboot]
 - J-Link 附带 ADFU 脚本同样写寄存器并 reset/run；不能当作只读 SWD attach。[脚本][jlink-adfu]
 
+补充：分区无效 / `GOTO_OTA` 分支先于 GPIO 检查；本公开树的 `ota_main()` 是无限循环占位代码，不能由外层分支推定自动救援。详见 [恢复评估](flash-recovery-assessment.md)。
+
 ## 签名与备份：下一步应取得什么
 
 BROM API 包含签名验证、SHA-256 和带 `digital_sign` 参数的镜像检查；应用 bootloader 的条件签名实现已核对。
