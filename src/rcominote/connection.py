@@ -13,6 +13,8 @@ from bleak import BleakClient
 
 from . import protocol as P
 
+BUFFER_LIMIT = 256
+
 
 def validate_filename(name: str) -> bytes:
     """Validate the protocol's 14-byte name before using it on wire or disk."""
@@ -35,24 +37,49 @@ class Connection:
     """One session, one transaction at a time; disconnect interrupts waiters."""
 
     def __init__(self, device):
-        self.queue: asyncio.Queue[tuple[str, bytes] | None] = asyncio.Queue()
+        self.queue: asyncio.Queue[tuple[str, bytes] | None] = asyncio.Queue(maxsize=BUFFER_LIMIT)
+        self.events: asyncio.Queue[dict | None] = asyncio.Queue(maxsize=BUFFER_LIMIT)
+        self._failure: Exception | None = None
         self.client = BleakClient(device, timeout=20, disconnected_callback=self._dropped)
         self._transaction = asyncio.Lock()
 
     def _dropped(self, _client):
-        self.queue.put_nowait(None)
+        self._fail(ConnectionError("CoMi disconnected before completing the request"))
+
+    def _fail(self, error: Exception) -> None:
+        if self._failure is None:
+            self._failure = error
+            for queue in (self.queue, self.events):
+                if not queue.full():
+                    queue.put_nowait(None)
+
+    def _check_failure(self) -> None:
+        if self._failure is not None:
+            raise self._failure
+
+    def _received(self, source: str, packet: bytes) -> None:
+        """Route at notification time, including when no transaction is waiting."""
+        if self._failure is not None:
+            return
+        try:
+            if source == "cmd":
+                cmd, payload = P.parse(packet)
+                if cmd in (P.DEVICE_STATUS_CHANGE, P.VOICE_CONTROL_CHANGE):
+                    self.events.put_nowait(P.parse_event(cmd, payload) | {"frame": packet.hex()})
+                    return
+            self.queue.put_nowait((source, packet))
+        except asyncio.QueueFull:
+            self._fail(RuntimeError(f"CoMi notification buffer exceeded {BUFFER_LIMIT} packets"))
+        except ValueError as error:
+            self._fail(error)
 
     async def __aenter__(self):
         await self.client.__aenter__()
         try:
             if self.client.services.get_service(P.SERVICE) is None:
                 raise ValueError("Target does not expose the Boyi control service")
-            await self.client.start_notify(
-                P.NOTIFY_CMD, lambda _c, d: self.queue.put_nowait(("cmd", bytes(d)))
-            )
-            await self.client.start_notify(
-                P.NOTIFY_OFFLINE, lambda _c, d: self.queue.put_nowait(("off", bytes(d)))
-            )
+            await self.client.start_notify(P.NOTIFY_CMD, lambda _c, d: self._received("cmd", bytes(d)))
+            await self.client.start_notify(P.NOTIFY_OFFLINE, lambda _c, d: self._received("off", bytes(d)))
         except BaseException as error:
             try:
                 await self.client.__aexit__(*sys.exc_info())
@@ -65,19 +92,41 @@ class Connection:
         await self.client.__aexit__(*exc)
 
     async def _write(self, cmd: int, payload: bytes = b"") -> None:
+        self._check_failure()
         await self.client.write_gatt_char(P.WRITE, P.frame(cmd, payload), response=False)
 
-    async def _next(self, deadline: float) -> tuple[str, bytes]:
+    async def _take[T](self, queue: asyncio.Queue[T | None], deadline: float) -> T:
+        self._check_failure()
         remaining = deadline - asyncio.get_running_loop().time()
         if remaining <= 0:
             raise TimeoutError("CoMi response deadline exceeded")
         try:
-            item = await asyncio.wait_for(self.queue.get(), timeout=remaining)
+            item = await asyncio.wait_for(queue.get(), timeout=remaining)
         except TimeoutError as exc:
+            self._check_failure()
             raise TimeoutError("CoMi response deadline exceeded") from exc
+        self._check_failure()
         if item is None:
             raise ConnectionError("CoMi disconnected before completing the request")
         return item
+
+    async def _next(self, deadline: float) -> tuple[str, bytes]:
+        return await self._take(self.queue, deadline)
+
+    async def watch(self, duration: float) -> list[dict]:
+        """Collect events from connection setup through a fixed watch deadline."""
+        if not 0 < duration <= 300:
+            raise ValueError("Watch duration must be >0 and <=300 seconds")
+        deadline = asyncio.get_running_loop().time() + duration
+        collected = []
+        while True:
+            try:
+                event = await self._take(self.events, deadline)
+            except TimeoutError:
+                return collected
+            if len(collected) == BUFFER_LIMIT:
+                raise RuntimeError(f"CoMi watch exceeded {BUFFER_LIMIT} events; choose a shorter duration")
+            collected.append(event)
 
     async def command(self, cmd: int, payload: bytes = b"", timeout: float = 5.0) -> bytes:
         async with self._transaction:

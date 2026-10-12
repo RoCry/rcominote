@@ -64,6 +64,7 @@ uv sync --all-extras
 uv run comi --help
 uv run comi scan
 uv run comi info
+uv run comi watch --duration 5        # 只读接收主动状态/声控事件；空结果不等于不支持
 uv run comi files
 uv run comi record start              # 明确开始录音；stop/pause/resume 同理
 uv run comi download NAME --out artifacts/recordings

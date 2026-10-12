@@ -1,0 +1,7 @@
+{
+  "serial": "C261CF0430",
+  "watch_seconds": 5.0,
+  "event_scope": "notifications since connection setup, including identity queries",
+  "events": [],
+  "verification": "source-derived fields; live event semantics not yet verified"
+}

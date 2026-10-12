@@ -27,6 +27,7 @@ STOP_GET_FILE = 12
 DELETE_FILE = 13
 DEVICE_STATUS_CHANGE = 15
 GET_RECORDING_INFO = 21
+VOICE_CONTROL_CHANGE = 25
 
 
 def crc16(data: bytes) -> int:
@@ -101,3 +102,40 @@ def parse_device_info(payload: bytes) -> dict:
         "screen_backlight": tri(payload[42]),
         "raw": payload.hex(),
     }
+
+
+def parse_event(cmd: int, payload: bytes) -> dict:
+    """Official CoMi 1.1.2 Y8/Z8 layouts; retain uninterpreted bytes as raw."""
+    match cmd:
+        case 15:
+            if len(payload) < 20:
+                raise ValueError(f"Device-status event needs >=20 bytes: {payload.hex()}")
+
+            def tri(value: int) -> bool | None:
+                return None if value == 255 else value == 1
+
+            fields = {
+                "event": "device_status",
+                "charging": payload[0] != 0,
+                "battery": payload[1],
+                "usb_mode": payload[2] == 1,
+                "mode": "call" if payload[3] == 1 else "memo",
+                "power_off_duration": payload[4],
+                "noise_reduction": payload[5],
+                "voice_control": tri(payload[6]),
+                "indicator_light": tri(payload[7]),
+                "segment_duration": payload[8],
+                "screen_backlight": tri(payload[9]),
+                "usb_connected": payload[10] == 1,
+            }
+        case 25:
+            if len(payload) < 5:
+                raise ValueError(f"Voice-control event needs >=5 bytes: {payload.hex()}")
+            fields = {
+                "event": "voice_control",
+                "enabled": payload[0] == 1,
+                "file_size": struct.unpack_from(">I", payload, 1)[0],
+            }
+        case _:
+            raise ValueError(f"Not a known unsolicited event opcode: {cmd:#x}")
+    return fields | {"opcode": cmd, "raw": payload.hex()}

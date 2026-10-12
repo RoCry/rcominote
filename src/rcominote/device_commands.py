@@ -75,6 +75,30 @@ def files(serial: str = OWNED_SERIAL, seconds: ScanSeconds = 12, out: Path | Non
 
 
 @app.command()
+def watch(
+    duration: Annotated[float, typer.Option(min=0.1, max=300)] = 30,
+    serial: str = OWNED_SERIAL,
+    seconds: ScanSeconds = 12,
+    out: Path | None = None,
+):
+    """Observe device/voice events for a bounded time; never change device settings."""
+    new_output(out)
+
+    async def run():
+        async with Connection(await find_device(serial=serial, seconds=seconds)) as conn:
+            identity = await read_info(conn, serial)
+            return {
+                "serial": identity["serial"],
+                "watch_seconds": duration,
+                "event_scope": "notifications since connection setup, including identity queries",
+                "events": await conn.watch(duration),
+                "parser_source": "official CoMi 1.1.2 Y8/Z8; see docs/client-events.md",
+            }
+
+    emit(asyncio.run(run()), out)
+
+
+@app.command()
 def download(name: str, out: Path = DEFAULT_OUT, serial: str = OWNED_SERIAL, seconds: ScanSeconds = 12):
     """Export one exact listed filename atomically; refuse existing destination."""
     validate_filename(name)

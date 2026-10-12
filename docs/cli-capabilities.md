@@ -122,8 +122,8 @@ Control methods: `[236151,238428)`; parser: `[221179,223211)`.
 | Download / resume | `0b` payload name14 NUL-padded + offset u32 BE; status0 + total-size4, status1 fail, status2 end; bytes on e5e4 | `[240849,243257)`; verify exact expected received length; no block checksum/sequence field established |
 | Stop transfer | Empty `0c`; generic matching-response success only | `[244253,244532)` |
 | Set time | `04`: local year-2000,month,day,hour,minute,second, each one byte | `[234663,235121)`; generic response, no readback established |
-| Device events | `0f`: >=20 payload; charging0,battery1,USB-mode2,mode3,power-off4,noise5,voice6,indicator7,segment8,backlight9,USB-connected10 | `Y8` `[220352,220806)`; app event emitter exposes fewer fields than parser |
-| Voice events | `19`: >=5; enabled byte0==1,size u32BE bytes1..4 | `Z8` `[220806,220992)`; app parser exists but emits no public event |
+| Device events | `0f`: >=20 payload; charging0,battery1,USB-mode2,mode3,power-off4,noise5,voice6,indicator7,segment8,backlight9,USB-connected10 | `Y8` `[220352,220806)`; [client watch implemented](client-events.md), replay verified; passive live sample observed zero events |
+| Voice events | `19`: >=5; enabled byte0==1,size u32BE bytes1..4 | `Z8` `[220806,220992)`; app emits no public event; our client preserves it, live field semantics unverified |
 | Realtime audio | Raw notifications on e5e3, forwarded as bytes | No packet/codec decoder established by this app handler; compare captured payload to known MP3 separately |
 | Logs / fixed diagnostics / bounded code sample | Separate Actions e49a3001 service | [device-diagnostics.md](device-diagnostics.md), [mapped-code-readback.md](mapped-code-readback.md); does not establish whole-flash backup |
 

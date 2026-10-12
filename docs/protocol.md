@@ -1,6 +1,6 @@
 # Boyi BLE 协议与独立工具
 
-来源：官方 CoMi 1.1.2 APK 的原始 JS，及 2026-10-12 自有设备捕获帧。来源/迁移版本见 [证据索引](evidence/README.md)，解析实现见 [protocol.py](../tools/protocol.py)。这是设备的 Boyi 分支；Mova 的 UUID/opcode 不能混用。
+来源：官方 CoMi 1.1.2 APK 的原始 JS，及 2026-10-12 自有设备捕获帧。来源/迁移版本见 [证据索引](evidence/README.md)，解析实现见 [protocol.py](../src/rcominote/protocol.py)。这是设备的 Boyi 分支；Mova 的 UUID/opcode 不能混用。当前功能验收以[能力表](cli-capabilities.md)为准，调研优先级以[路线决策](research-routes.md)为准。
 
 ## GATT
 
@@ -40,5 +40,5 @@ CRC 覆盖帧头至 payload，初值 0、多项式 `0xA001`；非反转端序的
 
 - 迁移前：扫描、状态、文件列表、下载、sync、录音控制、校时均有既往实机记录；MP3 格式和解码验证也来自此前记录。
 - 本轮：7 个捕获帧 oracle 测试通过；新工具重新 GATT 枚举与 `info` 成功。没有重新录音、下载私人录音、校时或切换 USB 模式。
-- `sync` 仅按本地文件长度匹配来跳过已有下载，不做内容哈希验证；下载直接写目标文件，中断可能留下部分文件，重跑时不同长度会重新下载。不要把它视作固件/全盘备份工具。
+- 当前下载要求声明长度、完整字节数与结束标志，通过后原子发布；失败不发布完整目标文件。`sync` 跳过逻辑仍不能证明远端文件内容未改变。录音导出不是固件/全盘备份。
 - 不实现绑定、删除、格式化、复位、USB 模式切换、OTA 和任意 shell。`record`、`set-time` 会改变设备状态，需显式调用。
