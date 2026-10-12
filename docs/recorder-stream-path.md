@@ -33,8 +33,8 @@ stream open `1000def4..1000df62`创建线程，entry=`1000ddb9`，日志/线程�
 
 该目标有前篇`ble stream open failed`上下文，但其对象生产者/ops尚未解析。因此暂称“异步stream分支”，不声称已确认BLE后端、加密、分包或送达。
 
-## 编解码器名称存在待核对差异
+## 编解码器名称与实际选择
 
-实际`opus_ringbuf`/`opus_stream_init`标签与前篇format1按当前SDK解释为MP3不一致。stream标签可能沿用旧名，CoMi的format enum也可能与公开SDK不同；目前没有证据选择其一。
+实际`opus_ringbuf`/`opus_stream_init`标签不能用于判定编码格式。[后续实际分派证据](recorder-codec-dispatch.md)确认：该format1编码配置选中带`mp3e`标识的硬件记录及`aeRECORD.dsp`，进入DSP路径，与固定SDK的MP3编码配置一致。
 
-所以可靠结论仍是**实际format参数值1**，MP3仅是公开SDK对应解释，Opus仅是实际stream标签。下一步应取得编码器分派实现或已有录音帧验证，不能由字符串将格式改判Opus，也不能把SDK MP3映射当最终实测格式。
+静态选择已得到实际codec表支持；DSP加载/执行及输出文件帧仍未由本轮验证，也不推广到所有模式。

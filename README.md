@@ -136,4 +136,6 @@ uv run --locked tools/build_sdk.py \
 
 [非ABTP媒体捕获配置](docs/recorder-media-config.md)：实际producer设置输入/输出16 kHz、16-bit、单声道，format1/bitrate32与SDK MP3/32 kbps对应；尚未以实际文件或运行状态验收。
 
-[编码输出stream分支](docs/recorder-stream-path.md)：同步文件write与异步ring消费者；后者后端未定。实际Opus标签与SDK format1=MP3解释有差异，编解码器须进一步核实。
+[编码输出stream分支](docs/recorder-stream-path.md)：同步文件write与异步ring消费者；后者后端未定。
+
+[实际codec分派](docs/recorder-codec-dispatch.md)：format1编码方向选择`mp3e`硬件记录、`aeRECORD.dsp`及DSP路径；支持MP3配置判断。DSP资源导出与加载执行仍未验证。

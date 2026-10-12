@@ -36,4 +36,4 @@ offset与打包word为十六进制，rate/bits/channels/bitrate解释为十进�
 
 仍缺：调用者的用户可见模式归属、实际运行选路、录音文件头/编码参数、音频输入电气与采样测量、下层增益/输入选择。下一步应核对producer的stream目标或解析已有真实文件；不把静态配置写成已观测录音结果。
 
-后续发现：[实际输出stream](recorder-stream-path.md)带`opus_ringbuf`标签，与当前SDK的format1=MP3解释存在待核对差异。保留原始format1，编码器身份须经实际分派或文件帧确认；不能把这里的MP3对应关系视作已证实的设备文件格式。
+后续[实际codec分派](recorder-codec-dispatch.md)确认format1编码方向选中`mp3e`硬件记录与`aeRECORD.dsp`，支持MP3配置判断；[输出stream](recorder-stream-path.md)的`opus_ringbuf`标签不能据此改判Opus。静态选择不等于已验收DSP执行或输出文件。
