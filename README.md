@@ -12,12 +12,12 @@
 | 新鲜实机证据 | 本轮重新枚举 GATT、读取状态；MTU 247，4 个服务，普通模式未见 Actions OTA UUID，`usb_mode=true` |
 | USB | 用户确认数据线后做拔插对照，仍未见明确 CoMi 枚举；`usb_mode=true` 不等于主机数据接口已启用，板级走线/其他模式待查 |
 | 日志/shell | 实机执行 `kernel version` 返回 Zephyr 2.7.0；`help`/`dbg` 列出存储读取与 ADFU 重启命令，后者未执行 |
-| 配置读回 | `dbg nvram BT_LE_NAME` 已返回14字节实机内容；已取得 NOR offset0 的512 B双覆盖及DSP目录/文件头，尚无整片备份 |
-| 映射字节读回 | 已核对代码/运行元数据并开始系统正文断点导出，已追到exFAT→SD磁盘→sd后端→MMC_1；实际驱动状态支持SD协议；另定位ready的spi_flash对象，缓存ID匹配Zbit 4 MiB系列，驱动配置32 MiB不代表物理容量；已取得CRC通过的744 B缓存ACPT表、18项配置覆盖4 MiB；尚无完整固件/物理分区备份 |
+| 配置读回 | `dbg nvram BT_LE_NAME` 已返回14字节实机内容；已取得 NOR offset0 的512 B双覆盖、DSP目录及完整110148 B录音DSP，尚无整片备份 |
+| 映射字节读回 | 已取得927632 B完整系统映射镜像并通过头/正文checksum，已追到exFAT→SD磁盘→sd后端→MMC_1；实际驱动状态支持SD协议；另定位ready的spi_flash对象，缓存ID匹配Zbit 4 MiB系列，驱动配置32 MiB不代表物理容量；已取得CRC通过的744 B缓存ACPT表、18项配置覆盖4 MiB；尚无完整固件/物理分区备份 |
 | 自定义固件 | Actions 有构建、OTA、ADFU 等参考代码，也有签名/安全启动配置；CoMi 是否接受自签/未签名镜像尚未知 |
 | Linux 构建 | Ubuntu 上参考板 hello_world 已生成 ELF/BIN/HEX；SDK 无源码补丁，构建后 tracked 文件干净；尚不是 CoMi 固件 |
 
-最新：[录音DSP断点导出](docs/record-dsp-export.md)与[SDFS校验规则](docs/sdfs-checksum.md)；[完整录音DSP头与bank表](docs/record-dsp-header.md)；[同连接 NOR 双读与录音 DSP 头](docs/nor-warm-capture.md)：512 B实测21.762 s，完整双覆盖，与独立冷连接结果一致。
+最新：[完整录音DSP读回与216块复验](docs/record-dsp-export.md)与[SDFS校验规则](docs/sdfs-checksum.md)；[完整录音DSP头与bank表](docs/record-dsp-header.md)；[同连接 NOR 双读与录音 DSP 头](docs/nor-warm-capture.md)：512 B实测21.762 s，完整双覆盖，与独立冷连接结果一致。
 
 ## 阅读顺序
 
@@ -140,9 +140,9 @@ uv run --locked tools/build_sdk.py \
 
 [编码输出stream分支](docs/recorder-stream-path.md)：同步文件write与异步ring消费者；后者后端未定。
 
-[实际codec分派](docs/recorder-codec-dispatch.md)：format1编码方向选择`mp3e`硬件记录、`aeRECORD.dsp`及DSP路径；支持MP3配置判断。DSP资源导出与加载执行仍未验证。
+[实际codec分派](docs/recorder-codec-dispatch.md)：format1编码方向选择`mp3e`硬件记录、`aeRECORD.dsp`及DSP路径；支持MP3配置判断。录音DSP资源已完整导出并通过目录checksum；自写固件加载执行仍未验证。
 
-[DSP资源路径](docs/dsp-resource-path.md)：实际拼接`/NOR:K/aeRECORD.dsp`，K对应ACPT的`sdfs_k`分区（704 KiB）；尚未读取目录/文件，现有system导出未证明覆盖该资源。
+[DSP资源路径](docs/dsp-resource-path.md)：实际拼接`/NOR:K/aeRECORD.dsp`，K对应ACPT的`sdfs_k`分区（704 KiB）；目录与录音DSP文件已独立读取，见[完整验收](docs/record-dsp-export.md)；它们不属于现有system映射镜像。
 
 [SDFS NOR读取](docs/sdfs-nor-read-path.md)：目录相对offset加分区offset，经Flash API读取。原始指令模拟确认读失败与EOF均返回0；未来导出必须核对预期长度。
 
@@ -166,8 +166,8 @@ uv run --locked tools/build_sdk.py \
 
 [F5F0固件归属](docs/f5f0-firmware-definition.md)：实际参数/回调链确认Bluetooth OTA后端；启用通知可触发OTA应用流程，尚无备份或恢复验收。
 
-[NOR短窗口读回](docs/printk-nor-tail.md)：固定`printk-nor-tail`实验两次取得offset0读取的末尾32 B一致数据；尚无完整扇区或备份。
+[NOR短窗口读回](docs/printk-nor-tail.md)：固定`printk-nor-tail`实验两次取得offset0读取的末尾32 B一致数据；当时只读回局部；后续已完成offset0扇区及录音DSP，仍无整片备份。
 
 [完整NOR offset0扇区](docs/nor-sector-zero.md)：重叠日志窗口两轮22次采集，512 B全部双重覆盖、无冲突；新增离线`diag assemble-nor-sector`，仍非整片备份。
 
-[分区前缀与DSP目录](docs/nor-partition-prefixes.md)：system原始64 B与映射头不同；NOR K完整256 B目录双重校验，定位`aerecord.dsp`于`0x24d400`、110148 B；正文尚未导出。
+[分区前缀与DSP目录](docs/nor-partition-prefixes.md)：system原始64 B与映射头不同；NOR K完整256 B目录双重校验，定位`aerecord.dsp`于`0x24d400`、110148 B；正文后续已[完整导出](docs/record-dsp-export.md)，目录checksum通过。

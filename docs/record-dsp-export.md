@@ -1,71 +1,51 @@
-# 录音 DSP 有界断点导出
+# 录音 DSP 完整读回与断点导出
 
-2026-10-12。CLI限实际目录中的 `aerecord.dsp`：起点 `0x24d400`、长度110148 B、216个512 B读取块。每个块仍要求每行至少两次独立producer输出、无冲突；保留代码守卫、命令/status归属、ACK与STOP/F1检查。
+2026-10-12。已从本机 NOR `0x24d400` 完整取得 `aerecord.dsp`，110148 B。216个512 B块的每行均有独立producer双覆盖、无冲突；最终文件与此前独立取得的SDFS目录checksum一致。**这是单个原厂资源文件，不是整机备份，也未验证加载执行或恢复。**
+
+## 完成证据
+
+- [原始DSP文件](evidence/record-dsp-complete-2026-10-12/aerecord.dsp)：SHA256 `7ed5482ca4d37c39f6b70e72fc29c129f135bc77eed5d3c0889bfc8bc5fd436e`。
+- [完整验收报告](evidence/record-dsp-complete-2026-10-12/report.json)：长度、540 B头、所有非零section链及各段哈希；SDFS checksum `0x96d685bb`，匹配此前捕获目录，而非由此次文件生成的预期值。
+- [逐块清单](evidence/record-dsp-complete-2026-10-12/blocks.json)：216块哈希、NOR位置、尝试数及窗口数。290次尝试，64块需要重试；保留5808份有效窗口。无效采集没有贡献有效字节。
+- 导出进程正常退出后，另运行当前版本的 `inspect-dsp-image`；随后再次运行导出命令，从全部保留窗口重新验收216块，验证缓存字节、段结构和checksum，无新增设备读取，正常退出。
+- 约1.6 GB原始会话/窗口日志留在本地 `artifacts/record-dsp-export/`。仓库中的文件与报告可独立做结构/校验复核；逐块哈希不能替代未随仓库发布的原始采集记录。
+
+## 实际段布局
+
+| 表 | 非空段数 | 正文总字节 | 表起点 | 四字节终止项 |
+|---|---:|---:|---:|---:|
+| main code | 3 | 15544 | 540 | 16108 |
+| main data | 3 | 36672 | 16112 | 52808 |
+| bank18 code | 1 | 144 | 52812 | 52964 |
+| bank19 code | 1 | 27656 | 52968 | 80632 |
+| bank34 code | 1 | 24872 | 80636 | 105516 |
+| bank34 data | 1 | 4616 | 105520 | 110144 |
+
+六张表连续；最后四字节终止项恰好结束于110148 B，无尾部剩余。540 B头 + 109504 B正文 + 10×8 B段头 + 6×4 B终止项 = 110148 B。bank34代码/数据声明地址分别为 `0x20c86d00`、`0x20c89dcc`；它们是DSP编码地址，不是可直接读写的MCU/NOR地址。实际[地址转换与参考SDK不同](dsp-address-map.md)，bank切换和运行时序仍待验证。
+
+## 复现
 
 ```sh
-# 限新增块数进行实机验证；已有块从原始窗口重新验收，不重复读取。
-uv run comi diag export-record-dsp --out artifacts/record-dsp-export --max-new-blocks 3
-# 同一目录续读完整文件；默认每块至多尝试3次，失败保留证据并非零退出。
+# 仓库内离线结构复核，无设备连接。
+uv run comi diag inspect-dsp-image docs/evidence/record-dsp-complete-2026-10-12/aerecord.dsp
+# 实机首次读取或续读；默认每块最多3次尝试。
 uv run comi diag export-record-dsp --out artifacts/record-dsp-export
-# 单块调研；仅record-dsp允许0..215，其余固定target只能block0。
+# 限新增块数；已取得块仍从原始窗口重新验收。
+uv run comi diag export-record-dsp --out artifacts/record-dsp-export --max-new-blocks 3
+# 单块调研：只有record-dsp允许block0..215。
 uv run comi diag capture-nor-sector --nor-target record-dsp --block 2 --out artifacts/NEW
 ```
 
-## 实机与验收边界
+续读拒绝错target/offset、冲突、与证据不同的缓存；不信任report的complete标志。失败非零退出、保留证据，后续尝试使用新目录。全部块通过后，检查完整头/段链与目录checksum，再原子发布文件；已有不同文件拒绝覆盖。SDFS累加和不是密码学签名。
 
-- 首次试跑已完成block0..2，共1536 B；前两块与此前独立读取完全一致。[第三块22份窗口及报告](evidence/record-dsp-export-2026-10-12/block-002-report.json)验证了新增非零block寻址和归属。
-- 续读实测跳过这3块并取得block3，累计4/216；[续读报告](evidence/record-dsp-export-2026-10-12/resume-report.json)。后续完整任务已启动，本文不预报其结果。
-- [进度记录](evidence/record-dsp-export-2026-10-12/progress.json)仅表示阶段结果，**不是完整文件导出成功**。
-- 续读重新解析所有成功窗口，拒绝错target/offset、冲突和与证据不同的缓存sector。不信任report的complete标志。每次尝试写新目录，不覆盖旧失败。
-- 单块512 B是固件固定读取长度。最后块起点 `0x268200`，有效文件剩68 B；其余444 B落在同一已知SDFS分区的间隙/后续文件内，只读后丢弃，最终文件严格110148 B。没有把读取块边界当成文件边界。
-- 收齐216块后验证540 B头部、段指针边界，以及[原目录文件checksum](sdfs-checksum.md) `0x96d685bb`。全部通过才原子发布 `aerecord.dsp` 和SHA256。SDFS累加和不等于密码学签名。
-- 没有擦除、写flash、ADFU、OTA或DSP运行。此命令只覆盖一个资源文件，不构成整机备份/恢复。
+固件 `fread` 固定读取512 B；最后块起点 `0x268200`，文件有效字节只有68 B。多读444 B属于同一已知SDFS分区的间隙和下一个文件，最终裁掉。读取块边界不等于文件边界。
 
-完整文件取得后仍须解析section链、检查长度和目标地址；不能用头部和校验和代替自写固件的硬件运行或恢复验收。
+每次采集保留代码守卫、命令/status归属、ACK与STOP/F1检查。没有擦除、写flash、ADFU、OTA订阅或DSP执行。
 
-## Section验收工具
+## 格式与阶段证据
 
-`uv run comi diag inspect-dsp-image PATH`逐一遍历主code/data及非零bank指针：非空段必须完整包含8 B头和size字节数据，之后继续读下一段；零size终止。四字节零size位于EOF可接受，与[已核对的实际加载器](dsp-file-loader.md)一致；非空短头严格拒绝，不照搬固件的宽松条件。输出每段文件偏移、声明DSP地址、长度和SHA256；不把DSP地址映射或运行成功当作已验证。
+`inspect-dsp-image`遍历主code/data及非零bank指针：非空段必须有完整8 B头及size字节正文；零size终止，只需4 B，与[实际加载器](dsp-file-loader.md)一致。输出文件偏移、声明地址、长度和SHA256，不验证DSP目标地址或硬件运行。
 
-已对固定SDK中的5个不同哈希二进制DSP文件完成结构扫描，分别遍历61、61、37、20、79段；[样本哈希、路径与结果](evidence/sdk-dsp-sections-2026-10-12.json)。同后缀的两个非xhqy文件被拒绝。这是格式解析实测，样本不是CoMi录音DSP，不能替代正在导出的文件验收。
+此前已扫描固定SDK的5个不同DSP二进制，分别61、61、37、20、79段；[SDK报告](evidence/sdk-dsp-sections-2026-10-12.json)。此次CoMi文件提供了独立的实际格式样本，尤其证实EOF四字节终止项。
 
-当前完整导出进程启动于分段检查功能加入之前，运行中代码不会自动更新；完成后须对实际输出单独运行上述命令，再记录验收结果。后续新启动的导出命令已把分段检查纳入发布前检查。
-
-## 长时间读取阶段证据
-
-已从原始窗口重新验收block0..11，共6144 B，得到[完整首个code段](evidence/record-dsp-first-section-2026-10-12.json)：文件偏移548、长度5312 B、DSP声明地址0，SHA256 `54598117c2a9600f8a2766dd4bc48fa1adebdeaa39452d68ed3570463ee34f69`。JSON保留段正文和各块哈希；原始全部窗口仍位于本地导出目录。
-
-文件偏移5860处下一段头声明8944 B、DSP地址 `0x40000000`，正文尚未完整获得。该地址是文件中的声明，不代表已验证映射、物理存储型号或可运行性。
-
-block3和block6都出现单轮覆盖不足；合并多轮独立producer后各行双覆盖通过、无冲突。block6另一次RAM日志行丢失的采集被整体拒绝，没有贡献有效字节。说明重试与跨轮合并是本设备实际需要的路径，单次速率不能直接外推完成时间。当前证据仍不足以检查整文件checksum。
-
-### 主code链已取得
-
-后续重新验证block0..31，共16384 B，确认主code表完整包含3段、总正文15544 B；[各块与各段哈希](evidence/record-dsp-main-code-2026-10-12.json)。这不包含bank code，不是完整DSP文件。
-
-| section头文件偏移 | 正文长度 | DSP声明地址 |
-|---:|---:|---|
-| 540 | 5312 | `0` |
-| 5860 | 8944 | `40000000` |
-| 14812 | 1288 | `40006000` |
-
-文件偏移16108处为四字节零size终止，16112立即开始主data表，与头部data指针完全一致。终止位置后面的word `000037d0`已经是下一张表的首段长度14288，不能误算为code终止项的地址字段。此实际布局支持解析器只消耗四字节零size的处理方式。主data及bank内容仍待完整读取。
-
-### 主data链与bank18已取得
-
-随后从原始窗口重新验收block0..103，共53248 B。[阶段证据](evidence/record-dsp-main-data-2026-10-12.json)保存各块与各段SHA256；完整文件尚缺后续bank正文。
-
-| 表 | section头文件偏移 | 正文长度 | DSP声明地址 |
-|---|---:|---:|---|
-| main data | 16112 | 14288 | `40001800` |
-| main data | 30408 | 21528 | `40006300` |
-| main data | 51944 | 856 | `40045440` |
-| bank18 code | 52812 | 144 | `20483600` |
-
-主data正文合计36672 B，零size终止于52808；紧接bank18表52812。bank18终止于52964，紧接头部声明的bank19表52968。`20483600`是DSP编码地址，不是可直接读取的MCU或NOR物理地址。当前未完成bank19、bank34及整文件SDFS checksum验收。
-
-### bank19已取得
-
-随后重新验收block103..157，[bank19证据](evidence/record-dsp-bank19-2026-10-12.json)确认单段：头52968、正文52976、长度27656 B、DSP编码地址 `204c3600`。正文SHA256 `5983e6d9e8e304c8e35f7fe4c3e20c31686519631c2383fc62b220cf9c0f6d27`。零size终止于80632，紧接头部声明的bank34 code表80636。
-
-bank18与19的地址都带编码位，不能把数字直接当作物理RAM位置或据此断言它们可同时加载；bank切换和使用时序仍需单独核查。剩余bank34 code/data及整文件checksum尚未完成。
+保留早期阶段记录：[首次与续读](evidence/record-dsp-export-2026-10-12/resume-report.json)、[首段](evidence/record-dsp-first-section-2026-10-12.json)、[主code](evidence/record-dsp-main-code-2026-10-12.json)、[主data/bank18](evidence/record-dsp-main-data-2026-10-12.json)、[bank19](evidence/record-dsp-bank19-2026-10-12.json)。其中“不完整”描述是当时状态；当前完整结果以上述完成报告为准。

@@ -1,0 +1,159 @@
+{
+  "file": "aerecord.dsp",
+  "file_bytes": 110148,
+  "verified_blocks": 216,
+  "total_blocks": 216,
+  "complete": true,
+  "scope": "Raw file readback; no flash write, boot or recovery proof",
+  "image": {
+    "bytes": 110148,
+    "sha256": "7ed5482ca4d37c39f6b70e72fc29c129f135bc77eed5d3c0889bfc8bc5fd436e",
+    "header": {
+      "header_bytes": 540,
+      "sha256": "aae650f37a8158e8f89d73af89df062863ce2dfde2276621511c7d8546e2b4b6",
+      "file_bytes": 110148,
+      "tool_version_word": "0x1030000",
+      "file_type": 0,
+      "file_subtype": 0,
+      "algorithm_version_word": "0x1000000",
+      "entry_point": "0x8e",
+      "code_offset": 540,
+      "data_offset": 16112,
+      "nonzero_banks": [
+        {
+          "bank": 18,
+          "code_offset": 52812,
+          "data_offset": 0
+        },
+        {
+          "bank": 19,
+          "code_offset": 52968,
+          "data_offset": 0
+        },
+        {
+          "bank": 34,
+          "code_offset": 80636,
+          "data_offset": 105520
+        }
+      ],
+      "scope": "Complete header and pointer bounds only; section bodies/checksums not validated"
+    },
+    "tables": [
+      {
+        "name": "code",
+        "offset": 540,
+        "terminator_offset": 16108,
+        "sections": [
+          {
+            "header_offset": 540,
+            "data_offset": 548,
+            "bytes": 5312,
+            "dsp_address": "0x0",
+            "sha256": "54598117c2a9600f8a2766dd4bc48fa1adebdeaa39452d68ed3570463ee34f69"
+          },
+          {
+            "header_offset": 5860,
+            "data_offset": 5868,
+            "bytes": 8944,
+            "dsp_address": "0x40000000",
+            "sha256": "563a0d56ddf31a9e2602279e2c881dc748906a41c37ddbed2ebae60f33caf1c3"
+          },
+          {
+            "header_offset": 14812,
+            "data_offset": 14820,
+            "bytes": 1288,
+            "dsp_address": "0x40006000",
+            "sha256": "2beb52ef98b0e2411be0366ecb449840b5def20bfb2f7180f4e099d2d006e560"
+          }
+        ]
+      },
+      {
+        "name": "data",
+        "offset": 16112,
+        "terminator_offset": 52808,
+        "sections": [
+          {
+            "header_offset": 16112,
+            "data_offset": 16120,
+            "bytes": 14288,
+            "dsp_address": "0x40001800",
+            "sha256": "6aa02d5602bebf7371cf1dfc979601470976ba8d603c88d1209c187a2f18064e"
+          },
+          {
+            "header_offset": 30408,
+            "data_offset": 30416,
+            "bytes": 21528,
+            "dsp_address": "0x40006300",
+            "sha256": "3f7083eefeb4f796d1915a67ca70ac047f02bf186cf194cf8e08624de6e1c395"
+          },
+          {
+            "header_offset": 51944,
+            "data_offset": 51952,
+            "bytes": 856,
+            "dsp_address": "0x40045440",
+            "sha256": "e41304a4a39709d9fc8ec957a8e311f3fd2a7c8d27020c97107b591a5f59038d"
+          }
+        ]
+      },
+      {
+        "name": "bank18_code",
+        "offset": 52812,
+        "terminator_offset": 52964,
+        "sections": [
+          {
+            "header_offset": 52812,
+            "data_offset": 52820,
+            "bytes": 144,
+            "dsp_address": "0x20483600",
+            "sha256": "437b588f50661c08a7a2b318da5ef2a6cf6f46971a7561575701785f30697666"
+          }
+        ]
+      },
+      {
+        "name": "bank19_code",
+        "offset": 52968,
+        "terminator_offset": 80632,
+        "sections": [
+          {
+            "header_offset": 52968,
+            "data_offset": 52976,
+            "bytes": 27656,
+            "dsp_address": "0x204c3600",
+            "sha256": "5983e6d9e8e304c8e35f7fe4c3e20c31686519631c2383fc62b220cf9c0f6d27"
+          }
+        ]
+      },
+      {
+        "name": "bank34_code",
+        "offset": 80636,
+        "terminator_offset": 105516,
+        "sections": [
+          {
+            "header_offset": 80636,
+            "data_offset": 80644,
+            "bytes": 24872,
+            "dsp_address": "0x20c86d00",
+            "sha256": "8ff8e50cc8035727f22b3f20946b93ecea4bd2e7cd8f25deeb3d6585c417e776"
+          }
+        ]
+      },
+      {
+        "name": "bank34_data",
+        "offset": 105520,
+        "terminator_offset": 110144,
+        "sections": [
+          {
+            "header_offset": 105520,
+            "data_offset": 105528,
+            "bytes": 4616,
+            "dsp_address": "0x20c89dcc",
+            "sha256": "d4ff8c39c2a19d967bd734fbb07e727344fdfc01f965fd542e241fa14848e0af"
+          }
+        ]
+      }
+    ],
+    "scope": "File section bounds and hashes; no DSP address validity, execution or boot proof"
+  },
+  "sdfs_checksum": "0x96d685bb",
+  "sha256": "7ed5482ca4d37c39f6b70e72fc29c129f135bc77eed5d3c0889bfc8bc5fd436e"
+}
