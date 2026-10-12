@@ -1,6 +1,7 @@
 """Require every memory row, independently of transport ACKs."""
 
 from .code_references import FIXED_BLOCKS, read_block
+from .printk_state import inspect_state
 from .range_readback import (
     BODY_PROBE_RANGES,
     HEADER_IMAGE_READS,
@@ -35,12 +36,17 @@ def verify_readback(result: dict) -> None:
             ]
         )
     )
-    if not reads and not ranges:
+    if result.get("printk_state"):
+        result.pop("console_state", None)
+    if not reads and not ranges and not result.get("printk_state"):
         return
     result["readback_complete"] = False
     if not result["transport_ok"]:
         return
+    state = None
     try:
+        if result.get("printk_state"):
+            state = inspect_state(result)
         if result.get("image_header"):
             read_header(result)
         for address, length in image_ranges(result.get("image_chunk_indices", [])):
@@ -58,3 +64,5 @@ def verify_readback(result: dict) -> None:
         result["ok"] = False
     else:
         result["readback_complete"] = True
+        if state is not None:
+            result["console_state"] = state

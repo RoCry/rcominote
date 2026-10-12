@@ -25,6 +25,9 @@ from .code_guards import (
 )
 from .log_probe import ACK, NOTIFY, PREPARE, SERVICE, WRITE
 from .nor_readback import NOR_PHASES
+from .printk_state import RAM_READS
+from .printk_state import READS as PRINTK_READS
+from .printk_state import verify_guards as verify_printk_guards
 from .range_readback import (
     BODY_PROBE_RANGES,
     HEADER_BATCH_READS,
@@ -129,9 +132,10 @@ async def capture(
     body_probe: bool = False,
     image_chunks: tuple[int, ...] = (),
     image_header: bool = False,
+    printk_state: bool = False,
 ) -> dict:
     selected_ranges = image_ranges(image_chunks)
-    image_header = image_header or bool(selected_ranges)
+    image_header = image_header or bool(selected_ranges) or printk_state
     header_batch = header_batch or body_probe or image_header
     code_references = code_references or shell_code or header_batch
     boot_code = boot_code or nor_code
@@ -153,6 +157,7 @@ async def capture(
         "duration_seconds": duration,
         "image_chunk_indices": list(image_chunks),
         "image_header": image_header,
+        "printk_state": printk_state,
         "range_frame_spans": {},
         "scope": "PREPARE/DEFAULT_START/STOP; fixed diagnostics and optional bounded reads; no storage writes/reboot",
         "fixed_text_commands": (
@@ -245,6 +250,7 @@ async def capture(
             )
             + (range_commands(BODY_PROBE_RANGES) if body_probe else [])
             + range_commands(selected_ranges)
+            + (range_commands(PRINTK_READS) if printk_state else [])
         ),
         "notifications": [],
         "writes": [],
@@ -369,6 +375,10 @@ async def capture(
                     f"dbg mdb {a:x} {n:x}" for a, n in selected_ranges
                 }:
                     read_header(result | {"ok": True})
+                if printk_state and command in {f"dbg mdb {a:x} {n:x}" for a, n in PRINTK_READS}:
+                    read_header(result | {"ok": True})
+                    if command in {f"dbg mdb {a:x} {n:x}" for a, n in RAM_READS}:
+                        verify_printk_guards(result | {"ok": True})
                 encoded = command.encode("ascii")
                 if storage_code or shell_code:
                     async with asyncio.timeout(5):

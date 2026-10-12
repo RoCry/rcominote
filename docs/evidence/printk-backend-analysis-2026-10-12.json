@@ -13,33 +13,7 @@
       "body_word_sum": "0xb18576b5",
       "stored_body_checksum": "0x4e7a894a",
       "checksum_verified": true,
-      "next_fixed_RAM_snapshot": {
-    "status": "Suggestion only; not executed",
-    "total_RAM_bytes": 10,
-    "prerequisites": "Verify owned device identity, fixed header and cited instruction/literal anchors first; changed anchors invalidate fixed addresses.",
-    "ranges": [
-      {
-        "address": "0x1800e004",
-        "length": 4,
-        "purpose": "current device pointer candidate",
-        "source": "context literal10026ed0; LDRr0,[r5] at10026d7c"
-      },
-      {
-        "address": "0x1800e01c",
-        "length": 2,
-        "purpose": "current init and panic bytes",
-        "source": "LDRB r4,[r5,#18] at10026e70 and LDRB r4,[r5,#19] at10026e82"
-      },
-      {
-        "address": "0x180018c8",
-        "length": 4,
-        "purpose": "current character output hook pointer",
-        "source": "literal10020634; LDR r3,[r3] at10020630; BXr3 at10020632"
-      }
-    ],
-    "limits": "Non-atomic current RAM snapshot; no automatic pointer following; not proof of historical fread branch/hook."
-  },
-  "limits": [
+      "limits": [
         "No physical Flash mapping proven",
         "No complete device backup or restore validation"
       ]

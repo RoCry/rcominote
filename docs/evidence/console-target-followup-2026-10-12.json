@@ -1,0 +1,295 @@
+{
+  "date": "2026-10-12",
+  "scope": "Offline complete checksum-verified mapped image; two functions plus descriptor/config constants; no device I/O, RAM pointer following or MMIO access",
+  "image": {
+    "scope": "mapped-system image; not a raw Flash backup",
+    "base": "0x10000000",
+    "bytes": 927632,
+    "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+    "header_sha256": "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5",
+    "body_word_sum": "0xb18576b5",
+    "stored_body_checksum": "0x4e7a894a",
+    "checksum_verified": true,
+    "limits": [
+      "No physical Flash mapping proven",
+      "No complete device backup or restore validation"
+    ]
+  },
+  "decoder": {
+    "name": "Capstone",
+    "version": "5.0.6",
+    "mode": "ARM Thumb + MCLASS, little-endian"
+  },
+  "captures": [
+    {
+      "path": "artifacts/printk-state-first-20261012.json",
+      "sha256": "0ace9e8b41d10ba5d8ceac5f8aa166b1fef74cee10a513d18c50b22db1fa5eaa",
+      "captured_at": "2026-10-12T07:55:47.128449+00:00",
+      "serial": "C261CF0430",
+      "validation": {
+        "ok": true,
+        "transport_ok": true,
+        "readback_complete": true,
+        "end_received": true,
+        "pending_hex": ""
+      },
+      "ram_bytes": {
+        "0x1800e004": "609f0b10",
+        "0x1800e01c": "0100",
+        "0x180018c8": "c9780210"
+      },
+      "console_state": {
+        "scope": "Separate non-atomic console RAM reads; no pointer following or Flash read",
+        "device_pointer": "0x100b9f60",
+        "init": 1,
+        "panic": 0,
+        "character_hook": "0x100278c9",
+        "branch_from_flags": "dma_buffer",
+        "limits": [
+          "Flags can change after capture",
+          "No physical output or raw Flash data observed"
+        ]
+      }
+    },
+    {
+      "path": "docs/evidence/printk-state-second-2026-10-12.json",
+      "sha256": "eb2bfefebf1e09f1dbaf2c9935362f0ed2bce0274fe97c421f7345471f0a70f7",
+      "captured_at": "2026-10-12T07:56:17.715747+00:00",
+      "serial": "C261CF0430",
+      "validation": {
+        "ok": true,
+        "transport_ok": true,
+        "readback_complete": true,
+        "end_received": true,
+        "pending_hex": ""
+      },
+      "ram_bytes": {
+        "0x1800e004": "609f0b10",
+        "0x1800e01c": "0100",
+        "0x180018c8": "c9780210"
+      },
+      "console_state": {
+        "scope": "Separate non-atomic console RAM reads; no pointer following or Flash read",
+        "device_pointer": "0x100b9f60",
+        "init": 1,
+        "panic": 0,
+        "character_hook": "0x100278c9",
+        "branch_from_flags": "dma_buffer",
+        "limits": [
+          "Flags can change after capture",
+          "No physical output or raw Flash data observed"
+        ]
+      }
+    }
+  ],
+  "regions": [
+    {
+      "name": "device_descriptor",
+      "address": "0x100b9f60",
+      "file_offset": "0xb9f60",
+      "length": 32,
+      "hex": "7f0e0c10f0c00b1028c10b10302b001824f800180000000000000000382b0018",
+      "sha256": "573aeb32474aa066e643d018e953dd9188e7a0ca6188fa0130f148cdeb2c8706"
+    },
+    {
+      "name": "device_name",
+      "address": "0x100c0e7f",
+      "file_offset": "0xc0e7f",
+      "length": 7,
+      "hex": "554152545f3000",
+      "sha256": "2a6acf755639e37e208f7d29376564e7caeb3bf50969ec797891af05370a5c76"
+    },
+    {
+      "name": "mapped_config_window",
+      "address": "0x100bc0f0",
+      "file_offset": "0xbc0f0",
+      "length": 28,
+      "hex": "0000000000800340dd7c0c1001ff01ff1818030080841e001f440a10",
+      "sha256": "436cd1d72f39079778de55f434fb2898100d3b03ef8a57a74dc3612cb0a5155d"
+    },
+    {
+      "name": "config_dma_name",
+      "address": "0x100c7cdd",
+      "file_offset": "0xc7cdd",
+      "length": 6,
+      "hex": "444d415f3000",
+      "sha256": "458666be6c58ed130df5274f14860123ed6164f1215291ab18a3fa4e0806bcb7"
+    },
+    {
+      "name": "current_character_hook",
+      "address": "0x100278c8",
+      "file_offset": "0x278c8",
+      "length": 34,
+      "hex": "0a2838b5074d044604d1286883680d215b68984728688368e1b25b689847204638bd",
+      "sha256": "e76d805045d96b2c00fc4e2dd6f08193d3da5bc2ca593cb7e94a977369640b24",
+      "instructions": [
+        {"address": "0x100278c8", "bytes": "0a28", "mnemonic": "cmp", "operands": "r0, #0xa"},
+        {"address": "0x100278ca", "bytes": "38b5", "mnemonic": "push", "operands": "{r3, r4, r5, lr}"},
+        {"address": "0x100278cc", "bytes": "074d", "mnemonic": "ldr", "operands": "r5, [pc, #0x1c]"},
+        {"address": "0x100278ce", "bytes": "0446", "mnemonic": "mov", "operands": "r4, r0"},
+        {"address": "0x100278d0", "bytes": "04d1", "mnemonic": "bne", "operands": "#0x100278dc"},
+        {"address": "0x100278d2", "bytes": "2868", "mnemonic": "ldr", "operands": "r0, [r5]"},
+        {"address": "0x100278d4", "bytes": "8368", "mnemonic": "ldr", "operands": "r3, [r0, #8]"},
+        {"address": "0x100278d6", "bytes": "0d21", "mnemonic": "movs", "operands": "r1, #0xd"},
+        {"address": "0x100278d8", "bytes": "5b68", "mnemonic": "ldr", "operands": "r3, [r3, #4]"},
+        {"address": "0x100278da", "bytes": "9847", "mnemonic": "blx", "operands": "r3"},
+        {"address": "0x100278dc", "bytes": "2868", "mnemonic": "ldr", "operands": "r0, [r5]"},
+        {"address": "0x100278de", "bytes": "8368", "mnemonic": "ldr", "operands": "r3, [r0, #8]"},
+        {"address": "0x100278e0", "bytes": "e1b2", "mnemonic": "uxtb", "operands": "r1, r4"},
+        {"address": "0x100278e2", "bytes": "5b68", "mnemonic": "ldr", "operands": "r3, [r3, #4]"},
+        {"address": "0x100278e4", "bytes": "9847", "mnemonic": "blx", "operands": "r3"},
+        {"address": "0x100278e6", "bytes": "2046", "mnemonic": "mov", "operands": "r0, r4"},
+        {"address": "0x100278e8", "bytes": "38bd", "mnemonic": "pop", "operands": "{r3, r4, r5, pc}"}
+      ]
+    },
+    {
+      "name": "hook_device_pointer_slot_literal",
+      "address": "0x100278ec",
+      "file_offset": "0x278ec",
+      "length": 4,
+      "hex": "38ed0018",
+      "sha256": "8140e7614089c5b68c5161bd233d7cc95df92e5189c8bdfdbc0e39884dd21ba4"
+    },
+    {
+      "name": "dma_start",
+      "address": "0x100a1e42",
+      "file_offset": "0xa1e42",
+      "length": 72,
+      "hex": "38b50446fff7f3ff636a0546d3b9201d05d1002085f31188bff36f8f38bde268002af6ddb2f5806fa8bf4ff4806204f12001fff770ff626a002aead0216a206802f0f3fa0120e5e7",
+      "sha256": "4c854a45084b1777dde200c64949a4151d78fbf8fa408e021912d11e5c6646a9",
+      "instructions": [
+        {"address": "0x100a1e42", "bytes": "38b5", "mnemonic": "push", "operands": "{r3, r4, r5, lr}"},
+        {"address": "0x100a1e44", "bytes": "0446", "mnemonic": "mov", "operands": "r4, r0"},
+        {"address": "0x100a1e46", "bytes": "fff7f3ff", "mnemonic": "bl", "operands": "#0x100a1e30"},
+        {"address": "0x100a1e4a", "bytes": "636a", "mnemonic": "ldr", "operands": "r3, [r4, #0x24]"},
+        {"address": "0x100a1e4c", "bytes": "0546", "mnemonic": "mov", "operands": "r5, r0"},
+        {"address": "0x100a1e4e", "bytes": "d3b9", "mnemonic": "cbnz", "operands": "r3, #0x100a1e86"},
+        {"address": "0x100a1e50", "bytes": "201d", "mnemonic": "adds", "operands": "r0, r4, #4"},
+        {"address": "0x100a1e52", "bytes": "05d1", "mnemonic": "bne", "operands": "#0x100a1e60"},
+        {"address": "0x100a1e54", "bytes": "0020", "mnemonic": "movs", "operands": "r0, #0"},
+        {"address": "0x100a1e56", "bytes": "85f31188", "mnemonic": "msr", "operands": "basepri, r5"},
+        {"address": "0x100a1e5a", "bytes": "bff36f8f", "mnemonic": "isb", "operands": "sy"},
+        {"address": "0x100a1e5e", "bytes": "38bd", "mnemonic": "pop", "operands": "{r3, r4, r5, pc}"},
+        {"address": "0x100a1e60", "bytes": "e268", "mnemonic": "ldr", "operands": "r2, [r4, #0xc]"},
+        {"address": "0x100a1e62", "bytes": "002a", "mnemonic": "cmp", "operands": "r2, #0"},
+        {"address": "0x100a1e64", "bytes": "f6dd", "mnemonic": "ble", "operands": "#0x100a1e54"},
+        {"address": "0x100a1e66", "bytes": "b2f5806f", "mnemonic": "cmp.w", "operands": "r2, #0x400"},
+        {"address": "0x100a1e6a", "bytes": "a8bf", "mnemonic": "it", "operands": "ge"},
+        {"address": "0x100a1e6c", "bytes": "4ff48062", "mnemonic": "movge.w", "operands": "r2, #0x400"},
+        {"address": "0x100a1e70", "bytes": "04f12001", "mnemonic": "add.w", "operands": "r1, r4, #0x20"},
+        {"address": "0x100a1e74", "bytes": "fff770ff", "mnemonic": "bl", "operands": "#0x100a1d58"},
+        {"address": "0x100a1e78", "bytes": "626a", "mnemonic": "ldr", "operands": "r2, [r4, #0x24]"},
+        {"address": "0x100a1e7a", "bytes": "002a", "mnemonic": "cmp", "operands": "r2, #0"},
+        {"address": "0x100a1e7c", "bytes": "ead0", "mnemonic": "beq", "operands": "#0x100a1e54"},
+        {"address": "0x100a1e7e", "bytes": "216a", "mnemonic": "ldr", "operands": "r1, [r4, #0x20]"},
+        {"address": "0x100a1e80", "bytes": "2068", "mnemonic": "ldr", "operands": "r0, [r4]"},
+        {"address": "0x100a1e82", "bytes": "02f0f3fa", "mnemonic": "bl", "operands": "#0x100a446c"},
+        {"address": "0x100a1e86", "bytes": "0120", "mnemonic": "movs", "operands": "r0, #1"},
+        {"address": "0x100a1e88", "bytes": "e5e7", "mnemonic": "b", "operands": "#0x100a1e56"}
+      ]
+    }
+  ],
+  "descriptor": {
+    "address": "0x100b9f60",
+    "name_pointer": "0x100c0e7f",
+    "name": "UART_0",
+    "config_pointer": "0x100bc0f0",
+    "api_pointer": "0x100bc128",
+    "unfollowed_ram_pointers": [
+      "0x18002b30",
+      "0x1800f824",
+      "0x18002b38"
+    ]
+  },
+  "config": {
+    "window": "0x100bc0f0..0x100bc10c exclusive",
+    "words_le": [
+      "0x00000000",
+      "0x40038000",
+      "0x100c7cdd",
+      "0xff01ff01",
+      "0x00031818",
+      "0x001e8480",
+      "0x100a441f"
+    ],
+    "mapped_string": "DMA_0",
+    "interpretation": "Fields after the leading zero word resemble pinned acts_uart_config: base, DMA name, IDs/channels, clock/reset/IRQ/flags, baud, IRQ callback. Pinned struct lacks this leading word; actual ABI and flags not independently proven. 0x001e8480 equals 2000000; configured-baud inference only, not measured signal."
+  },
+  "hook": {
+    "runtime_thumb_pointer": "0x100278c9",
+    "code": "0x100278c8",
+    "device_pointer_slot": "0x1800ed38",
+    "behavior": "For LF first call device API+4 with CR; then API+4 with byte(character); return original character",
+    "source_name_inference": "console_out / uart_poll_out; no original symbols",
+    "limits": [
+      "Hook device pointer slot not captured or followed",
+      "Selected init=1/panic=0 branch does not use this hook",
+      "No extra debug-server hook check in these 34 code bytes"
+    ]
+  },
+  "dma_start": {
+    "address": "0x100a1e42",
+    "source_name_inference": "dma_start_tx with inlined _dma_start_tx",
+    "calls": [
+      {
+        "instruction": "0x100a1e46",
+        "target": "0x100a1e30",
+        "source_role_inference": "irq_lock; not expanded"
+      },
+      {
+        "instruction": "0x100a1e74",
+        "target": "0x100a1d58",
+        "source_role_inference": "cbuf_dma_read; not expanded"
+      },
+      {
+        "instruction": "0x100a1e82",
+        "target": "0x100a446c",
+        "source_role_inference": "uart_dma_send; not expanded"
+      }
+    ],
+    "fields": {
+      "ctx+0x00": "device pointer",
+      "ctx+0x0c": "used bytes candidate",
+      "ctx+0x20": "DMA start address",
+      "ctx+0x24": "DMA read length"
+    },
+    "requested_cbuf_read_bytes_cap": 1024,
+    "conditions": "Existing read_len!=0 returns 1; otherwise used<=0 returns 0. Positive used capped at 1024; after cbuf helper call, zero read_len returns 0, nonzero sends and returns 1.",
+    "send_arguments": {
+      "r0": "[ctx+0] = captured 0x100b9f60 (UART_0) if unchanged",
+      "r1": "[ctx+0x20], not read",
+      "r2": "[ctx+0x24], not read"
+    },
+    "interrupt_restore": "MSR BASEPRI,r5; ISB on all return paths"
+  },
+  "sources": [
+    {
+      "path": "action_technology_sdk/zephyr/drivers/serial/uart_acts.c",
+      "sha256": "175272bd5708f0b06499bc692fe823d9b4f463d66bea57999b664e66034a8a6d",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/drivers/serial/uart_acts.c#L28-L44"
+    },
+    {
+      "path": "action_technology_sdk/zephyr/drivers/console/uart_console.c",
+      "sha256": "4e585726e7b32527310db6582dfe9ed368e1670779401d90b6639eca740532ab",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/drivers/console/uart_console.c#L76-L95"
+    },
+    {
+      "path": "action_technology_sdk/zephyr/subsys/trace/printk_dma.c",
+      "sha256": "f5493ecd688616e501e8d94e9231d4c4b43518035127c5aa0ea49ce61086ee5a",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/subsys/trace/printk_dma.c#L59-L89"
+    }
+  ],
+  "established": [
+    "Both supplied snapshots contain identical 10 bytes: device UART_0, init=1, panic=0, current hook=0x100278c9",
+    "Mapped descriptor name is UART_0; config references DMA_0",
+    "Actual DMA start calls 0x100a446c with context device and DMA buffer fields",
+    "Current hook differs from startup payload pointer 0x100a42ab established in previous report"
+  ],
+  "limits": [
+    "Separate RAM reads are non-atomic and not historical fread execution state",
+    "Snapshot and static call graph do not prove a DMA transfer completed, UART pins emitted data, or raw NOR read succeeded",
+    "No reading/following RAM buffer, runtime driver state or MMIO; UART driver callee not expanded",
+    "Mapped image is not a physical Flash backup or restore proof",
+    "UART pin mux, electrical exposure and current effective baud remain unproven"
+  ]
+}

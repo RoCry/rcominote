@@ -8,7 +8,7 @@ from typing import Annotated
 
 import typer
 
-from . import code_references, code_sample, log_capture, log_probe
+from . import code_references, code_sample, log_capture, log_probe, printk_state
 from .ble_target import OWNED_SERIAL
 from .output import emit, new_output
 
@@ -38,6 +38,7 @@ class Profile(StrEnum):
     header_batch = "header-batch"
     body_probe = "body-probe"
     nor_header = "nor-header"
+    printk_state = "printk-state"
 
 
 PROFILE_FLAGS = {
@@ -62,6 +63,7 @@ PROFILE_FLAGS = {
     "header-batch": "header_batch",
     "body-probe": "body_probe",
     "nor-header": "flash_header",
+    "printk-state": "printk_state",
 }
 
 
@@ -102,3 +104,5 @@ def text(capture: Path):
 app.command("probe")(log_probe.main)
 app.command("compare-code")(code_sample.main)
 app.command("compare-references")(code_references.main)
+
+app.command("inspect-printk")(printk_state.main)

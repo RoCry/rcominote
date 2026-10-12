@@ -135,3 +135,5 @@ uv run comi diag compare-references artifacts/card-first.json artifacts/card-sec
 `boot-code`继承card-code校验，沿实际device_get_binding→31项device表→Flash实例/回调读取2931 B；其中字符串区有重叠。`diag compare-references FIRST SECOND --boot --out REPORT`输出`device_names`、`flash_configuration`；32 MiB是配置容量，不是芯片容量实测，也不是完整固件备份。[证据](boot-storage-device-readback.md)。裸`just`仅列命令；`just check`才执行检查。
 
 `nor-code`继承boot-code，沿实际NOR read目标、地址模式helper读取缓存ID/flags；固定3101 B读取、3068不同字节。`diag compare-references FIRST SECOND --nor --out REPORT`输出`nor_state`；不发送JEDEC命令或调用Flash函数。[ID与容量边界](nor-driver-readback.md)。
+
+`printk-state`：核对owned设备、完整固定镜像头及三段实际代码/literal后，读取console device、init/panic、字符hook共10 B。逐次flush和验收，不执行fread或跟随返回指针。`diag inspect-printk CAPTURE`离线重新校验并解释保存状态。[两次实测与边界](printk-runtime-state.md)。

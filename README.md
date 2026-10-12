@@ -105,3 +105,5 @@ uv run --locked tools/build_sdk.py \
 [printk实际backend](docs/printk-backend-readback.md)：fread正文走独立DMA分派或动态字符hook；已定位当前RAM flags/hook的最小读取目标，尚未实测其运行时值。
 
 [启动反编译边界](docs/startup-noreturn-model.md)：具体thread-abort调用点no-return建模，Ubuntu完整镜像21入口重跑通过；修正literal伪控制流，仍保留参数推断限制。
+
+[Console运行时实测](docs/printk-runtime-state.md)：新增`diag capture printk-state`和`diag inspect-printk`；两次固定10 B RAM一致，init=1/panic=0对应DMA分支，当前hook与启动载荷不同；尚未观察物理输出或原始Flash数据。
