@@ -10,7 +10,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import AsyncMock, patch
 
-from rcominote.connection import Connection, export_recording, validate_filename
+from rcominote.connection import Connection, validate_filename
+from rcominote.recording_export import export_recording
 
 # Real CoMi capture, 2026-10-12 (also used by test_comi).
 FILE_ENTRY = bytes.fromhex("d22d010a1400323032363130313230383535343200001e7c01e12f")
@@ -248,7 +249,7 @@ class ConnectionTests(unittest.IsolatedAsyncioTestCase):
         conn = self.replay(("cmd", SIZE_THREE), ("off", b"abc"), ("cmd", DOWNLOAD_END))
         with tempfile.TemporaryDirectory() as directory:
             with (
-                patch("rcominote.connection.os.fsync", side_effect=OSError("fsync failed")),
+                patch("rcominote.recording_export.os.fsync", side_effect=OSError("fsync failed")),
                 self.assertRaisesRegex(OSError, "fsync failed"),
             ):
                 await export_recording(conn, "recording", Path(directory))
@@ -309,7 +310,7 @@ class ConnectionTests(unittest.IsolatedAsyncioTestCase):
                 original_link(source, target)
 
             with (
-                patch("rcominote.connection.os.link", side_effect=raced_link),
+                patch("rcominote.recording_export.os.link", side_effect=raced_link),
                 self.assertRaises(FileExistsError),
             ):
                 await export_recording(conn, "recording", out)

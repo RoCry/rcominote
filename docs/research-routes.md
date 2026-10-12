@@ -72,6 +72,9 @@ acquisition and ROM enumeration now need new material or an independently
 established physical escape; further generic searches/callee reads are parked.
 Client failure isolation is closed at the host-session boundary (see [CLI](cli.md));
 do not expand it into automatic cancellation/resume while platform work has priority.
+Explicit download/sync Ctrl-C now uses the [existing stop contract](download-cancel-contract.md#implemented-host-boundary-2026-10-13):
+labeled partial bytes, bounded stop attempt and disconnect. This closes a known
+client capability without claiming worker-idle, reliable resume or firmware backup.
 
 [SD bridge proof](sd-file-bridge.md) changes one acquisition decision: controlled
 temporary SD writes are acceptable research side effects, distinct from firmware
@@ -95,7 +98,7 @@ was found within that coverage. Park this route until new explicit entry materia
 | Full backup | Verified mapped system, boot, DSP, partition table, [complete raw/decoded recovery](recovery-complete.md) | Reliable bulk route; all required physical partitions and unique configuration, repeated reads and integrity checks |
 | Flash/recovery | Static boot checks, actual recovery header, [actual OTA no-version-control initialization](ota-version-policy.md), [container/manifest gate](ota-container-contract.md), [conditional initialization effects](ota-initialization-side-effects.md), offline `inspect-ota`, [actual payload writes and commit order](ota-write-commit.md), [NVRAM spare-segment pre-erase](ota-nvram-preerase.md), [complete recovery handoff/checker](recovery-complete.md) | Matching official image/manifest; earlier authorization and runtime handoff; independent recovery entry/exit and restoration proof |
 | Own firmware | Reference SDK build, extracted actual code, [live firmware board identity](firmware-board-identity.md) `ats3085l_dvb_watch_ext_nor_max` | [Actual Cortex-M4 r0p1 CPUID](cpu-identity.md), matching manufacturer family but not SDK M33: obtain matching ATS3085L BSP, verify silicon/peripherals, boot/security constraints, reversible minimal boot proof, then display/audio/BLE |
-| Client/protocol completeness — deferred detail | [CLI capability ledger](cli-capabilities.md), event-preserving connection, [live byte-offset suffix](download-offset.md), [realtime MP3 equality proof](realtime-live.md), verified BLE controls/download | [Pause/resume equality verified](realtime-live.md#follow-up-pauseresume-exact-comparison); remaining long-window loss, cancel race, persistent-resume identity and correlated event fields |
+| Client/protocol completeness — deferred detail | [CLI capability ledger](cli-capabilities.md), event-preserving connection, [live byte-offset suffix](download-offset.md), [realtime MP3 equality proof](realtime-live.md), verified BLE controls/download; explicit cancel saves partial bytes and disconnects | [Pause/resume equality verified](realtime-live.md#follow-up-pauseresume-exact-comparison); remaining long-window loss, reliable cancel→resume/device-worker exit, persistent-resume identity and correlated event fields |
 | Backend/client integration — deferred acquisition | [Official deployment reference](seeyon-backend-reference.md): Spring Boot package lead, transcription/storage architecture | New externally reachable JAR source; old package hostname resolved to private IP. No documented firmware backup/update route; do not make it a firmware dependency |
 
 BLE remains useful for small, question-driven measurements. Do not convert another

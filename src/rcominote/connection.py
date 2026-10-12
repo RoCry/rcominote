@@ -1,25 +1,23 @@
-"""Boyi BLE transactions and complete, atomic recording export."""
+"""Boyi BLE transactions with explicit transfer and cancellation boundaries."""
 
 from __future__ import annotations
 
 import asyncio
-import hashlib
 import math
-import os
 import struct
 import sys
-import tempfile
 from collections.abc import Callable
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
-from pathlib import Path
 
 from bleak import BleakClient
 
 from . import protocol as P
+from .download_cancel import DownloadCancelled
 
 BUFFER_LIMIT = 256
 REALTIME_BYTE_LIMIT = 16 * 1024 * 1024
+CANCEL_TIMEOUT = 1.0
 
 
 @dataclass(slots=True)
@@ -97,6 +95,7 @@ class Connection:
         self._transaction = asyncio.Lock()
         self._realtime_enabled = False
         self._realtime_capture: RealtimeCapture | None = None
+        self._discard_offline = False
 
     def _received_realtime(self, _characteristic, data: bytearray) -> None:
         if self._realtime_capture is not None:
@@ -136,6 +135,8 @@ class Connection:
     def _received(self, source: str, packet: bytes) -> None:
         """Route at notification time, including when no transaction is waiting."""
         if self._failure is not None:
+            return
+        if source == "off" and self._discard_offline:
             return
         try:
             if source == "cmd":
@@ -284,91 +285,93 @@ class Connection:
             received = 0
             declared: int | None = None
             deadline = asyncio.get_running_loop().time() + timeout
-            while True:
-                source, packet = await self._next(deadline)
-                if source == "off":
-                    if declared is None:
-                        raise ValueError("Recording data arrived before its size declaration")
-                    if not packet:
-                        continue
-                    if received + len(packet) > declared - offset:
-                        raise ValueError(f"Download exceeds declared remaining size {declared - offset}")
-                    written = sink(packet)
-                    if written is not None and written != len(packet):
-                        raise OSError("Recording output accepted a partial write")
-                    received += len(packet)
-                    deadline = asyncio.get_running_loop().time() + timeout
-                    continue
-                cmd, data = P.parse(packet)
-                if cmd != P.GET_FILE_DATA:
-                    continue
-                if not data:
-                    raise ValueError("Empty GET_FILE_DATA reply")
-                match data[0]:
-                    case 0:
-                        if len(data) != 5 or declared is not None:
-                            raise ValueError("Malformed or duplicate recording size declaration")
-                        (declared,) = struct.unpack_from(">I", data, 1)
-                        if offset > declared:
-                            raise ValueError(f"Recording offset {offset} exceeds file size {declared}")
+            try:
+                while True:
+                    source, packet = await self._next(deadline)
+                    if source == "off":
+                        if declared is None:
+                            raise ValueError("Recording data arrived before its size declaration")
+                        if not packet:
+                            continue
+                        if received + len(packet) > declared - offset:
+                            raise ValueError(f"Download exceeds declared remaining size {declared - offset}")
+                        written = sink(packet)
+                        if written is not None and written != len(packet):
+                            raise OSError("Recording output accepted a partial write")
+                        received += len(packet)
                         deadline = asyncio.get_running_loop().time() + timeout
-                    case 1:
-                        raise RuntimeError(f"Device reports recording download failure: {name}")
-                    case 2:
-                        if len(data) != 1 or declared is None:
-                            raise ValueError("Recording ended without a valid size declaration")
-                        if received != declared - offset:
-                            raise RuntimeError(f"Short download: {received}/{declared - offset} bytes")
-                        return received
-                    case _:
-                        raise ValueError(f"Unknown GET_FILE_DATA status: {data[0]}")
+                        continue
+                    cmd, data = P.parse(packet)
+                    if cmd != P.GET_FILE_DATA:
+                        continue
+                    if not data:
+                        raise ValueError("Empty GET_FILE_DATA reply")
+                    match data[0]:
+                        case 0:
+                            if len(data) != 5 or declared is not None:
+                                raise ValueError("Malformed or duplicate recording size declaration")
+                            (declared,) = struct.unpack_from(">I", data, 1)
+                            if offset > declared:
+                                raise ValueError(f"Recording offset {offset} exceeds file size {declared}")
+                            deadline = asyncio.get_running_loop().time() + timeout
+                        case 1:
+                            raise RuntimeError(f"Device reports recording download failure: {name}")
+                        case 2:
+                            if len(data) != 1 or declared is None:
+                                raise ValueError("Recording ended without a valid size declaration")
+                            if received != declared - offset:
+                                raise RuntimeError(f"Short download: {received}/{declared - offset} bytes")
+                            return received
+                        case _:
+                            raise ValueError(f"Unknown GET_FILE_DATA status: {data[0]}")
+            except asyncio.CancelledError as error:
+                self._discard_offline = True
+                stop_result = {
+                    "request_attempted": False,
+                    "request_sent": False,
+                    "response_received": False,
+                    "error": None,
+                    "worker_exit_verified": False,
+                }
+                # Worker startup clears the stop flag. Before the first data,
+                # disconnect instead of claiming an effective device cancel.
+                if received:
+                    stop_result = await self._stop_cancelled_download()
+                raise DownloadCancelled(
+                    name=name,
+                    offset=offset,
+                    received=received,
+                    declared_size=declared,
+                    stop_result=stop_result,
+                ) from error
 
-
-async def export_recording(
-    conn: Connection, name: str, out: Path, expected_size: int | None = None, *, offset: int = 0
-) -> dict:
-    """Publish a complete requested range without replacing an existing file.
-
-    SHA-256 identifies downloaded bytes; the device supplies no hash oracle.
-    Sync may skip existing same-size files, but must describe that as size-only
-    matching, not verified identical content. This helper never skips a file.
-    """
-    filename = recording_output_name(name, offset)
-    if expected_size is not None and expected_size < 0:
-        raise ValueError("Expected recording size must be nonnegative")
-    if expected_size is not None and offset > expected_size:
-        raise ValueError("Recording offset exceeds listed file size")
-    out = Path(out)
-    out.mkdir(parents=True, exist_ok=True)
-    target = out / filename
-    if target.exists() or target.is_symlink():
-        raise FileExistsError(f"Recording output already exists: {target}")
-    descriptor, temporary = tempfile.mkstemp(prefix=f".{name}.", suffix=".part", dir=out)
-    part = Path(temporary)
-    digest = hashlib.sha256()
-    try:
-        with os.fdopen(descriptor, "wb") as handle:
-
-            def write(data: bytes) -> int:
-                count = handle.write(data)
-                digest.update(data[:count])
-                return count
-
-            received = await conn.download(name, write, offset=offset)
-            if expected_size is not None and received + offset != expected_size:
-                raise ValueError(f"File-list size changed: expected {expected_size}, received {received}")
-            handle.flush()
-            os.fsync(handle.fileno())
-        # Both names are on one filesystem. link() atomically fails if another
-        # exporter creates target; replace()/rename() could overwrite its work.
-        os.link(part, target)
-        return {
-            "name": name,
-            "path": str(target),
-            "bytes": received,
-            "sha256": digest.hexdigest(),
-            "offset": offset,
-            "scope": "recording_suffix" if offset else "complete_recording",
+    async def _stop_cancelled_download(self) -> dict:
+        """One best-effort explicit stop, while still owning the download transaction."""
+        result = {
+            "request_attempted": True,
+            "request_sent": False,
+            "response_received": False,
+            "error": None,
+            "worker_exit_verified": False,
         }
-    finally:
-        part.unlink(missing_ok=True)
+        try:
+            deadline = asyncio.get_running_loop().time() + CANCEL_TIMEOUT
+            async with asyncio.timeout(CANCEL_TIMEOUT):
+                await self._write(P.STOP_GET_FILE)
+                result["request_sent"] = True
+                while True:
+                    source, packet = await self._next(deadline)
+                    if source != "cmd":
+                        continue
+                    cmd, data = P.parse(packet)
+                    if cmd != P.STOP_GET_FILE:
+                        continue
+                    if data != b"\0":
+                        raise ValueError(f"Malformed STOP_GET_FILE reply: {data.hex()}")
+                    result["response_received"] = True
+                    break
+        except asyncio.CancelledError:
+            result["error"] = "Stop cleanup interrupted by another cancellation"
+        except Exception as error:  # noqa: BLE001 - cancellation remains the primary outcome
+            result["error"] = f"{type(error).__name__}: {error}"
+        return result

@@ -61,6 +61,7 @@ def capabilities():
                 "clock synchronization",
                 "bounded realtime capture; explicit --record owns a short recording",
                 "settings with readback",
+                "download/sync Ctrl-C cancellation; labeled partial bytes and disconnected session",
                 "fixed mapped-system image export with resume and checksum gate",
             ],
             "not_implemented": [

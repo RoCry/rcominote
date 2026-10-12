@@ -13,8 +13,10 @@ from bleak import BleakScanner
 
 from . import protocol as P
 from .ble_target import OWNED_SERIAL, advertised_serial, find_device
-from .connection import Connection, export_recording, recording_output_name, validate_filename
+from .connection import Connection, recording_output_name, validate_filename
+from .download_cancel import DownloadCancelled
 from .output import emit, new_output
+from .recording_export import export_recording
 
 app = typer.Typer(no_args_is_help=True)
 DEFAULT_OUT = Path.home() / ".local/share/comi-research"
@@ -106,7 +108,7 @@ def download(
     seconds: ScanSeconds = 12,
     offset: Annotated[int, typer.Option(min=0, max=0xFFFFFFFF)] = 0,
 ):
-    """Export a listed recording; nonzero offset saves a .bin suffix, never a complete MP3."""
+    """Export a listed recording; Ctrl-C stops transfer and preserves a labeled partial prefix."""
     validate_filename(name)
     target = out / recording_output_name(name, offset)
     if target.exists() or target.is_symlink():
@@ -119,14 +121,22 @@ def download(
             entry = next((entry for entry in entries if entry.name == name), None)
             if entry is None:
                 raise ValueError(f"Recording not listed: {name}")
-            return await export_recording(conn, name, out, expected_size=entry.size, offset=offset)
+            try:
+                return await export_recording(conn, name, out, expected_size=entry.size, offset=offset)
+            except DownloadCancelled as error:
+                if error.export_result is None:
+                    raise RuntimeError("Canceled export did not supply an outcome") from error
+                return error.export_result
 
-    emit(asyncio.run(run()))
+    result = asyncio.run(run())
+    emit(result)
+    if result.get("status") == "cancelled":
+        raise typer.Exit(code=130)
 
 
 @app.command()
 def sync(out: Path = DEFAULT_OUT, serial: str = OWNED_SERIAL, seconds: ScanSeconds = 12):
-    """Export missing recordings. Existing same-size files are size-only skips."""
+    """Export missing recordings; Ctrl-C preserves the partial file and ends sync."""
 
     async def run():
         results = []
@@ -146,11 +156,20 @@ def sync(out: Path = DEFAULT_OUT, serial: str = OWNED_SERIAL, seconds: ScanSecon
                         "path": str(target),
                     }
                 else:
-                    result = await export_recording(conn, entry.name, out, expected_size=entry.size)
+                    try:
+                        result = await export_recording(conn, entry.name, out, expected_size=entry.size)
+                    except DownloadCancelled as error:
+                        if error.export_result is None:
+                            raise RuntimeError("Canceled export did not supply an outcome") from error
+                        results.append(error.export_result)
+                        break
                 results.append(result)
         return results
 
-    emit(asyncio.run(run()))
+    results = asyncio.run(run())
+    emit(results)
+    if any(result.get("status") == "cancelled" for result in results):
+        raise typer.Exit(code=130)
 
 
 class RecordAction(StrEnum):

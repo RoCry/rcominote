@@ -41,7 +41,7 @@ uv run comi watch --duration 5
 uv run comi diag capture platform --out artifacts/platform-NEW.json
 ```
 
-包在 `src/rcominote/`。JSON输出，错误非零退出，按序列号选设备；下载校验完整长度后原子保存，拒绝覆盖。诊断只开放固定profile，没有任意shell、刷机或恢复命令。
+包在 `src/rcominote/`。JSON输出，错误非零退出，按序列号选设备；下载校验完整长度后原子保存，拒绝覆盖。下载／同步中Ctrl-C保留标注不完整的文件和元数据，断开连接、退出130。诊断只开放固定profile，没有任意shell、刷机或恢复命令。
 
 macOS需蓝牙权限，官方App先断开；Linux需本机BlueZ/适配器。APK、SDK、原始录音、完整日志在忽略的 `artifacts/`；仓库不依赖rlcdv、Obsidian或临时交接文件。
 

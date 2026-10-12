@@ -104,6 +104,30 @@ sequences. This pass supports cancellation, not a proved immediate-reuse barrier
 The static pass sent no device commands. The bounded live follow-up below sent
 only normal identity/list/download/stop-download/status requests.
 
+## Implemented host boundary, 2026-10-13
+
+`comi download` and `comi sync` handle explicit Ctrl-C during transfer:
+
+- First delivered data proves worker passed its startup flag reset. Send one
+  empty0c only after that boundary; otherwise cancel locally and disconnect.
+- Stop cleanup has a total1-second host deadline. Record send/ACK/error separately;
+  `worker_exit_verified=false` in every outcome. Missing ACK or failed write does
+  not convert cancellation into success or justify a second stop request.
+- Discard later offline bytes, permanently invalidate the session, disconnect.
+  Ignore late0b/02 as a success signal. Batch sync ends without selecting another file.
+- Preserve written prefix/suffix under a unique `.partial.bin` name, never `.mp3`;
+  adjacent JSON records offset/count/hash, declared full size and stop observations.
+  No bytes means no partial file. Local save failures remain errors.
+- Emit cancelled outcome, exit130. Timeout/disk failure does not automatically
+  invoke stop. No automatic resume; forced second SIGINT is outside save guarantees.
+
+`tests/test_download_cancel.py` replays independently captured0c/00 bytes and
+late data/EOF/duplicate replies, missing ACK, failed stop write, repeated task
+cancellation, pre-data cancellation and cancelled lock wait. Export tests inspect
+actual saved bytes against a fixed SHA-256 oracle; CLI tests verify cancellation
+output, disconnect and exit130. These are host tests against the earlier protocol
+evidence, not a new device runtime proof or cancel→resume claim.
+
 ## Bounded live observation
 
 Owned C261CF0430, existing listed recording20261012112429 (56,912 B). Waited for

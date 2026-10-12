@@ -13,9 +13,10 @@ from pathlib import Path
 import typer
 
 from rcominote.ble_target import OWNED_SERIAL, find_device
-from rcominote.connection import Connection, export_recording
+from rcominote.connection import Connection
 from rcominote.device_commands import change_recording, read_info
 from rcominote.realtime import _stop_owned
+from rcominote.recording_export import export_recording
 
 
 async def measure(out: Path, report: dict) -> None:
