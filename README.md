@@ -133,3 +133,5 @@ uv run --locked tools/build_sdk.py \
 [ABTP测试的16 kHz路径](docs/audio-fixed-rate-path.md)：实际命令7161→type1→rate16、stream5→ADC key4000、adapter16-bit；普通录音配置与ABTP可达性仍未知。
 
 [音频适配层指令仿真](docs/audio-parameter-adapter.md#指令仿真验证字段搬运)：`uv run tools/verify_audio_adapter.py artifacts/mapped-system/mapped-system.bin`，验证字段搬运、固定width0和拒绝非ADC通道；48 kHz仅为测试输入。
+
+[非ABTP媒体捕获配置](docs/recorder-media-config.md)：实际producer设置输入/输出16 kHz、16-bit、单声道，format1/bitrate32与SDK MP3/32 kbps对应；尚未以实际文件或运行状态验收。
