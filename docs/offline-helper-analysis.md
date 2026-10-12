@@ -9,8 +9,8 @@ native-decompiler availability gap for subsequent offline investigations.
 Linux x86_64, Bash, curl, sha256sum, tar and unzip required:
 
 ```sh
-just re-setup
-just helper-analyze \
+bash tools/setup_re_tools.sh
+bash tools/analyze_helper.sh \
   "$HOME/w/_tmp/lv_port_actions_technology/action_technology_sdk/zephyr/tools/prebuilt/leopard/common/bin/adfus.bin" \
   artifacts/helper-ghidra-NEW
 ```

@@ -3,7 +3,9 @@
 import re
 
 from .ble_target import OWNED_SERIAL
-from .code_references import (
+from .card_readback import CARD_GUARDS
+from .code_references import read_block
+from .read_sets import (
     DISK_CONTROLLER,
     DISK_DEVICE,
     DISK_DEVICE_REFS,
@@ -29,7 +31,6 @@ from .code_references import (
     INFO_STORAGE_TABLE,
     INFO_STORAGE_VOLUME,
     INFO_STORAGE_VTABLE,
-    read_block,
 )
 
 
@@ -118,6 +119,7 @@ def observed_storage_entries(frames: list[dict]) -> bool:
 def observed_storage_reference(frames: list[dict], command: str) -> bool:
     """Fail before dereferencing a stale mount or following changed code."""
     prerequisites = (
+        *CARD_GUARDS,
         (
             DISK_CONTROLLER,
             (

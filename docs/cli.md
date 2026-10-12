@@ -4,25 +4,23 @@
 
 ```sh
 uv sync --all-extras
-uv run comi --help
-# 或安装为终端工具，之后直接 comi ...
-uv tool install .
+./bin/comi --help
 ```
 
-Python≥3.13；依赖与工具版本固定在 `uv.lock`。正式包 `src/rcominote/`，命令入口 `comi`；不依赖 rlcdv 或旧 `tools/comi.py`。`uv run python -m rcominote` 也是同一入口。
+Python≥3.13；依赖与工具版本固定在 `uv.lock`。正式包 `src/rcominote/`，仓库入口 `bin/comi`自动选择当前checkout的锁定环境；从其他目录可通过完整路径调用，无需修改PATH或全局安装。不依赖 rlcdv 或旧 `tools/comi.py`。
 
 设备命令默认按广告序列号选择自有 C261CF0430；Boyi 操作连接后再次核对 GET_SERIAL。其他自有设备通过各命令 `--serial SERIAL` 选择。诊断 code profile 仅支持当前有证据的设备/入口，不能移植到其他设备盲读。
 
 ## 发现与状态
 
 ```sh
-uv run comi doctor             # 离线环境与能力边界；不扫描
-uv run comi capabilities
-uv run comi scan --seconds 8   # 被动扫描
-uv run comi info --out artifacts/info.json
-uv run comi gatt --out artifacts/gatt.json
-uv run comi recording-info
-uv run comi settings show
+./bin/comi doctor             # 离线环境与能力边界；不扫描
+./bin/comi capabilities
+./bin/comi scan --seconds 8   # 被动扫描
+./bin/comi info --out artifacts/info.json
+./bin/comi gatt --out artifacts/gatt.json
+./bin/comi recording-info
+./bin/comi settings show
 ```
 
 成功结果通常是 JSON；参数错误非零退出，设备/协议失败向 stderr 输出 JSON 错误。证据文件拒绝覆盖。macOS 的宿主终端需有蓝牙权限；官方 App 先断开。Linux 设备访问依赖本机 BlueZ/适配器/权限；SSH 不会把 Mac 的 USB/BLE 自动转发过去。`doctor`不把“依赖已安装”说成“蓝牙权限已通过”。
@@ -30,14 +28,14 @@ uv run comi settings show
 ## 录音与导出
 
 ```sh
-uv run comi record start
-uv run comi record pause
-uv run comi record resume
-uv run comi record stop
-uv run comi files
-uv run comi download NAME_FROM_FILES --out artifacts/recordings
-uv run comi sync --out artifacts/recordings
-uv run comi set-time
+./bin/comi record start
+./bin/comi record pause
+./bin/comi record resume
+./bin/comi record stop
+./bin/comi files
+./bin/comi download NAME_FROM_FILES --out artifacts/recordings
+./bin/comi sync --out artifacts/recordings
+./bin/comi set-time
 ```
 
 录音操作检查起始状态、响应格式及操作后的实际状态；不接受错误状态上的重复操作。`set-time`使用主机本地时间，现有协议没有已知时钟getter，因此只报告匹配响应和请求时间，不宣称读回成功。
@@ -51,12 +49,12 @@ uv run comi set-time
 ## 设置
 
 ```sh
-uv run comi settings set noise 8        # 0..16
-uv run comi settings set usb on         # on/off
-uv run comi settings set indicator off
-uv run comi settings set voice off
-uv run comi settings set backlight on
-uv run comi settings set segment 1h     # 30m/1h/2h/3h
+./bin/comi settings set noise 8        # 0..16
+./bin/comi settings set usb on         # on/off
+./bin/comi settings set indicator off
+./bin/comi settings set voice off
+./bin/comi settings set backlight on
+./bin/comi settings set segment 1h     # 30m/1h/2h/3h
 ```
 
 所有setter均显式选择；已有值相同就返回 `already_matches`，不重复发送。设备报告null时拒绝setter。设置后的 `GET_DEVICE_INFO` 必须等于请求值，收到ACK本身不算成功。失败不会自动猜测/追加其他命令。
@@ -66,16 +64,16 @@ uv run comi settings set segment 1h     # 30m/1h/2h/3h
 ## 日志、固定诊断与代码样本
 
 ```sh
-uv run comi diag probe --out artifacts/prepare.json
-uv run comi diag capture version --out artifacts/version.json
-uv run comi diag capture platform --out artifacts/platform.json
-uv run comi diag capture commands --out artifacts/commands.json
-uv run comi diag capture kernel --out artifacts/kernel.json
-uv run comi diag capture stacks --out artifacts/stacks.json
-uv run comi diag capture code --out artifacts/code1.json
-uv run comi diag capture code --out artifacts/code2.json
-uv run comi diag compare-code artifacts/code1.json artifacts/code2.json --out artifacts/analysis.json
-uv run comi diag text artifacts/platform.json
+./bin/comi diag probe --out artifacts/prepare.json
+./bin/comi diag capture version --out artifacts/version.json
+./bin/comi diag capture platform --out artifacts/platform.json
+./bin/comi diag capture commands --out artifacts/commands.json
+./bin/comi diag capture kernel --out artifacts/kernel.json
+./bin/comi diag capture stacks --out artifacts/stacks.json
+./bin/comi diag capture code --out artifacts/code1.json
+./bin/comi diag capture code --out artifacts/code2.json
+./bin/comi diag compare-code artifacts/code1.json artifacts/code2.json --out artifacts/analysis.json
+./bin/comi diag text artifacts/platform.json
 ```
 
 其他profile：`logs` 默认实时日志、`threads` 详细线程表、`nor-header` NOR头读取尝试。`threads`已观察到设备端长输出截断；`nor-header`已知没有数据正文，不是备份工具。所有日志会话限1–30秒、默认5秒，结束发送STOP并等待结束帧；`transport_ok`表示传输完整，**不代表命令成功或正文完整**。固定代码读取另校验每个请求的数据行；缺行、短行、重复行均使`ok=false`并非零退出。
@@ -91,21 +89,31 @@ code只读固定映射地址的16 B，并在同会话核对当前logsrv入口；
 ## 一键只读验收
 
 ```sh
-uv run comi verify --code --out artifacts/verification-NEW
+./bin/comi verify --code --out artifacts/verification-NEW
 ```
 
 新建独立目录，依次保存身份/状态、GATT、平台诊断、可选两份code与离线比较、结束状态和manifest。要求开始idle；不会开启录音、改设置、重启或刷写。失败仍保留已取得的证据并非零退出。code可选且限定FW1.0.4。
 
-USB主机描述符：`uv run comi usb snapshot --out artifacts/usb.json`（macOS）；`uv run comi usb diff BEFORE AFTER`离线比较。`snapshot`不会打开设备端点。
+USB主机描述符：`./bin/comi usb snapshot --out artifacts/usb.json`（macOS）；`./bin/comi usb diff BEFORE AFTER`离线比较。`snapshot`不会打开设备端点。
 
 ## 开发与独立分发
 
 ```sh
 just check       # 格式/lint/脚本语法、离线真实帧和故障序列测试
-just build       # wheel + source distribution
+uv build         # wheel + source distribution
 ```
 
-参考板SDK构建仍是独立研究工具：`just sdk-setup`、`just sdk-build`。APK固定样本提取仍用`uv run tools/apk_evidence.py ...`。这两项不参与设备CLI运行。
+参考板SDK构建仍是独立研究工具，仅Linux x86_64。准备脚本默认下载固定SDK和工具链；构建脚本显式接受`--sdk`、`--toolchain`、`--out`、`--jobs`：
+
+```sh
+bash tools/setup_sdk.sh
+uv run --locked tools/build_sdk.py \
+  --sdk "$HOME/w/_tmp/lv_port_actions_technology" \
+  --toolchain "$HOME/.cache/rcominote/gcc-arm-none-eabi-10.3-2021.10" \
+  --out artifacts/sdk-build --jobs 4
+```
+
+APK固定样本提取仍用`uv run tools/apk_evidence.py ...`。这些研究脚本不参与设备CLI运行；`justfile`仅保留每日检查入口。
 
 旧研究记录中的 `tools/comi.py`、`tools/log_capture.py` 等路径与命令对应当时提交；截至c523137可按原命令复现。当前统一使用以上入口；旧脚本已迁入包，不保留两份实现。
 
@@ -114,3 +122,12 @@ just build       # wheel + source distribution
 `storage-code`扩展device-info-code至937 B，沿实际容量getter、卷名表、RAM挂载对象及函数表定位statvfs callback。`diag compare-references FIRST SECOND --storage --out REPORT`逐字节核对两份捕获。新增336 B含40 B RAM元数据；当前指针/flags/代码不吻合即停止，不自动跟随新地址。RAM并非原子快照，重启后固定地址可能失效。[存储绑定证据](storage-binding-readback.md)。
 
 `disk-code`在storage-code上增加550 B（共1487 B），跟随FatFs、磁盘registry与实际指针，到`sd`后端和`MMC_1`设备对象；没有调用init/read/write/ioctl。用`diag compare-references FIRST SECOND --disk --out REPORT`离线核对并输出`disk_metadata`，复算缓存簇容量，拒绝未知free-cluster缓存。[证据与限制](disk-registry-readback.md)。新增RAM地址每次由当前父指针核对；值变化即停止，不能作为通用dump。
+
+`card-code`沿disk-code新增544 B，共2031 B固定SD/MMC驱动代码与状态引用；离线输出`card_metadata`；逐层核对当前指针和调用指令，不调用init/read/write/ioctl、不访问MMIO。两份采集用以下命令比较；[实机驱动状态与边界](card-state-readback.md)。
+
+```sh
+./bin/comi diag capture card-code --out artifacts/card-first.json
+./bin/comi diag capture card-code --out artifacts/card-second.json
+./bin/comi diag compare-references artifacts/card-first.json artifacts/card-second.json \
+  --card --out artifacts/card-analysis.json
+```

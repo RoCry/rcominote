@@ -31,6 +31,7 @@ class Profile(StrEnum):
     device_info_code = "device-info-code"
     storage_code = "storage-code"
     disk_code = "disk-code"
+    card_code = "card-code"
     nor_header = "nor-header"
 
 
@@ -49,6 +50,7 @@ PROFILE_FLAGS = {
     "device-info-code": "device_info_code",
     "storage-code": "storage_code",
     "disk-code": "disk_code",
+    "card-code": "card_code",
     "nor-header": "flash_header",
 }
 

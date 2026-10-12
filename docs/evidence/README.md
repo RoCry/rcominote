@@ -121,3 +121,7 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 [首次](disk-first-2026-10-12.json)、[重读](disk-second-2026-10-12.json)、[分析](disk-analysis-2026-10-12.json)：1487 B一致，新增550 B，累计2372不同映射字节。查到exFAT type4/drive4、128 KiB簇、有效空闲簇缓存、唯一名为SD的disk_info；状态callback引用设备`sd`，其配置名和控制器对象均为`MMC_1`。[实机报告](../disk-registry-readback.md)；[卡元数据/分区路线源码审计](../sd-metadata-candidates.md)。
 
 `disk_metadata`复算59634/59632 MiB，与独立[结束状态](disk-final-state-2026-10-12.json)相同；FW010004、idle、noise9。无新内部函数调用、重启或刷写；不能把所有容量查询概括为物理上无写，缓存失效路径的源码边界已记录。60测试+24子测试通过，wheel/sdist构建成功。
+
+## SD/MMC状态与卡类别
+
+[首次](card-first-2026-10-12.json)、[重读](card-second-2026-10-12.json)、[分析](card-analysis-2026-10-12.json)：2031 B一致，新增544 B，累计2916不同映射字节。实际指令定位driver状态，type=0与SD枚举/低功耗类型分支吻合；512 B、122138624扇区与disk_info一致。控制器配置base常量40058000；未访问MMIO。[报告](../card-state-readback.md)、[结束状态](card-final-state-2026-10-12.json)。

@@ -8,6 +8,7 @@ from bleak import BleakClient
 from bleak.exc import BleakError
 
 from .ble_target import OWNED_SERIAL, find_device
+from .card_readback import CARD_BLOCKS, CARD_PHASES
 from .code_guards import (
     observed_block,
     observed_capacity_entries,
@@ -21,7 +22,9 @@ from .code_guards import (
     observed_vendor_code,
     observed_vendor_entries,
 )
-from .code_references import (
+from .code_references import read_block
+from .log_probe import ACK, NOTIFY, PREPARE, SERVICE, WRITE
+from .read_sets import (
     BLOCKS,
     DISK_BLOCKS,
     DISK_PHASES,
@@ -42,9 +45,7 @@ from .code_references import (
     INFO_STORAGE_VTABLE,
     SPECIAL_BLOCKS,
     VENDOR_BLOCKS,
-    read_block,
 )
-from .log_probe import ACK, NOTIFY, PREPARE, SERVICE, WRITE
 
 START = bytes.fromhex("1d108105000002002000")
 STOP = bytes.fromhex("1d108105000002002100")
@@ -96,7 +97,15 @@ def verify_readback(result: dict) -> None:
     reads = [
         block
         for block in dict.fromkeys(
-            (*BLOCKS, *VENDOR_BLOCKS, *HANDLER_BLOCKS, *INFO_BLOCKS, *INFO_STORAGE, *DISK_BLOCKS)
+            (
+                *BLOCKS,
+                *VENDOR_BLOCKS,
+                *HANDLER_BLOCKS,
+                *INFO_BLOCKS,
+                *INFO_STORAGE,
+                *DISK_BLOCKS,
+                *CARD_BLOCKS,
+            )
         )
         if f"dbg mdb {block[0]:x} {block[1]:x}" in result["fixed_text_commands"]
     ]
@@ -124,6 +133,10 @@ def flushed_reads(blocks: tuple) -> list[str]:
     return commands
 
 
+def flushed_phases(phases: tuple) -> list[str]:
+    return [command for phase in phases for command in flushed_reads(phase)]
+
+
 async def capture(
     *,
     serial: str,
@@ -143,7 +156,9 @@ async def capture(
     device_info_code: bool = False,
     storage_code: bool = False,
     disk_code: bool = False,
+    card_code: bool = False,
 ) -> dict:
+    disk_code = disk_code or card_code
     storage_code = storage_code or disk_code
     device_info_code = device_info_code or storage_code
     if (
@@ -225,11 +240,8 @@ async def capture(
                     *(flushed_reads(INFO_STORAGE_VTABLE) if storage_code else []),
                     *(flushed_reads(INFO_STORAGE_CALLBACK) if storage_code else []),
                     *(flushed_reads(INFO_STORAGE_CALLBACK_TAIL) if storage_code else []),
-                    *(
-                        [command for phase in DISK_PHASES for command in flushed_reads(phase)]
-                        if disk_code
-                        else []
-                    ),
+                    *(flushed_phases(DISK_PHASES) if disk_code else []),
+                    *(flushed_phases(CARD_PHASES) if card_code else []),
                 ]
                 if device_info_code
                 else []

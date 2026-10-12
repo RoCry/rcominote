@@ -30,13 +30,13 @@ Hiveton 在交接与前次研究中已确认为另一台设备；其本轮身份
 新工具直接用 stdlib `plistlib` 解析，仅输出物理设备和接口描述符：
 
 ```sh
-just usb snapshot --out artifacts/usb-before.json
+./bin/comi usb snapshot --out artifacts/usb-before.json
 # 操作者只拔下目标设备，完成后再采集。
-just usb snapshot --out artifacts/usb-unplugged.json
-just usb diff artifacts/usb-before.json artifacts/usb-unplugged.json
+./bin/comi usb snapshot --out artifacts/usb-unplugged.json
+./bin/comi usb diff artifacts/usb-before.json artifacts/usb-unplugged.json
 # 操作者插回目标设备，完成后再采集。
-just usb snapshot --out artifacts/usb-reconnected.json
-just usb diff artifacts/usb-before.json artifacts/usb-reconnected.json
+./bin/comi usb snapshot --out artifacts/usb-reconnected.json
+./bin/comi usb diff artifacts/usb-before.json artifacts/usb-reconnected.json
 ```
 
 工具不打开 USB handle、不发 control/bulk 请求、不复位。按 IOUSBHostDevice 节点去重，

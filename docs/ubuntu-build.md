@@ -8,31 +8,24 @@
 
 ## 在 Ubuntu 复现
 
-仓库：`~/w/_hw/rcominote`，已配置 GitHub origin。初次环境需要 `git curl tar bzip2 sha256sum uv cmake ninja just`。
+仓库：`~/w/_hw/rcominote`，已配置 GitHub origin。初次环境需要 `git curl tar bzip2 sha256sum uv cmake ninja`。
 本轮已有 CMake/Ninja/uv/just，没有修改系统软件、Docker 配置或常驻服务。
 
 ```sh
 ssh ubuntu
 cd ~/w/_hw/rcominote
 git pull --ff-only
-just sdk-setup
-just sdk-build
-```
-
-- `sdk-setup`：固定 SDK checkout、下载并校验 GNU Arm 包；SDK 放 `~/w/_tmp/lv_port_actions_technology`，工具链放 `~/.cache/rcominote/`。已有 SDK 如果提交不符或有 tracked 改动，立即失败，不覆盖。
-- `sdk-build`：PEP 723 + `build_sdk.py.lock` 固定 Python 依赖，直接 CMake 编译，显式载入本地模块，不访问 SDK 私网 west manifest。默认 4 jobs，不使用 GPU。
-- 自定义输出：`just sdk-build --out artifacts/another-build --jobs 4`。
-- 输出目录含 `build.log`、`build-manifest.json`、`zephyr/zephyr.{elf,bin,hex,map}` 和 `zephyr/.config`。manifest 记录工具/包版本、命令、时间、产物哈希和 SDK 工作区状态。
-- 不调用 vendor maker、下载器、烧录工具；不会连接 CoMi。
-
-没有 just 时可用：
-
-```sh
 bash tools/setup_sdk.sh
 uv run --locked tools/build_sdk.py \
   --sdk "$HOME/w/_tmp/lv_port_actions_technology" \
   --toolchain "$HOME/.cache/rcominote/gcc-arm-none-eabi-10.3-2021.10"
 ```
+
+- `tools/setup_sdk.sh`：固定 SDK checkout、下载并校验 GNU Arm 包；SDK 放 `~/w/_tmp/lv_port_actions_technology`，工具链放 `~/.cache/rcominote/`。已有 SDK 如果提交不符或有 tracked 改动，立即失败，不覆盖。
+- `tools/build_sdk.py`：PEP 723 + `build_sdk.py.lock` 固定 Python 依赖，直接 CMake 编译，显式载入本地模块，不访问 SDK 私网 west manifest。默认 4 jobs，不使用 GPU。
+- 自定义输出：在上述build_sdk.py命令追加`--out artifacts/another-build --jobs 4`。
+- 输出目录含 `build.log`、`build-manifest.json`、`zephyr/zephyr.{elf,bin,hex,map}` 和 `zephyr/.config`。manifest 记录工具/包版本、命令、时间、产物哈希和 SDK 工作区状态。
+- 不调用 vendor maker、下载器、烧录工具；不会连接 CoMi。
 
 ## 实测环境与产物
 

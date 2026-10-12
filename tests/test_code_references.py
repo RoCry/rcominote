@@ -151,3 +151,35 @@ def test_unknown_free_cluster_cache_is_not_reported_as_capacity():
         frame["text"] = frame.get("text", "").replace("18010aa8: 85 47 07 00", "18010aa8: ff ff ff ff")
     with pytest.raises(ValueError, match="metadata is inconsistent"):
         disk_metadata(capture)
+
+
+def test_card_tables_are_data_and_cached_geometry_matches_independent_disk_node():
+    report = inspect_references(
+        EVIDENCE / "card-first-2026-10-12.json",
+        EVIDENCE / "card-second-2026-10-12.json",
+        card=True,
+    )
+    # Boundaries come from the captured LDR-pc and TBH instructions, not
+    # CARD_BLOCKS. Misdecoding their literal targets used to create fake code.
+    instructions = {
+        int(row["address"], 16): row for region in report["code_regions"] for row in region["instructions"]
+    }
+    assert not any(0x10025A84 <= address < 0x10025AB4 for address in instructions)
+    assert not any(0x10033A44 <= address < 0x10033A5C for address in instructions)
+    assert instructions[0x10033A40]["mnemonic"] == "tbh"
+    assert instructions[0x10033A6C]["operands"] == "r3, [r5, #0x180]"
+    # Independent storage structures, rather than a formula-derived oracle.
+    assert (report["card_metadata"]["sector_count"], report["card_metadata"]["sector_bytes"]) == (
+        report["disk_metadata"]["disk_sector_count"],
+        report["disk_metadata"]["sector_bytes"],
+    )
+
+
+def test_changed_card_state_offset_prevents_ram_read():
+    from rcominote.code_guards import observed_storage_reference
+
+    capture = json.loads((EVIDENCE / "card-first-2026-10-12.json").read_text())
+    for frame in capture["frames"]:
+        frame["text"] = frame.get("text", "").replace("94 f8 70 31", "94 f8 71 31")
+    with pytest.raises(ValueError, match="SD state field offsets code changed"):
+        observed_storage_reference(capture["frames"], "dbg mdb 18005d58 10")
