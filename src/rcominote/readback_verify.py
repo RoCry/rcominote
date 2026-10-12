@@ -1,6 +1,6 @@
 """Require every memory row, independently of transport ACKs."""
 
-from . import printk_ring
+from . import printk_ring, printk_tail
 from .code_references import FIXED_BLOCKS, read_block
 from .printk_state import inspect_state
 from .range_readback import (
@@ -19,6 +19,7 @@ def verify_readback(result: dict) -> None:
     """Transport completion does not prove shell output survived firmware buffering."""
     result["transport_ok"] = result["ok"]
     result.pop("console_ring", None)
+    result.pop("console_tail", None)
     reads = [
         block
         for block in FIXED_BLOCKS
@@ -47,11 +48,14 @@ def verify_readback(result: dict) -> None:
         return
     state = None
     ring = None
+    tail = None
     try:
         if result.get("printk_state"):
             state = inspect_state(result)
         if result.get("printk_buffer"):
             ring = printk_ring.inspect(result)
+        if result.get("printk_tail"):
+            tail = printk_tail.inspect(result)
         if result.get("image_header"):
             read_header(result)
         for address, length in image_ranges(result.get("image_chunk_indices", [])):
@@ -69,6 +73,8 @@ def verify_readback(result: dict) -> None:
         result["ok"] = False
     else:
         result["readback_complete"] = True
+        if tail is not None:
+            result["console_tail"] = tail
         if ring is not None:
             result["console_ring"] = ring
         if state is not None:

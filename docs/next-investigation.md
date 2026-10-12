@@ -17,7 +17,7 @@
 ## 已排查的资源取得路径
 
 - **映射读**：已能完整导出当前system；[映射到raw的证据仍缺](mapping-candidate-audit.md)。不把SDK地址公式直接推广到其他分区。
-- **NOR/SDFS shell**：[实际printk后端](printk-backend-readback.md)及[UART输出链](console-target-followup.md)已定位；现有BLE通道不回传其hex正文。[静态日志ring实测](printk-ring-capture.md)已取得4096 B，但mdb/help会自覆盖；下一步须验证短片段及时提取和重复一致性。释放后的fread heap buffer仍不是可靠读回对象。
+- **NOR/SDFS shell**：[实际printk后端](printk-backend-readback.md)及[UART输出链](console-target-followup.md)已定位；现有BLE通道不回传其hex正文。[静态日志ring实测](printk-ring-capture.md)已取得4096 B，但mdb/help会自覆盖；[短窗口](printk-nor-tail.md)已两次取得offset0读取末尾32 B一致数据；下一步覆盖完整512 B并验证各窗口归属。释放后的fread heap buffer仍不是可靠读回对象。
 - **F5F0**：[实际固件归属](f5f0-firmware-definition.md)确认Bluetooth OTA传输；启用通知存在应用状态变化，未建立备份命令或独立恢复。
 - **普通录音下载**：[实际固定录音路径](recording-download-path.md)不接受直接指定NOR资源路径。保持CLI文件名限制。
 - **其他dbg入口**：[完整35项表](actual-dbg-command-inventory.md)未提供新的、已验证只读且能回传原始NOR内容的路径。dumpbuf写文件；snandr有长度/缓冲问题，不作为替代。

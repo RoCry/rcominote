@@ -40,6 +40,7 @@ class Profile(StrEnum):
     nor_header = "nor-header"
     printk_state = "printk-state"
     printk_ring = "printk-ring"
+    printk_nor_tail = "printk-nor-tail"
 
 
 PROFILE_FLAGS = {
@@ -66,6 +67,7 @@ PROFILE_FLAGS = {
     "nor-header": "flash_header",
     "printk-state": "printk_state",
     "printk-ring": "printk_buffer",
+    "printk-nor-tail": "printk_tail_probe",
 }
 
 

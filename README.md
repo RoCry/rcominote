@@ -163,3 +163,5 @@ uv run --locked tools/build_sdk.py \
 [静态日志ring实测](docs/printk-ring-capture.md)：新增固定`printk-ring`诊断；读回4096 B，但mdb/help自覆盖，尚不能作为原始NOR备份。
 
 [F5F0固件归属](docs/f5f0-firmware-definition.md)：实际参数/回调链确认Bluetooth OTA后端；启用通知可触发OTA应用流程，尚无备份或恢复验收。
+
+[NOR短窗口读回](docs/printk-nor-tail.md)：固定`printk-nor-tail`实验两次取得offset0读取的末尾32 B一致数据；尚无完整扇区或备份。

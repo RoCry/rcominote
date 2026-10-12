@@ -7,7 +7,7 @@ from datetime import UTC, datetime
 from bleak import BleakClient
 from bleak.exc import BleakError
 
-from . import printk_ring
+from . import printk_ring, printk_tail
 from .ble_target import OWNED_SERIAL, find_device
 from .boot_readback import BOOT_PHASES
 from .card_readback import CARD_PHASES
@@ -96,8 +96,9 @@ async def capture(
     image_header: bool = False,
     printk_state: bool = False,
     printk_buffer: bool = False,
+    printk_tail_probe: bool = False,
 ) -> dict:
-    printk_state = printk_state or printk_buffer
+    printk_state = printk_state or printk_buffer or printk_tail_probe
     selected_ranges = image_ranges(image_chunks)
     image_header = image_header or bool(selected_ranges) or printk_state
     header_batch = header_batch or body_probe or image_header
@@ -123,6 +124,7 @@ async def capture(
         "image_header": image_header,
         "printk_state": printk_state,
         "printk_buffer": printk_buffer,
+        "printk_tail": printk_tail_probe,
         "range_frame_spans": {},
         "scope": "PREPARE/DEFAULT_START/STOP; fixed diagnostics and optional bounded reads; no storage writes/reboot",
         "fixed_text_commands": (
@@ -217,6 +219,7 @@ async def capture(
             + range_commands(selected_ranges)
             + (range_commands(PRINTK_READS) if printk_state else [])
             + (range_commands(printk_ring.READS) if printk_buffer else [])
+            + (printk_tail.INITIAL if printk_tail_probe else [])
         ),
         "notifications": [],
         "writes": [],
@@ -351,6 +354,10 @@ async def capture(
                     printk_ring.verify(
                         result | {"ok": True}, payload=command != f"dbg mdb {printk_ring.CONTEXT:x} 14"
                     )
+                if printk_tail_probe and command == f"dbg mdb {printk_ring.CONTEXT:x} 14":
+                    printk_ring.verify(result | {"ok": True})
+                if printk_tail_probe and command == printk_tail.PRODUCER:
+                    printk_tail.verify(result | {"ok": True})
                 encoded = command.encode("ascii")
                 if storage_code or shell_code:
                     async with asyncio.timeout(5):
@@ -449,6 +456,7 @@ async def capture(
                             if span[1] is None:
                                 span[1] = len(stream.frames)
                         pending_reads.clear()
+                        printk_tail.append_tail(result)
             deadline = time.monotonic() + duration
             while (remaining := deadline - time.monotonic()) > 0:
                 try:
