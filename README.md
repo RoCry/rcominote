@@ -97,3 +97,5 @@ uv run --locked tools/build_sdk.py \
 [固定映射镜像导出](docs/mapped-image-export.md)：四块正文独立复读一致；已跨进程续读保存52 KiB，256/512 B请求均捕获过截断。新增`uv run comi image export`断点读取与最终checksum门槛，尚未完成全正文校验；不等于原始Flash备份或可恢复。
 
 [日志缓冲计数器回绕](docs/log-buffer-wrap.md)：实机Thumb指令确认8位计数器相减后的无符号比较缺陷；64 B正文与头部分段已实测，完整导出继续进行，终检仍待全部块到齐。
+
+[实机reset入口与C启动边界](docs/reset-entry-readback.md)：头部/向量指定的入口已解码，取得启动PSP、RAM向量地址、FPU与IRQ初始化常量；后续直接调用保持未覆盖标记，不据此推断ROM/签名/恢复能力。

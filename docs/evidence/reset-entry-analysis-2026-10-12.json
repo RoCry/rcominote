@@ -1,0 +1,323 @@
+{
+  "date": "2026-10-12",
+  "target": {
+    "serial": "C261CF0430",
+    "firmware": "010004",
+    "artifact_scope": "Partial mapped-system image; not raw physical Flash or a restorable backup",
+    "header_sha256": "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5",
+    "header_reset_pointer_fields": {
+      "offset_08_u32": "0x1002d819",
+      "offset_14_u32": "0x1002d819"
+    },
+    "vector_initial_msp": "0x01002b40",
+    "vector_reset_thumb_pointer": "0x1002d819",
+    "reset_code_address": "0x1002d818"
+  },
+  "method": {
+    "device_io": false,
+    "mmio_read_or_write": false,
+    "validation": "ImageStore constructor and _load validated fixed header, all committed record ranges, lengths and bytes SHA-256. Extracted ranges required every byte present; decoder consumed each code range exactly. Literal pools excluded from disassembly.",
+    "decoder": "Capstone 5.0.6: ARM, Thumb | MCLASS, little-endian",
+    "snapshot_body_bytes": 249856,
+    "snapshot_contiguous_body_end_exclusive": "0x1003d200",
+    "full_body_checksum_verified": false,
+    "sdk_commit": "26f51e584940d5b141cd1d09d2629d69b595f579"
+  },
+  "input_records": [
+    {
+      "path": "artifacts/mapped-system/chunks/header.json",
+      "record_sha256": "4defd007810ff58183b25405504baf4967cbe71d0f492578b978d99ffaba775b",
+      "offset": -512,
+      "address": "0x10000000",
+      "length": 512,
+      "bytes_sha256": "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5"
+    },
+    {
+      "path": "artifacts/mapped-system/chunks/00000000.json",
+      "record_sha256": "56daffb4f4b43f54015ded3ea7746bc68836821181a6cd9d1b1772d39e597e1a",
+      "offset": 0,
+      "address": "0x10000200",
+      "length": 512,
+      "bytes_sha256": "8287c03d1e7d19d5c64cc3e110ad7d583388103fa29e845bad0164e52c2225cb"
+    },
+    {
+      "path": "artifacts/mapped-system/chunks/0002ce00.json",
+      "record_sha256": "023d0519036316545ddcd1afa09c38fe9ef713e35d37d7a620598561ca607caf",
+      "offset": 183808,
+      "address": "0x1002d000",
+      "length": 512,
+      "bytes_sha256": "3e661e879c9b3d1a7c98126e0633fbe6a1e641fbffa772de273cf6d96f512361"
+    },
+    {
+      "path": "artifacts/mapped-system/chunks/0002d600.json",
+      "record_sha256": "f32f55860340857e04e5482a378b664b984a2f269d66b151273529dbeafa2617",
+      "offset": 185856,
+      "address": "0x1002d800",
+      "length": 512,
+      "bytes_sha256": "007548c59abe54796af9325d66f1cdde77cde2d8acd1269f3ec26f5185cf01b7"
+    }
+  ],
+  "code_regions": [
+    {
+      "name": "reset_entry",
+      "address": "0x1002d818",
+      "length": 52,
+      "sha256": "f9331a41517f77846dff680cd8d9f7e632c21114e21dd566a7c64d6713f5b4e1",
+      "hex": "202080f311880b484ff0aa014ff400628bf04eff07484ff40061401880f30988eff314800221084380f31488bff36f8ffff73cfc",
+      "instructions": [
+        {"address": "0x1002d818", "bytes": "2020", "mnemonic": "movs", "operands": "r0, #0x20"},
+        {"address": "0x1002d81a", "bytes": "80f31188", "mnemonic": "msr", "operands": "basepri, r0"},
+        {"address": "0x1002d81e", "bytes": "0b48", "mnemonic": "ldr", "operands": "r0, [pc, #0x2c]"},
+        {"address": "0x1002d820", "bytes": "4ff0aa01", "mnemonic": "mov.w", "operands": "r1, #0xaa"},
+        {"address": "0x1002d824", "bytes": "4ff40062", "mnemonic": "mov.w", "operands": "r2, #0x800"},
+        {"address": "0x1002d828", "bytes": "8bf04eff", "mnemonic": "bl", "operands": "#0x100b96c8"},
+        {"address": "0x1002d82c", "bytes": "0748", "mnemonic": "ldr", "operands": "r0, [pc, #0x1c]"},
+        {"address": "0x1002d82e", "bytes": "4ff40061", "mnemonic": "mov.w", "operands": "r1, #0x800"},
+        {"address": "0x1002d832", "bytes": "4018", "mnemonic": "adds", "operands": "r0, r0, r1"},
+        {"address": "0x1002d834", "bytes": "80f30988", "mnemonic": "msr", "operands": "psp, r0"},
+        {"address": "0x1002d838", "bytes": "eff31480", "mnemonic": "mrs", "operands": "r0, control"},
+        {"address": "0x1002d83c", "bytes": "0221", "mnemonic": "movs", "operands": "r1, #2"},
+        {"address": "0x1002d83e", "bytes": "0843", "mnemonic": "orrs", "operands": "r0, r1"},
+        {"address": "0x1002d840", "bytes": "80f31488", "mnemonic": "msr", "operands": "control, r0"},
+        {"address": "0x1002d844", "bytes": "bff36f8f", "mnemonic": "isb", "operands": "sy"},
+        {"address": "0x1002d848", "bytes": "fff73cfc", "mnemonic": "bl", "operands": "#0x1002d0c4"}
+      ]
+    },
+    {
+      "name": "prep_c_candidate",
+      "address": "0x1002d0c4",
+      "length": 90,
+      "sha256": "7574e72fe6f310fbbab857b16e2db48827e4e0ad095d84a5ad33c40d9b0e6f43",
+      "hex": "164c174908b54ff4a07220468cf0bffa144b9c60bff34f8fbff36f8fd3f8882022f47002c3f88820d3f8882042f4a002c3f888204ff04042c3f83422bff34f8fbff36f8f0023e1ee103a6df089fc6ff05df800f073fb6df09bfc",
+      "instructions": [
+        {"address": "0x1002d0c4", "bytes": "164c", "mnemonic": "ldr", "operands": "r4, [pc, #0x58]"},
+        {"address": "0x1002d0c6", "bytes": "1749", "mnemonic": "ldr", "operands": "r1, [pc, #0x5c]"},
+        {"address": "0x1002d0c8", "bytes": "08b5", "mnemonic": "push", "operands": "{r3, lr}"},
+        {"address": "0x1002d0ca", "bytes": "4ff4a072", "mnemonic": "mov.w", "operands": "r2, #0x140"},
+        {"address": "0x1002d0ce", "bytes": "2046", "mnemonic": "mov", "operands": "r0, r4"},
+        {"address": "0x1002d0d0", "bytes": "8cf0bffa", "mnemonic": "bl", "operands": "#0x100b9652"},
+        {"address": "0x1002d0d4", "bytes": "144b", "mnemonic": "ldr", "operands": "r3, [pc, #0x50]"},
+        {"address": "0x1002d0d6", "bytes": "9c60", "mnemonic": "str", "operands": "r4, [r3, #8]"},
+        {"address": "0x1002d0d8", "bytes": "bff34f8f", "mnemonic": "dsb", "operands": "sy"},
+        {"address": "0x1002d0dc", "bytes": "bff36f8f", "mnemonic": "isb", "operands": "sy"},
+        {"address": "0x1002d0e0", "bytes": "d3f88820", "mnemonic": "ldr.w", "operands": "r2, [r3, #0x88]"},
+        {"address": "0x1002d0e4", "bytes": "22f47002", "mnemonic": "bic", "operands": "r2, r2, #0xf00000"},
+        {"address": "0x1002d0e8", "bytes": "c3f88820", "mnemonic": "str.w", "operands": "r2, [r3, #0x88]"},
+        {"address": "0x1002d0ec", "bytes": "d3f88820", "mnemonic": "ldr.w", "operands": "r2, [r3, #0x88]"},
+        {"address": "0x1002d0f0", "bytes": "42f4a002", "mnemonic": "orr", "operands": "r2, r2, #0x500000"},
+        {"address": "0x1002d0f4", "bytes": "c3f88820", "mnemonic": "str.w", "operands": "r2, [r3, #0x88]"},
+        {"address": "0x1002d0f8", "bytes": "4ff04042", "mnemonic": "mov.w", "operands": "r2, #-0x40000000"},
+        {"address": "0x1002d0fc", "bytes": "c3f83422", "mnemonic": "str.w", "operands": "r2, [r3, #0x234]"},
+        {"address": "0x1002d100", "bytes": "bff34f8f", "mnemonic": "dsb", "operands": "sy"},
+        {"address": "0x1002d104", "bytes": "bff36f8f", "mnemonic": "isb", "operands": "sy"},
+        {"address": "0x1002d108", "bytes": "0023", "mnemonic": "movs", "operands": "r3, #0"},
+        {"address": "0x1002d10a", "bytes": "e1ee103a", "mnemonic": "vmsr", "operands": "fpscr, r3"},
+        {"address": "0x1002d10e", "bytes": "6df089fc", "mnemonic": "bl", "operands": "#0x1009aa24"},
+        {"address": "0x1002d112", "bytes": "6ff05df8", "mnemonic": "bl", "operands": "#0x1009c1d0"},
+        {"address": "0x1002d116", "bytes": "00f073fb", "mnemonic": "bl", "operands": "#0x1002d800"},
+        {"address": "0x1002d11a", "bytes": "6df09bfc", "mnemonic": "bl", "operands": "#0x1009aa54"}
+      ]
+    },
+    {
+      "name": "interrupt_init_candidate",
+      "address": "0x1002d800",
+      "length": 20,
+      "sha256": "1dd83b162f7991170b675e3f906e48c7cde8699290b0315cffc850de109247e3",
+      "hex": "044800232021c2180133402b82f80013f9d17047",
+      "instructions": [
+        {"address": "0x1002d800", "bytes": "0448", "mnemonic": "ldr", "operands": "r0, [pc, #0x10]"},
+        {"address": "0x1002d802", "bytes": "0023", "mnemonic": "movs", "operands": "r3, #0"},
+        {"address": "0x1002d804", "bytes": "2021", "mnemonic": "movs", "operands": "r1, #0x20"},
+        {"address": "0x1002d806", "bytes": "c218", "mnemonic": "adds", "operands": "r2, r0, r3"},
+        {"address": "0x1002d808", "bytes": "0133", "mnemonic": "adds", "operands": "r3, #1"},
+        {"address": "0x1002d80a", "bytes": "402b", "mnemonic": "cmp", "operands": "r3, #0x40"},
+        {"address": "0x1002d80c", "bytes": "82f80013", "mnemonic": "strb.w", "operands": "r1, [r2, #0x300]"},
+        {"address": "0x1002d810", "bytes": "f9d1", "mnemonic": "bne", "operands": "#0x1002d806"},
+        {"address": "0x1002d812", "bytes": "7047", "mnemonic": "bx", "operands": "lr"}
+      ]
+    }
+  ],
+  "literal_regions": [
+    {
+      "name": "vector_prefix",
+      "address": "0x10000200",
+      "length": 8,
+      "hex": "402b000119d80210",
+      "sha256": "7c148fe1b3c66156f3abade72ca2ab24eafb61e9f3a5ef9952323852f9549179",
+      "u32_le": [
+        "0x01002b40",
+        "0x1002d819"
+      ]
+    },
+    {
+      "name": "prep_c_literal_pool",
+      "address": "0x1002d120",
+      "length": 12,
+      "hex": "001a00010002001000ed00e0",
+      "sha256": "8fd211954620dc948d09c1f41b588b1c46c4c1ba5acc0aba5bb90216e515af7a",
+      "u32_le": [
+        "0x01001a00",
+        "0x10000200",
+        "0xe000ed00"
+      ]
+    },
+    {
+      "name": "interrupt_init_literal_pool",
+      "address": "0x1002d814",
+      "length": 4,
+      "hex": "00e100e0",
+      "sha256": "99a22127f6afbab18f1ad431ba755c6ecad2ad8850ef2752535e867d65ce25fa",
+      "u32_le": [
+        "0xe000e100"
+      ]
+    },
+    {
+      "name": "reset_literal_pool",
+      "address": "0x1002d84c",
+      "length": 4,
+      "hex": "401b0001",
+      "sha256": "42a35db342abc78724b79d8037202fed211370b475f39e2e80523ab0ad4da726",
+      "u32_le": [
+        "0x01001b40"
+      ]
+    }
+  ],
+  "direct_calls": [
+    {
+      "call_site": "0x1002d828",
+      "target": "0x100b96c8",
+      "source_name_inference": "memset candidate",
+      "basis": "r0=01001b40, r1=aa, r2=800",
+      "body_analyzed": false,
+      "first_byte_saved_at_snapshot": false
+    },
+    {
+      "call_site": "0x1002d848",
+      "target": "0x1002d0c4",
+      "source_name_inference": "z_arm_prep_c candidate",
+      "basis": "direct call to analyzed code",
+      "body_analyzed": true,
+      "first_byte_saved_at_snapshot": true
+    },
+    {
+      "call_site": "0x1002d0d0",
+      "target": "0x100b9652",
+      "source_name_inference": "memcpy candidate",
+      "basis": "r0=01001a00, r1=10000200, r2=140",
+      "body_analyzed": false,
+      "first_byte_saved_at_snapshot": false
+    },
+    {
+      "call_site": "0x1002d10e",
+      "target": "0x1009aa24",
+      "source_name_inference": "z_bss_zero candidate",
+      "basis": "first call after FPU init, source-order match only",
+      "body_analyzed": false,
+      "first_byte_saved_at_snapshot": false
+    },
+    {
+      "call_site": "0x1002d112",
+      "target": "0x1009c1d0",
+      "source_name_inference": "z_data_copy candidate",
+      "basis": "second call after FPU init, source-order match only",
+      "body_analyzed": false,
+      "first_byte_saved_at_snapshot": false
+    },
+    {
+      "call_site": "0x1002d116",
+      "target": "0x1002d800",
+      "source_name_inference": "z_arm_interrupt_init candidate",
+      "basis": "direct call to analyzed NVIC priority loop",
+      "body_analyzed": true,
+      "first_byte_saved_at_snapshot": true
+    },
+    {
+      "call_site": "0x1002d11a",
+      "target": "0x1009aa54",
+      "source_name_inference": "z_cstart candidate",
+      "basis": "final call, source-order match only",
+      "body_analyzed": false,
+      "first_byte_saved_at_snapshot": false
+    }
+  ],
+  "control_flow": {
+    "reset": "Straight line: BASEPRI=20; prepare fill arguments; call; set PSP=01001b40+800; CONTROL|=2; ISB; direct BL prep candidate. No conditional branch.",
+    "prep": "Straight line: prepare copy args; call; VTOR store; CPACR/FPU stores; DSB/ISB; FPSCR=0; four direct calls. No return instruction in analyzed range.",
+    "interrupt_init": "r3 starts 0, store 20 at e000e400+r3, increment and BNE until r3=40; 64 iterations; BX LR. Loop target1002d806. Literal e000e100 at1002d814 is data."
+  },
+  "static_register_effects": {
+    "basepri": "0x20",
+    "temporary_psp": "0x01002340",
+    "control": "old CONTROL OR 2; privilege/FPCA bits not cleared here",
+    "fill_call": "destination01001b40,length800,valueaa; actual libc body unsaved",
+    "vector_copy_call": "destination01001a00,source10000200,length140; actual libc body unsaved",
+    "vtor_store_address": "0xe000ed08",
+    "vtor_store_value": "0x01001a00",
+    "cpacr_address": "0xe000ed88",
+    "cpacr_expression": "(old & ~0x00f00000) | 0x00500000; CP10/11 privileged access per SDK",
+    "fpccr_address": "0xe000ef34",
+    "fpccr_value": "0xc0000000; ASPEN|LSPEN per SDK",
+    "fpscr_value": 0,
+    "nvic_priority_stores": "64 bytes at e000e400..e000e43f, value20"
+  },
+  "source_comparison": {
+    "reset": "Instruction order and arguments match reset.S mainline BASEPRI + INIT_STACKS + PSP-switch path. Exact original configuration/symbols unavailable.",
+    "prep": "Vector copy/store and FPU sequence match prep_c.c SRAM-vector + privileged FPU + automatic/lazy preservation path. Later names inferred only from call order.",
+    "interrupt_init": "Bound40 and STRB20 loop match irq_init.c priority initialization; no proof of exact silicon IRQ implementation count."
+  },
+  "sources": [
+    {
+      "path": "action_technology_sdk/zephyr/arch/arm/core/aarch32/cortex_m/reset.S",
+      "sha256": "21dfb12cd340b0ac4198c8894a2edc05dd6511d5de8b9867c7fe33cb808612e4",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/arch/arm/core/aarch32/cortex_m/reset.S"
+    },
+    {
+      "path": "action_technology_sdk/zephyr/arch/arm/core/aarch32/prep_c.c",
+      "sha256": "07afe52309f004eab0d9dc2b1061640c84d8304e15d75338ac3e8a72ca689382",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/arch/arm/core/aarch32/prep_c.c"
+    },
+    {
+      "path": "action_technology_sdk/zephyr/arch/arm/core/aarch32/cortex_m/irq_init.c",
+      "sha256": "dad500f736c81baf9ff9fb5fb256110e52a41b4d3661353664740d1ad12c91d9",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/arch/arm/core/aarch32/cortex_m/irq_init.c"
+    }
+  ],
+  "vector_table_crosscheck": {
+    "address": "0x10000200",
+    "length": 320,
+    "sha256": "09ba29d774c0054f9c42d1133e94929931282a16a9548a1c3e68a05e2e92e8f6",
+    "hex": "402b000119d80210b13e0a10edd70210edd70210edd70210edd702100000000000000000000000000000000001d20210edd702100000000065d10210cd220a10a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210a9d20210",
+    "core_slots": [
+      "0x01002b40",
+      "0x1002d819",
+      "0x100a3eb1",
+      "0x1002d7ed",
+      "0x1002d7ed",
+      "0x1002d7ed",
+      "0x1002d7ed",
+      "0x00000000",
+      "0x00000000",
+      "0x00000000",
+      "0x00000000",
+      "0x1002d201",
+      "0x1002d7ed",
+      "0x00000000",
+      "0x1002d165",
+      "0x100a22cd"
+    ],
+    "external_slot_count": 64,
+    "external_slot_values": [
+      "0x1002d2a9"
+    ],
+    "interpretation": "320 bytes = 16 core + 64 external slots. All external vectors share a Thumb pointer; target body not analyzed. Does not establish physical IRQ implementation count."
+  },
+  "limits": [
+    "Static code and literals, not observed reset execution or current CPU register state.",
+    "Source correspondence does not prove exact original source revision, configuration or symbols.",
+    "No disassembly of unsaved callees, no .bss/.data bounds, no kernel entry implementation or application main reached.",
+    "Initial MSP from image vector differs from temporary PSP; no live stack state measured.",
+    "No identification of precise SoC, board, boot ROM, bootloader, physical flash mapping, secure boot, signing or recovery mechanism.",
+    "Reset source permits both hardware reset and chainloading; artifact cannot distinguish actual boot route.",
+    "No firmware write or execution attempted; no full mapped-body checksum claimed."
+  ]
+}

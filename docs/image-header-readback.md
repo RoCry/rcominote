@@ -47,3 +47,5 @@
 CLI仍为`uv run comi diag capture shell-code --out ...`和`uv run comi diag compare-references A B --shell --out ...`；报告新增mapped_image_header，长度/magic/头部checksum/vector不一致立即报错，image_checksum_verified保持false。
 
 固定源码：[image_head布局](https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/bootloader/soc/arm/actions/leopard/soc_boot.h#L51-L70)、[头部/向量/正文检查](https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/bootloader/soc/arm/actions/leopard/boot/soc_boot_priv.c#L188-L255)。
+
+后续：[分块导出](mapped-image-export.md)已取得包含入口的正文；[实机reset分析](reset-entry-readback.md)沿header/vector指定地址追到C准备与中断初始化，完整正文checksum仍待导出完成。
