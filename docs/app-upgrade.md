@@ -153,3 +153,30 @@ expanded relationships reached resource limits. These REA IDs are session
 references, not durable acquisition URLs. Conclusions above use direct ZIP
 member hashes, byte slices, and source reads, reproducible by the local script;
 they do not rely on missing graph edges or claim runtime execution.
+
+## Follow-up REA investigation (2026-10-12)
+
+Reopened exact 1.2.4 APK, matching SHA-256 above. REA inventory completed:
+[retained summary](evidence/rea-apk124-inventory-2026-10-12.json), Evidence
+`ev_55e78eb27870f81ce25c6e48d39ed76286890a3050a34e94a5134c93f0351988`,
+child inventory `ev_5d0ed3747a2aca3c359b276110d4911912e99d7dd9b3cae514a22e353c9c4cd8`.
+2166 occurrences include the archive root; 2165 ZIP members. No integrity contradictions;
+case-folding name collisions prevent assuming lossless extraction onto a default macOS volume.
+Complete 4.9 MB evidence bundle retained locally in `artifacts/rea-apk124-2026-10-12.json`.
+Session closed after export.
+
+Focused **ordinary Python ZIP reads**, separate from REA, measured both opaque candidates:
+[byte observations](evidence/apk124-candidates-2026-10-12.json). `signed.bin` and `af.bin`
+have approximately 7.997/7.993 bits per byte entropy; neither begins with ASCII AOTA or ELF
+magic. This does not identify their format or exclude embedded/transformed firmware.
+Literal search of 1437 `.so/.dex/.xml/.json/.js` members for `signed.bin`, `af.bin`,
+`firmware`, `Firmware`, `AOTA`, `ADFU` found no matches. No claim about encoded strings,
+protected content, remote code, or runtime behavior follows from this bounded negative.
+The only root DEX is 13,900 bytes, insufficient reason to infer where all app logic resides.
+
+REA `inspect_android_package` could not run: caller-supplied JADX MCP 0.7.1 JAR is not
+configured (`REA_JADX_MCP_JAR`). No registration/approval rejection occurred; no configuration
+was changed. Archive inspection remained available. Therefore this pass adds no decompilation
+or incoming-reference proof for the opaque files. Next useful artifact work requires a usable
+Android analysis provider and, for protected code, an authorized app runtime or an unprotected
+vendor package. Installing a decompiler alone does not establish access to protected code.

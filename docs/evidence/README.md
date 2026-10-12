@@ -52,3 +52,10 @@ APK/SDK 由各专题文档记录样本哈希、固定版本及复现入口。原
 - 版本正文 Zephyr 2.7.0；device 模块未找到；帮助列出 fread/snandr/reboot adfu。NOR 读取仅收到 handler 状态行，未获得512字节数据，不能当固件备份。
 - 每次已收到 STOP ACK/F1；最后 Boyi 查询成功，FW/容量/idle 未变。未重启、擦写、运行恢复入口或 flash helper。
 - `just check`：格式/lint/脚本语法、10 个离线测试通过，包括真实分片日志与中途断流回放。
+
+## 第五轮：NVRAM 单键读回与 REA 归档核查
+
+- [platform-info](log-platform-info-2026-10-12.json)：app/system 帮助、固定两个 NVRAM getter；BT_LE_NAME 返回14字节，FW_VERION失败。没有写配置；会话 STOP/F1 完整，后续 Boyi info 正常。
+- [REA 1.2.4 归档摘要](rea-apk124-inventory-2026-10-12.json)：保留实际 Evidence ID/限制；完整 bundle 留 artifacts。Android provider 缺少调用者提供的 JADX MCP JAR，没有执行反编译。
+- [APK 不透明文件](apk124-candidates-2026-10-12.json)：普通 ZIP 字节核查，独立于 REA；包含准确 SHA/熵/有限字面搜索范围。未发现可用原厂固件，未证明这些文件的用途。
+- `just check` 格式/lint/语法及11个离线测试通过；新 oracle 对照真实 NVRAM 字节响应。

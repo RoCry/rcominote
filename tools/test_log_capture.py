@@ -25,6 +25,16 @@ class LogTests(unittest.TestCase):
         self.assertEqual(text.count("device: command not found"), 2)
         self.assertEqual((stream.acks, stream.ended, bytes(stream.pending)), (6, True, b""))
 
+    def test_real_nvram_bytes_reach_ble(self):
+        capture = json.loads((EVIDENCE / "log-platform-info-2026-10-12.json").read_text())
+        stream = Stream()
+        for row in capture["notifications"]:
+            stream.feed(bytes.fromhex(row["hex"]))
+        text = "".join(frame.get("text", "") for frame in stream.frames)
+        self.assertIn("nvram get: FW_VERION fail", text)
+        self.assertIn("nvram get(len=14): BT_LE_NAME", text)
+        self.assertIn("43 6f 4d 69 20 4e 6f 74 65 20 32 46 30 31", text)
+
     def test_disconnect_mid_frame_preserves_incomplete_evidence(self):
         capture = json.loads((EVIDENCE / "log-device-info-2026-10-12.json").read_text())
         wire = b"".join(bytes.fromhex(row["hex"]) for row in capture["notifications"])

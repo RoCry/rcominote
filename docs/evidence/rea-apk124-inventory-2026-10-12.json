@@ -1,0 +1,79 @@
+{
+  "evidence_id": "ev_55e78eb27870f81ce25c6e48d39ed76286890a3050a34e94a5134c93f0351988",
+  "operation": "inspect_artifact",
+  "authority": "shipped-artifact",
+  "confidence": "observed",
+  "subject": {
+    "name": "comi-1.2.4.apk",
+    "digest": {
+      "sha256": "8aade0a4ca1f9e25b9ebbd51dee97702bf0954e5a66adcf91312b4331414ace7"
+    },
+    "format": "apk",
+    "architecture": null,
+    "local_path": "/private/tmp/claude-501/-Users-rocry--herdr-worktrees-rlcdv-comi-note/9274bc41-5f27-4b5d-ac1c-c0a1798db84f/scratchpad/comi-1.2.4.apk"
+  },
+  "normalized_result": {
+    "inspection_id": "ai_6abe5fc84ac5430c105a7e96f4ef8bfd722fb0b53503faaa56401e33683e7c26",
+    "subject": {
+      "manifest_id": "agm_ee67ec00d236bc8edf40427a206021e554da016f957d9911cd9b15ddf8f03c34",
+      "root_artifact_id": "art_29e3eaf1bc8a3280ba60a86f44fdd65f318bc153f65aab269614cbd2095ac44d",
+      "root_sha256": "8aade0a4ca1f9e25b9ebbd51dee97702bf0954e5a66adcf91312b4331414ace7",
+      "root_format": "apk"
+    },
+    "substeps": [
+      {
+        "evidence_id": "ev_5d0ed3747a2aca3c359b276110d4911912e99d7dd9b3cae514a22e353c9c4cd8",
+        "operation": "inventory_artifact",
+        "status": "completed"
+      }
+    ],
+    "observations": [
+      {
+        "observation_id": "aio_88bad67eb87fa1c56a3586dc08b9fd7b7f4b2ac9247ca060031eb811b0f60ceb",
+        "kind": "root-manifest",
+        "subject": "art_29e3eaf1bc8a3280ba60a86f44fdd65f318bc153f65aab269614cbd2095ac44d",
+        "value": {
+          "manifest_id": "agm_ee67ec00d236bc8edf40427a206021e554da016f957d9911cd9b15ddf8f03c34",
+          "root_artifact_id": "art_29e3eaf1bc8a3280ba60a86f44fdd65f318bc153f65aab269614cbd2095ac44d",
+          "root_sha256": "8aade0a4ca1f9e25b9ebbd51dee97702bf0954e5a66adcf91312b4331414ace7",
+          "root_format": "apk",
+          "graph_sha256": "9f50dd8f6071f5a1773411a6a0a47d1ace683e3c4db30565508bf6a1dfa800e9",
+          "node_count": 1986,
+          "occurrence_count": 2166,
+          "edge_count": 2165
+        },
+        "evidence_id": "ev_5d0ed3747a2aca3c359b276110d4911912e99d7dd9b3cae514a22e353c9c4cd8"
+      }
+    ],
+    "hypotheses": [],
+    "contradictions": [],
+    "unexplored_branches": [],
+    "next_probes": [],
+    "coverage": {
+      "status": "complete-within-substeps",
+      "substeps_completed": 1,
+      "observations_retained": 1,
+      "observations_omitted": 0,
+      "hypotheses_retained": 0,
+      "hypotheses_omitted": 0,
+      "unexplored_branches_retained": 0,
+      "unexplored_branches_omitted": 0,
+      "next_probes_retained": 0,
+      "next_probes_omitted": 0
+    },
+    "evidence_links": [
+      "ev_5d0ed3747a2aca3c359b276110d4911912e99d7dd9b3cae514a22e353c9c4cd8"
+    ],
+    "limitations": [
+      "Inspection derives bounded static hypotheses and next probes; it does not execute the artifact or claim format-specific semantics.",
+      "Logical archive names collide under English (en-US) Unicode case folding; a case-insensitive destination cannot store both spellings. This comparison is not a filesystem observation.",
+      "ZIP inventory lists central-directory entries only. Bytes after the central directory, including an APK Signing Block or a ZIP comment, are not occurrences."
+    ]
+  },
+  "limitations": [
+    "Inspection derives bounded static hypotheses and next probes; it does not execute the artifact or claim format-specific semantics.",
+    "Logical archive names collide under English (en-US) Unicode case folding; a case-insensitive destination cannot store both spellings. This comparison is not a filesystem observation.",
+    "ZIP inventory lists central-directory entries only. Bytes after the central directory, including an APK Signing Block or a ZIP comment, are not occurrences."
+  ],
+  "retention_note": "Selected fields from actual REA result; complete bundle kept locally in artifacts/rea-apk124-2026-10-12.json. Archive inventory is not code decompilation."
+}

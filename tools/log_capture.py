@@ -62,7 +62,13 @@ class Stream:
 
 
 async def capture(
-    *, serial: str, duration: float, device_info: bool = False, commands: bool = False, flash_header: bool = False
+    *,
+    serial: str,
+    duration: float,
+    device_info: bool = False,
+    commands: bool = False,
+    flash_header: bool = False,
+    platform_info: bool = False,
 ) -> dict:
     queue = asyncio.Queue()
     stream = Stream()
@@ -76,6 +82,7 @@ async def capture(
             (["kernel version", "device levels", "device levels"] if device_info else [])
             + (["help", "dbg"] if commands else [])
             + (["dbg fread spi_flash 0", "help"] if flash_header else [])
+            + (["app", "system", "dbg nvram FW_VERION", "dbg nvram BT_LE_NAME", "help"] if platform_info else [])
         ),
         "notifications": [],
         "writes": [],
@@ -173,11 +180,19 @@ def main(
     ] = False,
     commands: Annotated[bool, typer.Option(help="Also request fixed help and bare dbg command listings")] = False,
     flash_header: Annotated[bool, typer.Option(help="Read only NOR offset 0, fixed 512 bytes; not a backup")] = False,
+    platform_info: Annotated[bool, typer.Option(help="Fixed app/system help and two bounded NVRAM getters")] = False,
 ):
     if out.exists():
         raise FileExistsError(f"Output already exists: {out}")
     result = asyncio.run(
-        capture(serial=serial, duration=duration, device_info=device_info, commands=commands, flash_header=flash_header)
+        capture(
+            serial=serial,
+            duration=duration,
+            device_info=device_info,
+            commands=commands,
+            flash_header=flash_header,
+            platform_info=platform_info,
+        )
     )
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("x", encoding="utf-8") as handle:

@@ -40,3 +40,14 @@ just log-capture --flash-header --out artifacts/header.json
 `Stream` 按长度重组 BLE notification；真实 504 B 文本块跨多次通知，不能把单个 notification 当完整协议帧。离线测试回放真实版本采集及断流，检查已观察到的版本/错误正文、ACK/F1 和未完成帧。
 
 SDK 首个不足 504 B 的日志块可能没有立即发送；默认日志空白、某命令 ACK 或 STOP 成功，都不单独证明查询执行结果。源码分析见 [诊断设计](noninvasive-diagnostics.md)。
+
+## 后续：配置读取已验证
+
+[platform-info 实测](evidence/log-platform-info-2026-10-12.json)：固定 `app`、`system`、`dbg nvram FW_VERION`、`dbg nvram BT_LE_NAME`、`help`；8 ACK/F1，1937 B 正文，完整结束。
+
+- `app` 仅列 set_config/input/btinfo；`system` 列 dumpmem/set_config/set_voice_effect/set_music_effect/wlock，没有新发现的芯片/分区 getter。
+- `FW_VERION`（SDK 原拼写）读取失败，不能据此否定其他版本存储位置。
+- `BT_LE_NAME` 返回14字节 `43 6f 4d 69 20 4e 6f 74 65 20 32 46 30 31`，即 `CoMi Note 2F01`。
+- 证明现有配置 getter 的数据正文能经 shell/BLE 返回；不证明 NOR 原始数据可导出，更不是完整备份。
+
+复现：`just log-capture --platform-info --out artifacts/platform.json`。仅两个固定键，不接收写值或任意键名；源码 getter 上限63 B。最终 Boyi info 查询再次成功，版本/容量/idle 未变。输出路由和源码依据见 [读取通路](readback-routes.md)。

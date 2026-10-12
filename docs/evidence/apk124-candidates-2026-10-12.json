@@ -1,0 +1,46 @@
+{
+  "apk_sha256": "8aade0a4ca1f9e25b9ebbd51dee97702bf0954e5a66adcf91312b4331414ace7",
+  "scope": "Exact ZIP member bytes; entropy does not establish encryption or firmware type",
+  "candidates": [
+    {
+      "member": "assets/signed.bin",
+      "size": 66032,
+      "sha256": "848722d270b849c26d6902d334b6d5564199ec6052e5416a9d7f9c662f546f54",
+      "first_32_hex": "aca2a0301c0923efcecaed98d7796153039a3219c25cd63cfe970faa4b9911e5",
+      "shannon_bits_per_byte": 7.996658
+    },
+    {
+      "member": "assets/af.bin",
+      "size": 43760,
+      "sha256": "1417960bf7dd0f19e6e9d6e7754994e1b5ba9d2d0d03a32a2087172d56e5a0ca",
+      "first_32_hex": "19df0a917788fa91fcebb88a8680ca211cee6a3d2d21c283549851d70622d52f",
+      "shannon_bits_per_byte": 7.993131
+    }
+  ],
+  "dex_members": [
+    {
+      "member": "classes.dex",
+      "size": 13900,
+      "sha256": "abda8b65bedea3157b111a8a6b44c16f296fa23bfef902d35070e23bc07a9550"
+    }
+  ],
+  "reference_search": {
+    "suffixes": [
+      ".so",
+      ".dex",
+      ".xml",
+      ".json",
+      ".js"
+    ],
+    "needles": [
+      "signed.bin",
+      "af.bin",
+      "firmware",
+      "Firmware",
+      "AOTA",
+      "ADFU"
+    ],
+    "matches": [],
+    "members_scanned": 1437
+  }
+}
