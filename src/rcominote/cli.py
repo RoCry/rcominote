@@ -11,6 +11,7 @@ from . import (
     diagnostics,
     gatt,
     image_export,
+    maintenance,
     ota_package,
     realtime,
     recording_delete,
@@ -27,6 +28,7 @@ app.add_typer(settings.app, name="settings", help="Read settings or explicitly c
 app.add_typer(diagnostics.app, name="diag", help="Fixed diagnostic profiles and offline code comparison.")
 app.add_typer(usb_inventory.app, name="usb", help="Host descriptor snapshots/diffs; no device writes.")
 app.add_typer(image_export.app, name="image", help="Fixed mapped-system export; not a raw Flash backup.")
+app.add_typer(maintenance.app, name="maintenance")
 app.command("gatt")(gatt.main)
 app.command("verify")(verification.main)
 app.command("realtime")(realtime.main)
@@ -74,11 +76,12 @@ def capabilities():
                 "settings with readback",
                 "download/sync Ctrl-C cancellation; labeled partial bytes and disconnected session",
                 "single listed recording deletion; explicit serial/name confirmation and file-list readback",
+                "management requests: bind/unbind/format/factory-reset/phone-type; effect unverified, exit3",
                 "fixed mapped-system image export with resume and checksum gate",
             ],
             "not_implemented": [
                 "arbitrary shell/memory",
-                "bind/unbind/format/factory reset",
+                "verified management effects/cloud binding identity/secure erasure/factory reset completion",
                 "full firmware dump",
                 "flash",
                 "ADFU switch",

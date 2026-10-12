@@ -21,7 +21,7 @@
 | 恢复/刷写 | 已分析[实际boot](docs/actual-boot-flow.md)、[ROM下载入口](docs/actual-rom-adfu-entry.md)、[OTA容器](docs/ota-container-contract.md)；无匹配官方恢复包、实测ROM传输或恢复证明 |
 | 自写镜像 | [最小M4 ELF与948 B ACTH镜像](docs/minimal-firmware-image.md)可重复构建，通过本机recovery真实checker离线仿真；未在硬件运行 |
 | USB | 已知数据线拔插对照未发现CoMi枚举；ROM模式未试，不能断言接口只充电 |
-| 客户端 | BLE状态、录音控制、文件下载、部分配置已实测；[短窗口实时流与离线MP3逐字节相同](docs/realtime-live.md)，不保证长时无丢失 |
+| 客户端 | 固定官方App的[23个请求opcode均有主机路径](docs/remaining-client-contracts.md)，不等于全部实机验收。BLE状态、录音控制、文件下载、部分配置已实测；[短窗口实时流与离线MP3逐字节相同](docs/realtime-live.md)，不保证长时无丢失 |
 
 优先获取匹配BSP/芯片资料、量产下载链、官方固件；细节疑点先记录，待其影响路线选择时再追。低效NOR日志批量导出已归档，不再作为默认备份方案。
 
@@ -45,7 +45,7 @@ uv run comi diag capture platform --out artifacts/platform-NEW.json
 
 macOS需蓝牙权限，官方App先断开；Linux需本机BlueZ/适配器。APK、SDK、原始录音、完整日志在忽略的 `artifacts/`；仓库不依赖rlcdv、Obsidian或临时交接文件。
 
-显式单文件删除见[CLI说明](docs/cli.md)：必填serial和文件名确认，只以完整列表中目标消失为验收；已离线测试，尚未实机执行。格式化／解绑／恢复出厂未开放。
+显式单文件删除见[CLI说明](docs/cli.md)：必填serial和文件名确认，只以完整列表中目标消失为验收；尚未实机执行。`maintenance`提供绑定／解绑／格式化／恢复出厂／手机类型的显式请求；退出3表示提交但效果未验证，没有实机执行这些管理操作。
 
 ## 开发与参考构建
 

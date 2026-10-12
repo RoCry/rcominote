@@ -197,3 +197,7 @@ Gitee REC_JX3完整仓库及ATS3085E已编译ELF。新的平台选择/构建仍�
 ## 显式单文件删除：源码与主机验证（2026-10-13）
 
 [协议合同](../file-deletion.md)：固定官方JS成员及片段哈希、官方纯frame/CRC函数产生的独立0d请求golden、通用ACK与完整列表目标缺失的区别。新增CLI仅按明确serial/文件名确认删除单个已列出文件；真实Connection回放测试包含列表截断、迟到ACK、SIGINT及不重试。无设备删除、格式化、解绑或恢复出厂操作；不是固件备份／恢复进展。
+
+## 官方剩余管理请求与完整接口表（2026-10-13）
+
+[固定源码合同](../remaining-client-contracts.md)：bind/unbind/format/factory-reset/phone-type的准确片段哈希、7个官方纯函数独立golden、23请求opcode覆盖表。管理CLI一次性补齐4个opcode／5项动作；提交后仍效果未验证、退出3。只做主机测试，无设备管理请求、登录、重置或擦除；不改变M4 BSP、整机备份和恢复缺口。

@@ -236,6 +236,14 @@ class Connection:
     async def serial(self) -> str:
         return P.text(await self.command(P.GET_SERIAL))
 
+    async def send_only(self, cmd: int, payload: bytes = b"", *, timeout: float = 5.0) -> None:
+        """One write without awaiting a reply; permanently retire this session afterward."""
+        async with asyncio.timeout(timeout):
+            async with self._request(cmd, payload, timeout=timeout):
+                self._fail(
+                    ConnectionError("Write-only command ended this session; reconnect before another request")
+                )
+
     async def bound(self) -> bool:
         return any(await self.command(P.GET_BIND_INFO))
 

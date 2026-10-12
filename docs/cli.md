@@ -55,7 +55,23 @@ uv run comi set-time
 uv run comi delete NAME --serial SERIAL --confirm-delete NAME
 ```
 
-必填实际serial并重复文件名确认，连接后再次读回serial；要求设备idle、完整文件列表包含目标。只发送一次`0x0d`，保留回复原始字节，再取完整列表核对目标消失。成功JSON的`scope=listed_recording_absence`只表示目标不再列出，不证明安全擦除或其他副作用。超时、断连、列表不完整为结果未知；收到回复但仍列出为未满足后置条件，均退出1、不重试。尝试删除后Ctrl-C报告结果未知并退出130。本命令已按固定官方源码实现及离线测试，**尚未实机删除验收**。见[来源与边界](file-deletion.md)。没有格式化／绑定／解绑／恢复出厂命令。
+必填实际serial并重复文件名确认，连接后再次读回serial；要求设备idle、完整文件列表包含目标。只发送一次`0x0d`，保留回复原始字节，再取完整列表核对目标消失。成功JSON的`scope=listed_recording_absence`只表示目标不再列出，不证明安全擦除或其他副作用。超时、断连、列表不完整为结果未知；收到回复但仍列出为未满足后置条件，均退出1、不重试。尝试删除后Ctrl-C报告结果未知并退出130。本命令已按固定官方源码实现及离线测试，**尚未实机删除验收**。见[来源与边界](file-deletion.md)。
+
+## 管理请求：效果未验证
+
+固定官方App其余请求已集中到`maintenance`；只按明确选择发送，不自动登录、重试或重连。所有操作必填实际serial，读回核对身份，要求idle。
+
+| 命令（省略共同的`--serial SERIAL`） | 含义及完成边界 |
+|---|---|
+| `maintenance bind USER_ID --confirm bind` | ID为1..16可打印ASCII字节，补零、不截断；等待匹配回复，不证明云账号身份或持久绑定 |
+| `maintenance unbind --confirm unbind` | 默认保留录音；只写一次后关闭失效连接，不把断连当完成 |
+| `maintenance format --confirm format` | 等待匹配回复，不能证明格式化完成或安全擦除；可能丢失设备数据 |
+| `maintenance factory-reset --confirm factory-reset` | 恢复出厂请求，不是普通重启；只写一次后关闭失效连接，不证明复位完成或ROM退出能力 |
+| `maintenance phone-type android`（或`ios`） | 显式发送0或1，没有已知getter；不按主机OS自动设置 |
+
+解绑时若明确要求删除录音，还必须同时传`--delete-recordings --confirm-delete-all SERIAL`；单独传任一项均拒绝。绑定不允许删除标志。Phone type的iOS1是主机限制，不代表固件只接受0/1。
+
+输出`scope=request_submission_only`：匹配回复或write-only写入完成后仍为`status=submitted_unverified, ok=false, device_effect_verified=false`，**退出3**，表示提交未验证；不是效果成功。错误／超时／断连不确定为`status=unknown`退出1，尝试后取消为unknown退出130；没有效果成功0。`request_sent=null`表示失败前是否完成写入无法确认，不能解释成未发送。CLI保留回复和错误，关闭连接；关闭失败也按unknown报告。Bind/phone等待5秒、format10秒；write-only的5秒是主机上限，非官方固件时序保证。**尚未实机执行任何这些管理操作**。[来源、全部请求覆盖与独立golden](remaining-client-contracts.md)。
 
 ## 实时音频
 

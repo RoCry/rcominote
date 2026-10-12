@@ -79,6 +79,12 @@ client capability without claiming worker-idle, reliable resume or firmware back
 client operation: source-backed request, serial/name confirmation, complete list
 readback, unknown outcome on interrupted exchange. Host tested only; no device
 deletion, secure-erasure proof or platform/recovery advance claimed.
+[Remaining official requests](remaining-client-contracts.md) are now grouped as
+explicit maintenance submissions. All23 fixed-App request opcodes have host
+paths; this is encoding/interface coverage, not all hardware effects or hidden
+protocols. Management returns submitted-unverified/exit3, without automatic
+retry/reconnect. Keep cloud identity, format/reset completion and live acceptance
+separate from platform/full-backup/recovery requirements.
 
 [SD bridge proof](sd-file-bridge.md) changes one acquisition decision: controlled
 temporary SD writes are acceptable research side effects, distinct from firmware

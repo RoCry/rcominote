@@ -70,7 +70,9 @@ Setter slice SHA-256 values:
 
 `SET_PHONE_TYPE=0x18` also sends one byte; source labels 0 Android, otherwise iOS
 (`[247787,248131)`). No matching readback field or evidence of effect found.
-Omit from initial settings CLI; do not assign host OS automatically.
+Implemented as explicit `maintenance phone-type android|ios`, outside the
+readback-verified settings command. Never assign host OS automatically; iOS1
+is a conservative host choice from the source's nonzero branch.
 
 ### ACK and error contract
 
@@ -138,6 +140,11 @@ reset state; existence is documented, not justification to run them while
 verifying read-only/ordinary control capabilities. No Boyi `0e` defined. No Boyi
 upgrade opcode, firmware signer, complete backup, or restore CLI established.
 Mova OTA declarations and UUIDs cannot be applied to Boyi.
+
+`maintenance` now implements these explicit request encodings plus phone type.
+All effects remain unverified; submitted requests exit3 with `ok=false`, not
+effect-success0. Unbind/reset use one serialized write, invalidate and close the
+session without ACK wait or reconnect. [Complete23-opcode coverage and goldens](remaining-client-contracts.md).
 
 `DELETE_FILE=0d` is implemented with explicit confirmation and list readback;
 no device deletion was performed to validate it. Matching ACK alone never
