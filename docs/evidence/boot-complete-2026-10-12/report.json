@@ -1,0 +1,53 @@
+{
+  "raw_bytes": 4096,
+  "raw_sha256": "782c26c3ba9bee07a8b0b464898fb963a76eb35a2916586b854f8f45993f4166",
+  "decoded_bytes": 3672,
+  "decoded_sha256": "73a199d17490d5ae9e35e466b4ad8fafaa0757fb4a1ae7e79b5c90f90e4cb054",
+  "header_bytes": 56,
+  "body_bytes": 3616,
+  "effective_seed": "0x0a15a191",
+  "reset_bytes": 512,
+  "header_checksum_valid": true,
+  "body_checksum_valid": true,
+  "load_address": "0x01010000",
+  "entry": "0x01010039",
+  "block_zero_evidence": "../nor-sector-zero-2026-10-12/report.json",
+  "new_blocks": [
+    {
+      "block": 1,
+      "sha256": "bb095db78c9418379611e9004c1aacf0badefb784e2412a341d042b2ed7c25b8",
+      "sources": 44
+    },
+    {
+      "block": 2,
+      "sha256": "3d5c23c99eacecaf8d1a6735bae2e99f93a967308972fc225228389f9ec44619",
+      "sources": 44
+    },
+    {
+      "block": 3,
+      "sha256": "55389a8b833e8fcfc21bc0ab177ff52cfb1bad1be10e27603c9fee62d4373029",
+      "sources": 22
+    },
+    {
+      "block": 4,
+      "sha256": "e82ca1a915f5766b6e7c3ea5fe71c177037ef839e001ee55bd7eab6bbe14cd9d",
+      "sources": 44
+    },
+    {
+      "block": 5,
+      "sha256": "ac7f7c35056dcc0140cc1ad10692c47c9a91e125d8733f434e9a43baf3a90005",
+      "sources": 22
+    },
+    {
+      "block": 6,
+      "sha256": "5c8c5e90e3cf0bedb82f2b207307b3c5bbd0bf40486f57d7cb34d3f7e1f7b1a4",
+      "sources": 44
+    },
+    {
+      "block": 7,
+      "sha256": "5585fe2f0f705d3dbe630d70f304d61bd8babdc3ff127e0b577e0253a072c70b",
+      "sources": 22
+    }
+  ],
+  "scope": "Raw API readback and offline checksums; no execution, flash write or recovery proof"
+}

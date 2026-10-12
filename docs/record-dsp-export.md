@@ -32,7 +32,7 @@ uv run comi diag inspect-dsp-image docs/evidence/record-dsp-complete-2026-10-12/
 uv run comi diag export-record-dsp --out artifacts/record-dsp-export
 # 限新增块数；已取得块仍从原始窗口重新验收。
 uv run comi diag export-record-dsp --out artifacts/record-dsp-export --max-new-blocks 3
-# 单块调研：只有record-dsp允许block0..215。
+# 单块调研：record-dsp允许block0..215；boot允许0..7。
 uv run comi diag capture-nor-sector --nor-target record-dsp --block 2 --out artifacts/NEW
 ```
 

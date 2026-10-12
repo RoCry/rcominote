@@ -1,5 +1,7 @@
 # 原始NOR转换：system头匹配与recovery头校验通过
 
+后续修正：[完整boot已取得并通过头/正文checksum](boot-complete.md)。boot采用512 B重置，本文早期32 B模式下的boot结果仅用于记录失败尝试，不能视为完整正确明文；system/recovery头结论不变。
+
 2026-10-12。静态重建SDK工具算法，用实读system原始/映射头求有效初始状态，再验证未参与拟合的字节和另一分区。**已解释这台设备的system头存储转换，尚未验证完整system/boot/recovery正文，更不是恢复或刷写验收。**
 
 ## 实机交叉验证

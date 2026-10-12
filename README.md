@@ -21,6 +21,8 @@
 
 ## 阅读顺序
 
+新增：[完整boot与双checksum验收](docs/boot-complete.md)：原始4 KiB、明文3672 B；确认boot每512 B重置转换状态，为实际启动流程分析提供完整代码。
+
 新增：[原始NOR转换验证](docs/raw-storage-codec.md)：重建SDK算法，完整system头编码/解码与实读字节一致，同一有效状态解码recovery头且校验通过；完整正文及恢复仍未验证。
 
 新增：[system原始头32 B重复块](docs/raw-header-block-pattern.md)：完整512 B双读和映射头对照，排除若干简单重复XOR候选；算法尚未确定。

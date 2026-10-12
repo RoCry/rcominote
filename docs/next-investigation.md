@@ -6,7 +6,7 @@
 
 | 问题 | 当前证据 | 仍缺的决定性证据 |
 |---|---|---|
-| 已提取什么 | [完整system映射镜像](mapped-image-export.md)，927632 B，头/正文checksum通过；[原始512 B头转换已匹配](raw-storage-codec.md)，同一状态解码recovery头且checksum通过 | 原始system正文转换、完整boot/recovery及独立恢复仍未验收 |
+| 已提取什么 | [完整system映射镜像](mapped-image-export.md)，927632 B，头/正文checksum通过；[原始512 B头转换已匹配](raw-storage-codec.md)，同一状态解码recovery头且checksum通过 | [完整boot已通过头/正文checksum](boot-complete.md)；原始system正文转换、完整recovery及独立恢复仍未验收 |
 | 固件存储布局 | [实际ACPT](partition-readback.md)：18项覆盖4 MiB；[缓存JEDEC线索](nor-driver-readback.md)匹配Zbit系列 | 原始boot、recovery、资源、配置等分区内容 |
 | 录音数据存储 | [SD协议后端](card-state-readback.md)，与启动NOR分离 | 不应把录音sync当整机备份 |
 | 保留录音能力 | 实际[MP3 DSP选择](recorder-codec-dispatch.md)，[资源路径](dsp-resource-path.md)指向NOR K区704 KiB | [完整目录已取得](nor-partition-prefixes.md)：aerecord.dsp位于24d400、110148 B；[完整540 B头已双读确认](record-dsp-header.md)，含3组非零bank；[完整110148 B文件已取得](record-dsp-export.md)，216块双覆盖、目录checksum和全部段结构通过；仍缺自写固件加载运行验收 |

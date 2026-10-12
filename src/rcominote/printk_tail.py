@@ -38,8 +38,9 @@ RECORD_DSP_BYTES = 110148  # Double-read SDFS directory, actual aerecord.dsp.
 def block_offset(value: NorTarget, block: int = 0) -> int:
     if type(block) is not int or block < 0:
         raise ValueError("NOR block must be a nonnegative integer")
-    if block and (value != NorTarget.record_dsp or block * 512 >= RECORD_DSP_BYTES):
-        raise ValueError("Additional NOR blocks are limited to the known recording DSP file")
+    extent = {NorTarget.boot: 0x1000, NorTarget.record_dsp: RECORD_DSP_BYTES}.get(value, 512)
+    if block * 512 >= extent:
+        raise ValueError("NOR block exceeds the known boot partition or recording DSP extent")
     return TARGET_OFFSETS[value] + block * 512
 
 

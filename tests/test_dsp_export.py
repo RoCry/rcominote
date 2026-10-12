@@ -15,7 +15,7 @@ EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence/record-dsp-heade
 
 @pytest.mark.parametrize("block", [-1, 216, True, "1"])
 def test_recording_file_extent_rejects_invalid_blocks(block):
-    with pytest.raises(ValueError, match="NOR block|known recording DSP"):
+    with pytest.raises(ValueError, match="NOR block"):
         block_offset(NorTarget.record_dsp, block)
 
 
@@ -25,8 +25,15 @@ def test_last_file_block_is_inside_known_sdfs_partition():
 
 
 def test_other_targets_do_not_allow_arbitrary_offsets():
-    with pytest.raises(ValueError, match="known recording DSP"):
-        block_offset(NorTarget.boot, 1)
+    with pytest.raises(ValueError, match="NOR block"):
+        block_offset(NorTarget.backup_boot, 1)
+
+
+def test_boot_extent_matches_captured_acpt_partition():
+    # Actual fw0_boot: offset0, size0x1000. Eight512-byte blocks only.
+    assert block_offset(NorTarget.boot, 7) == 0xE00
+    with pytest.raises(ValueError, match="NOR block"):
+        block_offset(NorTarget.boot, 8)
 
 
 def test_resume_rechecks_evidence_and_rejects_corrupted_cached_sector(tmp_path):

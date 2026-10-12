@@ -1,0 +1,15 @@
+{
+  "candidate_body_checksums": {
+    "32": "0x7e3f792",
+    "64": "0x86f67855",
+    "128": "0x59afaee2",
+    "256": "0x49fa716e",
+    "512": "0xffffffff",
+    "1024": "0xac89a830",
+    "2048": "0xcc06ab95",
+    "4096": "0xe00f29fd"
+  },
+  "decoded_sha256": "73a199d17490d5ae9e35e466b4ad8fafaa0757fb4a1ae7e79b5c90f90e4cb054",
+  "header_checksum_valid": true,
+  "body_checksum_valid": true
+}

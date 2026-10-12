@@ -63,11 +63,13 @@ def solve_seed(raw: bytes, plain: bytes) -> tuple[int, int]:
     return sum(((rows[i] >> 32) & 1) << bit for i, bit in enumerate(pivots)), rank
 
 
-def transform(data: bytes, seed: int, *, decrypt: bool = False) -> bytes:
+def transform(data: bytes, seed: int, *, decrypt: bool = False, block_bytes: int = 32) -> bytes:
+    if type(block_bytes) is not int or block_bytes <= 0:
+        raise ValueError("Block length must be a positive integer")
     out = bytearray()
-    for base in range(0, len(data), 32):
+    for base in range(0, len(data), block_bytes):
         state = seed
-        for byte in data[base : base + 32]:
+        for byte in data[base : base + block_bytes]:
             result = byte ^ gen_seed8(state)
             out.append(result)
             state = gen_seed32(state, result if decrypt else byte)
