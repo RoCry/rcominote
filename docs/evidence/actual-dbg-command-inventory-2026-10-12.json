@@ -1,0 +1,412 @@
+{
+  "date": "2026-10-12",
+  "scope": "Offline mapped image inventory; exactly one handler decoded; no handler execution, device I/O, RAM pointer following or MMIO access",
+  "image": {
+    "scope": "mapped-system image; not a raw Flash backup",
+    "base": "0x10000000",
+    "bytes": 927632,
+    "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+    "header_sha256": "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5",
+    "body_word_sum": "0xb18576b5",
+    "stored_body_checksum": "0x4e7a894a",
+    "checksum_verified": true,
+    "limits": [
+      "No physical Flash mapping proven",
+      "No complete device backup or restore validation"
+    ]
+  },
+  "decoder": {
+    "name": "Capstone",
+    "version": "5.0.6",
+    "mode": "ARM Thumb + MCLASS, little-endian"
+  },
+  "registry_provenance": {
+    "previous_report": "docs/shell-registry-readback.md",
+    "base": "0x100bb8d4",
+    "stride": 20,
+    "syntax_offset": 0,
+    "help_offset": 4,
+    "subcommand_offset": 8,
+    "handler_offset": 12,
+    "terminal": "First syntax NULL; actual terminal all 20 bytes zero",
+    "command_count": 35,
+    "terminal_descriptor": "0x100bbb90",
+    "terminal_end_exclusive": "0x100bbba4",
+    "all_child_subcommand_pointers_zero": true,
+    "all_last_words_zero": true
+  },
+  "regions": [
+    {
+      "name": "dbg_parent_descriptor",
+      "address": "0x100bb8c0",
+      "file_offset": "0xbb8c0",
+      "length": 20,
+      "hex": "dd690c10e1690c10a4bb0b100000000000000000",
+      "sha256": "b4a5e4d9d4e3c47f4f0f74e83b34ac72ef8832990565547eb3a1f7bb975efbdc"
+    },
+    {
+      "name": "dbg_static_set",
+      "address": "0x100bbba4",
+      "file_offset": "0xbbba4",
+      "length": 8,
+      "hex": "00000000d4b80b10",
+      "sha256": "9647884c10b9b953bd3afbe266fc1ae3583b2b024a641bc78fa48a95e18b15da"
+    },
+    {
+      "name": "complete_dbg_table_including_terminal",
+      "address": "0x100bb8d4",
+      "file_offset": "0xbb8d4",
+      "length": 720,
+      "hex": "ee690c10f2690c1000000000ef180a10000000001f6a0c10236a0c1000000000e5180a1000000000556a0c10596a0c1000000000db180a1000000000866a0c108a6a0c100000000063180a1000000000c26a0c10c66a0c10000000005d180a1000000000036b0c10076b0c100000000057180a10000000003f6b0c10456b0c1000000000d557021000000000636b0c10696b0c100000000049530210000000009d6b0c10a46b0c10000000009d54021000000000da6b0c10e16b0c10000000002d50021000000000186c0c10216c0c1000000000eb170a10000000002a6c0c102f6c0c100000000015540210000000003e6c0c10456c0c1000000000e1170a10000000008ade0c10506c0c10000000004152021000000000616c0c10696c0c1000000000d7170a1000000000716c0c107a6c0c1000000000c9170a1000000000846c0c108b6c0c1000000000d54b021000000000a16c0c10a86c0c1000000000694b021000000000be6c0c10be6c0c1000000000394d021000000000c46c0c10cf6c0c1000000000bf170a1000000000150f0c10e16c0c1000000000cd4d021000000000ef6c0c10f56c0c10000000009d4c021000000000026d0c10086d0c100000000069180a1000000000366d0c103d6d0c1000000000a9170a1000000000476d0c104f6d0c1000000000bd4a021000000000756d0c107d6d0c1000000000294a021000000000bd6d0c10af6d0c10000000009f170a1000000000c56d0c10ce6d0c1000000000194a021000000000e56d0c10eb6d0c1000000000414c021000000000fa6d0c10016e0c100000000091170a10000000000f6e0c10166e0c1000000000c149021000000000216e0c10256e0c1000000000e14e0210000000003e6e0c10476e0c1000000000614e021000000000cc630c105f6e0c10000000005d49021000000000746e0c107c6e0c1000000000ed480210000000000000000000000000000000000000000000000000",
+      "sha256": "d645f3344b7740c645f44b80385250d03b2357b16b6c1df068cc8eacae5cdf7f"
+    },
+    {
+      "name": "snandr_handler",
+      "address": "0x1002549c",
+      "file_offset": "0x2549c",
+      "length": 174,
+      "hex": "2de9ff4705460f469046294875f0b8f9064640b90146274a28467bf08efc162004b0bde8f0874ff4006077f0f5fa044638b9214a284600217bf07ffc4ff0ff30eee7032f2bd103a9d8f80400002277f0cfff03a907460022d8f8080077f0c8ff4fea4029cde90074144a80464b46002128467bf062fcb3682246d3f800a0394643463046d04700280bda0d4a002128467bf053fc204677f0c7fa0020c0e7094ac8e74a4621462846fff7cefef2e7",
+      "sha256": "ccd008109efec0da17f40de229e4c6d222cc8b85c22a8297fe1377ef2d86a4a5",
+      "instructions": [
+        {"address": "0x1002549c", "bytes": "2de9ff47", "mnemonic": "push.w", "operands": "{r0, r1, r2, r3, r4, r5, r6, r7, r8, sb, sl, lr}"},
+        {"address": "0x100254a0", "bytes": "0546", "mnemonic": "mov", "operands": "r5, r0"},
+        {"address": "0x100254a2", "bytes": "0f46", "mnemonic": "mov", "operands": "r7, r1"},
+        {"address": "0x100254a4", "bytes": "9046", "mnemonic": "mov", "operands": "r8, r2"},
+        {"address": "0x100254a6", "bytes": "2948", "mnemonic": "ldr", "operands": "r0, [pc, #0xa4]"},
+        {"address": "0x100254a8", "bytes": "75f0b8f9", "mnemonic": "bl", "operands": "#0x1009a81c"},
+        {"address": "0x100254ac", "bytes": "0646", "mnemonic": "mov", "operands": "r6, r0"},
+        {"address": "0x100254ae", "bytes": "40b9", "mnemonic": "cbnz", "operands": "r0, #0x100254c2"},
+        {"address": "0x100254b0", "bytes": "0146", "mnemonic": "mov", "operands": "r1, r0"},
+        {"address": "0x100254b2", "bytes": "274a", "mnemonic": "ldr", "operands": "r2, [pc, #0x9c]"},
+        {"address": "0x100254b4", "bytes": "2846", "mnemonic": "mov", "operands": "r0, r5"},
+        {"address": "0x100254b6", "bytes": "7bf08efc", "mnemonic": "bl", "operands": "#0x100a0dd6"},
+        {"address": "0x100254ba", "bytes": "1620", "mnemonic": "movs", "operands": "r0, #0x16"},
+        {"address": "0x100254bc", "bytes": "04b0", "mnemonic": "add", "operands": "sp, #0x10"},
+        {"address": "0x100254be", "bytes": "bde8f087", "mnemonic": "pop.w", "operands": "{r4, r5, r6, r7, r8, sb, sl, pc}"},
+        {"address": "0x100254c2", "bytes": "4ff40060", "mnemonic": "mov.w", "operands": "r0, #0x800"},
+        {"address": "0x100254c6", "bytes": "77f0f5fa", "mnemonic": "bl", "operands": "#0x1009cab4"},
+        {"address": "0x100254ca", "bytes": "0446", "mnemonic": "mov", "operands": "r4, r0"},
+        {"address": "0x100254cc", "bytes": "38b9", "mnemonic": "cbnz", "operands": "r0, #0x100254de"},
+        {"address": "0x100254ce", "bytes": "214a", "mnemonic": "ldr", "operands": "r2, [pc, #0x84]"},
+        {"address": "0x100254d0", "bytes": "2846", "mnemonic": "mov", "operands": "r0, r5"},
+        {"address": "0x100254d2", "bytes": "0021", "mnemonic": "movs", "operands": "r1, #0"},
+        {"address": "0x100254d4", "bytes": "7bf07ffc", "mnemonic": "bl", "operands": "#0x100a0dd6"},
+        {"address": "0x100254d8", "bytes": "4ff0ff30", "mnemonic": "mov.w", "operands": "r0, #-1"},
+        {"address": "0x100254dc", "bytes": "eee7", "mnemonic": "b", "operands": "#0x100254bc"},
+        {"address": "0x100254de", "bytes": "032f", "mnemonic": "cmp", "operands": "r7, #3"},
+        {"address": "0x100254e0", "bytes": "2bd1", "mnemonic": "bne", "operands": "#0x1002553a"},
+        {"address": "0x100254e2", "bytes": "03a9", "mnemonic": "add", "operands": "r1, sp, #0xc"},
+        {"address": "0x100254e4", "bytes": "d8f80400", "mnemonic": "ldr.w", "operands": "r0, [r8, #4]"},
+        {"address": "0x100254e8", "bytes": "0022", "mnemonic": "movs", "operands": "r2, #0"},
+        {"address": "0x100254ea", "bytes": "77f0cfff", "mnemonic": "bl", "operands": "#0x1009d48c"},
+        {"address": "0x100254ee", "bytes": "03a9", "mnemonic": "add", "operands": "r1, sp, #0xc"},
+        {"address": "0x100254f0", "bytes": "0746", "mnemonic": "mov", "operands": "r7, r0"},
+        {"address": "0x100254f2", "bytes": "0022", "mnemonic": "movs", "operands": "r2, #0"},
+        {"address": "0x100254f4", "bytes": "d8f80800", "mnemonic": "ldr.w", "operands": "r0, [r8, #8]"},
+        {"address": "0x100254f8", "bytes": "77f0c8ff", "mnemonic": "bl", "operands": "#0x1009d48c"},
+        {"address": "0x100254fc", "bytes": "4fea4029", "mnemonic": "lsl.w", "operands": "sb, r0, #9"},
+        {"address": "0x10025500", "bytes": "cde90074", "mnemonic": "strd", "operands": "r7, r4, [sp]"},
+        {"address": "0x10025504", "bytes": "144a", "mnemonic": "ldr", "operands": "r2, [pc, #0x50]"},
+        {"address": "0x10025506", "bytes": "8046", "mnemonic": "mov", "operands": "r8, r0"},
+        {"address": "0x10025508", "bytes": "4b46", "mnemonic": "mov", "operands": "r3, sb"},
+        {"address": "0x1002550a", "bytes": "0021", "mnemonic": "movs", "operands": "r1, #0"},
+        {"address": "0x1002550c", "bytes": "2846", "mnemonic": "mov", "operands": "r0, r5"},
+        {"address": "0x1002550e", "bytes": "7bf062fc", "mnemonic": "bl", "operands": "#0x100a0dd6"},
+        {"address": "0x10025512", "bytes": "b368", "mnemonic": "ldr", "operands": "r3, [r6, #8]"},
+        {"address": "0x10025514", "bytes": "2246", "mnemonic": "mov", "operands": "r2, r4"},
+        {"address": "0x10025516", "bytes": "d3f800a0", "mnemonic": "ldr.w", "operands": "sl, [r3]"},
+        {"address": "0x1002551a", "bytes": "3946", "mnemonic": "mov", "operands": "r1, r7"},
+        {"address": "0x1002551c", "bytes": "4346", "mnemonic": "mov", "operands": "r3, r8"},
+        {"address": "0x1002551e", "bytes": "3046", "mnemonic": "mov", "operands": "r0, r6"},
+        {"address": "0x10025520", "bytes": "d047", "mnemonic": "blx", "operands": "sl"},
+        {"address": "0x10025522", "bytes": "0028", "mnemonic": "cmp", "operands": "r0, #0"},
+        {"address": "0x10025524", "bytes": "0bda", "mnemonic": "bge", "operands": "#0x1002553e"},
+        {"address": "0x10025526", "bytes": "0d4a", "mnemonic": "ldr", "operands": "r2, [pc, #0x34]"},
+        {"address": "0x10025528", "bytes": "0021", "mnemonic": "movs", "operands": "r1, #0"},
+        {"address": "0x1002552a", "bytes": "2846", "mnemonic": "mov", "operands": "r0, r5"},
+        {"address": "0x1002552c", "bytes": "7bf053fc", "mnemonic": "bl", "operands": "#0x100a0dd6"},
+        {"address": "0x10025530", "bytes": "2046", "mnemonic": "mov", "operands": "r0, r4"},
+        {"address": "0x10025532", "bytes": "77f0c7fa", "mnemonic": "bl", "operands": "#0x1009cac4"},
+        {"address": "0x10025536", "bytes": "0020", "mnemonic": "movs", "operands": "r0, #0"},
+        {"address": "0x10025538", "bytes": "c0e7", "mnemonic": "b", "operands": "#0x100254bc"},
+        {"address": "0x1002553a", "bytes": "094a", "mnemonic": "ldr", "operands": "r2, [pc, #0x24]"},
+        {"address": "0x1002553c", "bytes": "c8e7", "mnemonic": "b", "operands": "#0x100254d0"},
+        {"address": "0x1002553e", "bytes": "4a46", "mnemonic": "mov", "operands": "r2, sb"},
+        {"address": "0x10025540", "bytes": "2146", "mnemonic": "mov", "operands": "r1, r4"},
+        {"address": "0x10025542", "bytes": "2846", "mnemonic": "mov", "operands": "r0, r5"},
+        {"address": "0x10025544", "bytes": "fff7cefe", "mnemonic": "bl", "operands": "#0x100252e4"},
+        {"address": "0x10025548", "bytes": "f2e7", "mnemonic": "b", "operands": "#0x10025530"}
+      ]
+    },
+    {
+      "name": "snandr_literal_pool",
+      "address": "0x1002554c",
+      "file_offset": "0x2554c",
+      "length": 24,
+      "hex": "39660c1041660c10d4670c103a680c10d0660c109c660c10",
+      "sha256": "f85ef37282e00da86974d18e56b54bdeeb62fb0f0fd0218e0f78e95024657c34"
+    }
+  ],
+  "entries": [
+    {"index": 0, "address": "0x100bb8d4", "descriptor_hex": "ee690c10f2690c1000000000ef180a1000000000", "syntax": {"address": "0x100c69ee", "length": 4, "hex": "6d647700", "sha256": "9c62ad61fc368c16b791df5409d45bc8829c5035ed931663281fb9ad61603895", "text": "mdw"}, "help": {"address": "0x100c69f2", "length": 45, "hex": "646973706c6179206d656d6f727920627920776f72643a206d64772061646472657373205b2c636f756e745d00", "sha256": "15f7408f5707023650540220c408a0edfe8c8b513a84dcc2a70747601cc676f6", "text": "display memory by word: mdw address [,count]"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100a18ef", "handler_code": "0x100a18ee", "last_word": "0x00000000"},
+    {"index": 1, "address": "0x100bb8e8", "descriptor_hex": "1f6a0c10236a0c1000000000e5180a1000000000", "syntax": {"address": "0x100c6a1f", "length": 4, "hex": "6d646800", "sha256": "33879f3f8b70f49142bd10c01918077817f9797b5c6e801185fe40e90d5b3d47", "text": "mdh"}, "help": {"address": "0x100c6a23", "length": 50, "hex": "646973706c6179206d656d6f72792062792068616c662d776f72643a206d64682061646472657373205b2c636f756e745d00", "sha256": "f0dfab91119bc399418094200139ce3649189288bf6058daf95e96cc8ecf2f31", "text": "display memory by half-word: mdh address [,count]"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100a18e5", "handler_code": "0x100a18e4", "last_word": "0x00000000"},
+    {"index": 2, "address": "0x100bb8fc", "descriptor_hex": "556a0c10596a0c1000000000db180a1000000000", "syntax": {"address": "0x100c6a55", "length": 4, "hex": "6d646200", "sha256": "5572456f7c339dbf59f2f73f496d581870242a7fb9436ce4ba3b9ad87499ddeb", "text": "mdb"}, "help": {"address": "0x100c6a59", "length": 45, "hex": "646973706c6179206d656d6f727920627920627974653a206d64622061646472657373205b2c636f756e745d00", "sha256": "06c3e4ded5971eacea1aa21a5a8be7bd2ef952f0db468267911b430caf412913", "text": "display memory by byte: mdb address [,count]"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100a18db", "handler_code": "0x100a18da", "last_word": "0x00000000"},
+    {"index": 3, "address": "0x100bb910", "descriptor_hex": "866a0c108a6a0c100000000063180a1000000000", "syntax": {"address": "0x100c6a86", "length": 4, "hex": "6d777700", "sha256": "453ee161f9543177e4ad81636f9dbdb4d893a95a2ccfc1cc61a694c6142e32f3", "text": "mww"}, "help": {"address": "0x100c6a8a", "length": 56, "hex": "6d656d6f7279207772697465202866696c6c2920627920776f72643a206d777720616464726573732076616c7565205b2c636f756e745d00", "sha256": "199a2b3b5f9cfe9ea55b53f21e31f73ae4394b29494e9706ab1cc01dbd4753e5", "text": "memory write (fill) by word: mww address value [,count]"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100a1863", "handler_code": "0x100a1862", "last_word": "0x00000000"},
+    {"index": 4, "address": "0x100bb924", "descriptor_hex": "c26a0c10c66a0c10000000005d180a1000000000", "syntax": {"address": "0x100c6ac2", "length": 4, "hex": "6d776800", "sha256": "ecea6f4ed0700e4c24b81695e97a2ae5aff9d53373605a9023c07aec326ea1c3", "text": "mwh"}, "help": {"address": "0x100c6ac6", "length": 61, "hex": "6d656d6f7279207772697465202866696c6c292062792068616c662d776f72643a206d776820616464726573732076616c7565205b2c636f756e745d00", "sha256": "ae42789062c23790293d8af18fa63d3ab00c9d6a33e9038119a7f98ff87baed9", "text": "memory write (fill) by half-word: mwh address value [,count]"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100a185d", "handler_code": "0x100a185c", "last_word": "0x00000000"},
+    {"index": 5, "address": "0x100bb938", "descriptor_hex": "036b0c10076b0c100000000057180a1000000000", "syntax": {"address": "0x100c6b03", "length": 4, "hex": "6d776200", "sha256": "e3d7ef80d00dd955a69cd909eef328c0e95231d1a1fe510099a14bcfdfb7ecd5", "text": "mwb"}, "help": {"address": "0x100c6b07", "length": 56, "hex": "6d656d6f7279207772697465202866696c6c2920627920627974653a206d776220616464726573732076616c7565205b2c636f756e745d00", "sha256": "709984bdd6430c6e85439957691b9da4db5fb4ff7e837261806bdd55ad59d798", "text": "memory write (fill) by byte: mwb address value [,count]"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100a1857", "handler_code": "0x100a1856", "last_word": "0x00000000"},
+    {"index": 6, "address": "0x100bb94c", "descriptor_hex": "3f6b0c10456b0c1000000000d557021000000000", "syntax": {"address": "0x100c6b3f", "length": 6, "hex": "736e6f727400", "sha256": "43cb6ab95486a1eca3580bd9583417975ce452e4f34d3a4b8d9652bbebcce7be", "text": "snort"}, "help": {"address": "0x100c6b45", "length": 30, "hex": "6e6f722074657374203a20736e6f727420616464726573732073697a6500", "sha256": "15fc2169887f9f40112e2361d0f3d316a9a6c1a15f9c907f4587ea206e4a4e4a", "text": "nor test : snort address size"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100257d5", "handler_code": "0x100257d4", "last_word": "0x00000000"},
+    {"index": 7, "address": "0x100bb960", "descriptor_hex": "636b0c10696b0c10000000004953021000000000", "syntax": {"address": "0x100c6b63", "length": 6, "hex": "667265616400", "sha256": "bfe8e76a218bdc0dee8bd56f9b90d071b31f2472c1282f3e31a5667672d9bcbe", "text": "fread"}, "help": {"address": "0x100c6b69", "length": 52, "hex": "666c6173682072656164203a206672656164206465765b73642f7370695f666c6173682f7370696e616e645d206f666673657400", "sha256": "285821fc7b7d1075e1f706f73f4147586642940778eee0822248ea58efa71980", "text": "flash read : fread dev[sd/spi_flash/spinand] offset"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x10025349", "handler_code": "0x10025348", "last_word": "0x00000000"},
+    {"index": 8, "address": "0x100bb974", "descriptor_hex": "9d6b0c10a46b0c10000000009d54021000000000", "syntax": {"address": "0x100c6b9d", "length": 7, "hex": "736e616e647200", "sha256": "924f4ce72e1c3690f048471dcdc339516f08ea8e02114477ba533eade14f0807", "text": "snandr"}, "help": {"address": "0x100c6ba4", "length": 54, "hex": "6e616e64206c6f67696320726561643a206f666673657420737461727420616464726573733b2073697a652072656164206c656e3b00", "sha256": "914e4959bcc64afed89da5134b051deea3fa19f8bf6ba42230032f029fd74132", "text": "nand logic read: offset start address; size read len;"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x1002549d", "handler_code": "0x1002549c", "last_word": "0x00000000"},
+    {"index": 9, "address": "0x100bb988", "descriptor_hex": "da6b0c10e16b0c10000000002d50021000000000", "syntax": {"address": "0x100c6bda", "length": 7, "hex": "736e616e647700", "sha256": "87739c727a669f3b908c1e667b39c804572754dd8ce014676f3dffc98f3321c9", "text": "snandw"}, "help": {"address": "0x100c6be1", "length": 55, "hex": "6e616e64206c6f6769632077726974653a206f666673657420737461727420616464726573733b2073697a652072656164206c656e3b00", "sha256": "2d423204c5326c866caec2f3ebd10bb6465f090f030c3329907709cd2d8c56d5", "text": "nand logic write: offset start address; size read len;"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x1002502d", "handler_code": "0x1002502c", "last_word": "0x00000000"},
+    {"index": 10, "address": "0x100bb99c", "descriptor_hex": "186c0c10216c0c1000000000eb170a1000000000", "syntax": {"address": "0x100c6c18", "length": 9, "hex": "646d615f64756d7000", "sha256": "0bece202e2796868f805c73ab266bab91958261d31507e8a29c9a2fe89ae90f7", "text": "dma_dump"}, "help": {"address": "0x100c6c21", "length": 9, "hex": "646d6120696e666f00", "sha256": "008bb9aa9a69fc5b46951ec4a1f54e4b37d9a44cfd646bca53e7aec660d77fac", "text": "dma info"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100a17eb", "handler_code": "0x100a17ea", "last_word": "0x00000000"},
+    {"index": 11, "address": "0x100bb9b0", "descriptor_hex": "2a6c0c102f6c0c10000000001554021000000000", "syntax": {"address": "0x100c6c2a", "length": 5, "hex": "7364667300", "sha256": "4dec415de3ffb1bfe885eed994103c043fe87ddd835dfc61c09b357f414455fd", "text": "sdfs"}, "help": {"address": "0x100c6c2f", "length": 15, "hex": "73646673206e616d652073697a6500", "sha256": "b88fd619866a6af273b3e933cb3b9b68d3a2913d9ce95ba7f420fdd6f49987b4", "text": "sdfs name size"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x10025415", "handler_code": "0x10025414", "last_word": "0x00000000"},
+    {"index": 12, "address": "0x100bb9c4", "descriptor_hex": "3e6c0c10456c0c1000000000e1170a1000000000", "syntax": {"address": "0x100c6c3e", "length": 7, "hex": "6e7664756d7000", "sha256": "cfce0ea9c138744687f5b28337545f09049a1251a3ba18c7b519f3a395d87046", "text": "nvdump"}, "help": {"address": "0x100c6c45", "length": 11, "hex": "6e7672616d2064756d7000", "sha256": "871c0eb8cfcff649b1a28a1443992071490ece4656f3af75edbf74d87d4c2906", "text": "nvram dump"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100a17e1", "handler_code": "0x100a17e0", "last_word": "0x00000000"},
+    {"index": 13, "address": "0x100bb9d8", "descriptor_hex": "8ade0c10506c0c10000000004152021000000000", "syntax": {"address": "0x100cde8a", "length": 6, "hex": "6e7672616d00", "sha256": "7ede620e3d157b736c09836bcb4864c3588e1b28f647524fb6b30ff05414e2cb", "text": "nvram"}, "help": {"address": "0x100c6c50", "length": 17, "hex": "6e7672616d206e616d65202876616c2900", "sha256": "fab020cce2dbc9aa1b86b76a1c8d892048b98d25993237e62c6dc51f079c1d9b", "text": "nvram name (val)"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x10025241", "handler_code": "0x10025240", "last_word": "0x00000000"},
+    {"index": 14, "address": "0x100bb9ec", "descriptor_hex": "616c0c10696c0c1000000000d7170a1000000000", "syntax": {"address": "0x100c6c61", "length": 8, "hex": "64655f64756d7000", "sha256": "5b26a0ba99ddb48b0812fbe976df773c78c76ff4f2344e7c9d90edadc7624668", "text": "de_dump"}, "help": {"address": "0x100c6c69", "length": 8, "hex": "64652064756d7000", "sha256": "ec3dcc6f6ee5796a2182fb464f0bd977088be2abd9f331c1e2b876079bc86825", "text": "de dump"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100a17d7", "handler_code": "0x100a17d6", "last_word": "0x00000000"},
+    {"index": 15, "address": "0x100bba00", "descriptor_hex": "716c0c107a6c0c1000000000c9170a1000000000", "syntax": {"address": "0x100c6c71", "length": 9, "hex": "6c63645f64756d7000", "sha256": "287184a82a9ca85c9f8cbe7c81ef16534be657b5b5a865fd651296a79017b5c3", "text": "lcd_dump"}, "help": {"address": "0x100c6c7a", "length": 10, "hex": "6c6364632064756d7000", "sha256": "182efc107f46f8661348db97a84d7044e63529e1dfb445feb3843e3528db1f95", "text": "lcdc dump"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100a17c9", "handler_code": "0x100a17c8", "last_word": "0x00000000"},
+    {"index": 16, "address": "0x100bba14", "descriptor_hex": "846c0c108b6c0c1000000000d54b021000000000", "syntax": {"address": "0x100c6c84", "length": 7, "hex": "62622d72656700", "sha256": "7d92491724935525085dbd7a2f560880fb2108c24ea938edffff731e723e36e6", "text": "bb-reg"}, "help": {"address": "0x100c6c8b", "length": 22, "hex": "726561642f7772697465206274632062622063746c00", "sha256": "f7599ddf4492ed997696fb47703319f7191251374b953f3d1572902b7fd8c832", "text": "read/write btc bb ctl"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x10024bd5", "handler_code": "0x10024bd4", "last_word": "0x00000000"},
+    {"index": 17, "address": "0x100bba28", "descriptor_hex": "a16c0c10a86c0c1000000000694b021000000000", "syntax": {"address": "0x100c6ca1", "length": 7, "hex": "72662d72656700", "sha256": "667e0d8ea45cf0d4beecc5781865c6f63819ad0f4f3d357889d04e183c9370dc", "text": "rf-reg"}, "help": {"address": "0x100c6ca8", "length": 22, "hex": "726561642f7772697465206274632072662063746c00", "sha256": "7c1322df8ec08fbfb4c747c38c752584948d19cbe9ed15664942c1a540d592df", "text": "read/write btc rf ctl"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x10024b69", "handler_code": "0x10024b68", "last_word": "0x00000000"},
+    {"index": 18, "address": "0x100bba3c", "descriptor_hex": "be6c0c10be6c0c1000000000394d021000000000", "syntax": {"address": "0x100c6cbe", "length": 6, "hex": "736c65657000", "sha256": "720d4cd786150e6b352215f795a86f20e5cdcf3b8156099562b1d124e471c1b0", "text": "sleep"}, "help": {"address": "0x100c6cbe", "length": 6, "hex": "736c65657000", "sha256": "720d4cd786150e6b352215f795a86f20e5cdcf3b8156099562b1d124e471c1b0", "text": "sleep"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x10024d39", "handler_code": "0x10024d38", "last_word": "0x00000000"},
+    {"index": 19, "address": "0x100bba50", "descriptor_hex": "c46c0c10cf6c0c1000000000bf170a1000000000", "syntax": {"address": "0x100c6cc4", "length": 11, "hex": "73686f775f737461636b00", "sha256": "6f051eadb39198ba6e7f12db0d4490f8be493d85c32be9ecbe3335efad50c98a", "text": "show_stack"}, "help": {"address": "0x100c6ccf", "length": 18, "hex": "73686f77206b65726e656c20737461636b00", "sha256": "99e6f119a65bdb630c6e4749f6cf6c8da6291ba873b581d42dcd7ee4d11bd1db", "text": "show kernel stack"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100a17bf", "handler_code": "0x100a17be", "last_word": "0x00000000"},
+    {"index": 20, "address": "0x100bba64", "descriptor_hex": "150f0c10e16c0c1000000000cd4d021000000000", "syntax": {"address": "0x100c0f15", "length": 7, "hex": "7265626f6f7400", "sha256": "ad35bdb4aed23ec87bbc1799ff5281d76e3ddd166dd304ca4c0c212484699ff3", "text": "reboot"}, "help": {"address": "0x100c6ce1", "length": 14, "hex": "7265626f6f74205b616466755d00", "sha256": "a55d49418753abb9677df3393d8b31a2432e6f2f338c035362d24859cf8df00f", "text": "reboot [adfu]"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x10024dcd", "handler_code": "0x10024dcc", "last_word": "0x00000000"},
+    {"index": 21, "address": "0x100bba78", "descriptor_hex": "ef6c0c10f56c0c10000000009d4c021000000000", "syntax": {"address": "0x100c6cef", "length": 6, "hex": "6b6865617000", "sha256": "8e07349506354279c91eb2df5d350e03922b1451176ec26d28b7d45fffd3a0a4", "text": "kheap"}, "help": {"address": "0x100c6cf5", "length": 13, "hex": "6b68656170205b616464725d00", "sha256": "9253b12e3a0317f129909c3f04146ec8adc12fa16b2007557eb0d94af8003677", "text": "kheap [addr]"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x10024c9d", "handler_code": "0x10024c9c", "last_word": "0x00000000"},
+    {"index": 22, "address": "0x100bba8c", "descriptor_hex": "026d0c10086d0c100000000069180a1000000000", "syntax": {"address": "0x100c6d02", "length": 6, "hex": "75696d656d00", "sha256": "5f510f86d17452f0485e0158b03259823bb6976db56a30dea8a67ff76ac9f12a", "text": "uimem"}, "help": {"address": "0x100c6d08", "length": 46, "hex": "75696d656d2064756d70205b307c317c325d2c20776865726520302d46422c20312d4c56474c2c20322d52455300", "sha256": "e6d4fb682d850054f1822d6500f5b4b3c005598b29a4c880c3ac06d913736720", "text": "uimem dump [0|1|2], where 0-FB, 1-LVGL, 2-RES"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100a1869", "handler_code": "0x100a1868", "last_word": "0x00000000"},
+    {"index": 23, "address": "0x100bbaa0", "descriptor_hex": "366d0c103d6d0c1000000000a9170a1000000000", "syntax": {"address": "0x100c6d36", "length": 7, "hex": "75697669657700", "sha256": "a247bb2b644fb5032ae58590b6be04fa5e2ee74505978cc659ab73c0da0348ca", "text": "uiview"}, "help": {"address": "0x100c6d3d", "length": 10, "hex": "766965772064756d7000", "sha256": "ad7a070a3061448131165b381302d03896491e40e7214ca1e757c104565a163b", "text": "view dump"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100a17a9", "handler_code": "0x100a17a8", "last_word": "0x00000000"},
+    {"index": 24, "address": "0x100bbab4", "descriptor_hex": "476d0c104f6d0c1000000000bd4a021000000000", "syntax": {"address": "0x100c6d47", "length": 8, "hex": "6370756c6f616400", "sha256": "cb5207435b37b6e020a746386890477d4bc539b7f91af641e0ff02da13d97d36", "text": "cpuload"}, "help": {"address": "0x100c6d4f", "length": 38, "hex": "73686f7720637075206c6f6164207374617469737469632070726572696f646963616c6c7900", "sha256": "0ad4b3302ea6105f8c95a2a8c270e90ea69182eff41464d9934b532103a85d24", "text": "show cpu load statistic preriodically"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x10024abd", "handler_code": "0x10024abc", "last_word": "0x00000000"},
+    {"index": 25, "address": "0x100bbac8", "descriptor_hex": "756d0c107d6d0c1000000000294a021000000000", "syntax": {"address": "0x100c6d75", "length": 8, "hex": "64756d7062756600", "sha256": "35ae05b2fcf08338a3aa41bf201d59aeb05bd2cec3310e745ad1056230776cfc", "text": "dumpbuf"}, "help": {"address": "0x100c6d7d", "length": 50, "hex": "64756d702062756666657220746f2066696c652073797374656d3a2064756d706275662061646472206c656e207061746800", "sha256": "fbef19dc975df738fa3d9acf8b29878954806330657d165ed059c4db3e1320e3", "text": "dump buffer to file system: dumpbuf addr len path"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x10024a29", "handler_code": "0x10024a28", "last_word": "0x00000000"},
+    {"index": 26, "address": "0x100bbadc", "descriptor_hex": "bd6d0c10af6d0c10000000009f170a1000000000", "syntax": {"address": "0x100c6dbd", "length": 8, "hex": "64756d706d736700", "sha256": "3383e46750fe917fe899471583155b1db888b99fbef288694290307000976303", "text": "dumpmsg"}, "help": {"address": "0x100c6daf", "length": 22, "hex": "64756d70206d6573736167653a2064756d706d736700", "sha256": "c8d8245cf70be9e33fdc2e88787edc43784043fc36d42f4f883c8769aaccc78c", "text": "dump message: dumpmsg"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100a179f", "handler_code": "0x100a179e", "last_word": "0x00000000"},
+    {"index": 27, "address": "0x100bbaf0", "descriptor_hex": "c56d0c10ce6d0c1000000000194a021000000000", "syntax": {"address": "0x100c6dc5", "length": 9, "hex": "64756d707262756600", "sha256": "a76f31eea7a66bd92fbe726c0da8b6fba83b9f2fb2ca9875077ac0bd4c0599a8", "text": "dumprbuf"}, "help": {"address": "0x100c6dce", "length": 23, "hex": "64756d70207262756620696e2073686172652072616d00", "sha256": "6a762925e3443bec6f4f91cc64e6633cbaf19dfa73306e588ed09de8816c2d59", "text": "dump rbuf in share ram"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x10024a19", "handler_code": "0x10024a18", "last_word": "0x00000000"},
+    {"index": 28, "address": "0x100bbb04", "descriptor_hex": "e56d0c10eb6d0c1000000000414c021000000000", "syntax": {"address": "0x100c6de5", "length": 6, "hex": "646267737700", "sha256": "7b8a807290d123dd9ddcc4b56d550a3233077a3cd1edfc8381e820ff3631d741", "text": "dbgsw"}, "help": {"address": "0x100c6deb", "length": 15, "hex": "6462677377206370755b646d615d00", "sha256": "2e1ffe2adbd2370910410f93171cb2e629d0ea6274b05ac3c711f03885ced15e", "text": "dbgsw cpu[dma]"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x10024c41", "handler_code": "0x10024c40", "last_word": "0x00000000"},
+    {"index": 29, "address": "0x100bbb18", "descriptor_hex": "fa6d0c10016e0c100000000091170a1000000000", "syntax": {"address": "0x100c6dfa", "length": 7, "hex": "7265736d616e00", "sha256": "0c95f2e48225c60eaba4446d1771de10a60bf426bcd5dbed1c536696a1e77cf9", "text": "resman"}, "help": {"address": "0x100c6e01", "length": 14, "hex": "7265736f757263652064756d7000", "sha256": "cc45f00b09d250e9e27e6c4be493266afbceb96fe6aadb217b733ab3ec35a348", "text": "resource dump"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100a1791", "handler_code": "0x100a1790", "last_word": "0x00000000"},
+    {"index": 30, "address": "0x100bbb2c", "descriptor_hex": "0f6e0c10166e0c1000000000c149021000000000", "syntax": {"address": "0x100c6e0f", "length": 7, "hex": "776b7372637400", "sha256": "1c0095bf2c4ab47c5c0d30f92a97e80ab5e20a71cc218954282d0ab619ed1fed", "text": "wksrct"}, "help": {"address": "0x100c6e16", "length": 11, "hex": "776b7372637420206d7300", "sha256": "11905d43f48050ffc8824731b657e1891a79f268466e4df50c46ceb1083ebb19", "text": "wksrct  ms"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100249c1", "handler_code": "0x100249c0", "last_word": "0x00000000"},
+    {"index": 31, "address": "0x100bbb40", "descriptor_hex": "216e0c10256e0c1000000000e14e021000000000", "syntax": {"address": "0x100c6e21", "length": 4, "hex": "72746300", "sha256": "1e0d6a51639cddc9572ca06ac5c4a34958e2ff255522029ef7a0ed04eba41417", "text": "rtc"}, "help": {"address": "0x100c6e25", "length": 25, "hex": "727463206765742f7365742063757272656e742074696d6500", "sha256": "e5203f8d7dca59ed5c7ccda5b004e2d87e412d4f8cadf0886b3c507500c431e6", "text": "rtc get/set current time"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x10024ee1", "handler_code": "0x10024ee0", "last_word": "0x00000000"},
+    {"index": 32, "address": "0x100bbb54", "descriptor_hex": "3e6e0c10476e0c1000000000614e021000000000", "syntax": {"address": "0x100c6e3e", "length": 9, "hex": "616c61726d38687a00", "sha256": "938dfbde16d87d818091e8ef84583b6b8b6f0eb4c6e61f797113ef16e374fa0e", "text": "alarm8hz"}, "help": {"address": "0x100c6e47", "length": 24, "hex": "616c61726d38687a2073657420616c61726d2074696d6500", "sha256": "bc4afb79fb867c2c3d248180f3d278cd1850b4a959e064aa8e10be5d8707595d", "text": "alarm8hz set alarm time"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x10024e61", "handler_code": "0x10024e60", "last_word": "0x00000000"},
+    {"index": 33, "address": "0x100bbb68", "descriptor_hex": "cc630c105f6e0c10000000005d49021000000000", "syntax": {"address": "0x100c63cc", "length": 5, "hex": "6476667300", "sha256": "abc6e168b9124acfc63d44cd57f782b7f5fbb68b2f973d43ac86de2366bd0ae6", "text": "dvfs"}, "help": {"address": "0x100c6e5f", "length": 21, "hex": "64766673207365742f756e736574206c6576656c00", "sha256": "5e2702463fef209d99f94613284bdb9c27f1f854fbb168d46eb78a080e317b24", "text": "dvfs set/unset level"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x1002495d", "handler_code": "0x1002495c", "last_word": "0x00000000"},
+    {"index": 34, "address": "0x100bbb7c", "descriptor_hex": "746e0c107c6e0c1000000000ed48021000000000", "syntax": {"address": "0x100c6e74", "length": 8, "hex": "6d70755f73657400", "sha256": "1ff0e686662562062a9d90bf3aeef7ac7586c5f8504c86ffcb20c670e2368cb0", "text": "mpu_set"}, "help": {"address": "0x100c6e7c", "length": 35, "hex": "6d70755f736574206d656d5f626173652073697a6520726f5b6e6f2f72772f726f5d00", "sha256": "6e6aa7cf355df060f0a91e0e8caaa6a7370047c74c37e30ef3cf1135563096d6", "text": "mpu_set mem_base size ro[no/rw/ro]"}, "subcommand_pointer": "0x00000000", "handler_thumb": "0x100248ed", "handler_code": "0x100248ec", "last_word": "0x00000000"}
+  ],
+  "terminal": {
+    "name": "all_zero_terminal_descriptor",
+    "address": "0x100bbb90",
+    "file_offset": "0xbbb90",
+    "length": 20,
+    "hex": "0000000000000000000000000000000000000000",
+    "sha256": "de47c9b27eb8d300dbb5f2c353e632c393262cf06340c4fa7f1b40c4cbd36f90"
+  },
+  "snandr": {
+    "entry_index": 8,
+    "handler_code": "0x1002549c",
+    "code_end_exclusive": "0x1002554a",
+    "literal_pool_end_exclusive": "0x10025564",
+    "literals": [
+      {
+        "address": "0x1002554c",
+        "value": "0x100c6639",
+        "target_string": {
+          "address": "0x100c6639",
+          "length": 8,
+          "hex": "7370696e616e6400",
+          "sha256": "8d30a0cba027f930c6139c93672d2537168289c0ee91fece8f021412ed59b30b",
+          "text": "spinand"
+        }
+      },
+      {
+        "address": "0x10025550",
+        "value": "0x100c6641",
+        "target_string": {
+          "address": "0x100c6641",
+          "length": 26,
+          "hex": "6e6f72206465762062696e64696e67206661696c6564210a0a00",
+          "sha256": "cc5476ce4b8028246b8e6a9334fbe8c2b22fabde034026927c6e9b3fa3030666",
+          "text": "nor dev binding failed!\n\n"
+        }
+      },
+      {
+        "address": "0x10025554",
+        "value": "0x100c67d4",
+        "target_string": {
+          "address": "0x100c67d4",
+          "length": 14,
+          "hex": "6d616c6c6f63206661696c0a0a00",
+          "sha256": "1acd1db46a1de464fd13fe50da4d38fb7c452bba2001cdfa65badc80b62773b3",
+          "text": "malloc fail\n\n"
+        }
+      },
+      {
+        "address": "0x10025558",
+        "value": "0x100c683a",
+        "target_string": {
+          "address": "0x100c683a",
+          "length": 38,
+          "hex": "6e616e6420726561642025643a206f66667365743d307825782c206275663d307825780a0a00",
+          "sha256": "790237d35264916c1cffaf751c7604bdea38177cd6c190f26fa6acc8d96ae104",
+          "text": "nand read %d: offset=0x%x, buf=0x%x\n\n"
+        }
+      },
+      {
+        "address": "0x1002555c",
+        "value": "0x100c66d0",
+        "target_string": {
+          "address": "0x100c66d0",
+          "length": 18,
+          "hex": "666c6173682072656164206661696c0a0a00",
+          "sha256": "be82f03f729715de4030166e9b1f866230f41ac8b775049829ca6c06b571c45b",
+          "text": "flash read fail\n\n"
+        }
+      },
+      {
+        "address": "0x10025560",
+        "value": "0x100c669c",
+        "target_string": {
+          "address": "0x100c669c",
+          "length": 52,
+          "hex": "6f6666736574206f722073697a6520706172616d2073657474696e672077726f6e672c20706c6561736520636865636b210a0a00",
+          "sha256": "ebd2e4ac29fe788d02898a2d5eed2d214105c0981463a72be6908f6148c9d238",
+          "text": "offset or size param setting wrong, please check!\n\n"
+        }
+      }
+    ],
+    "actual_steps": [
+      "Bind mapped literal spinand through 0x1009a81c before argc validation; NULL returns +22",
+      "Allocate 0x800 (2048) bytes via 0x1009cab4 before argc validation; NULL returns -1",
+      "argc must equal 3; invalid argc reports error and returns -1 without freeing successful allocation",
+      "Parse argv[1] offset and argv[2] size through 0x1009d48c with base=0; endpointer not validated",
+      "Compute display length as low32(size << 9) into sb; no comparison limiting size or display length to allocation",
+      "Print status through shell formatter 0x100a0dd6 before read",
+      "Call device API first slot at 0x10025520 with device,offset,buffer,unshifted size",
+      "ret>=0 calls existing print_buf 0x100252e4 with buffer and low32(size<<9); ret<0 prints failure",
+      "Both read result paths free buffer via 0x1009cac4 then return 0; read failure not propagated"
+    ],
+    "calls_not_expanded": [
+      "0x1009a81c",
+      "0x1009cab4",
+      "0x1009d48c",
+      "0x100a0dd6",
+      "device API first slot",
+      "0x100252e4",
+      "0x1009cac4"
+    ],
+    "hand_computed_size_examples": [
+      {
+        "size_argument": 1,
+        "requested_api_length": 1,
+        "dump_bytes": 512,
+        "allocation_bytes": 2048
+      },
+      {
+        "size_argument": 4,
+        "requested_api_length": 4,
+        "dump_bytes": 2048,
+        "allocation_bytes": 2048
+      },
+      {
+        "size_argument": 5,
+        "requested_api_length": 5,
+        "dump_bytes": 2560,
+        "allocation_bytes": 2048,
+        "overread_risk": "Dump length exceeds allocated buffer by 512 bytes if read reports success"
+      }
+    ],
+    "source_difference": "Pinned shell_nand_read uses unshifted size for status and print_buf; actual handler shifts size by 9 for status/dump but not device API. Actual API units/driver identity and side effects not expanded.",
+    "output_route": "Actual success BL target 0x100252e4 is previously decoded print_buf whose hex body uses printk, not BLE shell formatter"
+  },
+  "candidate_assessment": [
+    {
+      "commands": [
+        "mdw",
+        "mdh",
+        "mdb"
+      ],
+      "status": "Already known mapped-memory readers; no new physical Flash mapping or authorization for arbitrary RAM/MMIO reads"
+    },
+    {
+      "commands": [
+        "fread"
+      ],
+      "status": "Previously decoded; original NOR byte payload still not validated; printk output path already documented"
+    },
+    {
+      "commands": [
+        "snandr"
+      ],
+      "status": "Actual additional bounded audit confirms read-shaped API but unchecked shifted dump and printk body; not newly proven safe export; device name spinand does not establish present hardware or read-only side effects"
+    },
+    {
+      "commands": [
+        "sdfs"
+      ],
+      "status": "Previously traced SDFS/partition path, not general raw Flash backup; full handler not decoded this round"
+    },
+    {
+      "commands": [
+        "nvdump",
+        "nvram"
+      ],
+      "status": "NVRAM names/help only; full actual handlers and output/side effects not audited this round; not proven read-only general storage export"
+    },
+    {
+      "commands": [
+        "dumpbuf"
+      ],
+      "status": "Actual help explicitly dump buffer to file system; pinned source creates/writes destination file; not read-only export candidate; actual handler not decoded"
+    },
+    {
+      "commands": [
+        "dumprbuf",
+        "kheap",
+        "uimem",
+        "dma_dump",
+        "de_dump",
+        "lcd_dump",
+        "resman",
+        "dumpmsg",
+        "show_stack",
+        "uiview"
+      ],
+      "status": "Diagnostic names/help only; do not establish raw Flash/file read or safe mapped-memory export"
+    },
+    {
+      "commands": [
+        "dbgsw"
+      ],
+      "status": "Known source changes CPU/DMA console mode, not new byte-return interface; actual handler not decoded this round"
+    },
+    {
+      "commands": [
+        "snort",
+        "snandw",
+        "mww",
+        "mwh",
+        "mwb",
+        "bb-reg",
+        "rf-reg",
+        "sleep",
+        "reboot",
+        "cpuload",
+        "wksrct",
+        "rtc",
+        "alarm8hz",
+        "dvfs",
+        "mpu_set"
+      ],
+      "status": "Write/test/control/mixed or unverified diagnostics; not promoted as read-only; names alone do not prove actual semantics"
+    }
+  ],
+  "sources": [
+    {
+      "path": "action_technology_sdk/zephyr/subsys/shell/shell_dbg.c",
+      "sha256": "e189f3db46481fc0579e2fc8a1448c3830d339efc7d0487d6977bbff2a045b5b",
+      "registry_url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/subsys/shell/shell_dbg.c#L2429-L2568",
+      "snandr_url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/subsys/shell/shell_dbg.c#L483-L524",
+      "dumpbuf_url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/subsys/shell/shell_dbg.c#L1437-L1468",
+      "dbgsw_url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/subsys/shell/shell_dbg.c#L1720-L1740"
+    }
+  ],
+  "limits": [
+    "Complete only for this dbg static table; not all root/dynamic commands or whole firmware capabilities",
+    "No explicit USB export command among these 35 names/help; absence here does not prove lack of USB support elsewhere",
+    "Exactly one handler newly decoded; remaining classifications explicitly names/help or prior report/source, not actual implementation safety proof",
+    "No new proven read-only raw NOR/physical Flash export path found; no device command executed",
+    "Driver API length units, device availability and lower-layer side effects remain unproven",
+    "Mapped image checksum is not a physical Flash backup or recovery validation"
+  ]
+}

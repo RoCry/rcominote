@@ -47,3 +47,5 @@
 3. boot/recovery实际检查流程与匹配官方镜像；验证脱离当前应用仍可进入、退出并恢复的通道。
 
 现有CLI仍只有查询、固定映射读回和离线分析；无整片备份/烧录能力。本轮结论是缩小未知项和排除错误推论，未证明上述三点已完成。
+
+后续实机证据：已取得完整系统映射镜像，头flags=0、TLV长度0、头及正文checksum通过（见[验收](offline-system-analysis.md)）。这解决“当前应用头是否置flag4”，不解决ROM/boot是否另有签名检查，也不证明raw NOR未加密；[实际映射缺口](mapping-candidate-audit.md)仍在。

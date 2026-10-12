@@ -2,7 +2,7 @@
 
 更新：2026-10-12。此文是研究路线，不代表已经验证能刷机。
 
-当前进度：USB 拔插对照仍未定位 CoMi 数据接口；之后已实测原厂 shell、单键 NVRAM 读取，以及五处共69 B映射代码/常量读回。[代码证据](code-reference-followup.md)。完整备份、物理存储布局、恢复和自写固件启动仍未证明。构建依赖与恢复 host 另见 [构建](build-feasibility.md)、[恢复](recovery-transport.md)。
+当前进度：已完整导出927632 B实机系统映射镜像并通过checksum，Ubuntu静态分析可复现；实际ACPT有18项NOR分区、逻辑范围4 MiB，录音介质是独立SD路径。两次console快照及实际指令把fread正文路径定位到UART_0 DMA。USB数据接口、raw NOR完整备份、独立恢复和自写固件启动仍未验证。[镜像](offline-system-analysis.md) · [分区](partition-readback.md) · [输出路径](console-target-followup.md) · [物理映射缺口](mapping-candidate-audit.md) · [参考板构建](build-feasibility.md)。
 
 ## 证据决定路径
 
@@ -45,4 +45,4 @@ uv run comi usb diff artifacts/usb-before.json artifacts/usb-after.json
 
 ## 明确未知
 
-SoC 精确料号/架构、RAM/PSRAM、主固件介质与录音存储连接、显示控制器/分辨率/引脚、麦克风通道与接口、电池充电/检测电路、按键与唤醒、ROM 下载入口、串口电平、安全启动状态、原厂固件 URL、板级 SDK 授权及闭源库依赖。以上均不能从现有 BLE GATT 单独反推出。
+SoC 精确料号、物理RAM/PSRAM规格、NOR完整物理映射与板级存储接线、显示控制器/分辨率/引脚、麦克风通道与接口、电池充电/检测电路、按键与唤醒、ROM 下载入口、串口电平、安全启动状态、原厂固件 URL、板级 SDK 授权及闭源库依赖。以上均不能从现有 BLE GATT 单独反推出。

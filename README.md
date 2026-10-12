@@ -107,3 +107,5 @@ uv run --locked tools/build_sdk.py \
 [启动反编译边界](docs/startup-noreturn-model.md)：具体thread-abort调用点no-return建模，Ubuntu完整镜像21入口重跑通过；修正literal伪控制流，仍保留参数推断限制。
 
 [Console运行时实测](docs/printk-runtime-state.md)：新增`diag capture printk-state`和`diag inspect-printk`；两次固定10 B RAM一致，init=1/panic=0对应DMA分支，当前hook与启动载荷不同；尚未观察物理输出或原始Flash数据。
+
+[原始映射缺口审计](docs/mapping-candidate-audit.md)：完整镜像中限定搜索未建立raw NOR换算依据；[35项实机dbg目录](docs/actual-dbg-command-inventory.md)检查遗漏返回路径，实际长度/副作用以handler证据为准。

@@ -157,3 +157,7 @@ Mova OTA declarations and UUIDs cannot be applied to Boyi.
 ## Unified CLI live validation
 
 The package implements the source-derived explicit setters with readback and rejects unavailable values. This pass additionally observed recording start/pause/resume/stop, recording-info, complete download/sync, and noise9→8→9 with matching state readback. All other setters retain their source-only write-status boundary. Clock synchronization has no known readback getter and was not live-tested. See [validation](evidence/cli-validation-2026-10-12.json) and [usage](cli.md).
+
+## Later firmware research status
+
+Complete owned-device mapped-system export now succeeds: 927632 B, validated header and body checksum; reproducible Ubuntu offline analysis. Actual ACPT contains18 NOR entries over4 MiB logical range. These replace the earlier partial-read status, not the raw-backup/recovery limitations. `diag capture printk-state` and `diag inspect-printk` verify console snapshots; two observations select the UART_0 DMA path. See [current roadmap](firmware-roadmap.md) and [mapping boundary](mapping-candidate-audit.md).

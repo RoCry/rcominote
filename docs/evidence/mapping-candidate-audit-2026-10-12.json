@@ -1,0 +1,188 @@
+{
+  "image": {
+    "scope": "mapped-system image; not a raw Flash backup",
+    "base": "0x10000000",
+    "bytes": 927632,
+    "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+    "header_sha256": "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5",
+    "body_word_sum": "0xb18576b5",
+    "stored_body_checksum": "0x4e7a894a",
+    "checksum_verified": true,
+    "limits": [
+      "No physical Flash mapping proven",
+      "No complete device backup or restore validation"
+    ]
+  },
+  "scope": "Offline bounded mapping-candidate search; no device access or MMIO",
+  "search_method": "Exact ASCII substring and 4-byte-aligned little-endian word searches over the complete validated artifact; excludes synthesized immediates, unaligned words, transformed code, ROM and other partitions",
+  "strings": {
+    "invalid nor phy addr": [],
+    "invalid cpu addr": [],
+    "cannot found slot": [],
+    "xip_nor_offset": [],
+    "slot=%d  to map": []
+  },
+  "words": {
+    "0x40010300": [],
+    "0x40010304": [],
+    "0x40010000": [
+      "0x1003c5c4",
+      "0x1003e9e0",
+      "0x100bfd08"
+    ],
+    "0x40014000": [
+      "0x10031470"
+    ],
+    "0x13800000": [],
+    "0x14000000": []
+  },
+  "regions": [
+    {
+      "address": "0x1003e9b2",
+      "length": 16,
+      "kind": "code fragment",
+      "hex": "0b4a0b49136844f4580043f008031360",
+      "sha256": "c3f87eed7a98e18c6e5ed44468c819114d8791b488061d299bc4d729d4d37952",
+      "instructions": [
+        {
+          "address": "0x1003e9b2",
+          "bytes": "0b4a",
+          "instruction": "ldr r2, [pc, #0x2c]"
+        },
+        {
+          "address": "0x1003e9b4",
+          "bytes": "0b49",
+          "instruction": "ldr r1, [pc, #0x2c]"
+        },
+        {
+          "address": "0x1003e9b6",
+          "bytes": "1368",
+          "instruction": "ldr r3, [r2]"
+        },
+        {
+          "address": "0x1003e9b8",
+          "bytes": "44f45800",
+          "instruction": "orr r0, r4, #0xd80000"
+        },
+        {
+          "address": "0x1003e9bc",
+          "bytes": "43f00803",
+          "instruction": "orr r3, r3, #8"
+        },
+        {
+          "address": "0x1003e9c0",
+          "bytes": "1360",
+          "instruction": "str r3, [r2]"
+        }
+      ]
+    },
+    {
+      "address": "0x1003e9e0",
+      "length": 4,
+      "kind": "literal",
+      "hex": "00000140",
+      "sha256": "122256c273fcf60e77f13560864727bedd1b818c8c0bea96012415596cea2856"
+    },
+    {
+      "address": "0x10031448",
+      "length": 40,
+      "kind": "code",
+      "hex": "062908d1084a136823f0600343f020031360002070470529fbd1034a136823f0600343f04003f3e7",
+      "sha256": "902458b6aaef56005e94ed055a47d57c0ce64aa6ab3d947962fd68c38aa0a883",
+      "instructions": [
+        {
+          "address": "0x10031448",
+          "bytes": "0629",
+          "instruction": "cmp r1, #6"
+        },
+        {
+          "address": "0x1003144a",
+          "bytes": "08d1",
+          "instruction": "bne #0x1003145e"
+        },
+        {
+          "address": "0x1003144c",
+          "bytes": "084a",
+          "instruction": "ldr r2, [pc, #0x20]"
+        },
+        {
+          "address": "0x1003144e",
+          "bytes": "1368",
+          "instruction": "ldr r3, [r2]"
+        },
+        {
+          "address": "0x10031450",
+          "bytes": "23f06003",
+          "instruction": "bic r3, r3, #0x60"
+        },
+        {
+          "address": "0x10031454",
+          "bytes": "43f02003",
+          "instruction": "orr r3, r3, #0x20"
+        },
+        {
+          "address": "0x10031458",
+          "bytes": "1360",
+          "instruction": "str r3, [r2]"
+        },
+        {
+          "address": "0x1003145a",
+          "bytes": "0020",
+          "instruction": "movs r0, #0"
+        },
+        {
+          "address": "0x1003145c",
+          "bytes": "7047",
+          "instruction": "bx lr"
+        },
+        {
+          "address": "0x1003145e",
+          "bytes": "0529",
+          "instruction": "cmp r1, #5"
+        },
+        {
+          "address": "0x10031460",
+          "bytes": "fbd1",
+          "instruction": "bne #0x1003145a"
+        },
+        {
+          "address": "0x10031462",
+          "bytes": "034a",
+          "instruction": "ldr r2, [pc, #0xc]"
+        },
+        {
+          "address": "0x10031464",
+          "bytes": "1368",
+          "instruction": "ldr r3, [r2]"
+        },
+        {
+          "address": "0x10031466",
+          "bytes": "23f06003",
+          "instruction": "bic r3, r3, #0x60"
+        },
+        {
+          "address": "0x1003146a",
+          "bytes": "43f04003",
+          "instruction": "orr r3, r3, #0x40"
+        },
+        {
+          "address": "0x1003146e",
+          "bytes": "f3e7",
+          "instruction": "b #0x10031458"
+        }
+      ]
+    },
+    {
+      "address": "0x10031470",
+      "length": 4,
+      "kind": "literal",
+      "hex": "00400140",
+      "sha256": "7d6d821deeaa997930b4f13a606d4706b8821083bb1f5b8a92fb2014243bc7d8"
+    }
+  ],
+  "limits": [
+    "No direct physical mapping proof",
+    "Missing exact strings/words does not establish absence of equivalent functions",
+    "No live cache register reads or unmapped-address probes"
+  ]
+}
