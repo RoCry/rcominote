@@ -1,6 +1,6 @@
 # 自写固件：先解决板级识别与可恢复性
 
-更新：2026-10-12。此文是研究路线，不代表已经验证能刷机。
+更新：2026-10-13。此文保留阶段依赖，不代表已经验证能刷机。**当前优先级以[研究路线](research-routes.md)为准；先读[设备/平台总览](device-platform-map.md)。** 不要求逐项解决全部未知后才换题。
 
 当前进度：已完整导出927632 B实机系统映射镜像并通过checksum，Ubuntu静态分析可复现；实际ACPT有18项NOR分区、逻辑范围4 MiB，录音介质是独立SD路径。两次console快照及实际指令把fread正文路径定位到UART_0 DMA。USB数据接口、raw NOR完整备份、独立恢复和自写固件启动仍未验证。[镜像](offline-system-analysis.md) · [分区](partition-readback.md) · [输出路径](console-target-followup.md) · [物理映射缺口](mapping-candidate-audit.md) · [参考板构建](build-feasibility.md)。
 
@@ -49,4 +49,4 @@ SoC 精确料号、物理RAM/PSRAM规格、NOR完整物理映射与板级存储�
 
 ## 不依赖App登录的板级推进
 
-完整镜像已提供[71项init表与音频ADC入口](init-audio-board-evidence.md)、[显示驱动与总线配置](display-board-evidence.md)。接下来优先追踪屏幕work callback的命令序列、音频open配置和GPIO pinmux；先获得可复核的BSP约束。Android登录暂缓，不影响这些静态分析。上述结果不替代raw备份、独立恢复入口与签名验证。
+完整镜像已提供[71项init表与音频ADC入口](init-audio-board-evidence.md)、[显示驱动](display-board-evidence.md)、[录音配置](recorder-media-config.md)和[pinmux表](board-pinmux-evidence.md)，足以约束平台资料筛选。当前先查匹配ATS3085L/LARK BSP、芯片资料及生产工具；零散外设函数留待bring-up需要时再追。Android登录暂缓，不影响这些工作。上述结果不替代raw备份、独立恢复入口与签名验证。

@@ -1,21 +1,45 @@
 # Research route decisions
 
-2026-10-12. Read this before choosing new work. This index supersedes historical
+2026-10-13. Read this before choosing new work. This index supersedes historical
 "next step" paragraphs. Goal: own client covering actual capabilities/protocols,
 understand shipped functions, complete firmware backup, recoverable flashing,
 then own firmware. No single artifact or passing test substitutes for these goals.
 
-## Active priorities and evidence gates
+## Focus: platform before peripheral detail
+
+User direction: prioritize device, firmware, SoC and SDK understanding; park
+blocked details and switch questions. Start with [device/platform map](device-platform-map.md).
+Current deliverables, in order:
+
+1. Matching ATS3085L/LARK M4 material: BSP, register/pin documentation,
+   production configuration/host, official image. [Source follow-up](platform-source-followup.md)
+   identifies previously overlooked unstripped Flash/SD loader ELFs and M4
+   ATT source fragments; inventory those offline before another generic search.
+2. Firmware/recovery overview: consolidate existing system/boot/DSP/ACPT;
+   compare ROM→helper→NOR routes. If justified, acquire one bounded ROM corpus
+   for offline analysis instead of one live experiment per callee.
+3. A concrete first-run experiment with identified target, entry effects and
+   independent escape. Enumeration, helper execution and Flash writes have
+   separate evidence gates; complete restoration is not a prerequisite for
+   an enumeration-only experiment with an independently established exit.
+
+Client edge cases, backend acquisition, exact timer units and peripheral
+details remain recorded below; they do not take priority over matching platform
+artifacts. Each task needs a route-changing question and a stopping condition.
+Stop when the bounded source search or evidence cannot answer it; record the
+gap instead of repeatedly expanding the same investigation.
+
+## Capability ledger and evidence gates
 
 | Workstream | Reuse now | Next decisive evidence |
 |---|---|---|
-| Backend/client integration | [Official CoMi Note deployment reference](seeyon-backend-reference.md): Spring Boot service package lead, public/private transcription and storage architecture | Obtain official JAR; inspect controller/auth/upload/device/version contracts and compare against shipped app. Deployment documentation alone does not establish firmware update or backup support |
-| Client/protocol completeness | [CLI capability ledger](cli-capabilities.md), event-preserving connection, [live byte-offset suffix](download-offset.md), [realtime MP3 equality proof](realtime-live.md), verified BLE controls/download | [Pause/resume equality verified](realtime-live.md#follow-up-pauseresume-exact-comparison); next: long-window loss behavior; cancellation completion/race contract and persistent-resume identity; correlated live event fields |
 | Efficient native transfer | SDK log/ABTP/USB/tool sources + complete mapped system; [CDC worker negative](usb-cdc-command-inventory.md) | Matching production host/script or actual mapped alias evidence; do not enable CDC in hope of a hidden bulk command |
 | Production host/ADFU | [Actual ROM table and entry](actual-rom-adfu-entry.md):19c→1a51, [condition and restore-return](actual-rom-exit-condition.md)1908→1980; [LARK transport selection](lark-transport-selection.md): adfus is UART, adfus_u has USB descriptors; [read handlers](lark-helper-candidate.md), [Host selection](host-selection-followup.md), [actual helper read handlers](helper-static-followup.md), [NOR initialization side effects](helper-nor-initialization.md), [actual boot](actual-boot-flow.md) | Matching production firmware scripts/caller parameters, exact SoC/host selection; device ROM USB identity and exit path before helper execution |
 | Full backup | Verified mapped system, boot, DSP, partition table, partial raw recovery | Reliable bulk route; all required physical partitions and unique configuration, repeated reads and integrity checks |
 | Flash/recovery | Static boot checks, actual recovery header, [actual OTA no-version-control initialization](ota-version-policy.md), [container/manifest gate](ota-container-contract.md), [conditional initialization effects](ota-initialization-side-effects.md), offline `inspect-ota`, [actual payload writes and commit order](ota-write-commit.md), [NVRAM spare-segment pre-erase](ota-nvram-preerase.md), [provisional recovery entry](recovery-entry-candidate.md) | Matching official image/manifest; actual recovery second-stage path, independent recovery entry/exit and restoration proof |
 | Own firmware | Reference SDK build, extracted actual code, [live firmware board identity](firmware-board-identity.md) `ats3085l_dvb_watch_ext_nor_max` | [Actual Cortex-M4 r0p1 CPUID](cpu-identity.md), matching manufacturer family but not SDK M33: obtain matching ATS3085L BSP, verify silicon/peripherals, boot/security constraints, reversible minimal boot proof, then display/audio/BLE |
+| Client/protocol completeness — deferred detail | [CLI capability ledger](cli-capabilities.md), event-preserving connection, [live byte-offset suffix](download-offset.md), [realtime MP3 equality proof](realtime-live.md), verified BLE controls/download | [Pause/resume equality verified](realtime-live.md#follow-up-pauseresume-exact-comparison); remaining long-window loss, cancel race, persistent-resume identity and correlated event fields |
+| Backend/client integration — deferred acquisition | [Official deployment reference](seeyon-backend-reference.md): Spring Boot package lead, transcription/storage architecture | New externally reachable JAR source; old package hostname resolved to private IP. No documented firmware backup/update route; do not make it a firmware dependency |
 
 BLE remains useful for small, question-driven measurements. Do not convert another
 diagnostic primitive into an unattended full dump before comparing native routes.
@@ -39,6 +63,7 @@ Android login remains deferred by user. Do not infer reference ATS3089 board equ
 | Generic US302A DLL / older ATJ host as CoMi downloader | **Unproven compatibility** despite real read exports | Matching chip-to-host selection, descriptors/framing and initialization |
 | More encrypt.bin analysis to find USB readback | **Deprioritized**: inspected modules concern container/encryption; codec result retained | Concrete USB transport caller/reference, not module name |
 | Repeated tiny polling turns | **Retired orchestration pattern** | Use bounded experiment or meaningful process milestone; investigate repeated failure before another full run |
+| One ROM callee → bespoke live capture → tool → commit, repeated | **Deprioritized research pattern**: resolves local uncertainty while platform/BSP/backup gaps persist | A specific decision requires the bytes, or one justified bounded corpus enables batch offline answers; exact count units alone do not establish safe ROM exit |
 
 Do not delete verified source evidence because its acquisition method was slow.
 Archive rejected output with reason and replacement. Remove obsolete runnable

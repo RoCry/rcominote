@@ -22,9 +22,9 @@ calling1908(r6). Actual1908..192e:
    current457c return and saved entry value.
 3. Return1 iff2980 return≤difference; otherwise return0.
 
-A timer/timeout interpretation is plausible, but the two callee bodies and
-units are not yet known. No claim of milliseconds, finite configured timeout,
-wrap-safe timing, or guaranteed exit. State word can inhibit this branch.
+A timer/timeout interpretation is plausible; the later fixed reads below resolve
+the two callees, but units remain unknown. No claim of milliseconds, finite
+configured timeout, wrap-safe timing, or guaranteed exit. State word can inhibit this branch.
 Do not read or change it simply to force an outcome.
 
 ## Save1934 and restore1980
@@ -65,6 +65,34 @@ new pointers. Both captures retain complete rows/ACK/end evidence. Existing
 [normal device-info check](evidence/rom-flow-final-info-2026-10-13.json) after
 captures remained same FW, idle and charging.
 
-Next: inspect457c/2980 to resolve count units/configuration, and trace boot's
-caller continuation. Only then consider whether a bounded mode-entry experiment
-could have a credible exit path. Full backup and restoration remain unproved.
+## Timing follow-up; further micro-audits parked
+
+[First](evidence/rom-timing-first-2026-10-13.json) and
+[second independent capture](evidence/rom-timing-second-2026-10-13.json) both
+complete39/39 ACKs and end frame; their two64B fixed blocks agree. The existing
+experimental profile adds `--rom-timing`; no additional hardware read is needed
+to reproduce the interpretation from these retained captures.
+
+| Code | Actual instruction interpretation |
+|---|---|
+| `2980..298e`, literals `2990..299b` | Return60,000,000 if word[01000074]==1, otherwise5,000,000 |
+| `4570..4576`, literal4578 | Read32[4000c108], invert all bits, return |
+| `457c..4584` | Call4570, logical shift right5, return |
+
+Thus the sampled value is `(~read32(4000c108) & 0xffffffff) >> 5`, a27-bit
+quantity. The caller subtracts in32 bits; no wrap-safe-duration claim follows.
+Counter clock/rate remains unknown: **do not rename the two thresholds “60s/5s.”**
+No MMIO access occurred: these are decoded ROM instructions, not live counter reads.
+
+The verified [boot](boot-complete.md) also does not establish a return-to-app
+continuation: `01010414` restores its caller LR before tail-branching to
+`0101022c`; that wrapper restores LR and branches through ROM19c. A ROM return
+therefore preserves the earlier caller's continuation, not an explicit normal
+application handoff. That earlier caller context remains unresolved.
+
+Per [current route priorities](research-routes.md), park clock units, individual
+callee roles and earlier caller context. Revisit together from matching platform
+documentation or a justified bounded ROM corpus. For a future enumeration-only
+trial, independently established reset/power-cycle escape may replace a fully
+resolved software return chain; exact timer units alone cannot establish safety.
+No mode entry, helper execution, full backup or restoration has been verified.
