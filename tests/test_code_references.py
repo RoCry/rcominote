@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 from rcominote.code_references import inspect_references
-from rcominote.log_capture import observed_logsrv_literals, verify_readback
+from rcominote.log_capture import observed_logsrv_literals, observed_vendor_code, verify_readback
 
 EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence"
 FIRST = EVIDENCE / "code-references-first-2026-10-12.json"
@@ -45,3 +45,30 @@ def test_truncated_duplicate_row_cannot_hide_behind_complete_row():
     capture["frames"].append({"text": "\n1000bf30: 60 4b\n"})
     verify_readback(capture)
     assert not capture["ok"] and "duplicate" in capture["error"]
+
+
+def test_vendor_thumb_instruction_crosses_transport_row_boundary():
+    report = inspect_references(
+        EVIDENCE / "vendor-code-first-2026-10-12.json",
+        EVIDENCE / "vendor-code-second-2026-10-12.json",
+        vendor=True,
+    )
+    # Actual bytes span rows a05c and a06c; decoding each row independently
+    # would lose the first half or misinterpret the second half of this ORR.
+    instructions = report["code_regions"][1]["instructions"]
+    instruction = next(row for row in instructions if row["address"] == "0x1000a06a")
+    assert (instruction["bytes"], instruction["mnemonic"], instruction["operands"]) == (
+        "44f09570",
+        "orr",
+        "r0, r4, #0x12a0000",
+    )
+
+
+def test_changed_vendor_code_blocks_literal_reads():
+    capture = json.loads((EVIDENCE / "vendor-code-first-2026-10-12.json").read_text())
+    assert observed_vendor_code(capture["frames"])
+    assert not observed_vendor_code([{"text": "1000a01c: 8f b5 54 4c"}])
+    for frame in capture["frames"]:
+        frame["text"] = frame.get("text", "").replace("8f b5 54 4c", "8f b5 55 4c")
+    with pytest.raises(ValueError, match="vendor_read code changed"):
+        observed_vendor_code(capture["frames"])

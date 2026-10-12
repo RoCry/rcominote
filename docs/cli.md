@@ -82,6 +82,8 @@ uv run comi diag text artifacts/platform.json
 
 `code-literals`在核对入口指令后读取其两个常量（8 B）；`code-references`进一步读取固定引用，总计69 B、五个非连续位置。两次采集可用`diag compare-references FIRST SECOND --out REPORT`离线比较。[证据与推导](code-reference-followup.md)。
 
+`vendor-code`核对本次会话的`vendor`与`vendor_read`入口，读取固定380 B：两个入口、后者至已证实常量池前的连续代码及六个常量。常量/后续代码读取前还要求入口字节精确吻合。两次采集用`diag compare-references FIRST SECOND --vendor --out REPORT`比较；连续Thumb代码合并后解码，避免16 B传输行拆断32位指令。[实机代码分析](vendor-code-readback.md)。
+
 code只读固定映射地址的16 B，并在同会话核对当前logsrv入口；不接受任意地址、长度或shell文本。离线比较拒绝重复采集身份（包括复制同一文件），要求两次样本一致，返回解码与hash，不执行机器码。此能力不等于完整flash dump、板级适配或可恢复备份。
 
 ## 一键只读验收

@@ -4,7 +4,7 @@ import json
 import unittest
 from pathlib import Path
 
-from rcominote.log_capture import Stream, observed_logsrv_entry
+from rcominote.log_capture import Stream, observed_logsrv_entry, observed_vendor_entries
 
 EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence"
 
@@ -49,6 +49,17 @@ class LogTests(unittest.TestCase):
         stream.feed(wire[:-1])
         self.assertFalse(stream.ended)
         self.assertTrue(stream.pending)
+
+    def test_vendor_entries_require_both_live_named_threads(self):
+        capture = json.loads((EVIDENCE / "log-threads-2026-10-12.json").read_text())
+        text = "".join(frame.get("text", "") for frame in capture["frames"])
+        self.assertTrue(observed_vendor_entries([{"text": text}]))
+        for old in ("0x1000a01d", "0x10009e9d"):
+            with self.subTest(entry=old), self.assertRaisesRegex(ValueError, "entry changed"):
+                observed_vendor_entries([{"text": text.replace(old, "0x10000001")}])
+        self.assertFalse(observed_vendor_entries([{"text": text.replace(" vendor_read", " other")}]))
+        with self.assertRaisesRegex(ValueError, "repeated"):
+            observed_vendor_entries([{"text": text + text}])
 
 
 if __name__ == "__main__":

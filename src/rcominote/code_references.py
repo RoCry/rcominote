@@ -20,6 +20,20 @@ BLOCKS = (
     (0x1000BF30, 16, "BL return and subsequent instructions", True),
 )
 
+VENDOR_BLOCKS = (
+    (0x1000A01C, 16, "vendor_read observed thread entry", True),
+    (0x10009E9C, 16, "vendor observed thread entry", True),
+    (0x1000A170, 16, "vendor_read first four PC-relative literals", False),
+    (0x1000A180, 4, "vendor_read r7 PC-relative literal", False),
+    (0x1000A1AC, 4, "vendor_read r8 PC-relative literal", False),
+    # Contiguous executable span from observed entry up to its first evidenced
+    # literal pool. Function boundaries within the span remain inferred.
+    *(
+        (address, min(16, 0x1000A170 - address), "vendor_read code before literal pool", True)
+        for address in range(0x1000A02C, 0x1000A170, 16)
+    ),
+)
+
 
 def read_block(capture: dict, address: int, length: int) -> bytes:
     command = f"dbg mdb {address:x} {length:x}"
@@ -39,13 +53,14 @@ def read_block(capture: dict, address: int, length: int) -> bytes:
     return bytes.fromhex(match[1])
 
 
-def inspect_references(first: Path, second: Path) -> dict:
+def inspect_references(first: Path, second: Path, *, vendor: bool = False) -> dict:
     captures = [json.loads(path.read_text()) for path in (first, second)]
     stamps = [capture.get("captured_at") for capture in captures]
     if not all(stamps) or stamps[0] == stamps[1]:
         raise ValueError("Two distinct capture records are required")
     blocks = []
-    for address, length, reason, code in BLOCKS:
+    selected = VENDOR_BLOCKS if vendor else BLOCKS
+    for address, length, reason, code in selected:
         data = read_block(captures[0], address, length)
         if data != read_block(captures[1], address, length):
             raise ValueError(f"Independent reads differ at {address:#x}")
@@ -56,7 +71,7 @@ def inspect_references(first: Path, second: Path) -> dict:
             "hex": data.hex(),
             "sha256": hashlib.sha256(data).hexdigest(),
         }
-        if code:
+        if code and not vendor:
             insns = list(Cs(CS_ARCH_ARM, CS_MODE_THUMB).disasm(data, address))
             row["instructions"] = [
                 {
@@ -69,13 +84,15 @@ def inspect_references(first: Path, second: Path) -> dict:
             ]
             decoded = sum(ins.size for ins in insns)
             row["undecoded_tail_hex"] = data[decoded:].hex()
-        elif address == 0x1000C0AC:
-            row["little_endian_words"] = [hex(int.from_bytes(data[i : i + 4], "little")) for i in (0, 4)]
-        else:
+        elif not code and address != 0x100C26BA:
+            row["little_endian_words"] = [
+                hex(int.from_bytes(data[i : i + 4], "little")) for i in range(0, len(data), 4)
+            ]
+        elif not code:
             row["ascii"] = data.decode("ascii")
         blocks.append(row)
-    return {
-        "scope": "69 noncontiguous mapped bytes, not a physical flash backup",
+    report = {
+        "scope": f"{sum(block[1] for block in selected)} noncontiguous mapped bytes, not a physical flash backup",
         "independent_reads_match": True,
         "captures": [
             {"captured_at": capture["captured_at"], "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
@@ -89,12 +106,44 @@ def inspect_references(first: Path, second: Path) -> dict:
             "A trailing partial instruction is retained without interpreting missing bytes",
         ],
     }
+    if vendor:
+        # Decode contiguous bytes together: 32-bit Thumb instructions can cross
+        # 16-byte transport rows. Never resume decoding in their second half.
+        regions = []
+        for address, length, _, code in sorted(selected):
+            if not code:
+                continue
+            data = read_block(captures[0], address, length)
+            if regions and regions[-1][0] + len(regions[-1][1]) == address:
+                regions[-1][1].extend(data)
+            else:
+                regions.append((address, bytearray(data)))
+        report["code_regions"] = []
+        for address, data in regions:
+            insns = list(Cs(CS_ARCH_ARM, CS_MODE_THUMB).disasm(data, address))
+            report["code_regions"].append(
+                {
+                    "address": hex(address),
+                    "length": len(data),
+                    "instructions": [
+                        {
+                            "address": hex(ins.address),
+                            "bytes": ins.bytes.hex(),
+                            "mnemonic": ins.mnemonic,
+                            "operands": ins.op_str,
+                        }
+                        for ins in insns
+                    ],
+                    "undecoded_tail_hex": data[sum(ins.size for ins in insns) :].hex(),
+                }
+            )
+    return report
 
 
-def main(first: Path, second: Path, out: Annotated[Path, typer.Option()]):
-    """Compare two code-references captures offline; require all five exact rows."""
+def main(first: Path, second: Path, out: Annotated[Path, typer.Option()], vendor: bool = False):
+    """Compare fixed code-references rows, or vendor code/literal rows with --vendor."""
     new_output(out)
-    report = inspect_references(first, second)
+    report = inspect_references(first, second, vendor=vendor)
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("x") as handle:
         handle.write(json.dumps(report, ensure_ascii=False, indent=2) + "\n")

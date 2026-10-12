@@ -33,3 +33,5 @@
 进一步审计已证明该NAND初始化存在可达的条件擦除/编程路径，见[指令与调用链](helper-initialization-decompile.md)。另从相关设备线索取得两款官方APK，定位到AI DVR Link固件元数据POST和AOTA解析，但没有合法匹配账号/设备上下文或固件文件；[OEM线索边界](oem-protocol-lead.md)。这些App协议与CoMi不同，不可混用。
 
 [vendor服务审计](vendor-service-followup.md)：公开SDK的`vendor_read`接收主机上传，完整命令表无固件读回；UUID与CoMi F5F0不匹配。SDK OTA通知订阅可能启动升级状态并关闭写保护，不能用作被动探测。下一步优先追踪实际CoMi代码中的F5F0及接收分发器；账号登录按用户要求暂缓，不影响离线分析。
+
+实机后续已取得[380 B vendor代码/常量](vendor-code-readback.md)，独立重读一致；实际线程解析D22D/Boyi风格帧，而非公开SDK上传帧。直接调用1000b3b4是后续识别处理函数的具体入口；F5F0仍未归属。与此前logsrv样本合计449 B，不是完整固件。

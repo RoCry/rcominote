@@ -13,7 +13,7 @@
 | USB | 用户确认数据线后做拔插对照，仍未见明确 CoMi 枚举；`usb_mode=true` 不等于主机数据接口已启用，板级走线/其他模式待查 |
 | 日志/shell | 实机执行 `kernel version` 返回 Zephyr 2.7.0；`help`/`dbg` 列出存储读取与 ADFU 重启命令，后者未执行 |
 | 配置读回 | `dbg nvram BT_LE_NAME` 已返回14字节实机内容；原始 flash 正文仍未通过 BLE 取得 |
-| 程序字节读回 | 已独立核对五处共69字节映射代码/常量/函数名；尚无完整固件/物理分区备份 |
+| 程序字节读回 | 已独立核对共449字节映射代码/常量/函数名，含实际vendor接收循环；尚无完整固件/物理分区备份 |
 | 自定义固件 | Actions 有构建、OTA、ADFU 等参考代码，也有签名/安全启动配置；CoMi 是否接受自签/未签名镜像尚未知 |
 | Linux 构建 | Ubuntu 上参考板 hello_world 已生成 ELF/BIN/HEX；SDK 无源码补丁，构建后 tracked 文件干净；尚不是 CoMi 固件 |
 
@@ -56,7 +56,7 @@ uv run comi verify --code --out artifacts/verification-NEW
 
 [完整使用说明](docs/cli.md) · [命令协议与支持边界](docs/cli-capabilities.md)。支持 `uv tool install .` 后直接运行 `comi`。
 
-包代码在 `src/rcominote/`；采集工具已统一迁入，不再维护独立 `tools/comi.py` 等副本。JSON输出，错误非零退出；按序列号选设备。下载校验完整长度后原子保存，拒绝覆盖。诊断只开放固定profile，代码读取限定经当前入口/指令/常量核对的固定位置；[69字节引用分析](docs/code-reference-followup.md)。没有刷机、任意shell、完整固件备份或恢复命令。
+包代码在 `src/rcominote/`；采集工具已统一迁入，不再维护独立 `tools/comi.py` 等副本。JSON输出，错误非零退出；按序列号选设备。下载校验完整长度后原子保存，拒绝覆盖。诊断只开放固定profile，代码读取限定经当前入口/指令/常量核对的固定位置；[69字节引用分析](docs/code-reference-followup.md)、[380字节vendor代码](docs/vendor-code-readback.md)。没有刷机、任意shell、完整固件备份或恢复命令。
 
 实机已验证录音start/pause/resume/stop、完整导出/sync、noise设置读回与恢复，以及一键只读诊断。其他setter源于固定App源码、按设备读回决定成功；时钟设置无已知getter，不能宣称回读验证。
 

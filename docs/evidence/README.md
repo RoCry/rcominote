@@ -87,3 +87,7 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 后续[初始化审计](../helper-initialization-decompile.md)证明延迟初始化有可达的条件擦除/编程路径；27函数导出可复现。[OEM官方APK调查](../oem-protocol-lead.md)取得独立App产物，确认固件元数据POST与AOTA/MD5/CRC路径，但没有CoMi镜像或跨设备适配证明。固件API未调用；CoMi登录调查按用户要求暂缓。
 
 [vendor/OTA源码审计](../vendor-service-followup.md)：排除将`vendor_read`和OTA backend `.read`误认作设备固件导出；记录通知订阅可能触发OTA状态的完整调用链。未操作这些设备服务。
+
+## 第九轮：实机vendor接收代码
+
+[首次](vendor-code-first-2026-10-12.json)、[重读](vendor-code-second-2026-10-12.json)、[合并解码](vendor-code-analysis-2026-10-12.json)：380 B一致，实机`vendor_read`检查D22D帧头，接收payload后调用1000b3b4；不同于公开SDK上传解析器。完整推导与限制见[报告](../vendor-code-readback.md)。未向F5F0发送命令；[App产物定界搜索](../f5f0-artifact-search.md)未找到它的handler。

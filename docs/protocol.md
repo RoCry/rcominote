@@ -13,7 +13,7 @@
 | 同上 | `0000e5e3` | 实时音频 notify，当前 CLI 未实现接收 |
 | 同上 | `0000e5e4` | 离线文件数据 notify |
 | `0000180f` | `00002a19` | 标准电池 read/notify |
-| `0000f5f0` | `0000f5f1` / `0000f5f2` | write / notify，SDK 风格流；CoMi 内容未解码 |
+| `0000f5f0` | `0000f5f1` / `0000f5f2` | write / notify；协议未确定，UUID与公开SDK vendor服务不符 |
 | `e49a3001-f69a-11e8-8eb2-f2801f1b9fd1` | `…3002` / `…3003` | 日志服务形状；本轮未发命令/订阅 |
 
 广播 manufacturer ID `14172`；既有样本 manufacturer payload 为 MAC 6 B + ASCII serial 10 B。该 ID 是选择 Boyi 广播的线索，不是芯片厂商证明。连接工具同时匹配 serial，避免取第一个同类设备。

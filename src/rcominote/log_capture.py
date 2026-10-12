@@ -13,7 +13,7 @@ from bleak import BleakClient
 from bleak.exc import BleakError
 
 from .ble_target import OWNED_SERIAL, find_device
-from .code_references import BLOCKS, read_block
+from .code_references import BLOCKS, VENDOR_BLOCKS, read_block
 from .log_probe import ACK, NOTIFY, PREPARE, SERVICE, WRITE
 
 START = bytes.fromhex("1d108105000002002000")
@@ -68,6 +68,37 @@ def observed_logsrv_entry(frames: list[dict]) -> bool:
     return match is not None
 
 
+def observed_vendor_entries(frames: list[dict]) -> bool:
+    """Both exact live thread names/entries must precede fixed vendor code reads."""
+    text = "".join(frame.get("text", "") for frame in frames)
+    complete = True
+    for name, expected in (("vendor_read", "0x1000a01d"), ("vendor", "0x10009e9d")):
+        entries = re.findall(
+            rf"(?m)^[ *]0x[0-9a-f]+ {name}[ \t]*\r?\n[^\n]*\n[^\n]*entry: (0x[0-9a-f]+)",
+            text,
+        )
+        if entries and entries != [expected]:
+            raise ValueError(f"Live {name} entry changed or repeated: {entries}")
+        complete = complete and bool(entries)
+    return complete
+
+
+def observed_vendor_code(frames: list[dict]) -> bool:
+    text = "".join(frame.get("text", "") for frame in frames)
+    if not re.search(r"(?m)^1000a01c:[^\r\n]*\r?\n", text):
+        return False
+    # Entry captured independently twice before deriving these six literal addresses.
+    capture = {
+        "serial": OWNED_SERIAL,
+        "ok": True,
+        "fixed_text_commands": ["dbg mdb 1000a01c 10"],
+        "frames": frames,
+    }
+    if read_block(capture, 0x1000A01C, 16).hex() != "8fb5544c544b55485549564fdff88081":
+        raise ValueError("Live vendor_read code changed; fixed literals are not applicable")
+    return True
+
+
 def observed_logsrv_code(frames: list[dict]) -> bool:
     text = "".join(frame.get("text", "") for frame in frames)
     rows = re.findall(r"(?m)^1000bf20: ((?:[0-9a-f]{2} ){15}[0-9a-f]{2}) {2,}", text)
@@ -88,7 +119,9 @@ def verify_readback(result: dict) -> None:
     """Transport completion does not prove shell output survived firmware buffering."""
     result["transport_ok"] = result["ok"]
     reads = [
-        block for block in BLOCKS if f"dbg mdb {block[0]:x} {block[1]:x}" in result["fixed_text_commands"]
+        block
+        for block in (*BLOCKS, *VENDOR_BLOCKS)
+        if f"dbg mdb {block[0]:x} {block[1]:x}" in result["fixed_text_commands"]
     ]
     if not reads:
         return
@@ -119,8 +152,9 @@ async def capture(
     code_sample: bool = False,
     code_literals: bool = False,
     code_references: bool = False,
+    vendor_code: bool = False,
 ) -> dict:
-    if (code_sample or code_literals or code_references) and serial != OWNED_SERIAL:
+    if (code_sample or code_literals or code_references or vendor_code) and serial != OWNED_SERIAL:
         raise ValueError("Code sample address is evidenced only for owned C261CF0430 FW 1.0.4")
     code_literals = code_literals or code_references
     queue = asyncio.Queue()
@@ -138,6 +172,18 @@ async def capture(
             + (
                 ["app", "system", "dbg nvram FW_VERION", "dbg nvram BT_LE_NAME", "help"]
                 if platform_info
+                else []
+            )
+            + (
+                [
+                    "kernel threads",
+                    "dbg mdb 1000a01c 10",
+                    "dbg mdb 10009e9c 10",
+                    "help",
+                    *(f"dbg mdb {block[0]:x} {block[1]:x}" for block in VENDOR_BLOCKS[2:]),
+                    "help",
+                ]
+                if vendor_code
                 else []
             )
             + (["kernel", "kernel uptime", "help"] if kernel_info else [])
@@ -206,6 +252,14 @@ async def capture(
                     # Revalidate the live entry in this session before any memory read.
                     async with asyncio.timeout(5):
                         while not observed_logsrv_entry(stream.frames):
+                            await pump(timeout=5)
+                if command in {"dbg mdb 1000a01c 10", "dbg mdb 10009e9c 10"}:
+                    async with asyncio.timeout(5):
+                        while not observed_vendor_entries(stream.frames):
+                            await pump(timeout=5)
+                if command in {f"dbg mdb {b[0]:x} {b[1]:x}" for b in VENDOR_BLOCKS[2:]}:
+                    async with asyncio.timeout(5):
+                        while not observed_vendor_code(stream.frames):
                             await pump(timeout=5)
                 if command == "dbg mdb 1000c0ac 8":
                     # Both literal loads are evidenced in the live entry bytes:

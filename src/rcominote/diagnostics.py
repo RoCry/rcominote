@@ -26,6 +26,7 @@ class Profile(StrEnum):
     code = "code"
     code_literals = "code-literals"
     code_references = "code-references"
+    vendor_code = "vendor-code"
     nor_header = "nor-header"
 
 
@@ -39,6 +40,7 @@ PROFILE_FLAGS = {
     "code": "code_sample",
     "code-literals": "code_literals",
     "code-references": "code_references",
+    "vendor-code": "vendor_code",
     "nor-header": "flash_header",
 }
 
