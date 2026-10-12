@@ -239,7 +239,7 @@ async def capture(
             )
             + (flushed_phases(SHELL_PHASES) if shell_code else [])
             + (
-                flushed_reads(HEADER_IMAGE_READS if image_header else HEADER_BATCH_READS)
+                (range_commands(HEADER_IMAGE_READS) if image_header else flushed_reads(HEADER_BATCH_READS))
                 if header_batch
                 else []
             )

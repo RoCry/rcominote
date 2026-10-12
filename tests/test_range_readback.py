@@ -127,3 +127,11 @@ def test_small_header_matches_independent_original_and_rejects_missing_segment()
     result["fixed_text_commands"].remove("dbg mdb 100001c0 40")
     verify_readback(result)
     assert not result["ok"] and "Missing declared range" in result["error"]
+
+
+def test_actual_header_burst_loss_rejects_ack_and_end_without_complete_rows():
+    from rcominote.range_readback import read_header
+
+    result = json.loads((EVIDENCE / "image-header-burst-failure-2026-10-12.json").read_text())
+    with pytest.raises(ValueError, match="Incomplete frame span"):
+        read_header(result | {"ok": True})

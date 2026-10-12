@@ -82,3 +82,5 @@
 实际`1009ef2c..1009ef40`共20 B：输入buffer/length/context由r0/r1/r2调整为context/buffer/length；r3读取context+5的byte；恢复r4后以`6cf7d6be`直接尾分支至`1000bcec`。这补齐shell注册callback→ring saver的实机边，callback本体无drain/retry，也无复制长度检查。尾调用仍把saver的r0返回值传回调用者；仅凭此函数不能断言调用者如何处理返回值。
 
 `1009ef12..1009ef2c`共26 B是原子加一：DMB、LDREX、加一、STREX失败重试、DMB、返回。结合saver传入ctx+1c，确认该失败路径确实递增计数器。两段完整bytes、SHA和指令已追加到同一证据JSON；不改变缺少失败瞬间rd/wr快照的边界。
+
+头部四次64 B后才help的批次亦捕获缺行：740 KiB断点处，`10000040`请求缺`10000050`行，ACK17/F1仍到达；失败批未提交任何正文chunk，重新运行后继续增长。采集器现将头部也改为每次64 B后help并验收，复用正文已有机制；不承诺消除原厂bug或其他丢失。原始失败保存在ignored captures，派生测试证据保留实际frame与请求声明。
