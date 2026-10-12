@@ -11,7 +11,7 @@
 | 录音数据存储 | [SD协议后端](card-state-readback.md)，与启动NOR分离 | 不应把录音sync当整机备份 |
 | 保留录音能力 | 实际[MP3 DSP选择](recorder-codec-dispatch.md)，[资源路径](dsp-resource-path.md)指向NOR K区704 KiB | [完整目录已取得](nor-partition-prefixes.md)：aerecord.dsp位于24d400、110148 B；[完整540 B头已双读确认](record-dsp-header.md)，含3组非零bank；[完整110148 B文件已取得](record-dsp-export.md)，216块双覆盖、目录checksum和全部段结构通过；仍缺自写固件加载运行验收 |
 | 显示/音频BSP | [显示](display-board-evidence.md)、[pinmux](board-pinmux-evidence.md)、[音频](audio-open-path.md)实际指令与配置线索 | 物理引脚/外围型号、真实采样/显示、自写镜像启动 |
-| 软件ADFU入口 | [实际应用重启代码](application-reboot-path.md)写ADFU标记并触发watchdog；[备用boot前512 B为FF](boot-recovery-prefixes.md)，recovery原始前512 B已双读 | 应用损坏时的独立入口、恢复态身份和可验证退出；分区条目不能替代可用镜像 |
+| 软件ADFU入口 | [实际boot](actual-boot-flow.md)识别应用的ADFU标记；recovery校验失败也转ROM表`0x19c`入口；[备用boot前512 B为FF](boot-recovery-prefixes.md) | ROM实际目标/协议、boot损坏时入口、恢复态身份和可验证退出；静态路径不等于救砖验收 |
 | 启动校验 | [SDK安全启动能力](boot-security-source-audit.md)及实际镜像头 | CoMi boot/ROM实际策略、签名/加密处理及可接受镜像 |
 
 ## 已排查的资源取得路径

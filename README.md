@@ -21,6 +21,8 @@
 
 ## 阅读顺序
 
+新增：[实际boot启动与失败流程](docs/actual-boot-flow.md)：先映射/校验recovery，ADFU标记与应用端一致，失败路径调用ROM表`0x19c`；尚未实测ROM恢复。
+
 新增：[完整boot与双checksum验收](docs/boot-complete.md)：原始4 KiB、明文3672 B；确认boot每512 B重置转换状态，为实际启动流程分析提供完整代码。
 
 新增：[原始NOR转换验证](docs/raw-storage-codec.md)：重建SDK算法，完整system头编码/解码与实读字节一致，同一有效状态解码recovery头且校验通过；完整正文及恢复仍未验证。
