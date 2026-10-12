@@ -193,3 +193,7 @@ Gitee REC_JX3完整仓库及ATS3085E已编译ELF。新的平台选择/构建仍�
 [177个固定blob哈希](recorder-reference-2026-10-13/source-manifest.json)、
 [ATS3085E构建产物哈希](recorder-reference-2026-10-13/ats3085e-build.json)。
 获取脚本已实际核验全部177文件；无设备I/O，未构建或执行新SDK。
+
+## 显式单文件删除：源码与主机验证（2026-10-13）
+
+[协议合同](../file-deletion.md)：固定官方JS成员及片段哈希、官方纯frame/CRC函数产生的独立0d请求golden、通用ACK与完整列表目标缺失的区别。新增CLI仅按明确serial/文件名确认删除单个已列出文件；真实Connection回放测试包含列表截断、迟到ACK、SIGINT及不重试。无设备删除、格式化、解绑或恢复出厂操作；不是固件备份／恢复进展。

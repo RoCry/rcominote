@@ -75,6 +75,10 @@ do not expand it into automatic cancellation/resume while platform work has prio
 Explicit download/sync Ctrl-C now uses the [existing stop contract](download-cancel-contract.md#implemented-host-boundary-2026-10-13):
 labeled partial bytes, bounded stop attempt and disconnect. This closes a known
 client capability without claiming worker-idle, reliable resume or firmware backup.
+[Explicit single-file deletion](file-deletion.md) now covers another documented
+client operation: source-backed request, serial/name confirmation, complete list
+readback, unknown outcome on interrupted exchange. Host tested only; no device
+deletion, secure-erasure proof or platform/recovery advance claimed.
 
 [SD bridge proof](sd-file-bridge.md) changes one acquisition decision: controlled
 temporary SD writes are acceptable research side effects, distinct from firmware

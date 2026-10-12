@@ -45,6 +45,8 @@ uv run comi diag capture platform --out artifacts/platform-NEW.json
 
 macOS需蓝牙权限，官方App先断开；Linux需本机BlueZ/适配器。APK、SDK、原始录音、完整日志在忽略的 `artifacts/`；仓库不依赖rlcdv、Obsidian或临时交接文件。
 
+显式单文件删除见[CLI说明](docs/cli.md)：必填serial和文件名确认，只以完整列表中目标消失为验收；已离线测试，尚未实机执行。格式化／解绑／恢复出厂未开放。
+
 ## 开发与参考构建
 
 ```sh

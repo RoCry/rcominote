@@ -121,6 +121,7 @@ Control methods: `[236151,238428)`; parser: `[221179,223211)`.
 | Files | Empty `0a`; status0 + name14 + size4 + kind1; status1 fail; status2 end | `[238428,240494)`; require explicit end |
 | Download / byte offset | `0b` payload name14 NUL-padded + offset u32 BE; status0 + full-size4, status1 fail, status2 end; bytes on e5e4 | `[240849,243257)`; [live offset17 suffix matches full file](download-offset.md); automatic persistent resume and per-block checksum remain absent |
 | Stop transfer | Empty `0c`; immediate reply and possible worker-exit reply both00; first ACK is not a completion barrier | `[244253,244532)`; [actual worker and bounded live cancellation](download-cancel-contract.md); download/sync Ctrl-C implemented, saves labeled partial bytes then disconnects; no automatic cancel/resume or same-session reuse |
+| Delete one recording | `0d` + raw ASCII name, no padding; app accepts generic matching reply | `[240494,240849)`; [source-backed implementation](file-deletion.md), explicit serial/name confirmation, idle + complete before/after list; device effect unverified, no automatic retry |
 | Set time | `04`: local year-2000,month,day,hour,minute,second, each one byte | `[234663,235121)`; generic response, no readback established |
 | Device events | `0f`: >=20 payload; charging0,battery1,USB-mode2,mode3,power-off4,noise5,voice6,indicator7,segment8,backlight9,USB-connected10 | `Y8` `[220352,220806)`; [client watch implemented](client-events.md), replay verified; passive live sample observed zero events |
 | Voice events | `19`: >=5; enabled byte0==1,size u32BE bytes1..4 | `Z8` `[220806,220992)`; app emits no public event; our client preserves it, live field semantics unverified |
@@ -129,14 +130,18 @@ Control methods: `[236151,238428)`; parser: `[221179,223211)`.
 
 ### Excluded from capability verification
 
-Source declares `BIND=03` (17 bytes: user-id16 + delete-files byte), `DELETE_FILE=0d`
-(raw ASCII name), `FORMAT_DEVICE=10` (empty), `RESET=12` (empty). Unbind reuses
-`03` with zero user-id and optional delete flag. Reset/unbind deliberately do not
+Source declares `BIND=03` (17 bytes: user-id16 + delete-files byte),
+`FORMAT_DEVICE=10` (empty), `RESET=12` (empty; **factory reset**, not reboot). Unbind reuses
+`03` with zero user-id and optional delete flag. Factory reset/unbind deliberately do not
 wait for response because device disconnects. These alter ownership/storage or
 reset state; existence is documented, not justification to run them while
 verifying read-only/ordinary control capabilities. No Boyi `0e` defined. No Boyi
 upgrade opcode, firmware signer, complete backup, or restore CLI established.
 Mova OTA declarations and UUIDs cannot be applied to Boyi.
+
+`DELETE_FILE=0d` is implemented with explicit confirmation and list readback;
+no device deletion was performed to validate it. Matching ACK alone never
+qualifies as verified deletion. List absence does not prove physical/secure erasure.
 
 ## Verification ledger
 

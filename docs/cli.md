@@ -23,7 +23,7 @@ uv run comi recording-info
 uv run comi settings show
 ```
 
-成功结果通常是 JSON；参数错误非零退出，设备/协议失败向 stderr 输出 JSON 错误。证据文件拒绝覆盖。macOS 的宿主终端需有蓝牙权限；官方 App 先断开。Linux 设备访问依赖本机 BlueZ/适配器/权限；SSH 不会把 Mac 的 USB/BLE 自动转发过去。`doctor`不把“依赖已安装”说成“蓝牙权限已通过”。
+结果是 JSON；错误非零退出，通常向 stderr 输出 JSON 错误；带操作观测的取消或删除未验证会保留 stdout JSON。证据文件拒绝覆盖。macOS 的宿主终端需有蓝牙权限；官方 App 先断开。Linux 设备访问依赖本机 BlueZ/适配器/权限；SSH 不会把 Mac 的 USB/BLE 自动转发过去。`doctor`不把“依赖已安装”说成“蓝牙权限已通过”。
 
 ## 录音与导出
 
@@ -49,7 +49,13 @@ uv run comi set-time
 
 `sync`跳过已存在同大小的普通文件，明确标注 `verification=size_only`，不能当成和设备内容哈希一致。大小不同或符号链接拒绝覆盖；选择新目录自行核对。设备未提供文件hash，CLI hash只标识本次收到的字节。
 
-录音测试产生的原文件不会自动删除；没有实现设备删除/格式化/解绑命令。
+录音测试产生的原文件不会自动删除。显式单文件删除：
+
+```sh
+uv run comi delete NAME --serial SERIAL --confirm-delete NAME
+```
+
+必填实际serial并重复文件名确认，连接后再次读回serial；要求设备idle、完整文件列表包含目标。只发送一次`0x0d`，保留回复原始字节，再取完整列表核对目标消失。成功JSON的`scope=listed_recording_absence`只表示目标不再列出，不证明安全擦除或其他副作用。超时、断连、列表不完整为结果未知；收到回复但仍列出为未满足后置条件，均退出1、不重试。尝试删除后Ctrl-C报告结果未知并退出130。本命令已按固定官方源码实现及离线测试，**尚未实机删除验收**。见[来源与边界](file-deletion.md)。没有格式化／绑定／解绑／恢复出厂命令。
 
 ## 实时音频
 

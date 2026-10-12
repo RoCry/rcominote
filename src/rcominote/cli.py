@@ -7,7 +7,17 @@ import sys
 
 from bleak.exc import BleakError
 
-from . import diagnostics, gatt, image_export, ota_package, realtime, settings, usb_inventory, verification
+from . import (
+    diagnostics,
+    gatt,
+    image_export,
+    ota_package,
+    realtime,
+    recording_delete,
+    settings,
+    usb_inventory,
+    verification,
+)
 from .device_commands import app
 from .output import emit
 
@@ -21,6 +31,7 @@ app.command("gatt")(gatt.main)
 app.command("verify")(verification.main)
 app.command("realtime")(realtime.main)
 app.command("inspect-ota")(ota_package.main)
+app.command("delete")(recording_delete.main)
 
 
 @app.command()
@@ -62,11 +73,12 @@ def capabilities():
                 "bounded realtime capture; explicit --record owns a short recording",
                 "settings with readback",
                 "download/sync Ctrl-C cancellation; labeled partial bytes and disconnected session",
+                "single listed recording deletion; explicit serial/name confirmation and file-list readback",
                 "fixed mapped-system image export with resume and checksum gate",
             ],
             "not_implemented": [
                 "arbitrary shell/memory",
-                "bind/unbind/delete/format",
+                "bind/unbind/format/factory reset",
                 "full firmware dump",
                 "flash",
                 "ADFU switch",
