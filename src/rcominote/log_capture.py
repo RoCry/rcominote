@@ -16,6 +16,7 @@ from .code_guards import (
     observed_logsrv_code,
     observed_logsrv_entry,
     observed_logsrv_literals,
+    observed_storage_reference,
     observed_vendor_call,
     observed_vendor_code,
     observed_vendor_entries,
@@ -28,6 +29,15 @@ from .code_references import (
     INFO_BODY_BLOCKS,
     INFO_CAPACITY,
     INFO_REFERENCES,
+    INFO_STORAGE,
+    INFO_STORAGE_CALLBACK,
+    INFO_STORAGE_CALLBACK_TAIL,
+    INFO_STORAGE_ENTRY,
+    INFO_STORAGE_MORE,
+    INFO_STORAGE_MOUNT,
+    INFO_STORAGE_TABLE,
+    INFO_STORAGE_VOLUME,
+    INFO_STORAGE_VTABLE,
     SPECIAL_BLOCKS,
     VENDOR_BLOCKS,
     read_block,
@@ -83,7 +93,7 @@ def verify_readback(result: dict) -> None:
     result["transport_ok"] = result["ok"]
     reads = [
         block
-        for block in dict.fromkeys((*BLOCKS, *VENDOR_BLOCKS, *HANDLER_BLOCKS, *INFO_BLOCKS))
+        for block in dict.fromkeys((*BLOCKS, *VENDOR_BLOCKS, *HANDLER_BLOCKS, *INFO_BLOCKS, *INFO_STORAGE))
         if f"dbg mdb {block[0]:x} {block[1]:x}" in result["fixed_text_commands"]
     ]
     if not reads:
@@ -127,7 +137,9 @@ async def capture(
     vendor_code: bool = False,
     vendor_handler: bool = False,
     device_info_code: bool = False,
+    storage_code: bool = False,
 ) -> dict:
+    device_info_code = device_info_code or storage_code
     if (
         code_sample or code_literals or code_references or vendor_code or vendor_handler or device_info_code
     ) and serial != OWNED_SERIAL:
@@ -199,6 +211,14 @@ async def capture(
                     *flushed_reads(INFO_BODY_BLOCKS[9:]),
                     *flushed_reads(INFO_REFERENCES),
                     *flushed_reads(INFO_CAPACITY),
+                    *(flushed_reads(INFO_STORAGE_ENTRY) if storage_code else []),
+                    *(flushed_reads(INFO_STORAGE_MORE) if storage_code else []),
+                    *(flushed_reads(INFO_STORAGE_TABLE) if storage_code else []),
+                    *(flushed_reads(INFO_STORAGE_VOLUME) if storage_code else []),
+                    *(flushed_reads(INFO_STORAGE_MOUNT) if storage_code else []),
+                    *(flushed_reads(INFO_STORAGE_VTABLE) if storage_code else []),
+                    *(flushed_reads(INFO_STORAGE_CALLBACK) if storage_code else []),
+                    *(flushed_reads(INFO_STORAGE_CALLBACK_TAIL) if storage_code else []),
                 ]
                 if device_info_code
                 else []
@@ -332,7 +352,11 @@ async def capture(
                         while not observed_logsrv_literals(stream.frames):
                             await pump(timeout=5)
                 encoded = command.encode("ascii")
-                if command in {f"dbg mdb {b[0]:x} {b[1]:x}" for b in INFO_CAPACITY}:
+                if storage_code:
+                    async with asyncio.timeout(5):
+                        while not observed_storage_reference(stream.frames, command):
+                            await pump(timeout=5)
+                if command in {f"dbg mdb {b[0]:x} {b[1]:x}" for b in (*INFO_CAPACITY, *INFO_STORAGE)}:
                     async with asyncio.timeout(5):
                         while not observed_capacity_entries(stream.frames):
                             await pump(timeout=5)

@@ -3,7 +3,16 @@
 import re
 
 from .ble_target import OWNED_SERIAL
-from .code_references import read_block
+from .code_references import (
+    INFO_STORAGE_CALLBACK,
+    INFO_STORAGE_CALLBACK_TAIL,
+    INFO_STORAGE_MORE,
+    INFO_STORAGE_MOUNT,
+    INFO_STORAGE_TABLE,
+    INFO_STORAGE_VOLUME,
+    INFO_STORAGE_VTABLE,
+    read_block,
+)
 
 
 def observed_logsrv_entry(frames: list[dict]) -> bool:
@@ -75,6 +84,55 @@ def observed_capacity_entries(frames: list[dict]) -> bool:
             (0x10054A38, "daf708fc104a114b9b1a5b0103f47f43"),
         )
     )
+
+
+def observed_storage_entries(frames: list[dict]) -> bool:
+    return all(
+        observed_code(frames, address, expected, "storage-query entry/branch")
+        for address, expected in (
+            (0x100546FC, "70b50e4e0546002456f8041b2846acf7"),
+            (0x1005470C, "ddfa28b10134052cf6d16ff015040ae0"),
+            (0x1002F24C, "73b50e46054688b9214b22482249c01a"),
+        )
+    )
+
+
+def observed_storage_reference(frames: list[dict], command: str) -> bool:
+    """Fail before dereferencing a stale mount or following changed code."""
+    prerequisites = (
+        (
+            INFO_STORAGE_CALLBACK_TAIL,
+            (
+                (0x100A42D6, "13b5c068144604f10c0101aa013003f0", "SD callback entry"),
+                (0x100A42E6, "33fb58b9019a4ff40073236053895b02", "SD callback branch"),
+            ),
+        ),
+        (INFO_STORAGE_CALLBACK, ((0x100BC0E0, "d7420a10", "SD statvfs callback pointer"),)),
+        (INFO_STORAGE_TABLE, ((0x10054738, "24ce0b10b07b0118", "volume-table literals"),)),
+        (
+            INFO_STORAGE_VOLUME,
+            (
+                (0x1005471C, "074b03ebc4031b79da07f6d513f0020f", "volume stride and flags"),
+                (0x100BCE34, "43120c10", "SD volume index"),
+                (0x10054738, "24ce0b10b07b0118", "volume array literal"),
+            ),
+        ),
+        (INFO_STORAGE_MOUNT, ((0x18017BD0, "640a011803000000", "SD mount pointer and flags"),)),
+        (
+            INFO_STORAGE_VTABLE,
+            (
+                (0x18010A64, "e40c0118f8f700180000000043120c10", "SD mount identity"),
+                (0x18010A74, "8c0a011800000000040000009cc00b10", "SD mount vtable"),
+                (0x1002F2AC, "0198c3695b6c002bddd0324629469847", "statvfs indirect call"),
+            ),
+        ),
+    )
+    if command in {f"dbg mdb {a:x} {n:x}" for a, n, _, _ in INFO_STORAGE_MORE}:
+        return observed_storage_entries(frames)
+    for blocks, checks in prerequisites:
+        if command in {f"dbg mdb {a:x} {n:x}" for a, n, _, _ in blocks}:
+            return all(observed_code(frames, address, value, name) for address, value, name in checks)
+    return True
 
 
 def observed_logsrv_code(frames: list[dict]) -> bool:

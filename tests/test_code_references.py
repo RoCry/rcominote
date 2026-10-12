@@ -96,3 +96,33 @@ def test_changed_capacity_callee_blocks_continuation():
         frame["text"] = frame.get("text", "").replace("da f7 3c fc", "da f7 00 fc")
     with pytest.raises(ValueError, match="capacity getter code changed"):
         observed_capacity_entries(capture["frames"])
+
+
+def test_storage_dispatch_decodes_actual_indirect_call():
+    report = inspect_references(
+        EVIDENCE / "storage-first-2026-10-12.json",
+        EVIDENCE / "storage-second-2026-10-12.json",
+        storage=True,
+    )
+    # Hand-decoded Thumb from the captured VFS: mount->fs (+1c),
+    # fs->statvfs (+44), BLX r3. It must not become a direct guessed BL.
+    instructions = {
+        row["address"]: (row["mnemonic"], row["operands"])
+        for region in report["code_regions"]
+        for row in region["instructions"]
+    }
+    assert [instructions[address] for address in ("0x1002f2ae", "0x1002f2b0", "0x1002f2ba")] == [
+        ("ldr", "r3, [r0, #0x1c]"),
+        ("ldr", "r3, [r3, #0x44]"),
+        ("blx", "r3"),
+    ]
+
+
+def test_moved_mount_pointer_prevents_stale_ram_dereference():
+    from rcominote.code_guards import observed_storage_reference
+
+    capture = json.loads((EVIDENCE / "storage-first-2026-10-12.json").read_text())
+    for frame in capture["frames"]:
+        frame["text"] = frame.get("text", "").replace("64 0a 01 18", "00 00 00 00")
+    with pytest.raises(ValueError, match="SD mount pointer and flags code changed"):
+        observed_storage_reference(capture["frames"], "dbg mdb 18010a64 10")

@@ -110,3 +110,5 @@ just build       # wheel + source distribution
 旧研究记录中的 `tools/comi.py`、`tools/log_capture.py` 等路径与命令对应当时提交；截至c523137可按原命令复现。当前统一使用以上入口；旧脚本已迁入包，不保留两份实现。
 
 `device-info-code`沿已验证的命令05调用链读取601 B（112 B既有校验点），含52 B设备信息构造、常量和两个容量getter。读取前逐层验证指令、literal、callee入口；两份捕获用`diag compare-references FIRST SECOND --info --out REPORT`离线核对。[字段来源](device-info-fields.md)。没有新增写入或固件备份命令。
+
+`storage-code`扩展device-info-code至937 B，沿实际容量getter、卷名表、RAM挂载对象及函数表定位statvfs callback。`diag compare-references FIRST SECOND --storage --out REPORT`逐字节核对两份捕获。新增336 B含40 B RAM元数据；当前指针/flags/代码不吻合即停止，不自动跟随新地址。RAM并非原子快照，重启后固定地址可能失效。[存储绑定证据](storage-binding-readback.md)。

@@ -107,3 +107,11 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 [存储诊断候选审计](../storage-diagnostic-candidates.md)发现部分看似日志/只读路径可能flush存储，未执行；[VTOR审计](../vector-base-read-audit.md)确认架构地址与对齐32位读取要求，但实机特权/核心仍未完全确认，未读取该寄存器。CoMi App登录按用户要求暂缓。
 
 [结束状态](device-info-final-state-2026-10-12.json)：FW010004、idle、容量59634/59632、noise9；未重启/刷写。`just check`通过56测试+24子测试，wheel/sdist构建通过。
+
+## 第十二轮：从卷名到实际FAT容量回调
+
+[首次](storage-first-2026-10-12.json)、[重读](storage-second-2026-10-12.json)、[分析](storage-analysis-2026-10-12.json)：937 B完整一致，其中336 B新增，累计1822个不同映射字节（含40 B挂载RAM元数据）。证实实际VFS通过mount+1c→vtable+44间接调用，定位`/SD:`挂载对象与callback `100a42d7`，成功分支按512逻辑扇区和FAT簇计算统计。[完整报告](../storage-binding-readback.md)。
+
+没有取得底层芯片ID、固件分区表或完整备份。RAM两次相同只是会话快照，不代表原子冻结或重启后仍有效。新增指针变化阻止继续解引用的测试；`just check`通过58测试+24子测试，wheel/sdist构建成功。没有执行新的文件系统操作或写入。
+
+[结束状态](storage-final-state-2026-10-12.json)：FW010004、idle、容量59634/59632、noise9，设备正常响应。

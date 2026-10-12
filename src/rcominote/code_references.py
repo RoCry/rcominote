@@ -98,6 +98,51 @@ INFO_CAPACITY = (
         for address in range(0x10054A48, 0x10054A80, 16)
     ),
 )
+INFO_STORAGE_ENTRY = (
+    (0x100546FC, 16, "capacity getter volume-check BL target", True),
+    (0x1005470C, 16, "volume-check callee continuation", True),
+    (0x1002F24C, 16, "capacity getter stat-query BL target", True),
+    (0x1002F25C, 16, "stat-query callee continuation", True),
+)
+INFO_STORAGE_MORE = (
+    (0x1005471C, 16, "volume-check taken branch", True),
+    (0x1005472C, 12, "volume-check return before referenced literals", True),
+    (0x10054738, 8, "volume-check PC-relative literals", False),
+    (0x1002F26C, 16, "stat-query branch continuation", True),
+    (0x1002F27C, 16, "stat-query path checks", True),
+    *(
+        (address, 16, "stat-query continuation before literal pool", True)
+        for address in range(0x1002F28C, 0x1002F2DC, 16)
+    ),
+    (0x1002F2DC, 12, "stat-query first three PC-relative literals", False),
+)
+INFO_STORAGE_TABLE = (
+    (0x100BCE24, 16, "volume-name pointer table first four entries", False),
+    (0x100BCE34, 4, "volume-name pointer table fifth entry", False),
+)
+INFO_STORAGE_VOLUME = (
+    (0x18017BD0, 8, "SD volume entry: code-proven base plus index four times stride eight", False),
+)
+INFO_STORAGE_MOUNT = (
+    (0x18010A64, 16, "SD mount candidate first fields", False),
+    (0x18010A74, 16, "SD mount candidate through code-proven vtable offset", False),
+)
+INFO_STORAGE_VTABLE = ((0x100BC0E0, 4, "mounted SD statvfs callback pointer", False),)
+INFO_STORAGE_CALLBACK = (
+    (0x100A42D6, 16, "SD statvfs callback Thumb entry", True),
+    (0x100A42E6, 16, "SD statvfs callback entry continuation", True),
+)
+INFO_STORAGE_CALLBACK_TAIL = ((0x100A42F6, 16, "SD statvfs success continuation and error branch", True),)
+INFO_STORAGE = (
+    *INFO_STORAGE_ENTRY,
+    *INFO_STORAGE_MORE,
+    *INFO_STORAGE_TABLE,
+    *INFO_STORAGE_VOLUME,
+    *INFO_STORAGE_MOUNT,
+    *INFO_STORAGE_VTABLE,
+    *INFO_STORAGE_CALLBACK,
+    *INFO_STORAGE_CALLBACK_TAIL,
+)
 INFO_BLOCKS = (*INFO_BODY_BLOCKS, *INFO_REFERENCES, *INFO_CAPACITY)
 
 
@@ -120,15 +165,24 @@ def read_block(capture: dict, address: int, length: int) -> bytes:
 
 
 def inspect_references(
-    first: Path, second: Path, *, vendor: bool = False, handler: bool = False, info: bool = False
+    first: Path,
+    second: Path,
+    *,
+    vendor: bool = False,
+    handler: bool = False,
+    info: bool = False,
+    storage: bool = False,
 ) -> dict:
     captures = [json.loads(path.read_text()) for path in (first, second)]
     stamps = [capture.get("captured_at") for capture in captures]
     if not all(stamps) or stamps[0] == stamps[1]:
         raise ValueError("Two distinct capture records are required")
     blocks = []
+    info = info or storage
     vendor = vendor or handler or info
     selected = INFO_BLOCKS if info else HANDLER_BLOCKS if handler else VENDOR_BLOCKS if vendor else BLOCKS
+    if storage:
+        selected = (*selected, *INFO_STORAGE)
     for address, length, reason, code in selected:
         data = read_block(captures[0], address, length)
         if data != read_block(captures[1], address, length):
@@ -239,10 +293,11 @@ def main(
     vendor: bool = False,
     handler: bool = False,
     info: bool = False,
+    storage: bool = False,
 ):
     """Compare fixed reads: --vendor receive loop, --handler dispatcher, --info device-info getters."""
     new_output(out)
-    report = inspect_references(first, second, vendor=vendor, handler=handler, info=info)
+    report = inspect_references(first, second, vendor=vendor, handler=handler, info=info, storage=storage)
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("x") as handle:
         handle.write(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
