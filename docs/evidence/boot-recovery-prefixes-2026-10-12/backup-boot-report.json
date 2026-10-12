@@ -1,0 +1,308 @@
+{
+  "scope": "Guarded, non-atomic fixed NOR-target log rows; no full-device backup or recovery proof",
+  "producer": "dbg fread spi_flash 0x2000",
+  "target": "backup-boot",
+  "offset": 8192,
+  "input_files": 22,
+  "distinct_sources": 22,
+  "required_rows": 32,
+  "observed_rows": 32,
+  "confirmed_rows": 32,
+  "missing_rows": [],
+  "unconfirmed_rows": [],
+  "conflicts": [],
+  "complete": true,
+  "rows": [
+    {
+      "offset": "0x0",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x10",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x20",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x30",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x40",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x50",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x60",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x70",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x80",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x90",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0xa0",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0xb0",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0xc0",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0xd0",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0xe0",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0xf0",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x100",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x110",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x120",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x130",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x140",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x150",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x160",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x170",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x180",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x190",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x1a0",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x1b0",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x1c0",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x1d0",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x1e0",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x1f0",
+      "variants": [
+        {
+          "hex": "ffffffffffffffffffffffffffffffff",
+          "sources": 2
+        }
+      ]
+    }
+  ],
+  "sector_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+  "bytes": 512
+}

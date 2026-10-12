@@ -26,6 +26,7 @@ def save(tmp_path, capture):
     [
         ("boot", 0, "dbg fread spi_flash 0"),
         ("backup-boot", 0x2000, "dbg fread spi_flash 0x2000"),
+        ("recovery", 0x4000, "dbg fread spi_flash 0x4000"),
         ("system", 0x24000, "dbg fread spi_flash 0x24000"),
         ("dsp", 0x240000, "dbg fread spi_flash 0x240000"),
         ("record-dsp", 0x24D400, "dbg fread spi_flash 0x24d400"),

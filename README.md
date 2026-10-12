@@ -21,6 +21,8 @@
 
 ## 阅读顺序
 
+新增：[boot/recovery原始前缀](docs/boot-recovery-prefixes.md)：备用boot前512 B全FF；recovery双读通过，与boot/system共享原始8 B前缀，存储转换仍未知。
+
 1. [固件研究路线与待解问题](docs/firmware-roadmap.md)：哪些证据决定下一步。
 2. [Actions SDK 核查](docs/actions-sdk.md)：平台、构建、分区、升级、恢复及源码定位。
 3. [App 升级与 USB 线索](docs/app-upgrade.md)：Boyi/Mova 区分、APK 固定样本与可复核提取。

@@ -15,6 +15,7 @@ GUARDS = (
 class NorTarget(StrEnum):
     boot = "boot"
     backup_boot = "backup-boot"
+    recovery = "recovery"
     system = "system"
     dsp = "dsp"
     record_dsp = "record-dsp"
@@ -24,6 +25,7 @@ class NorTarget(StrEnum):
 TARGET_OFFSETS = {
     NorTarget.boot: 0,
     NorTarget.backup_boot: 0x2000,
+    NorTarget.recovery: 0x4000,
     NorTarget.system: 0x24000,
     NorTarget.dsp: 0x240000,
     NorTarget.record_dsp: 0x24D400,
