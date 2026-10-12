@@ -38,13 +38,22 @@ SDK 固定为 `lvgl/lv_port_actions_technology@26f51e584940d5b141cd1d09d2629d69b
 参考 XML 确实有 `fw0_boot/fw1_boot`、`fw0_param/fw1_param`，但只有一个 SYSTEM `fw0_sys`；
 SYSTEM 的 `ota_embed=TEMP` 指向临时升级路径。临时区放在 `storage_id=1`，不能把 boot/param 双副本或 TEMP 理解为保留整套旧应用。[启动分区][layout-boot] [临时区][layout-temp]
 
-OTA 实际提交链也不包含“新应用运行健康后才确认”：
+参考 SDK 的 OTA 提交链不包含“新应用运行健康后才确认”（下列源码链接均指 SDK）：
 
 - 先找同一 file ID 的 mirror 分区；缺失时，recovery 模式允许写非当前执行分区的原分区。这可以覆盖唯一 SYSTEM。[目标选择][ota-write]
 - 写完及文件校验通过后更新 firmware version，保存 `UPGRADE_DONE`，再向 backend 报告成功；这个时点尚未运行新应用。[提交顺序][ota-commit]
 - breakpoint 记录写入状态/偏移并 sync 存储，`DONE/PENDING` 清除文件状态；这是升级续传/写入完成机制，不能等同运行失败回滚。[断点保存][breakpoint]
 - 本树 `OTA_FULL_UPGRADE=1` 路径可把 boot/param 写到 mirror 后**擦除当前副本**；布局/manifest 是否提供这些文件决定是否走此路径。[开关][full-flag] [最后写 boot/param][ota-write]
 - 参考SDK版本检查默认拒绝同版/旧版，patch 还要求匹配旧版本。[版本检查][version-check] **后续实际固件修正：CoMi初始化显式设置no-version-control，并有实际跳过版本比较的分支**，见[版本策略](ota-version-policy.md)。这推翻“默认拒绝必然适用本机”的假设，仍未验证原厂包回装或恢复成功。
+
+## 实际 CoMi 写入与成功通知：新增证据
+
+[FW010004 指令审计](ota-write-commit.md)确认：应用写入、文件读回 CRC、
+保存 PENDING/DONE、backend 成功通知、应用 DONE 回调依次发生；成功通知早于新固件启动。
+当前配置选择 recovery 暂存分支，但 payload 选择循环并非硬编码只允许 TEMP：
+它依 manifest file ID 找 mirror，再有条件回退原分区。尚无原厂包证明实际文件组合。
+存储写入返回值被检查；CRC 读回循环丢弃读取返回值，整体断点保存也不传播失败。
+这些是实际代码的条件行为，未执行 OTA、制造故障或验证掉电恢复。
 
 ## “刷坏”分别意味着什么
 

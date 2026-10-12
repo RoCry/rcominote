@@ -116,7 +116,10 @@ Audited instruction ranges do not establish every later storage-side effect,
 payload CRC, decompression/signature check, erase ordering or recovery acceptance.
 In particular, the manifest-buffer checksum helper is not proof that every
 payload has been checked before any Flash modification. Trace the storage/write
-path and recovery image separately before attempting an update.
+path and recovery image separately before attempting an update. The subsequent
+[actual write/commit audit](ota-write-commit.md) covers application payload
+selection, storage writes, readback CRC and pre-reboot success ordering; recovery
+execution and interruption safety remain unverified.
 
 ## Consequence for next work
 
