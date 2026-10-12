@@ -145,3 +145,5 @@ uv run --locked tools/build_sdk.py \
 [SDFS NOR读取](docs/sdfs-nor-read-path.md)：目录相对offset加分区offset，经Flash API读取。原始指令模拟确认读失败与EOF均返回0；未来导出必须核对预期长度。
 
 [DSP文件加载器](docs/dsp-file-loader.md)：540 B头部、`xhqy`磁盘魔数与分段读取；指令模拟确认空sections可通过、初始seek错误未检查，不能以加载器成功替代备份完整性验证。
+
+[录音下载路径](docs/recording-download-path.md)：实际拼接`/SD:/RECORDER/Call-或Note-<name>.mp3`，不是绝对路径文件接口，不能直接用于NOR DSP资源导出。
