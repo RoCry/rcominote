@@ -21,6 +21,8 @@
 
 ## 阅读顺序
 
+新增：[recovery断点导出](docs/recovery-export.md)：固定63288 B范围，实测跳过已有块并新增读取；完整正文校验完成前不发布镜像。
+
 新增：[实际boot启动与失败流程](docs/actual-boot-flow.md)：先映射/校验recovery，ADFU标记与应用端一致，失败路径调用ROM表`0x19c`；尚未实测ROM恢复。
 
 新增：[完整boot与双checksum验收](docs/boot-complete.md)：原始4 KiB、明文3672 B；确认boot每512 B重置转换状态，为实际启动流程分析提供完整代码。

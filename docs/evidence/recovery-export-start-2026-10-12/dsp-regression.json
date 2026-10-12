@@ -1,0 +1,5 @@
+{
+  "verified_blocks": 216,
+  "sha256": "7ed5482ca4d37c39f6b70e72fc29c129f135bc77eed5d3c0889bfc8bc5fd436e",
+  "scope": "Offline shared collector evidence parser regression; no device I/O"
+}

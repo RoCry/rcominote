@@ -1,0 +1,8 @@
+{
+  "target": "recovery",
+  "image_bytes": 63288,
+  "verified_blocks": 2,
+  "total_blocks": 124,
+  "complete": false,
+  "scope": "Readback and offline checksum only; no execution, write or recovery proof"
+}

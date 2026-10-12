@@ -33,14 +33,19 @@ TARGET_OFFSETS = {
 }
 MARKER = f"dbg mdb {printk_ring.CONTEXT:x} 1c"
 RECORD_DSP_BYTES = 110148  # Double-read SDFS directory, actual aerecord.dsp.
+RECOVERY_BYTES = 63288  # Actual decoded checksum-valid header:512 + 0xf538.
 
 
 def block_offset(value: NorTarget, block: int = 0) -> int:
     if type(block) is not int or block < 0:
         raise ValueError("NOR block must be a nonnegative integer")
-    extent = {NorTarget.boot: 0x1000, NorTarget.record_dsp: RECORD_DSP_BYTES}.get(value, 512)
+    extent = {
+        NorTarget.boot: 0x1000,
+        NorTarget.record_dsp: RECORD_DSP_BYTES,
+        NorTarget.recovery: RECOVERY_BYTES,
+    }.get(value, 512)
     if block * 512 >= extent:
-        raise ValueError("NOR block exceeds the known boot partition or recording DSP extent")
+        raise ValueError("NOR block exceeds the known target extent")
     return TARGET_OFFSETS[value] + block * 512
 
 

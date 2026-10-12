@@ -6,7 +6,9 @@ from pathlib import Path
 
 import pytest
 
-from rcominote.dsp_export import export, verified_block
+from rcominote import nor_export
+from rcominote.dsp_export import export
+from rcominote.nor_export import collect, verified_block
 from rcominote.nor_windows import analyze
 from rcominote.printk_tail import NorTarget, block_offset
 
@@ -62,3 +64,76 @@ def test_invalid_export_limit_fails_before_creating_directory(tmp_path):
     with pytest.raises(ValueError, match="max-new-blocks"):
         asyncio.run(export(out, serial="not-connected", max_new_blocks=217, attempts=3))
     assert not out.exists()
+
+
+@pytest.mark.parametrize(
+    ("total", "limit", "attempts", "error"),
+    [
+        (0, 1, 3, "total-blocks"),
+        (True, 1, 3, "total-blocks"),
+        (9, 1, 3, "NOR block"),
+        (1, 2, 3, "max-new-blocks"),
+        (1, True, 3, "max-new-blocks"),
+        (1, 1, 6, "attempts"),
+        (1, 1, True, "attempts"),
+    ],
+)
+def test_collection_limits_fail_before_filesystem_or_capture(tmp_path, total, limit, attempts, error):
+    out = tmp_path / "not-created"
+    with pytest.raises(ValueError, match=error):
+        asyncio.run(
+            collect(
+                out,
+                target=NorTarget.boot,
+                total_blocks=total,
+                serial="not-connected",
+                max_new_blocks=limit,
+                attempts=attempts,
+            )
+        )
+    assert not out.exists()
+
+
+def test_partial_capture_retries_then_resumes_without_device_io(tmp_path, monkeypatch):
+    """Real retained windows: first truncated acquisition, then full second acquisition."""
+    calls = []
+
+    async def capture(out, target, serial, block):
+        calls.append(out.name)
+        if len(calls) == 1:
+            out.mkdir(exist_ok=False)
+            shutil.copyfile(EVIDENCE / "window-00.json", out / "window-00.json")
+        else:
+            shutil.copytree(EVIDENCE, out)
+
+    monkeypatch.setattr(nor_export, "capture_sector", capture)
+    blocks = asyncio.run(
+        collect(
+            tmp_path,
+            target=NorTarget.record_dsp,
+            total_blocks=2,
+            serial="not-connected",
+            max_new_blocks=1,
+            attempts=2,
+        )
+    )
+    # Independent published full-file artifact agrees with reconstructed source windows.
+    golden = EVIDENCE.parents[1] / "record-dsp-complete-2026-10-12/aerecord.dsp"
+    assert blocks == [golden.read_bytes()[:512]]
+    assert calls == ["attempt-000", "attempt-001"]
+
+    async def unexpected_capture(*args, **kwargs):
+        raise AssertionError("Verified retained evidence must not trigger another acquisition")
+
+    monkeypatch.setattr(nor_export, "capture_sector", unexpected_capture)
+    resumed = asyncio.run(
+        collect(
+            tmp_path,
+            target=NorTarget.record_dsp,
+            total_blocks=1,
+            serial="not-connected",
+            max_new_blocks=1,
+            attempts=2,
+        )
+    )
+    assert resumed == blocks
