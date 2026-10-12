@@ -81,3 +81,5 @@ resolve USB-specific initializer and negotiation/exit path, then compare actual
 ROM entry/host framing. Existing rejection of unchanged adfus.bin init+rs as a
 read-only backup stands; A subsequent [independent USB storage/exit audit](lark-usb-storage-exit.md)
 confirms its own status writes and non-restoring selector0 exit.
+
+[USB handshake follow-up](lark-usb-handshake.md) identifies63636363 preamble, connected/opened gates and protocol8. This is helper-level USP, not ROM upload framing.

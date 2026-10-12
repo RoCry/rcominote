@@ -41,10 +41,12 @@ SPECS = {
 }
 
 
-def main(directory: Path, usb_storage: bool = False):
+def main(directory: Path, usb_storage: bool = False, handshake: bool = False):
     decoder = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
     files = []
     specs = SPECS
+    if usb_storage and handshake:
+        raise typer.BadParameter("Choose one audit mode")
     if usb_storage:
         specs = {
             "adfus_u.bin": (
@@ -70,6 +72,23 @@ def main(directory: Path, usb_storage: bool = False):
                     (0x3110, 0x3118),
                 ],
                 [(0xA24, 0xA40), (0xB50, 0xB78), (0x3EB8, 0x3ED0), (0xE06, 0xE68)],
+            )
+        }
+    if handshake:
+        specs = {
+            "adfus_u.bin": (
+                SPECS["adfus_u.bin"][0],
+                [
+                    (0x26F0, 0x2772),
+                    (0x5068, 0x50BA),
+                    (0xA9B8, 0xAA02),
+                    (0xAA14, 0xAA56),
+                    (0xAA56, 0xAAA6),
+                    (0xAB72, 0xAB98),
+                    (0xACF0, 0xAD20),
+                    (0xAD32, 0xADCA),
+                ],
+                [(0xAD20, 0xAD31)],
             )
         }
     for name, (sha, regions, tables) in specs.items():
