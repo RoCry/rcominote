@@ -32,3 +32,5 @@ uv run comi diag compare-references artifacts/shell-a.json artifacts/shell-b.jso
 ```
 
 [首次](evidence/shell-first-2026-10-12.json)、[重读](evidence/shell-second-2026-10-12.json)、[逐指令分析](evidence/shell-analysis-2026-10-12.json)、[结束状态](evidence/shell-final-state-2026-10-12.json)。回归测试以实际STRD、条件跳转和修改父分支后的拒绝行为为oracle。
+
+后续：[TLV文本到shell执行入口](shell-text-readback.md)已推进这条路线；本文345 B为当轮历史证据，当前profile扩展到777 B。

@@ -137,3 +137,7 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## 日志服务回调与协议入口
 
 [首次](shell-first-2026-10-12.json)、[重读](shell-second-2026-10-12.json)、[分析](shell-analysis-2026-10-12.json)：345 B一致，新增276 B，累计4229不同映射字节。实际timer callback存储与协议头检查已确认；尚未到shell表或分区表。[报告](../shell-service-readback.md)、[结束状态](shell-final-state-2026-10-12.json)。
+
+## TLV文本到shell执行入口
+
+[首次](shell-text-first-2026-10-12.json)、[重读](shell-text-second-2026-10-12.json)、[分析](shell-text-analysis-2026-10-12.json)：777 B一致，新增432 B，累计4661不同映射字节。文本type1到shell execute及内部执行callee已定位；命令表未读。[报告](../shell-text-readback.md)、[结束状态](shell-text-final-state-2026-10-12.json)。
