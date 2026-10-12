@@ -50,4 +50,4 @@ uv run tools/inspect_recovery_handoff.py \
 
 `src/rcominote/experiments/recovery_tail.py`保留固定范围采集与缓存复验，不进入默认CLI。新采集须显式 `--create-sd-files`；完整缓存可离线复验，但仍需原始已校验system镜像核对代码guard。旧 `archive/recovery_export.py`慢速默认路线继续退役。
 
-这次补齐了原厂recovery及本地system准入/交接契约。下一阶段仍抓三项：匹配ATS3085L/LARK M4 BSP与库；原厂完整生产包/host与原始表示；独立可退出的加载/恢复入口。个体NVRAM/param、副本和完整资源仍未备份，system映射镜像也不是物理NOR原始镜像。暂存直接XIP→SD失败原因、通用文件管理和细碎callee审计，不将本次有界成功扩大成整片备份/可安全刷机结论。
+这次补齐了原厂recovery及本地system准入/交接契约。下一阶段仍抓三项：匹配ATS3085L/LARK M4 BSP与库；原厂完整生产包/host与原始表示；独立可退出的加载/恢复入口。[后续两个param原始槽已完整取得](param-slots.md)，主槽有效、备用槽全FF；boot1、个体NVRAM和完整资源仍未完整备份，system映射镜像也不是物理NOR原始镜像。暂存直接XIP→SD失败原因、通用文件管理和细碎callee审计，不将本次有界成功扩大成整片备份/可安全刷机结论。

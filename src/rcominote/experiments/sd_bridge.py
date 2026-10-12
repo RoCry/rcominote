@@ -326,12 +326,18 @@ def main(
         elif nor_target == NorTarget.recovery and 93 <= nor_block <= 123:
             oracle_path = Path("docs/evidence/recovery-raw-prefix-2026-10-12.bin")
             oracle_sha = "20a8547720d14eb92339643f48e93ce5248023e142457990076f95eca03a63e8"
+        elif nor_target in (NorTarget.param0, NorTarget.param1):
+            block_offset(nor_target, nor_block)  # Fixed actual ACPT4KiB slots only.
+            oracle_path = None
         else:
-            raise typer.BadParameter("Only boot0 or bounded recovery blocks93..123 are supported")
-        known = oracle_path.read_bytes()
-        if hashlib.sha256(known).hexdigest() != oracle_sha:
-            raise ValueError("Independent NOR oracle changed")
-        oracle = known[nor_block * 512 : (nor_block + 1) * 512] or None
+            raise typer.BadParameter("Only boot0, bounded recovery tail or actual4KiB param slots supported")
+        if oracle_path is None:
+            oracle = None  # Requires paired reads plus actual ACPT/FVER checks.
+        else:
+            known = oracle_path.read_bytes()
+            if hashlib.sha256(known).hexdigest() != oracle_sha:
+                raise ValueError("Independent NOR oracle changed")
+            oracle = known[nor_block * 512 : (nor_block + 1) * 512] or None
     elif source == Source.rom_flow:
         oracle = rom_oracle()
     else:

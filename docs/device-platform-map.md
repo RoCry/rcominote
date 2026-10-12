@@ -24,7 +24,7 @@
 
 | NOR 范围；末端不含 | 内容 | 当前理解 |
 |---|---|---|
-| `000000..004000` | boot / param，各有两个槽 | boot0已有完整原始4 KiB与明文3672 B；[校验与512 B转换规则](boot-complete.md)已验证 |
+| `000000..004000` | boot / param，各有两个槽 | boot0完整原始4KiB与明文3672B；[boot转换512B](boot-complete.md)。[两个param完整原始各4KiB](param-slots.md)：主槽元数据32B转换/双CRC匹配缓存，备用槽全FF、没有有效副本；boot1仍未完整备份 |
 | `004000..024000` | recovery | [原始/明文63,288 B完整校验](recovery-complete.md)；应用映射、加法验收、PSP/BX交接已静态解释，未执行新镜像 |
 | `024000..1c9000` | system | 完整927632 B映射镜像已校验；映射字节与物理NOR字节存在转换，不可直接当恢复包 |
 | `1c9000..200000` | user_rw / SDFS / factory与user NVRAM / 日志 / coredump | 含个体配置与状态；尚无完整备份 |

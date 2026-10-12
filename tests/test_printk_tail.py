@@ -3,7 +3,9 @@
 import json
 from pathlib import Path
 
-from rcominote.printk_tail import append_tail, inspect
+import pytest
+
+from rcominote.printk_tail import NorTarget, append_tail, block_offset, inspect, producer
 from rcominote.readback_verify import verify_readback
 
 ROOT = Path(__file__).resolve().parents[1] / "docs/evidence"
@@ -39,3 +41,18 @@ def test_missing_actual_tail_row_rejects_ack_success():
             frame["text"] = frame["text"].replace("1803f2de:", "lost-row:")
     verify_readback(capture)
     assert not capture["ok"] and not capture["readback_complete"] and "console_tail" not in capture
+
+
+@pytest.mark.parametrize(
+    ("target", "last_sector"),
+    ((NorTarget.param0, "0x1e00"), (NorTarget.param1, "0x3e00")),
+)
+def test_parameter_slot_last_sector_matches_actual_acpt(target, last_sector):
+    # Independent device ACPT entries1/3:1000+1000 and3000+1000,512B fread.
+    assert producer(target, 7) == f"dbg fread spi_flash {last_sector}"
+
+
+@pytest.mark.parametrize("target", (NorTarget.param0, NorTarget.param1))
+def test_parameter_slot_read_cannot_cross_actual_acpt_extent(target):
+    with pytest.raises(ValueError, match="exceeds the known target extent"):
+        block_offset(target, 8)

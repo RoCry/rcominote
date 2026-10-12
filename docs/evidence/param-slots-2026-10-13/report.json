@@ -1,0 +1,192 @@
+{
+  "scope": "Complete raw API bytes for two fixed boot parameter slots; not full NOR, execution or restoration",
+  "local_date": "2026-10-13",
+  "base_commit": "40b8b0d",
+  "capture_start_utc": "2026-10-12T23:22:47.571080+00:00",
+  "capture_end_utc": "2026-10-12T23:33:15.927981+00:00",
+  "serial": "C261CF0430",
+  "firmware_version": "010004",
+  "complete": true,
+  "unique_source_bytes": 8192,
+  "paired_sectors": 16,
+  "successful_source_sector_reads": 32,
+  "automatic_retries": 0,
+  "sd_temporary_paths": 64,
+  "sd_file_bytes_written": 262144,
+  "sd_residue_policy": "Retained non-audio temporary files; no deletion commands",
+  "sum_sector_experiment_seconds": 557.27234,
+  "complete_stage_elapsed_seconds": 418.459165,
+  "prefix_gate": "Two1024-byte independently paired prefixes interpreted before remaining3072B per slot",
+  "independent_pair_verified": true,
+  "code_and_wire_provenance": "Retained captures checked by recovery_tail.checked_read with explicit param target, original system guards, fresh baseline and continuous32-row ring parser",
+  "completed_pairs": [
+    {
+      "target": "param0",
+      "block": 0,
+      "sha256": "a68cd2b9f73f9b2d09231f440bce02efe52216961acaad1b633f360d34d901db"
+    },
+    {
+      "target": "param0",
+      "block": 1,
+      "sha256": "77245913a793939f99402c59cbf1e2a8debf535bde3342cdf373ff42f73ee6b8"
+    },
+    {
+      "target": "param1",
+      "block": 0,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    {
+      "target": "param1",
+      "block": 1,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    {
+      "target": "param0",
+      "block": 2,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    {
+      "target": "param0",
+      "block": 3,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    {
+      "target": "param0",
+      "block": 4,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    {
+      "target": "param0",
+      "block": 5,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    {
+      "target": "param0",
+      "block": 6,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    {
+      "target": "param0",
+      "block": 7,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    {
+      "target": "param1",
+      "block": 2,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    {
+      "target": "param1",
+      "block": 3,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    {
+      "target": "param1",
+      "block": 4,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    {
+      "target": "param1",
+      "block": 5,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    {
+      "target": "param1",
+      "block": 6,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    {
+      "target": "param1",
+      "block": 7,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    }
+  ],
+  "primary": {
+    "physical_offset": "0x1000",
+    "captured_bytes": 4096,
+    "raw_sha256": "4a374a53ace6a201a23f43ff2a8ac137ec6379a2ad2c842a8b045694142875a1",
+    "complete_slot": true,
+    "boot_metadata_crc_valid": true,
+    "classification": "validated_parameter_metadata",
+    "valid_parameter": true,
+    "profile": "reset32",
+    "decoded_prefix_1024_sha256": "770b8c06190ad318e8bda9e3b933b665e4978b43dcff1e844dd5e2051985a90f",
+    "decoded_checked_prefix_sha256": "4f66553ee5401af2642037a6c3370a7e8256c4e7b79e89ff942d21b60fda12dc",
+    "crc_covered_bytes": 872,
+    "bytes_outside_crc_coverage": 3224,
+    "decoded_tail_semantics_verified": false,
+    "part_marker_at_1020": true
+  },
+  "backup": {
+    "physical_offset": "0x3000",
+    "captured_bytes": 4096,
+    "raw_sha256": "f47a8ec3e9aff2318d896942282ad4fe37d6391c82914f54a5da8a37de1300c6",
+    "complete_slot": true,
+    "boot_metadata_crc_valid": false,
+    "classification": "uniform_slot",
+    "fill_byte": "ff",
+    "valid_parameter": false,
+    "note": "Uniform captured bytes are not a valid parameter; prefix does not classify unread tail"
+  },
+  "primary_metadata": {
+    "acpt": {
+      "sha256": "a071b0cdafad355eb05a71e96fc2cb6a5348ec8b5e11d0ac4dfe54d83671a144",
+      "crc32": "0x703f5674",
+      "crc_valid": true,
+      "matches_cached_sram": true,
+      "layout_error": null
+    },
+    "fver": {
+      "sha256": "4e9d0059884cd1294c258d7f5bc43e5975641963d043c4d41eba420af0d22dc1",
+      "crc32": "0xc06bda1e",
+      "crc_valid": true,
+      "matches_cached_sram": true,
+      "version_code": "0x00010400",
+      "resource_version": "0x00010400",
+      "system_version": "0x00000000",
+      "version_name": "1.04_2602030950",
+      "board_name": "ats3085l_dvb_watch_ext_nor_max"
+    },
+    "decoded_368_to_3fc_all_zero": true,
+    "raw_400_to_1000_all_ff": true
+  },
+  "cached_oracles": {
+    "acpt": {
+      "source": "docs/evidence/partition-analysis-2026-10-12.json:blocks",
+      "sram_address": "0x01000040",
+      "bytes": 744,
+      "sha256": "a071b0cdafad355eb05a71e96fc2cb6a5348ec8b5e11d0ac4dfe54d83671a144"
+    },
+    "fver": {
+      "sources": [
+        "docs/evidence/firmware-identity-first-2026-10-12.json:parameter_version_hex",
+        "docs/evidence/firmware-identity-second-2026-10-12.json:parameter_version_hex"
+      ],
+      "sram_address": "0x01000328",
+      "bytes": 128,
+      "sha256": "4e9d0059884cd1294c258d7f5bc43e5975641963d043c4d41eba420af0d22dc1"
+    }
+  },
+  "offline_revalidation": {
+    "cached_only": true,
+    "new_sector_reads": 0,
+    "outcome": "passed"
+  },
+  "postconditions": {
+    "recording_state": "idle",
+    "normal_recording_list_unchanged": true,
+    "normal_recording_count": 7,
+    "bound": false
+  },
+  "artifact_sha256": {
+    "param1-raw.bin": "f47a8ec3e9aff2318d896942282ad4fe37d6391c82914f54a5da8a37de1300c6",
+    "param0-raw.bin": "4a374a53ace6a201a23f43ff2a8ac137ec6379a2ad2c842a8b045694142875a1",
+    "captures.tar.gz": "5e538b1dd42fd9fdcb8a0aba28450b7aea949e3775aa5598223079f33698ccc9"
+  },
+  "limits": [
+    "CRC covers only872B per valid parameter, not whole4096B",
+    "Backup slot invalid under analyzed boot metadata check; no runtime failover test",
+    "Effective codec state is not a recovered efuse key",
+    "No reset/ROM entry/NOR write/uploaded execution/restoration"
+  ]
+}

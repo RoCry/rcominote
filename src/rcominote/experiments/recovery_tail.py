@@ -30,7 +30,9 @@ def digest(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
-def checked_read(path: Path, block: int, *, image: bytes) -> tuple[bytes, tuple[str, str]]:
+def checked_read(
+    path: Path, block: int, *, image: bytes, target: NorTarget = NorTarget.recovery
+) -> tuple[bytes, tuple[str, str]]:
     report = json.loads((path / "report.json").read_text())
     baseline = json.loads((path / "baseline/report.json").read_text())
     for record in (baseline, report):
@@ -51,10 +53,10 @@ def checked_read(path: Path, block: int, *, image: bytes) -> tuple[bytes, tuple[
         if (
             record["source_image_sha256"] != SHA
             or record["source"] != Source.nor_ring
-            or record["nor_target"] != NorTarget.recovery
+            or record["nor_target"] != target
             or record["nor_block"] != block
-            or record["nor_offset"] != block_offset(NorTarget.recovery, block)
-            or record["producer"] != producer(NorTarget.recovery, block)
+            or record["nor_offset"] != block_offset(target, block)
+            or record["producer"] != producer(target, block)
         ):
             raise ValueError(f"Capture target/provenance differs: {path}")
         commands = record["fixed_text_commands"]

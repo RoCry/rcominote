@@ -15,6 +15,8 @@ GUARDS = (
 class NorTarget(StrEnum):
     boot = "boot"
     backup_boot = "backup-boot"
+    param0 = "param0"
+    param1 = "param1"
     recovery = "recovery"
     system = "system"
     dsp = "dsp"
@@ -25,6 +27,8 @@ class NorTarget(StrEnum):
 TARGET_OFFSETS = {
     NorTarget.boot: 0,
     NorTarget.backup_boot: 0x2000,
+    NorTarget.param0: 0x1000,
+    NorTarget.param1: 0x3000,
     NorTarget.recovery: 0x4000,
     NorTarget.system: 0x24000,
     NorTarget.dsp: 0x240000,
@@ -41,6 +45,8 @@ def block_offset(value: NorTarget, block: int = 0) -> int:
         raise ValueError("NOR block must be a nonnegative integer")
     extent = {
         NorTarget.boot: 0x1000,
+        NorTarget.param0: 0x1000,
+        NorTarget.param1: 0x1000,
         NorTarget.record_dsp: RECORD_DSP_BYTES,
         NorTarget.recovery: RECOVERY_BYTES,
     }.get(value, 512)
