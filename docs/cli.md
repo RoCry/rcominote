@@ -112,3 +112,5 @@ just build       # wheel + source distribution
 `device-info-code`沿已验证的命令05调用链读取601 B（112 B既有校验点），含52 B设备信息构造、常量和两个容量getter。读取前逐层验证指令、literal、callee入口；两份捕获用`diag compare-references FIRST SECOND --info --out REPORT`离线核对。[字段来源](device-info-fields.md)。没有新增写入或固件备份命令。
 
 `storage-code`扩展device-info-code至937 B，沿实际容量getter、卷名表、RAM挂载对象及函数表定位statvfs callback。`diag compare-references FIRST SECOND --storage --out REPORT`逐字节核对两份捕获。新增336 B含40 B RAM元数据；当前指针/flags/代码不吻合即停止，不自动跟随新地址。RAM并非原子快照，重启后固定地址可能失效。[存储绑定证据](storage-binding-readback.md)。
+
+`disk-code`在storage-code上增加550 B（共1487 B），跟随FatFs、磁盘registry与实际指针，到`sd`后端和`MMC_1`设备对象；没有调用init/read/write/ioctl。用`diag compare-references FIRST SECOND --disk --out REPORT`离线核对并输出`disk_metadata`，复算缓存簇容量，拒绝未知free-cluster缓存。[证据与限制](disk-registry-readback.md)。新增RAM地址每次由当前父指针核对；值变化即停止，不能作为通用dump。

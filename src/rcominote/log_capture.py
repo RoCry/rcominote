@@ -23,6 +23,8 @@ from .code_guards import (
 )
 from .code_references import (
     BLOCKS,
+    DISK_BLOCKS,
+    DISK_PHASES,
     HANDLER_BLOCKS,
     HANDLER_CORE_BLOCKS,
     INFO_BLOCKS,
@@ -93,7 +95,9 @@ def verify_readback(result: dict) -> None:
     result["transport_ok"] = result["ok"]
     reads = [
         block
-        for block in dict.fromkeys((*BLOCKS, *VENDOR_BLOCKS, *HANDLER_BLOCKS, *INFO_BLOCKS, *INFO_STORAGE))
+        for block in dict.fromkeys(
+            (*BLOCKS, *VENDOR_BLOCKS, *HANDLER_BLOCKS, *INFO_BLOCKS, *INFO_STORAGE, *DISK_BLOCKS)
+        )
         if f"dbg mdb {block[0]:x} {block[1]:x}" in result["fixed_text_commands"]
     ]
     if not reads:
@@ -138,7 +142,9 @@ async def capture(
     vendor_handler: bool = False,
     device_info_code: bool = False,
     storage_code: bool = False,
+    disk_code: bool = False,
 ) -> dict:
+    storage_code = storage_code or disk_code
     device_info_code = device_info_code or storage_code
     if (
         code_sample or code_literals or code_references or vendor_code or vendor_handler or device_info_code
@@ -219,6 +225,11 @@ async def capture(
                     *(flushed_reads(INFO_STORAGE_VTABLE) if storage_code else []),
                     *(flushed_reads(INFO_STORAGE_CALLBACK) if storage_code else []),
                     *(flushed_reads(INFO_STORAGE_CALLBACK_TAIL) if storage_code else []),
+                    *(
+                        [command for phase in DISK_PHASES for command in flushed_reads(phase)]
+                        if disk_code
+                        else []
+                    ),
                 ]
                 if device_info_code
                 else []

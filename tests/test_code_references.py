@@ -126,3 +126,28 @@ def test_moved_mount_pointer_prevents_stale_ram_dereference():
         frame["text"] = frame.get("text", "").replace("64 0a 01 18", "00 00 00 00")
     with pytest.raises(ValueError, match="SD mount pointer and flags code changed"):
         observed_storage_reference(capture["frames"], "dbg mdb 18010a64 10")
+
+
+def test_disk_metadata_matches_independent_boyi_capacity_reply():
+    from rcominote.code_references import disk_metadata
+
+    capture = json.loads((EVIDENCE / "disk-first-2026-10-12.json").read_text())
+    metadata = disk_metadata(capture)
+    # Oracle is the separate live Boyi reply, not our filesystem formula.
+    reply = json.loads((EVIDENCE / "disk-final-state-2026-10-12.json").read_text())["device"]
+    assert (metadata["reported_total_mib"], metadata["reported_free_mib"]) == (
+        reply["total_capacity"],
+        reply["free_capacity"],
+    )
+
+
+def test_unknown_free_cluster_cache_is_not_reported_as_capacity():
+    from rcominote.code_references import disk_metadata
+
+    capture = json.loads((EVIDENCE / "disk-first-2026-10-12.json").read_text())
+    # FatFs uses 0xffffffff when the cached free count is unknown; a real
+    # capacity query would take its scan branch instead of returning this value.
+    for frame in capture["frames"]:
+        frame["text"] = frame.get("text", "").replace("18010aa8: 85 47 07 00", "18010aa8: ff ff ff ff")
+    with pytest.raises(ValueError, match="metadata is inconsistent"):
+        disk_metadata(capture)

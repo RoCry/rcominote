@@ -115,3 +115,9 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 没有取得底层芯片ID、固件分区表或完整备份。RAM两次相同只是会话快照，不代表原子冻结或重启后仍有效。新增指针变化阻止继续解引用的测试；`just check`通过58测试+24子测试，wheel/sdist构建成功。没有执行新的文件系统操作或写入。
 
 [结束状态](storage-final-state-2026-10-12.json)：FW010004、idle、容量59634/59632、noise9，设备正常响应。
+
+## 第十三轮：exFAT簇、磁盘registry与MMC_1
+
+[首次](disk-first-2026-10-12.json)、[重读](disk-second-2026-10-12.json)、[分析](disk-analysis-2026-10-12.json)：1487 B一致，新增550 B，累计2372不同映射字节。查到exFAT type4/drive4、128 KiB簇、有效空闲簇缓存、唯一名为SD的disk_info；状态callback引用设备`sd`，其配置名和控制器对象均为`MMC_1`。[实机报告](../disk-registry-readback.md)；[卡元数据/分区路线源码审计](../sd-metadata-candidates.md)。
+
+`disk_metadata`复算59634/59632 MiB，与独立[结束状态](disk-final-state-2026-10-12.json)相同；FW010004、idle、noise9。无新内部函数调用、重启或刷写；不能把所有容量查询概括为物理上无写，缓存失效路径的源码边界已记录。60测试+24子测试通过，wheel/sdist构建成功。

@@ -4,6 +4,24 @@ import re
 
 from .ble_target import OWNED_SERIAL
 from .code_references import (
+    DISK_CONTROLLER,
+    DISK_DEVICE,
+    DISK_DEVICE_REFS,
+    DISK_DRIVER_ENTRY,
+    DISK_DRIVER_GLOBAL,
+    DISK_DRIVER_LITERAL,
+    DISK_ENTRY,
+    DISK_FS,
+    DISK_LIST,
+    DISK_MORE,
+    DISK_NODE,
+    DISK_OPS,
+    DISK_REGISTRY_BODY,
+    DISK_REGISTRY_ENTRY,
+    DISK_STATUS_ENTRY,
+    DISK_STATUS_MORE,
+    DISK_TABLES,
+    DISK_VOLUME_BODY,
     INFO_STORAGE_CALLBACK,
     INFO_STORAGE_CALLBACK_TAIL,
     INFO_STORAGE_MORE,
@@ -101,7 +119,76 @@ def observed_storage_reference(frames: list[dict], command: str) -> bool:
     """Fail before dereferencing a stale mount or following changed code."""
     prerequisites = (
         (
-            INFO_STORAGE_CALLBACK_TAIL,
+            DISK_CONTROLLER,
+            (
+                (0x100BC398, "e9ae0c1000400c00", "SD config controller-name pointer"),
+                (0x18005BE8, "00a10b10", "SD data controller pointer"),
+            ),
+        ),
+        (
+            DISK_DEVICE_REFS,
+            (
+                (0x100BA160, "f3ae0c1098c30b10a0c30b1010300018", "SD device identity/config/API"),
+                (0x100BA170, "e85b0018", "SD device data pointer"),
+            ),
+        ),
+        (DISK_DEVICE, ((0x1800C3F0, "60a10b10", "SD backend device pointer"),)),
+        (DISK_DRIVER_GLOBAL, ((0x10025960, "f0c30018", "SD device global literal"),)),
+        (
+            DISK_DRIVER_LITERAL,
+            ((0x10025950, "034b1b68002b0cbf02200020704700bf", "SD status global-pointer load"),),
+        ),
+        (DISK_DRIVER_ENTRY, ((0x1800197C, "b55a02105159021065590210a1590210", "SD status callback"),)),
+        (
+            DISK_OPS,
+            (
+                (0x1800195C, "d4c30018d4c30018546f0c1000020000", "SD disk node identity"),
+                (0x1800196C, "0000000000b047077c19001800000000", "SD disk ops pointer"),
+            ),
+        ),
+        (DISK_NODE, ((0x1800C3D4, "5c1900185c190018", "disk registry sole node"),)),
+        (DISK_LIST, ((0x100258C4, "d4c30018dcc30018", "registry head literal"),)),
+        (
+            DISK_REGISTRY_BODY,
+            ((0x10025870, "f8b50746dbf732fa0646124d12484ff0", "disk registry entry/literals"),),
+        ),
+        (
+            DISK_FS,
+            (
+                (0x1800FD5C, "8c0a0118", "active FatFs pointer"),
+                (0x100BC778, "546f0c10", "SD disk-name pointer"),
+                (0x100A796E, "3490da69a9f10206b24209d8c8f80020", "FatFs count offsets"),
+            ),
+        ),
+        (DISK_REGISTRY_ENTRY, ((0x100A1998, "10b583f769ff30b1836923b15b6813b1", "registry lookup call"),)),
+        (
+            DISK_TABLES,
+            (
+                (0x10040DC0, "68c70b103be20c10", "disk-name table literal"),
+                (0x1003F864, "4cfd0018", "FatFs table literal"),
+            ),
+        ),
+        (
+            DISK_STATUS_MORE,
+            ((0x10040D9C, "042808b509d8074b53f8200060f0f6fd", "named-disk status call/literal"),),
+        ),
+        (DISK_STATUS_ENTRY, ((0x1003F6B4, "237805f0fe056bb1607801f06dfbc707", "disk status direct call"),)),
+        (
+            DISK_VOLUME_BODY,
+            (
+                (0x1003F684, "2de9ff4700230b600f461546fff72cfc", "volume lookup entry"),
+                (0x1003F694, "061ec0f2dc81724b53f82640002c00f0", "filesystem table load"),
+            ),
+        ),
+        (
+            DISK_MORE,
+            (
+                (0x100A794E, "2de9f04391b088460190154603a90022", "free-cluster entry"),
+                (0x100A795E, "01a897f790fe044650b9039b2b60d3f8", "volume-lookup direct call"),
+            ),
+        ),
+        (
+            (*INFO_STORAGE_CALLBACK_TAIL, *DISK_ENTRY),
             (
                 (0x100A42D6, "13b5c068144604f10c0101aa013003f0", "SD callback entry"),
                 (0x100A42E6, "33fb58b9019a4ff40073236053895b02", "SD callback branch"),
