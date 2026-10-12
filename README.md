@@ -115,3 +115,5 @@ uv run --locked tools/build_sdk.py \
 [实际屏幕命令序列](docs/display-command-sequence.md)：28字节初始化表、GPIO逻辑复位顺序、条件AF命令及五页×72字节fill路径；等待单位和电气极性尚未核实。
 
 [像素提交与页转换](docs/display-pixel-path.md)：实际u16非零→垂直页bit转换、窗口限制、旧descriptor ABI差异及buffer地址alias转换；尚无实屏验收。
+
+[屏幕GPIO极性](docs/display-gpio-polarity.md)：init实际设置pin24反转、pin25不反转，已对应到set/reset寄存器写入；未测物理电压，等待单位仍未知。
