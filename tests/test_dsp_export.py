@@ -6,9 +6,9 @@ from pathlib import Path
 
 import pytest
 
-from rcominote import nor_export
-from rcominote.dsp_export import export
-from rcominote.nor_export import collect, verified_block
+from rcominote.archive import nor_export
+from rcominote.archive.dsp_export import export
+from rcominote.archive.nor_export import collect, verified_block
 from rcominote.nor_windows import analyze
 from rcominote.printk_tail import NorTarget, block_offset
 

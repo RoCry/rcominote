@@ -4,10 +4,10 @@ import os
 import tempfile
 from pathlib import Path
 
-from . import nor_windows
-from .nor_batch_cli import capture_sector
-from .output import emit
-from .printk_tail import NorTarget, block_offset
+from .. import nor_windows
+from ..nor_batch_cli import capture_sector
+from ..output import emit
+from ..printk_tail import NorTarget, block_offset
 
 
 def publish(path: Path, raw: bytes) -> None:

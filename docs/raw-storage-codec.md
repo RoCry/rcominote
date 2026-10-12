@@ -12,7 +12,7 @@
 - 同一状态解码recovery前512 B：magic=`ACTHHTCA`，name=`b`，load/entry=`0x110023d5`，正文长度字段=`0xf538`（62776 B），头长度512，头内128个LE u32之和=`0xffffffff`。**正文尚未读取，正文checksum未验收。**
 - 同一状态解码boot前512 B：magic=`ACTHHTCA`，name=`mbrec`，load=`0x01010000`，entry=`0x01010039`，长度字段=`0xe20`。其512 B和为`0x1c3d4149`，不能套用system头校验规则；后续布局/代码仍待确认。
 
-[system验证](evidence/raw-codec-2026-10-12/system-verification.json)、[跨分区报告](evidence/raw-codec-2026-10-12/cross-partition.json)、[recovery解码头](evidence/raw-codec-2026-10-12/recovery-decoded-header.bin)、[boot解码头](evidence/raw-codec-2026-10-12/boot-decoded-header.bin)。原始输入来自已独立双覆盖的[system](raw-header-block-pattern.md)、[boot](nor-sector-zero.md)、[recovery](boot-recovery-prefixes.md)。有效状态不是已经读取的efuse密钥，也不能推广为其他设备通用值。
+[system验证](evidence/raw-codec-2026-10-12/system-verification.json)、[跨分区报告](evidence/raw-codec-2026-10-12/cross-partition.json)、[recovery解码头](evidence/raw-codec-2026-10-12/recovery-decoded-header.bin)、[boot解码头](archive/rejected-boot-reset32/boot-decoded-header.bin)。原始输入来自已独立双覆盖的[system](raw-header-block-pattern.md)、[boot](nor-sector-zero.md)、[recovery](boot-recovery-prefixes.md)。有效状态不是已经读取的efuse密钥，也不能推广为其他设备通用值。
 
 ## 静态算法来源
 

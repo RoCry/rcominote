@@ -69,7 +69,10 @@ async def capture_remaining(
         raise ValueError("Warm NOR batch requires at most22 windows in0..10")
     prefix = guard_prefix(seed)
     value = printk_tail.target(seed)
-    return [await _capture_window(prefix, value, stream, request, pump, window) for window in windows]
+    records = seed.setdefault("batch_records", [])
+    for window in windows:
+        records.append(await _capture_window(prefix, value, stream, request, pump, window))
+    return records
 
 
 async def _capture_window(

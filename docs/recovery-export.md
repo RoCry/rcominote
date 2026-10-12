@@ -1,11 +1,10 @@
 # Recovery有界断点导出
 
-2026-10-12。新增 `comi diag export-recovery`；实际已校验头声明512 B头+`0xf538`正文，共63288 B，固定NOR起点`0x4000`、124个512 B读取块。仅在已知recovery分区内读取，不开放任意地址。
+**已退役为默认路线，见[路线决策](research-routes.md)与[效率审计](nor-efficiency.md)。** 以下为历史实验记录。
 
-```sh
-uv run comi diag export-recovery --out artifacts/recovery-export --max-new-blocks 1
-uv run comi diag export-recovery --out artifacts/recovery-export
-```
+2026-10-12。原批量导出实验：实际已校验头声明512 B头+`0xf538`正文，共63288 B，固定NOR起点`0x4000`、124个512 B读取块。仅在已知recovery分区内读取，不开放任意地址。
+
+批量命令已从默认CLI移除；实现保留在 `src/rcominote/archive/`，用于离线复核，不作为继续导出的建议。
 
 首次有界验收复用之前两轮第0块原始窗口，离线复验后跳过设备读取，新增第1块并正常结束：2/124块。[报告](evidence/recovery-export-start-2026-10-12/report.json)、[第1块完整双覆盖](evidence/recovery-export-start-2026-10-12/block-001-report.json)、[来源窗口](evidence/recovery-export-start-2026-10-12/block-001-windows.tar.gz)。完整任务随后启动，本文不预报结果。
 

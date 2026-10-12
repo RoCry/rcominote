@@ -11,7 +11,6 @@ import typer
 from . import (
     code_references,
     code_sample,
-    dsp_export,
     dsp_header,
     dsp_sections,
     log_capture,
@@ -21,7 +20,6 @@ from . import (
     printk_ring,
     printk_state,
     printk_tail,
-    recovery_export,
     sdfs_directory,
 )
 from .ble_target import OWNED_SERIAL
@@ -144,6 +142,4 @@ app.command("inspect-dsp-directory")(sdfs_directory.main)
 
 app.command("capture-nor-sector")(nor_batch_cli.main)
 app.command("inspect-dsp-header")(dsp_header.main)
-app.command("export-record-dsp")(dsp_export.main)
-app.command("export-recovery")(recovery_export.main)
 app.command("inspect-dsp-image")(dsp_sections.main)

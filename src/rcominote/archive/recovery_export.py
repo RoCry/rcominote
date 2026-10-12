@@ -9,12 +9,12 @@ from typing import Annotated
 
 import typer
 
-from .ble_target import OWNED_SERIAL
-from .nor_codec import decode
+from ..ble_target import OWNED_SERIAL
+from ..nor_codec import decode
+from ..output import emit
+from ..printk_tail import RECOVERY_BYTES, NorTarget
+from ..sdfs_checksum import checksum32
 from .nor_export import collect, publish
-from .output import emit
-from .printk_tail import RECOVERY_BYTES, NorTarget
-from .sdfs_checksum import checksum32
 
 BLOCKS = (RECOVERY_BYTES + 511) // 512
 HEADER_SHA = "121a4b6beb56293ded54630fb33cfc871cfc64cbfaf23454e7f3e1d7763374b9"

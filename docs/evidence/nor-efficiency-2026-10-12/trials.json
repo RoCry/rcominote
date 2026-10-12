@@ -1,0 +1,62 @@
+{
+  "scope": "Guarded, non-atomic fixed NOR-target log rows; no full-device backup or recovery proof",
+  "producer": "dbg fread spi_flash 0xfa00",
+  "target": "recovery",
+  "offset": 64000,
+  "input_files": 44,
+  "distinct_sources": 44,
+  "required_rows": 32,
+  "observed_rows": 32,
+  "confirmed_rows": 32,
+  "missing_rows": [],
+  "unconfirmed_rows": [],
+  "conflicts": [],
+  "complete": true,
+  "sha256": "26beb8820476ce103faec331af750b6a4017c5cd6c94dcf00e6fe27e9bd33566",
+  "bytes": 512,
+  "matches_prior_verified_block": true,
+  "trials": [
+    {
+      "scope": "Guarded, non-atomic fixed NOR-target log rows; no full-device backup or recovery proof",
+      "producer": "dbg fread spi_flash 0xfa00",
+      "target": "recovery",
+      "offset": 64000,
+      "input_files": 22,
+      "distinct_sources": 22,
+      "required_rows": 32,
+      "observed_rows": 32,
+      "confirmed_rows": 30,
+      "missing_rows": [],
+      "unconfirmed_rows": [
+        "0x20",
+        "0x30"
+      ],
+      "conflicts": [],
+      "complete": false,
+      "shared_connection": true,
+      "batch_complete": true,
+      "elapsed_seconds": 21.055
+    },
+    {
+      "scope": "Guarded, non-atomic fixed NOR-target log rows; no full-device backup or recovery proof",
+      "producer": "dbg fread spi_flash 0xfa00",
+      "target": "recovery",
+      "offset": 64000,
+      "input_files": 22,
+      "distinct_sources": 22,
+      "required_rows": 32,
+      "observed_rows": 32,
+      "confirmed_rows": 31,
+      "missing_rows": [],
+      "unconfirmed_rows": [
+        "0x40"
+      ],
+      "conflicts": [],
+      "complete": false,
+      "shared_connection": true,
+      "batch_complete": true,
+      "elapsed_seconds": 22.658
+    }
+  ],
+  "limitation": "Neither live trial reproduced a batch exception; late-failure retention is verified by captured-frame replay tests, not live throughput improvement."
+}

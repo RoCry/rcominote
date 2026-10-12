@@ -5,9 +5,9 @@ from pathlib import Path
 
 import pytest
 
+from rcominote.archive.recovery_export import verify
 from rcominote.nor_codec import decode
 from rcominote.printk_tail import NorTarget, block_offset
-from rcominote.recovery_export import verify
 
 EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence"
 

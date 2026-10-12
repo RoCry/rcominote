@@ -249,11 +249,18 @@ async def capture(
     async def pump(timeout: float):
         packet = await asyncio.wait_for(queue.get(), timeout=timeout)
         if packet is None:
-            raise ConnectionError("CoMi disconnected during log capture")
+            result["error"] = "CoMi disconnected during log capture"
+            raise ConnectionError(result["error"])
         result["notifications"].append({"seconds": round(time.monotonic() - origin, 3), "hex": packet.hex()})
         if len(result["notifications"]) > 8192:
-            raise RuntimeError("Log notification limit exceeded")
-        stream.feed(packet)
+            result["error"] = "Log notification limit exceeded"
+            raise RuntimeError(result["error"])
+        try:
+            stream.feed(packet)
+        except ValueError as error:
+            # A bad physical frame invalidates all windows, even if STOP later succeeds.
+            result["error"] = str(error)
+            raise
 
     async def wait_for_ack(count: int):
         async with asyncio.timeout(5):
@@ -480,9 +487,11 @@ async def capture(
                 except TimeoutError:
                     break
             if batch_windows:
-                result["batch_records"] = await nor_batch.capture_remaining(
-                    result, stream, request, pump, batch_windows
-                )
+                result["batch_records"] = []
+                try:
+                    await nor_batch.capture_remaining(result, stream, request, pump, batch_windows)
+                except (ValueError, RuntimeError, OSError, BleakError) as error:
+                    result["batch_error"] = str(error) or type(error).__name__
         except (ValueError, RuntimeError, OSError, BleakError) as error:
             result["error"] = str(error) or type(error).__name__
         finally:

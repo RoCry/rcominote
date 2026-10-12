@@ -1,0 +1,20 @@
+{
+  "scope": "Saved sessions only; notification times exclude some discovery, reconnect and host overhead. Cached block count is inventory, not a fresh integrity verification.",
+  "sessions": 165,
+  "successful_sessions": 124,
+  "failed_sessions": 41,
+  "cached_blocks": 93,
+  "recorded_seconds": 3565.818,
+  "failed_recorded_seconds": 879.392,
+  "median_success_seconds": 21.7025,
+  "median_success_commands": 232.0,
+  "failed_without_retained_warm_windows": 41,
+  "failed_after_multiple_producers": 40,
+  "windows_published_from_failed_sessions": 0,
+  "errors": {
+    "incomplete RAM row": 20,
+    "Printk ring indices invalid or changed during non-atomic capture": 4,
+    "TimeoutError": 17
+  },
+  "session_json_bytes": 478199725
+}

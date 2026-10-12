@@ -100,9 +100,10 @@ def finish_capture(result: dict, stream, expected_acks: int) -> None:
         and not stream.pending
     )
     verify_readback(result)
-    session_ok = result["ok"]
+    seed_ok = result["ok"]
+    batch_ok = True
     for record in result.get("batch_records", []):
-        record["ok"] = session_ok
+        record["ok"] = seed_ok
         record["shared_transport"] = {
             "ack_count": stream.acks,
             "expected_ack_count": expected_acks,
@@ -116,5 +117,6 @@ def finish_capture(result: dict, stream, expected_acks: int) -> None:
             )
         verify_readback(record)
         if not record["ok"]:
-            result["ok"] = False
-            result["error"] = record.get("error", "Shared NOR batch transport failed")
+            batch_ok = False
+            result.setdefault("batch_error", record.get("error", "Shared NOR batch transport failed"))
+    result["ok"] = seed_ok and batch_ok and "batch_error" not in result

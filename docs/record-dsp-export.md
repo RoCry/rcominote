@@ -1,5 +1,7 @@
 # 录音 DSP 完整读回与断点导出
 
+**完整DSP数据仍有效；批量获取路线已退役，见[路线决策](research-routes.md)。**
+
 2026-10-12。已从本机 NOR `0x24d400` 完整取得 `aerecord.dsp`，110148 B。216个512 B块的每行均有独立producer双覆盖、无冲突；最终文件与此前独立取得的SDFS目录checksum一致。**这是单个原厂资源文件，不是整机备份，也未验证加载执行或恢复。**
 
 ## 完成证据
@@ -28,10 +30,6 @@
 ```sh
 # 仓库内离线结构复核，无设备连接。
 uv run comi diag inspect-dsp-image docs/evidence/record-dsp-complete-2026-10-12/aerecord.dsp
-# 实机首次读取或续读；默认每块最多3次尝试。
-uv run comi diag export-record-dsp --out artifacts/record-dsp-export
-# 限新增块数；已取得块仍从原始窗口重新验收。
-uv run comi diag export-record-dsp --out artifacts/record-dsp-export --max-new-blocks 3
 # 单块调研：record-dsp允许block0..215；boot允许0..7。
 uv run comi diag capture-nor-sector --nor-target record-dsp --block 2 --out artifacts/NEW
 ```

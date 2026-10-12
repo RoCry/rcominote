@@ -26,12 +26,17 @@ async def capture_sector(out: Path, nor_target: NorTarget, serial: str, block: i
         batch_windows=tuple(range(1, 11)) + tuple(range(11)),
     )
     (out / "session.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
-    if not result["ok"]:
-        return {"complete": False, "error": result.get("error"), "session": str(out / "session.json")}
     first = {
         key: value for key, value in result.items() if key not in {"batch_records", "notifications", "writes"}
     }
-    captures = [first, *result["batch_records"]]
+    first["ok"] = result.get("transport_ok", False) and result.get("readback_complete", False)
+    captures = [capture for capture in [first, *result.get("batch_records", [])] if capture["ok"]]
+    if not captures:
+        return {
+            "complete": False,
+            "error": result.get("error") or result.get("batch_error"),
+            "session": str(out / "session.json"),
+        }
     paths = []
     for index, capture in enumerate(captures):
         path = out / f"window-{index:02}.json"
@@ -39,6 +44,9 @@ async def capture_sector(out: Path, nor_target: NorTarget, serial: str, block: i
         paths.append(path)
     report = nor_windows.analyze(paths)
     report["shared_connection"] = True
+    report["batch_complete"] = result["ok"]
+    if error := result.get("error") or result.get("batch_error"):
+        report["error"] = error
     report["elapsed_seconds"] = result["notifications"][-1]["seconds"]
     (out / "report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
     if report["complete"]:

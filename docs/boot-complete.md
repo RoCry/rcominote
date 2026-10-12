@@ -9,7 +9,7 @@
 - ACTH头56 B、正文3616 B（`0xe20`），name=`mbrec`，load=`01010000`，entry=`01010039`（Thumb，正文起点+1）。头内14个LE u32之和=`ffffffff`；正文904个LE u32之和加存储checksum `1264aa7d`=`ffffffff`。
 - [完整报告与新块哈希](evidence/boot-complete-2026-10-12/report.json)、[block1..7原始窗口归档](evidence/boot-complete-2026-10-12/windows.tar.gz)。block0来源：[独立双读](nor-sector-zero.md)。尾部424 B属于原始分区剩余范围，不算入声明镜像；不将其解码垃圾解释成代码。
 
-**关键修正：boot每512 B重置转换状态，system头则每32 B。** 使用同一有效状态`0x0a15a191`。候选32、64、128、256、512、1024、2048、4096 B边界中，只有512 B通过完整正文checksum；[全部候选结果](evidence/boot-complete-2026-10-12/verification.json)。先前32 B模式得到的boot magic/name仅首块正确，后续不可信；此前 `raw-codec-2026-10-12/boot-decoded-header.bin`保留为失败模式历史证据，不能用于反汇编。
+**关键修正：boot每512 B重置转换状态，system头则每32 B。** 使用同一有效状态`0x0a15a191`。候选32、64、128、256、512、1024、2048、4096 B边界中，只有512 B通过完整正文checksum；[全部候选结果](evidence/boot-complete-2026-10-12/verification.json)。先前32 B模式得到的boot magic/name仅首块正确，后续不可信；此前 `archive/rejected-boot-reset32/boot-decoded-header.bin`保留为失败模式历史证据，不能用于反汇编。
 
 ## 复现
 

@@ -8,12 +8,12 @@ from typing import Annotated
 
 import typer
 
-from .ble_target import OWNED_SERIAL
-from .dsp_sections import inspect_image
+from ..ble_target import OWNED_SERIAL
+from ..dsp_sections import inspect_image
+from ..output import emit
+from ..printk_tail import RECORD_DSP_BYTES, NorTarget
+from ..sdfs_checksum import checksum32
 from .nor_export import collect, publish
-from .output import emit
-from .printk_tail import RECORD_DSP_BYTES, NorTarget
-from .sdfs_checksum import checksum32
 
 BLOCKS = (RECORD_DSP_BYTES + 511) // 512
 
