@@ -1,5 +1,19 @@
 """Fixed read sets derived from captured instructions; not arbitrary address access."""
 
+
+def flushed_reads(blocks: tuple) -> list[str]:
+    """Bound bursts; help flushes the firmware's short-output buffer after each batch."""
+    commands = []
+    for offset in range(0, len(blocks), 4):
+        commands.extend(f"dbg mdb {b[0]:x} {b[1]:x}" for b in blocks[offset : offset + 4])
+        commands.append("help")
+    return commands
+
+
+def flushed_phases(phases: tuple) -> list[str]:
+    return [command for phase in phases for command in flushed_reads(phase)]
+
+
 # Lengths are hexadecimal in the device's mdb commands; decimal here.
 BLOCKS = (
     (0x1000BF20, 16, "logsrv entry", True),

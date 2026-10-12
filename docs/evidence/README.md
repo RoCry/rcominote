@@ -133,3 +133,7 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## NOR缓存ID与配置容量差异
 
 [首次](nor-first-2026-10-12.json)、[重读](nor-second-2026-10-12.json)、[分析](nor-analysis-2026-10-12.json)：3101 B一致，新增170 B，累计3953不同映射字节。缓存ID16405e、flags0；Zbit原厂32 Mbit系列资料与ID相符，不能把driver32 MiB配置视作物理容量。[报告](../nor-driver-readback.md)、[原厂来源](zbit-id-sources-2026-10-12.json)、[结束状态](nor-final-state-2026-10-12.json)。
+
+## 日志服务回调与协议入口
+
+[首次](shell-first-2026-10-12.json)、[重读](shell-second-2026-10-12.json)、[分析](shell-analysis-2026-10-12.json)：345 B一致，新增276 B，累计4229不同映射字节。实际timer callback存储与协议头检查已确认；尚未到shell表或分区表。[报告](../shell-service-readback.md)、[结束状态](shell-final-state-2026-10-12.json)。

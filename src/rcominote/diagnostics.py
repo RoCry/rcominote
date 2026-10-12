@@ -34,6 +34,7 @@ class Profile(StrEnum):
     card_code = "card-code"
     boot_code = "boot-code"
     nor_code = "nor-code"
+    shell_code = "shell-code"
     nor_header = "nor-header"
 
 
@@ -55,6 +56,7 @@ PROFILE_FLAGS = {
     "card-code": "card_code",
     "boot-code": "boot_code",
     "nor-code": "nor_code",
+    "shell-code": "shell_code",
     "nor-header": "flash_header",
 }
 

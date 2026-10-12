@@ -13,7 +13,7 @@
 | USB | 用户确认数据线后做拔插对照，仍未见明确 CoMi 枚举；`usb_mode=true` 不等于主机数据接口已启用，板级走线/其他模式待查 |
 | 日志/shell | 实机执行 `kernel version` 返回 Zephyr 2.7.0；`help`/`dbg` 列出存储读取与 ADFU 重启命令，后者未执行 |
 | 配置读回 | `dbg nvram BT_LE_NAME` 已返回14字节实机内容；原始 flash 正文仍未通过 BLE 取得 |
-| 映射字节读回 | 已独立核对共3953字节代码/常量/运行元数据，已追到exFAT→SD磁盘→sd后端→MMC_1；实际驱动状态支持SD协议；另定位ready的spi_flash对象，缓存ID匹配Zbit 4 MiB系列，驱动配置32 MiB不代表物理容量；尚无完整固件/物理分区备份 |
+| 映射字节读回 | 已独立核对共4229字节代码/常量/运行元数据，已追到exFAT→SD磁盘→sd后端→MMC_1；实际驱动状态支持SD协议；另定位ready的spi_flash对象，缓存ID匹配Zbit 4 MiB系列，驱动配置32 MiB不代表物理容量；尚无完整固件/物理分区备份 |
 | 自定义固件 | Actions 有构建、OTA、ADFU 等参考代码，也有签名/安全启动配置；CoMi 是否接受自签/未签名镜像尚未知 |
 | Linux 构建 | Ubuntu 上参考板 hello_world 已生成 ELF/BIN/HEX；SDK 无源码补丁，构建后 tracked 文件干净；尚不是 CoMi 固件 |
 
@@ -79,3 +79,5 @@ uv run --locked tools/build_sdk.py \
 [独立Flash对象与设备表](docs/boot-storage-device-readback.md)：31个设备名字，SPI Flash配置/实际RAM read wrapper；[分区表下一条引用路线](docs/partition-reference-route.md)。
 
 [NOR缓存ID与容量差异](docs/nor-driver-readback.md)：实读`0x16405e`，对应Zbit 32 Mbit系列线索；版本/封装、启动分区仍未知。
+
+[日志服务回调与协议入口](docs/shell-service-readback.md)：独立核对345 B，确认callback注册与`1d/81/10`检查；shell命令表和分区表尚未定位。

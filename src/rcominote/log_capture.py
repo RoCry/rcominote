@@ -45,7 +45,10 @@ from .read_sets import (
     INFO_STORAGE_VTABLE,
     SPECIAL_BLOCKS,
     VENDOR_BLOCKS,
+    flushed_phases,
+    flushed_reads,
 )
+from .shell_readback import SHELL_PHASES
 
 START = bytes.fromhex("1d108105000002002000")
 STOP = bytes.fromhex("1d108105000002002100")
@@ -114,19 +117,6 @@ def verify_readback(result: dict) -> None:
         result["readback_complete"] = True
 
 
-def flushed_reads(blocks: tuple) -> list[str]:
-    """Bound bursts; help flushes the firmware's short-output buffer after each batch."""
-    commands = []
-    for offset in range(0, len(blocks), 4):
-        commands.extend(f"dbg mdb {b[0]:x} {b[1]:x}" for b in blocks[offset : offset + 4])
-        commands.append("help")
-    return commands
-
-
-def flushed_phases(phases: tuple) -> list[str]:
-    return [command for phase in phases for command in flushed_reads(phase)]
-
-
 async def capture(
     *,
     serial: str,
@@ -149,7 +139,9 @@ async def capture(
     card_code: bool = False,
     boot_code: bool = False,
     nor_code: bool = False,
+    shell_code: bool = False,
 ) -> dict:
+    code_references = code_references or shell_code
     boot_code = boot_code or nor_code
     card_code = card_code or boot_code
     disk_code = disk_code or card_code
@@ -250,6 +242,7 @@ async def capture(
                 if code_references
                 else []
             )
+            + (flushed_phases(SHELL_PHASES) if shell_code else [])
         ),
         "notifications": [],
         "writes": [],
@@ -371,7 +364,7 @@ async def capture(
                         while not observed_logsrv_literals(stream.frames):
                             await pump(timeout=5)
                 encoded = command.encode("ascii")
-                if storage_code:
+                if storage_code or shell_code:
                     async with asyncio.timeout(5):
                         while not observed_storage_reference(stream.frames, command):
                             await pump(timeout=5)

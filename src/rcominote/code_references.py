@@ -14,6 +14,7 @@ from .card_readback import CARD_BLOCKS
 from .nor_readback import NOR_BLOCKS
 from .output import emit, new_output
 from .read_sets import BLOCKS, DISK_BLOCKS, HANDLER_BLOCKS, INFO_BLOCKS, INFO_STORAGE, VENDOR_BLOCKS
+from .shell_readback import SHELL_BLOCKS
 from .vendor_dispatch import BASE, TABLE, TABLE_END, inspect_dispatch
 
 FIXED_BLOCKS = tuple(
@@ -28,6 +29,7 @@ FIXED_BLOCKS = tuple(
             *CARD_BLOCKS,
             *BOOT_BLOCKS,
             *NOR_BLOCKS,
+            *SHELL_BLOCKS,
         )
     )
 )
@@ -155,6 +157,7 @@ def inspect_references(
     card: bool = False,
     boot: bool = False,
     nor: bool = False,
+    shell: bool = False,
 ) -> dict:
     captures = [json.loads(path.read_text()) for path in (first, second)]
     stamps = [capture.get("captured_at") for capture in captures]
@@ -178,6 +181,8 @@ def inspect_references(
         selected = (*selected, *BOOT_BLOCKS)
     if nor:
         selected = (*selected, *NOR_BLOCKS)
+    if shell:
+        selected = (*selected, *SHELL_BLOCKS)
     for address, length, reason, code in selected:
         data = read_block(captures[0], address, length)
         if data != read_block(captures[1], address, length):
@@ -189,7 +194,7 @@ def inspect_references(
             "hex": data.hex(),
             "sha256": hashlib.sha256(data).hexdigest(),
         }
-        if code and not vendor:
+        if code and not (vendor or shell):
             insns = list(Cs(CS_ARCH_ARM, CS_MODE_THUMB).disasm(data, address))
             row["instructions"] = [
                 {
@@ -237,7 +242,7 @@ def inspect_references(
         report["flash_configuration"] = flash_configuration(captures[0])
     if nor:
         report["nor_state"] = nor_state(captures[0])
-    if vendor:
+    if vendor or shell:
         # Decode contiguous bytes together: 32-bit Thumb instructions can cross
         # 16-byte transport rows. Never resume decoding in their second half.
         regions = []
@@ -306,8 +311,9 @@ def main(
     card: bool = False,
     boot: bool = False,
     nor: bool = False,
+    shell: bool = False,
 ):
-    """Compare fixed --vendor/--handler/--info/--storage/--disk/--card/--boot/--nor reads."""
+    """Compare fixed --vendor/--handler/--info/--storage/--disk/--card/--boot/--nor/--shell reads."""
     new_output(out)
     report = inspect_references(
         first,
@@ -320,6 +326,7 @@ def main(
         card=card,
         boot=boot,
         nor=nor,
+        shell=shell,
     )
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("x") as handle:

@@ -34,6 +34,7 @@ from .read_sets import (
     INFO_STORAGE_VOLUME,
     INFO_STORAGE_VTABLE,
 )
+from .shell_readback import SHELL_GUARDS
 
 
 def observed_logsrv_entry(frames: list[dict]) -> bool:
@@ -121,6 +122,7 @@ def observed_storage_entries(frames: list[dict]) -> bool:
 def observed_storage_reference(frames: list[dict], command: str) -> bool:
     """Fail before dereferencing a stale mount or following changed code."""
     prerequisites = (
+        *SHELL_GUARDS,
         *NOR_GUARDS,
         *BOOT_GUARDS,
         *CARD_GUARDS,
