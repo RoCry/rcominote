@@ -1,0 +1,8 @@
+{
+  "file": "aerecord.dsp",
+  "file_bytes": 110148,
+  "verified_blocks": 4,
+  "total_blocks": 216,
+  "complete": false,
+  "scope": "Raw file readback; no flash write, boot or recovery proof"
+}

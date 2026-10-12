@@ -10,29 +10,24 @@ import typer
 from . import log_capture, nor_windows
 from .ble_target import OWNED_SERIAL
 from .output import emit
-from .printk_tail import NorTarget
+from .printk_tail import NorTarget, block_offset
 
 
-def main(
-    out: Annotated[Path, typer.Option()],
-    nor_target: NorTarget = NorTarget.boot,
-    serial: str = OWNED_SERIAL,
-):
-    """Capture two passes of11 fixed windows; publish512 B only if all rows agree."""
+async def capture_sector(out: Path, nor_target: NorTarget, serial: str, block: int = 0) -> dict:
+    """Keep failed sessions; publish bytes only after full double coverage."""
+    block_offset(nor_target, block)
     out.mkdir(parents=True, exist_ok=False)
-    result = asyncio.run(
-        log_capture.capture(
-            serial=serial,
-            duration=1,
-            printk_tail_probe=True,
-            nor_target=nor_target,
-            batch_windows=tuple(range(1, 11)) + tuple(range(11)),
-        )
+    result = await log_capture.capture(
+        serial=serial,
+        duration=1,
+        printk_tail_probe=True,
+        nor_target=nor_target,
+        nor_block=block,
+        batch_windows=tuple(range(1, 11)) + tuple(range(11)),
     )
     (out / "session.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
     if not result["ok"]:
-        emit({"ok": False, "error": result.get("error"), "session": str(out / "session.json")})
-        raise typer.Exit(1)
+        return {"complete": False, "error": result.get("error"), "session": str(out / "session.json")}
     first = {
         key: value for key, value in result.items() if key not in {"batch_records", "notifications", "writes"}
     }
@@ -48,6 +43,17 @@ def main(
     (out / "report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
     if report["complete"]:
         (out / "sector.bin").write_bytes(bytes.fromhex(report["sector_hex"]))
+    return report
+
+
+def main(
+    out: Annotated[Path, typer.Option()],
+    nor_target: NorTarget = NorTarget.boot,
+    serial: str = OWNED_SERIAL,
+    block: int = 0,
+):
+    """Capture two passes of11 fixed windows; publish512 B only if all rows agree."""
+    report = asyncio.run(capture_sector(out, nor_target, serial, block))
     emit(
         {key: value for key, value in report.items() if key not in {"rows", "sector_hex"}}
         | {"directory": str(out)}

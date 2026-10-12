@@ -30,6 +30,15 @@ TARGET_OFFSETS = {
     NorTarget.record_dsp_header_end: 0x24D600,
 }
 MARKER = f"dbg mdb {printk_ring.CONTEXT:x} 1c"
+RECORD_DSP_BYTES = 110148  # Double-read SDFS directory, actual aerecord.dsp.
+
+
+def block_offset(value: NorTarget, block: int = 0) -> int:
+    if type(block) is not int or block < 0:
+        raise ValueError("NOR block must be a nonnegative integer")
+    if block and (value != NorTarget.record_dsp or block * 512 >= RECORD_DSP_BYTES):
+        raise ValueError("Additional NOR blocks are limited to the known recording DSP file")
+    return TARGET_OFFSETS[value] + block * 512
 
 
 def validate_options(value: NorTarget, window: int, enabled: bool) -> NorTarget:
@@ -43,32 +52,33 @@ def validate_options(value: NorTarget, window: int, enabled: bool) -> NorTarget:
 
 def target(capture: dict) -> NorTarget:
     value = NorTarget(capture.get("nor_target", NorTarget.boot))
-    offset = capture.get("nor_offset", TARGET_OFFSETS[value])
-    if type(offset) is not int or offset != TARGET_OFFSETS[value]:
+    expected = block_offset(value, capture.get("nor_block", 0))
+    offset = capture.get("nor_offset", expected)
+    if type(offset) is not int or offset != expected:
         raise ValueError("NOR target and offset do not match fixed firmware profile")
     return value
 
 
-def producer(value: NorTarget = NorTarget.boot) -> str:
-    offset = TARGET_OFFSETS[value]
+def producer(value: NorTarget = NorTarget.boot, block: int = 0) -> str:
+    offset = block_offset(value, block)
     return f"dbg fread spi_flash {hex(offset) if offset else '0'}"
 
 
 PRODUCER = producer()
 
 
-def initial(value: NorTarget) -> list[str]:
+def initial(value: NorTarget, block: int = 0) -> list[str]:
     return (
         range_commands(printk_ring.READS[: len(printk_ring.GUARDS) + 1])
         + range_commands(tuple((a, len(bytes.fromhex(v))) for a, v in GUARDS))
-        + [producer(value), MARKER]
+        + [producer(value, block), MARKER]
         + ["kernel version"] * 8
     )
 
 
 def verify_producer(capture: dict) -> NorTarget:
     value = target(capture)
-    expected = producer(value)
+    expected = producer(value, capture.get("nor_block", 0))
     commands = capture["fixed_text_commands"]
     if not isinstance(commands, list) or not all(isinstance(command, str) for command in commands):
         raise ValueError("Invalid fixed producer command list")
@@ -133,8 +143,9 @@ def verify_producer_output(capture: dict, value: NorTarget) -> None:
     if type(start) is not int or type(end) is not int or not 0 <= start < end <= len(capture["frames"]):
         raise ValueError("Invalid NOR producer output frame interval")
     text = "".join(frame.get("text", "") for frame in capture["frames"][start:end])
-    command = producer(value)
-    status = re.search(rf"\r\nfread 512b: offset=0x{TARGET_OFFSETS[value]:x}, buf=0x[0-9a-f]+\r\n", text)
+    block = capture.get("nor_block", 0)
+    command = producer(value, block)
+    status = re.search(rf"\r\nfread 512b: offset=0x{block_offset(value, block):x}, buf=0x[0-9a-f]+\r\n", text)
     echo = f"logsrv: cmd({len(command)}) {command}\r\n"
     if status is None or text.find(echo, status.end()) < 0:
         raise ValueError("Captured NOR producer status/echo does not match declared target")
@@ -148,9 +159,9 @@ def inspect(capture: dict) -> dict:
     verify_producer_output(capture, value)
     raw = b"".join(printk_ring.read(capture, a, n) for a, n in tail_ranges(capture))
     return {
-        "producer": producer(value),
+        "producer": producer(value, capture.get("nor_block", 0)),
         "target": value.value,
-        "offset": TARGET_OFFSETS[value],
+        "offset": block_offset(value, capture.get("nor_block", 0)),
         "window": capture.get("ring_window", 0),
         "context": printk_ring.context(capture, 28),
         "ranges": tail_ranges(capture),

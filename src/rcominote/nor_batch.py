@@ -19,7 +19,7 @@ def guard_prefix(seed: dict) -> dict:
     if not seed.get("printk_tail"):
         raise ValueError("Warm NOR windows require a guarded printk-nor-tail seed")
     printk_tail.verify(seed | {"ok": True})
-    command = printk_tail.producer(printk_tail.target(seed))
+    command = printk_tail.producer(printk_tail.target(seed), seed.get("nor_block", 0))
     commands = seed["fixed_text_commands"]
     last_guard = f"dbg mdb {printk_tail.GUARDS[-1][0]:x} {len(bytes.fromhex(printk_tail.GUARDS[-1][1])):x}"
     end = seed["range_frame_spans"][last_guard][1]
@@ -35,6 +35,7 @@ def guard_prefix(seed: dict) -> dict:
         "printk_tail",
         "nor_target",
         "nor_offset",
+        "nor_block",
         "scope",
     )
     prefix = deepcopy({key: seed[key] for key in keys if key in seed})
@@ -107,7 +108,7 @@ async def _capture_window(
                 await pump(timeout=5)
                 refresh()
 
-    await send(printk_tail.producer(value))
+    await send(printk_tail.producer(value, record.get("nor_block", 0)))
     context_start = len(stream.frames)
     record["range_frame_spans"][printk_tail.MARKER] = [position(), None]
     await send(printk_tail.MARKER)

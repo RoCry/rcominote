@@ -53,6 +53,8 @@ def analyze(paths: list[Path]) -> dict:
             if records and value.value != records[0]["target"]:
                 raise ValueError("Cannot assemble mixed NOR targets")
             tail = printk_tail.inspect(capture)
+            if records and tail["offset"] != records[0]["offset"]:
+                raise ValueError("Cannot assemble mixed NOR block offsets")
             aliases = [("digest", hashlib.sha256(raw).hexdigest())]
             if digest := capture.get("source_capture_sha256"):
                 if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
@@ -66,7 +68,15 @@ def analyze(paths: list[Path]) -> dict:
                 if alias in identities:
                     parents[root(index)] = root(identities[alias])
                 identities[alias] = index
-            records.append({"path": str(path), "target": tail["target"], "rows": _rows(tail["text"])})
+            records.append(
+                {
+                    "path": str(path),
+                    "target": tail["target"],
+                    "offset": tail["offset"],
+                    "producer": tail["producer"],
+                    "rows": _rows(tail["text"]),
+                }
+            )
         except (KeyError, TypeError, ValueError) as error:
             raise ValueError(f"Invalid NOR window capture {path}: {error}") from error
 
@@ -84,9 +94,9 @@ def analyze(paths: list[Path]) -> dict:
     complete = not (conflicts or missing or unconfirmed)
     report = {
         "scope": "Guarded, non-atomic fixed NOR-target log rows; no full-device backup or recovery proof",
-        "producer": printk_tail.producer(printk_tail.NorTarget(records[0]["target"])),
+        "producer": records[0]["producer"],
         "target": records[0]["target"],
-        "offset": printk_tail.TARGET_OFFSETS[printk_tail.NorTarget(records[0]["target"])],
+        "offset": records[0]["offset"],
         "input_files": len(paths),
         "distinct_sources": len({root(index) for index in range(len(paths))}),
         "required_rows": 32,

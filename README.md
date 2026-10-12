@@ -17,7 +17,7 @@
 | 自定义固件 | Actions 有构建、OTA、ADFU 等参考代码，也有签名/安全启动配置；CoMi 是否接受自签/未签名镜像尚未知 |
 | Linux 构建 | Ubuntu 上参考板 hello_world 已生成 ELF/BIN/HEX；SDK 无源码补丁，构建后 tracked 文件干净；尚不是 CoMi 固件 |
 
-最新：[完整录音DSP头与bank表](docs/record-dsp-header.md)；[同连接 NOR 双读与录音 DSP 头](docs/nor-warm-capture.md)：512 B实测21.762 s，完整双覆盖，与独立冷连接结果一致。
+最新：[录音DSP断点导出](docs/record-dsp-export.md)与[SDFS校验规则](docs/sdfs-checksum.md)；[完整录音DSP头与bank表](docs/record-dsp-header.md)；[同连接 NOR 双读与录音 DSP 头](docs/nor-warm-capture.md)：512 B实测21.762 s，完整双覆盖，与独立冷连接结果一致。
 
 ## 阅读顺序
 

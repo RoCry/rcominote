@@ -100,6 +100,7 @@ async def capture(
     ring_window: int = 0,
     nor_target: printk_tail.NorTarget = printk_tail.NorTarget.boot,
     batch_windows: tuple[int, ...] = (),
+    nor_block: int = 0,
 ) -> dict:
     if (
         len(batch_windows) > 21
@@ -108,6 +109,7 @@ async def capture(
     ):
         raise ValueError("NOR batch requires at most21 fixed windows0..10 and printk-nor-tail")
     nor_target = printk_tail.validate_options(nor_target, ring_window, printk_tail_probe)
+    nor_offset = printk_tail.block_offset(nor_target, nor_block)
     printk_state = printk_state or printk_buffer or printk_tail_probe
     selected_ranges = image_ranges(image_chunks)
     image_header = image_header or bool(selected_ranges) or printk_state
@@ -137,7 +139,8 @@ async def capture(
         "printk_tail": printk_tail_probe,
         "ring_window": ring_window,
         "nor_target": nor_target.value,
-        "nor_offset": printk_tail.TARGET_OFFSETS[nor_target],
+        "nor_offset": nor_offset,
+        "nor_block": nor_block,
         "range_frame_spans": {},
         "scope": "PREPARE/DEFAULT_START/STOP; fixed diagnostics and optional bounded reads; no storage writes/reboot",
         "fixed_text_commands": (
@@ -232,7 +235,7 @@ async def capture(
             + range_commands(selected_ranges)
             + (range_commands(PRINTK_READS) if printk_state else [])
             + (range_commands(printk_ring.READS) if printk_buffer else [])
-            + (printk_tail.initial(nor_target) if printk_tail_probe else [])
+            + (printk_tail.initial(nor_target, nor_block) if printk_tail_probe else [])
         ),
         "notifications": [],
         "writes": [],
@@ -369,7 +372,7 @@ async def capture(
                     )
                 if printk_tail_probe and command == f"dbg mdb {printk_ring.CONTEXT:x} 14":
                     printk_ring.verify(result | {"ok": True})
-                if printk_tail_probe and command == printk_tail.producer(nor_target):
+                if printk_tail_probe and command == printk_tail.producer(nor_target, nor_block):
                     printk_tail.verify(result | {"ok": True})
                 encoded = command.encode("ascii")
                 if storage_code or shell_code:
