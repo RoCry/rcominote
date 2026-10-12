@@ -14,7 +14,12 @@ Current deliverables, in order:
 1. Matching ATS3085L/LARK M4 material: BSP, register/pin documentation,
    production configuration/host, official image. [Source follow-up](platform-source-followup.md)
    identifies previously overlooked unstripped Flash/SD loader ELFs and M4
-   ATT source fragments; inventory those offline before another generic search.
+   ATT source fragments. NOR read/address-selection and initialization comparison
+   is complete within its static scope: raw host selector is not a live app alias;
+   unchanged Init changes hardware/NOR state. Exact bare-metal source-package
+   searches acquired no source; resume acquisition on a new entry. SD comparison
+   also closed: loader usesSD0, actual CoMi usesSD1; wrapper ignores read errors.
+   Preserve both as HAL references, not ready-made backup tools; do not repeat audits.
 2. Firmware/recovery overview: consolidate existing system/boot/DSP/ACPT;
    compare ROM→helper→NOR routes. If justified, acquire one bounded ROM corpus
    for offline analysis instead of one live experiment per callee.
@@ -64,6 +69,8 @@ Android login remains deferred by user. Do not infer reference ATS3089 board equ
 | More encrypt.bin analysis to find USB readback | **Deprioritized**: inspected modules concern container/encryption; codec result retained | Concrete USB transport caller/reference, not module name |
 | Repeated tiny polling turns | **Retired orchestration pattern** | Use bounded experiment or meaningful process milestone; investigate repeated failure before another full run |
 | One ROM callee → bespoke live capture → tool → commit, repeated | **Deprioritized research pattern**: resolves local uncertainty while platform/BSP/backup gaps persist | A specific decision requires the bytes, or one justified bounded corpus enables batch offline answers; exact count units alone do not establish safe ROM exit |
+| JLink raw bank20000000 as a live app NOR alias | **Unsupported inference**: [actual loader contract](platform-source-followup.md#nor-comparison-host-selector-cache-window-and-initialization) translates host address then copies from its own10000000 cache window | Independent evidence for a live app alias; do not probe that address based on the debugger bank table |
+| Unchanged LARK JLink storage loaders as reliable backups | **Rejected unchanged**: [NOR initialization and SD interface comparison](platform-source-followup.md#nor-comparison-host-selector-cache-window-and-initialization); NOR reconfigures mapping/mode and calls unknown ROM init; SD targetsSD0 instead of actualSD1 and returns full length on read errors | Matched implementation with audited initialization, bounds and error propagation; keep typed HAL references |
 
 Do not delete verified source evidence because its acquisition method was slow.
 Archive rejected output with reason and replacement. Remove obsolete runnable

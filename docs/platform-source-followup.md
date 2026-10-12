@@ -160,16 +160,159 @@ establishes which implementation or ROM revision the loader selects.
 register offsets but does not establish its selected controller base, pinmux,
 address units or equivalence to that actual driver. Do not transplant the API.
 
-**Route judgment:** enough named/type evidence exists for one bounded storage
-comparison. Start with **Flash `SEGGER_OPEN_Read` plus `addr_translate`** to
-resolve host raw-address versus mapped/decrypted-address handling; this directly
-affects full NOR backup. Treat initializer compatibility as a separate unresolved
-gate. SD's `brom_card_read` is the second comparison for MMC_1. Do not recursively
-expand every helper; record remaining gaps after those interface comparisons.
+**Route judgment:** the bounded NOR/SD comparisons below resolve debugger address
+selection, initialization boundaries and the SD controller mismatch. Do not
+recursively expand every helper.
 
 Reproduce against either ELF with `readelf -h -l -SW`, `readelf -sW`,
 `readelf --debug-dump=info`, and `readelf --debug-dump=rawline`; check SHA256
 first. No persistent analysis tool or per-function report was added.
+
+## NOR comparison: host selector, cache window and initialization
+
+Same ELF/hash, static analysis only. Root examined read/translation and fixed
+literal pools; Astra independently examined initialization. [1774B of selected
+instructions and literal bytes](evidence/lark-storage-contract-2026-10-13.json)
+retain eleven named regions; code fully decodes with Capstone5.0.6, literal pools
+excluded. REA opened/identified the ARM ELF, but native analysis reported no
+configured Ghidra/Hopper/IDA provider; existing LLVM objdump and Capstone supplied
+the instruction evidence. No target execution, live memory probe or new CLI tool.
+
+### `20000000` is a debugger selector, not a proven live raw alias
+
+`addr_translate` at010108ec tests these unsigned address intervals:
+
+| Host address; end exclusive | Output / condition |
+|---|---|
+| `10000000..10400000` | Require valid cached partition table; first type2/system entry offset + address−10000000; storage0, return0 |
+| `11000000..11400000` | Require table; first type3/recovery offset + address−11000000; storage0, return0 |
+| `20000000..30000000` | address−20000000; storage0, return0; **no partition-table prerequisite** |
+| `30000000..40000000` | Set storage3, return−1 |
+| `60000000..a0000000` | Set storage2, return−1 |
+| `a0000000..e0000000` | Set storage1, return−1 |
+| Other addresses, invalid table or no matching type | Return−1 |
+
+Table scan uses30 slots of24B, not just declared `part_cnt`; type, physical
+offset and validity gate control the selection. It does not inspect mirror,
+encryption flags or partition size, and does not populate `flash_info.max_size`.
+Fixed4 MiB logical windows and256 MiB raw-selector window are software ranges,
+**not capacity evidence**.
+
+`SEGGER_OPEN_Read` at01010680 calls translation; failure returns0. For successful
+storage0 it passes destination, **10000000 + translated physical offset**, and
+requested byte count to `soc_memcpy`, then returns that count. It does not check
+count against partition/device bounds or propagate the ROM memcpy return value.
+`soc_memcpy` tail-branches through ROM table1ac. This is a cache-backed read,
+not an SPI-read command issued by the read handler itself.
+
+Concrete comparisons using [CoMi's actual table](partition-readback.md), conditional
+on that table being accepted by this loader; **not observed loader execution**:
+
+| Host request | Physical offset selected | Loader CPU copy source |
+|---|---|---|
+| `10000200` | `00024200` (system +512B) | `10024200` |
+| `11000000` | `00004000` (recovery start) | `10004000` |
+| `20000000` | `00000000` (raw NOR start) | `10000000` |
+| `203fffff` | `003fffff` (last byte of configured4 MiB) | `103fffff` |
+| `20400000` | `00400000`, still accepted by translator | `10400000`, beyond that configured capacity |
+
+The loader establishes its own mapping before these reads. Its `spicache_init`
+writes `40010300=1000000f`, `40010304=0`, `40010308=1800000f`, `4001030c=0`:
+two CPU windows backed by physical offset0, without offset bit31 set. Actual
+[CoMi boot mapping](actual-boot-flow.md) writes the same slot0 register pair,
+but selects recovery offset4000, CPU11000000 and a conditional offset bit31;
+running system mapping is another lifetime. Shared register layout supports
+ancestry, not interchangeable mapping state. **Do not issue `mdb 20000000` in
+the running app on the strength of this debugger table.**
+
+### Read/Verify selection does not skip initialization
+
+`Init` disables interrupts and resets clocks/pinmux/system state; before testing
+its mode argument it unconditionally calls mfp_init, uart_init, storage_init,
+spicache_init, spicache_disable, ROM chip-ID, spicache_enable and partition_init.
+Read/Verify mode is therefore not a state-preserving shortcut. Init returns0
+without propagating partition_init failure; inspected code does not restore the
+incoming interrupt/mapping state.
+
+`storage_init` uses SPI base40028000. TXDAT(+8), with separate controller/CS
+transitions, receives **AB;06;C5 00;E9;FF;FF FF**. Instruction sites10b0e,
+10b48,10b7e/80,10bb4,10be8,10c22/24 are retained in the evidence JSON.
+Pinned SDK [spinor.c][spinor] namesC5 as extended-address-register write andE9
+as exit4-byte-address mode. Device-specific effects/persistence remain unproved;
+do not mislabel these as array erase/page program. It then calls slot0 of the
+table atROM1a4 withr0=0: an uninspected ROM initializer. Busy polling has no
+visible timeout. Four inspected init interfaces contain no direct array erase
+or page-program call; unknown ROM behavior prevents a full no-write conclusion.
+
+`partition_init` first checks parameter offset1000, including ACPT/FVER CRCs,
+then tries3000 if the first copy fails (`010108d8..010108e2`). Either valid copy
+caches872B and sets the validity flag; both failing blocks logical100/110
+selectors. Raw200 selector does not depend on that flag.
+
+**Decision:** retain this loader as a named/typed implementation reference for
+raw-versus-logical reads. Unchanged `Init→Read` is not approved as a preserving
+backup procedure; simply skipping Init is also unsupported because read depends
+on the cache map. Next source target is the identified bare-metal LarkHal/
+Flashloader package. Initialization ROM internals and per-register roles stay
+recorded gaps; no recursive callee audit is required to reach this decision.
+
+### Source-package acquisition boundary
+
+After identifying the package, exact public searches for `BAREMETAL_CMSIS` +
+`lark`, `lark_sdk` + Actions, and ATS3085L SDK GitHub returned no results;
+filename search produced unrelated pages. An authenticated GitHub code query
+`filename:lark_hal_storage.c` returned `total_count:0`. No matching source was
+acquired. These are dated indexed-search outcomes, not proof of absence/private
+availability. Stop this search pass; resume on a new package/repository/vendor
+entry, keeping the exact LarkHal/Flashloader filenames as acquisition targets.
+
+## SD comparison: different controller, read-error propagation defect
+
+Same SD ELF/hash; Astra examined five named interfaces, root independently
+checked the host read wrapper. Their complete symbol-bounded bytes and ARM
+`$t/$d` code/literal separation are retained under `sd_reference` in the same
+[instruction evidence](evidence/lark-storage-contract-2026-10-13.json). No device
+I/O or target execution. Stop at the demonstrated mismatch; no callee expansion.
+
+| Question | Inspected instructions / comparison |
+|---|---|
+| Controller | `card_access_init` literal010109dc, `brom_card_read` literal01010f38 and `card_mfp_select` literal01010874 all select **40054000 / SD0**. CoMi's [actual MMC_1 configuration](card-state-readback.md) selects **40058000 / SD1** |
+| DMA | `01010df8..01010e16` uses channel registers4001c100, CTL85, source40054028 (SD0 DAT), destination=buffer, frame length=`sector_len<<9`; start bit0 |
+| Length | `01010ddc..01010de2` sets BLK_SIZE512, BLK_NUM=`sector_len`; DMA agrees. Bottom-level length is a count of512B sectors |
+| Address | `01010dd4..01010df6` tests `g_card_type` bit7; clear→`addr<<9`, set→addr unchanged in ARG. Input is sector address, converted for byte/block card mode |
+| Transfer/error | CMD18/read-multiple-block, then CMD12/stop; inspected STATE mask8017. Normal path returns0, visible error/timeout paths1 |
+| Poll budgets | Counts000f4241 for transfer/DMA and000186a1 for stop, callingudelay(1); no wall-clock-duration or all-callee boundedness claim |
+
+Controller names follow pinned [soc_regs.h][soc-regs]. Those shared register
+constants do not establish exact silicon identity or usable board pins.
+
+`SEGGER_OPEN_Read` at01010398 exposes a byte-addressed host selector:
+
+- `010103c6..010103d2`: requireAddr≥a0000000 and uint32(Addr+NumBytes)<e0000000;
+  no separate overflow check.
+- `010103d4..010103e0`: sector address=`(Addr−a0000000)>>9`, sector count=
+  `uint32(NumBytes+511)>>9`. No alignment rejection or first/last-sector trimming;
+  a non512-multiple request can make the lower layer write beyond requested length.
+- `010103e2`: callbrom_card_read; result is printed. **01010402 returns the original
+  requested NumBytes even on a bottom-level failure.** Range rejection returns−1,
+  unlike the NOR wrapper's0. Host full-length success is not a valid backup oracle.
+
+`sdcard_init` tries pinmux0 then1. Both configure the same SD0: first writes
+control addresses4006802c/30/34 with300a/180a/180a; second uses40068008/04/0c.
+Failed selections reset their pin modes to1000. These are reference register
+addresses, not measured CoMi wiring or controller switching.
+Subsequent send_init_cmd and card_reset internals remain unread.
+
+`card_access_init` has CMD8→CMD55/CMD41 and CMD1 fallback paths, setting type
+codes1/0x82 or3/0x83. Do not transplant those enums into CoMi's distinct
+type0/CCS1 driver state ABI. Only bit7's addressing role is directly established
+by these loader instructions.
+
+**Decision:** retain SD command/DMA/addressing as HAL implementation reference.
+Unchanged loader is neither a matched MMC_1 driver nor a reliable SD exporter;
+do not adapt pins alone or trust its wrapper length. This comparison is complete
+within the declared scope. Return to matching platform artifacts and overall
+hardware understanding, not the unread SD initialization callees.
 
 ## Official access routes: live result and actual value
 
@@ -203,9 +346,9 @@ private-address Seeyon installation host.
 - **Official CoMi firmware:** no new acquisition entry found here. The earlier
   [Seeyon deployment lead](seeyon-backend-reference.md) concerns a backend JAR;
   do not rename it a device firmware package or repeat its inaccessible host.
-- **Next platform work:** the bounded ELF inventory above is complete; compare
-  its named read/address-translation interfaces to actual storage behavior. Record unresolved mappings
-  and move on. External acquisition resumes when a real authenticated download,
+- **Next platform work:** NOR/SD interface comparisons above are complete within
+  their stated static boundaries. Acquire the now-identified bare-metal source
+  package or other matching platform material. External acquisition resumes when a real authenticated download,
   vendor-provided BSP, board schematic or matched package becomes available.
 
 [readme]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/README.md
@@ -222,6 +365,8 @@ private-address Seeyon installation host.
 [brom]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/application/bt_watch/src/att/att_patterns/include/soc-include/brom_interface.h
 [pinctrl]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/include/drivers/cfg_drv/pinctrl_lark.h
 [dev]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/include/drivers/cfg_drv/dev_lark.h
+[spinor]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/drivers/flash/spinor/spinor.c#L61-L75
+[soc-regs]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/soc/arm/actions/leopard/soc_regs.h#L61-L62
 [cubie]: http://www.cubietech.com/product-detail/cubiedvb-ats3085/
 [support]: https://cs.actions-semi.com/loginIndex.html
 [partner]: https://www.actions-semi.com/index.php?id=7761
