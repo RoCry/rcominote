@@ -58,6 +58,48 @@ SPECIAL_BLOCKS = (
 )
 HANDLER_BLOCKS = (*HANDLER_CORE_BLOCKS, *SPECIAL_BLOCKS)
 
+INFO_BODY_BLOCKS = (
+    *(
+        (address, 16, "previously decoded call/table prerequisite", False)
+        for address in (
+            0x1000A01C,
+            0x1000A14C,
+            0x1000B3B4,
+            0x1000B3C4,
+            0x1000B404,
+            0x1000B414,
+            0x1000B474,
+        )
+    ),
+    (0x1000AAD0, 16, "GET_DEVICE_INFO callee entry", True),
+    (0x1000AAE0, 16, "GET_DEVICE_INFO callee continuation", True),
+    *(
+        (address, min(16, 0x1000ABE4 - address), "GET_DEVICE_INFO code before literal pool", True)
+        for address in range(0x1000AAF0, 0x1000ABE4, 16)
+    ),
+    (0x1000ABE4, 16, "GET_DEVICE_INFO literal pool", False),
+)
+INFO_REFERENCES = (
+    (0x100BA780, 3, "version bytes referenced by GET_DEVICE_INFO", False),
+    (0x100C1243, 8, "capacity getter r0 literal prefix", False),
+    (0x100C21E8, 10, "model string referenced by GET_DEVICE_INFO", False),
+    (0x100549C0, 16, "first capacity getter entry", True),
+    (0x100549D0, 16, "first capacity getter continuation", True),
+    (0x10054A28, 16, "second capacity getter entry", True),
+    (0x10054A38, 16, "second capacity getter continuation", True),
+)
+INFO_CAPACITY = (
+    *(
+        (address, min(16, 0x10054A18 - address), "free-capacity getter continuation", True)
+        for address in range(0x100549E0, 0x10054A18, 16)
+    ),
+    *(
+        (address, min(16, 0x10054A80 - address), "total-capacity getter continuation", True)
+        for address in range(0x10054A48, 0x10054A80, 16)
+    ),
+)
+INFO_BLOCKS = (*INFO_BODY_BLOCKS, *INFO_REFERENCES, *INFO_CAPACITY)
+
 
 def read_block(capture: dict, address: int, length: int) -> bytes:
     command = f"dbg mdb {address:x} {length:x}"
@@ -77,14 +119,16 @@ def read_block(capture: dict, address: int, length: int) -> bytes:
     return bytes.fromhex(match[1])
 
 
-def inspect_references(first: Path, second: Path, *, vendor: bool = False, handler: bool = False) -> dict:
+def inspect_references(
+    first: Path, second: Path, *, vendor: bool = False, handler: bool = False, info: bool = False
+) -> dict:
     captures = [json.loads(path.read_text()) for path in (first, second)]
     stamps = [capture.get("captured_at") for capture in captures]
     if not all(stamps) or stamps[0] == stamps[1]:
         raise ValueError("Two distinct capture records are required")
     blocks = []
-    vendor = vendor or handler
-    selected = HANDLER_BLOCKS if handler else VENDOR_BLOCKS if vendor else BLOCKS
+    vendor = vendor or handler or info
+    selected = INFO_BLOCKS if info else HANDLER_BLOCKS if handler else VENDOR_BLOCKS if vendor else BLOCKS
     for address, length, reason, code in selected:
         data = read_block(captures[0], address, length)
         if data != read_block(captures[1], address, length):
@@ -194,10 +238,11 @@ def main(
     out: Annotated[Path, typer.Option()],
     vendor: bool = False,
     handler: bool = False,
+    info: bool = False,
 ):
-    """Compare fixed references; --vendor selects receive loop, --handler its dispatcher."""
+    """Compare fixed reads: --vendor receive loop, --handler dispatcher, --info device-info getters."""
     new_output(out)
-    report = inspect_references(first, second, vendor=vendor, handler=handler)
+    report = inspect_references(first, second, vendor=vendor, handler=handler, info=info)
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("x") as handle:
         handle.write(json.dumps(report, ensure_ascii=False, indent=2) + "\n")

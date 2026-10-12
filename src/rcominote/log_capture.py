@@ -1,19 +1,16 @@
 """Bounded Actions logs and fixed diagnostic queries; no arbitrary shell, storage writes, or reboot."""
 
 import asyncio
-import json
 import time
 from datetime import UTC, datetime
-from pathlib import Path
-from typing import Annotated
 
-import typer
 from bleak import BleakClient
 from bleak.exc import BleakError
 
 from .ble_target import OWNED_SERIAL, find_device
 from .code_guards import (
     observed_block,
+    observed_capacity_entries,
     observed_code,
     observed_handler_entry,
     observed_logsrv_code,
@@ -27,6 +24,10 @@ from .code_references import (
     BLOCKS,
     HANDLER_BLOCKS,
     HANDLER_CORE_BLOCKS,
+    INFO_BLOCKS,
+    INFO_BODY_BLOCKS,
+    INFO_CAPACITY,
+    INFO_REFERENCES,
     SPECIAL_BLOCKS,
     VENDOR_BLOCKS,
     read_block,
@@ -82,7 +83,7 @@ def verify_readback(result: dict) -> None:
     result["transport_ok"] = result["ok"]
     reads = [
         block
-        for block in dict.fromkeys((*BLOCKS, *VENDOR_BLOCKS, *HANDLER_BLOCKS))
+        for block in dict.fromkeys((*BLOCKS, *VENDOR_BLOCKS, *HANDLER_BLOCKS, *INFO_BLOCKS))
         if f"dbg mdb {block[0]:x} {block[1]:x}" in result["fixed_text_commands"]
     ]
     if not reads:
@@ -125,9 +126,10 @@ async def capture(
     code_references: bool = False,
     vendor_code: bool = False,
     vendor_handler: bool = False,
+    device_info_code: bool = False,
 ) -> dict:
     if (
-        code_sample or code_literals or code_references or vendor_code or vendor_handler
+        code_sample or code_literals or code_references or vendor_code or vendor_handler or device_info_code
     ) and serial != OWNED_SERIAL:
         raise ValueError("Code sample address is evidenced only for owned C261CF0430 FW 1.0.4")
     code_literals = code_literals or code_references
@@ -186,6 +188,21 @@ async def capture(
                 else []
             )
             + (["kernel uptime", "kernel threads", "kernel uptime", "help"] if threads else [])
+            + (
+                [
+                    "kernel threads",
+                    *flushed_reads(INFO_BLOCKS[:1]),
+                    *flushed_reads(INFO_BLOCKS[1:2]),
+                    *flushed_reads(INFO_BLOCKS[2:4]),
+                    *flushed_reads(INFO_BLOCKS[4:7]),
+                    *flushed_reads(INFO_BLOCKS[7:9]),
+                    *flushed_reads(INFO_BODY_BLOCKS[9:]),
+                    *flushed_reads(INFO_REFERENCES),
+                    *flushed_reads(INFO_CAPACITY),
+                ]
+                if device_info_code
+                else []
+            )
             + (["kernel stacks", "help"] if stacks else [])
             + (["kernel threads", "dbg mdb 1000bf20 10", "help"] if code_sample or code_literals else [])
             + (["dbg mdb 1000c0ac 8", "help"] if code_literals else [])
@@ -315,6 +332,59 @@ async def capture(
                         while not observed_logsrv_literals(stream.frames):
                             await pump(timeout=5)
                 encoded = command.encode("ascii")
+                if command in {f"dbg mdb {b[0]:x} {b[1]:x}" for b in INFO_CAPACITY}:
+                    async with asyncio.timeout(5):
+                        while not observed_capacity_entries(stream.frames):
+                            await pump(timeout=5)
+                if command in {f"dbg mdb {b[0]:x} {b[1]:x}" for b in INFO_REFERENCES}:
+                    async with asyncio.timeout(5):
+                        while not (
+                            observed_code(
+                                stream.frames,
+                                0x1000AAF0,
+                                "ebfd3d4849f064ff04463b4849f094ff",
+                                "capacity getter calls",
+                            )
+                            and observed_code(
+                                stream.frames,
+                                0x1000ABE4,
+                                "80a70b1043120c1000ba0018e8210c10",
+                                "device-info literals",
+                            )
+                        ):
+                            await pump(timeout=5)
+                if command in {f"dbg mdb {b[0]:x} {b[1]:x}" for b in INFO_BLOCKS[9:]}:
+                    async with asyncio.timeout(5):
+                        while not observed_code(
+                            stream.frames,
+                            0x1000AAD0,
+                            "30b58fb0fff76cfb424b1a88adf80020",
+                            "GET_DEVICE_INFO entry",
+                        ):
+                            await pump(timeout=5)
+                if command in {f"dbg mdb {b[0]:x} {b[1]:x}" for b in INFO_BLOCKS[7:]}:
+                    async with asyncio.timeout(5):
+                        while not (
+                            observed_code(
+                                stream.frames,
+                                0x1000B404,
+                                "7b1e392b00f29c80dfe803f01d22272c",
+                                "command range and TBB",
+                            )
+                            and observed_code(
+                                stream.frames,
+                                0x1000B414,
+                                "31363b40454a4f555b9a9a61676c7277",
+                                "command 0x05 table entry",
+                            )
+                            and observed_code(
+                                stream.frames,
+                                0x1000B474,
+                                "3046fff72bfbc1e721463046fff7b8fb",
+                                "GET_DEVICE_INFO direct call",
+                            )
+                        ):
+                            await pump(timeout=5)
                 if command in {f"dbg mdb {b[0]:x} {b[1]:x}" for b in SPECIAL_BLOCKS[6:]}:
                     async with asyncio.timeout(5):
                         while not observed_code(
@@ -332,7 +402,7 @@ async def capture(
                             await pump(timeout=5)
                 tlv = b"\x01" + len(encoded).to_bytes(2, "little") + encoded
                 await request(b"\x1d\x10\x81" + len(tlv).to_bytes(2, "little") + tlv)
-                if vendor_handler:
+                if vendor_handler or device_info_code:
                     if command.startswith("dbg mdb "):
                         _, _, address, length = command.split()
                         pending_reads.append((int(address, 16), int(length, 16)))
@@ -382,62 +452,3 @@ async def capture(
     )
     verify_readback(result)
     return result
-
-
-def main(
-    out: Annotated[Path, typer.Option(help="New evidence JSON; keep raw logs in ignored artifacts/")],
-    serial: str = OWNED_SERIAL,
-    duration: Annotated[float, typer.Option(min=1, max=30)] = 15,
-    device_info: Annotated[
-        bool, typer.Option(help="Also request fixed kernel version and device levels (twice)")
-    ] = False,
-    commands: Annotated[
-        bool, typer.Option(help="Also request fixed help and bare dbg command listings")
-    ] = False,
-    flash_header: Annotated[
-        bool, typer.Option(help="Read only NOR offset 0, fixed 512 bytes; not a backup")
-    ] = False,
-    platform_info: Annotated[
-        bool, typer.Option(help="Fixed app/system help and three bounded NVRAM getters")
-    ] = False,
-    kernel_info: Annotated[bool, typer.Option(help="Fixed kernel help and uptime queries")] = False,
-    threads: Annotated[
-        bool, typer.Option(help="Fixed thread listing bracketed by uptime; verify help first")
-    ] = False,
-    stacks: Annotated[bool, typer.Option(help="Compact thread stack-usage table; no stack contents")] = False,
-    code_sample: Annotated[
-        bool, typer.Option(help="Owned FW1.0.4 only: 16 bytes at observed logsrv code entry")
-    ] = False,
-):
-    if out.exists():
-        raise FileExistsError(f"Output already exists: {out}")
-    result = asyncio.run(
-        capture(
-            serial=serial,
-            duration=duration,
-            device_info=device_info,
-            commands=commands,
-            flash_header=flash_header,
-            platform_info=platform_info,
-            kernel_info=kernel_info,
-            threads=threads,
-            stacks=stacks,
-            code_sample=code_sample,
-        )
-    )
-    out.parent.mkdir(parents=True, exist_ok=True)
-    with out.open("x", encoding="utf-8") as handle:
-        handle.write(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
-    print(
-        json.dumps(
-            {key: value for key, value in result.items() if key not in ("frames", "notifications")},
-            ensure_ascii=False,
-            indent=2,
-        )
-    )
-    if not result["ok"]:
-        raise typer.Exit(code=1)
-
-
-if __name__ == "__main__":
-    typer.run(main)

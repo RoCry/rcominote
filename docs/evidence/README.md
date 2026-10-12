@@ -99,3 +99,11 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 两项实际失败均保留：[入口短日志未刷出](vendor-handler-buffered-entry-2026-10-12.json)导致guard超时、未发送后续读取；[长突发丢失b504行](vendor-handler-lost-row-2026-10-12.json)虽ACK/结束帧完整仍失败。新profile在依赖guard前刷出短日志；每四行后刷出并等待本批完整数据，避免继续积压。最终两个会话56 ACK、正文完整。此方法不是任意长度dump性能或可靠性保证。
 
 [配置只读查询](vendor-bt-name-query-2026-10-12.json)：`BT_NAME`与`BT_LE_NAME`均返回14 B `CoMi Note 2F01`；`FW_VERION`仍失败。没有执行`3a`或改名。最终Boyi状态FW010004、idle、容量59634/59632、noise9；未重启/刷写。
+
+## 第十一轮：设备信息与容量来源
+
+[首次](device-info-first-2026-10-12.json)、[重读](device-info-second-2026-10-12.json)、[分析](device-info-analysis-2026-10-12.json)：601 B一致，包含已有112 B，新增489 B，累计1486个不同映射字节。两个会话均59 ACK、结束帧/正文完整。实际容量查询参数`/SD:`，版本常量`010004`，模型串`xink_test`；完整容量算术与字段来源见[报告](../device-info-fields.md)。仅证明文件系统卷容量，不是物理存储或固件分区备份。
+
+[存储诊断候选审计](../storage-diagnostic-candidates.md)发现部分看似日志/只读路径可能flush存储，未执行；[VTOR审计](../vector-base-read-audit.md)确认架构地址与对齐32位读取要求，但实机特权/核心仍未完全确认，未读取该寄存器。CoMi App登录按用户要求暂缓。
+
+[结束状态](device-info-final-state-2026-10-12.json)：FW010004、idle、容量59634/59632、noise9；未重启/刷写。`just check`通过56测试+24子测试，wheel/sdist构建通过。

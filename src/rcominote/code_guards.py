@@ -65,6 +65,18 @@ def observed_handler_entry(frames: list[dict]) -> bool:
     ) and observed_code(frames, 0x1000B3C4, "064645f43c003a4640f031000c466349", "handler continuation")
 
 
+def observed_capacity_entries(frames: list[dict]) -> bool:
+    return all(
+        observed_code(frames, address, expected, "capacity getter")
+        for address, expected in (
+            (0x100549C0, "1fb50446fff79afe002812db69462046"),
+            (0x100549D0, "daf73cfc104a114b9b1a5b0103f47f43"),
+            (0x10054A28, "1fb50446fff766fe002812db69462046"),
+            (0x10054A38, "daf708fc104a114b9b1a5b0103f47f43"),
+        )
+    )
+
+
 def observed_logsrv_code(frames: list[dict]) -> bool:
     text = "".join(frame.get("text", "") for frame in frames)
     rows = re.findall(r"(?m)^1000bf20: ((?:[0-9a-f]{2} ){15}[0-9a-f]{2}) {2,}", text)

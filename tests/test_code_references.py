@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 
+from rcominote.code_guards import observed_capacity_entries
 from rcominote.code_references import inspect_references
 from rcominote.log_capture import observed_logsrv_literals, observed_vendor_code, verify_readback
 
@@ -72,3 +73,26 @@ def test_changed_vendor_code_blocks_literal_reads():
         frame["text"] = frame.get("text", "").replace("8f b5 54 4c", "8f b5 55 4c")
     with pytest.raises(ValueError, match="vendor_read code changed"):
         observed_vendor_code(capture["frames"])
+
+
+def test_device_info_decode_keeps_literal_pool_out_of_code():
+    report = inspect_references(
+        EVIDENCE / "device-info-first-2026-10-12.json",
+        EVIDENCE / "device-info-second-2026-10-12.json",
+        info=True,
+    )
+    # Actual BL targets and function returns delimit these three spans;
+    # the 16-byte pool following abE4 must never become instructions.
+    assert [(row["address"], row["length"]) for row in report["code_regions"]] == [
+        ("0x1000aad0", 276),
+        ("0x100549c0", 88),
+        ("0x10054a28", 88),
+    ]
+
+
+def test_changed_capacity_callee_blocks_continuation():
+    capture = json.loads((EVIDENCE / "device-info-first-2026-10-12.json").read_text())
+    for frame in capture["frames"]:
+        frame["text"] = frame.get("text", "").replace("da f7 3c fc", "da f7 00 fc")
+    with pytest.raises(ValueError, match="capacity getter code changed"):
+        observed_capacity_entries(capture["frames"])

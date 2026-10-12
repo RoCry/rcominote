@@ -28,6 +28,7 @@ class Profile(StrEnum):
     code_references = "code-references"
     vendor_code = "vendor-code"
     vendor_handler = "vendor-handler"
+    device_info_code = "device-info-code"
     nor_header = "nor-header"
 
 
@@ -43,6 +44,7 @@ PROFILE_FLAGS = {
     "code-references": "code_references",
     "vendor-code": "vendor_code",
     "vendor-handler": "vendor_handler",
+    "device-info-code": "device_info_code",
     "nor-header": "flash_header",
 }
 

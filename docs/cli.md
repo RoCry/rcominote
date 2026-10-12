@@ -108,3 +108,5 @@ just build       # wheel + source distribution
 参考板SDK构建仍是独立研究工具：`just sdk-setup`、`just sdk-build`。APK固定样本提取仍用`uv run tools/apk_evidence.py ...`。这两项不参与设备CLI运行。
 
 旧研究记录中的 `tools/comi.py`、`tools/log_capture.py` 等路径与命令对应当时提交；截至c523137可按原命令复现。当前统一使用以上入口；旧脚本已迁入包，不保留两份实现。
+
+`device-info-code`沿已验证的命令05调用链读取601 B（112 B既有校验点），含52 B设备信息构造、常量和两个容量getter。读取前逐层验证指令、literal、callee入口；两份捕获用`diag compare-references FIRST SECOND --info --out REPORT`离线核对。[字段来源](device-info-fields.md)。没有新增写入或固件备份命令。
