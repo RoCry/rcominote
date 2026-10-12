@@ -1,0 +1,1457 @@
+{
+  "image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "scope": "Complete worker code intervals, IRQ/tx helpers, timer callback; no device I/O",
+  "word_dispatch_02_12": {
+    "02": "0x1000cad8",
+    "03": "0x1000c880",
+    "04": "0x1000c880",
+    "05": "0x1000c880",
+    "06": "0x1000c880",
+    "07": "0x1000c880",
+    "08": "0x1000cbfe",
+    "09": "0x1000c880",
+    "0a": "0x1000cbcc",
+    "0b": "0x1000c880",
+    "0c": "0x1000cd2c",
+    "0d": "0x1000c880",
+    "0e": "0x1000c880",
+    "0f": "0x1000c880",
+    "10": "0x1000c880",
+    "11": "0x1000cc18",
+    "12": "0x1000cc6c"
+  },
+  "high_dispatch_81_83": {
+    "81": "0x1000cb18",
+    "82": "0x1000cc9c",
+    "83": "0x1000ccca"
+  },
+  "identity_dispatch_0_7": {
+    "0": "0x1000cd6e",
+    "1": "0x1000cd48",
+    "2": "0x1000cde8",
+    "3": "0x1000cd9c",
+    "4": "0x1000ce6a",
+    "5": "0x1000ce2e",
+    "6": "0x1000cedc",
+    "7": "0x1000ce9c"
+  },
+  "explicit_dispatch": {
+    "28": "0x1000c91c",
+    "80": "0x1000cb42",
+    "90": "0x1000cb72",
+    "a0": "0x1000c9ce",
+    "b0": "0x1000caf6",
+    "f0": "0x1000ca9e",
+    "ff": "0x1000ca2c",
+    "default": "0x1000c880"
+  },
+  "focus_instructions": [
+    {
+      "at": "0x1000c420",
+      "bytes": "a368",
+      "asm": "ldr r3, [r4, #8]"
+    },
+    {
+      "at": "0x1000c422",
+      "bytes": "5b69",
+      "asm": "ldr r3, [r3, #0x14]"
+    },
+    {
+      "at": "0x1000c424",
+      "bytes": "6bb1",
+      "asm": "cbz r3, #0x1000c442"
+    },
+    {
+      "at": "0x1000c426",
+      "bytes": "2a46",
+      "asm": "mov r2, r5"
+    },
+    {
+      "at": "0x1000c428",
+      "bytes": "3146",
+      "asm": "mov r1, r6"
+    },
+    {
+      "at": "0x1000c42a",
+      "bytes": "2046",
+      "asm": "mov r0, r4"
+    },
+    {
+      "at": "0x1000c42c",
+      "bytes": "9847",
+      "asm": "blx r3"
+    },
+    {
+      "at": "0x1000c42e",
+      "bytes": "0746",
+      "asm": "mov r7, r0"
+    },
+    {
+      "at": "0x1000c838",
+      "bytes": "ab68",
+      "asm": "ldr r3, [r5, #8]"
+    },
+    {
+      "at": "0x1000c83a",
+      "bytes": "9b69",
+      "asm": "ldr r3, [r3, #0x18]"
+    },
+    {
+      "at": "0x1000c83c",
+      "bytes": "3bb1",
+      "asm": "cbz r3, #0x1000c84e"
+    },
+    {
+      "at": "0x1000c83e",
+      "bytes": "584f",
+      "asm": "ldr r7, [pc, #0x160]"
+    },
+    {
+      "at": "0x1000c840",
+      "bytes": "2822",
+      "asm": "movs r2, #0x28"
+    },
+    {
+      "at": "0x1000c842",
+      "bytes": "3946",
+      "asm": "mov r1, r7"
+    },
+    {
+      "at": "0x1000c844",
+      "bytes": "2846",
+      "asm": "mov r0, r5"
+    },
+    {
+      "at": "0x1000c846",
+      "bytes": "9847",
+      "asm": "blx r3"
+    },
+    {
+      "at": "0x1000c848",
+      "bytes": "0028",
+      "asm": "cmp r0, #0"
+    },
+    {
+      "at": "0x1000c84a",
+      "bytes": "dad0",
+      "asm": "beq #0x1000c802"
+    },
+    {
+      "at": "0x1000c84c",
+      "bytes": "03dc",
+      "asm": "bgt #0x1000c856"
+    },
+    {
+      "at": "0x1000c84e",
+      "bytes": "5548",
+      "asm": "ldr r0, [pc, #0x154]"
+    },
+    {
+      "at": "0x1000c850",
+      "bytes": "93f099fb",
+      "asm": "bl #0x1009ff86"
+    },
+    {
+      "at": "0x1000c854",
+      "bytes": "d5e7",
+      "asm": "b #0x1000c802"
+    },
+    {
+      "at": "0x1000c856",
+      "bytes": "b978",
+      "asm": "ldrb r1, [r7, #2]"
+    },
+    {
+      "at": "0x1000c858",
+      "bytes": "5348",
+      "asm": "ldr r0, [pc, #0x14c]"
+    },
+    {
+      "at": "0x1000c85a",
+      "bytes": "93f094fb",
+      "asm": "bl #0x1009ff86"
+    },
+    {
+      "at": "0x1000c85e",
+      "bytes": "97f802b0",
+      "asm": "ldrb.w fp, [r7, #2]"
+    },
+    {
+      "at": "0x1000c862",
+      "bytes": "86f839b0",
+      "asm": "strb.w fp, [r6, #0x39]"
+    },
+    {
+      "at": "0x1000c93e",
+      "bytes": "0023",
+      "asm": "movs r3, #0"
+    },
+    {
+      "at": "0x1000c940",
+      "bytes": "1a46",
+      "asm": "mov r2, r3"
+    },
+    {
+      "at": "0x1000c942",
+      "bytes": "1946",
+      "asm": "mov r1, r3"
+    },
+    {
+      "at": "0x1000c944",
+      "bytes": "0d20",
+      "asm": "movs r0, #0xd"
+    },
+    {
+      "at": "0x1000c946",
+      "bytes": "45f061ff",
+      "asm": "bl #0x1005280c"
+    },
+    {
+      "at": "0x1000c94a",
+      "bytes": "75e7",
+      "asm": "b #0x1000c838"
+    },
+    {
+      "at": "0x1005286a",
+      "bytes": "03a9",
+      "asm": "add r1, sp, #0xc"
+    },
+    {
+      "at": "0x1005286c",
+      "bytes": "0848",
+      "asm": "ldr r0, [pc, #0x20]"
+    },
+    {
+      "at": "0x1005286e",
+      "bytes": "8df80e70",
+      "asm": "strb.w r7, [sp, #0xe]"
+    },
+    {
+      "at": "0x10052872",
+      "bytes": "8df80f60",
+      "asm": "strb.w r6, [sp, #0xf]"
+    },
+    {
+      "at": "0x10052876",
+      "bytes": "fdf7d7fa",
+      "asm": "bl #0x1004fe28"
+    },
+    {
+      "at": "0x1005287a",
+      "bytes": "eae7",
+      "asm": "b #0x10052852"
+    }
+  ],
+  "code_regions": [
+    {
+      "name": "irq callback",
+      "start": "0x1000c3a0",
+      "end_exclusive": "0x1000c3da",
+      "sha256": "c425e9a6a1addc1a1578a0ce253707ac5c4f38134476944f527026eadfba9fbb",
+      "instruction_count": 29,
+      "calls": [],
+      "literals": [
+        {
+          "at": "0x1000c3b2",
+          "value": "0x1803d9d9"
+        },
+        {
+          "at": "0x1000c3be",
+          "value": "0x1803d9d8"
+        }
+      ]
+    },
+    {
+      "name": "tx helper",
+      "start": "0x1000c3e4",
+      "end_exclusive": "0x1000c452",
+      "sha256": "d1e3b6ef94ad89fe08a823b52dbb05c4dce16c086912a0da055f2cbf5987b420",
+      "instruction_count": 44,
+      "calls": [
+        [
+          "0x1000c448",
+          "0x1009bf14"
+        ]
+      ],
+      "literals": [
+        {
+          "at": "0x1000c3e4",
+          "value": "0x1803d9d7"
+        },
+        {
+          "at": "0x1000c3fc",
+          "value": "0x1803d9d6"
+        },
+        {
+          "at": "0x1000c400",
+          "value": "0x1803d9d9"
+        }
+      ]
+    },
+    {
+      "name": "command 02 reply",
+      "start": "0x1000c46c",
+      "end_exclusive": "0x1000c4b8",
+      "sha256": "87d4f76f0d841c264d56080bc055b9398217fea6f6dbdb64a0f717e7e793975d",
+      "instruction_count": 31,
+      "calls": [
+        [
+          "0x1000c47a",
+          "0x100b96c8"
+        ],
+        [
+          "0x1000c494",
+          "0x1000c3e4"
+        ]
+      ],
+      "literals": [
+        {
+          "at": "0x1000c46e",
+          "value": "0x1800b9d8"
+        },
+        {
+          "at": "0x1000c498",
+          "value": "0x1803d9d7"
+        },
+        {
+          "at": "0x1000c49e",
+          "value": "0x18005518"
+        },
+        {
+          "at": "0x1000c4a0",
+          "value": "0x100c26df",
+          "ascii": "TEST_ITEM"
+        }
+      ]
+    },
+    {
+      "name": "test helpers",
+      "start": "0x1000c4c8",
+      "end_exclusive": "0x1000c4e2",
+      "sha256": "003e1a34397b677be2a9fcfb2a9c0eb43464f4aef35aba7a00c4afdd899cee34",
+      "instruction_count": 9,
+      "calls": [
+        [
+          "0x1000c4ca",
+          "0x1008ee58"
+        ],
+        [
+          "0x1000c4d4",
+          "0x100b8186"
+        ]
+      ],
+      "literals": [
+        {
+          "at": "0x1000c4dc",
+          "value": "0x100c26e9",
+          "ascii": "test lcd display begin\n"
+        }
+      ]
+    },
+    {
+      "name": "test helpers",
+      "start": "0x1000c4e8",
+      "end_exclusive": "0x1000c502",
+      "sha256": "0204a12d1b1e37124ec1a74a645eccfff4f3f41a467957b5276a3d169a85daf1",
+      "instruction_count": 9,
+      "calls": [
+        [
+          "0x1000c4ea",
+          "0x1008ee58"
+        ],
+        [
+          "0x1000c4f4",
+          "0x100b8186"
+        ]
+      ],
+      "literals": [
+        {
+          "at": "0x1000c4fc",
+          "value": "0x100c2701",
+          "ascii": "test lcd display end\n"
+        }
+      ]
+    },
+    {
+      "name": "timer callback",
+      "start": "0x1000c508",
+      "end_exclusive": "0x1000c696",
+      "sha256": "8b689bf45b75ca64f30a1c2842ca3e353a80a09f285c18c951c1e53b5a89e073",
+      "instruction_count": 164,
+      "calls": [
+        [
+          "0x1000c53c",
+          "0x1000c46c"
+        ],
+        [
+          "0x1000c542",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000c56a",
+          "0x1000c46c"
+        ],
+        [
+          "0x1000c570",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000c57a",
+          "0x100b8f10"
+        ],
+        [
+          "0x1000c592",
+          "0x1000dd70"
+        ],
+        [
+          "0x1000c5a0",
+          "0x1000dca8"
+        ],
+        [
+          "0x1000c5ba",
+          "0x1000c3e4"
+        ],
+        [
+          "0x1000c5c4",
+          "0x1000dd70"
+        ],
+        [
+          "0x1000c5ce",
+          "0x1000dd70"
+        ],
+        [
+          "0x1000c5e4",
+          "0x100369e0"
+        ],
+        [
+          "0x1000c612",
+          "0x1000c4c8"
+        ],
+        [
+          "0x1000c624",
+          "0x1000c4e8"
+        ],
+        [
+          "0x1000c638",
+          "0x1002dd74"
+        ],
+        [
+          "0x1000c64e",
+          "0x10054a28"
+        ],
+        [
+          "0x1000c668",
+          "0x10040290"
+        ],
+        [
+          "0x1000c672",
+          "0x1009ff86"
+        ]
+      ],
+      "literals": [
+        {
+          "at": "0x1000c50a",
+          "value": "0x18005518"
+        },
+        {
+          "at": "0x1000c526",
+          "value": "0x40004108"
+        },
+        {
+          "at": "0x1000c52e",
+          "value": "0x1803d9da"
+        },
+        {
+          "at": "0x1000c540",
+          "value": "0x100c2717",
+          "ascii": "onoff key press, test ok\n"
+        },
+        {
+          "at": "0x1000c546",
+          "value": "0x40068230"
+        },
+        {
+          "at": "0x1000c548",
+          "value": "0x180026b0"
+        },
+        {
+          "at": "0x1000c558",
+          "value": "0x1803d9db"
+        },
+        {
+          "at": "0x1000c56e",
+          "value": "0x100c2731",
+          "ascii": "switch key test ok\n"
+        },
+        {
+          "at": "0x1000c578",
+          "value": "0x18005520"
+        },
+        {
+          "at": "0x1000c588",
+          "value": "0x1800b9d8"
+        },
+        {
+          "at": "0x1000c5aa",
+          "value": "0xff0803aa"
+        },
+        {
+          "at": "0x1000c5b6",
+          "value": "0x1800b9d8"
+        },
+        {
+          "at": "0x1000c5e2",
+          "value": "0x100c26df",
+          "ascii": "TEST_ITEM"
+        },
+        {
+          "at": "0x1000c62e",
+          "value": "0x1803d9dc"
+        },
+        {
+          "at": "0x1000c64c",
+          "value": "0x100c1243",
+          "ascii": "/SD:"
+        },
+        {
+          "at": "0x1000c664",
+          "value": "0x100c1244",
+          "ascii": "SD:"
+        },
+        {
+          "at": "0x1000c670",
+          "value": "0x100c2745",
+          "ascii": "format_ret:%d\n"
+        },
+        {
+          "at": "0x1000c676",
+          "value": "0x1800b9d8"
+        }
+      ]
+    },
+    {
+      "name": "worker bind receive dispatch",
+      "start": "0x1000c6d8",
+      "end_exclusive": "0x1000c8c4",
+      "sha256": "b11d4a9cb6bc728c18093388f0fac0f9d3783077c1fce9af919f0ff34b12ff33",
+      "instruction_count": 202,
+      "calls": [
+        [
+          "0x1000c6f0",
+          "0x1009a81c"
+        ],
+        [
+          "0x1000c70a",
+          "0x10055f90"
+        ],
+        [
+          "0x1000c720",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000c742",
+          "0x1009c02c"
+        ],
+        [
+          "0x1000c752",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000c758",
+          "0x100adba0"
+        ],
+        [
+          "0x1000c78a",
+          "0x10055f90"
+        ],
+        [
+          "0x1000c7b4",
+          "0x10055f90"
+        ],
+        [
+          "0x1000c7be",
+          "0x1009c02c"
+        ],
+        [
+          "0x1000c7de",
+          "0x100b8f0c"
+        ],
+        [
+          "0x1000c7fe",
+          "0x1000c3e4"
+        ],
+        [
+          "0x1000c80a",
+          "0x100adba6"
+        ],
+        [
+          "0x1000c826",
+          "0x1009c02c"
+        ],
+        [
+          "0x1000c850",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000c85a",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000c89a",
+          "0x1000c3e4"
+        ],
+        [
+          "0x1000c8b0",
+          "0x100369e0"
+        ]
+      ],
+      "literals": [
+        {
+          "at": "0x1000c6e2",
+          "value": "0xf102aa"
+        },
+        {
+          "at": "0x1000c6ec",
+          "value": "0x100c26d7",
+          "ascii": "CDC_ACM"
+        },
+        {
+          "at": "0x1000c6ee",
+          "value": "0x18005518"
+        },
+        {
+          "at": "0x1000c6f8",
+          "value": "0x100ba5e4"
+        },
+        {
+          "at": "0x1000c6fa",
+          "value": "0x100ba36c"
+        },
+        {
+          "at": "0x1000c6fc",
+          "value": "0x4cb0011"
+        },
+        {
+          "at": "0x1000c6fe",
+          "value": "0x100c2754",
+          "ascii": "device not found"
+        },
+        {
+          "at": "0x1000c71c",
+          "value": "0x100c2765",
+          "ascii": "Wait for DTR"
+        },
+        {
+          "at": "0x1000c71e",
+          "value": "0x1803d9d6"
+        },
+        {
+          "at": "0x1000c750",
+          "value": "0x100c2772",
+          "ascii": "DTR set, start test"
+        },
+        {
+          "at": "0x1000c75c",
+          "value": "0x1803d9dd"
+        },
+        {
+          "at": "0x1000c776",
+          "value": "0x100ba36c"
+        },
+        {
+          "at": "0x1000c778",
+          "value": "0x100ba5e4"
+        },
+        {
+          "at": "0x1000c77a",
+          "value": "0x100c2786",
+          "ascii": "Failed to set DCD, ret code %d"
+        },
+        {
+          "at": "0x1000c782",
+          "value": "0x4e70011"
+        },
+        {
+          "at": "0x1000c7a0",
+          "value": "0x100ba36c"
+        },
+        {
+          "at": "0x1000c7a2",
+          "value": "0x100ba5e4"
+        },
+        {
+          "at": "0x1000c7a4",
+          "value": "0x100c27a5",
+          "ascii": "Failed to set DSR, ret code %d"
+        },
+        {
+          "at": "0x1000c7ac",
+          "value": "0x4ec0011"
+        },
+        {
+          "at": "0x1000c7d0",
+          "value": "0x18005520"
+        },
+        {
+          "at": "0x1000c7d2",
+          "value": "0x1000c509"
+        },
+        {
+          "at": "0x1000c7ec",
+          "value": "0x1000c3a1"
+        },
+        {
+          "at": "0x1000c7f2",
+          "value": "0x1803d9d7"
+        },
+        {
+          "at": "0x1000c81c",
+          "value": "0x1803d9d8"
+        },
+        {
+          "at": "0x1000c82c",
+          "value": "0x1800b9d8"
+        },
+        {
+          "at": "0x1000c83e",
+          "value": "0x1800b9b0"
+        },
+        {
+          "at": "0x1000c84e",
+          "value": "0x100c27c4",
+          "ascii": "read error\n"
+        },
+        {
+          "at": "0x1000c858",
+          "value": "0x100c27d0",
+          "ascii": "cmd: 0x%x\n"
+        },
+        {
+          "at": "0x1000c890",
+          "value": "0x1800b9d8"
+        },
+        {
+          "at": "0x1000c8a0",
+          "value": "0x18005554"
+        },
+        {
+          "at": "0x1000c8a2",
+          "value": "0x100c26df",
+          "ascii": "TEST_ITEM"
+        }
+      ]
+    },
+    {
+      "name": "word dispatch",
+      "start": "0x1000c8ca",
+      "end_exclusive": "0x1000c8d8",
+      "sha256": "fe2642c3ce073f28b30a0576ba0f66a336565f8f2a95e1310ad1967e4ed94ac8",
+      "instruction_count": 5,
+      "calls": [],
+      "literals": []
+    },
+    {
+      "name": "command 28",
+      "start": "0x1000c91c",
+      "end_exclusive": "0x1000c94c",
+      "sha256": "ec3b57405313e8fdfd3280da75b93f842fcc63c4112c0551e1c5ca1f8a25eeb4",
+      "instruction_count": 19,
+      "calls": [
+        [
+          "0x1000c93a",
+          "0x1000c3e4"
+        ],
+        [
+          "0x1000c946",
+          "0x1005280c"
+        ]
+      ],
+      "literals": [
+        {
+          "at": "0x1000c932",
+          "value": "0x1800b9d8"
+        }
+      ]
+    },
+    {
+      "name": "worker command branches",
+      "start": "0x1000c9b4",
+      "end_exclusive": "0x1000ccd4",
+      "sha256": "98750d805a8273fe21a42624df902a7128b2054a4c1fb39d03bf0390034d28b3",
+      "instruction_count": 319,
+      "calls": [
+        [
+          "0x1000c9ce",
+          "0x10027798"
+        ],
+        [
+          "0x1000c9da",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000ca04",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000ca40",
+          "0x10036a40"
+        ],
+        [
+          "0x1000ca48",
+          "0x100a5f9e"
+        ],
+        [
+          "0x1000ca54",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000ca88",
+          "0x1000c3e4"
+        ],
+        [
+          "0x1000ca92",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000caa4",
+          "0x100b96c8"
+        ],
+        [
+          "0x1000cae8",
+          "0x100b8f10"
+        ],
+        [
+          "0x1000caf0",
+          "0x1000c46c"
+        ],
+        [
+          "0x1000caf6",
+          "0x100adbb2"
+        ],
+        [
+          "0x1000cb00",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000cb34",
+          "0x1000c3e4"
+        ],
+        [
+          "0x1000cb3c",
+          "0x10021388"
+        ],
+        [
+          "0x1000cb60",
+          "0x1000c3e4"
+        ],
+        [
+          "0x1000cb6a",
+          "0x10036a10"
+        ],
+        [
+          "0x1000cb8a",
+          "0x1000c3e4"
+        ],
+        [
+          "0x1000cb90",
+          "0x100b8eea"
+        ],
+        [
+          "0x1000cb94",
+          "0x1000dd70"
+        ],
+        [
+          "0x1000cb98",
+          "0x1000c4e8"
+        ],
+        [
+          "0x1000cb9e",
+          "0x1002dd74"
+        ],
+        [
+          "0x1000cbae",
+          "0x100b96c8"
+        ],
+        [
+          "0x1000cbc0",
+          "0x1004fe28"
+        ],
+        [
+          "0x1000cbc6",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000cbe2",
+          "0x100b8f10"
+        ],
+        [
+          "0x1000cbf8",
+          "0x100369e0"
+        ],
+        [
+          "0x1000cc04",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000cc12",
+          "0x100b8f10"
+        ],
+        [
+          "0x1000cc36",
+          "0x100b8f10"
+        ],
+        [
+          "0x1000cc48",
+          "0x100b8eea"
+        ],
+        [
+          "0x1000cc4e",
+          "0x1002dd74"
+        ],
+        [
+          "0x1000cc5a",
+          "0x100b8eea"
+        ],
+        [
+          "0x1000cc60",
+          "0x1002dd74"
+        ],
+        [
+          "0x1000cc6e",
+          "0x10054a28"
+        ],
+        [
+          "0x1000cc80",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000ccba",
+          "0x1000c3e4"
+        ],
+        [
+          "0x1000ccc4",
+          "0x100369e0"
+        ],
+        [
+          "0x1000cccc",
+          "0x1009ff86"
+        ]
+      ],
+      "literals": [
+        {
+          "at": "0x1000c9d8",
+          "value": "0x100c2808",
+          "ascii": "TEST_READ_VER ver:%s\n"
+        },
+        {
+          "at": "0x1000c9fe",
+          "value": "0x1800b9db"
+        },
+        {
+          "at": "0x1000ca00",
+          "value": "0x100c281e",
+          "ascii": "TEST_VERSION: %s\n"
+        },
+        {
+          "at": "0x1000ca3a",
+          "value": "0x100c26df",
+          "ascii": "TEST_ITEM"
+        },
+        {
+          "at": "0x1000ca52",
+          "value": "0x100c27db",
+          "ascii": "Not efuse index 0x%x\n"
+        },
+        {
+          "at": "0x1000ca90",
+          "value": "0x100c27f1",
+          "ascii": "_______efuse cap 0x%x\n"
+        },
+        {
+          "at": "0x1000cab2",
+          "value": "0xa010802"
+        },
+        {
+          "at": "0x1000cad8",
+          "value": "0x1803d9da"
+        },
+        {
+          "at": "0x1000cada",
+          "value": "0x18005520"
+        },
+        {
+          "at": "0x1000cae0",
+          "value": "0x1803d9db"
+        },
+        {
+          "at": "0x1000cafe",
+          "value": "0x100c2830",
+          "ascii": "TEST_READ_BAT ver:%d\n"
+        },
+        {
+          "at": "0x1000cb2e",
+          "value": "0x1800b9d8"
+        },
+        {
+          "at": "0x1000cb52",
+          "value": "0x1800b9d8"
+        },
+        {
+          "at": "0x1000cb64",
+          "value": "0x100c07a6",
+          "ascii": "BT_BQB_MODE"
+        },
+        {
+          "at": "0x1000cb8e",
+          "value": "0x18005520"
+        },
+        {
+          "at": "0x1000cbb8",
+          "value": "0x100c07d4",
+          "ascii": "main"
+        },
+        {
+          "at": "0x1000cbc4",
+          "value": "0x100c2846",
+          "ascii": "restlt_test_stop end\n"
+        },
+        {
+          "at": "0x1000cbd8",
+          "value": "0x18005520"
+        },
+        {
+          "at": "0x1000cbf0",
+          "value": "0x18005554"
+        },
+        {
+          "at": "0x1000cbf2",
+          "value": "0x100c26df",
+          "ascii": "TEST_ITEM"
+        },
+        {
+          "at": "0x1000cc00",
+          "value": "0x100c285c",
+          "ascii": "mic_para: %d\n"
+        },
+        {
+          "at": "0x1000cc10",
+          "value": "0x18005520"
+        },
+        {
+          "at": "0x1000cc2a",
+          "value": "0x1803d9dc"
+        },
+        {
+          "at": "0x1000cc2c",
+          "value": "0x18005520"
+        },
+        {
+          "at": "0x1000cc46",
+          "value": "0x18005520"
+        },
+        {
+          "at": "0x1000cc58",
+          "value": "0x18005520"
+        },
+        {
+          "at": "0x1000cc6c",
+          "value": "0x100c1243",
+          "ascii": "/SD:"
+        },
+        {
+          "at": "0x1000cc7e",
+          "value": "0x100c286a",
+          "ascii": "test_total_capacity: %d GB\n"
+        },
+        {
+          "at": "0x1000cc92",
+          "value": "0x1800b9d8"
+        },
+        {
+          "at": "0x1000ccb4",
+          "value": "0x1800b9d8"
+        },
+        {
+          "at": "0x1000ccc2",
+          "value": "0x100c1ec0",
+          "ascii": "USBCDC_TEST_MODE"
+        },
+        {
+          "at": "0x1000ccca",
+          "value": "0x100c2886",
+          "ascii": "start format udisk\n"
+        }
+      ]
+    },
+    {
+      "name": "identity dispatch",
+      "start": "0x1000cd2c",
+      "end_exclusive": "0x1000cd38",
+      "sha256": "d8b672ea2ab8a0cbe3b71c9f5783447418d53102abaab35322c933e0a476d609",
+      "instruction_count": 4,
+      "calls": [],
+      "literals": []
+    },
+    {
+      "name": "identity branches",
+      "start": "0x1000cd48",
+      "end_exclusive": "0x1000cf40",
+      "sha256": "cf609590da2d625e5b527e4b793eba08890b158752dfd69be52681844598613a",
+      "instruction_count": 208,
+      "calls": [
+        [
+          "0x1000cd56",
+          "0x1000c3e4"
+        ],
+        [
+          "0x1000cd60",
+          "0x100369e0"
+        ],
+        [
+          "0x1000cd68",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000cd74",
+          "0x100b96c8"
+        ],
+        [
+          "0x1000cd82",
+          "0x10036a40"
+        ],
+        [
+          "0x1000cdc4",
+          "0x1000c3e4"
+        ],
+        [
+          "0x1000cdd6",
+          "0x100369e0"
+        ],
+        [
+          "0x1000cde2",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000cdf8",
+          "0x100b96c8"
+        ],
+        [
+          "0x1000ce06",
+          "0x10036a40"
+        ],
+        [
+          "0x1000ce3c",
+          "0x1000c3e4"
+        ],
+        [
+          "0x1000ce48",
+          "0x100369e0"
+        ],
+        [
+          "0x1000ce5c",
+          "0x1009ff86"
+        ],
+        [
+          "0x1000ce70",
+          "0x100b96c8"
+        ],
+        [
+          "0x1000ce82",
+          "0x10036a40"
+        ],
+        [
+          "0x1000cea2",
+          "0x100b98e6"
+        ],
+        [
+          "0x1000ceba",
+          "0x1000c3e4"
+        ],
+        [
+          "0x1000cec0",
+          "0x10000cdc"
+        ],
+        [
+          "0x1000ceca",
+          "0x100369e0"
+        ],
+        [
+          "0x1000ced0",
+          "0x10000cdc"
+        ],
+        [
+          "0x1000cee2",
+          "0x100b96c8"
+        ],
+        [
+          "0x1000ceec",
+          "0x100b96c8"
+        ],
+        [
+          "0x1000cef6",
+          "0x10036a40"
+        ],
+        [
+          "0x1000cefc",
+          "0x10000cdc"
+        ],
+        [
+          "0x1000cf0a",
+          "0x100b966e"
+        ],
+        [
+          "0x1000cf14",
+          "0x1009ff86"
+        ]
+      ],
+      "literals": [
+        {
+          "at": "0x1000cd48",
+          "value": "0x10c02aa"
+        },
+        {
+          "at": "0x1000cd50",
+          "value": "0x1800b9d8"
+        },
+        {
+          "at": "0x1000cd5a",
+          "value": "0x1800b9b4"
+        },
+        {
+          "at": "0x1000cd5c",
+          "value": "0x100c289a",
+          "ascii": "PCBA_SN"
+        },
+        {
+          "at": "0x1000cd64",
+          "value": "0x1800b9b4"
+        },
+        {
+          "at": "0x1000cd66",
+          "value": "0x100c28a2",
+          "ascii": "TEST_WRITE_PCBA_SN:%s\n"
+        },
+        {
+          "at": "0x1000cd78",
+          "value": "0xc0caa"
+        },
+        {
+          "at": "0x1000cd7e",
+          "value": "0x100c289a",
+          "ascii": "PCBA_SN"
+        },
+        {
+          "at": "0x1000cd9c",
+          "value": "0x1800b9b4"
+        },
+        {
+          "at": "0x1000cdae",
+          "value": "0x30c02aa"
+        },
+        {
+          "at": "0x1000cdba",
+          "value": "0x1800b9d8"
+        },
+        {
+          "at": "0x1000cdd0",
+          "value": "0x100c1e5a",
+          "ascii": "SN_NUM"
+        },
+        {
+          "at": "0x1000cdda",
+          "value": "0x100c28b9",
+          "ascii": "TEST_WRITE_PCBA_SN:%s %s\n"
+        },
+        {
+          "at": "0x1000cdfc",
+          "value": "0x20c0caa"
+        },
+        {
+          "at": "0x1000ce04",
+          "value": "0x100c1e5a",
+          "ascii": "SN_NUM"
+        },
+        {
+          "at": "0x1000ce0a",
+          "value": "0x1800b9dc"
+        },
+        {
+          "at": "0x1000ce2e",
+          "value": "0x50c02aa"
+        },
+        {
+          "at": "0x1000ce30",
+          "value": "0x1800b9d8"
+        },
+        {
+          "at": "0x1000ce40",
+          "value": "0x1800b9b4"
+        },
+        {
+          "at": "0x1000ce42",
+          "value": "0x100d81f4",
+          "ascii": "BT_MAC"
+        },
+        {
+          "at": "0x1000ce44",
+          "value": "0x1800b9b3"
+        },
+        {
+          "at": "0x1000ce4c",
+          "value": "0x100c28d3",
+          "ascii": "mac[%d]=0x%x\n"
+        },
+        {
+          "at": "0x1000ce64",
+          "value": "0x100c28d3",
+          "ascii": "mac[%d]=0x%x\n"
+        },
+        {
+          "at": "0x1000ce74",
+          "value": "0x40c0eaa"
+        },
+        {
+          "at": "0x1000ce7c",
+          "value": "0x100d81f4",
+          "ascii": "BT_MAC"
+        },
+        {
+          "at": "0x1000ce9c",
+          "value": "0x1800b9b4"
+        },
+        {
+          "at": "0x1000ceac",
+          "value": "0x70c02aa"
+        },
+        {
+          "at": "0x1000ceae",
+          "value": "0x1800b9d8"
+        },
+        {
+          "at": "0x1000cec8",
+          "value": "0x100c22bb",
+          "ascii": "BT_NAME"
+        },
+        {
+          "at": "0x1000ced8",
+          "value": "0x100c28e1",
+          "ascii": "wr_bt_name: %s len\n: %d"
+        },
+        {
+          "at": "0x1000cee0",
+          "value": "0x1800b9d8"
+        },
+        {
+          "at": "0x1000cef4",
+          "value": "0x100c22bb",
+          "ascii": "BT_NAME"
+        },
+        {
+          "at": "0x1000cf10",
+          "value": "0x100c28f9",
+          "ascii": "rd_bt_name: %s len: %d\n"
+        }
+      ]
+    },
+    {
+      "name": "message helper",
+      "start": "0x1005280c",
+      "end_exclusive": "0x1005287c",
+      "sha256": "eb52a956756fc66ae7f81a002bfcd5baac1d909901ebe609281bbfdf3f3c193e",
+      "instruction_count": 45,
+      "calls": [
+        [
+          "0x1005281e",
+          "0x100b96c8"
+        ],
+        [
+          "0x1005282e",
+          "0x100ad486"
+        ],
+        [
+          "0x1005284e",
+          "0x10055f90"
+        ],
+        [
+          "0x10052858",
+          "0x100b96c8"
+        ],
+        [
+          "0x10052862",
+          "0x100b9652"
+        ],
+        [
+          "0x10052876",
+          "0x1004fe28"
+        ]
+      ],
+      "literals": [
+        {
+          "at": "0x1005282a",
+          "value": "0x100d0a0f",
+          "ascii": "sys_event_send_message_new"
+        },
+        {
+          "at": "0x10052838",
+          "value": "0x100ba564"
+        },
+        {
+          "at": "0x1005283a",
+          "value": "0x100ba36c"
+        },
+        {
+          "at": "0x1005283c",
+          "value": "0x100d09f2",
+          "ascii": "mem_malloc fail"
+        },
+        {
+          "at": "0x10052866",
+          "value": "0x100ada4f"
+        },
+        {
+          "at": "0x1005286c",
+          "value": "0x100c07d4",
+          "ascii": "main"
+        }
+      ]
+    },
+    {
+      "name": "board bit helper",
+      "start": "0x1002dd74",
+      "end_exclusive": "0x1002dd96",
+      "sha256": "622965056d4042d8a971978f409150f4b87ee1156024e71bfeab4dcc32161df0",
+      "instruction_count": 12,
+      "calls": [],
+      "literals": [
+        {
+          "at": "0x1002dd74",
+          "value": "0x40068028"
+        }
+      ]
+    },
+    {
+      "name": "status helper",
+      "start": "0x100a5f9e",
+      "end_exclusive": "0x100a5fe0",
+      "sha256": "af9ce0dcf54346c74b009c7d1edb52f3e3876ed251e67e47faf2896d33521e32",
+      "instruction_count": 29,
+      "calls": [
+        [
+          "0x100a5fa8",
+          "0x100a4200"
+        ],
+        [
+          "0x100a5fb0",
+          "0x100a4200"
+        ]
+      ],
+      "literals": []
+    }
+  ],
+  "limits": [
+    "Static evidence; no CDC enumeration or framing observed on hardware",
+    "No memory/file/NOR bulk-read request fields in this worker",
+    "Async main-message recipients and recording internals not exhaustively followed",
+    "Does not cover ROM ADFU, USB MSC, OTA, or alternative firmware"
+  ]
+}
