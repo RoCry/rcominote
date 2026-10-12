@@ -30,7 +30,24 @@ REGIONS = (
 )
 
 
-def main(path: Path) -> None:
+INITIALIZATION_REGIONS = (
+    ("complete NOR driver initialization before literals", 0x416C, 0x43C8),
+    ("read-status wrapper", 0x3EB4, 0x3EC4),
+    ("status polling", 0x3EC8, 0x3EDC),
+    ("write-data wrapper", 0x3EDC, 0x3F1A),
+    ("write-status wrapper", 0x3F1C, 0x3F40),
+    ("bus transfer before literal pool", 0x5084, 0x5296),
+    ("command-only transfer", 0x52B0, 0x52CC),
+    ("read-status transfer", 0x52E4, 0x5304),
+    ("write-enable and write-disable selector", 0x5304, 0x5310),
+    ("byte transmit including MMIO data store", 0x4E20, 0x4E70),
+    ("payload transfer short-length selector", 0x4E70, 0x4E82),
+    ("short payload delegates byte transmit", 0x4EE4, 0x4EF2),
+    ("address mode command", 0x4400, 0x4454),
+)
+
+
+def main(path: Path, initialization: bool = False) -> None:
     data = path.read_bytes()
     if hashlib.sha256(data).hexdigest() != SHA:
         raise typer.BadParameter("Requires exact pinned zephyr LARK common adfus.bin")
@@ -43,7 +60,7 @@ def main(path: Path) -> None:
     decoder = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
     decoder.detail = True
     regions = []
-    for name, start, end in REGIONS:
+    for name, start, end in INITIALIZATION_REGIONS if initialization else REGIONS:
         raw = chunk(start, end)
         instructions = list(decoder.disasm(raw, BASE + start))
         if sum(i.size for i in instructions) != len(raw):

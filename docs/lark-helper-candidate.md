@@ -72,6 +72,13 @@ Addresses below add configured01010000; runtime placement unverified.
   In-image driver init begins peripheral reset/configuration writes. This is
   **not a passive read session**, even when the eventual command is `rs`.
 
+## Follow-up: confirmed status writes
+
+[Complete initialization audit](lark-nor-init-side-effects.md) finds successful
+NOR init sends06 then01, replacing status1 with0 and conditionally clearing
+status2 bit6. Unchanged init+rs is rejected as a read-only backup procedure.
+No helper execution occurred.
+
 ## Next decisive work
 
 Prioritize LARK's complete initialization/USB framing paths and compare ROM
