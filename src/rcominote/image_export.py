@@ -1,4 +1,4 @@
-"""Resume the fixed, evidenced mapped-system image through bounded BLE sessions."""
+"""Export or inspect the fixed, evidenced mapped-system image."""
 
 import asyncio
 import json
@@ -9,12 +9,23 @@ from typing import Annotated
 import typer
 
 from .ble_target import OWNED_SERIAL
-from .image_store import BODY_BYTES, CHUNK_BYTES, ImageStore
+from .image_store import BODY_BYTES, CHUNK_BYTES, IMAGE_BYTES, ImageStore, inspect_image
 from .log_capture import capture
 from .output import emit
 from .range_readback import read_header, read_image_chunk
 
 app = typer.Typer(no_args_is_help=True)
+
+
+@app.command("inspect")
+def inspect_command(
+    path: Annotated[Path, typer.Argument(exists=True, file_okay=True, dir_okay=False, readable=True)],
+):
+    """Validate a complete fixed mapped image offline; no device connection."""
+    size = path.stat().st_size
+    if size != IMAGE_BYTES:
+        raise ValueError(f"Mapped image must contain exactly {IMAGE_BYTES} bytes; got {size}")
+    emit(inspect_image(path.read_bytes()) | {"path": str(path)})
 
 
 async def capture_saved(directory: Path, indices: tuple[int, ...]) -> dict:

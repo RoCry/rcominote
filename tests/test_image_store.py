@@ -8,9 +8,11 @@ from pathlib import Path
 from unittest.mock import patch
 
 import pytest
+from typer.testing import CliRunner
 
 from rcominote.code_references import read_block
-from rcominote.image_store import ImageStore, _publish_image, validate_body_checksum
+from rcominote.image_export import app
+from rcominote.image_store import ImageStore, _publish_image, inspect_image
 
 EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence/image-header-first-2026-10-12.json"
 
@@ -99,10 +101,31 @@ def test_incomplete_image_cannot_publish_output(tmp_path, header):
     assert not out.exists()
 
 
-def test_zero_filled_full_body_fails_actual_stored_checksum():
+@pytest.mark.parametrize("body_length", [0, 927119, 927121])
+def test_inspection_rejects_incomplete_or_oversized_image(header, body_length):
+    with pytest.raises(ValueError, match="Mapped image must contain exactly 927632 bytes"):
+        inspect_image(header + bytes(body_length))
+
+
+def test_inspection_rejects_changed_header_before_checksum(header):
+    changed = bytes([header[0] ^ 1]) + header[1:]
+    with pytest.raises(ValueError, match="validated CoMi"):
+        inspect_image(changed + bytes(927120))
+
+
+def test_zero_filled_full_body_fails_actual_stored_checksum(header):
     # All u32 words sum to0; 0+4e7a894a !=ffffffff. Not a fabricated good dump.
     with pytest.raises(ValueError, match="sum=0x00000000"):
-        validate_body_checksum(bytes(927120))
+        inspect_image(header + bytes(927120))
+
+
+def test_inspect_command_rejects_wrong_file_size_before_reading(tmp_path, header):
+    path = tmp_path / "incomplete.bin"
+    path.write_bytes(header)
+    with patch.object(Path, "read_bytes", side_effect=AssertionError("must not read wrong-size input")):
+        result = CliRunner().invoke(app, ["inspect", str(path)])
+    assert isinstance(result.exception, ValueError)
+    assert str(result.exception) == "Mapped image must contain exactly 927632 bytes; got 512"
 
 
 def test_publication_retry_after_lost_result_verifies_existing_file(tmp_path):

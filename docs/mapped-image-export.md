@@ -55,3 +55,5 @@ uv run comi image export --directory artifacts/mapped-system
 64 B请求稳定后，默认每会话由8个存储块改为32个（16 KiB），单条读取/头部/逐行验收不变。两次实测全部完成：分别44.390/46.809秒、3176/3173个notification、534 ACK且F1完成；通知数低于8192上限。计时含发现、guard、头部、help与STOP，不是纯payload吞吐率。[范围/hash/计时证据](evidence/image-session32-analysis-2026-10-12.json)。
 
 对照先前4 KiB样本17.320秒/870 notification；较大批量减少连接与重复验证次数，但失败时最多需重读本会话16 KiB。两个大批量试读后累计保存324 KiB，随后已按新批量继续完整导出；不能把这些分段成功等同全镜像校验通过。
+
+[离线校验与分析入口](offline-system-analysis.md)：`comi image inspect PATH`共用完整镜像校验；Ghidra脚本只接受通过校验的固定系统镜像。完整成功路径仍待实机文件到齐。

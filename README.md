@@ -99,3 +99,5 @@ uv run --locked tools/build_sdk.py \
 [日志缓冲计数器回绕](docs/log-buffer-wrap.md)：实机Thumb指令确认8位计数器相减后的无符号比较缺陷；64 B正文与头部分段已实测，完整导出继续进行，终检仍待全部块到齐。
 
 [实机reset入口与C启动边界](docs/reset-entry-readback.md)：头部/向量指定的入口已解码，取得启动PSP、RAM向量地址、FPU与IRQ初始化常量；后续直接调用保持未覆盖标记，不据此推断ROM/签名/恢复能力。
+
+[系统镜像离线分析](docs/offline-system-analysis.md)：新增无设备连接的`comi image inspect`及Ubuntu Ghidra入口；完整镜像成功验收待导出完成。

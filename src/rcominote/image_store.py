@@ -17,6 +17,7 @@ HEADER_BYTES = 512
 HEADER_SHA256 = "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5"
 BODY_BASE = BASE + HEADER_BYTES
 BODY_BYTES = 927120
+IMAGE_BYTES = HEADER_BYTES + BODY_BYTES
 CHUNK_BYTES = 512
 STORED_BODY_CHECKSUM = 0x4E7A894A
 CHUNKS = tuple(
@@ -95,6 +96,30 @@ def validate_body_checksum(body: bytes) -> int:
     return checksum
 
 
+def _validate_header(header: bytes) -> None:
+    if len(header) != HEADER_BYTES or _sha(header) != HEADER_SHA256:
+        raise ValueError("Header is not the validated CoMi mapped-system header")
+
+
+def inspect_image(image: bytes) -> dict:
+    """Validate the one evidenced complete mapped image, entirely offline."""
+    if len(image) != IMAGE_BYTES:
+        raise ValueError(f"Mapped image must contain exactly {IMAGE_BYTES} bytes; got {len(image)}")
+    _validate_header(image[:HEADER_BYTES])
+    body_sum = validate_body_checksum(image[HEADER_BYTES:])
+    return {
+        "scope": "mapped-system image; not a raw Flash backup",
+        "base": hex(BASE),
+        "bytes": len(image),
+        "sha256": _sha(image),
+        "header_sha256": HEADER_SHA256,
+        "body_word_sum": hex(body_sum),
+        "stored_body_checksum": hex(STORED_BODY_CHECKSUM),
+        "checksum_verified": True,
+        "limits": ["No physical Flash mapping proven", "No complete device backup or restore validation"],
+    }
+
+
 class ImageStore:
     """Store only aligned chunks of the fixed, validated CoMi mapped image.
 
@@ -103,8 +128,7 @@ class ImageStore:
     """
 
     def __init__(self, root: Path, header: bytes):
-        if len(header) != HEADER_BYTES or _sha(header) != HEADER_SHA256:
-            raise ValueError("Header is not the validated CoMi mapped-system header")
+        _validate_header(header)
         self.root = Path(root)
         self.root.mkdir(parents=True, exist_ok=True)
         self.header = header
@@ -171,21 +195,8 @@ class ImageStore:
         missing = [offset for offset, _ in CHUNKS if offset not in chunks]
         if missing:
             raise ValueError(f"Mapped image incomplete: {len(missing)} chunks missing; first={missing[0]:#x}")
-        body = b"".join(chunks[offset] for offset, _ in CHUNKS)
-        body_sum = validate_body_checksum(body)
-        image = self.header + body
+        image = self.header + b"".join(chunks[offset] for offset, _ in CHUNKS)
+        report = inspect_image(image)
         out.parent.mkdir(parents=True, exist_ok=True)
         publication = _publish_image(out, image)
-        return {
-            "scope": "mapped-system image; not a raw Flash backup",
-            "path": str(out),
-            "base": hex(BASE),
-            "bytes": len(image),
-            "sha256": _sha(image),
-            "header_sha256": HEADER_SHA256,
-            "body_word_sum": hex(body_sum),
-            "stored_body_checksum": hex(STORED_BODY_CHECKSUM),
-            "checksum_verified": True,
-            "publication": publication,
-            "limits": ["No physical Flash mapping proven", "No complete device backup or restore validation"],
-        }
+        return report | {"path": str(out), "publication": publication}
