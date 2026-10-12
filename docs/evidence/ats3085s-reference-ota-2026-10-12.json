@@ -1,0 +1,169 @@
+{
+  "source_url": "https://assets2.dt1pro.cn/fw/26/03/02/1772439053925.bin",
+  "acquired_on": "2026-10-12",
+  "attribution": "DT NO.1 watch vendor-hosted image linked by third-party repository; not CoMi firmware",
+  "outer": {
+    "scope": "offline AOTA container integrity only; device acceptance and recoverability unverified",
+    "sha256": "9ac64acfefad80011ece9b85ad1e986c466b6aab1e074ac6ad9055c26e317328",
+    "total_size": 4274688,
+    "header_version": 256,
+    "header_size": 1024,
+    "directory_offset": 512,
+    "data_offset": 1024,
+    "flags": 0,
+    "header_crc32": "2c8a3fad",
+    "data_crc32": "5933b9a6",
+    "header_version_area_hex": "312e30305f3236303232383137303300000000000000000000000000000000004135533130474c59000000000000000000000000000000000000000000000100000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "header_version_area_note": "Raw bytes: SDK packer and C version structures differ",
+    "metadata": {
+      "source": "ota.xml; strings only, no compatibility validation",
+      "versions": [
+        {
+          "tag": "firmware_version",
+          "fields": [
+            {
+              "name": "version_code",
+              "text": "0x10000"
+            },
+            {
+              "name": "version_res",
+              "text": "0x10000"
+            },
+            {
+              "name": "version_name",
+              "text": "1.00_2602281703"
+            },
+            {
+              "name": "board_name",
+              "text": "A5S10GLY"
+            }
+          ]
+        }
+      ]
+    },
+    "application_gates": {
+      "firmware": "FW010004",
+      "checked": [
+        "ota.xml presence",
+        "manifest length",
+        "manifest prefix"
+      ],
+      "known_rejections": [],
+      "acceptance": "unverified",
+      "note": "Manifest semantics, board match, payload targets and recovery remain unchecked"
+    },
+    "entries": [
+      {
+        "name": "ota.xml",
+        "offset": 1024,
+        "size": 1162,
+        "crc32": "5f25bbbc"
+      },
+      {
+        "name": "TEMP.bin",
+        "offset": 2560,
+        "size": 1788300,
+        "crc32": "798f6f19"
+      },
+      {
+        "name": "sdfs_a.bin",
+        "offset": 1790976,
+        "size": 1463332,
+        "crc32": "a8d0569f"
+      },
+      {
+        "name": "sdfs_k.bin",
+        "offset": 3254784,
+        "size": 1019608,
+        "crc32": "311d0487"
+      }
+    ]
+  },
+  "temp": {
+    "magic_hex": "4143544848544341",
+    "chunks": [
+      {
+        "offset": 70656,
+        "compressed_size": 1251940,
+        "uncompressed_size": 2097152
+      },
+      {
+        "offset": 1322612,
+        "compressed_size": 465672,
+        "uncompressed_size": 1037824
+      }
+    ],
+    "trailing_size": 0
+  },
+  "inner": {
+    "scope": "offline AOTA container integrity only; device acceptance and recoverability unverified",
+    "sha256": "c32d78d9624fa140544399d689e023c0f782075d21eb5c6e60165a36da0915ba",
+    "total_size": 3134976,
+    "header_version": 256,
+    "header_size": 1024,
+    "directory_offset": 512,
+    "data_offset": 1024,
+    "flags": 0,
+    "header_crc32": "650d775c",
+    "data_crc32": "e10f5b3b",
+    "header_version_area_hex": "312e30305f3236303232383137303300000000000000000000000000000000004135533130474c59000000000000000000000000000000000000000000000100000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "header_version_area_note": "Raw bytes: SDK packer and C version structures differ",
+    "metadata": {
+      "source": "ota.xml; strings only, no compatibility validation",
+      "versions": [
+        {
+          "tag": "firmware_version",
+          "fields": [
+            {
+              "name": "version_code",
+              "text": "0x10000"
+            },
+            {
+              "name": "version_res",
+              "text": "0x10000"
+            },
+            {
+              "name": "version_name",
+              "text": "1.00_2602281703"
+            },
+            {
+              "name": "board_name",
+              "text": "A5S10GLY"
+            }
+          ]
+        }
+      ]
+    },
+    "application_gates": {
+      "firmware": "FW010004",
+      "checked": [
+        "ota.xml presence",
+        "manifest length",
+        "manifest prefix"
+      ],
+      "known_rejections": [],
+      "acceptance": "unverified",
+      "note": "Manifest semantics, board match, payload targets and recovery remain unchecked"
+    },
+    "entries": [
+      {
+        "name": "ota.xml",
+        "offset": 1024,
+        "size": 879,
+        "crc32": "24dd2ba8"
+      },
+      {
+        "name": "app.bin",
+        "offset": 2048,
+        "size": 3072128,
+        "crc32": "039f9c30"
+      },
+      {
+        "name": "sdfs.bin",
+        "offset": 3074560,
+        "size": 59968,
+        "crc32": "609e6b1b"
+      }
+    ]
+  }
+}
