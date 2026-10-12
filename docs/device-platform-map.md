@@ -41,6 +41,8 @@
 |---|---|---|
 | LEOPARD / ATS3089、ATS3085S参考源码 | Zephyr接口、分区/容器、工具脚本、驱动结构；[Ubuntu构建](ubuntu-build.md)证明工具链可用 | 内核为M33，地址/内存/显示/存储配置不同；不是 CoMi BSP |
 | [LARK保留材料](lark-helper-candidate.md) | M4工程模板、boot/helper二进制、生产配置，加载地址01010000更接近本机 | 缺完整 `soc/arm/actions/lark` 源码；不可构建本机固件 |
+| [LARK外设源码与构建缺口](platform-source-followup.md#rebuildability-peripheral-source-survives-platform-closure-does-not) | 音频ADC/DAC/I2S、PMU ADC、电池、USB、IPMSG源码；部分已有LARK构建选择 | 缺SoC/板级闭环，IPMSG父目录未接入LARK；外设名与参考充电芯片不等于本机配置 |
+| [媒体/蓝牙静态库属性](evidence/lark-library-attributes-2026-10-13.json) | 已按archive member核对：媒体23项、蓝牙24项均声明v8-M/FPv5；LARK ATP测试库1项为v7E-M/VFPv4 | 不能仅改CPU/板名就移植完整应用；还需匹配M4库或替代实现；ATP库不替代媒体/蓝牙栈 |
 | [LARK调试loader与ATT源码](platform-source-followup.md#nor-comparison-host-selector-cache-window-and-initialization) | ELF给出 `BAREMETAL_CMSIS/lark_sdk`、NOR/SD接口与类型；两种存储接口已对照，另有M4编译配方、时钟/蓝牙源码 | NOR读依赖重建缓存映射、初始化改变硬件/NOR模式；SD固定SD0而本机用SD1，且wrapper吞读错；原样不能作可靠备份 |
 | LARK `adfus.bin` / `adfus_u.bin` | 前者UART、后者USB；有真正的内存/存储读取handler | [初始化会写NOR状态寄存器](lark-nor-init-side-effects.md)，未经修改不可作为只读备份；同名不同版本不能混用 |
 | [量产工具DLL/INF](host-selection-followup.md) | 有 WinUSB、ADFU API及驱动ID，可指导匹配host | 尚无本机芯片→host选择→ROM协议闭环；不能直接套旧ATJ包格式 |
@@ -48,7 +50,7 @@
 
 ## 下一阶段只抓三个交付物
 
-1. **匹配平台资料包**：ATS3085L/LARK M4 BSP、寄存器/引脚资料、开发板材料、生产配置和host。已定位 `BAREMETAL_CMSIS/lark_sdk` / LarkHal / Flashloader，NOR/SD接口对照完成；精确公共检索未取得源包，有新入口再继续。[资料核查](platform-source-followup.md)。不重复泛搜或已完成的接口分析。
+1. **匹配平台资料包**：ATS3085L/LARK M4 BSP、寄存器/引脚资料、开发板材料、生产配置和host。现有SDK保留实质外设源码，但缺SoC/板级闭环及匹配M4媒体/蓝牙库；[可重建性清单](platform-source-followup.md#rebuildability-peripheral-source-survives-platform-closure-does-not)已区分。另定位 `BAREMETAL_CMSIS/lark_sdk` / LarkHal / Flashloader，NOR/SD接口对照完成；精确公共检索未取得源包，有新入口再继续。不重复泛搜或已完成的接口分析。
 2. **固件与恢复全景**：原厂包获取线索、镜像依赖/布局、安全约束、ROM→helper→NOR路径。先回答哪种路径值得验证，再决定是否一次性采集有界ROM语料；不逐callee新增实机实验。
 3. **可承担的首次运行实验**：评估独立reset/断电退出与RAM加载可能性；目标、入口、初始化影响、退出方式明确后再制定具体实验。ROM枚举、helper执行、写Flash是不同阶段，不能相互冒充验收。
 

@@ -96,3 +96,16 @@ documentation or a justified bounded ROM corpus. For a future enumeration-only
 trial, independently established reset/power-cycle escape may replace a fully
 resolved software return chain; exact timer units alone cannot establish safety.
 No mode entry, helper execution, full backup or restoration has been verified.
+
+## Parked independent-reset lead
+
+Offline follow-up on the hash-bound [actual system](init-audio-board-evidence.md):
+registered `onoffkey` initializer1003d608 calls100a09e2(1), then100a09ba(4).
+The former clears mask180000 and writes1<<19; the latter clears maske00000
+and writes4<<21, through the same context-derived register pointer. LEOPARD's
+[PMU source](https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/soc/arm/actions/leopard/soc_pmu.c#L436-L511)
+has corresponding function/press-time update shapes. This is an actual configured
+bitfield lead with reference-derived semantics, **not verified hard reset**.
+Value4 is not a demonstrated reset duration; reference8/12s uses a different bit.
+Physical button association, duration and validity after ROM entry remain unknown.
+Park here; no further callee capture or mode experiment follows from this lead.

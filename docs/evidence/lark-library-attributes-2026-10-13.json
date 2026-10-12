@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-13",
+  "sdk_commit": "26f51e584940d5b141cd1d09d2629d69b595f579",
+  "method": "GNU readelf -A on existing Ubuntu checkout; per archive-member ELF attributes; no linking or target execution",
+  "libraries": [
+    {
+      "path": "action_technology_sdk/framework/bluetooth/bt_stack/libbt_stack.a",
+      "sha256": "0ebd61ccf0f38a8a74bb93850c56227904aab3e33a97cb769c1a2ac4b80b369e",
+      "member_records": 24,
+      "attributes": {
+        "Tag_CPU_name": {
+          "\"8-M.MAIN\"": 24
+        },
+        "Tag_CPU_arch": {
+          "v8-M.mainline": 24
+        },
+        "Tag_FP_arch": {
+          "FPv5/FP-D16 for ARMv8": 24
+        },
+        "Tag_ABI_VFP_args": {
+          "VFP registers": 24
+        }
+      },
+      "first_member": "libbt_stack.a(a2dp.c.obj)"
+    },
+    {
+      "path": "action_technology_sdk/framework/media/libmedia.a",
+      "sha256": "ee89f4ad6bcbd534cc54e8a8c42b20e8d991707ae25b9e53a315a0de462a7fcf",
+      "member_records": 23,
+      "attributes": {
+        "Tag_CPU_name": {
+          "\"8-M.MAIN\"": 22,
+          "\"Cortex-M33\"": 1
+        },
+        "Tag_CPU_arch": {
+          "v8-M.mainline": 23
+        },
+        "Tag_FP_arch": {
+          "FPv5/FP-D16 for ARMv8": 23
+        },
+        "Tag_ABI_VFP_args": {
+          "VFP registers": 23
+        }
+      },
+      "first_member": "libmedia.a(libmedia_version.c.obj)"
+    },
+    {
+      "path": "action_technology_sdk/application/bt_watch/src/att/att_patterns/lib/lark/socatp/libatpatt.a",
+      "sha256": "a0a1dccb1b027f8d3ccc7473e6809b38e4bd80c590b203f21176a7478d04af41",
+      "member_records": 1,
+      "attributes": {
+        "Tag_CPU_name": {
+          "\"7E-M\"": 1
+        },
+        "Tag_CPU_arch": {
+          "v7E-M": 1
+        },
+        "Tag_FP_arch": {
+          "VFPv4-D16": 1
+        },
+        "Tag_ABI_VFP_args": {
+          "VFP registers": 1
+        }
+      },
+      "first_member": "libatpatt.a(soc_atp.o)"
+    }
+  ],
+  "reader": "GNU readelf (GNU Binutils for Ubuntu) 2.42",
+  "hash_verification": "Mac and Ubuntu SHA256 values agree for all three archives; selected Ubuntu archive paths have no tracked diff"
+}

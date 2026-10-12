@@ -14,7 +14,10 @@ Current deliverables, in order:
 1. Matching ATS3085L/LARK M4 material: BSP, register/pin documentation,
    production configuration/host, official image. [Source follow-up](platform-source-followup.md)
    identifies previously overlooked unstripped Flash/SD loader ELFs and M4
-   ATT source fragments. NOR read/address-selection and initialization comparison
+   ATT source fragments. [Rebuildability inventory](platform-source-followup.md#rebuildability-peripheral-source-survives-platform-closure-does-not)
+   also finds substantial LARK peripheral source, missing SoC/build closure and
+   v8-M/FPv5 application media/BLE archives; acquire matched M4 dependencies,
+   not just a renamed board target. NOR read/address-selection and initialization comparison
    is complete within its static scope: raw host selector is not a live app alias;
    unchanged Init changes hardware/NOR state. Exact bare-metal source-package
    searches acquired no source; resume acquisition on a new entry. SD comparison

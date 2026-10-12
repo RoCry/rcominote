@@ -4,10 +4,67 @@
 loader execution, installation, build or contact message. SDK checkout verified
 at `26f51e584940d5b141cd1d09d2629d69b595f579`. Online checks used localwebrs.
 
-**New useful lead: the pinned SDK contains unstripped LARK Flash and SD loader
-ELFs with debug information.** These are stronger offline references than another
-anonymous helper disassembly. A complete ATS3085L/CoMi BSP, chip programming manual,
+**The pinned SDK retains substantial LARK peripheral source, plus unstripped
+Flash/SD loader ELFs; its application libraries are not a matched M4 set.**
+The source/build/dependency inventory below replaces the narrower ATT/loader-only
+view. A complete ATS3085L/CoMi BSP, chip programming manual,
 matched production host package and official CoMi firmware remain unacquired.
+
+## Rebuildability: peripheral source survives, platform closure does not
+
+Read the fixed tracked tree and its CMake/Kconfig selectors, not filenames alone.
+No new build, device I/O or source modification. Paths below are relative to
+`action_technology_sdk/zephyr/`; this is a source inventory, not a claim that
+these drivers match CoMi's firmware revision or physical wiring.
+
+| Layer | Retained material / build hook | Missing boundary / practical decision |
+|---|---|---|
+| CPU, startup, memory | M4 ATT recipes and typed debugger loaders described below | `soc/arm/actions/lark` absent in both OS trees; current SoC Kconfig discovers only retained series and CMake selects `${SOC_SERIES}`. Startup, IRQ, clocks, memory map and CoMi board configuration do not form a buildable target |
+| Audio capture/output | [`drivers/audio/phy_lark`][audio-lark]: ADC/DAC/I2S RX/TX/SPDIF sources, selected by `CONFIG_SOC_SERIES_LARK`; ADC selected by `CONFIG_AUDIO_IN_ADC_SUPPORT` | Real register/algorithm reference, beyond ATT. ADC includes `soc.h`/`board_cfg.h`, uses `AUDIO_ADC_REG_BASE`, clock/reset IDs and DMA config; missing LARK platform and actual microphone/VMIC wiring still matter |
+| PMU ADC / battery | [`adc_acts_lark.c`][adc-lark], `CONFIG_ADC_ACTS_LARK`; internal/external battery directories selected by their LARK Kconfig options | PMU ADC is distinct from audio ADC. Charging code depends on SoC/ATP and board configuration. External tree contains CW6305/CW2015-specific files; this does not identify CoMi's charger or prove a completed external-charger implementation |
+| I2C/SPI transfer engines | `i2cmt_lark.c` / `spimt_lark.c`; `CONFIG_I2CMT_LARK` / `CONFIG_SPIMT_LARK` | These are named transfer-engine implementations, not proof of an entire matched storage or display stack. Do not replace ordinary I2C/SPI drivers merely because these filenames say LARK |
+| Bluetooth controller interface | [`drivers/ipmsg/lark/ipmsg_btc.c`][ipmsg-lark], its own CMake file and ATT controller sources | Parent `drivers/ipmsg/CMakeLists.txt` adds only LEOPARD: retained file is not currently wired into a LARK build. Requires `soc_memctrl.h`, `soc_atp.h`, calibration and controller image; not a complete BLE stack |
+| USB | Shared `usb_otg_aotg.c` plus [`usb_aotg_lark.h`][usb-lark]; shared header selects it when `CONFIG_USB_AOTG_OTG_VERSION == 0x551A22CF` | Substantial USB controller definitions survive. Driver requires SoC clock/reset/PMU APIs; neither this selector nor the USB helper proves CoMi's D+/D− wiring or normal-mode enumeration |
+| NOR / SD | Named/type-rich LARK Flash/SD ELFs, audited below | Useful implementation references; unmatched initialization/controller/error behavior blocks unchanged use as backup tools |
+| Media / application BLE | Public interfaces and shipped static archives | Present archives declare v8-M/FPv5, not a demonstrated M4 dependency set; see measured attributes below |
+
+The retained ADC source is also **not an exact source reconstruction**: its
+`phy_adc_init` calls reset, clears the full driver-data structure and initializes
+the ADC LDO ([source][adc-init]); [actual CoMi init](init-audio-board-evidence.md)
+is54B and clears one byte before its observed register update. Shared device/API
+ancestry helps comparison, but does not establish identical structs or revision.
+
+### Binary dependencies: measured architecture, not directory inference
+
+GNU readelf2.42 `-A` on existing Ubuntu checkout; archive SHA256 independently
+matches Mac and pinned SDK files. [Compact evidence][library-evidence] records
+hashes, object counts and attribute distributions. All inspected member records:
+
+| Archive; relative to SDK root | Objects with attributes | CPU / FPU / call ABI declarations |
+|---|---:|---|
+| `framework/bluetooth/bt_stack/libbt_stack.a` |24| ARMv8-M.mainline, FPv5/FP-D16 for ARMv8, VFP registers |
+| `framework/media/libmedia.a` |23| ARMv8-M.mainline, FPv5/FP-D16 for ARMv8, VFP registers; one object explicitly names Cortex-M33 |
+| `application/bt_watch/src/att/att_patterns/lib/lark/socatp/libatpatt.a` |1| ARMv7E-M, VFPv4-D16, VFP registers |
+
+These are ELF declarations, not a proof that every object executes an unsupported
+instruction. Nevertheless, neither v8-M archive is established as a compatible
+CoMi M4 library; a successful M33 link cannot prove that. The M4 ATP test library
+is not a replacement for application media/BLE libraries, and hard-float calling
+convention alone does not make the architectures interchangeable. CoMi FPU
+configuration and application ABI remain independently unmeasured.
+
+Reproduce with `readelf -A ARCHIVE` and `sha256sum ARCHIVE` at the fixed SDK
+commit; inspect each member rather than taking the first CPU tag. This bounded
+audit does not classify every shipped library or reconstruct closed code.
+
+**Route decision:** public LARK code is a useful peripheral-source base, not
+merely a collection of tools. Changing M33 to M4 and inventing a board directory
+does not close missing SoC startup/headers or binary dependencies. Prefer a
+matched LARK platform package including M4 media/BLE libraries and controller/
+DSP resources. If unavailable, a future minimal M4 RAM diagnostic can omit media
+and BLE; even that still requires a known load/entry/exit contract. A full recorder
+port is a separate stage. Park individual register/callee questions until that
+stage needs them; do not expand this inventory into another unbounded audit.
 
 ## New findings in already acquired source
 
@@ -335,7 +392,8 @@ private-address Seeyon installation host.
 
 ## Availability and stopping decisions
 
-- **Available now:** M4 compiler recipe/source fragments, ROM API declaration,
+- **Available now:** LARK audio/ADC/power/USB/IPMSG source with the build-hook and
+  dependency gaps above; M4 compiler recipe/source fragments, ROM API declaration,
   LARK pin/device definitions, unstripped Flash/SD algorithms, existing public
   ADFU binaries. Useful for comparative offline platform work; none proves a
   complete matching BSP or an executable CoMi backup procedure.
@@ -370,3 +428,9 @@ private-address Seeyon installation host.
 [cubie]: http://www.cubietech.com/product-detail/cubiedvb-ats3085/
 [support]: https://cs.actions-semi.com/loginIndex.html
 [partner]: https://www.actions-semi.com/index.php?id=7761
+[audio-lark]: https://github.com/lvgl/lv_port_actions_technology/tree/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/drivers/audio/phy_lark
+[adc-lark]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/drivers/adc/adc_acts_lark.c
+[ipmsg-lark]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/drivers/ipmsg/lark/ipmsg_btc.c
+[usb-lark]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/drivers/usb/otg/usb_aotg_lark.h
+[adc-init]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/drivers/audio/phy_lark/phy_audio_adc.c#L3595-L3650
+[library-evidence]: evidence/lark-library-attributes-2026-10-13.json
