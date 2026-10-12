@@ -25,3 +25,5 @@
 本轮不需要用户执行额外操作。优先做有证据支持的读取/产物分析；一旦剩下必须改变启动状态或实物操作的步骤，先给出明确操作、预期观察和退出方法。
 
 最新进展：[代码读回](mapped-code-readback.md)、[官方远程页面与原厂包](official-acquisition-followup.md)。
+
+后续：已沿入口指令取得69 B、五个非连续位置的独立一致读回，实际字符串`_logsrv_init`支持与SDK初始化代码对应；[代码引用报告](code-reference-followup.md)。[当前官方页面复查](official-acquisition-next.md)仍未取得原厂固件。

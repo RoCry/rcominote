@@ -77,3 +77,7 @@ noise设置9→8→9，每次读回吻合；最后FW1.0.4、idle、容量59634/5
 wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样本比较成功，证明离线安装/入口/Thumb解码，未验证Linux蓝牙设备访问。42测试+22子测试通过，含真实帧、下载短读/断连/超量、原子保存、实时入口变化、重复采集不能冒充独立读取。
 
 当前命令见[CLI](../cli.md)，包代码`src/rcominote`；旧tools脚本已迁入，源码/捕获证据仍独立于rlcdv。
+
+## 第八轮：沿实机指令读取常量与函数名
+
+[首次](code-references-first-2026-10-12.json)、[独立重读](code-references-second-2026-10-12.json)、[离线分析](code-references-analysis-2026-10-12.json)：五处共69 B一致，实际读到`_logsrv_init\0`，支持公开SDK源码对应。完整推导及未知见[报告](../code-reference-followup.md)。CLI新增固定code-literals/code-references及离线比较；传输完成与读回完整分别校验，丢正文不能再报代码读取成功。

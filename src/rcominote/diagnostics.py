@@ -8,7 +8,7 @@ from typing import Annotated
 
 import typer
 
-from . import code_sample, log_capture, log_probe
+from . import code_references, code_sample, log_capture, log_probe
 from .ble_target import OWNED_SERIAL
 from .output import emit, new_output
 
@@ -24,6 +24,8 @@ class Profile(StrEnum):
     threads = "threads"
     stacks = "stacks"
     code = "code"
+    code_literals = "code-literals"
+    code_references = "code-references"
     nor_header = "nor-header"
 
 
@@ -35,6 +37,8 @@ PROFILE_FLAGS = {
     "threads": "threads",
     "stacks": "stacks",
     "code": "code_sample",
+    "code-literals": "code_literals",
+    "code-references": "code_references",
     "nor-header": "flash_header",
 }
 
@@ -51,7 +55,7 @@ def capture(
     serial: str = OWNED_SERIAL,
     duration: Annotated[float, typer.Option(min=1, max=30)] = 5,
 ):
-    """Capture a fixed profile. code is 16 guarded bytes; nor-header may lack data."""
+    """Capture fixed diagnostics; code profiles validate exact bytes, nor-header may lack data."""
     new_output(out)
     result = asyncio.run(capture_profile(profile, serial, duration))
     encoded = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
@@ -75,3 +79,4 @@ def text(capture: Path):
 
 app.command("probe")(log_probe.main)
 app.command("compare-code")(code_sample.main)
+app.command("compare-references")(code_references.main)

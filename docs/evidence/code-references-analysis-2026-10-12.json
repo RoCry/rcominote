@@ -1,0 +1,173 @@
+{
+  "scope": "69 noncontiguous mapped bytes, not a physical flash backup",
+  "independent_reads_match": true,
+  "captures": [
+    {
+      "captured_at": "2026-10-12T03:42:04.358405+00:00",
+      "sha256": "410059b53c1e86c7c73f49152b2511611cca6fa3c1816d1757c3630bd89d3835"
+    },
+    {
+      "captured_at": "2026-10-12T03:42:18.643708+00:00",
+      "sha256": "0b42a077bccbc120c060aa50cddfb52c14ab685fef4ee110d519fb4788651aae"
+    }
+  ],
+  "blocks": [
+    {
+      "address": "0x1000bf20",
+      "length": 16,
+      "reason": "logsrv entry",
+      "hex": "2de9f0476149624e86b05020a1f0abfa",
+      "sha256": "3314944ac8ca0faa67e68af9cff62b0daa5959ae0a1f1d9b0ea00bbf689e1cef",
+      "instructions": [
+        {
+          "address": "0x1000bf20",
+          "bytes": "2de9f047",
+          "mnemonic": "push.w",
+          "operands": "{r4, r5, r6, r7, r8, sb, sl, lr}"
+        },
+        {
+          "address": "0x1000bf24",
+          "bytes": "6149",
+          "mnemonic": "ldr",
+          "operands": "r1, [pc, #0x184]"
+        },
+        {
+          "address": "0x1000bf26",
+          "bytes": "624e",
+          "mnemonic": "ldr",
+          "operands": "r6, [pc, #0x188]"
+        },
+        {
+          "address": "0x1000bf28",
+          "bytes": "86b0",
+          "mnemonic": "sub",
+          "operands": "sp, #0x18"
+        },
+        {
+          "address": "0x1000bf2a",
+          "bytes": "5020",
+          "mnemonic": "movs",
+          "operands": "r0, #0x50"
+        },
+        {
+          "address": "0x1000bf2c",
+          "bytes": "a1f0abfa",
+          "mnemonic": "bl",
+          "operands": "#0x100ad486"
+        }
+      ],
+      "undecoded_tail_hex": ""
+    },
+    {
+      "address": "0x1000c0ac",
+      "length": 8,
+      "reason": "two PC-relative literals",
+      "hex": "ba260c101ca50b10",
+      "sha256": "d33b150cf81dad962a7465c79271f6518f4dc90dc5f3c29f9575fb940728e641",
+      "little_endian_words": [
+        "0x100c26ba",
+        "0x100ba51c"
+      ]
+    },
+    {
+      "address": "0x100c26ba",
+      "length": 13,
+      "reason": "r1 string candidate",
+      "hex": "5f6c6f677372765f696e697400",
+      "sha256": "8bac606b6bad6045c319601a9d2b83079000a247ad76166bb0e4beafb0d19156",
+      "ascii": "_logsrv_init\u0000"
+    },
+    {
+      "address": "0x100ad486",
+      "length": 16,
+      "reason": "BL target and adjacent instructions",
+      "hex": "a2f7bbbf08b1a2f7d4bf7047a2f7d9bf",
+      "sha256": "0365881c6e434e41054a49436ea6eb12d249360dfcdc84250010cd47a30e17c3",
+      "instructions": [
+        {
+          "address": "0x100ad486",
+          "bytes": "a2f7bbbf",
+          "mnemonic": "b.w",
+          "operands": "#0x10050400"
+        },
+        {
+          "address": "0x100ad48a",
+          "bytes": "08b1",
+          "mnemonic": "cbz",
+          "operands": "r0, #0x100ad490"
+        },
+        {
+          "address": "0x100ad48c",
+          "bytes": "a2f7d4bf",
+          "mnemonic": "b.w",
+          "operands": "#0x10050438"
+        },
+        {
+          "address": "0x100ad490",
+          "bytes": "7047",
+          "mnemonic": "bx",
+          "operands": "lr"
+        },
+        {
+          "address": "0x100ad492",
+          "bytes": "a2f7d9bf",
+          "mnemonic": "b.w",
+          "operands": "#0x10050448"
+        }
+      ],
+      "undecoded_tail_hex": ""
+    },
+    {
+      "address": "0x1000bf30",
+      "length": 16,
+      "reason": "BL return and subsequent instructions",
+      "hex": "604bf61a760106f47f46044660b946f0",
+      "sha256": "cf4a08df8740cb838ddb75d77845fe59c67b7da52597676aa8bdee94858fb2a4",
+      "instructions": [
+        {
+          "address": "0x1000bf30",
+          "bytes": "604b",
+          "mnemonic": "ldr",
+          "operands": "r3, [pc, #0x180]"
+        },
+        {
+          "address": "0x1000bf32",
+          "bytes": "f61a",
+          "mnemonic": "subs",
+          "operands": "r6, r6, r3"
+        },
+        {
+          "address": "0x1000bf34",
+          "bytes": "7601",
+          "mnemonic": "lsls",
+          "operands": "r6, r6, #5"
+        },
+        {
+          "address": "0x1000bf36",
+          "bytes": "06f47f46",
+          "mnemonic": "and",
+          "operands": "r6, r6, #0xff00"
+        },
+        {
+          "address": "0x1000bf3a",
+          "bytes": "0446",
+          "mnemonic": "mov",
+          "operands": "r4, r0"
+        },
+        {
+          "address": "0x1000bf3c",
+          "bytes": "60b9",
+          "mnemonic": "cbnz",
+          "operands": "r0, #0x1000bf58"
+        }
+      ],
+      "undecoded_tail_hex": "46f0"
+    }
+  ],
+  "limitations": [
+    "No code executed by decoder",
+    "No physical offsets or image boundaries established",
+    "Adjacent decoded bytes need not belong to the same function",
+    "A trailing partial instruction is retained without interpreting missing bytes"
+  ]
+}

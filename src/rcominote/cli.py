@@ -51,7 +51,7 @@ def capabilities():
                 "noise setting write/readback/restore",
                 "log/version/help",
                 "NVRAM fixed name getter",
-                "16-byte mapped code readback",
+                "69-byte fixed mapped code/literal/reference readback",
             ],
             "implemented_requires_explicit_selection": [
                 "record start/pause/resume/stop",

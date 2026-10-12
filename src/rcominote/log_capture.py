@@ -13,6 +13,7 @@ from bleak import BleakClient
 from bleak.exc import BleakError
 
 from .ble_target import OWNED_SERIAL, find_device
+from .code_references import BLOCKS, read_block
 from .log_probe import ACK, NOTIFY, PREPARE, SERVICE, WRITE
 
 START = bytes.fromhex("1d108105000002002000")
@@ -67,6 +68,43 @@ def observed_logsrv_entry(frames: list[dict]) -> bool:
     return match is not None
 
 
+def observed_logsrv_code(frames: list[dict]) -> bool:
+    text = "".join(frame.get("text", "") for frame in frames)
+    rows = re.findall(r"(?m)^1000bf20: ((?:[0-9a-f]{2} ){15}[0-9a-f]{2}) {2,}", text)
+    if rows and rows != ["2d e9 f0 47 61 49 62 4e 86 b0 50 20 a1 f0 ab fa"]:
+        raise ValueError("Live logsrv code changed or repeated; literal addresses are not applicable")
+    return bool(rows)
+
+
+def observed_logsrv_literals(frames: list[dict]) -> bool:
+    text = "".join(frame.get("text", "") for frame in frames)
+    rows = re.findall(r"(?m)^1000c0ac: ((?:[0-9a-f]{2} ){7}[0-9a-f]{2}) {2,}", text)
+    if rows and rows != ["ba 26 0c 10 1c a5 0b 10"]:
+        raise ValueError("Live logsrv literals changed or repeated; references are not applicable")
+    return bool(rows)
+
+
+def verify_readback(result: dict) -> None:
+    """Transport completion does not prove shell output survived firmware buffering."""
+    result["transport_ok"] = result["ok"]
+    reads = [
+        block for block in BLOCKS if f"dbg mdb {block[0]:x} {block[1]:x}" in result["fixed_text_commands"]
+    ]
+    if not reads:
+        return
+    result["readback_complete"] = False
+    if not result["transport_ok"]:
+        return
+    try:
+        for address, length, *_ in reads:
+            read_block(result, address, length)
+    except ValueError as error:
+        result["error"] = str(error)
+        result["ok"] = False
+    else:
+        result["readback_complete"] = True
+
+
 async def capture(
     *,
     serial: str,
@@ -79,9 +117,12 @@ async def capture(
     threads: bool = False,
     stacks: bool = False,
     code_sample: bool = False,
+    code_literals: bool = False,
+    code_references: bool = False,
 ) -> dict:
-    if code_sample and serial != OWNED_SERIAL:
+    if (code_sample or code_literals or code_references) and serial != OWNED_SERIAL:
         raise ValueError("Code sample address is evidenced only for owned C261CF0430 FW 1.0.4")
+    code_literals = code_literals or code_references
     queue = asyncio.Queue()
     stream = Stream()
     origin = time.monotonic()
@@ -102,7 +143,13 @@ async def capture(
             + (["kernel", "kernel uptime", "help"] if kernel_info else [])
             + (["kernel uptime", "kernel threads", "kernel uptime", "help"] if threads else [])
             + (["kernel stacks", "help"] if stacks else [])
-            + (["kernel threads", "dbg mdb 1000bf20 10", "help"] if code_sample else [])
+            + (["kernel threads", "dbg mdb 1000bf20 10", "help"] if code_sample or code_literals else [])
+            + (["dbg mdb 1000c0ac 8", "help"] if code_literals else [])
+            + (
+                ["dbg mdb 100c26ba d", "dbg mdb 100ad486 10", "dbg mdb 1000bf30 10", "help"]
+                if code_references
+                else []
+            )
         ),
         "notifications": [],
         "writes": [],
@@ -160,6 +207,18 @@ async def capture(
                     async with asyncio.timeout(5):
                         while not observed_logsrv_entry(stream.frames):
                             await pump(timeout=5)
+                if command == "dbg mdb 1000c0ac 8":
+                    # Both literal loads are evidenced in the live entry bytes:
+                    # Align(PC, 4) + imm = 0x1000bf28 + 0x184 / 0x188.
+                    async with asyncio.timeout(5):
+                        while not observed_logsrv_code(stream.frames):
+                            await pump(timeout=5)
+                if command in {"dbg mdb 100c26ba d", "dbg mdb 100ad486 10", "dbg mdb 1000bf30 10"}:
+                    # Pinned r1 literal, BL target, and BL return address. Do not
+                    # follow arbitrary pointer values or infer physical offsets.
+                    async with asyncio.timeout(5):
+                        while not observed_logsrv_literals(stream.frames):
+                            await pump(timeout=5)
                 encoded = command.encode("ascii")
                 tlv = b"\x01" + len(encoded).to_bytes(2, "little") + encoded
                 await request(b"\x1d\x10\x81" + len(tlv).to_bytes(2, "little") + tlv)
@@ -197,6 +256,7 @@ async def capture(
         and stream.ended
         and not stream.pending
     )
+    verify_readback(result)
     return result
 
 

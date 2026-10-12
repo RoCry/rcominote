@@ -78,7 +78,9 @@ uv run comi diag compare-code artifacts/code1.json artifacts/code2.json --out ar
 uv run comi diag text artifacts/platform.json
 ```
 
-其他profile：`logs` 默认实时日志、`threads` 详细线程表、`nor-header` NOR头读取尝试。`threads`已观察到设备端长输出截断；`nor-header`已知没有数据正文，不是备份工具。所有日志会话限1–30秒、默认5秒，结束发送STOP并等待结束帧；`ok`表示传输完整，**不代表命令成功或正文完整**。
+其他profile：`logs` 默认实时日志、`threads` 详细线程表、`nor-header` NOR头读取尝试。`threads`已观察到设备端长输出截断；`nor-header`已知没有数据正文，不是备份工具。所有日志会话限1–30秒、默认5秒，结束发送STOP并等待结束帧；`transport_ok`表示传输完整，**不代表命令成功或正文完整**。固定代码读取另校验每个请求的数据行；缺行、短行、重复行均使`ok=false`并非零退出。
+
+`code-literals`在核对入口指令后读取其两个常量（8 B）；`code-references`进一步读取固定引用，总计69 B、五个非连续位置。两次采集可用`diag compare-references FIRST SECOND --out REPORT`离线比较。[证据与推导](code-reference-followup.md)。
 
 code只读固定映射地址的16 B，并在同会话核对当前logsrv入口；不接受任意地址、长度或shell文本。离线比较拒绝重复采集身份（包括复制同一文件），要求两次样本一致，返回解码与hash，不执行机器码。此能力不等于完整flash dump、板级适配或可恢复备份。
 
