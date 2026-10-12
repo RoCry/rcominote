@@ -42,3 +42,37 @@ Disconnect still ends the session. The reusable [realtime CLI](cli.md#实时音�
 now implements this lifetime, bounded capture and explicit recording ownership;
 its own acceptance run is retained separately in
 [CLI evidence](evidence/realtime-cli-live-2026-10-12.json).
+
+## Follow-up: pause/resume exact comparison
+
+[Bounded owned-device evidence](evidence/realtime-pause-live-2026-10-12.json),
+FW010004, same reported call mode, noise9, charging. New recording
+`20261012231500`; no settings mutation, existing-file deletion or firmware action.
+
+- Recording3 s → pause1 s settling +3 s stable observation → resume3 s → stop1 s tail.
+  Each control reply named the same file; every requested state was read back.
+- 171 notifications,118–168 B:83 after start,2 during pause command,1 during
+  resume command,84 after resume,1 during stop command. None during initial idle,
+  either paused interval or post-stop tail. Labels mark host command/readback
+  windows, not exact device transition times; do not use the pause ACK as a
+  universal no-more-bytes barrier.
+- Realtime24520 B equals fresh-connection full download24520 B byte for byte.
+  Both SHA256 `eccf7ce1d908356619996b7a8325b12eb1b0061f0c6b54581308886803cbcea5`.
+- `ffprobe`:MP3,16000 Hz,mono,32000 bit/s,estimated6.130 s.
+  Whole-file `ffmpeg -v error -i realtime.bin -f null -` exits0.
+- Final device state idle. One short pause/resume sample supports gap-free raw
+  concatenation across this pause; it does not establish long-window reliability,
+  reconnect recovery, every recording mode or exact sample-level pause timing.
+
+Reproduce explicitly on the idle owned device; creates and preserves a new recording:
+
+```sh
+uv run -m rcominote.experiments.realtime_pause artifacts/NEW-pause-probe
+```
+
+The package experiment rejects an existing output directory, checks exact serial
+and idle state, retains raw audio locally, and attempts stop cleanup after an
+attempted START even if a control/readback fails. It keeps e5e3 subscribed until
+disconnect and compares against a complete same-name offline export. Failed runs
+retain `report.json` and partial audio; no failed output is declared complete.
+Audio is intentionally excluded from committed evidence.
