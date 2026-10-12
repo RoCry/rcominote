@@ -43,3 +43,5 @@ configure实际检查flags bit9输出、bit11初始set、bit10初始reset；对�
 ## 等待单位仍未解决
 
 完整`1009bf94..1009c020`显示等待参数被保留为两个word，交给timeout helper `1009c2c0`，并以`100b91f0`读数计算剩余量。当前路径未见单位换算，但这不能证明参数为毫秒：仍需timeout/timebase实现及实际时钟配置。保留原始10、120，不写成10 ms/120 ms。
+
+后续：[时间基准分析](display-timebase.md)已取得32,000 cycles/tick及32 MHz配置证据，支持名义1 ms/tick；上述“单位尚未确认”保留本轮阶段边界，当前结论以前述后续报告为准。

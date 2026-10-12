@@ -42,3 +42,5 @@ A1 C8 DA 12 AD 30 81 1F D9 1F DB 20 8D 14
 ## 仍缺什么
 
 已有可复核命令表、逻辑复位顺序、I2C控制byte和页/列传输形状。仍需GPIO极性与pad映射、等待单位、I2C时钟/pinmux、正常像素转换/窗口约束、控制器命令语义对照及实屏验证。此次没有修改屏幕、烧录或验证恢复。
+
+后续补齐：[GPIO逻辑反转与寄存器路径](display-gpio-polarity.md)；[等待单位](display-timebase.md)支持名义1 ms/tick。物理波形仍未验证。
