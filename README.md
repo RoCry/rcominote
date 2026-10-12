@@ -119,3 +119,5 @@ uv run --locked tools/build_sdk.py \
 [屏幕GPIO极性](docs/display-gpio-polarity.md)：init实际设置pin24反转、pin25不反转，已对应到set/reset寄存器写入；未测物理电压，等待单位仍未知。
 
 [屏幕等待时间基准](docs/display-timebase.md)：实机代码每tick 32,000周期，busy-wait配置支持32 MHz，故10/120tick名义对应10/120 ms；未测调度延迟或引脚波形。
+
+[屏幕I2C速率](docs/display-i2c-config.md)：实际configure将14映射到400 kHz目标、divider5；默认init为100 kHz，SDA/SCL pinmux仍待定位。
