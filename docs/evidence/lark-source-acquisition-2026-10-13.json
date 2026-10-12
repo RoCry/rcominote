@@ -1,0 +1,189 @@
+{
+  "date": "2026-10-13",
+  "scope": "Host-only public repository history/ref and Vela documentation acquisition; no device I/O, SDK builds, app login or contact messages",
+  "upstream_master_commit_count": 28,
+  "history_snapshots": [
+    {
+      "commit": "ef24e7feeda3aae0f7fd7b17c804a8127c507471",
+      "api": "https://api.github.com/repos/lvgl/lv_port_actions_technology/git/trees/ef24e7feeda3aae0f7fd7b17c804a8127c507471?recursive=1",
+      "response_sha256": "f41bcede0f9034e5c0ee231d1f7c3e2346377a1e8b96b798e919d13415b0aeeb",
+      "entry_count": 15052,
+      "truncated": false,
+      "lark_soc_paths": [],
+      "lark_board_paths": [],
+      "retained_series": [
+        {
+          "path": "action_technology_zephyr_sdk/bootloader/soc/arm/actions/leopard/Kconfig.series",
+          "blob": "daf8f8334854453b0b4d290b58935e31842d5c04"
+        },
+        {
+          "path": "action_technology_zephyr_sdk/zephyr/soc/arm/actions/leopard/Kconfig.series",
+          "blob": "daf8f8334854453b0b4d290b58935e31842d5c04"
+        }
+      ]
+    },
+    {
+      "commit": "2d6ad9d342ececf0173deafef486e4286bec93d4",
+      "api": "https://api.github.com/repos/lvgl/lv_port_actions_technology/git/trees/2d6ad9d342ececf0173deafef486e4286bec93d4?recursive=1",
+      "response_sha256": "078341633eed058ee92a9c40507aef0b8e1c045dfb316a5273efa0139be72de8",
+      "entry_count": 30739,
+      "truncated": false,
+      "lark_soc_paths": [],
+      "lark_board_paths": [],
+      "retained_series": [
+        {
+          "path": "action_technology_sdk/bootloader/soc/arm/actions/leopard/Kconfig.series",
+          "blob": "daf8f8334854453b0b4d290b58935e31842d5c04"
+        },
+        {
+          "path": "action_technology_sdk/zephyr/soc/arm/actions/leopard/Kconfig.series",
+          "blob": "daf8f8334854453b0b4d290b58935e31842d5c04"
+        },
+        {
+          "path": "action_technology_zephyr_sdk/bootloader/soc/arm/actions/leopard/Kconfig.series",
+          "blob": "daf8f8334854453b0b4d290b58935e31842d5c04"
+        },
+        {
+          "path": "action_technology_zephyr_sdk/zephyr/soc/arm/actions/leopard/Kconfig.series",
+          "blob": "daf8f8334854453b0b4d290b58935e31842d5c04"
+        }
+      ]
+    },
+    {
+      "commit": "9942d4ca8fdfb97bec4c27163ae9f2ce4416ad6e",
+      "api": "https://api.github.com/repos/lvgl/lv_port_actions_technology/git/trees/9942d4ca8fdfb97bec4c27163ae9f2ce4416ad6e?recursive=1",
+      "response_sha256": "ef7b97252c214e03fbd3ffb1795c1626081d413869ac16ab48a416eb05928d90",
+      "entry_count": 15694,
+      "truncated": false,
+      "lark_soc_paths": [],
+      "lark_board_paths": [],
+      "retained_series": [
+        {
+          "path": "action_technology_sdk/bootloader/soc/arm/actions/leopard/Kconfig.series",
+          "blob": "daf8f8334854453b0b4d290b58935e31842d5c04"
+        },
+        {
+          "path": "action_technology_sdk/zephyr/soc/arm/actions/leopard/Kconfig.series",
+          "blob": "daf8f8334854453b0b4d290b58935e31842d5c04"
+        }
+      ]
+    },
+    {
+      "commit": "cd96ad01e4a322f22f1a7b3350cdd20f9d143e02",
+      "api": "https://api.github.com/repos/lvgl/lv_port_actions_technology/git/trees/cd96ad01e4a322f22f1a7b3350cdd20f9d143e02?recursive=1",
+      "response_sha256": "0ffd2b3788401ed7d0243d63097e8da7da4943aaa3ac7b154a9a666c064f4e62",
+      "entry_count": 16944,
+      "truncated": false,
+      "lark_soc_paths": [],
+      "lark_board_paths": [],
+      "retained_series": [
+        {
+          "path": "action_technology_sdk/bootloader/soc/arm/actions/leopard/Kconfig.series",
+          "blob": "daf8f8334854453b0b4d290b58935e31842d5c04"
+        },
+        {
+          "path": "action_technology_sdk/zephyr/soc/arm/actions/leopard/Kconfig.series",
+          "blob": "95197d533aa657bb1acdbf864276e2519c1d14ad"
+        }
+      ]
+    },
+    {
+      "commit": "9c9ef49f27aa7b89c7f98e3aaeb6ec7c4b3214e9",
+      "api": "https://api.github.com/repos/lvgl/lv_port_actions_technology/git/trees/9c9ef49f27aa7b89c7f98e3aaeb6ec7c4b3214e9?recursive=1",
+      "response_sha256": "12a63994984c62a3cb4afb252d91dd57aeef89f24d85367d9de66e9824073480",
+      "entry_count": 17007,
+      "truncated": false,
+      "lark_soc_paths": [],
+      "lark_board_paths": [],
+      "retained_series": [
+        {
+          "path": "action_technology_sdk/bootloader/soc/arm/actions/leopard/Kconfig.series",
+          "blob": "daf8f8334854453b0b4d290b58935e31842d5c04"
+        },
+        {
+          "path": "action_technology_sdk/zephyr/soc/arm/actions/leopard/Kconfig.series",
+          "blob": "95197d533aa657bb1acdbf864276e2519c1d14ad"
+        }
+      ]
+    }
+  ],
+  "ref_inventory": {
+    "branches_api": "https://api.github.com/repos/lvgl/lv_port_actions_technology/branches?per_page=100",
+    "forks_api": "https://api.github.com/repos/lvgl/lv_port_actions_technology/forks?per_page=100",
+    "branches": {
+      "master": "26f51e584940d5b141cd1d09d2629d69b595f579",
+      "release/v9.2": "b8042f6b8d4ea736334926a858bc8c4b62ee2da4",
+      "release/v9.3": "e60bec6675285854bb04c382d5333c7f7480f3a6",
+      "release/v9.4": "bf002467630e320a10dcd6284a3caae33c749b6f",
+      "release/v9.5": "6f22a97eb707c2e5410bdcee3c88bf11db929661",
+      "release/v9.6": "e048b00b40209dc25b3cd7899e66d021c433fa14"
+    },
+    "tags": {
+      "v9.2.2": "17af2ccf191e3cc9b0492b135894cb437316cf0a"
+    },
+    "upstream_release_count": 0,
+    "direct_fork_master_heads": {
+      "ambraglow/lv_port_actions_technology": "26f51e584940d5b141cd1d09d2629d69b595f579",
+      "stanelie/lv_port_actions_technology": "26f51e584940d5b141cd1d09d2629d69b595f579",
+      "pxwang85/lv_port_actions_technology": "26f51e584940d5b141cd1d09d2629d69b595f579",
+      "CherryUSB/lv_port_actions_technology": "26f51e584940d5b141cd1d09d2629d69b595f579",
+      "liamHowatt/lv_port_actions_technology": "6c683fce65914da848e81265b018030fed1c7efa",
+      "junminacts/lv_port_actions_technolgy": "26f51e584940d5b141cd1d09d2629d69b595f579",
+      "Lisra-git/lv_port_action_technolgy-ATS3089P_EVB": "9942d4ca8fdfb97bec4c27163ae9f2ce4416ad6e"
+    },
+    "direct_fork_release_counts": {
+      "ambraglow/lv_port_actions_technology": 0,
+      "stanelie/lv_port_actions_technology": 0,
+      "pxwang85/lv_port_actions_technology": 0,
+      "CherryUSB/lv_port_actions_technology": 0,
+      "liamHowatt/lv_port_actions_technology": 0,
+      "junminacts/lv_port_actions_technolgy": 0,
+      "Lisra-git/lv_port_action_technolgy-ATS3089P_EVB": 0
+    },
+    "review": "Astra inspected present refs and merge-base diffs; no distinct SDK source additions found. This does not characterize every historical tree of every fork."
+  },
+  "vela": {
+    "docs_commit": "ef76237d468708be054b4c066d00fabf64ae4220",
+    "sources": [
+      {
+        "url": "https://github.com/open-vela/docs/blob/ef76237d468708be054b4c066d00fabf64ae4220/en/chip_porting/porting_guide.md",
+        "sha256": "5e2deac5141c6897b29324db353cddee3593593ddca7e1296665d71686497251",
+        "bytes": 33634
+      },
+      {
+        "url": "https://github.com/open-vela/docs/blob/ef76237d468708be054b4c066d00fabf64ae4220/en/chip_porting/Vendor.md",
+        "sha256": "cdeca18e5251fd11ecbbf6d9f3dfba9bd7ff3589a039b89b507faf1ffde05592",
+        "bytes": 7226
+      }
+    ],
+    "openvela_nuttx_commit": "9e79ad292fd103d3b9ef737757081a3f7fbbf9a4",
+    "apache_nuttx_commit": "1381c1b26877efa181efc99b7322ddfee4096e79",
+    "finding": "Official porting guide contains CONFIG_ATS3085X_BOOTLOADER and ARMv7-M example. Public ARM chip-directory and bounded org code searches acquired no Actions vendor implementation. Vendor source can live outside nuttx/arch.",
+    "example_addresses": {
+      "flash": "0x10000000",
+      "sram": "0x01000400",
+      "psram": "0x18000000",
+      "dsp_inner_ram": "0x01054000",
+      "share_ram": "0x0106a600"
+    },
+    "limits": [
+      "Guide does not identify specific ATS3085 variant or CoMi board",
+      "Example memory region lengths and entry point must not become CoMi configuration",
+      "No matched BSP, source package, firmware image or new transfer route acquired"
+    ]
+  },
+  "historical_series_blob_inspection": [
+    {
+      "blob": "daf8f8334854453b0b4d290b58935e31842d5c04",
+      "api": "https://api.github.com/repos/lvgl/lv_port_actions_technology/git/blobs/daf8f8334854453b0b4d290b58935e31842d5c04",
+      "config": "SOC_SERIES_LEOPARD",
+      "select": "CPU_CORTEX_M33"
+    },
+    {
+      "blob": "95197d533aa657bb1acdbf864276e2519c1d14ad",
+      "api": "https://api.github.com/repos/lvgl/lv_port_actions_technology/git/blobs/95197d533aa657bb1acdbf864276e2519c1d14ad",
+      "config": "SOC_SERIES_LEOPARD",
+      "select": "CPU_CORTEX_M33"
+    }
+  ]
+}

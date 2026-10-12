@@ -390,6 +390,51 @@ Two focused searches only: `site:cubietech.com ATS3085 SDK download` and
 No repeated empty-repository search, generic DLL scan or retry of the known
 private-address Seeyon installation host.
 
+## Public history and Vela provenance: bounded acquisition result
+
+Same date; [compact primary-source inventory][acquisition-evidence]. The local
+LVGL checkout was shallow, so its single commit could not answer historical
+availability. GitHub exposes28 master commits. Five **non-truncated** recursive
+trees cover the first SDK import, duplicate SDK roots, cleanup, RC and latest SDK
+updates: `ef24e7fe`, `2d6ad9d3`, `9942d4ca`, `cd96ad01`, `9c9ef49f`.
+None contains a `soc/arm/actions/lark` directory or LARK/ATS3085L board path;
+the only retained Actions `Kconfig.series` files identify LEOPARD. Both historical
+blob variants explicitly select `CPU_CORTEX_M33`; the oldest is not a hidden M4
+target under that name. This covers
+those snapshots, not every object ever uploaded to GitHub.
+
+Astra also checked current6 upstream branches,1 tag,0 releases and7 direct
+forks. Five fork master heads equal pinned26f51e5; two are upstream ancestors.
+Inspected extra branch changes supply no new SDK package; all7 forks have no
+release attachments. The SDK PR's source fork, `junminacts/lv_port_actions_technolgy`,
+also has the same master and no tags/releases. Stop this ref/history acquisition
+pass; resume on a genuinely new SDK commit, fork payload or vendor archive.
+
+The Cubie board's Vela claim led to a separate primary source: openvela's fixed
+[chip-porting guide][vela-porting] includes `CONFIG_ATS3085X_BOOTLOADER` and an
+ARMv7-M toolchain example. Its nearby linker example uses these origins:
+
+| Example region | Origin; **not measured CoMi configuration** |
+|---|---|
+| Flash / SRAM / PSRAM | `10000000` / `01000400` / `18000000` |
+| DSP inner RAM / shared RAM | `01054000` / `0106a600` |
+
+The guide does not identify the exact ATS3085 variant, board or example provenance.
+Neither region lengths nor its entry symbol are a CoMi linker recipe. CoMi's
+observed OS remains Zephyr; Vela material is an alternative chip-layer source lead.
+The official [vendor-layout guide][vela-vendor] places chip implementations under
+`vendor/<vendor>/chips` and boards/libraries in separate vendor directories.
+Thus absence from main NuttX's ARM tree does not prove no vendor implementation.
+Inspected public open-vela/NuttX and Apache NuttX ARM directories plus bounded
+open-vela code searches acquired no Actions/LARK vendor source package.
+
+**Acquisition targets now have three distinct forms:** complete LARK Zephyr
+SoC/BSP plus matching M4 application libraries; `BAREMETAL_CMSIS/lark_sdk`
+LarkHal/Flashloader source; or an Actions Vela vendor package with chip/startup/
+clock/register definitions. Each can contribute different layers. No matched
+source package, official firmware or new device transfer route was acquired here;
+do not repeat public absence checks or treat a generic OS port as a CoMi BSP.
+
 ## Availability and stopping decisions
 
 - **Available now:** LARK audio/ADC/power/USB/IPMSG source with the build-hook and
@@ -434,3 +479,6 @@ private-address Seeyon installation host.
 [usb-lark]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/drivers/usb/otg/usb_aotg_lark.h
 [adc-init]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/drivers/audio/phy_lark/phy_audio_adc.c#L3595-L3650
 [library-evidence]: evidence/lark-library-attributes-2026-10-13.json
+[acquisition-evidence]: evidence/lark-source-acquisition-2026-10-13.json
+[vela-porting]: https://github.com/open-vela/docs/blob/ef76237d468708be054b4c066d00fabf64ae4220/en/chip_porting/porting_guide.md#L579-L670
+[vela-vendor]: https://github.com/open-vela/docs/blob/ef76237d468708be054b4c066d00fabf64ae4220/en/chip_porting/Vendor.md

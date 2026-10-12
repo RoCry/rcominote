@@ -43,6 +43,7 @@
 | [LARK保留材料](lark-helper-candidate.md) | M4工程模板、boot/helper二进制、生产配置，加载地址01010000更接近本机 | 缺完整 `soc/arm/actions/lark` 源码；不可构建本机固件 |
 | [LARK外设源码与构建缺口](platform-source-followup.md#rebuildability-peripheral-source-survives-platform-closure-does-not) | 音频ADC/DAC/I2S、PMU ADC、电池、USB、IPMSG源码；部分已有LARK构建选择 | 缺SoC/板级闭环，IPMSG父目录未接入LARK；外设名与参考充电芯片不等于本机配置 |
 | [媒体/蓝牙静态库属性](evidence/lark-library-attributes-2026-10-13.json) | 已按archive member核对：媒体23项、蓝牙24项均声明v8-M/FPv5；LARK ATP测试库1项为v7E-M/VFPv4 | 不能仅改CPU/板名就移植完整应用；还需匹配M4库或替代实现；ATP库不替代媒体/蓝牙栈 |
+| [Vela官方移植指南](platform-source-followup.md#public-history-and-vela-provenance-bounded-acquisition-result) | 含ATS3085X宏、ARMv7-M与内存地址示例；芯片层可由独立vendor包提供 | 不指明L型号或CoMi；未取得Actions vendor包，不采用示例长度/入口，不改变本机Zephyr事实 |
 | [LARK调试loader与ATT源码](platform-source-followup.md#nor-comparison-host-selector-cache-window-and-initialization) | ELF给出 `BAREMETAL_CMSIS/lark_sdk`、NOR/SD接口与类型；两种存储接口已对照，另有M4编译配方、时钟/蓝牙源码 | NOR读依赖重建缓存映射、初始化改变硬件/NOR模式；SD固定SD0而本机用SD1，且wrapper吞读错；原样不能作可靠备份 |
 | LARK `adfus.bin` / `adfus_u.bin` | 前者UART、后者USB；有真正的内存/存储读取handler | [初始化会写NOR状态寄存器](lark-nor-init-side-effects.md)，未经修改不可作为只读备份；同名不同版本不能混用 |
 | [量产工具DLL/INF](host-selection-followup.md) | 有 WinUSB、ADFU API及驱动ID，可指导匹配host | 尚无本机芯片→host选择→ROM协议闭环；不能直接套旧ATJ包格式 |

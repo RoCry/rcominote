@@ -23,6 +23,10 @@ Current deliverables, in order:
    searches acquired no source; resume acquisition on a new entry. SD comparison
    also closed: loader usesSD0, actual CoMi usesSD1; wrapper ignores read errors.
    Preserve both as HAL references, not ready-made backup tools; do not repeat audits.
+   [Public history/ref and Vela pass](platform-source-followup.md#public-history-and-vela-provenance-bounded-acquisition-result)
+   acquired no complete package: five historical SDK trees and current forks/refs
+   add no LARK BSP; Vela guide supplies ATS3085X/vendor-package provenance only.
+   Resume these acquisition routes on a new concrete package/ref, not another generic search.
 2. Firmware/recovery overview: consolidate existing system/boot/DSP/ACPT;
    compare ROM→helper→NOR routes. If justified, acquire one bounded ROM corpus
    for offline analysis instead of one live experiment per callee.
