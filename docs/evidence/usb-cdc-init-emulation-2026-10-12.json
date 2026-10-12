@@ -1,0 +1,42 @@
+{
+  "image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "engine": "Unicorn 2.1.4 Thumb MCLASS",
+  "scope": "Actual CDC init/registrar; synthetic state; missing BT_MAC; helper and USB results stubbed",
+  "limits": "No USB/MMIO execution; does not prove this path was invoked on the connected device",
+  "result": {
+    "return": 0,
+    "registrations": [
+      {
+        "index": 1,
+        "string": "Actions",
+        "length": 7
+      },
+      {
+        "index": 2,
+        "string": "CDC-ACM-DEV",
+        "length": 11
+      },
+      {
+        "index": 3,
+        "string": "0123456789A",
+        "length": 11
+      }
+    ]
+  },
+  "operations": [
+    {
+      "descriptors": [
+        269339978,
+        269340071
+      ]
+    },
+    {
+      "stub": "0x1009a2d0",
+      "config": 269220200
+    },
+    {
+      "stub": "0x1009a324",
+      "config": 269220200
+    }
+  ]
+}
