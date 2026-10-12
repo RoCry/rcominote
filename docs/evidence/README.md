@@ -182,3 +182,14 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## 部分LARK芯片定义恢复（2026-10-13）
 
 [方法与边界](../lark-register-recovery.md)、[全部选定DWARF布局/来源](lark-register-layouts-2026-10-13.json)、[提取与M4编译验证](lark-register-validation-2026-10-13.json)。12组外设结构、47 IRQ常量，自包含header入库；9类跨ELF一致，未恢复base/bit/startup或建立CoMi兼容性。[正式DFP索引限定负结果](../platform-next-route-review.md)。无设备I/O。
+
+## 固定 GitHub/Gitee SDK 与录音应用对照（2026-10-13）
+
+[GitHub源码/构建分类](../github-sdk-followup-2026-10-13.md)与
+[国内平台/录音工作流](../domestic-sdk-followup-2026-10-13.md)：新增两份GitHub SDK、
+Gitee REC_JX3完整仓库及ATS3085E已编译ELF。新的平台选择/构建仍是M33；录音应用
+共享media/stream接口，协议、编码器、流拓扑和DSP资源不同，不是CoMi固件。
+[查询/树/clone收据](recorder-reference-2026-10-13/acquisition.json)、
+[177个固定blob哈希](recorder-reference-2026-10-13/source-manifest.json)、
+[ATS3085E构建产物哈希](recorder-reference-2026-10-13/ats3085e-build.json)。
+获取脚本已实际核验全部177文件；无设备I/O，未构建或执行新SDK。

@@ -30,6 +30,16 @@ Current deliverables, in order:
    [Partial chip definitions recovered from DWARF](lark-register-recovery.md)
    now supply12 register layouts/47 IRQ values, cross-ELF and compiler checked;
    they do not restore missing startup/base/bit/board definitions.
+   [Renewed GitHub acquisition](github-sdk-followup-2026-10-13.md) and
+   [native Gitee/GitCode pass](domestic-sdk-followup-2026-10-13.md) now add two
+   complete GitHub SDKs, a complete recording-card SDK and an ATS3085E build
+   artifact set. All new inspected platform selections/builds remain M33.
+   The recorder source supplies a whole recording workflow; direct comparison
+   finds different GATT/framing, Opus/file-tail streaming and DSP resource.
+   Keep it as an application reference, not a matched CoMi target or proof of
+   the OEM diff size. Acquisition script and177-file hash manifest are reusable.
+   Further broad source queries and another M33 build are parked after this
+   bounded pass; reopen on a concrete matching package/branch or bring-up need.
    [Official CMSIS Pack index pass](platform-next-route-review.md) supplies no
    matched package metadata; stop that acquisition route until a concrete new link.
    [Production package contract](production-package-contract.md) now traces the

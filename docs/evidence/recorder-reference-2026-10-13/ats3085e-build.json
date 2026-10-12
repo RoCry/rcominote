@@ -1,0 +1,24 @@
+{
+  "repo": "https://gitee.com/yekingsheng/ats3085e",
+  "commit": "37bfcac1fa7a38026460099be747efa3abacf6a9",
+  "files": [
+    {
+      "path": "application/bt_watch_no_psram/outdir/ats3085e_dev_watch_ext_nor/zephyr/.config",
+      "bytes": 59525,
+      "git_blob": "aa8fbf3be6c758b638c668a16a09a1e775e02faa",
+      "sha256": "9fa3370b45cdf9d936e45374370ede3c6e27b578f3b7f3df845bcc0e268018aa"
+    },
+    {
+      "path": "application/bt_watch_no_psram/outdir/ats3085e_dev_watch_ext_nor/zephyr/zephyr.map",
+      "bytes": 4533898,
+      "git_blob": "61c5ab626d39468cdced418b3034030f4af87bdc",
+      "sha256": "4c384d644fd6bdc48c1990772885d88a463c426158da607a37deb7995de75cee"
+    },
+    {
+      "path": "application/bt_watch_no_psram/outdir/ats3085e_dev_watch_ext_nor/zephyr/zephyr.elf",
+      "bytes": 17499860,
+      "git_blob": "8d7ada49bd9afa7d367d849c420a4852b4866ba1",
+      "sha256": "a6ae9bd8296429475dd4df03f3b62c5aff413b9b966b2d00e68337c56ec841c2"
+    }
+  ]
+}

@@ -6,7 +6,7 @@
 
 1. [设备、固件与 SDK 总览](docs/device-platform-map.md)：已知平台、固件组成、可复用材料、关键缺口及暂存问题。
 2. [当前研究路线与淘汰记录](docs/research-routes.md)：唯一执行优先级；历史报告的“下一步”不作为计划。
-3. [平台资料获取核查](docs/platform-source-followup.md)：匹配 ATS3085L/LARK BSP、开发板和生产工具的线索。
+3. [平台资料获取核查](docs/platform-source-followup.md)、[新增 GitHub SDK](docs/github-sdk-followup-2026-10-13.md)、[Gitee 录音卡源码对照](docs/domestic-sdk-followup-2026-10-13.md)：固定源码、平台分类和可复用的录音流程。
 4. [CLI 能力边界](docs/cli-capabilities.md)与[使用说明](docs/cli.md)：区分源码线索、实测能力与未验证行为。
 5. [证据索引](docs/evidence/README.md)：采集、样本、来源及历史研究记录。
 

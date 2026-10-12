@@ -1,0 +1,160 @@
+{
+  "date": "2026-10-13",
+  "scope": "Public repository-index search and source acquisition; no device I/O or SDK execution",
+  "gitee_widget": "wong1slagnlmzwvsu5ya",
+  "query_id": 1048,
+  "query_kind": "repository search, not code search",
+  "queries": [
+    {
+      "query": "ATS3085L",
+      "url": "https://so.gitee.com/v1/search/widget/wong1slagnlmzwvsu5ya?query=1048&q=ATS3085L&from=0&size=20",
+      "response_sha256": "9bb2ab4bb2536c9873e8354628d3cd81f49da970b830619dd008ffc6c7eca7a0",
+      "total": {
+        "value": 0,
+        "relation": "eq"
+      },
+      "inspected_page_size": 0,
+      "returned_repository_urls": []
+    },
+    {
+      "query": "ATS3085",
+      "url": "https://so.gitee.com/v1/search/widget/wong1slagnlmzwvsu5ya?query=1048&q=ATS3085&from=0&size=20",
+      "response_sha256": "980f2df831fc4ac0c00866f16fa73f1553984351ad455edcd72a502a3eb61756",
+      "total": {
+        "value": 1,
+        "relation": "eq"
+      },
+      "inspected_page_size": 1,
+      "returned_repository_urls": [
+        "https://gitee.com/yekingsheng/ats3085e"
+      ]
+    },
+    {
+      "query": "ATS3089",
+      "url": "https://so.gitee.com/v1/search/widget/wong1slagnlmzwvsu5ya?query=1048&q=ATS3089&from=0&size=20",
+      "response_sha256": "0913f433bb7cc510d0642e69a0a6b94fce764e45507b9ac9759e184245f3a45a",
+      "total": {
+        "value": 0,
+        "relation": "eq"
+      },
+      "inspected_page_size": 0,
+      "returned_repository_urls": []
+    },
+    {
+      "query": "GL6189",
+      "url": "https://so.gitee.com/v1/search/widget/wong1slagnlmzwvsu5ya?query=1048&q=GL6189&from=0&size=20",
+      "response_sha256": "0cf12ecd8edd596c13b9bc8d0c401b873822e8f75756af6523359e86950c654b",
+      "total": {
+        "value": 0,
+        "relation": "eq"
+      },
+      "inspected_page_size": 0,
+      "returned_repository_urls": []
+    },
+    {
+      "query": "lark_sdk",
+      "url": "https://so.gitee.com/v1/search/widget/wong1slagnlmzwvsu5ya?query=1048&q=lark_sdk&from=0&size=20",
+      "response_sha256": "293c9e9bb35ad45cc90599ff8bbc605e20c4aee043348bdaa28afa35177ce0d5",
+      "total": {
+        "value": 0,
+        "relation": "eq"
+      },
+      "inspected_page_size": 0,
+      "returned_repository_urls": []
+    },
+    {
+      "query": "SOC_SERIES_LARK",
+      "url": "https://so.gitee.com/v1/search/widget/wong1slagnlmzwvsu5ya?query=1048&q=SOC_SERIES_LARK&from=0&size=20",
+      "response_sha256": "4f81fb6e60166d1d9dff300b5e17704e9557690631e6d938e1502aa9322a6b20",
+      "total": {
+        "value": 0,
+        "relation": "eq"
+      },
+      "inspected_page_size": 0,
+      "returned_repository_urls": []
+    },
+    {
+      "query": "炬芯",
+      "url": "https://so.gitee.com/v1/search/widget/wong1slagnlmzwvsu5ya?query=1048&q=%E7%82%AC%E8%8A%AF&from=0&size=20",
+      "response_sha256": "c281b3c795fa9066ef33f3a68978166a187f658931275af5018e7a31f00b2304",
+      "total": {
+        "value": 4,
+        "relation": "eq"
+      },
+      "inspected_page_size": 4,
+      "returned_repository_urls": [
+        "https://gitee.com/szsheep/rec_jx3",
+        "https://gitee.com/Benio_IoT/benio_ry_watch_sdk_iOS",
+        "https://gitee.com/zouvsyv/torch-core-3015-s-f8",
+        "https://gitee.com/gnsyxiang/third-lib"
+      ]
+    },
+    {
+      "query": "Actions Zephyr",
+      "url": "https://so.gitee.com/v1/search/widget/wong1slagnlmzwvsu5ya?query=1048&q=Actions+Zephyr&from=0&size=20",
+      "response_sha256": "30598f8f2742da063483dd82eec5196a2f0772d43bf546d6bc47967cc541d824",
+      "total": {
+        "value": 122,
+        "relation": "eq"
+      },
+      "inspected_page_size": 20,
+      "returned_repository_urls": [
+        "https://gitee.com/freewear/mcuboot",
+        "https://gitee.com/murong-yuyue/mcuboot_annotation",
+        "https://gitee.com/stonelab/nanopb",
+        "https://gitee.com/esp-submodules/openthread",
+        "https://gitee.com/huangpeizhi2018/awesome-rust",
+        "https://gitee.com/awesome-lib/awesome-rust",
+        "https://gitee.com/cloud-aios/awesome-rust",
+        "https://gitee.com/gitsharp/awesome-rust",
+        "https://gitee.com/jiahiahia/xgoduck_runtime_arduino",
+        "https://gitee.com/water_source/CherryUSB",
+        "https://gitee.com/qianchilang/cua",
+        "https://gitee.com/gpustack/llama-box",
+        "https://gitee.com/Luanxue1999/example-application",
+        "https://gitee.com/fwatch/example-application",
+        "https://gitee.com/luoyun1989/example-application",
+        "https://gitee.com/Japhy/example-application",
+        "https://gitee.com/zephyrproject/example-application",
+        "https://gitee.com/holomatic/example-application",
+        "https://gitee.com/mirrors_zephyrproject-rtos/oss-eu-2022-zephyr-app",
+        "https://gitee.com/xianii/sdk-mcuboot"
+      ]
+    }
+  ],
+  "complete_api_trees": [
+    {
+      "receipt": "rec-jx3-fixed-tree.json",
+      "revision": "6c8baddd29e0c1f4fe7998c57116fa99fc89ef1b",
+      "entries": 26164,
+      "truncated": false,
+      "sha256": "213c2df025c18485344ec8eb63967ef9a584b97bb000393d90f6bf83ef74b3be"
+    },
+    {
+      "receipt": "ats3085e-fixed-tree.json",
+      "revision": "37bfcac1fa7a38026460099be747efa3abacf6a9",
+      "entries": 14233,
+      "truncated": false,
+      "sha256": "4bfbfee298a48de28fb4509b3c86447f3f7e40a760ddb7adcb76c96a66ea13fc"
+    }
+  ],
+  "rec_jx3_clone": {
+    "head": "6c8baddd29e0c1f4fe7998c57116fa99fc89ef1b",
+    "tracked_files": 22768,
+    "tracked_changes": false,
+    "host": "Ubuntu",
+    "transport": "anonymous git HTTPS HTTP/1.1"
+  },
+  "network_limitations": [
+    "Two Mac git clone attempts ended early EOF; not repeated",
+    "Public API returned403 Rate Limit Exceeded; requests stopped",
+    "Ubuntu normal public git clone completed"
+  ],
+  "gitcode": {
+    "query": "ATS3085",
+    "kind": "repository",
+    "displayed_results": 0,
+    "url": "https://gitcode.com/search?keyword=ATS3085&type=repo&q=ATS3085",
+    "claim_boundary": "Current query UI only; not code coverage"
+  }
+}
