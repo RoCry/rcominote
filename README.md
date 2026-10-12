@@ -153,3 +153,5 @@ uv run --locked tools/build_sdk.py \
 [USB_COPY设置](docs/usb-copy-setting.md)：实际0x13只在handler中更新配置并flush；ACK不携带flush失败，状态位不是USB枚举证明。连接事件与实际USB后端仍待核对。
 
 [实际CDC配置](docs/usb-cdc-config.md)：10d6:b00a、CDC控制/数据interface与FS/HS端点，已模拟验证初始化注册顺序；不是实机枚举、ADFU或NOR导出证明。
+
+[CDC启动与测试协议](docs/usb-cdc-startup.md)：测试标志→事件门→CDC线程，等待DTR后处理自定义命令；已确认部分命令写TEST_ITEM，不能作为只读shell直接探测。
