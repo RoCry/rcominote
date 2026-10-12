@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-12",
+  "scope": "Primary product-family sources, not owned-device silicon verification",
+  "datasheets": [
+    {
+      "source_url": "https://www.actions-semi.com/index.php?c=download&id=2510",
+      "acquired_url": "http://www.actions-semi.com/index.php?c=download&id=2510",
+      "sha256": "ab606883746b8905635975f556c4642a6e6ddb11b5b3a20b5f92ba1df1bc20af",
+      "bytes": 9305251,
+      "pages": 1,
+      "pdf_metadata_year": 2022,
+      "review": "Entire rendered pages visually inspected; PDF metadata year is not guaranteed publication date",
+      "ats3085l": {
+        "mcu": "M4F 128 MHz",
+        "dsp": "192 MHz",
+        "sram": "481 KB",
+        "psram": "4 MB",
+        "nor": "external/not integrated",
+        "package": "QFN68 7x7 mm"
+      }
+    },
+    {
+      "source_url": "https://www.actions-semi.com/index.php?c=download&id=2972",
+      "acquired_url": "http://www.actions-semi.com/index.php?c=download&id=2972",
+      "sha256": "fab9960c822e0e8d339b1bea8ff9cc8aa76378838e020b9f2eab94ece3f0d9b8",
+      "bytes": 1415922,
+      "pages": 2,
+      "pdf_metadata_year": 2024,
+      "review": "Entire rendered pages visually inspected; PDF metadata year is not guaranteed publication date",
+      "ats3085l": {
+        "mcu": "M4F 128 MHz",
+        "dsp": "192 MHz",
+        "sram": "481 KB",
+        "psram": "4 MB",
+        "nor": "external/not integrated",
+        "package": "QFN68 7x7 mm"
+      }
+    }
+  ],
+  "devkit": {
+    "url": "http://www.cubietech.com/product-detail/cubiedvb-ats3085/",
+    "html_sha256": "0aa029192609907a0669f85acfd34d7fa1d0123c188fb42a32c3e1496b21a930",
+    "html_bytes": 33292,
+    "download_link_present_in_development_section": false,
+    "conflicts": [
+      "prose says SPI NAND; feature list says 32 Mbit SPI NOR",
+      "DSP 128 MHz differs from Actions brochures DSP 192 MHz"
+    ],
+    "board_image": "http://www.cubietech.com/wp-content/uploads/CubieDVB-ATS3085/ATS3085L_DVB_V1.jpg"
+  },
+  "acquisition_notes": [
+    "localwebrs visit returned binary PDF as text; do not repeat this output path",
+    "HTTPS curl failed TLS; same HTTP download URLs returned parseable complete PDFs",
+    "Original documents/images retained locally, not redistributed in repository"
+  ]
+}

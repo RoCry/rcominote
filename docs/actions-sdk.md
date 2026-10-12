@@ -5,6 +5,8 @@
 本文把原 rlcdv 调研中与本设备相关的线索重新核对到公开源码；阅读本文不需要 rlcdv。
 
 **结论：已有可用的 Actions 308x 开发入口，但尚不能挑一个参考板固件直接刷 CoMi。**
+
+后续实机板名为`ats3085l_dvb_watch_ext_nor_max`；[原厂PDF](ats3085l-primary-sources.md)把ATS3085L列为M4F，与本SDK LEOPARD的M33配置不同。以下参考SDK事实不等于本机BSP；优先匹配L型号，不能沿用ATS3089构建目标。
 阻塞点是实际 SoC/板级连接、原厂镜像与分区、启动签名策略、可恢复的下载入口。
 尤其需要修正交接中的两处过度推断：AOTA 容器只有 CRC 不代表启动链无签名；log service UUID 存在不代表本机开放了 shell。
 

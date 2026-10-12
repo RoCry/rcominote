@@ -9,7 +9,7 @@
 | 问题 | 已知与边界 |
 |---|---|
 | 设备 | 自有 `C261CF0430`，广播 `CoMi Note 2F01`，固件 `1.0.4`；包装样本型号 `SY-N2A3F-5H2` 尚需和实机底标核对 |
-| 平台 | GATT 与 Actions（炬芯）SDK 的日志服务匹配，固定 PREPARE/ACK 也已实测相容；具体 SoC、板号仍未知 |
+| 平台 | GATT 与 Actions（炬芯）SDK 的日志服务匹配，固定 PREPARE/ACK 也已实测相容；两次读得固件板名`ats3085l_dvb_watch_ext_nor_max`；[原厂L型号为M4F](docs/ats3085l-primary-sources.md)，实体SoC/板级接线仍待确认 |
 | 数据通路 | Boyi BLE 协议已验证，状态/列表/下载不需绑定；既往实测录音为 16 kHz 单声道、32 kbps MP3 |
 | 实时音频 | e5e3短录音采集与同一离线MP3逐字节一致；`comi realtime`可有界采集，`--record`显式创建录音；共享CCC状态要求连接期间保留订阅。[证据](docs/realtime-live.md) |
 | 新鲜实机证据 | 本轮重新枚举 GATT、读取状态；MTU 247，4 个服务，普通模式未见 Actions OTA UUID，`usb_mode=true` |
@@ -18,7 +18,7 @@
 | 配置读回 | `dbg nvram BT_LE_NAME` 已返回14字节实机内容；已取得 NOR offset0 的512 B双覆盖、DSP目录及完整110148 B录音DSP，尚无整片备份 |
 | 映射字节读回 | 已取得927632 B完整系统映射镜像并通过头/正文checksum，已追到exFAT→SD磁盘→sd后端→MMC_1；实际驱动状态支持SD协议；另定位ready的spi_flash对象，缓存ID匹配Zbit 4 MiB系列，驱动配置32 MiB不代表物理容量；已取得CRC通过的744 B缓存ACPT表、18项配置覆盖4 MiB；尚无完整固件/物理分区备份 |
 | 自定义固件 | Actions 有构建、OTA、ADFU 等参考代码，也有签名/安全启动配置；CoMi 是否接受自签/未签名镜像尚未知 |
-| Linux 构建 | Ubuntu 上参考板 hello_world 已生成 ELF/BIN/HEX；SDK 无源码补丁，构建后 tracked 文件干净；尚不是 CoMi 固件 |
+| Linux 构建 | Ubuntu 上参考板 hello_world 已生成 ELF/BIN/HEX；SDK 无源码补丁，构建后 tracked 文件干净；尚不是 CoMi 固件；M33参考构建与原厂L型号M4F不同 |
 
 最新：[完整录音DSP读回与216块复验](docs/record-dsp-export.md)与[SDFS校验规则](docs/sdfs-checksum.md)；[完整录音DSP头与bank表](docs/record-dsp-header.md)；[同连接 NOR 双读与录音 DSP 头](docs/nor-warm-capture.md)：512 B实测21.762 s，完整双覆盖，与独立冷连接结果一致。
 

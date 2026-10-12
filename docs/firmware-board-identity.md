@@ -69,3 +69,5 @@ silicon, USB ROM identity, compatible helper, full backup and restore remain
 unverified. [Public helper initialization audit](helper-nor-initialization.md)
 shows why even an apparently read-only helper workflow needs compatibility and
 initialization evidence first.
+
+Follow-up [manufacturer PDFs and reference comparison](ats3085l-primary-sources.md) identify ATS3085L as M4F; the public LEOPARD/M33 build is not a matching default. This still does not replace an owned-device core measurement.
