@@ -1,0 +1,1950 @@
+{
+  "scope": "public helper NOR initialization/read side-effect boundaries; not CoMi execution or compatibility",
+  "sha256": "470827c527a7111cebeb74e60dd32c007390df34453bce519998963db3ad5953",
+  "size": 56108,
+  "configured_load_base": "0x2ff70000",
+  "regions": [
+    {
+      "name": "system storage constructor selection",
+      "file_start": "0x2424",
+      "file_end_exclusive": "0x2458",
+      "bytes": "10b5044601460b4800f090fe1cb9bde8104001f03dbd022c03d1bde8104001f0e5ba012c03d1bde8104000f08dbd002010bd00bf",
+      "sha256": "8505dad9035efbaeea8ad4a447c34dde682458817a2103fa1b423ad6473a0efa",
+      "instructions": [
+        {
+          "at": "0x2ff72424",
+          "asm": "push {r4, lr}"
+        },
+        {
+          "at": "0x2ff72426",
+          "asm": "mov r4, r0"
+        },
+        {
+          "at": "0x2ff72428",
+          "asm": "mov r1, r0"
+        },
+        {
+          "at": "0x2ff7242a",
+          "asm": "ldr r0, [pc, #0x2c]"
+        },
+        {
+          "at": "0x2ff7242c",
+          "asm": "bl #0x2ff73150"
+        },
+        {
+          "at": "0x2ff72430",
+          "asm": "cbnz r4, #0x2ff7243a"
+        },
+        {
+          "at": "0x2ff72432",
+          "asm": "pop.w {r4, lr}"
+        },
+        {
+          "at": "0x2ff72436",
+          "asm": "b.w #0x2ff73eb4"
+        },
+        {
+          "at": "0x2ff7243a",
+          "asm": "cmp r4, #2"
+        },
+        {
+          "at": "0x2ff7243c",
+          "asm": "bne #0x2ff72446"
+        },
+        {
+          "at": "0x2ff7243e",
+          "asm": "pop.w {r4, lr}"
+        },
+        {
+          "at": "0x2ff72442",
+          "asm": "b.w #0x2ff73a10"
+        },
+        {
+          "at": "0x2ff72446",
+          "asm": "cmp r4, #1"
+        },
+        {
+          "at": "0x2ff72448",
+          "asm": "bne #0x2ff72452"
+        },
+        {
+          "at": "0x2ff7244a",
+          "asm": "pop.w {r4, lr}"
+        },
+        {
+          "at": "0x2ff7244e",
+          "asm": "b.w #0x2ff72f6c"
+        },
+        {
+          "at": "0x2ff72452",
+          "asm": "movs r0, #0"
+        },
+        {
+          "at": "0x2ff72454",
+          "asm": "pop {r4, pc}"
+        },
+        {
+          "at": "0x2ff72456",
+          "asm": "nop "
+        }
+      ],
+      "literals": [
+        {
+          "at": "0x2ff7242a",
+          "address": "0x2ff72458",
+          "value": "0x2ff70289"
+        }
+      ]
+    },
+    {
+      "name": "complete is selector/init/postinit",
+      "file_start": "0x48ac",
+      "file_end_exclusive": "0x490c",
+      "bytes": "70b5174c4688236833b11648fef74afc206803689b699847134bf5b21d70aeb93046fdf7a9fd20602068294603681b68984700280edb20680021036800245b6998472046fff732ff204670bd2846fdf7affde8e70548fef725fc0124f1e700bf",
+      "sha256": "7beea69a83f536ab9c02797527c0d85bd7ddb4bda67983bc91f33b19a34d0888",
+      "instructions": [
+        {
+          "at": "0x2ff748ac",
+          "asm": "push {r4, r5, r6, lr}"
+        },
+        {
+          "at": "0x2ff748ae",
+          "asm": "ldr r4, [pc, #0x5c]"
+        },
+        {
+          "at": "0x2ff748b0",
+          "asm": "ldrh r6, [r0, #2]"
+        },
+        {
+          "at": "0x2ff748b2",
+          "asm": "ldr r3, [r4]"
+        },
+        {
+          "at": "0x2ff748b4",
+          "asm": "cbz r3, #0x2ff748c4"
+        },
+        {
+          "at": "0x2ff748b6",
+          "asm": "ldr r0, [pc, #0x58]"
+        },
+        {
+          "at": "0x2ff748b8",
+          "asm": "bl #0x2ff73150"
+        },
+        {
+          "at": "0x2ff748bc",
+          "asm": "ldr r0, [r4]"
+        },
+        {
+          "at": "0x2ff748be",
+          "asm": "ldr r3, [r0]"
+        },
+        {
+          "at": "0x2ff748c0",
+          "asm": "ldr r3, [r3, #0x18]"
+        },
+        {
+          "at": "0x2ff748c2",
+          "asm": "blx r3"
+        },
+        {
+          "at": "0x2ff748c4",
+          "asm": "ldr r3, [pc, #0x4c]"
+        },
+        {
+          "at": "0x2ff748c6",
+          "asm": "uxtb r5, r6"
+        },
+        {
+          "at": "0x2ff748c8",
+          "asm": "strb r5, [r3]"
+        },
+        {
+          "at": "0x2ff748ca",
+          "asm": "cbnz r6, #0x2ff748f8"
+        },
+        {
+          "at": "0x2ff748cc",
+          "asm": "mov r0, r6"
+        },
+        {
+          "at": "0x2ff748ce",
+          "asm": "bl #0x2ff72424"
+        },
+        {
+          "at": "0x2ff748d2",
+          "asm": "str r0, [r4]"
+        },
+        {
+          "at": "0x2ff748d4",
+          "asm": "ldr r0, [r4]"
+        },
+        {
+          "at": "0x2ff748d6",
+          "asm": "mov r1, r5"
+        },
+        {
+          "at": "0x2ff748d8",
+          "asm": "ldr r3, [r0]"
+        },
+        {
+          "at": "0x2ff748da",
+          "asm": "ldr r3, [r3]"
+        },
+        {
+          "at": "0x2ff748dc",
+          "asm": "blx r3"
+        },
+        {
+          "at": "0x2ff748de",
+          "asm": "cmp r0, #0"
+        },
+        {
+          "at": "0x2ff748e0",
+          "asm": "blt #0x2ff74900"
+        },
+        {
+          "at": "0x2ff748e2",
+          "asm": "ldr r0, [r4]"
+        },
+        {
+          "at": "0x2ff748e4",
+          "asm": "movs r1, #0"
+        },
+        {
+          "at": "0x2ff748e6",
+          "asm": "ldr r3, [r0]"
+        },
+        {
+          "at": "0x2ff748e8",
+          "asm": "movs r4, #0"
+        },
+        {
+          "at": "0x2ff748ea",
+          "asm": "ldr r3, [r3, #0x14]"
+        },
+        {
+          "at": "0x2ff748ec",
+          "asm": "blx r3"
+        },
+        {
+          "at": "0x2ff748ee",
+          "asm": "mov r0, r4"
+        },
+        {
+          "at": "0x2ff748f0",
+          "asm": "bl #0x2ff74758"
+        },
+        {
+          "at": "0x2ff748f4",
+          "asm": "mov r0, r4"
+        },
+        {
+          "at": "0x2ff748f6",
+          "asm": "pop {r4, r5, r6, pc}"
+        },
+        {
+          "at": "0x2ff748f8",
+          "asm": "mov r0, r5"
+        },
+        {
+          "at": "0x2ff748fa",
+          "asm": "bl #0x2ff7245c"
+        },
+        {
+          "at": "0x2ff748fe",
+          "asm": "b #0x2ff748d2"
+        },
+        {
+          "at": "0x2ff74900",
+          "asm": "ldr r0, [pc, #0x14]"
+        },
+        {
+          "at": "0x2ff74902",
+          "asm": "bl #0x2ff73150"
+        },
+        {
+          "at": "0x2ff74906",
+          "asm": "movs r4, #1"
+        },
+        {
+          "at": "0x2ff74908",
+          "asm": "b #0x2ff748ee"
+        },
+        {
+          "at": "0x2ff7490a",
+          "asm": "nop "
+        }
+      ],
+      "literals": [
+        {
+          "at": "0x2ff748ae",
+          "address": "0x2ff7490c",
+          "value": "0x2ff7e0a8"
+        },
+        {
+          "at": "0x2ff748b6",
+          "address": "0x2ff74910",
+          "value": "0x2ff70c8c"
+        },
+        {
+          "at": "0x2ff748c4",
+          "address": "0x2ff74914",
+          "value": "0x2ff820ac"
+        },
+        {
+          "at": "0x2ff74900",
+          "address": "0x2ff74918",
+          "value": "0x2ff70ca6"
+        }
+      ]
+    },
+    {
+      "name": "NOR constructor loads ROM API",
+      "file_start": "0x3eb4",
+      "file_end_exclusive": "0x3ecc",
+      "bytes": "4ff4c473da69044b04481a60044b0360044b4360704700bf",
+      "sha256": "b221c20d509fad861f454e66befe5d6423b5c3374953b3359b490b6a4a169856",
+      "instructions": [
+        {
+          "at": "0x2ff73eb4",
+          "asm": "mov.w r3, #0x188"
+        },
+        {
+          "at": "0x2ff73eb8",
+          "asm": "ldr r2, [r3, #0x1c]"
+        },
+        {
+          "at": "0x2ff73eba",
+          "asm": "ldr r3, [pc, #0x10]"
+        },
+        {
+          "at": "0x2ff73ebc",
+          "asm": "ldr r0, [pc, #0x10]"
+        },
+        {
+          "at": "0x2ff73ebe",
+          "asm": "str r2, [r3]"
+        },
+        {
+          "at": "0x2ff73ec0",
+          "asm": "ldr r3, [pc, #0x10]"
+        },
+        {
+          "at": "0x2ff73ec2",
+          "asm": "str r3, [r0]"
+        },
+        {
+          "at": "0x2ff73ec4",
+          "asm": "ldr r3, [pc, #0x10]"
+        },
+        {
+          "at": "0x2ff73ec6",
+          "asm": "str r3, [r0, #4]"
+        },
+        {
+          "at": "0x2ff73ec8",
+          "asm": "bx lr"
+        },
+        {
+          "at": "0x2ff73eca",
+          "asm": "nop "
+        }
+      ],
+      "literals": [
+        {
+          "at": "0x2ff73eba",
+          "address": "0x2ff73ecc",
+          "value": "0x2ff7e084"
+        },
+        {
+          "at": "0x2ff73ebc",
+          "address": "0x2ff73ed0",
+          "value": "0x2ff7de78"
+        },
+        {
+          "at": "0x2ff73ec0",
+          "address": "0x2ff73ed4",
+          "value": "0x2ff70958"
+        },
+        {
+          "at": "0x2ff73ec4",
+          "address": "0x2ff73ed8",
+          "value": "0x2ff7daec"
+        }
+      ]
+    },
+    {
+      "name": "complete NOR initializer before literal pool",
+      "file_start": "0x3c08",
+      "file_end_exclusive": "0x3d30",
+      "bytes": "2de9f3470d4644684748fff79dfa4748fff79afa01214020fff7e2f901214020fff7ecf901212046fff7bbff002d69d14ff4c0533e4a294613603e485360fff783fa3d4d20462b683c4e1b6898472b6807469b6820469847030e7060c0f307220093c1b2c0f307433548fff76dfab379182b0cd93348fff767fa2b6804219b6a20469847304a136843f48033136022682d4b9a4232d14ff00108b1792b4b08fa01f12b481960fff74ffa2046fff786ff2b68dff8aca09b689847064620f07f4949462448f6b2fff73ffaff2e28d03eb34fea194108fa01f11f48caf80010fff733fadaf80030b3f1807f04d92b68042120469b6a98472046fff772ff384602b0bde8f087032d9cd14ff4c053134a1360536043f224039360d3601361536190e70023caf80030e6e7",
+      "sha256": "e766b6e7ee8f461666e0408cf9292a52f1d7084f2095a38659037f9ad0adb835",
+      "instructions": [
+        {
+          "at": "0x2ff73c08",
+          "asm": "push.w {r0, r1, r4, r5, r6, r7, r8, sb, sl, lr}"
+        },
+        {
+          "at": "0x2ff73c0c",
+          "asm": "mov r5, r1"
+        },
+        {
+          "at": "0x2ff73c0e",
+          "asm": "ldr r4, [r0, #4]"
+        },
+        {
+          "at": "0x2ff73c10",
+          "asm": "ldr r0, [pc, #0x11c]"
+        },
+        {
+          "at": "0x2ff73c12",
+          "asm": "bl #0x2ff73150"
+        },
+        {
+          "at": "0x2ff73c16",
+          "asm": "ldr r0, [pc, #0x11c]"
+        },
+        {
+          "at": "0x2ff73c18",
+          "asm": "bl #0x2ff73150"
+        },
+        {
+          "at": "0x2ff73c1c",
+          "asm": "movs r1, #1"
+        },
+        {
+          "at": "0x2ff73c1e",
+          "asm": "movs r0, #0x40"
+        },
+        {
+          "at": "0x2ff73c20",
+          "asm": "bl #0x2ff72fe8"
+        },
+        {
+          "at": "0x2ff73c24",
+          "asm": "movs r1, #1"
+        },
+        {
+          "at": "0x2ff73c26",
+          "asm": "movs r0, #0x40"
+        },
+        {
+          "at": "0x2ff73c28",
+          "asm": "bl #0x2ff73004"
+        },
+        {
+          "at": "0x2ff73c2c",
+          "asm": "movs r1, #1"
+        },
+        {
+          "at": "0x2ff73c2e",
+          "asm": "mov r0, r4"
+        },
+        {
+          "at": "0x2ff73c30",
+          "asm": "bl #0x2ff73baa"
+        },
+        {
+          "at": "0x2ff73c34",
+          "asm": "cmp r5, #0"
+        },
+        {
+          "at": "0x2ff73c36",
+          "asm": "bne #0x2ff73d0c"
+        },
+        {
+          "at": "0x2ff73c38",
+          "asm": "mov.w r3, #0x1800"
+        },
+        {
+          "at": "0x2ff73c3c",
+          "asm": "ldr r2, [pc, #0xf8]"
+        },
+        {
+          "at": "0x2ff73c3e",
+          "asm": "mov r1, r5"
+        },
+        {
+          "at": "0x2ff73c40",
+          "asm": "str r3, [r2]"
+        },
+        {
+          "at": "0x2ff73c42",
+          "asm": "ldr r0, [pc, #0xf8]"
+        },
+        {
+          "at": "0x2ff73c44",
+          "asm": "str r3, [r2, #4]"
+        },
+        {
+          "at": "0x2ff73c46",
+          "asm": "bl #0x2ff73150"
+        },
+        {
+          "at": "0x2ff73c4a",
+          "asm": "ldr r5, [pc, #0xf4]"
+        },
+        {
+          "at": "0x2ff73c4c",
+          "asm": "mov r0, r4"
+        },
+        {
+          "at": "0x2ff73c4e",
+          "asm": "ldr r3, [r5]"
+        },
+        {
+          "at": "0x2ff73c50",
+          "asm": "ldr r6, [pc, #0xf0]"
+        },
+        {
+          "at": "0x2ff73c52",
+          "asm": "ldr r3, [r3]"
+        },
+        {
+          "at": "0x2ff73c54",
+          "asm": "blx r3"
+        },
+        {
+          "at": "0x2ff73c56",
+          "asm": "ldr r3, [r5]"
+        },
+        {
+          "at": "0x2ff73c58",
+          "asm": "mov r7, r0"
+        },
+        {
+          "at": "0x2ff73c5a",
+          "asm": "ldr r3, [r3, #8]"
+        },
+        {
+          "at": "0x2ff73c5c",
+          "asm": "mov r0, r4"
+        },
+        {
+          "at": "0x2ff73c5e",
+          "asm": "blx r3"
+        },
+        {
+          "at": "0x2ff73c60",
+          "asm": "lsrs r3, r0, #0x18"
+        },
+        {
+          "at": "0x2ff73c62",
+          "asm": "str r0, [r6, #4]"
+        },
+        {
+          "at": "0x2ff73c64",
+          "asm": "ubfx r2, r0, #8, #8"
+        },
+        {
+          "at": "0x2ff73c68",
+          "asm": "str r3, [sp]"
+        },
+        {
+          "at": "0x2ff73c6a",
+          "asm": "uxtb r1, r0"
+        },
+        {
+          "at": "0x2ff73c6c",
+          "asm": "ubfx r3, r0, #0x10, #8"
+        },
+        {
+          "at": "0x2ff73c70",
+          "asm": "ldr r0, [pc, #0xd4]"
+        },
+        {
+          "at": "0x2ff73c72",
+          "asm": "bl #0x2ff73150"
+        },
+        {
+          "at": "0x2ff73c76",
+          "asm": "ldrb r3, [r6, #6]"
+        },
+        {
+          "at": "0x2ff73c78",
+          "asm": "cmp r3, #0x18"
+        },
+        {
+          "at": "0x2ff73c7a",
+          "asm": "bls #0x2ff73c96"
+        },
+        {
+          "at": "0x2ff73c7c",
+          "asm": "ldr r0, [pc, #0xcc]"
+        },
+        {
+          "at": "0x2ff73c7e",
+          "asm": "bl #0x2ff73150"
+        },
+        {
+          "at": "0x2ff73c82",
+          "asm": "ldr r3, [r5]"
+        },
+        {
+          "at": "0x2ff73c84",
+          "asm": "movs r1, #4"
+        },
+        {
+          "at": "0x2ff73c86",
+          "asm": "ldr r3, [r3, #0x28]"
+        },
+        {
+          "at": "0x2ff73c88",
+          "asm": "mov r0, r4"
+        },
+        {
+          "at": "0x2ff73c8a",
+          "asm": "blx r3"
+        },
+        {
+          "at": "0x2ff73c8c",
+          "asm": "ldr r2, [pc, #0xc0]"
+        },
+        {
+          "at": "0x2ff73c8e",
+          "asm": "ldr r3, [r2]"
+        },
+        {
+          "at": "0x2ff73c90",
+          "asm": "orr r3, r3, #0x10000"
+        },
+        {
+          "at": "0x2ff73c94",
+          "asm": "str r3, [r2]"
+        },
+        {
+          "at": "0x2ff73c96",
+          "asm": "ldr r2, [r4]"
+        },
+        {
+          "at": "0x2ff73c98",
+          "asm": "ldr r3, [pc, #0xb4]"
+        },
+        {
+          "at": "0x2ff73c9a",
+          "asm": "cmp r2, r3"
+        },
+        {
+          "at": "0x2ff73c9c",
+          "asm": "bne #0x2ff73d04"
+        },
+        {
+          "at": "0x2ff73c9e",
+          "asm": "mov.w r8, #1"
+        },
+        {
+          "at": "0x2ff73ca2",
+          "asm": "ldrb r1, [r6, #6]"
+        },
+        {
+          "at": "0x2ff73ca4",
+          "asm": "ldr r3, [pc, #0xac]"
+        },
+        {
+          "at": "0x2ff73ca6",
+          "asm": "lsl.w r1, r8, r1"
+        },
+        {
+          "at": "0x2ff73caa",
+          "asm": "ldr r0, [pc, #0xac]"
+        },
+        {
+          "at": "0x2ff73cac",
+          "asm": "str r1, [r3]"
+        },
+        {
+          "at": "0x2ff73cae",
+          "asm": "bl #0x2ff73150"
+        },
+        {
+          "at": "0x2ff73cb2",
+          "asm": "mov r0, r4"
+        },
+        {
+          "at": "0x2ff73cb4",
+          "asm": "bl #0x2ff73bc4"
+        },
+        {
+          "at": "0x2ff73cb8",
+          "asm": "ldr r3, [r5]"
+        },
+        {
+          "at": "0x2ff73cba",
+          "asm": "ldr.w sl, [pc, #0xac]"
+        },
+        {
+          "at": "0x2ff73cbe",
+          "asm": "ldr r3, [r3, #8]"
+        },
+        {
+          "at": "0x2ff73cc0",
+          "asm": "blx r3"
+        },
+        {
+          "at": "0x2ff73cc2",
+          "asm": "mov r6, r0"
+        },
+        {
+          "at": "0x2ff73cc4",
+          "asm": "bic sb, r0, #0xff000000"
+        },
+        {
+          "at": "0x2ff73cc8",
+          "asm": "mov r1, sb"
+        },
+        {
+          "at": "0x2ff73cca",
+          "asm": "ldr r0, [pc, #0x90]"
+        },
+        {
+          "at": "0x2ff73ccc",
+          "asm": "uxtb r6, r6"
+        },
+        {
+          "at": "0x2ff73cce",
+          "asm": "bl #0x2ff73150"
+        },
+        {
+          "at": "0x2ff73cd2",
+          "asm": "cmp r6, #0xff"
+        },
+        {
+          "at": "0x2ff73cd4",
+          "asm": "beq #0x2ff73d28"
+        },
+        {
+          "at": "0x2ff73cd6",
+          "asm": "cbz r6, #0x2ff73d28"
+        },
+        {
+          "at": "0x2ff73cd8",
+          "asm": "lsr.w r1, sb, #0x10"
+        },
+        {
+          "at": "0x2ff73cdc",
+          "asm": "lsl.w r1, r8, r1"
+        },
+        {
+          "at": "0x2ff73ce0",
+          "asm": "ldr r0, [pc, #0x7c]"
+        },
+        {
+          "at": "0x2ff73ce2",
+          "asm": "str.w r1, [sl]"
+        },
+        {
+          "at": "0x2ff73ce6",
+          "asm": "bl #0x2ff73150"
+        },
+        {
+          "at": "0x2ff73cea",
+          "asm": "ldr.w r3, [sl]"
+        },
+        {
+          "at": "0x2ff73cee",
+          "asm": "cmp.w r3, #0x1000000"
+        },
+        {
+          "at": "0x2ff73cf2",
+          "asm": "bls #0x2ff73cfe"
+        },
+        {
+          "at": "0x2ff73cf4",
+          "asm": "ldr r3, [r5]"
+        },
+        {
+          "at": "0x2ff73cf6",
+          "asm": "movs r1, #4"
+        },
+        {
+          "at": "0x2ff73cf8",
+          "asm": "mov r0, r4"
+        },
+        {
+          "at": "0x2ff73cfa",
+          "asm": "ldr r3, [r3, #0x28]"
+        },
+        {
+          "at": "0x2ff73cfc",
+          "asm": "blx r3"
+        },
+        {
+          "at": "0x2ff73cfe",
+          "asm": "mov r0, r4"
+        },
+        {
+          "at": "0x2ff73d00",
+          "asm": "bl #0x2ff73be8"
+        },
+        {
+          "at": "0x2ff73d04",
+          "asm": "mov r0, r7"
+        },
+        {
+          "at": "0x2ff73d06",
+          "asm": "add sp, #8"
+        },
+        {
+          "at": "0x2ff73d08",
+          "asm": "pop.w {r4, r5, r6, r7, r8, sb, sl, pc}"
+        },
+        {
+          "at": "0x2ff73d0c",
+          "asm": "cmp r5, #3"
+        },
+        {
+          "at": "0x2ff73d0e",
+          "asm": "bne #0x2ff73c4a"
+        },
+        {
+          "at": "0x2ff73d10",
+          "asm": "mov.w r3, #0x1800"
+        },
+        {
+          "at": "0x2ff73d14",
+          "asm": "ldr r2, [pc, #0x4c]"
+        },
+        {
+          "at": "0x2ff73d16",
+          "asm": "str r3, [r2]"
+        },
+        {
+          "at": "0x2ff73d18",
+          "asm": "str r3, [r2, #4]"
+        },
+        {
+          "at": "0x2ff73d1a",
+          "asm": "movw r3, #0x3024"
+        },
+        {
+          "at": "0x2ff73d1e",
+          "asm": "str r3, [r2, #8]"
+        },
+        {
+          "at": "0x2ff73d20",
+          "asm": "str r3, [r2, #0xc]"
+        },
+        {
+          "at": "0x2ff73d22",
+          "asm": "str r3, [r2, #0x10]"
+        },
+        {
+          "at": "0x2ff73d24",
+          "asm": "str r3, [r2, #0x14]"
+        },
+        {
+          "at": "0x2ff73d26",
+          "asm": "b #0x2ff73c4a"
+        },
+        {
+          "at": "0x2ff73d28",
+          "asm": "movs r3, #0"
+        },
+        {
+          "at": "0x2ff73d2a",
+          "asm": "str.w r3, [sl]"
+        },
+        {
+          "at": "0x2ff73d2e",
+          "asm": "b #0x2ff73cfe"
+        }
+      ],
+      "literals": [
+        {
+          "at": "0x2ff73c10",
+          "address": "0x2ff73d30",
+          "value": "0x2ff70898"
+        },
+        {
+          "at": "0x2ff73c16",
+          "address": "0x2ff73d34",
+          "value": "0x2ff708c1"
+        },
+        {
+          "at": "0x2ff73c3c",
+          "address": "0x2ff73d38",
+          "value": "0x40068018"
+        },
+        {
+          "at": "0x2ff73c42",
+          "address": "0x2ff73d3c",
+          "value": "0x2ff708cd"
+        },
+        {
+          "at": "0x2ff73c4a",
+          "address": "0x2ff73d40",
+          "value": "0x2ff7e084"
+        },
+        {
+          "at": "0x2ff73c50",
+          "address": "0x2ff73d44",
+          "value": "0x2ff7de84"
+        },
+        {
+          "at": "0x2ff73c70",
+          "address": "0x2ff73d48",
+          "value": "0x2ff708de"
+        },
+        {
+          "at": "0x2ff73c7c",
+          "address": "0x2ff73d4c",
+          "value": "0x2ff70909"
+        },
+        {
+          "at": "0x2ff73c8c",
+          "address": "0x2ff73d50",
+          "value": "0x40028000"
+        },
+        {
+          "at": "0x2ff73c98",
+          "address": "0x2ff73d50",
+          "value": "0x40028000"
+        },
+        {
+          "at": "0x2ff73ca4",
+          "address": "0x2ff73d54",
+          "value": "0x2ff7de64"
+        },
+        {
+          "at": "0x2ff73caa",
+          "address": "0x2ff73d58",
+          "value": "0x2ff70924"
+        },
+        {
+          "at": "0x2ff73cba",
+          "address": "0x2ff73d68",
+          "value": "0x2ff7de68"
+        },
+        {
+          "at": "0x2ff73cca",
+          "address": "0x2ff73d5c",
+          "value": "0x2ff70934"
+        },
+        {
+          "at": "0x2ff73ce0",
+          "address": "0x2ff73d60",
+          "value": "0x2ff70945"
+        },
+        {
+          "at": "0x2ff73d14",
+          "address": "0x2ff73d64",
+          "value": "0x40068020"
+        }
+      ]
+    },
+    {
+      "name": "GPIO configuration helper",
+      "file_start": "0x2fe8",
+      "file_end_exclusive": "0x3004",
+      "bytes": "00290cbf4ff483534ff4c35300f1805000f5d0308000036070470000",
+      "sha256": "cd22d0d5c787db00b7e4888143970abb992658edcdfc901f5b81fd1acaebb52b",
+      "instructions": [
+        {
+          "at": "0x2ff72fe8",
+          "asm": "cmp r1, #0"
+        },
+        {
+          "at": "0x2ff72fea",
+          "asm": "ite eq"
+        },
+        {
+          "at": "0x2ff72fec",
+          "asm": "moveq.w r3, #0x1060"
+        },
+        {
+          "at": "0x2ff72ff0",
+          "asm": "movne.w r3, #0x1860"
+        },
+        {
+          "at": "0x2ff72ff4",
+          "asm": "add.w r0, r0, #0x10000000"
+        },
+        {
+          "at": "0x2ff72ff8",
+          "asm": "add.w r0, r0, #0x1a000"
+        },
+        {
+          "at": "0x2ff72ffc",
+          "asm": "lsls r0, r0, #2"
+        },
+        {
+          "at": "0x2ff72ffe",
+          "asm": "str r3, [r0]"
+        },
+        {
+          "at": "0x2ff73000",
+          "asm": "bx lr"
+        },
+        {
+          "at": "0x2ff73002",
+          "asm": "movs r0, r0"
+        }
+      ],
+      "literals": []
+    },
+    {
+      "name": "GPIO output helper before literal pool",
+      "file_start": "0x3004",
+      "file_end_exclusive": "0x3024",
+      "bytes": "074b00f01f0203eb501301209b0090401a6811b110431860704722ea0000fae7",
+      "sha256": "789e3d0720090c476c7ae6976e16eb39a2b9d471edc46a0b2cdc89bbe12a1b34",
+      "instructions": [
+        {
+          "at": "0x2ff73004",
+          "asm": "ldr r3, [pc, #0x1c]"
+        },
+        {
+          "at": "0x2ff73006",
+          "asm": "and r2, r0, #0x1f"
+        },
+        {
+          "at": "0x2ff7300a",
+          "asm": "add.w r3, r3, r0, lsr #5"
+        },
+        {
+          "at": "0x2ff7300e",
+          "asm": "movs r0, #1"
+        },
+        {
+          "at": "0x2ff73010",
+          "asm": "lsls r3, r3, #2"
+        },
+        {
+          "at": "0x2ff73012",
+          "asm": "lsls r0, r2"
+        },
+        {
+          "at": "0x2ff73014",
+          "asm": "ldr r2, [r3]"
+        },
+        {
+          "at": "0x2ff73016",
+          "asm": "cbz r1, #0x2ff7301e"
+        },
+        {
+          "at": "0x2ff73018",
+          "asm": "orrs r0, r2"
+        },
+        {
+          "at": "0x2ff7301a",
+          "asm": "str r0, [r3]"
+        },
+        {
+          "at": "0x2ff7301c",
+          "asm": "bx lr"
+        },
+        {
+          "at": "0x2ff7301e",
+          "asm": "bic.w r0, r2, r0"
+        },
+        {
+          "at": "0x2ff73022",
+          "asm": "b #0x2ff7301a"
+        }
+      ],
+      "literals": [
+        {
+          "at": "0x2ff73004",
+          "address": "0x2ff73024",
+          "value": "0x1001a080"
+        }
+      ]
+    },
+    {
+      "name": "secondary chip select callback",
+      "file_start": "0x3baa",
+      "file_end_exclusive": "0x3bc4",
+      "bytes": "08b500394ff0400018bf0121fff725fabde80840012000f0c6b9",
+      "sha256": "ff54ec29c507ec86fffb5b1ebbdd28a6c139f60c7074423fa06b518bdddeef19",
+      "instructions": [
+        {
+          "at": "0x2ff73baa",
+          "asm": "push {r3, lr}"
+        },
+        {
+          "at": "0x2ff73bac",
+          "asm": "subs r1, #0"
+        },
+        {
+          "at": "0x2ff73bae",
+          "asm": "mov.w r0, #0x40"
+        },
+        {
+          "at": "0x2ff73bb2",
+          "asm": "it ne"
+        },
+        {
+          "at": "0x2ff73bb4",
+          "asm": "movne r1, #1"
+        },
+        {
+          "at": "0x2ff73bb6",
+          "asm": "bl #0x2ff73004"
+        },
+        {
+          "at": "0x2ff73bba",
+          "asm": "pop.w {r3, lr}"
+        },
+        {
+          "at": "0x2ff73bbe",
+          "asm": "movs r0, #1"
+        },
+        {
+          "at": "0x2ff73bc0",
+          "asm": "b.w #0x2ff73f50"
+        }
+      ],
+      "literals": []
+    },
+    {
+      "name": "delay helper before literal pool",
+      "file_start": "0x3f50",
+      "file_end_exclusive": "0x3f78",
+      "bytes": "10b5094940010b68db43002800dc10bd0a68d24393422abfc2f101049b1a1b1918441346f1e700bf",
+      "sha256": "8a9174f6b82cf5eebe9784c6711b08c88c4f1339397bc71fd0b7f1aea844069c",
+      "instructions": [
+        {
+          "at": "0x2ff73f50",
+          "asm": "push {r4, lr}"
+        },
+        {
+          "at": "0x2ff73f52",
+          "asm": "ldr r1, [pc, #0x24]"
+        },
+        {
+          "at": "0x2ff73f54",
+          "asm": "lsls r0, r0, #5"
+        },
+        {
+          "at": "0x2ff73f56",
+          "asm": "ldr r3, [r1]"
+        },
+        {
+          "at": "0x2ff73f58",
+          "asm": "mvns r3, r3"
+        },
+        {
+          "at": "0x2ff73f5a",
+          "asm": "cmp r0, #0"
+        },
+        {
+          "at": "0x2ff73f5c",
+          "asm": "bgt #0x2ff73f60"
+        },
+        {
+          "at": "0x2ff73f5e",
+          "asm": "pop {r4, pc}"
+        },
+        {
+          "at": "0x2ff73f60",
+          "asm": "ldr r2, [r1]"
+        },
+        {
+          "at": "0x2ff73f62",
+          "asm": "mvns r2, r2"
+        },
+        {
+          "at": "0x2ff73f64",
+          "asm": "cmp r3, r2"
+        },
+        {
+          "at": "0x2ff73f66",
+          "asm": "itet hs"
+        },
+        {
+          "at": "0x2ff73f68",
+          "asm": "rsbhs.w r4, r2, #1"
+        },
+        {
+          "at": "0x2ff73f6c",
+          "asm": "sublo r3, r3, r2"
+        },
+        {
+          "at": "0x2ff73f6e",
+          "asm": "addhs r3, r3, r4"
+        },
+        {
+          "at": "0x2ff73f70",
+          "asm": "add r0, r3"
+        },
+        {
+          "at": "0x2ff73f72",
+          "asm": "mov r3, r2"
+        },
+        {
+          "at": "0x2ff73f74",
+          "asm": "b #0x2ff73f5a"
+        },
+        {
+          "at": "0x2ff73f76",
+          "asm": "nop "
+        }
+      ],
+      "literals": [
+        {
+          "at": "0x2ff73f52",
+          "address": "0x2ff73f78",
+          "value": "0x4000c108"
+        }
+      ]
+    },
+    {
+      "name": "select secondary chip info flags and callback",
+      "file_start": "0x3bc4",
+      "file_end_exclusive": "0x3be0",
+      "bytes": "064a436a1268b2f1807f8cbf43f0020323f002034362024b43617047",
+      "sha256": "fa91ccdd383b91105368604c2ed96dedbd198490a041dfa4fbca4fa1f312e83a",
+      "instructions": [
+        {
+          "at": "0x2ff73bc4",
+          "asm": "ldr r2, [pc, #0x18]"
+        },
+        {
+          "at": "0x2ff73bc6",
+          "asm": "ldr r3, [r0, #0x24]"
+        },
+        {
+          "at": "0x2ff73bc8",
+          "asm": "ldr r2, [r2]"
+        },
+        {
+          "at": "0x2ff73bca",
+          "asm": "cmp.w r2, #0x1000000"
+        },
+        {
+          "at": "0x2ff73bce",
+          "asm": "ite hi"
+        },
+        {
+          "at": "0x2ff73bd0",
+          "asm": "orrhi r3, r3, #2"
+        },
+        {
+          "at": "0x2ff73bd4",
+          "asm": "bicls r3, r3, #2"
+        },
+        {
+          "at": "0x2ff73bd8",
+          "asm": "str r3, [r0, #0x24]"
+        },
+        {
+          "at": "0x2ff73bda",
+          "asm": "ldr r3, [pc, #8]"
+        },
+        {
+          "at": "0x2ff73bdc",
+          "asm": "str r3, [r0, #0x14]"
+        },
+        {
+          "at": "0x2ff73bde",
+          "asm": "bx lr"
+        }
+      ],
+      "literals": [
+        {
+          "at": "0x2ff73bc4",
+          "address": "0x2ff73be0",
+          "value": "0x2ff7de68"
+        },
+        {
+          "at": "0x2ff73bda",
+          "address": "0x2ff73be4",
+          "value": "0x2ff73bab"
+        }
+      ]
+    },
+    {
+      "name": "restore primary chip info flags and callback",
+      "file_start": "0x3be8",
+      "file_end_exclusive": "0x3c04",
+      "bytes": "064a436a1268b2f1807f8cbf43f0020323f002034362002343617047",
+      "sha256": "0102c0df43861a0c8e3c73fc057d4990b461c60b213c9351b9e0f6a30752d243",
+      "instructions": [
+        {
+          "at": "0x2ff73be8",
+          "asm": "ldr r2, [pc, #0x18]"
+        },
+        {
+          "at": "0x2ff73bea",
+          "asm": "ldr r3, [r0, #0x24]"
+        },
+        {
+          "at": "0x2ff73bec",
+          "asm": "ldr r2, [r2]"
+        },
+        {
+          "at": "0x2ff73bee",
+          "asm": "cmp.w r2, #0x1000000"
+        },
+        {
+          "at": "0x2ff73bf2",
+          "asm": "ite hi"
+        },
+        {
+          "at": "0x2ff73bf4",
+          "asm": "orrhi r3, r3, #2"
+        },
+        {
+          "at": "0x2ff73bf8",
+          "asm": "bicls r3, r3, #2"
+        },
+        {
+          "at": "0x2ff73bfc",
+          "asm": "str r3, [r0, #0x24]"
+        },
+        {
+          "at": "0x2ff73bfe",
+          "asm": "movs r3, #0"
+        },
+        {
+          "at": "0x2ff73c00",
+          "asm": "str r3, [r0, #0x14]"
+        },
+        {
+          "at": "0x2ff73c02",
+          "asm": "bx lr"
+        }
+      ],
+      "literals": [
+        {
+          "at": "0x2ff73be8",
+          "address": "0x2ff73c04",
+          "value": "0x2ff7de64"
+        }
+      ]
+    },
+    {
+      "name": "complete NOR read before literal pool",
+      "file_start": "0x3e48",
+      "file_end_exclusive": "0x3eb0",
+      "bytes": "2de9f84f1d46184b81461e680c468e4217469846d0f804a00cd94b199e4209d2a6eb010b5b46ad1bfff7dafd2544d8f800405f44d8f80010a14212d85046fff79dfe0126641a21462b463a464846fff7c7fd014616b15046fff7a2fe0846bde8f88f0026efe700bf",
+      "sha256": "5aef96e5cebd726f52a7e90c1ff47f40317c96460903a38bafad7babb2422440",
+      "instructions": [
+        {
+          "at": "0x2ff73e48",
+          "asm": "push.w {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}"
+        },
+        {
+          "at": "0x2ff73e4c",
+          "asm": "mov r5, r3"
+        },
+        {
+          "at": "0x2ff73e4e",
+          "asm": "ldr r3, [pc, #0x60]"
+        },
+        {
+          "at": "0x2ff73e50",
+          "asm": "mov sb, r0"
+        },
+        {
+          "at": "0x2ff73e52",
+          "asm": "ldr r6, [r3]"
+        },
+        {
+          "at": "0x2ff73e54",
+          "asm": "mov r4, r1"
+        },
+        {
+          "at": "0x2ff73e56",
+          "asm": "cmp r6, r1"
+        },
+        {
+          "at": "0x2ff73e58",
+          "asm": "mov r7, r2"
+        },
+        {
+          "at": "0x2ff73e5a",
+          "asm": "mov r8, r3"
+        },
+        {
+          "at": "0x2ff73e5c",
+          "asm": "ldr.w sl, [r0, #4]"
+        },
+        {
+          "at": "0x2ff73e60",
+          "asm": "bls #0x2ff73e7c"
+        },
+        {
+          "at": "0x2ff73e62",
+          "asm": "adds r3, r1, r5"
+        },
+        {
+          "at": "0x2ff73e64",
+          "asm": "cmp r6, r3"
+        },
+        {
+          "at": "0x2ff73e66",
+          "asm": "bhs #0x2ff73e7c"
+        },
+        {
+          "at": "0x2ff73e68",
+          "asm": "sub.w fp, r6, r1"
+        },
+        {
+          "at": "0x2ff73e6c",
+          "asm": "mov r3, fp"
+        },
+        {
+          "at": "0x2ff73e6e",
+          "asm": "subs r5, r5, r6"
+        },
+        {
+          "at": "0x2ff73e70",
+          "asm": "bl #0x2ff73a28"
+        },
+        {
+          "at": "0x2ff73e74",
+          "asm": "add r5, r4"
+        },
+        {
+          "at": "0x2ff73e76",
+          "asm": "ldr.w r4, [r8]"
+        },
+        {
+          "at": "0x2ff73e7a",
+          "asm": "add r7, fp"
+        },
+        {
+          "at": "0x2ff73e7c",
+          "asm": "ldr.w r1, [r8]"
+        },
+        {
+          "at": "0x2ff73e80",
+          "asm": "cmp r1, r4"
+        },
+        {
+          "at": "0x2ff73e82",
+          "asm": "bhi #0x2ff73eaa"
+        },
+        {
+          "at": "0x2ff73e84",
+          "asm": "mov r0, sl"
+        },
+        {
+          "at": "0x2ff73e86",
+          "asm": "bl #0x2ff73bc4"
+        },
+        {
+          "at": "0x2ff73e8a",
+          "asm": "movs r6, #1"
+        },
+        {
+          "at": "0x2ff73e8c",
+          "asm": "subs r4, r4, r1"
+        },
+        {
+          "at": "0x2ff73e8e",
+          "asm": "mov r1, r4"
+        },
+        {
+          "at": "0x2ff73e90",
+          "asm": "mov r3, r5"
+        },
+        {
+          "at": "0x2ff73e92",
+          "asm": "mov r2, r7"
+        },
+        {
+          "at": "0x2ff73e94",
+          "asm": "mov r0, sb"
+        },
+        {
+          "at": "0x2ff73e96",
+          "asm": "bl #0x2ff73a28"
+        },
+        {
+          "at": "0x2ff73e9a",
+          "asm": "mov r1, r0"
+        },
+        {
+          "at": "0x2ff73e9c",
+          "asm": "cbz r6, #0x2ff73ea4"
+        },
+        {
+          "at": "0x2ff73e9e",
+          "asm": "mov r0, sl"
+        },
+        {
+          "at": "0x2ff73ea0",
+          "asm": "bl #0x2ff73be8"
+        },
+        {
+          "at": "0x2ff73ea4",
+          "asm": "mov r0, r1"
+        },
+        {
+          "at": "0x2ff73ea6",
+          "asm": "pop.w {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}"
+        },
+        {
+          "at": "0x2ff73eaa",
+          "asm": "movs r6, #0"
+        },
+        {
+          "at": "0x2ff73eac",
+          "asm": "b #0x2ff73e8e"
+        },
+        {
+          "at": "0x2ff73eae",
+          "asm": "nop "
+        }
+      ],
+      "literals": [
+        {
+          "at": "0x2ff73e4e",
+          "address": "0x2ff73eb0",
+          "value": "0x2ff7de64"
+        }
+      ]
+    },
+    {
+      "name": "ROM read wrapper before literal pool",
+      "file_start": "0x3a28",
+      "file_end_exclusive": "0x3a40",
+      "bytes": "30b4054c4068246865690c1eac46b8bf24f0004130bc6047",
+      "sha256": "d222a3679568e4b2f6b6cf58ff9036d41be0754486c582861874367cf87be1bd",
+      "instructions": [
+        {
+          "at": "0x2ff73a28",
+          "asm": "push {r4, r5}"
+        },
+        {
+          "at": "0x2ff73a2a",
+          "asm": "ldr r4, [pc, #0x14]"
+        },
+        {
+          "at": "0x2ff73a2c",
+          "asm": "ldr r0, [r0, #4]"
+        },
+        {
+          "at": "0x2ff73a2e",
+          "asm": "ldr r4, [r4]"
+        },
+        {
+          "at": "0x2ff73a30",
+          "asm": "ldr r5, [r4, #0x14]"
+        },
+        {
+          "at": "0x2ff73a32",
+          "asm": "subs r4, r1, #0"
+        },
+        {
+          "at": "0x2ff73a34",
+          "asm": "mov ip, r5"
+        },
+        {
+          "at": "0x2ff73a36",
+          "asm": "it lt"
+        },
+        {
+          "at": "0x2ff73a38",
+          "asm": "biclt r1, r4, #0x80000000"
+        },
+        {
+          "at": "0x2ff73a3c",
+          "asm": "pop {r4, r5}"
+        },
+        {
+          "at": "0x2ff73a3e",
+          "asm": "bx ip"
+        }
+      ],
+      "literals": [
+        {
+          "at": "0x2ff73a2a",
+          "address": "0x2ff73a40",
+          "value": "0x2ff7e084"
+        }
+      ]
+    },
+    {
+      "name": "postinit no-op",
+      "file_start": "0x3af0",
+      "file_end_exclusive": "0x3af4",
+      "bytes": "00207047",
+      "sha256": "a7ddd513d149ea16fdd4db3f82267f83087aeaddd06b5dde5468adb704205fc4",
+      "instructions": [
+        {
+          "at": "0x2ff73af0",
+          "asm": "movs r0, #0"
+        },
+        {
+          "at": "0x2ff73af2",
+          "asm": "bx lr"
+        }
+      ],
+      "literals": []
+    },
+    {
+      "name": "NOR previous-storage exit",
+      "file_start": "0x3b9c",
+      "file_end_exclusive": "0x3baa",
+      "bytes": "08b500222321fff7a7ff002008bd",
+      "sha256": "a91543456780e9b49ca933da7184fb93a224ff45f5c523cc401910ccb7e66f32",
+      "instructions": [
+        {
+          "at": "0x2ff73b9c",
+          "asm": "push {r3, lr}"
+        },
+        {
+          "at": "0x2ff73b9e",
+          "asm": "movs r2, #0"
+        },
+        {
+          "at": "0x2ff73ba0",
+          "asm": "movs r1, #0x23"
+        },
+        {
+          "at": "0x2ff73ba2",
+          "asm": "bl #0x2ff73af4"
+        },
+        {
+          "at": "0x2ff73ba6",
+          "asm": "movs r0, #0"
+        },
+        {
+          "at": "0x2ff73ba8",
+          "asm": "pop {r3, pc}"
+        }
+      ],
+      "literals": []
+    },
+    {
+      "name": "NOR ioctl before embedded switch table",
+      "file_start": "0x3af4",
+      "file_end_exclusive": "0x3b1e",
+      "bytes": "38b50346232910465d6806d81f2906d801291cd010291fd099b1002031e0a1f12104022c1bd8dfe804f0",
+      "sha256": "1780a9c31f5022c4075218578f86111f485d324dc86dd4792b7c84ce73bbd991",
+      "instructions": [
+        {
+          "at": "0x2ff73af4",
+          "asm": "push {r3, r4, r5, lr}"
+        },
+        {
+          "at": "0x2ff73af6",
+          "asm": "mov r3, r0"
+        },
+        {
+          "at": "0x2ff73af8",
+          "asm": "cmp r1, #0x23"
+        },
+        {
+          "at": "0x2ff73afa",
+          "asm": "mov r0, r2"
+        },
+        {
+          "at": "0x2ff73afc",
+          "asm": "ldr r5, [r3, #4]"
+        },
+        {
+          "at": "0x2ff73afe",
+          "asm": "bhi #0x2ff73b0e"
+        },
+        {
+          "at": "0x2ff73b00",
+          "asm": "cmp r1, #0x1f"
+        },
+        {
+          "at": "0x2ff73b02",
+          "asm": "bhi #0x2ff73b12"
+        },
+        {
+          "at": "0x2ff73b04",
+          "asm": "cmp r1, #1"
+        },
+        {
+          "at": "0x2ff73b06",
+          "asm": "beq #0x2ff73b42"
+        },
+        {
+          "at": "0x2ff73b08",
+          "asm": "cmp r1, #0x10"
+        },
+        {
+          "at": "0x2ff73b0a",
+          "asm": "beq #0x2ff73b4c"
+        },
+        {
+          "at": "0x2ff73b0c",
+          "asm": "cbz r1, #0x2ff73b36"
+        },
+        {
+          "at": "0x2ff73b0e",
+          "asm": "movs r0, #0"
+        },
+        {
+          "at": "0x2ff73b10",
+          "asm": "b #0x2ff73b76"
+        },
+        {
+          "at": "0x2ff73b12",
+          "asm": "sub.w r4, r1, #0x21"
+        },
+        {
+          "at": "0x2ff73b16",
+          "asm": "cmp r4, #2"
+        },
+        {
+          "at": "0x2ff73b18",
+          "asm": "bhi #0x2ff73b52"
+        },
+        {
+          "at": "0x2ff73b1a",
+          "asm": "tbb [pc, r4]"
+        }
+      ],
+      "literals": []
+    },
+    {
+      "name": "NOR ioctl after embedded switch table",
+      "file_start": "0x3b22",
+      "file_end_exclusive": "0x3b90",
+      "bytes": "1b4c236805212846db68984710f00100f7d11fe04ff40072164900f0e8f9e5e701464ff400721248f7e704221249f4e76b6a012a0cbf43f0010323f001036b62d4e70a4b05211b682846db689847c04300f0010038bd054b12781b68012a0cbf0421032128469b6a9847bfe700bf",
+      "sha256": "719b4c75081e8fe02492bceb108bc0b4b7cd381cb288ebe42600a0f5440a59ab",
+      "instructions": [
+        {
+          "at": "0x2ff73b22",
+          "asm": "ldr r4, [pc, #0x6c]"
+        },
+        {
+          "at": "0x2ff73b24",
+          "asm": "ldr r3, [r4]"
+        },
+        {
+          "at": "0x2ff73b26",
+          "asm": "movs r1, #5"
+        },
+        {
+          "at": "0x2ff73b28",
+          "asm": "mov r0, r5"
+        },
+        {
+          "at": "0x2ff73b2a",
+          "asm": "ldr r3, [r3, #0xc]"
+        },
+        {
+          "at": "0x2ff73b2c",
+          "asm": "blx r3"
+        },
+        {
+          "at": "0x2ff73b2e",
+          "asm": "ands r0, r0, #1"
+        },
+        {
+          "at": "0x2ff73b32",
+          "asm": "bne #0x2ff73b24"
+        },
+        {
+          "at": "0x2ff73b34",
+          "asm": "b #0x2ff73b76"
+        },
+        {
+          "at": "0x2ff73b36",
+          "asm": "mov.w r2, #0x200"
+        },
+        {
+          "at": "0x2ff73b3a",
+          "asm": "ldr r1, [pc, #0x58]"
+        },
+        {
+          "at": "0x2ff73b3c",
+          "asm": "bl #0x2ff73f10"
+        },
+        {
+          "at": "0x2ff73b40",
+          "asm": "b #0x2ff73b0e"
+        },
+        {
+          "at": "0x2ff73b42",
+          "asm": "mov r1, r0"
+        },
+        {
+          "at": "0x2ff73b44",
+          "asm": "mov.w r2, #0x200"
+        },
+        {
+          "at": "0x2ff73b48",
+          "asm": "ldr r0, [pc, #0x48]"
+        },
+        {
+          "at": "0x2ff73b4a",
+          "asm": "b #0x2ff73b3c"
+        },
+        {
+          "at": "0x2ff73b4c",
+          "asm": "movs r2, #4"
+        },
+        {
+          "at": "0x2ff73b4e",
+          "asm": "ldr r1, [pc, #0x48]"
+        },
+        {
+          "at": "0x2ff73b50",
+          "asm": "b #0x2ff73b3c"
+        },
+        {
+          "at": "0x2ff73b52",
+          "asm": "ldr r3, [r5, #0x24]"
+        },
+        {
+          "at": "0x2ff73b54",
+          "asm": "cmp r2, #1"
+        },
+        {
+          "at": "0x2ff73b56",
+          "asm": "ite eq"
+        },
+        {
+          "at": "0x2ff73b58",
+          "asm": "orreq r3, r3, #1"
+        },
+        {
+          "at": "0x2ff73b5c",
+          "asm": "bicne r3, r3, #1"
+        },
+        {
+          "at": "0x2ff73b60",
+          "asm": "str r3, [r5, #0x24]"
+        },
+        {
+          "at": "0x2ff73b62",
+          "asm": "b #0x2ff73b0e"
+        },
+        {
+          "at": "0x2ff73b64",
+          "asm": "ldr r3, [pc, #0x28]"
+        },
+        {
+          "at": "0x2ff73b66",
+          "asm": "movs r1, #5"
+        },
+        {
+          "at": "0x2ff73b68",
+          "asm": "ldr r3, [r3]"
+        },
+        {
+          "at": "0x2ff73b6a",
+          "asm": "mov r0, r5"
+        },
+        {
+          "at": "0x2ff73b6c",
+          "asm": "ldr r3, [r3, #0xc]"
+        },
+        {
+          "at": "0x2ff73b6e",
+          "asm": "blx r3"
+        },
+        {
+          "at": "0x2ff73b70",
+          "asm": "mvns r0, r0"
+        },
+        {
+          "at": "0x2ff73b72",
+          "asm": "and r0, r0, #1"
+        },
+        {
+          "at": "0x2ff73b76",
+          "asm": "pop {r3, r4, r5, pc}"
+        },
+        {
+          "at": "0x2ff73b78",
+          "asm": "ldr r3, [pc, #0x14]"
+        },
+        {
+          "at": "0x2ff73b7a",
+          "asm": "ldrb r2, [r2]"
+        },
+        {
+          "at": "0x2ff73b7c",
+          "asm": "ldr r3, [r3]"
+        },
+        {
+          "at": "0x2ff73b7e",
+          "asm": "cmp r2, #1"
+        },
+        {
+          "at": "0x2ff73b80",
+          "asm": "ite eq"
+        },
+        {
+          "at": "0x2ff73b82",
+          "asm": "moveq r1, #4"
+        },
+        {
+          "at": "0x2ff73b84",
+          "asm": "movne r1, #3"
+        },
+        {
+          "at": "0x2ff73b86",
+          "asm": "mov r0, r5"
+        },
+        {
+          "at": "0x2ff73b88",
+          "asm": "ldr r3, [r3, #0x28]"
+        },
+        {
+          "at": "0x2ff73b8a",
+          "asm": "blx r3"
+        },
+        {
+          "at": "0x2ff73b8c",
+          "asm": "b #0x2ff73b0e"
+        },
+        {
+          "at": "0x2ff73b8e",
+          "asm": "nop "
+        }
+      ],
+      "literals": [
+        {
+          "at": "0x2ff73b22",
+          "address": "0x2ff73b90",
+          "value": "0x2ff7e084"
+        },
+        {
+          "at": "0x2ff73b3a",
+          "address": "0x2ff73b94",
+          "value": "0x2ff7de84"
+        },
+        {
+          "at": "0x2ff73b48",
+          "address": "0x2ff73b94",
+          "value": "0x2ff7de84"
+        },
+        {
+          "at": "0x2ff73b4e",
+          "address": "0x2ff73b98",
+          "value": "0x2ff7de88"
+        },
+        {
+          "at": "0x2ff73b64",
+          "address": "0x2ff73b90",
+          "value": "0x2ff7e084"
+        },
+        {
+          "at": "0x2ff73b78",
+          "address": "0x2ff73b90",
+          "value": "0x2ff7e084"
+        }
+      ]
+    }
+  ],
+  "nor_table": {
+    "file_start": "0x958",
+    "bytes": "093cf72f493ef72fdd3df72ff53af72f6d3df72ff13af72f9d3bf72f"
+  },
+  "primary_spinor_info": {
+    "file_start": "0xdaec",
+    "bytes": "00800240000000000000012c00000000000000000000000000000000000000000000000000000000"
+  },
+  "ioctl_switch": {
+    "file_start": "0x3b1e",
+    "bytes": "232d02",
+    "targets": [
+      "0x2ff73b64",
+      "0x2ff73b78",
+      "0x2ff73b22"
+    ]
+  }
+}

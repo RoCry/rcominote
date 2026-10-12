@@ -1,0 +1,386 @@
+{
+  "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "scope": "static initialization and board/version gate, not live OTA acceptance",
+  "regions": [
+    {
+      "start": "0x10027798",
+      "end_exclusive": "0x100277e4",
+      "instructions": [
+        {
+          "address": "0x10027798",
+          "bytes": "13b5",
+          "instruction": "push {r0, r1, r4, lr}"
+        },
+        {
+          "address": "0x1002779a",
+          "bytes": "79f0b1f9",
+          "instruction": "bl #0x100a0b00"
+        },
+        {
+          "address": "0x1002779e",
+          "bytes": "114c",
+          "instruction": "ldr r4, [pc, #0x44]",
+          "literal_address": "0x100277e4",
+          "literal_value": "0x1800ecb8"
+        },
+        {
+          "address": "0x100277a0",
+          "bytes": "0146",
+          "instruction": "mov r1, r0"
+        },
+        {
+          "address": "0x100277a2",
+          "bytes": "8022",
+          "instruction": "movs r2, #0x80"
+        },
+        {
+          "address": "0x100277a4",
+          "bytes": "2046",
+          "instruction": "mov r0, r4"
+        },
+        {
+          "address": "0x100277a6",
+          "bytes": "91f054ff",
+          "instruction": "bl #0x100b9652"
+        },
+        {
+          "address": "0x100277aa",
+          "bytes": "0023",
+          "instruction": "movs r3, #0"
+        },
+        {
+          "address": "0x100277ac",
+          "bytes": "0e48",
+          "instruction": "ldr r0, [pc, #0x38]",
+          "literal_address": "0x100277e8",
+          "literal_value": "0x100c785a",
+          "literal_string": "FW_VERS"
+        },
+        {
+          "address": "0x100277ae",
+          "bytes": "0822",
+          "instruction": "movs r2, #8"
+        },
+        {
+          "address": "0x100277b0",
+          "bytes": "6946",
+          "instruction": "mov r1, sp"
+        },
+        {
+          "address": "0x100277b2",
+          "bytes": "cde90033",
+          "instruction": "strd r3, r3, [sp]"
+        },
+        {
+          "address": "0x100277b6",
+          "bytes": "0ff043f9",
+          "instruction": "bl #0x10036a40"
+        },
+        {
+          "address": "0x100277ba",
+          "bytes": "0828",
+          "instruction": "cmp r0, #8"
+        },
+        {
+          "address": "0x100277bc",
+          "bytes": "0dd0",
+          "instruction": "beq #0x100277da"
+        },
+        {
+          "address": "0x100277be",
+          "bytes": "0b48",
+          "instruction": "ldr r0, [pc, #0x2c]",
+          "literal_address": "0x100277ec",
+          "literal_value": "0x100c7862",
+          "literal_string": "cannot found FIRMWARE_VERSION\n"
+        },
+        {
+          "address": "0x100277c0",
+          "bytes": "78f0e1fb",
+          "instruction": "bl #0x1009ff86"
+        },
+        {
+          "address": "0x100277c4",
+          "bytes": "6368",
+          "instruction": "ldr r3, [r4, #4]"
+        },
+        {
+          "address": "0x100277c6",
+          "bytes": "0848",
+          "instruction": "ldr r0, [pc, #0x20]",
+          "literal_address": "0x100277e8",
+          "literal_value": "0x100c785a",
+          "literal_string": "FW_VERS"
+        },
+        {
+          "address": "0x100277c8",
+          "bytes": "0822",
+          "instruction": "movs r2, #8"
+        },
+        {
+          "address": "0x100277ca",
+          "bytes": "6946",
+          "instruction": "mov r1, sp"
+        },
+        {
+          "address": "0x100277cc",
+          "bytes": "cde90033",
+          "instruction": "strd r3, r3, [sp]"
+        },
+        {
+          "address": "0x100277d0",
+          "bytes": "0ff006f9",
+          "instruction": "bl #0x100369e0"
+        },
+        {
+          "address": "0x100277d4",
+          "bytes": "0348",
+          "instruction": "ldr r0, [pc, #0xc]",
+          "literal_address": "0x100277e4",
+          "literal_value": "0x1800ecb8"
+        },
+        {
+          "address": "0x100277d6",
+          "bytes": "02b0",
+          "instruction": "add sp, #8"
+        },
+        {
+          "address": "0x100277d8",
+          "bytes": "10bd",
+          "instruction": "pop {r4, pc}"
+        },
+        {
+          "address": "0x100277da",
+          "bytes": "009b",
+          "instruction": "ldr r3, [sp]"
+        },
+        {
+          "address": "0x100277dc",
+          "bytes": "6360",
+          "instruction": "str r3, [r4, #4]"
+        },
+        {
+          "address": "0x100277de",
+          "bytes": "019b",
+          "instruction": "ldr r3, [sp, #4]"
+        },
+        {
+          "address": "0x100277e0",
+          "bytes": "a360",
+          "instruction": "str r3, [r4, #8]"
+        },
+        {
+          "address": "0x100277e2",
+          "bytes": "f7e7",
+          "instruction": "b #0x100277d4"
+        }
+      ]
+    },
+    {
+      "start": "0x100277f0",
+      "end_exclusive": "0x1002782a",
+      "instructions": [
+        {
+          "address": "0x100277f0",
+          "bytes": "10b5",
+          "instruction": "push {r4, lr}"
+        },
+        {
+          "address": "0x100277f2",
+          "bytes": "0446",
+          "instruction": "mov r4, r0"
+        },
+        {
+          "address": "0x100277f4",
+          "bytes": "0d48",
+          "instruction": "ldr r0, [pc, #0x34]",
+          "literal_address": "0x1002782c",
+          "literal_value": "0x100c7881",
+          "literal_string": "***  Current Firmware Version  ***\n"
+        },
+        {
+          "address": "0x100277f6",
+          "bytes": "78f0c6fb",
+          "instruction": "bl #0x1009ff86"
+        },
+        {
+          "address": "0x100277fa",
+          "bytes": "6168",
+          "instruction": "ldr r1, [r4, #4]"
+        },
+        {
+          "address": "0x100277fc",
+          "bytes": "0c48",
+          "instruction": "ldr r0, [pc, #0x30]",
+          "literal_address": "0x10027830",
+          "literal_value": "0x100c78a5",
+          "literal_string": " Firmware Version: 0x%08x\n"
+        },
+        {
+          "address": "0x100277fe",
+          "bytes": "78f0c2fb",
+          "instruction": "bl #0x1009ff86"
+        },
+        {
+          "address": "0x10027802",
+          "bytes": "a168",
+          "instruction": "ldr r1, [r4, #8]"
+        },
+        {
+          "address": "0x10027804",
+          "bytes": "0b48",
+          "instruction": "ldr r0, [pc, #0x2c]",
+          "literal_address": "0x10027834",
+          "literal_value": "0x100c78c0",
+          "literal_string": " res Version: 0x%08x\n"
+        },
+        {
+          "address": "0x10027806",
+          "bytes": "78f0befb",
+          "instruction": "bl #0x1009ff86"
+        },
+        {
+          "address": "0x1002780a",
+          "bytes": "e168",
+          "instruction": "ldr r1, [r4, #0xc]"
+        },
+        {
+          "address": "0x1002780c",
+          "bytes": "0a48",
+          "instruction": "ldr r0, [pc, #0x28]",
+          "literal_address": "0x10027838",
+          "literal_value": "0x100c78d6",
+          "literal_string": "   System Version: 0x%08x\n"
+        },
+        {
+          "address": "0x1002780e",
+          "bytes": "78f0bafb",
+          "instruction": "bl #0x1009ff86"
+        },
+        {
+          "address": "0x10027812",
+          "bytes": "04f11001",
+          "instruction": "add.w r1, r4, #0x10"
+        },
+        {
+          "address": "0x10027816",
+          "bytes": "0948",
+          "instruction": "ldr r0, [pc, #0x24]",
+          "literal_address": "0x1002783c",
+          "literal_value": "0x100c78f1",
+          "literal_string": "     Version Name: %s\n"
+        },
+        {
+          "address": "0x10027818",
+          "bytes": "78f0b5fb",
+          "instruction": "bl #0x1009ff86"
+        },
+        {
+          "address": "0x1002781c",
+          "bytes": "04f15001",
+          "instruction": "add.w r1, r4, #0x50"
+        },
+        {
+          "address": "0x10027820",
+          "bytes": "0748",
+          "instruction": "ldr r0, [pc, #0x1c]",
+          "literal_address": "0x10027840",
+          "literal_value": "0x100c7908",
+          "literal_string": "       Board Name: %s\n"
+        },
+        {
+          "address": "0x10027822",
+          "bytes": "bde81040",
+          "instruction": "pop.w {r4, lr}"
+        },
+        {
+          "address": "0x10027826",
+          "bytes": "78f0aebb",
+          "instruction": "b.w #0x1009ff86"
+        }
+      ]
+    },
+    {
+      "start": "0x100a0b00",
+      "end_exclusive": "0x100a0b0c",
+      "instructions": [
+        {
+          "address": "0x100a0b00",
+          "bytes": "4ff08073",
+          "instruction": "mov.w r3, #0x1000000"
+        },
+        {
+          "address": "0x100a0b04",
+          "bytes": "5868",
+          "instruction": "ldr r0, [r3, #4]"
+        },
+        {
+          "address": "0x100a0b06",
+          "bytes": "00f53a70",
+          "instruction": "add.w r0, r0, #0x2e8"
+        },
+        {
+          "address": "0x100a0b0a",
+          "bytes": "7047",
+          "instruction": "bx lr"
+        }
+      ]
+    },
+    {
+      "start": "0x1006652e",
+      "end_exclusive": "0x10066548",
+      "instructions": [
+        {
+          "address": "0x1006652e",
+          "bytes": "04f17801",
+          "instruction": "add.w r1, r4, #0x78"
+        },
+        {
+          "address": "0x10066532",
+          "bytes": "06f15000",
+          "instruction": "add.w r0, r6, #0x50"
+        },
+        {
+          "address": "0x10066536",
+          "bytes": "9af7c7fb",
+          "instruction": "bl #0x10000cc8"
+        },
+        {
+          "address": "0x1006653a",
+          "bytes": "28b1",
+          "instruction": "cbz r0, #0x10066548"
+        },
+        {
+          "address": "0x1006653c",
+          "bytes": "3f49",
+          "instruction": "ldr r1, [pc, #0xfc]",
+          "literal_address": "0x1006663c",
+          "literal_value": "0x100d436a",
+          "literal_string": "unmatched board name, skip ota"
+        },
+        {
+          "address": "0x1006653e",
+          "bytes": "4048",
+          "instruction": "ldr r0, [pc, #0x100]",
+          "literal_address": "0x10066640",
+          "literal_value": "0x5060011"
+        },
+        {
+          "address": "0x10066540",
+          "bytes": "2843",
+          "instruction": "orrs r0, r5"
+        },
+        {
+          "address": "0x10066542",
+          "bytes": "eff725fd",
+          "instruction": "bl #0x10055f90"
+        },
+        {
+          "address": "0x10066546",
+          "bytes": "e4e7",
+          "instruction": "b #0x10066512"
+        }
+      ]
+    }
+  ]
+}

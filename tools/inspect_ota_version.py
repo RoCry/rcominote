@@ -18,13 +18,16 @@ SHA256 = "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f"
 BASE = 0x10000000
 
 
-def main(image: Path):
+def main(image: Path, identity: bool = False):
     data = image.read_bytes()
     if hashlib.sha256(data).hexdigest() != SHA256:
         raise ValueError("Expected verified mapped-system image")
     decoder = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
     regions = []
-    for start, end in ((0x4AE8, 0x4B54), (0x669F8, 0x66A3C), (0x664C2, 0x6655C), (0xCC8, 0xCDC)):
+    ranges = ((0x4AE8, 0x4B54), (0x669F8, 0x66A3C), (0x664C2, 0x6655C), (0xCC8, 0xCDC))
+    if identity:
+        ranges = ((0x27798, 0x277E4), (0x277F0, 0x2782A), (0xA0B00, 0xA0B0C), (0x6652E, 0x66548))
+    for start, end in ranges:
         instructions = []
         cursor = start
         for insn in decoder.disasm(data[start:end], BASE + start):

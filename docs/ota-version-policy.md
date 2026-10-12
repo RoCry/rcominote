@@ -34,8 +34,9 @@ bytewise string comparator `10000cc8..10000cda`. Nonzero result logs
 `unmatched board name, skip ota` and follows rejection before the version gate.
 
 Consequently, disabling version comparison does not disable the board-name
-check in this path. No board identity was newly acquired here, and knowing a
-matching name would not prove electrical/board compatibility.
+check in this path. Follow-up [two-session parameter readback](firmware-board-identity.md) establishes
+firmware board name `ats3085l_dvb_watch_ext_nor_max`. Knowing this matching name
+does not prove electrical/board compatibility.
 
 ## Limits for own firmware and official recovery
 

@@ -88,3 +88,7 @@ executing installer code.
 [builder]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/tools/build_firmware.py#L590-L603
 [build]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/build.py#L501-L515
 [tool]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/tools/config_tool.rar
+
+## Later actual firmware identity
+
+[Two independent parameter reads](firmware-board-identity.md) establish firmware board name `ats3085l_dvb_watch_ext_nor_max`; prioritize matching ATS3085L production artifacts. This supersedes the broad search priority, not the reference ATS3089 facts above. Firmware metadata alone does not prove chip marking or map host enum0..4 to this device.
