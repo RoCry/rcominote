@@ -1,0 +1,111 @@
+e.
+  history   :Command history.
+  kernel    :Kernel commands
+  resize    :Console gets terminal screen size or assumes default in case the
+[13Creadout fails. It must be executed after each terminal width change
+[13Cto ensure correct text display.
+  shell     :Useful, not Unix-like shell commands.
+  system    :system commands
+[logsrv][I][679]: logsrv: cmd(5) help
+
+
+
+100bb960: 63 6b 0c 10 69 6b 0c 10 00 00 00 00 49 53 02 10    ck..ik......IS..
+[logsrv][I][679]: logsrv: cmd(20) dbg mdb 100bb960 10
+
+
+
+Please press the <Tab> button to see all available commands.
+You can also use the <Tab> button to prompt or auto-complete all commands or its subcommands.
+You can try to call commands with <-h> or <--help> parameter for more information.
+
+Shell supports following meta-keys:
+  Ctrl + (a key from: abcdefklnpuw)
+  Alt  + (a key from: bf)
+Please refer to shell documentation for more details.
+
+Available commands:
+  actlog    :actlog commands (flash partition backend)
+  app       :Application shell commands
+  bt        :Bluetooth manager commands
+  clear     :Clear screen.
+  coredump  :Coredump commands (flash partition backend)
+  dbg       :dbg commands
+  devmem    :Read/write physical memory"devmem address [width [value]]
+  help      :Prints the help message.
+  history   :Command history.
+  kernel    :Kernel commands
+  resize    :Console gets terminal screen size or assumes default in case the
+[13Creadout fails. It must be executed after each terminal width change
+[13Cto ensure correct text display.
+  shell     :Useful, not Unix-like shell commands.
+  system    :system commands
+[logsrv][I][679]: logsrv: cmd(5) help
+
+
+
+1800e008: 99 06 00 00 a5 06 00 00 00 00 00 00 00 10 00 00    ................
+1800e018: 09 ee 03 18 01 00 00 00 00 00 00 00                ............
+[logsrv][I][679]: logsrv: cmd(20) dbg mdb 1800e008 1c
+
+
+
+Please press the <Tab> button to see all available commands.
+You can also use the <Tab> button to prompt or auto-complete all commands or its subcommands.
+You can try to call commands with <-h> or <--help> parameter for more information.
+
+Shell supports following meta-keys:
+  Ctrl + (a key from: abcdefklnpuw)
+  Alt  + (a key from: bf)
+Please refer to shell documentation for more details.
+
+Available commands:
+  actlog    :actlog commands (flash partition backend)
+  app       :Application shell commands
+  bt        :Bluetooth manager commands
+  clear     :Clear screen.
+  coredump  :Coredump commands (flash partition backend)
+  dbg       :dbg commands
+  devmem    :Read/write physical memory"devmem address [width [value]]
+  help      :Prints the help message.
+  history   :Command history.
+  kernel    :Kernel commands
+  resize    :Console gets terminal screen size or assumes default in case the
+[13Creadout fails. It must be executed after each terminal width change
+[13Cto ensure correct text display.
+  shell     :Useful, not Unix-like shell commands.
+  system    :system commands
+[logsrv][I][679]: logsrv: cmd(5) help
+
+
+
+[logsrv][I][679]: logsrv: cmd(63) dbg dumpbuf 402910729 4096 /SD:/RECORDER/Call-rca8036fb3fd.mp3
+
+
+ogsrv: cmd(5) help
+
+
+
+10025348: 2d e9 f0 43 03 29 85 b0 05 46 14 46 06 d0 29 4a    -..C.)...F.F..)J
+[logsrv][I][679]: logsrv: cmd(20) dbg mdb 10025348 10
+
+
+
+Please press the <Tab> button to see all available commands.
+You can also use the <Tab> button to prompt or auto-complete all commands or its subcommands.
+You can try to call commands with <-h> or <--help> parameter for more information.
+
+Shell supports following meta-keys:
+  Ctrl + (a key from: abcdefklnpuw)
+  Alt  + (a key from: bf)
+Please refer to shell documentation for more details.
+
+Available commands:
+  actlog    :actlog commands (flash partition backend)
+  app       :Application shell commands
+  bt        :Bluetooth manager commands
+  clear     :Clear screen.
+  coredump  :Coredump commands (flash partition backend)
+  dbg       :dbg commands
+  devmem    :Read/write physical memory"devmem address [width [value]]
+  help      :Prints the help messag

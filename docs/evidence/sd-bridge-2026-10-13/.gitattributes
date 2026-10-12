@@ -1,0 +1,2 @@
+# Raw device bytes include CRLF and printf padding; preserve them exactly.
+*.bin binary

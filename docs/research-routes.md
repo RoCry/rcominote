@@ -54,11 +54,17 @@ established physical escape; further generic searches/callee reads are parked.
 Client failure isolation is closed at the host-session boundary (see [CLI](cli.md));
 do not expand it into automatic cancellation/resume while platform work has priority.
 
+[SD bridge proof](sd-file-bridge.md) changes one acquisition decision: controlled
+temporary SD writes are acceptable research side effects, distinct from firmware
+NOR writes. Fixed4 KiB RAM transfer and one baseline-qualified boot0 ring export
+match independent originals. Retain the candidate; do not start bulk export or
+debug failed direct-XIP writes before choosing the next critical firmware region.
+
 ## Capability ledger and evidence gates
 
 | Workstream | Reuse now | Next decisive evidence |
 |---|---|---|
-| Efficient native transfer | SDK log/ABTP/USB/tool sources + complete mapped system; [CDC worker negative](usb-cdc-command-inventory.md) | Matching production host/script or actual mapped alias evidence; do not enable CDC in hope of a hidden bulk command |
+| Efficient native transfer | [RAM→SD→Boyi and fixed boot0 ring export](sd-file-bridge.md), compared to independent bytes; SDK/tool sources; [CDC worker negative](usb-cdc-command-inventory.md) | When a critical missing region becomes the deliverable: bounded distinct-sector/repeat/failure validation before bulk tooling. Direct-XIP→SD yielded zeros; park its cause. Production host acquisition remains separate |
 | Production host/ADFU | [Actual ROM table and entry](actual-rom-adfu-entry.md):19c→1a51, [condition and restore-return](actual-rom-exit-condition.md)1908→1980; [LARK transport selection](lark-transport-selection.md): adfus is UART, adfus_u has USB descriptors; [read handlers](lark-helper-candidate.md), [Host selection](host-selection-followup.md), [actual helper read handlers](helper-static-followup.md), [NOR initialization side effects](helper-nor-initialization.md), [actual boot](actual-boot-flow.md) | Matching production firmware scripts/caller parameters, exact SoC/host selection; device ROM USB identity and exit path before helper execution |
 | Full backup | Verified mapped system, boot, DSP, partition table, partial raw recovery | Reliable bulk route; all required physical partitions and unique configuration, repeated reads and integrity checks |
 | Flash/recovery | Static boot checks, actual recovery header, [actual OTA no-version-control initialization](ota-version-policy.md), [container/manifest gate](ota-container-contract.md), [conditional initialization effects](ota-initialization-side-effects.md), offline `inspect-ota`, [actual payload writes and commit order](ota-write-commit.md), [NVRAM spare-segment pre-erase](ota-nvram-preerase.md), [provisional recovery entry](recovery-entry-candidate.md) | Matching official image/manifest; actual recovery second-stage path, independent recovery entry/exit and restoration proof |
