@@ -7,6 +7,7 @@ from .code_references import read_block
 BODY_PROBE_RANGES = tuple((address, 512) for address in range(0x10000200, 0x10000A00, 512))
 
 HEADER_BATCH_READS = ((0x10000000, 512),)
+HEADER_IMAGE_READS = tuple((address, 64) for address in range(0x10000000, 0x10000200, 64))
 HEADER_PROBE_RANGES = tuple((0x10000000, size) for size in (64, 256, 512))
 
 
@@ -36,9 +37,9 @@ def image_ranges(indices: tuple[int, ...] | list[int]) -> tuple[tuple[int, int],
     if any(type(index) is not int or index < 0 or index * 512 >= 927120 for index in indices):
         raise ValueError("Image chunk lies outside the independently validated body")
     return tuple(
-        (0x10000200 + index * 512 + offset, min(256, 927120 - index * 512 - offset))
+        (0x10000200 + index * 512 + offset, min(64, 927120 - index * 512 - offset))
         for index in indices
-        for offset in (0, 256)
+        for offset in range(0, min(512, 927120 - index * 512), 64)
     )
 
 
@@ -57,3 +58,10 @@ def scoped_capture(capture: dict, command: str) -> dict:
             raise ValueError(f"Incomplete frame span for {command}")
         capture = capture | {"frames": capture["frames"][start:end]}
     return capture
+
+
+def read_header(capture: dict) -> bytes:
+    ranges = HEADER_IMAGE_READS if capture.get("image_header") else HEADER_BATCH_READS
+    data = b"".join(read_range(capture, address, length) for address, length in ranges)
+    validate_known_header(data)
+    return data

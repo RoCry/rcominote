@@ -52,7 +52,7 @@ def capabilities():
                 "noise setting write/readback/restore",
                 "log/version/help",
                 "NVRAM fixed name getter",
-                "ACPT table CRC, mapped ACTH header, and 52 KiB body checkpoint",
+                "ACPT table CRC, mapped ACTH header, and persistent mapped-body checkpoints",
             ],
             "implemented_requires_explicit_selection": [
                 "record start/pause/resume/stop",

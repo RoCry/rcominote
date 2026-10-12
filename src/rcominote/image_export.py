@@ -12,13 +12,13 @@ from .ble_target import OWNED_SERIAL
 from .image_store import BODY_BYTES, CHUNK_BYTES, ImageStore
 from .log_capture import capture
 from .output import emit
-from .range_readback import read_image_chunk, read_range
+from .range_readback import read_header, read_image_chunk
 
 app = typer.Typer(no_args_is_help=True)
 
 
 async def capture_saved(directory: Path, indices: tuple[int, ...]) -> dict:
-    result = await capture(serial=OWNED_SERIAL, duration=1, header_batch=True, image_chunks=indices)
+    result = await capture(serial=OWNED_SERIAL, duration=1, image_header=True, image_chunks=indices)
     evidence = directory / "captures"
     evidence.mkdir(parents=True, exist_ok=True)
     path = evidence / f"{datetime.now(UTC).strftime('%Y%m%dT%H%M%S%fZ')}.json"
@@ -33,7 +33,7 @@ async def export_image(directory: Path, max_sessions: int) -> dict:
     directory.mkdir(parents=True, exist_ok=True)
     # Each invocation independently checks live identity, code guards and header.
     initial = await capture_saved(directory, ())
-    store = ImageStore(directory / "chunks", read_range(initial, 0x10000000, 512))
+    store = ImageStore(directory / "chunks", read_header(initial))
     missing = store.missing_chunks()
     sessions = 0
     while missing and (not max_sessions or sessions < max_sessions):

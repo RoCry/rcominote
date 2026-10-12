@@ -13,7 +13,7 @@
 | USB | 用户确认数据线后做拔插对照，仍未见明确 CoMi 枚举；`usb_mode=true` 不等于主机数据接口已启用，板级走线/其他模式待查 |
 | 日志/shell | 实机执行 `kernel version` 返回 Zephyr 2.7.0；`help`/`dbg` 列出存储读取与 ADFU 重启命令，后者未执行 |
 | 配置读回 | `dbg nvram BT_LE_NAME` 已返回14字节实机内容；原始 flash 正文仍未通过 BLE 取得 |
-| 映射字节读回 | 已独立核对共7455字节代码/常量/运行元数据，已追到exFAT→SD磁盘→sd后端→MMC_1；实际驱动状态支持SD协议；另定位ready的spi_flash对象，缓存ID匹配Zbit 4 MiB系列，驱动配置32 MiB不代表物理容量；已取得CRC通过的744 B缓存ACPT表、18项配置覆盖4 MiB；尚无完整固件/物理分区备份 |
+| 映射字节读回 | 已核对代码/运行元数据并开始系统正文断点导出，已追到exFAT→SD磁盘→sd后端→MMC_1；实际驱动状态支持SD协议；另定位ready的spi_flash对象，缓存ID匹配Zbit 4 MiB系列，驱动配置32 MiB不代表物理容量；已取得CRC通过的744 B缓存ACPT表、18项配置覆盖4 MiB；尚无完整固件/物理分区备份 |
 | 自定义固件 | Actions 有构建、OTA、ADFU 等参考代码，也有签名/安全启动配置；CoMi 是否接受自签/未签名镜像尚未知 |
 | Linux 构建 | Ubuntu 上参考板 hello_world 已生成 ELF/BIN/HEX；SDK 无源码补丁，构建后 tracked 文件干净；尚不是 CoMi 固件 |
 
@@ -95,3 +95,5 @@ uv run --locked tools/build_sdk.py \
 [512 B多行读取验证](docs/header-batch-readback.md)：`uv run comi diag capture header-batch --out ...`，固定重读已知镜像头并逐行/hash验收；尚非正文导出。
 
 [固定映射镜像导出](docs/mapped-image-export.md)：四块正文独立复读一致；已跨进程续读保存52 KiB，256/512 B请求均捕获过截断。新增`uv run comi image export`断点读取与最终checksum门槛，尚未完成全正文校验；不等于原始Flash备份或可恢复。
+
+[日志缓冲计数器回绕](docs/log-buffer-wrap.md)：实机Thumb指令确认8位计数器相减后的无符号比较缺陷；64 B正文与头部分段已实测，完整导出继续进行，终检仍待全部块到齐。

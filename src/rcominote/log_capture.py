@@ -28,10 +28,10 @@ from .nor_readback import NOR_PHASES
 from .range_readback import (
     BODY_PROBE_RANGES,
     HEADER_BATCH_READS,
+    HEADER_IMAGE_READS,
     image_ranges,
     range_commands,
-    read_range,
-    validate_known_header,
+    read_header,
 )
 from .read_sets import (
     DISK_PHASES,
@@ -128,9 +128,11 @@ async def capture(
     header_batch: bool = False,
     body_probe: bool = False,
     image_chunks: tuple[int, ...] = (),
+    image_header: bool = False,
 ) -> dict:
     selected_ranges = image_ranges(image_chunks)
-    header_batch = header_batch or body_probe or bool(selected_ranges)
+    image_header = image_header or bool(selected_ranges)
+    header_batch = header_batch or body_probe or image_header
     code_references = code_references or shell_code or header_batch
     boot_code = boot_code or nor_code
     card_code = card_code or boot_code
@@ -150,6 +152,7 @@ async def capture(
         "serial": serial,
         "duration_seconds": duration,
         "image_chunk_indices": list(image_chunks),
+        "image_header": image_header,
         "range_frame_spans": {},
         "scope": "PREPARE/DEFAULT_START/STOP; fixed diagnostics and optional bounded reads; no storage writes/reboot",
         "fixed_text_commands": (
@@ -235,7 +238,11 @@ async def capture(
                 else []
             )
             + (flushed_phases(SHELL_PHASES) if shell_code else [])
-            + (flushed_reads(HEADER_BATCH_READS) if header_batch else [])
+            + (
+                flushed_reads(HEADER_IMAGE_READS if image_header else HEADER_BATCH_READS)
+                if header_batch
+                else []
+            )
             + (range_commands(BODY_PROBE_RANGES) if body_probe else [])
             + range_commands(selected_ranges)
         ),
@@ -361,7 +368,7 @@ async def capture(
                 if (body_probe and command == "dbg mdb 10000200 200") or command in {
                     f"dbg mdb {a:x} {n:x}" for a, n in selected_ranges
                 }:
-                    validate_known_header(read_range(result | {"ok": True}, 0x10000000, 512))
+                    read_header(result | {"ok": True})
                 encoded = command.encode("ascii")
                 if storage_code or shell_code:
                     async with asyncio.timeout(5):

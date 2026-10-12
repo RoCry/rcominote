@@ -3,8 +3,10 @@
 from .code_references import FIXED_BLOCKS, read_block
 from .range_readback import (
     BODY_PROBE_RANGES,
+    HEADER_IMAGE_READS,
     HEADER_PROBE_RANGES,
     image_ranges,
+    read_header,
     read_range,
     scoped_capture,
     validate_known_header,
@@ -25,6 +27,7 @@ def verify_readback(result: dict) -> None:
                 (a, n)
                 for a, n in (
                     *HEADER_PROBE_RANGES,
+                    *HEADER_IMAGE_READS,
                     *BODY_PROBE_RANGES,
                     *image_ranges(result.get("image_chunk_indices", [])),
                 )
@@ -38,6 +41,11 @@ def verify_readback(result: dict) -> None:
     if not result["transport_ok"]:
         return
     try:
+        if result.get("image_header"):
+            read_header(result)
+        for address, length in image_ranges(result.get("image_chunk_indices", [])):
+            if f"dbg mdb {address:x} {length:x}" not in result["fixed_text_commands"]:
+                raise ValueError("Image session is missing a declared bounded read")
         for address, length in ranges:
             data = read_range(result, address, length)
             if address == 0x10000000 and length == 512:

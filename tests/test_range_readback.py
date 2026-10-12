@@ -50,7 +50,15 @@ def test_fixed_image_session_boundary_from_captured_header():
     from rcominote.range_readback import image_ranges
 
     # ACTH evidence declares body 0xe2590 at 0x10000200; final 0x190 bytes.
-    assert image_ranges([1810]) == ((0x100E2600, 256), (0x100E2700, 144))
+    assert image_ranges([1810]) == (
+        (0x100E2600, 64),
+        (0x100E2640, 64),
+        (0x100E2680, 64),
+        (0x100E26C0, 64),
+        (0x100E2700, 64),
+        (0x100E2740, 64),
+        (0x100E2780, 16),
+    )
 
 
 @pytest.mark.parametrize("indices", [[1811], [-1], [0, 0], [True], list(range(65))])
@@ -77,12 +85,12 @@ def test_independent_contiguous_body_readbacks_match():
 
 
 def test_two_256_reads_match_prior_512_read_for_same_body_block():
-    from rcominote.range_readback import read_image_chunk
-
     prior = json.loads((EVIDENCE / "image-short-session-truncated-2026-10-12.json").read_text())
     current = json.loads((EVIDENCE / "image-256-first-2026-10-12.json").read_text())
     # Prior session failed later at 0x10009a60; this earlier block has all rows.
-    assert read_image_chunk(current, 72) == read_range(prior | {"ok": True}, 0x10009200, 512)
+    assert read_range(current, 0x10009200, 256) + read_range(current, 0x10009300, 256) == read_range(
+        prior | {"ok": True}, 0x10009200, 512
+    )
 
 
 def test_scoped_guard_preserves_unaligned_code_references():
@@ -100,5 +108,22 @@ def test_actual_guard_and_body_overlap_are_independently_validated():
     result = json.loads((EVIDENCE / "image-scoped-overlap-2026-10-12.json").read_text())
     guard = read_block(scoped_capture(result, "dbg mdb 1000bf20 10"), 0x1000BF20, 16)
     assert read_range(result, 0x1000BF00, 256)[32:48] == guard
+
+
+def test_actual_64_byte_session_and_missing_declaration():
+    result = json.loads((EVIDENCE / "image-64-first-2026-10-12.json").read_text())
     verify_readback(result)
     assert result["readback_complete"]
+    result["fixed_text_commands"].remove("dbg mdb 1000e200 40")
+    verify_readback(result)
+    assert not result["ok"] and "missing a declared" in result["error"]
+
+
+def test_small_header_matches_independent_original_and_rejects_missing_segment():
+    from rcominote.range_readback import read_header
+
+    result = json.loads((EVIDENCE / "image-small-header-first-2026-10-12.json").read_text())
+    assert read_header(result) == read_range(capture(), 0x10000000, 512)
+    result["fixed_text_commands"].remove("dbg mdb 100001c0 40")
+    verify_readback(result)
+    assert not result["ok"] and "Missing declared range" in result["error"]
