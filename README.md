@@ -91,3 +91,5 @@ uv run --locked tools/build_sdk.py \
 [启动SRAM候选](docs/boot-info-readback.md)：64 B独立一致，system/nor offset24000匹配ACPT；param物理字段为0，不强行套用完整SDK ABI。
 
 [实际映射镜像头](docs/image-header-readback.md)：512 B头部校验通过且reset向量匹配，声明正文927120 B；flags/TLV长度均0，正文和raw Flash尚未校验。
+
+[512 B多行读取验证](docs/header-batch-readback.md)：`uv run comi diag capture header-batch --out ...`，固定重读已知镜像头并逐行/hash验收；尚非正文导出。

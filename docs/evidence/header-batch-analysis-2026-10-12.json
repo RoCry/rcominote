@@ -1,0 +1,54 @@
+{
+  "scope": "Fixed rereads of previously validated mapped header; no new memory coverage or image body export",
+  "timing_limit": "Notification horizon includes discovery/handshake/base checks/help and final wait; not payload throughput",
+  "runs": [
+    {
+      "capture": "header-batch64-first-2026-10-12.json",
+      "capture_sha256": "3fd732bb6a8db270c24d0ed32b2885531d19e1637af98d5c9b563bc5ff2e3d0c",
+      "captured_at": "2026-10-12T06:31:36.587383+00:00",
+      "read_bytes": 64,
+      "rows": 4,
+      "sha256": "186baf3841037919f333c471891156aaf3e50bfc5fe7d9282aafa079b2e908b8",
+      "matches_prior_single_rows": true,
+      "transport_and_rows_valid": true,
+      "last_notification_seconds": 9.717,
+      "ack_count": 14
+    },
+    {
+      "capture": "header-batch256-first-2026-10-12.json",
+      "capture_sha256": "325c41a0439618a5e29184f954188754093c09593241d3048918a4640f4fc7ff",
+      "captured_at": "2026-10-12T06:32:20.446794+00:00",
+      "read_bytes": 256,
+      "rows": 16,
+      "sha256": "2387071b1fb48831aa9e38be358a10194dafa33d2cf1cc267529fe54401bfdf9",
+      "matches_prior_single_rows": true,
+      "transport_and_rows_valid": true,
+      "last_notification_seconds": 10.791,
+      "ack_count": 14
+    },
+    {
+      "capture": "header-batch512-first-2026-10-12.json",
+      "capture_sha256": "2366ee96a757352552e2938ac960c6a7401c58b9ff965e147ad6327f2fd5e0c6",
+      "captured_at": "2026-10-12T06:32:39.770736+00:00",
+      "read_bytes": 512,
+      "rows": 32,
+      "sha256": "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5",
+      "matches_prior_single_rows": true,
+      "transport_and_rows_valid": true,
+      "last_notification_seconds": 11.697,
+      "ack_count": 14
+    },
+    {
+      "capture": "header-batch512-second-2026-10-12.json",
+      "capture_sha256": "252e4f5bf5b9f43f2e97a5ad1ca74120dbd499767ea6d28da3cdf8c6a75323b8",
+      "captured_at": "2026-10-12T06:33:04.046674+00:00",
+      "read_bytes": 512,
+      "rows": 32,
+      "sha256": "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5",
+      "matches_prior_single_rows": true,
+      "transport_and_rows_valid": true,
+      "last_notification_seconds": 10.817,
+      "ack_count": 14
+    }
+  ]
+}

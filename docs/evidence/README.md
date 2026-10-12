@@ -161,3 +161,7 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## 当前映射ACTH镜像头
 
 [首次](image-header-first-2026-10-12.json)、[重读](image-header-second-2026-10-12.json)、[分析](image-header-analysis-2026-10-12.json)：3571 B一致，新增520 B，累计7455不同映射字节。512 B头部加法校验通过，vector reset与entry1002d819匹配；正文checksum尚未验证。[报告](../image-header-readback.md)、[结束状态](image-header-final-state-2026-10-12.json)。
+
+## 多行header读取验证
+
+[64 B](header-batch64-first-2026-10-12.json)、[256 B](header-batch256-first-2026-10-12.json)、[512 B首次](header-batch512-first-2026-10-12.json)、[重读](header-batch512-second-2026-10-12.json)、[分析](header-batch-analysis-2026-10-12.json)：均与独立单行头部一致，无新增覆盖；[报告](../header-batch-readback.md)、[结束状态](header-batch-final-state-2026-10-12.json)。

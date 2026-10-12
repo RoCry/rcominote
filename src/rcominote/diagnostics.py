@@ -35,6 +35,7 @@ class Profile(StrEnum):
     boot_code = "boot-code"
     nor_code = "nor-code"
     shell_code = "shell-code"
+    header_batch = "header-batch"
     nor_header = "nor-header"
 
 
@@ -57,6 +58,7 @@ PROFILE_FLAGS = {
     "boot-code": "boot_code",
     "nor-code": "nor_code",
     "shell-code": "shell_code",
+    "header-batch": "header_batch",
     "nor-header": "flash_header",
 }
 

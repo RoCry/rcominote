@@ -49,3 +49,5 @@
 [boot-info候选](boot-info-readback.md)：system/nor offset24000与ACPT相符，但param_phy字段为0；下步核对实际getter/镜像头与映射，不根据候选布局直接扩成整片备份。
 
 [镜像头](image-header-readback.md)已取得：512 B头校验与向量一致，声明927120 B正文。优先研究有界、可重试的映射正文导出和checksum验证；它仍不替代原始整片备份。
+
+[多行读取](header-batch-readback.md)确认单命令512 B头部可完整返回并匹配独立证据；下一步验证连续正文块与重试/断点/最终checksum。无新增覆盖，不能据单块测试宣称完整导出。

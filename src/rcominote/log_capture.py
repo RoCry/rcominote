@@ -23,9 +23,9 @@ from .code_guards import (
     observed_vendor_code,
     observed_vendor_entries,
 )
-from .code_references import FIXED_BLOCKS, read_block
 from .log_probe import ACK, NOTIFY, PREPARE, SERVICE, WRITE
 from .nor_readback import NOR_PHASES
+from .range_readback import HEADER_BATCH_READS
 from .read_sets import (
     DISK_PHASES,
     HANDLER_BLOCKS,
@@ -48,6 +48,7 @@ from .read_sets import (
     flushed_phases,
     flushed_reads,
 )
+from .readback_verify import verify_readback
 from .shell_readback import SHELL_PHASES
 
 START = bytes.fromhex("1d108105000002002000")
@@ -94,29 +95,6 @@ class Stream:
             self.frames.append(row)
 
 
-def verify_readback(result: dict) -> None:
-    """Transport completion does not prove shell output survived firmware buffering."""
-    result["transport_ok"] = result["ok"]
-    reads = [
-        block
-        for block in FIXED_BLOCKS
-        if f"dbg mdb {block[0]:x} {block[1]:x}" in result["fixed_text_commands"]
-    ]
-    if not reads:
-        return
-    result["readback_complete"] = False
-    if not result["transport_ok"]:
-        return
-    try:
-        for address, length, *_ in reads:
-            read_block(result, address, length)
-    except ValueError as error:
-        result["error"] = str(error)
-        result["ok"] = False
-    else:
-        result["readback_complete"] = True
-
-
 async def capture(
     *,
     serial: str,
@@ -140,8 +118,9 @@ async def capture(
     boot_code: bool = False,
     nor_code: bool = False,
     shell_code: bool = False,
+    header_batch: bool = False,
 ) -> dict:
-    code_references = code_references or shell_code
+    code_references = code_references or shell_code or header_batch
     boot_code = boot_code or nor_code
     card_code = card_code or boot_code
     disk_code = disk_code or card_code
@@ -243,6 +222,7 @@ async def capture(
                 else []
             )
             + (flushed_phases(SHELL_PHASES) if shell_code else [])
+            + (flushed_reads(HEADER_BATCH_READS) if header_batch else [])
         ),
         "notifications": [],
         "writes": [],
