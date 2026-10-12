@@ -29,10 +29,12 @@ Ghidra：BinaryLoader，base=`10000000`，语言`ARM:LE:32:Cortex`，Thumb conte
 - reset/prep/IRQ初始化，及直接BL目标bss/data/cstart/memcpy/memset候选：来自[启动入口](reset-entry-readback.md)。未读取callee时只把它作为entry候选，源码符号对应仍是推断。
 - 默认日志callback `1009ef2c`：实读注册参数的Thumb指针；[body已确认](log-buffer-wrap.md)，直接尾调用saver。
 
-清单共19个入口/调用目标。不加入任意猜测入口，不把推断类型、伪C或间接调用关系视为运行证据；关键结论仍需与原始指令及数据交叉核对。完整映射镜像即使校验通过，也不代表原始NOR、全部分区或可恢复备份。
+初版清单19个入口/调用目标；[启动边界修正](startup-noreturn-model.md)后增加2个已证实调用目标，共21个。不加入任意猜测入口，不把推断类型、伪C或间接调用关系视为运行证据；关键结论仍需与原始指令及数据交叉核对。完整映射镜像即使校验通过，也不代表原始NOR、全部分区或可恢复备份。
 
 ## 真实镜像headless验收
 
 Ubuntu运行脚本成功退出；Ghidra报告分析58秒、import/analysis/post-analysis/save成功，19个指定入口均取得非空C输出。[验收及产物SHA](evidence/system-ghidra-acceptance-2026-10-12.json)。本地ignored产物`artifacts/system-ghidra-20261012.c`及同名`.stdout`；Ubuntu保留project。没有执行目标固件。
 
 交叉核对：ring saver的unsigned差值判断、默认callback到saver、memcpy/memset逐字节循环与Capstone实读指令相符。**生成成功不等于伪C全部准确**：kernel entry自动函数范围越过已知`1009ab0a`，把literal/后续字节卷入并报jumptable警告；部分调用签名参数数目也推断错误。该尾部不作为启动行为证据。后续分析应先校正函数边界、non-return调用和签名，再使用高层伪C；现有结论仍以带bytes的报告为准。
+
+后续已完成[具体调用点no-return建模与真实重跑](startup-noreturn-model.md)，修正启动literal误反编译。旧19入口验收记录保留；当前21入口工具以新增验收为准，参数类型推断限制仍在。

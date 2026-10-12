@@ -1,0 +1,294 @@
+{
+  "image": {
+    "scope": "mapped-system image; not a raw Flash backup",
+    "base": "0x10000000",
+    "bytes": 927632,
+    "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+    "header_sha256": "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5",
+    "body_word_sum": "0xb18576b5",
+    "stored_body_checksum": "0x4e7a894a",
+    "checksum_verified": true,
+    "limits": [
+      "No physical Flash mapping proven",
+      "No complete device backup or restore validation"
+    ]
+  },
+  "scope": "Offline call-chain and no-return model; no target execution",
+  "regions": [
+    {
+      "address": "0x1009ffba",
+      "length": 20,
+      "label": "thread entry wrapper",
+      "hex": "044608b5084611461a46a047fcf745f88df741fc",
+      "sha256": "128b7fb4b2417b3380adc967ea41402111a011bfde45143d0d8c86d0c5246064",
+      "instructions": [
+        {
+          "address": "0x1009ffba",
+          "bytes": "0446",
+          "instruction": "mov r4, r0"
+        },
+        {
+          "address": "0x1009ffbc",
+          "bytes": "08b5",
+          "instruction": "push {r3, lr}"
+        },
+        {
+          "address": "0x1009ffbe",
+          "bytes": "0846",
+          "instruction": "mov r0, r1"
+        },
+        {
+          "address": "0x1009ffc0",
+          "bytes": "1146",
+          "instruction": "mov r1, r2"
+        },
+        {
+          "address": "0x1009ffc2",
+          "bytes": "1a46",
+          "instruction": "mov r2, r3"
+        },
+        {
+          "address": "0x1009ffc4",
+          "bytes": "a047",
+          "instruction": "blx r4"
+        },
+        {
+          "address": "0x1009ffc6",
+          "bytes": "fcf745f8",
+          "instruction": "bl #0x1009c054"
+        },
+        {
+          "address": "0x1009ffca",
+          "bytes": "8df741fc",
+          "instruction": "bl #0x1002d850"
+        }
+      ]
+    },
+    {
+      "address": "0x1009c054",
+      "length": 6,
+      "label": "current object getter",
+      "hex": "014b98687047",
+      "sha256": "5a0d1a907826c6e36c1f79f5d582d1964a8dbc044ee305814f388ba8a784ed00",
+      "instructions": [
+        {
+          "address": "0x1009c054",
+          "bytes": "014b",
+          "instruction": "ldr r3, [pc, #4]"
+        },
+        {
+          "address": "0x1009c056",
+          "bytes": "9868",
+          "instruction": "ldr r0, [r3, #8]"
+        },
+        {
+          "address": "0x1009c058",
+          "bytes": "7047",
+          "instruction": "bx lr"
+        }
+      ]
+    },
+    {
+      "address": "0x1009c05c",
+      "length": 4,
+      "label": "getter global pointer",
+      "hex": "247a0318",
+      "sha256": "9f0c374ccf9a1fdd207b17eb4c6f601894bc50fb1c5a977cbc8ca729ca2473d9"
+    },
+    {
+      "address": "0x1002d260",
+      "length": 66,
+      "label": "switch to initial thread",
+      "hex": "08b50d4614460023e1ee103aeff3148323f0040383f31488bff36f8fbff36f8f084b98608bf0c9fb204685f30988002163b681f31188bff36f8f0022002372f08cfe",
+      "sha256": "2ac6af3c326c88886e83097383d1220ba205cfdb29dfabf66d207dc1b91b027a",
+      "instructions": [
+        {
+          "address": "0x1002d260",
+          "bytes": "08b5",
+          "instruction": "push {r3, lr}"
+        },
+        {
+          "address": "0x1002d262",
+          "bytes": "0d46",
+          "instruction": "mov r5, r1"
+        },
+        {
+          "address": "0x1002d264",
+          "bytes": "1446",
+          "instruction": "mov r4, r2"
+        },
+        {
+          "address": "0x1002d266",
+          "bytes": "0023",
+          "instruction": "movs r3, #0"
+        },
+        {
+          "address": "0x1002d268",
+          "bytes": "e1ee103a",
+          "instruction": "vmsr fpscr, r3"
+        },
+        {
+          "address": "0x1002d26c",
+          "bytes": "eff31483",
+          "instruction": "mrs r3, control"
+        },
+        {
+          "address": "0x1002d270",
+          "bytes": "23f00403",
+          "instruction": "bic r3, r3, #4"
+        },
+        {
+          "address": "0x1002d274",
+          "bytes": "83f31488",
+          "instruction": "msr control, r3"
+        },
+        {
+          "address": "0x1002d278",
+          "bytes": "bff36f8f",
+          "instruction": "isb sy"
+        },
+        {
+          "address": "0x1002d27c",
+          "bytes": "bff36f8f",
+          "instruction": "isb sy"
+        },
+        {
+          "address": "0x1002d280",
+          "bytes": "084b",
+          "instruction": "ldr r3, [pc, #0x20]"
+        },
+        {
+          "address": "0x1002d282",
+          "bytes": "9860",
+          "instruction": "str r0, [r3, #8]"
+        },
+        {
+          "address": "0x1002d284",
+          "bytes": "8bf0c9fb",
+          "instruction": "bl #0x100b8a1a"
+        },
+        {
+          "address": "0x1002d288",
+          "bytes": "2046",
+          "instruction": "mov r0, r4"
+        },
+        {
+          "address": "0x1002d28a",
+          "bytes": "85f30988",
+          "instruction": "msr psp, r5"
+        },
+        {
+          "address": "0x1002d28e",
+          "bytes": "0021",
+          "instruction": "movs r1, #0"
+        },
+        {
+          "address": "0x1002d290",
+          "bytes": "63b6",
+          "instruction": "cpsie if"
+        },
+        {
+          "address": "0x1002d292",
+          "bytes": "81f31188",
+          "instruction": "msr basepri, r1"
+        },
+        {
+          "address": "0x1002d296",
+          "bytes": "bff36f8f",
+          "instruction": "isb sy"
+        },
+        {
+          "address": "0x1002d29a",
+          "bytes": "0022",
+          "instruction": "movs r2, #0"
+        },
+        {
+          "address": "0x1002d29c",
+          "bytes": "0023",
+          "instruction": "movs r3, #0"
+        },
+        {
+          "address": "0x1002d29e",
+          "bytes": "72f08cfe",
+          "instruction": "bl #0x1009ffba"
+        }
+      ]
+    },
+    {
+      "address": "0x1002d850",
+      "length": 28,
+      "label": "abort wrapper",
+      "hex": "064b9b68834207d1eff3058323b1044a536843f0805353606ef00abc",
+      "sha256": "dd6ec13c6c52fa66f381654f052d5ff6e6e0bff6ee6c367c5c238c304df9e114",
+      "instructions": [
+        {
+          "address": "0x1002d850",
+          "bytes": "064b",
+          "instruction": "ldr r3, [pc, #0x18]"
+        },
+        {
+          "address": "0x1002d852",
+          "bytes": "9b68",
+          "instruction": "ldr r3, [r3, #8]"
+        },
+        {
+          "address": "0x1002d854",
+          "bytes": "8342",
+          "instruction": "cmp r3, r0"
+        },
+        {
+          "address": "0x1002d856",
+          "bytes": "07d1",
+          "instruction": "bne #0x1002d868"
+        },
+        {
+          "address": "0x1002d858",
+          "bytes": "eff30583",
+          "instruction": "mrs r3, ipsr"
+        },
+        {
+          "address": "0x1002d85c",
+          "bytes": "23b1",
+          "instruction": "cbz r3, #0x1002d868"
+        },
+        {
+          "address": "0x1002d85e",
+          "bytes": "044a",
+          "instruction": "ldr r2, [pc, #0x10]"
+        },
+        {
+          "address": "0x1002d860",
+          "bytes": "5368",
+          "instruction": "ldr r3, [r2, #4]"
+        },
+        {
+          "address": "0x1002d862",
+          "bytes": "43f08053",
+          "instruction": "orr r3, r3, #0x10000000"
+        },
+        {
+          "address": "0x1002d866",
+          "bytes": "5360",
+          "instruction": "str r3, [r2, #4]"
+        },
+        {
+          "address": "0x1002d868",
+          "bytes": "6ef00abc",
+          "instruction": "b.w #0x1009c080"
+        }
+      ]
+    },
+    {
+      "address": "0x1002d86c",
+      "length": 4,
+      "label": "abort global pointer",
+      "hex": "247a0318",
+      "sha256": "9f0c374ccf9a1fdd207b17eb4c6f601894bc50fb1c5a977cbc8ca729ca2473d9"
+    }
+  ],
+  "contract_source": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/lib/os/thread_entry.c#L26-L46",
+  "limits": [
+    "No-return annotation is source-matched semantic contract, not runtime termination proof",
+    "Abort implementation beyond1002d850 tail-call1009c080 not expanded here"
+  ]
+}

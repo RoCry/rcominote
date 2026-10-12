@@ -101,3 +101,7 @@ uv run --locked tools/build_sdk.py \
 [实机reset入口与C启动边界](docs/reset-entry-readback.md)：头部/向量指定的入口已解码，取得启动PSP、RAM向量地址、FPU与IRQ初始化常量；[后续启动调用](docs/startup-memory-readback.md)已解析两段清零、三段复制参数及kernel启动顺序；不据此推断ROM/签名/恢复能力。
 
 [系统镜像离线分析](docs/offline-system-analysis.md)：新增无设备连接的`comi image inspect`及Ubuntu Ghidra入口；927632 B实机映射镜像导出与离线checksum验收通过；仍非raw NOR/整机恢复备份。
+
+[printk实际backend](docs/printk-backend-readback.md)：fread正文走独立DMA分派或动态字符hook；已定位当前RAM flags/hook的最小读取目标，尚未实测其运行时值。
+
+[启动反编译边界](docs/startup-noreturn-model.md)：具体thread-abort调用点no-return建模，Ubuntu完整镜像21入口重跑通过；修正literal伪控制流，仍保留参数推断限制。

@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-12",
+  "input_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "analysis_reported_seconds": 58,
+  "exit_code": 0,
+  "exported_entries": [
+    "0x1000bb5c",
+    "0x1000bc18",
+    "0x1000bcec",
+    "0x1000bdb0",
+    "0x1000c0e8",
+    "0x10023020",
+    "0x100242a8",
+    "0x100242b0",
+    "0x10026614",
+    "0x10027720",
+    "0x1002d0c4",
+    "0x1002d800",
+    "0x1002d818",
+    "0x1009aa24",
+    "0x1009c1d0",
+    "0x1009aa54",
+    "0x1009ef2c",
+    "0x100b9652",
+    "0x100b96c8",
+    "0x1009ffba",
+    "0x1002d260"
+  ],
+  "no_return_boundary_checks_passed": true,
+  "generated_c_sha256": "8ef5ae64bb20f6d73aeabd0c0a423339e1b9372173dcc929ecce5e1d8da1413e",
+  "stdout_sha256": "4f57922ffc85f8e2747b442a745d0589feb4439702bd7655f1abc3be11cd0319",
+  "source_script_sha256": "9836ea6ed72208b3cd3ab77bd5370fa0a8adb0f21fdad40b34ce0c2d6bc887a3",
+  "previous_failure": "Function fallthrough decoded literal/following code as startup continuation",
+  "observed_correction": "No coprocessor or jumptable tail; kernel entry ends at switch call, thread wrapper ends after abort call",
+  "limits": [
+    "No runtime execution",
+    "No-return source-matched contract remains modeling assumption",
+    "Inferred signatures still inaccurate: entry callback shown with five arguments; raw code supplies three",
+    "Generated structural return after CALL_RETURN does not override function no-return contract"
+  ]
+}
