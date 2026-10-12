@@ -141,3 +141,7 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## TLV文本到shell执行入口
 
 [首次](shell-text-first-2026-10-12.json)、[重读](shell-text-second-2026-10-12.json)、[分析](shell-text-analysis-2026-10-12.json)：777 B一致，新增432 B，累计4661不同映射字节。文本type1到shell execute及内部执行callee已定位；命令表未读。[报告](../shell-text-readback.md)、[结束状态](shell-text-final-state-2026-10-12.json)。
+
+## shell registry与dbg静态表
+
+[首次](shell-registry-first-2026-10-12.json)、[重读](shell-registry-second-2026-10-12.json)、[分析](shell-registry-analysis-2026-10-12.json)：1535 B一致，新增758 B，累计5419不同映射字节。13项root registry、dbg descriptor及静态子命令数组指针已确认；子命令数组未读。[报告](../shell-registry-readback.md)、[结束状态](shell-registry-final-state-2026-10-12.json)。

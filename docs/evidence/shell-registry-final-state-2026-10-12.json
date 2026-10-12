@@ -1,0 +1,20 @@
+{
+  "serial": "C261CF0430",
+  "bound": false,
+  "device": {
+    "total_capacity": 59634,
+    "free_capacity": 59632,
+    "charging": true,
+    "battery": 100,
+    "recording_state": "idle",
+    "version": "010004",
+    "usb_mode": true,
+    "mode": "call",
+    "indicator_light": null,
+    "noise_reduction": 9,
+    "voice_control": null,
+    "segment_duration": 3,
+    "screen_backlight": false,
+    "raw": "0000e8f20000e8f00264000100040101ff78696e6b5f746573740000000000000000000000000009ff0300010000000000000000"
+  }
+}

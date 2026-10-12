@@ -9,8 +9,8 @@ from rcominote.code_guards import observed_storage_reference
 from rcominote.code_references import inspect_references
 
 EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence"
-FIRST = EVIDENCE / "shell-text-first-2026-10-12.json"
-SECOND = EVIDENCE / "shell-text-second-2026-10-12.json"
+FIRST = EVIDENCE / "shell-registry-first-2026-10-12.json"
+SECOND = EVIDENCE / "shell-registry-second-2026-10-12.json"
 
 
 def test_actual_timer_and_header_edges():
@@ -57,3 +57,27 @@ def test_changed_text_execute_call_blocks_callee_read():
         frame["text"] = frame.get("text", "").replace("94 f0 91 fd", "94 f0 92 fd")
     with pytest.raises(ValueError, match="logsrv backend getter and execute calls code changed"):
         observed_storage_reference(capture["frames"], "dbg mdb 100a0e1a 10")
+
+
+def test_actual_registry_bounds_and_dbg_static_pointer():
+    report = inspect_references(FIRST, SECOND, shell=True)
+    blocks = {row["address"]: row for row in report["blocks"]}
+    assert blocks["0x10023d94"]["little_endian_words"] == ["0x100ba674", "0x100ba6dc"]
+    assert bytes.fromhex(blocks["0x100c69dd"]["hex"]) == b"dbg\0"
+    assert blocks["0x100bbba4"]["little_endian_words"] == ["0x0", "0x100bb8d4"]
+    instructions = {
+        row["address"]: (row["mnemonic"], row["operands"])
+        for region in report["code_regions"]
+        for row in region["instructions"]
+    }
+    assert instructions["0x10023d5e"] == ("cmp.w", "r3, r2, lsr #3")
+    assert instructions["0x10023d68"] == ("ldr", "r4, [r1, #4]")
+    assert instructions["0x10023d88"] == ("movs", "r0, #0x14")
+
+
+def test_moved_registry_boundary_blocks_old_table():
+    capture = json.loads(FIRST.read_text())
+    for frame in capture["frames"]:
+        frame["text"] = frame.get("text", "").replace("74 a6 0b 10 dc a6 0b 10", "74 a6 0b 10 d4 a6 0b 10")
+    with pytest.raises(ValueError, match="shell root registry start/end code changed"):
+        observed_storage_reference(capture["frames"], "dbg mdb 100ba674 10")

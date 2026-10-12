@@ -59,6 +59,77 @@ SHELL_INTERNAL_EXECUTE = tuple(
     (address, 16, "shell command execution direct callee entry and continuation", True)
     for address in range(0x10023020, 0x10023060, 16)
 )
+SHELL_PARSE_HEAD = tuple(
+    (address, 16, "shell internal execution argument setup continuation", True)
+    for address in range(0x10023060, 0x100230A0, 16)
+)
+SHELL_PARSE_LOOP = (
+    *(
+        (address, 16, "shell parser loop condition branch target", True)
+        for address in range(0x100231EC, 0x1002320C, 16)
+    ),
+    *(
+        (address, 16, "shell argument tokenizer continuation", True)
+        for address in range(0x100230A0, 0x100230E0, 16)
+    ),
+)
+SHELL_LOOKUP_PATH = tuple(
+    (address, 16, "shell zero-level command lookup branch target", True)
+    for address in range(0x10023128, 0x10023168, 16)
+)
+SHELL_FIND_COMMAND = tuple(
+    (address, 16, "shell three-argument command lookup callee", True)
+    for address in range(0x100A0F94, 0x100A0FD4, 16)
+)
+SHELL_REGISTRY_ENTRY = (
+    (0x100A0FD4, 16, "command lookup comparison-loop continuation", True),
+    *(
+        (address, 16, "command registry direct callee root branch", True)
+        for address in range(0x10023D50, 0x10023D90, 16)
+    ),
+)
+SHELL_REGISTRY_BOUNDS = (
+    (0x10023D90, 4, "static subcommand lookup return branch", True),
+    (0x10023D94, 8, "root registry start and end literals", False),
+    (0x100A0FE4, 6, "command lookup epilogue continuation", True),
+)
+SHELL_ROOT_TABLE = tuple(
+    (address, min(16, 0x100BA6DC - address), "bounded 13-entry root command registry", False)
+    for address in range(0x100BA674, 0x100BA6DC, 16)
+)
+SHELL_ROOT_DESCRIPTORS = (
+    (0x100BCE4C, 16, "root registry descriptor syntax/help/subcmd/handler prefix", False),
+    (0x100BA878, 16, "root registry descriptor syntax/help/subcmd/handler prefix", False),
+    (0x100BD83C, 16, "root registry descriptor syntax/help/subcmd/handler prefix", False),
+    (0x100BB6C4, 16, "root registry descriptor syntax/help/subcmd/handler prefix", False),
+    (0x100BBFC4, 16, "root registry descriptor syntax/help/subcmd/handler prefix", False),
+    (0x100BB8C0, 16, "root registry descriptor syntax/help/subcmd/handler prefix", False),
+    (0x100BB630, 16, "root registry descriptor syntax/help/subcmd/handler prefix", False),
+    (0x100BB674, 16, "root registry descriptor syntax/help/subcmd/handler prefix", False),
+    (0x100BB6D8, 16, "root registry descriptor syntax/help/subcmd/handler prefix", False),
+    (0x100BB59C, 16, "root registry descriptor syntax/help/subcmd/handler prefix", False),
+    (0x100BB6EC, 16, "root registry descriptor syntax/help/subcmd/handler prefix", False),
+    (0x100BB700, 16, "root registry descriptor syntax/help/subcmd/handler prefix", False),
+    (0x100BCD08, 16, "root registry descriptor syntax/help/subcmd/handler prefix", False),
+)
+SHELL_ROOT_NAMES = (
+    (0x100D1763, 4, "root command syntax prefix; only NUL proves complete name", False),
+    (0x100D454E, 4, "root command syntax prefix; only NUL proves complete name", False),
+    (0x100D5F63, 4, "root command syntax prefix; only NUL proves complete name", False),
+    (0x100C5FBC, 4, "root command syntax prefix; only NUL proves complete name", False),
+    (0x100C9420, 4, "root command syntax prefix; only NUL proves complete name", False),
+    (0x100C69DD, 4, "root command syntax prefix; only NUL proves complete name", False),
+    (0x100C5A99, 4, "root command syntax prefix; only NUL proves complete name", False),
+    (0x100C5E43, 4, "root command syntax prefix; only NUL proves complete name", False),
+    (0x100C5F7D, 4, "root command syntax prefix; only NUL proves complete name", False),
+    (0x100C591F, 4, "root command syntax prefix; only NUL proves complete name", False),
+    (0x100C5ED1, 4, "root command syntax prefix; only NUL proves complete name", False),
+    (0x100D1795, 4, "root command syntax prefix; only NUL proves complete name", False),
+    (0x100C0F23, 4, "root command syntax prefix; only NUL proves complete name", False),
+)
+SHELL_DBG_SUBCOMMAND = (
+    (0x100BBBA4, 8, "confirmed dbg subcommand descriptor dynamic flag and pointer", False),
+)
 SHELL_PHASES = (
     SHELL_INIT_SUCCESS,
     SHELL_STREAM_SUCCESS,
@@ -73,9 +144,88 @@ SHELL_PHASES = (
     SHELL_EXECUTE_ENTRY,
     SHELL_EXECUTE_BODY,
     SHELL_INTERNAL_EXECUTE,
+    SHELL_PARSE_HEAD,
+    SHELL_PARSE_LOOP,
+    SHELL_LOOKUP_PATH,
+    SHELL_FIND_COMMAND,
+    SHELL_REGISTRY_ENTRY,
+    SHELL_REGISTRY_BOUNDS,
+    SHELL_ROOT_TABLE,
+    SHELL_ROOT_DESCRIPTORS,
+    SHELL_ROOT_NAMES,
+    SHELL_DBG_SUBCOMMAND,
 )
 SHELL_BLOCKS = tuple(block for phase in SHELL_PHASES for block in phase)
 SHELL_GUARDS = (
+    (
+        SHELL_DBG_SUBCOMMAND,
+        (
+            (0x100BB8C0, "dd690c10e1690c10a4bb0b1000000000", "dbg syntax and subcommand descriptor"),
+            (0x100C69DD, "64626700", "confirmed dbg name"),
+        ),
+    ),
+    (
+        SHELL_ROOT_NAMES,
+        (
+            (0x100BCE4C, "63170d101e170d1000cf0b1000000000", "root descriptor syntax pointer"),
+            (0x100BA878, "4e450d1067090c108ca80b1001210010", "root descriptor syntax pointer"),
+            (0x100BD83C, "635f0d10875d0d1050d80b10fdcd0610", "root descriptor syntax pointer"),
+            (0x100BB6C4, "bc5f0c10c25f0c10000000001d450210", "root descriptor syntax pointer"),
+            (0x100BBFC4, "20940c10aa930c108cc00b1000000000", "root descriptor syntax pointer"),
+            (0x100BB8C0, "dd690c10e1690c10a4bb0b1000000000", "root descriptor syntax pointer"),
+            (0x100BB630, "995a0c10a05a0c106cb60b10fd2b0210", "root descriptor syntax pointer"),
+            (0x100BB674, "435e0c10e55d0c1000000000653b0210", "root descriptor syntax pointer"),
+            (0x100BB6D8, "7d5f0c10855f0c100000000081450210", "root descriptor syntax pointer"),
+            (0x100BB59C, "1f590c1026590c1028b60b1000000000", "root descriptor syntax pointer"),
+            (0x100BB6EC, "d15e0c10d85e0c102cb70b101d460210", "root descriptor syntax pointer"),
+            (0x100BB700, "95170d10965f0c1034b70b1000000000", "root descriptor syntax pointer"),
+            (0x100BCD08, "230f0c10e40d0d1094cd0b1000000000", "root descriptor syntax pointer"),
+        ),
+    ),
+    (
+        SHELL_ROOT_DESCRIPTORS,
+        (
+            (0x100BA674, "000000004cce0b100000000078a80b10", "root registry descriptor pointers"),
+            (0x100BA684, "000000003cd80b1000000000c4b60b10", "root registry descriptor pointers"),
+            (0x100BA694, "00000000c4bf0b1000000000c0b80b10", "root registry descriptor pointers"),
+            (0x100BA6A4, "0000000030b60b100000000074b60b10", "root registry descriptor pointers"),
+            (0x100BA6B4, "00000000d8b60b10000000009cb50b10", "root registry descriptor pointers"),
+            (0x100BA6C4, "00000000ecb60b100000000000b70b10", "root registry descriptor pointers"),
+            (0x100BA6D4, "0000000008cd0b10", "root registry descriptor pointers"),
+        ),
+    ),
+    (SHELL_ROOT_TABLE, ((0x10023D94, "74a60b10dca60b10", "shell root registry start/end"),)),
+    (
+        SHELL_REGISTRY_BOUNDS,
+        (
+            (0x10023D50, "10b50b46144650b90e490f4a521ab3eb", "shell root registry bound literals"),
+            (0x10023D80, "002bf2d10024f0e714204343d418d358", "shell static descriptor stride"),
+            (0x100A0FD4, "28b1296830465ff775fe0028f0d12846", "shell command comparison and epilogue"),
+        ),
+    ),
+    (
+        SHELL_REGISTRY_ENTRY,
+        ((0x100A0FC4, "41463a46204682f7c1fe08f101080546", "shell indexed registry call"),),
+    ),
+    (
+        SHELL_FIND_COMMAND,
+        ((0x10023128, "baf1000f05d1396807aa58467df02eff", "shell three-argument lookup call"),),
+    ),
+    (
+        SHELL_LOOKUP_PATH,
+        ((0x100230D0, "059b4bb3386801f00dfa98b166b1a568", "shell zero-level command branch"),),
+    ),
+    (
+        SHELL_PARSE_LOOP,
+        (
+            (0x10023080, "0532012a00f0d7800b2b40f2af800699", "shell loop condition target"),
+            (0x10023090, "022940f0af808b4b8b4a15e00223039a", "shell tokenizer setup continuation"),
+        ),
+    ),
+    (
+        SHELL_PARSE_HEAD,
+        ((0x10023050, "96f03afb204600f0dbfea168e0688a8f", "shell internal setup continuation"),),
+    ),
     (
         SHELL_INTERNAL_EXECUTE,
         ((0x100A0E4A, "3d70fff784ff204682f7e5f80546a068", "shell internal execute call"),),

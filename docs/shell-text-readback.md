@@ -32,3 +32,5 @@ Getter返回后的`100242ac`独立标为4B数据，不能反汇编为指令。32
 ## 保存证据
 
 [首次](evidence/shell-text-first-2026-10-12.json)、[重读](evidence/shell-text-second-2026-10-12.json)、[逐指令分析](evidence/shell-text-analysis-2026-10-12.json)、[结束状态](evidence/shell-text-final-state-2026-10-12.json)。CLI命令同前篇，当前profile已扩展。测试覆盖真实type1分支、跨行BL、getter数据边界、改变execute目标后的拒绝行为。
+
+后续：[shell registry与dbg静态表](shell-registry-readback.md)已定位实际root表和dbg子命令数组；本文777 B为历史阶段，当前profile1535 B。
