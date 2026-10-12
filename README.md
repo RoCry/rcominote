@@ -121,3 +121,5 @@ uv run --locked tools/build_sdk.py \
 [屏幕等待时间基准](docs/display-timebase.md)：实机代码每tick 32,000周期，busy-wait配置支持32 MHz，故10/120tick名义对应10/120 ms；未测调度延迟或引脚波形。
 
 [屏幕I2C速率](docs/display-i2c-config.md)：实际configure将14映射到400 kHz目标、divider5；默认init为100 kHz，SDA/SCL pinmux仍待定位。
+
+[实机早期pinmux表](docs/board-pinmux-evidence.md)：三张表25项，GPIO14/15的3808配置支持I2C0候选；SCL/SDA身份与物理连线仍待确认。

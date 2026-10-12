@@ -1,0 +1,165 @@
+{
+  "image": {"scope": "mapped-system image; not a raw Flash backup", "base": "0x10000000", "bytes": 927632, "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f", "header_sha256": "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5", "body_word_sum": "0xb18576b5", "stored_body_checksum": "0x4e7a894a", "checksum_verified": true, "limits": ["No physical Flash mapping proven", "No complete device backup or restore validation"]},
+  "scope": "Static early pinmux initializer; no hardware I/O",
+  "tables_in_call_order": [
+    {
+      "address": "0x100bbf2c",
+      "entries": [
+        {"pin": 28, "mode": "0x4125"},
+        {"pin": 29, "mode": "0x4125"},
+        {"pin": 16, "mode": "0x4126"},
+        {"pin": 17, "mode": "0x4126"},
+        {"pin": 0, "mode": "0x3021"},
+        {"pin": 1, "mode": "0x3021"},
+        {"pin": 2, "mode": "0x3021"},
+        {"pin": 3, "mode": "0x3021"},
+        {"pin": 6, "mode": "0x3821"},
+        {"pin": 7, "mode": "0x3821"},
+        {"pin": 14, "mode": "0x3808"},
+        {"pin": 15, "mode": "0x3808"},
+        {"pin": 35, "mode": "0x3103"},
+        {"pin": 34, "mode": "0x3103"},
+        {"pin": 33, "mode": "0x3103"},
+        {"pin": 49, "mode": "0x3240"},
+        {"pin": 50, "mode": "0x3040"},
+        {"pin": 10, "mode": "0x80"},
+        {"pin": 9, "mode": "0x3040"}
+      ]
+    },
+    {
+      "address": "0x100bbf14",
+      "entries": [
+        {"pin": 18, "mode": "0x580a"},
+        {"pin": 19, "mode": "0x300a"},
+        {"pin": 20, "mode": "0x580a"}
+      ]
+    },
+    {
+      "address": "0x100bbefc",
+      "entries": [
+        {"pin": 14, "mode": "0x3808"},
+        {"pin": 15, "mode": "0x3808"},
+        {"pin": 25, "mode": "0x3000"}
+      ]
+    }
+  ],
+  "regions": [
+    {
+      "address": "0x1002dd9c",
+      "end_exclusive": "0x1002dde0",
+      "hex": "08b51048132172f064fd0f48032172f060fd03210d4872f05cfd76f059fa76f069fa0020fff7d8ff43f23c013e20f3f715fe074b4ff4b1421a600120f3f7f8fd002008bd",
+      "sha256": "c6d0a24868fd1e3aa6ca277c9b39234abaf07edf3704f16cc6e9090a805f6e2a",
+      "instructions": [
+        {
+          "address": "0x1002dd9c",
+          "bytes": "08b5",
+          "instruction": "push {r3, lr}"
+        },
+        {"address": "0x1002dd9e", "bytes": "1048", "instruction": "ldr r0, [pc, #0x40]"},
+        {"address": "0x1002dda0", "bytes": "1321", "instruction": "movs r1, #0x13"},
+        {"address": "0x1002dda2", "bytes": "72f064fd", "instruction": "bl #0x100a086e"},
+        {"address": "0x1002dda6", "bytes": "0f48", "instruction": "ldr r0, [pc, #0x3c]"},
+        {"address": "0x1002dda8", "bytes": "0321", "instruction": "movs r1, #3"},
+        {"address": "0x1002ddaa", "bytes": "72f060fd", "instruction": "bl #0x100a086e"},
+        {"address": "0x1002ddae", "bytes": "0321", "instruction": "movs r1, #3"},
+        {"address": "0x1002ddb0", "bytes": "0d48", "instruction": "ldr r0, [pc, #0x34]"},
+        {"address": "0x1002ddb2", "bytes": "72f05cfd", "instruction": "bl #0x100a086e"},
+        {"address": "0x1002ddb6", "bytes": "76f059fa", "instruction": "bl #0x100a426c"},
+        {"address": "0x1002ddba", "bytes": "76f069fa", "instruction": "bl #0x100a4290"},
+        {"address": "0x1002ddbe", "bytes": "0020", "instruction": "movs r0, #0"},
+        {"address": "0x1002ddc0", "bytes": "fff7d8ff", "instruction": "bl #0x1002dd74"},
+        {"address": "0x1002ddc4", "bytes": "43f23c01", "instruction": "movw r1, #0x303c"},
+        {"address": "0x1002ddc8", "bytes": "3e20", "instruction": "movs r0, #0x3e"},
+        {"address": "0x1002ddca", "bytes": "f3f715fe", "instruction": "bl #0x100219f8"},
+        {"address": "0x1002ddce", "bytes": "074b", "instruction": "ldr r3, [pc, #0x1c]"},
+        {"address": "0x1002ddd0", "bytes": "4ff4b142", "instruction": "mov.w r2, #0x5880"},
+        {"address": "0x1002ddd4", "bytes": "1a60", "instruction": "str r2, [r3]"},
+        {"address": "0x1002ddd6", "bytes": "0120", "instruction": "movs r0, #1"},
+        {"address": "0x1002ddd8", "bytes": "f3f7f8fd", "instruction": "bl #0x100219cc"},
+        {"address": "0x1002dddc", "bytes": "0020", "instruction": "movs r0, #0"},
+        {
+          "address": "0x1002ddde",
+          "bytes": "08bd",
+          "instruction": "pop {r3, pc}"
+        }
+      ]
+    },
+    {"address": "0x1002dde0", "end_exclusive": "0x1002ddf0", "hex": "2cbf0b1014bf0b10fcbe0b1004830640", "sha256": "ed1a68d7f7846c88949a49a4977de52908597e55737001d4fb5f325073955601"},
+    {
+      "address": "0x100a086e",
+      "end_exclusive": "0x100a088e",
+      "hex": "f8b505460e460024071db44200dbf8bd57f8341055f8340081f7b7f80134f4e7",
+      "sha256": "67f7de6668cb6e2a7d7fabd3c5d4b04c163506898d8bd02a4463f2b0ee7c4c73",
+      "instructions": [
+        {
+          "address": "0x100a086e",
+          "bytes": "f8b5",
+          "instruction": "push {r3, r4, r5, r6, r7, lr}"
+        },
+        {"address": "0x100a0870", "bytes": "0546", "instruction": "mov r5, r0"},
+        {"address": "0x100a0872", "bytes": "0e46", "instruction": "mov r6, r1"},
+        {"address": "0x100a0874", "bytes": "0024", "instruction": "movs r4, #0"},
+        {"address": "0x100a0876", "bytes": "071d", "instruction": "adds r7, r0, #4"},
+        {"address": "0x100a0878", "bytes": "b442", "instruction": "cmp r4, r6"},
+        {"address": "0x100a087a", "bytes": "00db", "instruction": "blt #0x100a087e"},
+        {
+          "address": "0x100a087c",
+          "bytes": "f8bd",
+          "instruction": "pop {r3, r4, r5, r6, r7, pc}"
+        },
+        {"address": "0x100a087e", "bytes": "57f83410", "instruction": "ldr.w r1, [r7, r4, lsl #3]"},
+        {"address": "0x100a0882", "bytes": "55f83400", "instruction": "ldr.w r0, [r5, r4, lsl #3]"},
+        {"address": "0x100a0886", "bytes": "81f7b7f8", "instruction": "bl #0x100219f8"},
+        {"address": "0x100a088a", "bytes": "0134", "instruction": "adds r4, #1"},
+        {"address": "0x100a088c", "bytes": "f4e7", "instruction": "b #0x100a0878"}
+      ]
+    },
+    {
+      "address": "0x100219f8",
+      "end_exclusive": "0x10021a34",
+      "hex": "4d2810b517d84ff02003eff3118483f31288bff36f8f094a02449000036823f4fe4323f03f031943016084f31188bff36f8f002010bd6ff01500fbe7",
+      "sha256": "1d7345391039d020dae53da7935aa6349e7f3ce4d6cfe8727fb1c31df13d57b2",
+      "instructions": [
+        {"address": "0x100219f8", "bytes": "4d28", "instruction": "cmp r0, #0x4d"},
+        {
+          "address": "0x100219fa",
+          "bytes": "10b5",
+          "instruction": "push {r4, lr}"
+        },
+        {"address": "0x100219fc", "bytes": "17d8", "instruction": "bhi #0x10021a2e"},
+        {"address": "0x100219fe", "bytes": "4ff02003", "instruction": "mov.w r3, #0x20"},
+        {"address": "0x10021a02", "bytes": "eff31184", "instruction": "mrs r4, basepri"},
+        {"address": "0x10021a06", "bytes": "83f31288", "instruction": "msr basepri_max, r3"},
+        {"address": "0x10021a0a", "bytes": "bff36f8f", "instruction": "isb sy"},
+        {"address": "0x10021a0e", "bytes": "094a", "instruction": "ldr r2, [pc, #0x24]"},
+        {"address": "0x10021a10", "bytes": "0244", "instruction": "add r2, r0"},
+        {"address": "0x10021a12", "bytes": "9000", "instruction": "lsls r0, r2, #2"},
+        {"address": "0x10021a14", "bytes": "0368", "instruction": "ldr r3, [r0]"},
+        {"address": "0x10021a16", "bytes": "23f4fe43", "instruction": "bic r3, r3, #0x7f00"},
+        {"address": "0x10021a1a", "bytes": "23f03f03", "instruction": "bic r3, r3, #0x3f"},
+        {"address": "0x10021a1e", "bytes": "1943", "instruction": "orrs r1, r3"},
+        {"address": "0x10021a20", "bytes": "0160", "instruction": "str r1, [r0]"},
+        {"address": "0x10021a22", "bytes": "84f31188", "instruction": "msr basepri, r4"},
+        {"address": "0x10021a26", "bytes": "bff36f8f", "instruction": "isb sy"},
+        {"address": "0x10021a2a", "bytes": "0020", "instruction": "movs r0, #0"},
+        {
+          "address": "0x10021a2c",
+          "bytes": "10bd",
+          "instruction": "pop {r4, pc}"
+        },
+        {"address": "0x10021a2e", "bytes": "6ff01500", "instruction": "mvn r0, #0x15"},
+        {"address": "0x10021a32", "bytes": "fbe7", "instruction": "b #0x10021a2c"}
+      ]
+    },
+    {"address": "0x10021a34", "end_exclusive": "0x10021a38", "hex": "01a00110", "sha256": "80eb09c3f9ee1e94e035de366cb68699162d0b5883657cc939618ce261082c8e"},
+    {"address": "0x100bbf2c", "end_exclusive": "0x100bbfc4", "hex": "1c000000254100001d00000025410000100000002641000011000000264100000000000021300000010000002130000002000000213000000300000021300000060000002138000007000000213800000e000000083800000f00000008380000230000000331000022000000033100002100000003310000310000004032000032000000403000000a000000800000000900000040300000", "sha256": "324e2f20f64fb5b534e91d65a5ed0823a64b4cef2e882ed6b534890f1df17379"},
+    {"address": "0x100bbf14", "end_exclusive": "0x100bbf2c", "hex": "120000000a580000130000000a300000140000000a580000", "sha256": "20699b1dd4bd109c94746f671798e3af03a110a602f21f2d6c972d5f6ddbf389"},
+    {"address": "0x100bbefc", "end_exclusive": "0x100bbf14", "hex": "0e000000083800000f000000083800001900000000300000", "sha256": "e30250a1dc7ea42cab4a27bc92b5a60222045684d5d498cb983935ef0963d63e"},
+    {"address": "0x100b9d28", "end_exclusive": "0x100b9d30", "hex": "9ddd021000000000", "sha256": "f0d187203651ceb2c9012520bad992ddf7e1f00b6821d7d478a44518da3f2d07"}
+  ],
+  "limits": [
+    "SCL versus SDA assignment unresolved",
+    "Later helper side effects and pin reconfiguration not exhaustively audited",
+    "Physical package routing and current registers not measured"
+  ]
+}
