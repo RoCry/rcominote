@@ -1,24 +1,46 @@
 # CoMi 烧录、失败恢复与现有固件提取评估
 
-2026-10-12。源码与有界实机诊断；本轮未发送烧录、擦除、重启或下载 helper 命令。
+更新2026-10-13。综合源码、保留镜像与既有实机证据；本次更新仅离线分析，未烧录、擦除、重启或执行 helper。
 SDK 固定为 `lvgl/lv_port_actions_technology@26f51e584940d5b141cd1d09d2629d69b595f579`。
 设备实测见 [USB/log 记录](usb-log-probe.md) 与 [本轮诊断](device-diagnostics.md)；SDK 分支不能当作 CoMi 实际配置。
 
 **理论上存在自写固件与恢复路径；当前还没有 CoMi 可烧录、可完整备份、失败后可恢复的实证。**
 编译成功只满足第一环。闭环还需匹配板配置、实际写入入口、启动授权、完整原厂资料及独立恢复入口。
 
-最新进展：实际ACPT分区及完整系统映射镜像已取得，927632 B头/正文校验通过；fread正文实际输出已关联UART_0 DMA。下面早期读取数量/未知项保留历史上下文，当前能力以[路线状态](firmware-roadmap.md)及[映射缺口](mapping-candidate-audit.md)为准。仍无raw NOR完整备份、烧录或独立恢复验收。
+当前实证：Cortex-M4 r0p1；固件板名`ats3085l_dvb_watch_ext_nor_max`；ACPT覆盖4 MiB NOR，录音另走SD。完整system927632 B、boot3672 B、录音DSP110148 B已校验；recovery仅48128/63288 B，尚缺完整正文校验。仍无整片原始备份、匹配官方恢复包、烧录或独立恢复验收。优先级以[研究路线](research-routes.md)为准。
 
 ## 四个问题的直接答案
 
 | 问题 | 已确认事实 | 条件推断 | CoMi 未知 |
 |---|---|---|---|
-| 能烧录自己的固件吗？ | SDK 有 OTA 写入/校验、ADFU 生产配置及 J-Link 存储支持；启动层有条件签名路径。[OTA 写入][ota-write] [传输研究](recovery-transport.md) [签名][sign] | 能找到本机入口、匹配芯片/存储/板级配置且获得启动授权，才可能运行自写固件 | 型号、分区、接口、签名/加密策略；尚无可直接使用的 CoMi 配方 |
-| 烧进去之后会怎样？ | SDK 会检查镜像头、入口地址、长度与 checksum；通过后跳入应用。[镜像检查][image-check] [跳转][nor-boot] | 包可能被拒绝；镜像可能写入但启动检查失败；也可能进入应用后黑屏、失去 BLE、重启或无法录音 | 参考板固件行为不可预测；尚未在 CoMi 写入/启动 |
-| 失败后能恢复官方吗？ | SDK 有独立 recovery、临时升级区、ADFU 入口；但本公开 recovery 的 `ota_main()` 是无限循环占位实现。[启动流程][recovery-main] [占位实现][ota-stub] | 保留有效 boot/recovery，且应用死掉仍可进入已验证恢复入口，并有正确原厂包/备份，才有恢复基础 | 当前没有验证恢复入口、原厂完整包或回刷；不能承诺“随便刷，刷坏再救” |
-| 能提取正在运行的固件吗？ | CoMi 已实测执行 shell 并返回 `Zephyr version 2.7.0`；SDK 有条件编译的 flash/内存读取命令，但部分处理器有单位/长度问题。[实测](evidence/log-device-info-2026-10-12.json) [命令与开关][shell-reg] [读取处理器][shell-read] | 本机帮助已列读取命令，固定 NOR 头读取进入 handler 但未传回数据；需先解决读取输出，再评估分区级备份；SWD/匹配只读 helper 是其他候选 | 后续已重读16字节映射代码，见[代码读回](mapped-code-readback.md)；没有完整物理flash备份 |
+| 能烧录自己的固件吗？ | [实际OTA写入/提交链](ota-write-commit.md)、[boot→ROM入口](actual-boot-flow.md)已定位；本机为M4，公开完整参考BSP为M33 | 匹配传输、板级初始化、镜像格式与启动授权后才可能运行 | recovery的system验收/交接、ROM加载权限、匹配M4 BSP/库、独立恢复仍未闭合；没有可直接使用的CoMi烧录配方 |
+| 烧进去之后会怎样？ | [实际boot](actual-boot-flow.md)加载recovery；[保留recovery](recovery-entry-candidate.md)调用的system RAM交接代码位于缺失尾部 | 包可能被拒绝；已写入镜像也可能不能启动；错误外设初始化可能使BLE/显示/录音失效 | 尚无自写镜像的实机写入/启动，不能用参考板编译或OTA CRC通过预测结果 |
+| 失败后能恢复官方吗？ | 实际分区只有一个system；boot/param有镜像，另有recovery/TEMP；[成功通知早于新固件启动](ota-write-commit.md) | 有应用之外的入口、匹配完整内容与可验证写回方式，才有恢复基础 | 独立入口/退出与官方回刷未验证；boot/param双槽不是整套系统回滚 |
+| 能提取正在运行的固件吗？ | system、boot、DSP和ACPT已取得；system映射字节不是整片物理NOR；recovery仅部分 | 可靠bulk读回与逐区完整性验收可以进一步形成可恢复备份 | 个体配置、其余资源、分区副本及完整recovery未齐；[慢速日志NOR批量导出已退役](nor-efficiency.md)，不继续盲目长跑 |
 
-## 新证据：recovery 不等于自动回滚
+## 启动授权问题：缺的材料与不能替代它的产物
+
+实际recovery调用RAM `18000451`；按启动复制形状，其源为镜像`1100e4e8`，超出保留前缀末端`1100bc00`。[候选证据](recovery-entry-candidate.md)尚未通过完整正文checksum。
+这段缺失同时挡住system映射最终状态与应用验收判断，先备注暂停；不恢复旧慢速导出，也不把system的OTA接收链当作启动验签。
+固定SDK的应用构建在`CONFIG_FLASH_LOAD_OFFSET==0`时取消`CONFIG_SOC_SIGN_ENABLE`（[审计](boot-security-source-audit.md)）；即便找到应用中的同源成功stub，也不能推成recovery接受未签名镜像。
+
+另一个已取得产物是SDK [`boot_recovery.app`][lark-recovery-blob]，不能按文件名当作CoMi recovery。
+6792 B，SHA256=`00f30f32e754e1b33110b0f98a2b9387ffc4808ccf049ea260e2e326a1cd39f1`。
+仅由bootloader树LARK `fw_product.cfg:13`以`RECOVERY_IM`引用；没有本机使用它的证据。
+[原始指令与literal](evidence/lark-recovery-writer-2026-10-13.json)保留两个完整code区间，排除尾部数据；root与Astra独立核对。其直接流程：
+
+| 参考程序观察 | 对恢复路线的意义 |
+|---|---|
+| 原始向量SP=`01004000`，entry=`10000009`；无ELF/ACTH头 | 与实际63288 B recovery不同；没有CPU/FPU属性，也未建立CoMi加载契约 |
+| main`1000173c`读取`10001a88`起的块数/块长，正好在文件末尾之外 | 必须另有追加载荷；单独文件不是完整可运行的恢复包 |
+| 查询`fw0_sys`，复制压缩输入并调用decoder；随后经ROM表`1a4` slots`1c/18`请求erase/write，未检查这些调用返回 | 是写入型程序；5B属性解析具有LZMA特征，未完整审计decoder；不能执行来“只读识别” |
+| 后段读取`fw1_para`的4096 B并擦写`fw0_para`；decoder失败也可到达该段 | 不提供已证明的事务恢复或全机配置保留保证 |
+| 最后写`4000c020=5f`并永久循环 | 观察到复位请求形状，未验证实际复位效果或独立退出 |
+
+主流程不是普通system校验后跳转的替代模块；追加载荷与外层生成/调用契约仍缺。
+停止这份stub的callee扩展：保留为LARK恢复打包、ROM NOR接口参考，**不作为CoMi救砖镜像，不补齐实际recovery尾部，不证明未签名镜像可启动**。
+
+## 参考 SDK：recovery 不等于自动回滚
 
 固定参考板 `ats3089p_dev_watch_sdnand_8b` 的实际启动调用链：
 
@@ -74,7 +96,7 @@ SYSTEM 的 `ota_embed=TEMP` 指向临时升级路径。临时区放在 `storage_
 
 | 候选路径 | 固定源码实际行为 | 研究边界 |
 |---|---|---|
-| `dbg fread spi_flash <offset>` | `CONFIG_CMD_SPINOR` 控制；精确名称 `spi_flash` 才传长度 512，`offset` 用 base 0 解析；NOR 驱动按 byte 读取。[处理器][shell-read] [NOR 驱动][nor-read] | 候选 NOR 512 B 读取；实机 offset 0 已返回 fread 状态行，无 512 B 正文；容量/区域与完整输出仍待确认，见 [实测](device-diagnostics.md) |
+| `dbg fread spi_flash <offset>` | `CONFIG_CMD_SPINOR` 控制；精确名称 `spi_flash` 才传长度 512，`offset` 用 base 0 解析；NOR 驱动按 byte 读取。[处理器][shell-read] [NOR 驱动][nor-read] | 早期正文不回问题后由printk ring读回取得boot/部分recovery；[吞吐与失败率审计](nor-efficiency.md)使其退出默认批量备份路线；不能把handler返回0当完整数据 |
 | `dbg fread sd/spinand <offset>` | 同一处理器传 `size=1`，注释称 sector；但 SD 驱动把 byte len 右移 9 得零，SPI NAND 驱动要求 offset/len 为 512 B 倍数，因此命令与驱动不匹配。[处理器][shell-read] [SD 驱动][sd-read] [NAND 驱动][nand-read] | **不能按帮助文本把它作为 SD/NAND 备份工具**；失败处理器仍可能返回 0，必须判正文与收到的字节 |
 | `dbg snandr <offset> <size>` | `CONFIG_CMD_SPINAND` 控制；固定分配 2048 B，直接使用用户 size，缺少上界；驱动要求 byte 对齐且不超过逻辑容量。[处理器][shell-read] [注册][shell-reg] [驱动][nand-read] | 若未来验证可用，只能受控对齐分块；逻辑 NAND read 不保证含 OOB、坏块表和隐藏启动区域 |
 | `dbg mdb/mdh/mdw` | `CONFIG_CMD_MEMORY` 控制；地址/数量按十六进制解析，直接解引用；没有“仅 flash 地址”检查。[处理器][mem-read] [注册][shell-reg] | 读取未知地址可能 fault 或访问 MMIO；XIP 读出的映射内容也不等于完整物理存储 |
@@ -94,11 +116,11 @@ SYSTEM 的 `ota_embed=TEMP` 指向临时升级路径。临时区放在 `storage_
 5. **证据清单**：设备与固件版本、来源、每块起始地址/长度/单位、原始文件、SHA-256、两次独立读一致；动态 NVRAM 区变化需解释，不能悄悄忽略。
 6. **恢复闭环**：独立入口可反复进入/退出，写回工具与范围经过核查，官方完整包或可写回备份与本机匹配；最终需实际恢复启动、录音、BLE 与身份校准验收，才称“恢复已验证”。
 
-以上是后续备份验收要求，不是目前已具备的能力。下一步最有价值的是取得原厂更新包、在已确认可执行的 BLE shell 上解决读取数据的输出通路、
-读出本机板名/分区/存储信息；在完整恢复证据形成前，现有 EVK 固件不能直接用作 CoMi 烧录实验。
+以上是备份验收要求，不是已具备的恢复能力。板名/分区/存储与部分镜像已取得；后续优先匹配平台/生产资料、官方镜像和高效读回路线，以[研究路线](research-routes.md)为准。现有EVK固件不能直接用于CoMi烧录实验。
 
 ## 固定源码索引
 
+[lark-recovery-blob]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/bootloader/tools/prebuilt/lark/common/bin/boot_recovery.app
 [sign]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/bootloader/soc/arm/actions/leopard/soc_boot.c#L79-L168
 [image-check]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/bootloader/soc/arm/actions/leopard/boot/soc_boot_priv.c#L188-L257
 [nor-boot]: https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/bootloader/soc/arm/actions/leopard/boot/soc_boot_priv.c#L368-L405

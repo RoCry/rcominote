@@ -46,6 +46,7 @@
 | [Vela官方移植指南](platform-source-followup.md#public-history-and-vela-provenance-bounded-acquisition-result) | 含ATS3085X宏、ARMv7-M与内存地址示例；芯片层可由独立vendor包提供 | 不指明L型号或CoMi；未取得Actions vendor包，不采用示例长度/入口，不改变本机Zephyr事实 |
 | [LARK调试loader与ATT源码](platform-source-followup.md#nor-comparison-host-selector-cache-window-and-initialization) | ELF给出 `BAREMETAL_CMSIS/lark_sdk`、NOR/SD接口与类型；两种存储接口已对照，另有M4编译配方、时钟/蓝牙源码 | NOR读依赖重建缓存映射、初始化改变硬件/NOR模式；SD固定SD0而本机用SD1，且wrapper吞读错；原样不能作可靠备份 |
 | LARK `adfus.bin` / `adfus_u.bin` | 前者UART、后者USB；有真正的内存/存储读取handler | [初始化会写NOR状态寄存器](lark-nor-init-side-effects.md)，未经修改不可作为只读备份；同名不同版本不能混用 |
+| [LARK `boot_recovery.app`](flash-recovery-assessment.md#启动授权问题缺的材料与不能替代它的产物) | 已核对6792 B参考stub：依赖文件末尾追加压缩块，执行NOR擦写、param复制及复位请求 | 不是本机63288 B recovery，不是完整独立恢复包，不补齐system启动验收/交接缺口 |
 | [量产工具DLL/INF](host-selection-followup.md) | 有 WinUSB、ADFU API及驱动ID，可指导匹配host | 尚无本机芯片→host选择→ROM协议闭环；不能直接套旧ATJ包格式 |
 | 本机system / boot / DSP | 实际ABI、驱动、启动、安全/OTA约束；本机代码强于不匹配参考默认值 | 反汇编不等于源码；DSP提取不证明可在自写固件中加载执行或再分发 |
 
@@ -62,6 +63,7 @@
 | 问题 | 已保留什么 | 重新推进条件 |
 |---|---|---|
 | ROM计数单位、回绕、调用者返回 | [固定代码与两次读回](actual-rom-exit-condition.md)；没有“超时会回到App”的保证 | 决定具体模式实验且无独立reset退出；或取得完整ROM/匹配文档后批量离线分析 |
+| system启动验收与最终映射 | [recovery交接候选](recovery-entry-candidate.md)指向缺失尾部`1100e4e8`；完整system与公共writer不能替代 | 有效完整recovery或已确认匹配的模块；不继续应用OTA CRC微审计来代替启动验签 |
 | SCL/SDA、屏幕等待、单个寄存器语义 | 板级专题证据 | 匹配SoC资料或进入屏幕bring-up |
 | 长窗口实时流、cancel竞态、云端API | 客户端能力表与真实失败记录 | 独立客户端成为当前交付重点；不阻塞芯片/SDK研究 |
 | 后台JAR获取 | [致远部署手册](seeyon-backend-reference.md)，包域名曾解析到私网 | 新的外部下载入口；目前无固件分发证据，不作为固件主线依赖 |
