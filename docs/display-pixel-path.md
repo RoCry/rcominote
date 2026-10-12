@@ -43,3 +43,23 @@ callback申请200 B临时buffer，首byte=`40`，先发送`AF`。令保存的宽
 ## 后续
 
 显示BSP已有提交入口、命令表和bit打包规则；仍缺GPIO电气极性、等待单位、I2C pinmux/速率及实屏验证。进一步研究应核对旧descriptor ABI与实际调用者，避免以当前SDK字段名解释不同布局。
+
+## 实际指令仿真验收
+
+新增独立PEP723脚本，无设备连接：
+
+```sh
+uv run tools/verify_display_pixels.py artifacts/mapped-system/mapped-system.bin
+```
+
+Unicorn 2.1.4 Thumb/MCLASS执行原始callback `10027e84..10027f8e`。脚本先要求整个镜像SHA256完全匹配；仅拦截allocator/free和已审计command/data helper，返回成功并记录参数，其他跳出callback的执行立即报错。RAM为仿真初始化值，绝不代表设备当前状态。每例100,000指令上限，未正常返回即失败。
+
+手工golden与实际指令输出：[结果JSON](evidence/display-pixel-emulation-2026-10-12.json)。
+
+| 图案/窗口 | 手工期望数据（含40控制byte） | 实际结果 |
+|---|---|---|
+| 2列×8行，第一列仅行0/7非零，第二列仅行1非零；x=3 | 40 81 02；页B0，列11/0F | 一致，231条含hook入口指令 |
+| 1列×16行，仅行0/15非零；y=8 | 40 01、40 80；页B1/B2，列11/0C | 一致，268条 |
+| 1列×9行，仅第9行非零；y=1 | 40 00；仅页B0，尾行被丢弃 | 一致，150条 |
+
+同时核对200 B分配、对应释放及busy清零。期望字节来自手工图案，未调用复制转换算法的Python实现。这比只阅读反汇编多了一层可执行验证，但external helper成功、内存分配成功及无completion callback都是受控条件；不覆盖真实I2C、同步/调度、像素提交入口、地址alias、错误路径或屏幕亮暗。本篇此前单列81示例现有实际指令层面佐证，依然不是实机验收。

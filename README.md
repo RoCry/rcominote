@@ -123,3 +123,5 @@ uv run --locked tools/build_sdk.py \
 [屏幕I2C速率](docs/display-i2c-config.md)：实际configure将14映射到400 kHz目标、divider5；默认init为100 kHz，SDA/SCL pinmux仍待定位。
 
 [实机早期pinmux表](docs/board-pinmux-evidence.md)：三张表25项，GPIO14/15的3808配置支持I2C0候选；SCL/SDA身份与物理连线仍待确认。
+
+[像素指令仿真](docs/display-pixel-path.md#实际指令仿真验收)：`uv run tools/verify_display_pixels.py artifacts/mapped-system/mapped-system.bin`，固定镜像SHA；三组手工golden验证实际Thumb callback，外部I2C/分配调用被拦截，无硬件I/O。

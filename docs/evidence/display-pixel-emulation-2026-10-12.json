@@ -1,0 +1,77 @@
+{
+  "image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "engine": "Unicorn 2.1.4 Thumb MCLASS",
+  "scope": "Actual callback instructions, intercepted external calls; no hardware",
+  "cases": [
+    {
+      "name": "two_columns_top_bottom_and_second_row",
+      "observed": {
+        "commands": [
+          175,
+          176,
+          17,
+          15
+        ],
+        "transfers": [
+          "408102"
+        ],
+        "allocations": [
+          200
+        ],
+        "frees": [
+          402784256
+        ],
+        "busy": 0
+      },
+      "instructions": 231
+    },
+    {
+      "name": "second_source_page_and_nonzero_y",
+      "observed": {
+        "commands": [
+          175,
+          177,
+          17,
+          12,
+          178,
+          17,
+          12
+        ],
+        "transfers": [
+          "4001",
+          "4080"
+        ],
+        "allocations": [
+          200
+        ],
+        "frees": [
+          402784256
+        ],
+        "busy": 0
+      },
+      "instructions": 268
+    },
+    {
+      "name": "unaligned_window_drops_tail_and_y_remainder",
+      "observed": {
+        "commands": [
+          175,
+          176,
+          17,
+          12
+        ],
+        "transfers": [
+          "4000"
+        ],
+        "allocations": [
+          200
+        ],
+        "frees": [
+          402784256
+        ],
+        "busy": 0
+      },
+      "instructions": 150
+    }
+  ]
+}
