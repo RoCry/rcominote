@@ -1,0 +1,77 @@
+{
+  "scope": "mapped-system image; not a raw Flash backup",
+  "base": "0x10000000",
+  "bytes": 927632,
+  "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "header_sha256": "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5",
+  "body_word_sum": "0xb18576b5",
+  "stored_body_checksum": "0x4e7a894a",
+  "checksum_verified": true,
+  "limits": [
+    "No physical Flash mapping proven",
+    "No complete device backup or restore validation"
+  ],
+  "path": "artifacts/mapped-system/mapped-system.bin",
+  "date": "2026-10-12",
+  "serial": "C261CF0430",
+  "firmware": "FW010004",
+  "committed_chunks": 1811,
+  "saved_body_bytes": 927120,
+  "offline_reinspection": true,
+  "final_sessions": [
+    {
+      "capture": "20261012T074128512550Z.json",
+      "sha256": "5885996629c0e1a0fad1040d9c75d5d79f42082c7d94143d870986eec9b24739",
+      "chunks": 0,
+      "ok": true,
+      "readback_complete": true,
+      "ack_count": 28,
+      "end_received": true
+    },
+    {
+      "capture": "20261012T074222631392Z.json",
+      "sha256": "4f62e8211c8458217ea81fe1e63626bb06f8a9263a64788952cbfeee49b4705e",
+      "chunks": 32,
+      "ok": true,
+      "readback_complete": true,
+      "ack_count": 540,
+      "end_received": true
+    },
+    {
+      "capture": "20261012T074310219986Z.json",
+      "sha256": "88b46ead76831f0a1135fd4dfa358f2718de979f8b138c75ec86ba2b70e1fec4",
+      "chunks": 32,
+      "ok": true,
+      "readback_complete": true,
+      "ack_count": 540,
+      "end_received": true
+    },
+    {
+      "capture": "20261012T074405644650Z.json",
+      "sha256": "57729497c7fd69c4241973bca076c4e6fef66ee17c22c20df7bd0bc7f208afaa",
+      "chunks": 32,
+      "ok": true,
+      "readback_complete": true,
+      "ack_count": 540,
+      "end_received": true
+    },
+    {
+      "capture": "20261012T074452517701Z.json",
+      "sha256": "ee9b3f5939f16ba7a91838c1bb632a28a3fcbeb49ee5c648c21262ea5e8ef66c",
+      "chunks": 32,
+      "ok": true,
+      "readback_complete": true,
+      "ack_count": 540,
+      "end_received": true
+    },
+    {
+      "capture": "20261012T074514250229Z.json",
+      "sha256": "bd5bcc2ae5374456499970912eb45b9aa445efa2437a58f7c108af2cd8bcb6b5",
+      "chunks": 11,
+      "ok": true,
+      "readback_complete": true,
+      "ack_count": 202,
+      "end_received": true
+    }
+  ]
+}

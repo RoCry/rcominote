@@ -1,5 +1,8 @@
 # 固定映射系统镜像导出
 
+最新验收（2026-10-12）：1811个正文chunk已全部读回，发布927632 B mapped-system.bin；头SHA与正文checksum通过，并由`comi image inspect`独立复检。[完整验收记录](evidence/mapped-system-complete-2026-10-12.json)、[离线分析入口](offline-system-analysis.md)。以下保留各阶段实验；早期“未完成”描述属于当时边界。仍非raw NOR或可恢复整机备份。
+
+
 2026-10-12，C261CF0430/FW010004。**映射镜像导出工具已实现；完整正文校验与原厂恢复尚未验证。** 不依赖App登录。
 
 ## 已验证与失败证据

@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-12",
+  "scope": "Ubuntu offline static analysis; target not executed",
+  "input_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "ghidra": "12.1.4",
+  "language": "ARM:LE:32:Cortex:default",
+  "mapped_base": "0x10000000",
+  "analysis_reported_seconds": 58,
+  "headless_exit_code": 0,
+  "entries_exported": [
+    "0x1000bb5c",
+    "0x1000bc18",
+    "0x1000bcec",
+    "0x1000bdb0",
+    "0x1000c0e8",
+    "0x10023020",
+    "0x100242a8",
+    "0x100242b0",
+    "0x10026614",
+    "0x10027720",
+    "0x1002d0c4",
+    "0x1002d800",
+    "0x1002d818",
+    "0x1009aa24",
+    "0x1009c1d0",
+    "0x1009aa54",
+    "0x1009ef2c",
+    "0x100b9652",
+    "0x100b96c8"
+  ],
+  "decompiled_bytes": 27198,
+  "decompiled_sha256": "2ea32c96221a61337eed62efe206864550e36cf83875579f676c16ecd6d1cb8a",
+  "stdout_sha256": "e8dd44af41ba3eb8f0383453d1990e55e97393fc198402c9e63af814bf2212f7",
+  "limitations": [
+    "Pseudocode is inference, not executed behavior or original source",
+    "Kernel entry auto-function extends past instruction-evidenced end1009ab0a into literal/following bytes; resulting coprocessor/jumptable tail is not accepted as startup evidence",
+    "Inferred signatures omit or add parameters in some callers; original registers/instructions remain authoritative"
+  ],
+  "cross_checks": [
+    "Saver unsigned comparison reproduces byte counter subtraction without narrowing",
+    "Default callback calls saver with context, buffer, length and context+5 byte",
+    "Byte copy and fill loops agree with Capstone instruction evidence"
+  ]
+}

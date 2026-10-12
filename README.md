@@ -78,26 +78,26 @@ uv run --locked tools/build_sdk.py \
 
 [独立Flash对象与设备表](docs/boot-storage-device-readback.md)：31个设备名字，SPI Flash配置/实际RAM read wrapper；[分区表下一条引用路线](docs/partition-reference-route.md)。
 
-[NOR缓存ID与容量差异](docs/nor-driver-readback.md)：实读`0x16405e`，对应Zbit 32 Mbit系列线索；版本/封装、启动分区仍未知。
+[NOR缓存ID与容量差异](docs/nor-driver-readback.md)：实读`0x16405e`，对应Zbit 32 Mbit系列线索；版本/封装仍未知；分区表见下文。
 
-[日志服务回调与协议入口](docs/shell-service-readback.md)：独立核对345 B，确认callback注册与`1d/81/10`检查；shell命令表和分区表尚未定位。
+[日志服务回调与协议入口](docs/shell-service-readback.md)：独立核对345 B，确认callback注册与`1d/81/10`检查；后续命令表和分区表成果见下文。
 
-[文本命令到shell执行入口](docs/shell-text-readback.md)：777 B独立一致，已定位文本分支、backend getter与shell内部执行入口，尚未定位命令表。
+[文本命令到shell执行入口](docs/shell-text-readback.md)：777 B独立一致，已定位文本分支、backend getter与shell内部执行入口，命令表后续定位见下文。
 
-[实机shell registry与dbg静态表](docs/shell-registry-readback.md)：确认13项root表，沿`dbg\0`找到静态子命令数组`100bb8d4`；下一步定位`sdfs` handler。
+[实机shell registry与dbg静态表](docs/shell-registry-readback.md)：确认13项root表，沿`dbg\0`找到静态子命令数组`100bb8d4`；实际`fread`身份与输出分流见[后续报告](docs/raw-read-handler-followup.md)。
 
 [实际ACPT分区表](docs/partition-readback.md)：744 B两次一致且CRC通过，18项NOR分区覆盖4 MiB；含recovery、system、NVRAM及OTA临时区。加密标志与恢复机制仍需核对。
 
 [启动SRAM候选](docs/boot-info-readback.md)：64 B独立一致，system/nor offset24000匹配ACPT；param物理字段为0，不强行套用完整SDK ABI。
 
-[实际映射镜像头](docs/image-header-readback.md)：512 B头部校验通过且reset向量匹配，声明正文927120 B；flags/TLV长度均0，正文和raw Flash尚未校验。
+[实际映射镜像头](docs/image-header-readback.md)：512 B头部校验通过且reset向量匹配，声明正文927120 B；flags/TLV长度均0，正文现已完整校验；raw Flash仍未取得。
 
 [512 B多行读取验证](docs/header-batch-readback.md)：`uv run comi diag capture header-batch --out ...`，固定重读已知镜像头并逐行/hash验收；尚非正文导出。
 
-[固定映射镜像导出](docs/mapped-image-export.md)：四块正文独立复读一致，跨进程续读已验证；256/512 B请求均捕获过截断。新增`uv run comi image export`断点读取与最终checksum门槛，尚未完成全正文校验；不等于原始Flash备份或可恢复。
+[固定映射镜像导出](docs/mapped-image-export.md)：四块正文独立复读一致，跨进程续读已验证；256/512 B请求均捕获过截断。新增`uv run comi image export`断点读取与最终checksum门槛，已完成全正文校验；不等于原始Flash备份或可恢复。
 
-[日志缓冲计数器回绕](docs/log-buffer-wrap.md)：实机Thumb指令确认8位计数器相减后的无符号比较缺陷；64 B正文与头部分段已实测，完整导出继续进行，终检仍待全部块到齐。
+[日志缓冲计数器回绕](docs/log-buffer-wrap.md)：实机Thumb指令确认8位计数器相减后的无符号比较缺陷；64 B正文与头部分段已实测，完整映射镜像现已导出，头/正文校验通过，见[验收](docs/evidence/mapped-system-complete-2026-10-12.json)。
 
 [实机reset入口与C启动边界](docs/reset-entry-readback.md)：头部/向量指定的入口已解码，取得启动PSP、RAM向量地址、FPU与IRQ初始化常量；[后续启动调用](docs/startup-memory-readback.md)已解析两段清零、三段复制参数及kernel启动顺序；不据此推断ROM/签名/恢复能力。
 
-[系统镜像离线分析](docs/offline-system-analysis.md)：新增无设备连接的`comi image inspect`及Ubuntu Ghidra入口；完整镜像成功验收待导出完成。
+[系统镜像离线分析](docs/offline-system-analysis.md)：新增无设备连接的`comi image inspect`及Ubuntu Ghidra入口；927632 B实机映射镜像导出与离线checksum验收通过；仍非raw NOR/整机恢复备份。

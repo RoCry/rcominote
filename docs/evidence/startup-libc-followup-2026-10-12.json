@@ -1,0 +1,121 @@
+{
+  "scope": "Offline actual mapped bytes; no execution or device I/O",
+  "decoder": "Capstone5.0.6 Thumb|MCLASS",
+  "regions": [
+    {
+      "address": "0x100b9652",
+      "length": 28,
+      "label": "Forward byte copy; returns original destination",
+      "hex": "0a44914200f1ff3300d1704710b511f8014b03f8014f9142f9d110bd",
+      "sha256": "5db49e3e7f968b3c8dce559d8e60c4e7d049dc87fb91901a529d8d553d4fd274",
+      "instructions": [
+        {
+          "address": "0x100b9652",
+          "bytes": "0a44",
+          "instruction": "add r2, r1"
+        },
+        {
+          "address": "0x100b9654",
+          "bytes": "9142",
+          "instruction": "cmp r1, r2"
+        },
+        {
+          "address": "0x100b9656",
+          "bytes": "00f1ff33",
+          "instruction": "add.w r3, r0, #-1"
+        },
+        {
+          "address": "0x100b965a",
+          "bytes": "00d1",
+          "instruction": "bne #0x100b965e"
+        },
+        {
+          "address": "0x100b965c",
+          "bytes": "7047",
+          "instruction": "bx lr"
+        },
+        {
+          "address": "0x100b965e",
+          "bytes": "10b5",
+          "instruction": "push {r4, lr}"
+        },
+        {
+          "address": "0x100b9660",
+          "bytes": "11f8014b",
+          "instruction": "ldrb r4, [r1], #1"
+        },
+        {
+          "address": "0x100b9664",
+          "bytes": "03f8014f",
+          "instruction": "strb r4, [r3, #1]!"
+        },
+        {
+          "address": "0x100b9668",
+          "bytes": "9142",
+          "instruction": "cmp r1, r2"
+        },
+        {
+          "address": "0x100b966a",
+          "bytes": "f9d1",
+          "instruction": "bne #0x100b9660"
+        },
+        {
+          "address": "0x100b966c",
+          "bytes": "10bd",
+          "instruction": "pop {r4, pc}"
+        }
+      ]
+    },
+    {
+      "address": "0x100b96c8",
+      "length": 16,
+      "label": "Byte fill; returns original destination",
+      "hex": "02440346934200d1704703f8011bf9e7",
+      "sha256": "9b992ee6e518ade6aeccbcc2f9595e3383491ddd472d229742a9aba1ea9f673f",
+      "instructions": [
+        {
+          "address": "0x100b96c8",
+          "bytes": "0244",
+          "instruction": "add r2, r0"
+        },
+        {
+          "address": "0x100b96ca",
+          "bytes": "0346",
+          "instruction": "mov r3, r0"
+        },
+        {
+          "address": "0x100b96cc",
+          "bytes": "9342",
+          "instruction": "cmp r3, r2"
+        },
+        {
+          "address": "0x100b96ce",
+          "bytes": "00d1",
+          "instruction": "bne #0x100b96d2"
+        },
+        {
+          "address": "0x100b96d0",
+          "bytes": "7047",
+          "instruction": "bx lr"
+        },
+        {
+          "address": "0x100b96d2",
+          "bytes": "03f8011b",
+          "instruction": "strb r1, [r3], #1"
+        },
+        {
+          "address": "0x100b96d6",
+          "bytes": "f9e7",
+          "instruction": "b #0x100b96cc"
+        }
+      ]
+    }
+  ],
+  "records": [
+    {
+      "path": "artifacts/mapped-system/chunks/000b9400.json",
+      "record_sha256": "5e1b3e20679d9cd1617fcd435e00cbafacbc0ada7dd9ab2f8085c3e482b5bba6",
+      "bytes_sha256": "1af397d82e2880256261ea8a9dd5adcc513d6c28c99f7f99a84bb370150bb8eb"
+    }
+  ]
+}
