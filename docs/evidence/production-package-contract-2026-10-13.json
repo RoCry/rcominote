@@ -1,0 +1,247 @@
+{
+  "date": "2026-10-13",
+  "sdk_commit": "26f51e584940d5b141cd1d09d2629d69b595f579",
+  "scope": "Offline fixed-source inventory and unmodified upstream ATF packer only; no maker, host downloader, helper or device execution",
+  "sources": [
+    {
+      "path": "action_technology_sdk/zephyr/build.py",
+      "size": 35507,
+      "sha256": "b26643adad0f2ca3c934d4f7996a8183befd0232cb03652f601a943cb165b17f",
+      "fixed_git_blob_equal": true
+    },
+    {
+      "path": "action_technology_sdk/zephyr/tools/build_firmware.py",
+      "size": 48141,
+      "sha256": "56b775b7db5019575651446307ed050adaf81f15f8544eb938c3b5ac50f5f0a0",
+      "fixed_git_blob_equal": true
+    },
+    {
+      "path": "action_technology_sdk/zephyr/tools/build_atf_image.py",
+      "size": 4205,
+      "sha256": "eeff91dca60b0084e834bc9c1b2ae9596044d897048eef14d4496a37110ec7e0",
+      "fixed_git_blob_equal": true
+    },
+    {
+      "path": "action_technology_sdk/zephyr/tools/prebuilt/lark/common/firmware.xml",
+      "size": 2121,
+      "sha256": "b7297e570c058b26a6385ac9e29e681d93982687b882ab404ed26205cd5beb07",
+      "fixed_git_blob_equal": true
+    },
+    {
+      "path": "action_technology_sdk/zephyr/tools/prebuilt/lark/common/bin/fw_product.cfg",
+      "size": 382,
+      "sha256": "6294ba17d19fe8fedfc9b3f8990f6d6441ada6e86aeeccb192c8d5dcb8a2879f",
+      "fixed_git_blob_equal": true
+    },
+    {
+      "path": "action_technology_sdk/zephyr/tools/prebuilt/lark/common/bin/fw_maker_ext.cfg",
+      "size": 853,
+      "sha256": "d4e3c5503b3bbb102563a7ab45aacb93d771125a369ba1df3b2bb74bdffb0290",
+      "fixed_git_blob_equal": true
+    },
+    {
+      "path": "action_technology_sdk/zephyr/tools/prebuilt/lark/common/bin/mp_usb_lark.bin",
+      "size": 9972,
+      "sha256": "93871f6d2c49a9d835c01def097f235ef64430995428171d356f0f7c166e3611",
+      "fixed_git_blob_equal": true
+    },
+    {
+      "path": "action_technology_sdk/zephyr/tools/prebuilt/lark/common/bin/mp_usb_lark_old.bin",
+      "size": 9972,
+      "sha256": "a7400e562153fd34faa0875abdd402f3f21c50c4d4239f116637862fbd228400",
+      "fixed_git_blob_equal": true
+    },
+    {
+      "path": "action_technology_sdk/bootloader/tools/prebuilt/lark/common/bin/fw_product.cfg",
+      "size": 399,
+      "sha256": "e16e5e6290318fcd1b424027a21ce6497a5f72fd168debb6d2369e63e96be440",
+      "fixed_git_blob_equal": true
+    },
+    {
+      "path": "action_technology_sdk/bootloader/tools/prebuilt/lark/common/bin/fw_maker_ext.cfg",
+      "size": 853,
+      "sha256": "d4e3c5503b3bbb102563a7ab45aacb93d771125a369ba1df3b2bb74bdffb0290",
+      "fixed_git_blob_equal": true
+    },
+    {
+      "path": "action_technology_sdk/bootloader/tools/prebuilt/lark/common/bin/mp_usb_lark.bin",
+      "size": 9972,
+      "sha256": "93871f6d2c49a9d835c01def097f235ef64430995428171d356f0f7c166e3611",
+      "fixed_git_blob_equal": true
+    },
+    {
+      "path": "action_technology_sdk/bootloader/tools/prebuilt/lark/common/bin/mp_usb_lark_old.bin",
+      "size": 9972,
+      "sha256": "a7400e562153fd34faa0875abdd402f3f21c50c4d4239f116637862fbd228400",
+      "fixed_git_blob_equal": true
+    },
+    {
+      "path": "action_technology_sdk/bootloader/tools/prebuilt/lark/common/firmware.xml",
+      "size": 2121,
+      "sha256": "b7297e570c058b26a6385ac9e29e681d93982687b882ab404ed26205cd5beb07",
+      "fixed_git_blob_equal": true
+    },
+    {
+      "path": "action_technology_sdk/zephyr/tools/prebuilt/leopard/common/bin/fw_maker_ext.cfg",
+      "size": 853,
+      "sha256": "d4e3c5503b3bbb102563a7ab45aacb93d771125a369ba1df3b2bb74bdffb0290",
+      "fixed_git_blob_equal": true
+    }
+  ],
+  "producer_trace": {
+    "zephyr/build.py": [
+      "135:181 copy helpers: file override, directory merge",
+      "467:513 family common/bin + bin + prebuild; board overrides then app/config overlays"
+    ],
+    "zephyr/tools/build_firmware.py": [
+      "424:445 generate param/table/version; snapshot bin_orig before rebuild/CRC/encryption",
+      "872:888 raw image uses processed bin, enable_raw, storage_id==0, partition address",
+      "1010:1103 maker/product.ini generation; boot erased first, programmed last",
+      "1099:1103 active includes fw_product, optional fwimage, fw_configuration; no fw_maker_ext",
+      "1105:1131 inner ATT/upgrade.fw from maker; outer .fw from build_atf_image",
+      "1162:1190 main uses generate_earphone_firmware; OTA generated separately if XML exists"
+    ]
+  },
+  "lark_common_layout": [
+    {
+      "address": "0x0",
+      "size": "0x1000",
+      "type": "BOOT",
+      "name": "fw0_boot",
+      "file_id": "1",
+      "file_name": "mbrec.bin",
+      "file_address": "0x0",
+      "enable_crc": "false",
+      "enable_encryption": "false",
+      "enable_ota": "false",
+      "enable_raw": "true",
+      "enable_dfu": "true",
+      "mirror_id": "0"
+    },
+    {
+      "address": "0x1000",
+      "size": "0x1F000",
+      "type": "RECOVERY",
+      "name": "fw0_rec",
+      "file_id": "2",
+      "file_name": "mcuboot.bin",
+      "file_address": "0x1000",
+      "enable_crc": "false",
+      "enable_encryption": "false",
+      "enable_ota": "false",
+      "enable_raw": "true",
+      "enable_dfu": "true",
+      "mirror_id": "0"
+    },
+    {
+      "address": "0x20000",
+      "size": "0x40000",
+      "type": "SYSTEM",
+      "name": "fw0_sys",
+      "file_id": "3",
+      "file_name": "app.bin",
+      "file_address": "0x20000",
+      "enable_crc": "false",
+      "enable_encryption": "false",
+      "enable_ota": "true",
+      "enable_raw": "true",
+      "enable_dfu": "true",
+      "enable_boot_check": "true",
+      "mirror_id": "0"
+    },
+    {
+      "address": "0x60000",
+      "size": "0xa0000",
+      "type": "DATA",
+      "name": "para",
+      "file_id": "4",
+      "file_address": "0x60000",
+      "enable_crc": "false",
+      "enable_encryption": "false",
+      "enable_ota": "false",
+      "enable_raw": "false",
+      "enable_dfu": "false"
+    }
+  ],
+  "layout_limits": [
+    "No SYS_PARAM entry for current parse_config parameter output",
+    "No storage_id fields required by raw/production generator",
+    "Reference recovery offset 0x1000 and system 0x20000 differ from actual 0x4000/0x24000",
+    "No complete LARK build or production package generated"
+  ],
+  "upstream_atf_probe": {
+    "reproduction": "uv run <fixed SDK>/action_technology_sdk/zephyr/tools/build_atf_image.py -o reference-atf.fw payload.bin aligned.bin",
+    "inputs": [
+      {
+        "name": "payload.bin",
+        "bytes_hex": "616263"
+      },
+      {
+        "name": "aligned.bin",
+        "construction": "bytes(range(256))*2",
+        "size": 512
+      }
+    ],
+    "stdout": "ATF: Build ATT firmware image: reference-atf.fw\nATF: Add file: payload.bin\nATF: Add file: aligned.bin",
+    "magic": "ACTTEST0",
+    "version": "01000000",
+    "size": 2048,
+    "sha256": "041c59f53f31a2a74aece0a3f33c7d11f36f7b0618272eb1f1589a69eef3832f",
+    "header_crc32": "ed3da752",
+    "body_crc32": "2d1a753b",
+    "entries": [
+      {
+        "name": "payload.bin",
+        "offset": 512,
+        "size": 3,
+        "crc32": "352441c2"
+      },
+      {
+        "name": "aligned.bin",
+        "offset": 1024,
+        "size": 512,
+        "crc32": "1c613576"
+      }
+    ],
+    "validation": [
+      "Header CRC covers bytes12:512",
+      "Body CRC covers bytes512:end including zero padding",
+      "Per-file CRC covers unpadded input; bytes compared with original input",
+      "Aligned 512B input receives extra 512B zero padding"
+    ],
+    "limits": "Synthetic inert inputs; proves outer container producer only, not maker output, official CoMi format, acceptance or recovery"
+  },
+  "upstream_atf_boundary_probe": {
+    "inputs": "f00.bin..f14.bin, one byte each: 01..0f; separate upstream CLI processes for14 and15 inputs",
+    "results": [
+      {
+        "inputs": 14,
+        "producer_exit": 0,
+        "declared_total": 7680,
+        "actual_size": 7680,
+        "first_file_declared_offset": 512,
+        "first_input_hex": "01",
+        "first_file_bytes_at_declared_offset_hex": "01",
+        "first_payload_matches": true,
+        "header_crc_matches": true,
+        "body_crc_matches": true,
+        "sha256": "de168c7cfe44248f09f8b4f6a93ecd4990844600e9c9d34dab60a8908df65fc8"
+      },
+      {
+        "inputs": 15,
+        "producer_exit": 0,
+        "declared_total": 8192,
+        "actual_size": 8704,
+        "first_file_declared_offset": 512,
+        "first_input_hex": "01",
+        "first_file_bytes_at_declared_offset_hex": "00",
+        "first_payload_matches": false,
+        "header_crc_matches": true,
+        "body_crc_matches": true,
+        "sha256": "32acbdf10a81db2ef4529007de7a54d5c1ab683c886d008690d32bae4543fd3c"
+      }
+    ],
+    "cause": "15 directory entries plus32B header=512; atf_gen_header padding adds another512 without updating file offsets or total length",
+    "limits": "Synthetic offline producer defect; no actual CoMi package or runtime acceptance claim"
+  }
+}

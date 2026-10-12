@@ -27,6 +27,12 @@ Current deliverables, in order:
    acquired no complete package: five historical SDK trees and current forks/refs
    add no LARK BSP; Vela guide supplies ATS3085X/vendor-package provenance only.
    Resume these acquisition routes on a new concrete package/ref, not another generic search.
+   [Production package contract](production-package-contract.md) now traces the
+   default outer ACTTEST0 `.fw`, inner maker package, raw and separate AOTA paths.
+   Default production includes fw_product, not the legacy fw_maker_ext; no new
+   mp_usb helper audit without a matching caller. Retained LARK common XML lacks
+   SYS_PARAM/storage_id and differs from actual layout. Acquire the final assembled
+   package/configuration, not another isolated family blob.
 2. Firmware/recovery overview: consolidate existing system/boot/DSP/ACPT;
    compare ROM→helper→NOR routes. If justified, acquire one bounded ROM corpus
    for offline analysis instead of one live experiment per callee.

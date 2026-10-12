@@ -47,6 +47,7 @@
 | [LARK调试loader与ATT源码](platform-source-followup.md#nor-comparison-host-selector-cache-window-and-initialization) | ELF给出 `BAREMETAL_CMSIS/lark_sdk`、NOR/SD接口与类型；两种存储接口已对照，另有M4编译配方、时钟/蓝牙源码 | NOR读依赖重建缓存映射、初始化改变硬件/NOR模式；SD固定SD0而本机用SD1，且wrapper吞读错；原样不能作可靠备份 |
 | LARK `adfus.bin` / `adfus_u.bin` | 前者UART、后者USB；有真正的内存/存储读取handler | [初始化会写NOR状态寄存器](lark-nor-init-side-effects.md)，未经修改不可作为只读备份；同名不同版本不能混用 |
 | [LARK `boot_recovery.app`](flash-recovery-assessment.md#启动授权问题缺的材料与不能替代它的产物) | 已核对6792 B参考stub：依赖文件末尾追加压缩块，执行NOR擦写、param复制及复位请求 | 不是本机63288 B recovery，不是完整独立恢复包，不补齐system启动验收/交接缺口 |
+| [SDK生产包生成链](production-package-contract.md) | 默认外层ACTTEST0 `.fw`、内层maker upgrade.fw、后处理raw、独立AOTA已区分；ATF源打包器离线验证 | LARK旧布局缺当前必需字段，未生成CoMi生产包；需最终生效配置/helper/host，不能按扩展名或混用cfg选择工具 |
 | [量产工具DLL/INF](host-selection-followup.md) | 有 WinUSB、ADFU API及驱动ID，可指导匹配host | 尚无本机芯片→host选择→ROM协议闭环；不能直接套旧ATJ包格式 |
 | 本机system / boot / DSP | 实际ABI、驱动、启动、安全/OTA约束；本机代码强于不匹配参考默认值 | 反汇编不等于源码；DSP提取不证明可在自写固件中加载执行或再分发 |
 

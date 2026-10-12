@@ -93,4 +93,6 @@ executing installer code.
 
 [Two independent parameter reads](firmware-board-identity.md) establish firmware board name `ats3085l_dvb_watch_ext_nor_max`; prioritize matching ATS3085L production artifacts. This supersedes the broad search priority, not the reference ATS3089 facts above. Firmware metadata alone does not prove chip marking or map host enum0..4 to this device.
 
-Follow-up: [LARK retained M4 artifacts](lark-helper-candidate.md) select01010000 and include a different in-image NOR driver. Audit that closer candidate before further generic LEOPARD transport work; compatibility remains unproven.
+Follow-up: [LARK retained M4 artifacts](lark-helper-candidate.md) select01010000 and include a different in-image NOR driver. UART/USB initialization comparisons are complete within their static scope; unchanged init is not a read-only backup route. Do not restart that audit.
+
+2026-10-13: [default production generation](production-package-contract.md) separates outer ACTTEST0, inner maker, raw and AOTA outputs. Default include selects fw_product rather than the legacy fw_maker_ext/mp_usb configuration; neither supplies a CoMi chip-to-host mapping. Prioritize the matching final production directory and effective configuration before another generic host/helper investigation.
