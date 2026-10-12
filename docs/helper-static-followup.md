@@ -179,6 +179,10 @@ or `Init` cannot be treated as a read-only SWD attachment.
    narrowly scoped read-only host. Require exact USB target, no implicit helper
    launch/erase, explicit bounds and repeated-read verification.
 
+Follow-up [decompilation audit](helper-initialization-decompile.md) now proves
+conditional erase/program paths reachable through NAND lazy initialization.
+The post-init callback remains a no-op; that does not make the full read path immutable.
+
 Known blocker to live readback: no matching CoMi ROM USB identity/transport,
 helper-acceptance or storage initialization side-effect proof. Offline work in
 steps 1–2 remains actionable.

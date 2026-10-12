@@ -4,7 +4,7 @@
 
 | 问题 | 当前状态 | 下一份决定性证据 |
 |---|---|---|
-| BLE 可否执行原厂命令、返回存储内容 | 部分回答：shell、单键 NVRAM、16字节映射代码已实测 | 已获得代码小块；物理 flash 布局/容量与完整覆盖仍未知 |
+| BLE 可否执行原厂命令、返回存储内容 | 部分回答：shell、单键 NVRAM、五处共69字节映射代码已实测 | 已获得代码小块；物理 flash 布局/容量与完整覆盖仍未知 |
 | fread 为何只有状态行 | 源码解释明确，原厂路由部分未知 | printk 实际去向或另一条原厂只读数据路径 |
 | 精确 SoC / 板级 / 分区 | 未解决 | 原厂镜像头/分区、板号，或实物识别 |
 | 自写镜像是否可启动 | 未解决 | 精确平台配置与本机签名/加载限制 |
@@ -29,3 +29,7 @@
 后续：已沿入口指令取得69 B、五个非连续位置的独立一致读回，实际字符串`_logsrv_init`支持与SDK初始化代码对应；[代码引用报告](code-reference-followup.md)。[当前官方页面复查](official-acquisition-next.md)仍未取得原厂固件。
 
 公开LEOPARD helper已静态确认`rm`/`rs`读取处理器；NAND首次读取有延迟初始化，尚不能视为无写入备份路径。[helper证据](helper-static-followup.md)、[可复现Ubuntu反编译](offline-helper-analysis.md)。Android实机CoMi1.2.4停在登录页，用户选择暂不登录；[运行时记录](android-runtime-followup.md)。
+
+进一步审计已证明该NAND初始化存在可达的条件擦除/编程路径，见[指令与调用链](helper-initialization-decompile.md)。另从相关设备线索取得两款官方APK，定位到AI DVR Link固件元数据POST和AOTA解析，但没有合法匹配账号/设备上下文或固件文件；[OEM线索边界](oem-protocol-lead.md)。这些App协议与CoMi不同，不可混用。
+
+[vendor服务审计](vendor-service-followup.md)：公开SDK的`vendor_read`接收主机上传，完整命令表无固件读回；UUID与CoMi F5F0不匹配。SDK OTA通知订阅可能启动升级状态并关闭写保护，不能用作被动探测。下一步优先追踪实际CoMi代码中的F5F0及接收分发器；账号登录按用户要求暂缓，不影响离线分析。

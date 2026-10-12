@@ -39,16 +39,21 @@ archives. Downloads total approximately778 MB before extraction.
   entries; neither configuration nor language selection independently identifies
   CoMi's processor.
 - Ubuntu actually compiled both Java scripts, imported/analyzed/saved the
-  program, and exported all18 selected functions. Analysis reported success
+  program, and exported all27 selected functions (initial18 plus nine erase/program
+  path functions). Analysis reported success
   without timeout. Shell checks require a nonempty export, because headless
   process exit alone is insufficient script-result evidence.
 - Wrong board-specific helper was rejected before creating output. Existing
   output was rejected without replacing analysis artifacts.
 
 Original acceptance artifacts reside locally under `artifacts/helper-ghidra/`.
+Expanded export SHA-256: `149dfc4cdcff0b094f6f57c8ae3baf9fea1c556645580de1b6d639f9df9c5db8`.
 Inferred C types, function boundaries and indirect-call targets need instruction
 and data-table corroboration. A successful decompile is not a proof that
 initialization is read-only or that this helper is compatible with CoMi.
+The subsequent [NAND initialization audit](helper-initialization-decompile.md)
+found reachable conditional erase/program transactions; the proven chain is
+covered by the current27-function export.
 
 [ghidra]: https://github.com/NationalSecurityAgency/ghidra/releases/tag/Ghidra_12.1.4_build
 [jdk]: https://github.com/adoptium/temurin21-binaries/releases/tag/jdk-21.0.12.1%2B1
