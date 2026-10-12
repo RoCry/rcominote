@@ -65,3 +65,11 @@ This recheck closes the currently visible anonymous web route; it does not
 establish permanent outage or absence of vendor firmware. Earlier static
 package scope and protected 1.2.4 limitation remain in
 [official-acquisition-followup.md](official-acquisition-followup.md).
+
+## 2026-10-13: bounded manual/reset follow-up
+
+- [Product page](https://www.seeyon.com/CoMiNote/index.html): HTTP200; retained HTML contains no identified device reset/manual instructions. SHA-256 `a7b34221b79b69d9b7955cd7f168d5502e527bbc9a51e6dd8ddaeef785e39cc5`.
+- [Support document index](https://support.seeyon.com/downcenter_wdxz.html): HTTP200. Retained source lines590–610 redirects users without its user cookie to `/a_signin.html`; ordinary users require enterprise verification. Lines1093+ load documents through `/seeyon/download/docList`. No API request or login attempted; stop at this acquisition boundary.
+- [Public V5 document index](https://open.seeyoncloud.com/v5doc2/) and its linked `assets/js/app.59ac342e.js` acquired. Bundle SHA-256 `2bc162b5d88827a14b26709f911df0ccea25a9f724a9893e2b93dafc63c309d5`; literal `录音卡` absent, CoMi/reset hits concern OA software. This bounded index/bundle pass supplies no device-reset or firmware package; it is not a site-wide absence claim.
+
+Ignored captures: `artifacts/comi-product-manual-check-2026-10-13.html`, `artifacts/seeyon-support-doc-index-2026-10-13.html`, `artifacts/seeyon-product-doc-index-2026-10-13.html`, `artifacts/seeyon-product-doc-app-2026-10-13.js`. Resume with a concrete manual/package or independently established physical reset procedure; no further generic keyword search or ROM-callee capture follows from these negative results.

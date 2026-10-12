@@ -193,24 +193,28 @@ class EventRoutingTests(unittest.IsolatedAsyncioTestCase):
         ):
             await self.conn.watch(0.01)
 
-    async def test_status_events_do_not_extend_command_or_download_deadline(self):
+    async def assert_status_noise_does_not_extend_deadline(self, operation):
         async def noise():
             while True:
                 self.notify(STATUS)
                 await asyncio.sleep(0.001)
 
-        for operation in (
-            self.conn.command(1, timeout=0.01),
-            self.conn.download("recording", lambda _data: None, timeout=0.01),
-        ):
-            self.notify(SIZE_THREE)
-            producer = asyncio.create_task(noise())
-            try:
-                with self.assertRaisesRegex(TimeoutError, "deadline exceeded"):
-                    await asyncio.wait_for(operation, timeout=0.1)
-            finally:
-                producer.cancel()
-                await asyncio.gather(producer, return_exceptions=True)
+        producer = asyncio.create_task(noise())
+        try:
+            with self.assertRaisesRegex(TimeoutError, "deadline exceeded"):
+                await asyncio.wait_for(operation, timeout=0.1)
+        finally:
+            producer.cancel()
+            await asyncio.gather(producer, return_exceptions=True)
+
+    async def test_status_events_do_not_extend_command_deadline(self):
+        await self.assert_status_noise_does_not_extend_deadline(self.conn.command(1, timeout=0.01))
+
+    async def test_status_events_do_not_extend_download_deadline(self):
+        self.notify(SIZE_THREE)
+        await self.assert_status_noise_does_not_extend_deadline(
+            self.conn.download("recording", lambda _data: None, timeout=0.01)
+        )
 
     async def test_watch_duration_is_absolute_even_with_continuous_events(self):
         async def noise():

@@ -160,6 +160,102 @@ class ConnectionTests(unittest.IsolatedAsyncioTestCase):
         with self.assertRaisesRegex(OSError, "partial write"):
             await conn.download("recording", lambda _data: 2)
 
+    async def test_failed_download_cannot_mix_late_tail_with_next_file(self):
+        conn = self.replay(("cmd", SIZE_THREE), ("off", b"a"))
+
+        def full_disk(_data):
+            raise OSError("disk full")
+
+        with self.assertRaisesRegex(OSError, "disk full"):
+            await conn.download("first", full_disk)
+        # With no stream/file ID, old tail 'b' plus new bytes 'cd' would pass
+        # the next size=3 check. Reusing this session must be refused instead.
+        for event in (("cmd", SIZE_THREE), ("off", b"b"), ("off", b"cd"), ("cmd", DOWNLOAD_END)):
+            conn.queue.put_nowait(event)
+        with self.assertRaisesRegex(ConnectionError, "reconnect"):
+            await conn.download("second", lambda _data: self.fail("Mixed bytes reached output"))
+        conn.client.write_gatt_char.assert_awaited_once()
+
+    async def test_command_timeout_cannot_accept_late_reply_on_retry(self):
+        conn = self.replay()
+        with self.assertRaisesRegex(TimeoutError, "deadline exceeded"):
+            await conn.command(1, timeout=0.001)
+        conn.queue.put_nowait(("cmd", SERIAL_REPLY))
+        with self.assertRaisesRegex(ConnectionError, "reconnect"):
+            await conn.serial()
+        conn.client.write_gatt_char.assert_awaited_once()
+
+    async def test_malformed_file_list_prevents_a_following_command(self):
+        conn = self.replay(("cmd", UNKNOWN_LIST), ("cmd", LIST_END), ("cmd", SERIAL_REPLY))
+        with self.assertRaisesRegex(ValueError, "Malformed GET_FILE_LIST"):
+            await conn.file_list()
+        with self.assertRaisesRegex(ConnectionError, "reconnect"):
+            await conn.serial()
+        conn.client.write_gatt_char.assert_awaited_once()
+
+    async def test_cancelled_inflight_request_invalidates_session(self):
+        conn = self.replay()
+        written = asyncio.Event()
+        conn.client.write_gatt_char.side_effect = lambda *_args, **_kwargs: written.set()
+        task = asyncio.create_task(conn.download("recording", lambda _data: None))
+        await written.wait()
+        task.cancel()
+        with self.assertRaises(asyncio.CancelledError):
+            await task
+        with self.assertRaisesRegex(ConnectionError, "reconnect"):
+            await conn.serial()
+        conn.client.write_gatt_char.assert_awaited_once()
+
+    async def test_cancelled_lock_waiter_does_not_invalidate_active_or_next_request(self):
+        conn = self.replay()
+        written = asyncio.Event()
+        conn.client.write_gatt_char.side_effect = lambda *_args, **_kwargs: written.set()
+        active = asyncio.create_task(conn.serial())
+        await written.wait()
+        waiter = asyncio.create_task(conn.file_list())
+        await asyncio.sleep(0)
+        waiter.cancel()
+        with self.assertRaises(asyncio.CancelledError):
+            await waiter
+        conn.queue.put_nowait(("cmd", SERIAL_REPLY))
+        self.assertEqual(await active, "C261CF0430")
+        conn.queue.put_nowait(("cmd", SERIAL_REPLY))
+        self.assertEqual(await conn.serial(), "C261CF0430")
+        self.assertEqual(conn.client.write_gatt_char.await_count, 2)
+
+    async def test_preflight_errors_leave_session_usable(self):
+        conn = self.replay(("cmd", SERIAL_REPLY))
+        for timeout in (0, -1, float("nan"), float("inf")):
+            with self.subTest(timeout=timeout), self.assertRaisesRegex(ValueError, "timeout must"):
+                await conn.command(1, timeout=timeout)
+        with self.assertRaisesRegex(ValueError, "limited to 255"):
+            await conn.command(1, b"x" * 256)
+        with self.assertRaisesRegex(ValueError, "offset must"):
+            await conn.download("recording", lambda _data: None, offset=-1)
+        self.assertEqual(await conn.serial(), "C261CF0430")
+        conn.client.write_gatt_char.assert_awaited_once()
+
+    async def test_write_failure_preserves_error_and_invalidates_session(self):
+        conn = self.replay()
+        conn.client.write_gatt_char.side_effect = OSError("GATT write failed")
+        with self.assertRaisesRegex(OSError, "GATT write failed"):
+            await conn.serial()
+        with self.assertRaisesRegex(ConnectionError, "reconnect"):
+            await conn.file_list()
+        conn.client.write_gatt_char.assert_awaited_once()
+
+    async def test_fsync_failure_after_protocol_end_leaves_session_usable(self):
+        conn = self.replay(("cmd", SIZE_THREE), ("off", b"abc"), ("cmd", DOWNLOAD_END))
+        with tempfile.TemporaryDirectory() as directory:
+            with (
+                patch("rcominote.connection.os.fsync", side_effect=OSError("fsync failed")),
+                self.assertRaisesRegex(OSError, "fsync failed"),
+            ):
+                await export_recording(conn, "recording", Path(directory))
+            self.assertEqual(list(Path(directory).iterdir()), [])
+        conn.queue.put_nowait(("cmd", SERIAL_REPLY))
+        self.assertEqual(await conn.serial(), "C261CF0430")
+
     async def test_unsafe_names_rejected_before_device_write(self):
         for name in ("", "a" * 15, "../secret", "/absolute", "a\\b", ".", "a\0b", "中文"):
             with self.subTest(name=name):

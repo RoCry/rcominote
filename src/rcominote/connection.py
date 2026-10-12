@@ -87,7 +87,7 @@ def recording_output_name(name: str, offset: int = 0) -> str:
 
 
 class Connection:
-    """One session, one transaction at a time; disconnect interrupts waiters."""
+    """One transaction at a time; failed exchanges permanently invalidate the session."""
 
     def __init__(self, device):
         self.queue: asyncio.Queue[tuple[str, bytes] | None] = asyncio.Queue(maxsize=BUFFER_LIMIT)
@@ -171,6 +171,24 @@ class Connection:
         self._check_failure()
         await self.client.write_gatt_char(P.WRITE, P.frame(cmd, payload), response=False)
 
+    @asynccontextmanager
+    async def _request(self, cmd: int, payload: bytes = b"", *, timeout: float):
+        # Pure validation and cancellation while waiting for the lock cannot
+        # leave a remote request in flight. A failed GATT write attempt can.
+        if not math.isfinite(timeout) or timeout <= 0:
+            raise ValueError("CoMi request timeout must be finite and greater than zero")
+        packet = P.frame(cmd, payload)
+        async with self._transaction:
+            self._check_failure()
+            try:
+                await self.client.write_gatt_char(P.WRITE, packet, response=False)
+                yield
+            except BaseException:
+                # Replies and offline chunks carry no transaction identity.
+                # Clearing queued packets cannot isolate late notifications.
+                self._fail(ConnectionError("CoMi request did not finish; reconnect before another request"))
+                raise
+
     async def _take[T](self, queue: asyncio.Queue[T | None], deadline: float) -> T:
         self._check_failure()
         remaining = deadline - asyncio.get_running_loop().time()
@@ -205,8 +223,7 @@ class Connection:
             collected.append(event)
 
     async def command(self, cmd: int, payload: bytes = b"", timeout: float = 5.0) -> bytes:
-        async with self._transaction:
-            await self._write(cmd, payload)
+        async with self._request(cmd, payload, timeout=timeout):
             deadline = asyncio.get_running_loop().time() + timeout
             while True:
                 source, packet = await self._next(deadline)
@@ -225,8 +242,7 @@ class Connection:
         return P.parse_device_info(await self.command(P.GET_DEVICE_INFO))
 
     async def file_list(self, timeout: float = 20.0) -> list[P.FileEntry]:
-        async with self._transaction:
-            await self._write(P.GET_FILE_LIST)
+        async with self._request(P.GET_FILE_LIST, timeout=timeout):
             entries: list[P.FileEntry] = []
             names: set[str] = set()
             deadline = asyncio.get_running_loop().time() + timeout
@@ -264,8 +280,7 @@ class Connection:
         """
         recording_output_name(name, offset)
         payload = validate_filename(name).ljust(14, b"\0") + struct.pack(">I", offset)
-        async with self._transaction:
-            await self._write(P.GET_FILE_DATA, payload)
+        async with self._request(P.GET_FILE_DATA, payload, timeout=timeout):
             received = 0
             declared: int | None = None
             deadline = asyncio.get_running_loop().time() + timeout

@@ -15,6 +15,10 @@ START = bytes.fromhex("00323032363130313232323235313001")
 STOP = bytes.fromhex("00323032363130313232323235313000004eec0101")
 IDLE = {"recording_state": "idle"}
 ACTIVE = {"recording_state": "recording"}
+# Actual idle GET_DEVICE_INFO capture, also retained in test_comi.py.
+IDLE_FRAME = bytes.fromhex(
+    "d22d0105340000e8f20000e8f00164000100040101ff78696e6b5f746573740000000000000000000000000009ff0300010000000000000000b321"
+)
 
 
 class RealtimeExportTests(unittest.IsolatedAsyncioTestCase):
@@ -59,12 +63,31 @@ class RealtimeExportTests(unittest.IsolatedAsyncioTestCase):
         self.conn.command.assert_not_awaited()
         self.assert_no_output()
 
-    async def test_lost_start_ack_still_stops_owned_recording(self):
-        self.conn.device_info = AsyncMock(side_effect=[IDLE, ACTIVE, ACTIVE, IDLE])
-        self.conn.command = AsyncMock(side_effect=[TimeoutError("lost START ACK"), STOP])
-        with self.assertRaisesRegex(TimeoutError, "lost START ACK"):
+    async def test_lost_start_ack_reports_unconfirmed_cleanup_without_reusing_session(self):
+        failure = TimeoutError("lost START ACK")
+        self.conn._next = AsyncMock(side_effect=[("cmd", IDLE_FRAME), failure])
+        with self.assertRaisesRegex(RuntimeError, "Recording may still be running; reconnect") as caught:
             await capture_audio(self.conn, self.out, 0.1, record=True)
-        self.assertEqual([call.args[0] for call in self.conn.command.await_args_list], [6, 7])
+        self.assertIs(caught.exception.__cause__, failure)
+        self.assertEqual([call.args[1][3] for call in self.client.write_gatt_char.await_args_list], [5, 6])
+        self.assert_no_output()
+
+    async def test_cancel_during_start_preserves_cancellation_and_cleanup_warning(self):
+        started = asyncio.Event()
+        self.conn.queue.put_nowait(("cmd", IDLE_FRAME))
+
+        async def write(_characteristic, packet, **_kwargs):
+            if packet[3] == P.START_RECORDING:
+                started.set()
+
+        self.client.write_gatt_char.side_effect = write
+        task = asyncio.create_task(capture_audio(self.conn, self.out, 0.1, record=True))
+        await started.wait()
+        task.cancel()
+        with self.assertRaises(asyncio.CancelledError) as caught:
+            await task
+        self.assertIn("Recording may still be running; reconnect", caught.exception.__notes__[0])
+        self.assertEqual([call.args[1][3] for call in self.client.write_gatt_char.await_args_list], [5, 6])
         self.assert_no_output()
 
     async def test_capture_limit_failure_stops_recording_and_discards_partial_file(self):

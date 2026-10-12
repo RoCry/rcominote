@@ -59,10 +59,15 @@ async def _record_interval(conn: Connection, capture: RealtimeCapture, duration:
     except BaseException as error:
         try:
             await _stop_owned(conn)
-        except BaseException as cleanup_error:  # noqa: BLE001 - retain cleanup failure on cancellation
-            raise RuntimeError(
-                f"Realtime recording failed: {error}; recording cleanup also failed: {cleanup_error}"
-            ) from error
+        except BaseException as cleanup_error:
+            message = (
+                f"Realtime recording failed: {error}; recording cleanup also failed: {cleanup_error}. "
+                "Recording may still be running; reconnect, check its status, and stop it if needed."
+            )
+            if isinstance(error, asyncio.CancelledError):
+                error.add_note(message)
+                raise error from cleanup_error
+            raise RuntimeError(message) from error
         raise
     # The first observed recording had two final notifications during STOP.
     # A bounded tail retains delayed delivery; it is not a loss-free barrier.
@@ -126,8 +131,17 @@ def main(
     validate_output(out, duration)
 
     async def run():
-        async with Connection(await find_device(serial=serial, seconds=seconds)) as conn:
-            identity = await read_info(conn, serial)
-            return {"serial": identity["serial"]} | await capture_audio(conn, out, duration, record=record)
+        try:
+            async with Connection(await find_device(serial=serial, seconds=seconds)) as conn:
+                identity = await read_info(conn, serial)
+                return {"serial": identity["serial"]} | await capture_audio(
+                    conn, out, duration, record=record
+                )
+        except asyncio.CancelledError as error:
+            # asyncio.run translates Ctrl-C cancellation to KeyboardInterrupt;
+            # print cleanup uncertainty before that translation loses its notes.
+            for note in getattr(error, "__notes__", ()):
+                typer.echo(note, err=True)
+            raise
 
     emit(asyncio.run(run()))

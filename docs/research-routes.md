@@ -47,6 +47,13 @@ artifacts. Each task needs a route-changing question and a stopping condition.
 Stop when the bounded source search or evidence cannot answer it; record the
 gap instead of repeatedly expanding the same investigation.
 
+Current acquisition boundary: [official manual/index follow-up](official-acquisition-next.md#2026-10-13-bounded-manualreset-follow-up)
+yielded no device reset procedure or firmware/BSP package. Matching platform
+acquisition and ROM enumeration now need new material or an independently
+established physical escape; further generic searches/callee reads are parked.
+Client failure isolation is closed at the host-session boundary (see [CLI](cli.md));
+do not expand it into automatic cancellation/resume while platform work has priority.
+
 ## Capability ledger and evidence gates
 
 | Workstream | Reuse now | Next decisive evidence |
