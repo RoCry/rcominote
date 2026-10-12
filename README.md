@@ -129,3 +129,5 @@ uv run --locked tools/build_sdk.py \
 [音频open与板级输入映射](docs/audio-open-path.md)：实际ADC分支、宽度约束与7项输入映射表；尚未取得录音调用者的真实参数，不能推定麦克风数量/类型。
 
 [录音参数适配层](docs/audio-parameter-adapter.md)：实际adapter固定16-bit、ADC key按stream type选择，采样率来自上层调用参数；仍未确认录音应用具体值。
+
+[固定16 kHz构造路径](docs/audio-fixed-rate-path.md)：实际入口16000→除1000→rate16、stream5→ADC key4000、adapter16-bit；触发来源及其他录音模式仍未确认。
