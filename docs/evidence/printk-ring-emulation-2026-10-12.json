@@ -1,0 +1,109 @@
+{
+  "image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "engine": "Unicorn 2.1.4 Thumb MCLASS",
+  "scope": "Actual cbuf init/write/DMA-read/consume; memcpy intercepted; no UART, flash, or hardware",
+  "normal": {
+    "initial": [
+      0,
+      0,
+      0,
+      4096,
+      402910729
+    ],
+    "write_return": 6,
+    "after_write": [
+      0,
+      6,
+      6,
+      4096,
+      402910729
+    ],
+    "head": "ABCDEF",
+    "tail": "??",
+    "dma_steps": [
+      {
+        "return": 6,
+        "source": 402910729,
+        "length": 6,
+        "text": "ABCDEF",
+        "state": [
+          6,
+          6,
+          0,
+          4096,
+          402910729
+        ]
+      }
+    ],
+    "payload_preserved": true,
+    "memcpy_calls": [
+      {
+        "destination": 402910729,
+        "source": 402784256,
+        "length": 6
+      }
+    ],
+    "instructions": 103
+  },
+  "wrap": {
+    "initial": [
+      0,
+      0,
+      0,
+      4096,
+      402910729
+    ],
+    "write_return": 6,
+    "after_write": [
+      4094,
+      4,
+      6,
+      4096,
+      402910729
+    ],
+    "head": "CDEF??",
+    "tail": "AB",
+    "dma_steps": [
+      {
+        "return": 6,
+        "source": 402914823,
+        "length": 2,
+        "text": "AB",
+        "state": [
+          4096,
+          4,
+          4,
+          4096,
+          402910729
+        ]
+      },
+      {
+        "return": 4,
+        "source": 402910729,
+        "length": 4,
+        "text": "CDEF",
+        "state": [
+          4,
+          4,
+          0,
+          4096,
+          402910729
+        ]
+      }
+    ],
+    "payload_preserved": true,
+    "memcpy_calls": [
+      {
+        "destination": 402914823,
+        "source": 402784256,
+        "length": 2
+      },
+      {
+        "destination": 402910729,
+        "source": 402784258,
+        "length": 4
+      }
+    ],
+    "instructions": 155
+  }
+}

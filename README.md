@@ -159,3 +159,7 @@ uv run --locked tools/build_sdk.py \
 [CDC命令表](docs/usb-cdc-command-map.md)：固定身份字段、状态查询、模式重启与SD格式化路径；默认命令也写TEST_ITEM，未建立固件/DSP导出能力。
 
 [MSC线索边界](docs/usb-msc-followup.md)：实际只有弹出状态getter得到定位；限定描述符/注册搜索只命中CDC，尚未建立MSC到磁盘后端的链路。
+
+[静态日志ring实测](docs/printk-ring-capture.md)：新增固定`printk-ring`诊断；读回4096 B，但mdb/help自覆盖，尚不能作为原始NOR备份。
+
+[F5F0固件归属](docs/f5f0-firmware-definition.md)：实际参数/回调链确认Bluetooth OTA后端；启用通知可触发OTA应用流程，尚无备份或恢复验收。

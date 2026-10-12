@@ -7,6 +7,7 @@ from datetime import UTC, datetime
 from bleak import BleakClient
 from bleak.exc import BleakError
 
+from . import printk_ring
 from .ble_target import OWNED_SERIAL, find_device
 from .boot_readback import BOOT_PHASES
 from .card_readback import CARD_PHASES
@@ -23,7 +24,8 @@ from .code_guards import (
     observed_vendor_code,
     observed_vendor_entries,
 )
-from .log_probe import ACK, NOTIFY, PREPARE, SERVICE, WRITE
+from .log_probe import NOTIFY, PREPARE, SERVICE, WRITE
+from .log_stream import Stream
 from .nor_readback import NOR_PHASES
 from .printk_state import RAM_READS
 from .printk_state import READS as PRINTK_READS
@@ -65,46 +67,6 @@ START = bytes.fromhex("1d108105000002002000")
 STOP = bytes.fromhex("1d108105000002002100")
 
 
-class Stream:
-    """GATT notifications are fragments of the SDK byte stream, not message boundaries."""
-
-    def __init__(self):
-        self.pending = bytearray()
-        self.frames: list[dict] = []
-        self.acks = 0
-        self.ended = False
-
-    def feed(self, data: bytes):
-        self.pending.extend(data)
-        while len(self.pending) >= 5:
-            if self.pending[0] != 0x1D or self.pending[2] != 0x81:
-                raise ValueError(f"Unexpected Actions log header: {self.pending[:5].hex()}")
-            length = int.from_bytes(self.pending[3:5], "little")
-            if length > 4096:
-                raise ValueError(f"Unexpected Actions log payload size {length}")
-            if len(self.pending) < 5 + length:
-                return
-            frame = bytes(self.pending[: 5 + length])
-            del self.pending[: 5 + length]
-            command, payload = frame[1], frame[5:]
-            row = {"command": command, "hex": frame.hex()}
-            if command == 0x10:
-                if frame != ACK:
-                    raise ValueError(f"Unexpected ACK: {frame.hex()}")
-                self.acks += 1
-            elif command == 0xF1:
-                if payload:
-                    raise ValueError("Nonempty log end frame")
-                self.ended = True
-            elif command == 0xF0:
-                if len(payload) < 3 or int.from_bytes(payload[1:3], "little") != len(payload) - 3:
-                    raise ValueError("Invalid log TLV length")
-                row |= {"log_type": payload[0], "text": payload[3:].decode("utf-8", errors="replace")}
-            else:
-                raise ValueError(f"Unexpected log command {command:#x}")
-            self.frames.append(row)
-
-
 async def capture(
     *,
     serial: str,
@@ -133,7 +95,9 @@ async def capture(
     image_chunks: tuple[int, ...] = (),
     image_header: bool = False,
     printk_state: bool = False,
+    printk_buffer: bool = False,
 ) -> dict:
+    printk_state = printk_state or printk_buffer
     selected_ranges = image_ranges(image_chunks)
     image_header = image_header or bool(selected_ranges) or printk_state
     header_batch = header_batch or body_probe or image_header
@@ -158,6 +122,7 @@ async def capture(
         "image_chunk_indices": list(image_chunks),
         "image_header": image_header,
         "printk_state": printk_state,
+        "printk_buffer": printk_buffer,
         "range_frame_spans": {},
         "scope": "PREPARE/DEFAULT_START/STOP; fixed diagnostics and optional bounded reads; no storage writes/reboot",
         "fixed_text_commands": (
@@ -251,6 +216,7 @@ async def capture(
             + (range_commands(BODY_PROBE_RANGES) if body_probe else [])
             + range_commands(selected_ranges)
             + (range_commands(PRINTK_READS) if printk_state else [])
+            + (range_commands(printk_ring.READS) if printk_buffer else [])
         ),
         "notifications": [],
         "writes": [],
@@ -379,6 +345,12 @@ async def capture(
                     read_header(result | {"ok": True})
                     if command in {f"dbg mdb {a:x} {n:x}" for a, n in RAM_READS}:
                         verify_printk_guards(result | {"ok": True})
+                if printk_buffer and command in {
+                    f"dbg mdb {a:x} {n:x}" for a, n in printk_ring.READS[len(printk_ring.GUARDS) :]
+                }:
+                    printk_ring.verify(
+                        result | {"ok": True}, payload=command != f"dbg mdb {printk_ring.CONTEXT:x} 14"
+                    )
                 encoded = command.encode("ascii")
                 if storage_code or shell_code:
                     async with asyncio.timeout(5):
