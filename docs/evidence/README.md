@@ -149,3 +149,7 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## 实机ACPT分区表
 
 [首次](partition-first-2026-10-12.json)、[重读](partition-second-2026-10-12.json)、[分析](partition-analysis-2026-10-12.json)：2987 B一致，新增1452 B，累计6871不同映射字节。完整744 B ACPT缓存表CRC703f5674，18项NOR配置覆盖4 MiB；不等于原始Flash镜像。[报告](../partition-readback.md)、[结束状态](partition-final-state-2026-10-12.json)。
+
+## 启动安全标志源码审计
+
+[固定SDK来源摘录与原文件SHA256](boot-security-source-audit-2026-10-12.json)、[解释及实机边界](../boot-security-source-audit.md)。无新增设备I/O；区分ACPT加密声明、镜像签名路径、CRC映射和OTA写标志。

@@ -1,0 +1,149 @@
+{
+  "scope": "Pinned reference SDK source only; no CoMi bootloader execution or new device I/O",
+  "upstream": "lvgl/lv_port_actions_technology",
+  "commit": "26f51e584940d5b141cd1d09d2629d69b595f579",
+  "attribution": "Excerpts from Actions Semiconductor SDK; original files and copyright/license notices available at pinned source URLs. Full-file SHA256 uses original bytes.",
+  "sources": [
+    {
+      "path": "bootloader/tools/build_firmware.py",
+      "sha256": "71b4d3a63f935048530a688cd90b0eaf0c35fb0199d20bcfd2ed98e76c8da8fe",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/bootloader/tools/build_firmware.py",
+      "excerpts": [
+        {
+          "start_line": 30,
+          "end_line": 35,
+          "text": "from nvram_prop import *;\n\nCFG_TEST_GENERATE_OTA_FIRMWARES_COUNT = 3\n\nCFG_FIRMWARE_NEED_ENCYPT   = False\n"
+        },
+        {
+          "start_line": 405,
+          "end_line": 427,
+          "text": "        for part in self.partitions:\n            if ('file_name' in part.keys()) and ('SYS_PARAM' == part['type']):\n                self.param_file_name = part['file_name']\n\n        param_file = os.path.join(self.bin_dir, self.param_file_name)\n        self.generate_partition_table(param_file)\n        self.generate_firmware_version(param_file)\n\n        if os.path.isdir(self.orig_bin_dir):\n            shutil.rmtree(self.orig_bin_dir)\n            time.sleep(0.1)\n        shutil.copytree(self.bin_dir, self.orig_bin_dir)\n\n        if pre_crc:\n            self.generate_crc_file()\n\n        if pre_encrypt:\n            if os.path.isfile(efuse_bin):\n                self.encrypt_files()\n            elif CFG_FIRMWARE_NEED_ENCYPT:\n                panic('firmware encryt must be enabled')\n\n        self.check_part_file_size()"
+        },
+        {
+          "start_line": 496,
+          "end_line": 518,
+          "text": "        #print ('FW: encrypt file %s' %(file_path))\n\n        if not os.path.isfile(encrypt_fw):\n            panic('Cannot found encrypt fw')\n\n        if (is_windows()):\n            # windows\n            fw2x_path = script_path + '/utils/windows/fw2x.exe'\n        else:\n            if ('32bit' == platform.architecture()[0]):\n                # linux x86\n                fw2x_path = script_path + '/utils/linux-x86/fw2x/fw2x'\n            else:\n                # linux x86_64\n                fw2x_path = script_path + '/utils/linux-x86_64/fw2x/fw2x'\n\n        # extrace lfi.bin from btsys.fw\n        fw2x_cmd = [fw2x_path, '-fsssfff', encrypt_fw, 'MakeEncryptBin',\\\n               'Encrypt', str(blk_size), file_path, file_path, efuse_bin]\n        (outmsg, exit_code) = run_cmd(fw2x_cmd)\n        if exit_code != 0:\n            print('FW2X: encrypt file %s error' %(file_path))\n            print(outmsg)"
+        },
+        {
+          "start_line": 548,
+          "end_line": 559,
+          "text": "\n    def generate_partition_table(self, param_file):\n        part_tbl = PARTITION_TABLE()\n        memset(addressof(part_tbl), 0, SIZEOF_PARTITION_TABLE)\n\n        part_tbl.magic = PARTITION_TABLE_MAGIC\n        part_tbl.ver = 0x0100\n        part_tbl.table_size = SIZEOF_PARTITION_TABLE\n        part_tbl.table_crc = 0x0\n        part_tbl.part_entry_size = SIZEOF_PARTITION_ENTRY\n        idx = 0\n        for part in self.partitions:"
+        },
+        {
+          "start_line": 574,
+          "end_line": 580,
+          "text": "            part_tbl.parts[idx].flag = 0\n            if 'enable_crc' in part.keys() and 'true' == part['enable_crc']:\n                part_tbl.parts[idx].flag |= 0x1\n            if 'enable_encryption' in part.keys() and 'true' == part['enable_encryption']:\n                part_tbl.parts[idx].flag |= 0x2\n            if 'enable_boot_check' in part.keys() and 'true' == part['enable_boot_check']:\n                part_tbl.parts[idx].flag |= 0x4"
+        }
+      ]
+    },
+    {
+      "path": "framework/ota/libota/ota_upgrade.c",
+      "sha256": "11666d6a1bbb308e5436d4f4a8905e76d33f42ddca3cbbbe923fb1f6d3198e7c",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/framework/ota/libota/ota_upgrade.c",
+      "excerpts": [
+        {
+          "start_line": 462,
+          "end_line": 475,
+          "text": "\n\tmemset(&file_patch, 0x0, sizeof(struct ota_file_patch_info));\n\n\tfile_patch.img = img;\n\tfile_patch.storage = storage;\n\tfile_patch.old_file_mapping_addr = mapping_addr;\n\tfile_patch.old_file_offset = part->file_offset;\n\tfile_patch.old_file_size = part->size;\n\tfile_patch.new_file_offset = file->offset; // + start_file_offs;\n\tfile_patch.new_file_size = file->size;\n\tfile_patch.patch_file_offset = img_file_offset;\n\tfile_patch.patch_file_size = patch_file_size;\n\tfile_patch.flag_use_crc = (part->flag & PARTITION_FLAG_ENABLE_CRC) ? 1 : 0;\n\tfile_patch.flag_use_encrypt = (part->flag & PARTITION_FLAG_ENABLE_ENCRYPTION) ? 1 : 0;"
+        },
+        {
+          "start_line": 1156,
+          "end_line": 1184,
+          "text": "\tota_partition_erase_part(ota, part, 0);\n\n\taddr = file->offset;\n\t/* enable encryption function */\n\tif (part->flag & PARTITION_FLAG_ENABLE_ENCRYPTION) {\n\t\tSYS_LOG_INF(\"enable encryption write\");\n\t\taddr |= (1 << 31);\n\t\tif (len % 32) {\n\t\t\tSYS_LOG_ERR(\"len %d shall align with 32 bytes\", len);\n\t\t\tmem_free(temp_param_ptr);\n\t\t\treturn -EINVAL;\n\t\t}\n\t}\n\n\twlen = 32;\n\twhile (len) {\n\t\tif (len < wlen)\n\t\t\twlen = len;\n\t\tif (ota_storage_write(storage, addr, param_ptr, wlen)) {\n\t\t\tSYS_LOG_ERR(\"storage write failed, offs 0x%x\", addr);\n\t\t\tmem_free(temp_param_ptr);\n\t\t\treturn -EFAULT;\n\t\t}\n\t\tparam_ptr += wlen;\n\t\taddr += wlen;\n\t\tlen -= wlen;\n\t}\n\n\tconsume_time = k_uptime_get_32() - start_time + 1;"
+        }
+      ]
+    },
+    {
+      "path": "framework/ota/libota/ota_file_patch.c",
+      "sha256": "e2dcee0ded2364a662e90d1cd393a0096b8f970d36a04c6695510166768a2cf7",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/framework/ota/libota/ota_file_patch.c",
+      "excerpts": [
+        {
+          "start_line": 142,
+          "end_line": 171,
+          "text": "static int write_cache_data(struct ota_file_patch_info *ota_patch, int write_pos)\n{\n\tuint32_t addr;\n\tuint16_t data_crc;\n\tint seg_size;\n\n\tif (write_pos % 0x20) {\n\t\tSYS_LOG_ERR(\"BUG: write_pos 0x%x\\n\", write_pos);\n\t\treturn -EINVAL;\n\t}\n\n\tif (ota_patch->flag_use_crc) {\n\t\taddr = ota_patch->new_file_offset + (write_pos / 0x20) * 0x22;\n\n\t\tdata_crc = rom_crc16(ota_patch->write_cache, 0x20, 0xffff);\n\t\tota_patch->write_cache[0x20] = data_crc & 0xff;\n\t\tota_patch->write_cache[0x21] = (data_crc >> 8) & 0xff;\n\t\tseg_size = 0x22;\n\t} else {\n\t\taddr = ota_patch->new_file_offset + write_pos;\n\t\tseg_size = 0x20;\n\t}\n\n\tif (ota_patch->flag_use_encrypt)\n\t\taddr |= 0x80000000;\n\n\tota_storage_write(ota_patch->storage, addr,\n\t\tota_patch->write_cache, seg_size);\n\n\tota_patch->write_cache_pos = 0;"
+        }
+      ]
+    },
+    {
+      "path": "bootloader/soc/arm/actions/leopard/soc_memctrl.c",
+      "sha256": "a290716808a1c011fc9c19d598b6fc518a366e4bd596209a972e7a48e1d099d2",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/bootloader/soc/arm/actions/leopard/soc_memctrl.c",
+      "excerpts": [
+        {
+          "start_line": 47,
+          "end_line": 70,
+          "text": "int soc_memctrl_mapping(u32_t map_addr, u32_t nor_phy_addr, int enable_crc)\n{\n\tu32_t nor_bus_addr;\n\tint i;\n\n\tif (nor_phy_addr % 0x1000)\t{\n\t\tprintk(\"invalid nor phy addr 0x%x\\n\", nor_phy_addr);\n\t\treturn -EINVAL;\n\t}\n\n\tif (map_addr & (0x1ffff0))\t{\n\t\tprintk(\"invalid cpu addr 0x%x for mapping to 2MB, bit[4~20] must be 0\\n\", map_addr);\n\t\treturn -EINVAL;\n\t}\n\n\tnor_bus_addr = nor_phy_addr;\n\tif (enable_crc) {\n\t\tnor_bus_addr |= (1 << 31);\n\t}\n\n\tfor (i = CACHE_MAPPING_ITEM_NUM - 1; i >= 0; i--) {\n\t\tif (soc_memctrl_item_is_free(i)) {\n\t\t\tprintk(\"slot=%d  to map nor phy addr 0x%x, map=0x%x\\n\", i, nor_phy_addr, map_addr);\n\t\t\tsoc_memctrl_set_mapping(i, map_addr, nor_bus_addr);"
+        }
+      ]
+    },
+    {
+      "path": "bootloader/soc/arm/actions/leopard/boot/soc_boot_priv.c",
+      "sha256": "92beb1b7dc338583603693ce129888cb3736bf885c039300185035008b77e391",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/bootloader/soc/arm/actions/leopard/boot/soc_boot_priv.c",
+      "excerpts": [
+        {
+          "start_line": 229,
+          "end_line": 255,
+          "text": "\t\tdbg_printk_uint(0x14);\n\t\treturn -14;\n\t}\n\t//cs = head->ih_img_chksum;\n\t//head->ih_hdr_chksum = 0; // calc img checksum\n\tif(run_off == 0x204) {\n\t\t#define IMAGE_F_ENCRYPTED 0x04\n\t\tif((head->ih_flags & IMAGE_F_ENCRYPTED)){\n\t\t\tdbg_printk_uint(0x66660000);\n\t\t\tret = image_security_data_check((image_head_t *)APP_RUN_ADDR);\n\t\t\tdbg_printk_uint(ret);\n\t\t\tif(ret)\n\t\t\t\tck_sum = 0;\n\t\t\telse\n\t\t\t\tck_sum = 0xFFFFFFFF; //sign check ok\n\t\t}else{\n\t\t\tck_sum = image_checksum32(buf+head->ih_hdr_size/4, head->ih_img_size) + head->ih_img_chksum;\n\t\t}\n\t}else{\n\t\tck_sum = image_checksum32(buf, head->ih_img_size) - head->ih_hdr_chksum;\n\t}\n\tif(ck_sum != 0xFFFFFFFF){\n\t\tdbg_printk_uint(0x15);\n\t\tdbg_printk_uint(ck_sum);\n\t\treturn -15;\n\t}\n\tdbg_printk_uint(0x00);"
+        }
+      ]
+    },
+    {
+      "path": "bootloader/soc/arm/actions/leopard/soc_boot.c",
+      "sha256": "0dce2f4d0fc9be0a3da263a454564e6036c1a803b25d31b4472ec06d66e6bade",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/bootloader/soc/arm/actions/leopard/soc_boot.c",
+      "excerpts": [
+        {
+          "start_line": 79,
+          "end_line": 87,
+          "text": "#if CONFIG_FLASH_LOAD_OFFSET == 0  //app\n\t #ifdef CONFIG_SOC_SIGN_ENABLE\n\t #undef CONFIG_SOC_SIGN_ENABLE\n\t #endif\n#endif\n\n #ifdef CONFIG_SOC_SIGN_ENABLE\n\n#include \"soc_rsa.c\""
+        },
+        {
+          "start_line": 125,
+          "end_line": 166,
+          "text": "__ramfunc int image_security_data_check(image_head_t *ih_app)\n{\n\tuint8_t *sig_data;\n\tuint32_t all_len, t;\n\tuint16_t sig_len;\n\tint ret;\n\n\t//sys_write32(0x1, T0_CTL);//stop and clear pending  // for brom p_verify_signature api\n\t//sys_write32(0xffffffff, T0_VAL);\n\t/* enable timer */\n\t//sys_write32(0x24, T0_CTL); // for brom p_verify_signature api\n\n\tsig_data =p_brom_api->p_image_tlv_find(ih_app, IMAGE_TLV_RSA2048_PSS, &sig_len, 0);\n\tif(sig_data == NULL){\n\t\treturn 0x1001;\n\t}\n\n\tif(!g_key_len)\n\t\treturn 0x1002;\n\tall_len =  ih_app->ih_hdr_size + ih_app->ih_img_size + ih_app->ih_ptlv_size;\n\tdbg_printk_uint(all_len);\n\tt = sys_read32(T2_CNT);\n    //return p_brom_api->p_verify_signature(g_key_data, sig_data, (const uint8_t *)(cache_to_dma_addr(ih_app)), all_len);\n    #ifdef CONFIG_SHA256_HARDWARE\n\tret = verify_signature(g_key_data, sig_data, (const uint8_t *)(cache_to_dma_addr(ih_app)), all_len);\n\t#else\n\tdbg_printk_uint((uint32_t)(ih_app));\n\tret =  verify_signature(g_key_data, sig_data, (const uint8_t *)(ih_app), all_len);\n\t#endif\n\tdbg_printk_uint(sys_read32(T2_CNT)-t);\n\treturn ret;\n}\n\n#else\n__ramfunc int image_security_data_check(image_head_t *ih_app)\n{\n\treturn 0;\n}\nstatic void sign_load_key(void)\n{\n\n}"
+        },
+        {
+          "start_line": 174,
+          "end_line": 207,
+          "text": "int boot_to_part(int part_type, int mirror_id, int flashid)\n{\n\tconst struct partition_entry *part;\n\tint crc_is_enabled;\n\n#ifdef CONFIG_ACTIONS_PRINTK_DMA\n\tprintk_dma_switch(0);\n#endif\n\tpart = partition_get_part_by_type_mirrorid(part_type, mirror_id);\n\tif(part == NULL){\n\t\tprintk(\"not find  app parition--\\n\");\n\t\treturn -1;\n\t}\n\tcrc_is_enabled = part->flag & PARTITION_FLAG_ENABLE_CRC ? 1 : 0;\n\tprintk(\"app offset=0x%x ,crc=%d\\n\", part->file_offset, crc_is_enabled);\n\tsoc_boot_set_system_phy_addr(part->file_offset);\n#ifdef CONFIG_SOC_SIGN_ENABLE\n\tapp_part_offset = part->file_offset;\n#endif\n\n\tif(flashid == BOOT_FLASH_ID_NAND){\n\t\tboot_nand(part->file_offset, 0);\n\t}else if(flashid == BOOT_FLASH_ID_EXTNOR){\t\n#ifdef CONFIG_SPI_FLASH_ACTS\n\t\t#ifdef CONFIG_SPI_NOR_FLASH_4B_ADDRESS\n\t\tsys_norflash_exit_4b();\n\t\t#endif\n#endif\n\t\tboot_ext_nor(part->file_offset, crc_is_enabled, 0);\n\t}else{\n\t\tboot_nor(part->file_offset, crc_is_enabled, 0);\n\t}\n\tprintk(\"boot fail\\n\");\n"
+        }
+      ]
+    },
+    {
+      "path": "bootloader/application/ota_app/src/ota_recovery/recovery_main.c",
+      "sha256": "cccadb842980efaae04fe73d6bae5be912fcd30149b023ca5cb7d5041978438b",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/bootloader/application/ota_app/src/ota_recovery/recovery_main.c",
+      "excerpts": [
+        {
+          "start_line": 296,
+          "end_line": 332,
+          "text": "\n\tint need_run = ota_upgrade_is_in_progress(g_ota);\n\tif (!need_run) {\n\t\tSYS_LOG_INF(\"skip ota recovery\");\n\t\treason = 0;\n\t\tnvram_config_set(\"REC_OTA_FLAG\", \"no\", 4);\n\t\t/*clear hardware flags for upgrade overr*/\n\t\tsoc_pstore_set(SOC_PSTORE_TAG_OTA_UPGRADE, 0);\n\t\tgoto exit;\n\t}\n\n#ifdef CONFIG_OTA_BACKEND_TEMP_PART\n\tif (ota_app_init_spinor()) {\n\t\tSYS_LOG_INF(\"init spinor faild skip ota recovery \\n\");\n\t\treason = 0;\n\t\tgoto exit;\n\t}\n#endif\n\n#ifdef CONFIG_OTA_BACKEND_SDCARD\n#ifdef CONFIG_MUTIPLE_VOLUME_MANAGER\n\tsdfs_manager_init();\n#endif\n\n\tif (ota_app_init_sdcard()) {\n\t\tSYS_LOG_INF(\"init sdcard failed\");\n\t\treason = 0;\n\t\tgoto exit;\n\t}\n#endif\n\n\tSYS_LOG_INF(\"do ota recovery\");\n\n\tif (ota_upgrade_check(g_ota)) {\n\t\tSYS_LOG_INF(\"ota upgrade failed, wait check ota file \\n\");\n\t\tos_sleep(1000);\n\t} else {"
+        }
+      ]
+    },
+    {
+      "path": "bootloader/application/ota_app/src/main.c",
+      "sha256": "e99e0db4f60c6dcbcb646db245bf1c649f5ecc8b38ec3c8519acf32d70bf4f7b",
+      "url": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/bootloader/application/ota_app/src/main.c",
+      "excerpts": [
+        {
+          "start_line": 21,
+          "end_line": 32,
+          "text": "int check_adfu(void)\n{\n\t#if IS_ENABLED(CONFIG_TXRX_ADFU)\n\tif(check_adfu_connect(CONFIG_ADFU_TX_GPIO, CONFIG_ADFU_RX_GPIO))\n\t\treturn 1;\n\t#endif\n\t#if IS_ENABLED(CONFIG_GPIO_ADFU)\n\tif(check_adfu_gpiokey(CONFIG_ADFU_KEY_GPIO))\n\t\treturn 1;\n\t#endif\t\n\treturn 0;\n}"
+        },
+        {
+          "start_line": 47,
+          "end_line": 58,
+          "text": "\tsys_pm_get_reboot_reason(&reboot_type, &reason);\n\tprintk(\"reboot_type0x%x, reason=0x%x\\n\", reboot_type, reason);\n\tif(reboot_type == REBOOT_TYPE_GOTO_OTA){\t\t\n\t\tprintk(\"reboot to ota\\n\");\n\t\tgoto exit_to_ota;\n\t}\n\t\t\n\tif(check_adfu()){\n\t\tjtag_set();\n\t\tsoc_pstore_set(SOC_PSTORE_TAG_FLAG_JTAG, 1);\n\t\tsys_pm_reboot(REBOOT_TYPE_GOTO_ADFU);\n\t}"
+        },
+        {
+          "start_line": 64,
+          "end_line": 82,
+          "text": "\n\tif (ota_upgrade_is_allowed()) {\n#if CONFIG_FLASH_LOAD_OFFSET\n\t\tboot_to_ota_app();\n#endif\n\t\trecovery_main();\t\t\n\t}\n\t//soc_watchdog_clear();\n#ifdef CONFIG_WATCHDOG\n\twatchdog_clear();\n#endif\n\tboot_to_application();\n\tsys_pm_reboot(REBOOT_TYPE_GOTO_OTA);\nexit_to_ota:\t\n\t// boot fail enter ota\n\tif(ota_main())// ota fail reboot adfu\n\t\tsys_pm_reboot(REBOOT_TYPE_GOTO_ADFU);\n\telse // ota ok reboot system\n\t\tsys_pm_reboot(REBOOT_TYPE_NORMAL);"
+        }
+      ]
+    }
+  ]
+}

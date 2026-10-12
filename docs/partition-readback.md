@@ -77,3 +77,5 @@
 - [分区字段和flags](https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/include/partition/partition.h#L15-L82)
 - [CRC实现](https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/lib/crc/crc.c#L42-L59)
 - [启动SRAM源码说明](https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/soc/arm/actions/leopard/soc_boot.c#L18-L29)
+
+后续：[flags、签名与恢复源码审计](boot-security-source-audit.md)确认三种标志不可混用，打包工具存在声明加密但该阶段未加密的允许路径；未证明CoMi采用该路径。
