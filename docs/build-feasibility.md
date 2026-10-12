@@ -1,8 +1,8 @@
 # 固定 SDK 的主机构建可行性
 
 2026-10-12。源码固定于 `lvgl/lv_port_actions_technology` 的
-`26f51e584940d5b141cd1d09d2629d69b595f579`。本轮只读源码、枚举主机工具与文件格式；
-未安装依赖、未编译、未运行 vendor 二进制、未接触硬件。所有构建命令均为**未执行候选配方**。
+`26f51e584940d5b141cd1d09d2629d69b595f579`。本文是第二轮的源码与环境研究，保留当时的候选配方。
+**后续已在 Ubuntu 完成应用编译，复现优先用 [实测构建流程](ubuntu-build.md)；完整打包仍未执行。**
 设备/启动链边界见 [Actions SDK 研究](actions-sdk.md)。
 
 **可以准备 Linux 上的应用编译实验；完整打包另受 Python 2.7 与 x86 工具约束。**
@@ -106,7 +106,7 @@ cmake --build "$task_out"
 例如 display 模块定义其 CMake/Kconfig 入口，CMSIS 模块定义 CMake 入口。[应用][app] [模块解析][modules] [display module][display-module] [CMSIS module][cmsis-module]
 
 验收目标：`zephyr/zephyr.elf`、`zephyr.bin`、`zephyr.hex`、`.config`、map/构建日志、
-工具与 Python 依赖精确版本。**目前这些产物没有生成。**
+工具与 Python 依赖精确版本。初版研究时未生成；后续产物与版本记录见 [Ubuntu 实测](ubuntu-build.md)。
 README 提醒现代 GCC warnings-as-errors；应用 `prj.conf` 已有多项 warning suppression。
 首轮遇到错误应记录完整日志并定位 API/编译器差异，不能以“最低版本满足”推定一定链接成功。[上游说明][readme] [现有抑制][prj]
 

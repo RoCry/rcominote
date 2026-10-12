@@ -13,6 +13,7 @@
 | USB | 用户确认数据线后做拔插对照，仍未见明确 CoMi 枚举；`usb_mode=true` 不等于主机数据接口已启用，板级走线/其他模式待查 |
 | 日志/shell | 固定 PREPARE 握手成功；SDK shell 路径受编译条件控制，尚未执行 shell |
 | 自定义固件 | Actions 有构建、OTA、ADFU 等参考代码，也有签名/安全启动配置；CoMi 是否接受自签/未签名镜像尚未知 |
+| Linux 构建 | Ubuntu 上参考板 hello_world 已生成 ELF/BIN/HEX；SDK 无源码补丁，构建后 tracked 文件干净；尚不是 CoMi 固件 |
 
 ## 阅读顺序
 
@@ -24,6 +25,8 @@
 6. [USB 对照与日志握手](docs/usb-log-probe.md)：第二轮实机结果、复现工具。
 7. [USB/ADFU 恢复传输](docs/recovery-transport.md)：RAM helper、ROM/DFU 区别、旧 host 兼容边界。
 8. [固定 SDK 构建可行性](docs/build-feasibility.md)：Linux 编译候选配方、Python 2/x86 打包依赖与缺失物。
+9. [Ubuntu 实测构建](docs/ubuntu-build.md)：已跑通的一键准备/编译、产物与已知限制。
+10. [不拆机诊断](docs/noninvasive-diagnostics.md)：默认日志和只读 shell 候选，包含 ACK/短缓冲陷阱。
 
 ## 可直接运行
 
@@ -41,6 +44,9 @@ just comi record start                # 明确改变设备录音状态；stop/pa
 just comi set-time                    # 明确写入主机本地时间
 just usb snapshot --out artifacts/usb.json  # macOS IOKit 描述符；不向设备发请求
 just log-probe --out artifacts/log.json     # 固定 PREPARE/ACK，会改变日志会话状态
+# Ubuntu / Linux x86_64：
+just sdk-setup                        # 固定 SDK + 带 SHA-256 校验的 GNU Arm 工具链
+just sdk-build                        # 参考板应用编译；不打包、不刷机
 ```
 
 连接操作默认只选广播序列号 `C261CF0430`；其他自有设备用 `--serial SERIAL`，如 `just comi info --serial SERIAL`。录音默认输出到 `~/.local/share/comi-research`；临时样本、APK、SDK、原始采集放进 git 忽略的 `artifacts/`。工具没有删除、格式化、刷写或任意 shell 命令入口。

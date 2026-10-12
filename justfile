@@ -11,6 +11,7 @@ test:
 check:
     ruff format --check tools
     ruff check tools
+    bash -n tools/setup_sdk.sh
     just test
 
 # Discover CoMi advertisements; no connection.
@@ -32,3 +33,11 @@ usb *args:
 # Send one fixed log PREPARE handshake; no shell, dump, or reset.
 log-probe *args:
     uv run tools/log_probe.py {{args}}
+
+# Linux x86_64: fetch the pinned public SDK and checksum-verified GNU Arm compiler.
+sdk-setup:
+    bash tools/setup_sdk.sh
+
+# Compile reference-board hello_world; never package, download, or flash.
+sdk-build *args:
+    uv run --locked tools/build_sdk.py --sdk "$HOME/w/_tmp/lv_port_actions_technology" --toolchain "$HOME/.cache/rcominote/gcc-arm-none-eabi-10.3-2021.10" {{args}}

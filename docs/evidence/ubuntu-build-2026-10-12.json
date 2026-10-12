@@ -1,0 +1,51 @@
+{
+  "started_at": "2026-10-12T02:43:15.241290+00:00",
+  "sdk_commit": "26f51e584940d5b141cd1d09d2629d69b595f579",
+  "board": "ats3089p_dev_watch_sdnand_8b",
+  "application": "hello_world",
+  "compiler": "arm-none-eabi-gcc (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)",
+  "python": "3.13.15 (main, Sep  1 2026, 14:18:08) [Clang 22.1.3 ]",
+  "cmake": "cmake version 3.28.3",
+  "ninja": "1.11.1",
+  "python_packages": {
+    "west": "1.5.0",
+    "six": "1.17.0",
+    "ruamel.yaml": "0.19.1",
+    "pykwalify": "1.8.0",
+    "colorama": "0.4.6",
+    "PyYAML": "6.0.3",
+    "packaging": "25.0",
+    "setuptools": "80.9.0",
+    "docopt": "0.6.2",
+    "python-dateutil": "2.9.0.post0",
+    "pyelftools": "0.32"
+  },
+  "status": "success",
+  "scope": "reference-board compilation only; no packaging or hardware operations",
+  "artifacts": {
+    "zephyr.elf": {
+      "bytes": 10486404,
+      "sha256": "7b47d00da127f002866f5fa4f0c5d21031be8882d2299de2186cefd0c5eb8d95"
+    },
+    "zephyr.bin": {
+      "bytes": 1197764,
+      "sha256": "b183889dd5f4204f6c5a1045a68aba34d2756ae9528be11f586555bea7d76d90"
+    },
+    "zephyr.hex": {
+      "bytes": 3369156,
+      "sha256": "9806071d2845f86ba74c7c1eae394b47e6f2c3e045cebdac3fa9b62e1ed17fd4"
+    },
+    ".config": {
+      "bytes": 52521,
+      "sha256": "44f2b0d75bdd5790501e17a0f75c68211abd666c0fab5973057ba68b35dbd301"
+    }
+  },
+  "sdk_tracked_changes": "",
+  "finished_at": "2026-10-12T02:43:31.867823+00:00",
+  "host": "Ubuntu 24.04.3 LTS x86_64",
+  "build_steps": 804,
+  "parallel_jobs": 4,
+  "build_log_sha256": "dcf9e66b8046fabdf34fcec54e767fa62a93afe0995a6dd71828f2ccc2ceaad8",
+  "compiler_archive_sha256": "97dbb4f019ad1650b732faffcc881689cedc14e2b7ee863d390e0a41ef16c9a3",
+  "source_output_override": "tools/sdk_output.cmake redirects freetype archive into build directory"
+}

@@ -39,3 +39,9 @@ APK/SDK 由各专题文档记录样本哈希、固定版本及复现入口。原
 - [USB 对照记录](../usb-log-probe.md)：用户确认数据线；connected→unplugged 无节点变化；reconnected 仅另一台 Hiveton/rcwodle 身份变化。完整原始 USB 树放忽略目录，报告保留摘要及哈希。
 - [log-prepare-2026-10-12.json](log-prepare-2026-10-12.json)：一次固定 PREPARE、一次精确 ACK；本轮确实写了日志控制特征，但未发送 shell、dump、复位或存储命令。它取代“仅有 UUID”作为更强的平台证据，不证明 shell。
 - 新增 USB oracle fixture来自实际 IOKit 描述符，格式/lint、共 8 个测试通过；新版工具实机运行。SDK 仍未构建，未刷写/备份原厂固件。
+
+## 第三轮：Ubuntu 参考应用编译
+
+- [ubuntu-build-2026-10-12.json](ubuntu-build-2026-10-12.json)：804 步干净构建、工具/依赖版本、ELF/BIN/HEX 与配置哈希、SDK 零 tracked 改动。
+- [实测报告](../ubuntu-build.md)：第一次发现 freetype 写回 SDK，外部 CMake hook 修正后第二次干净构建成功；两次 BIN/HEX 哈希相同。
+- 本轮没有 BLE/USB 设备操作，没有打包或刷机；GDB/完整 vendor maker 仍未验证。完整构建日志与镜像留在忽略的 artifacts 目录。
