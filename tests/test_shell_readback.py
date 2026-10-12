@@ -9,8 +9,8 @@ from rcominote.code_guards import observed_storage_reference
 from rcominote.code_references import inspect_references
 
 EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence"
-FIRST = EVIDENCE / "shell-registry-first-2026-10-12.json"
-SECOND = EVIDENCE / "shell-registry-second-2026-10-12.json"
+FIRST = EVIDENCE / "partition-first-2026-10-12.json"
+SECOND = EVIDENCE / "partition-second-2026-10-12.json"
 
 
 def test_actual_timer_and_header_edges():
@@ -81,3 +81,11 @@ def test_moved_registry_boundary_blocks_old_table():
         frame["text"] = frame.get("text", "").replace("74 a6 0b 10 dc a6 0b 10", "74 a6 0b 10 d4 a6 0b 10")
     with pytest.raises(ValueError, match="shell root registry start/end code changed"):
         observed_storage_reference(capture["frames"], "dbg mdb 100ba674 10")
+
+
+def test_changed_partition_pointer_blocks_stale_header():
+    capture = json.loads(FIRST.read_text())
+    for frame in capture["frames"]:
+        frame["text"] = frame.get("text", "").replace("1800ecb4: 40 00 00 01", "1800ecb4: 50 00 00 01")
+    with pytest.raises(ValueError, match="live partition table pointer code changed"):
+        observed_storage_reference(capture["frames"], "dbg mdb 1000040 10")

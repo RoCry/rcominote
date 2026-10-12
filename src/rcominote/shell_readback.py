@@ -130,6 +130,61 @@ SHELL_ROOT_NAMES = (
 SHELL_DBG_SUBCOMMAND = (
     (0x100BBBA4, 8, "confirmed dbg subcommand descriptor dynamic flag and pointer", False),
 )
+SHELL_DBG_PREFIX = tuple(
+    (address, 16, "bounded prefix of confirmed static dbg descriptor array", False)
+    for address in range(0x100BB8D4, 0x100BB954, 16)
+)
+SHELL_DBG_MORE = tuple(
+    (address, 16, "dbg static descriptor array non-null continuation", False)
+    for address in range(0x100BB954, 0x100BB9D4, 16)
+)
+SHELL_SDFS_NAME = (
+    (0x100C6C2A, 5, "dbg descriptor 11 syntax candidate", False),
+    (0x100C6C2F, 15, "dbg descriptor 11 help candidate", False),
+)
+SHELL_SDFS_HANDLER = tuple(
+    (address, 16, "confirmed sdfs handler entry and initial file calls; never invoked", True)
+    for address in range(0x10025414, 0x10025454, 16)
+)
+SHELL_SD_OPEN = tuple(
+    (address, 16, "sdfs first filename callee entry and storage dispatch", True)
+    for address in range(0x10026614, 0x10026654, 16)
+)
+SHELL_SD_BRANCH = tuple(
+    (address, 16, "sd_fopen non-NOR storage branch target", True)
+    for address in range(0x100266E8, 0x10026728, 16)
+)
+SHELL_NOR_DIRECTORY = tuple(
+    (address, 16, "sd_fopen actual NOR-only directory continuation", True)
+    for address in range(0x10026654, 0x10026694, 16)
+)
+SHELL_NOR_PARTITION_PATH = tuple(
+    (address, 16, "NOR explicit partition lookup branch", True)
+    for address in range(0x10026694, 0x100266D4, 16)
+)
+SHELL_PARTITION_GETTER = tuple(
+    (address, 16, "actual NOR storage0/file-part-plus10 getter callee", True)
+    for address in range(0x10027720, 0x10027760, 16)
+)
+SHELL_PARTITION_REFS = (
+    (0x10027760, 16, "partition getter match-return continuation", True),
+    (0x10027770, 16, "partition getter loop limit and stride", True),
+    (0x10027780, 8, "partition getter final return", True),
+    (0x10027788, 4, "partition getter global table pointer literal", False),
+)
+SHELL_PARTITION_POINTER = ((0x1800ECB4, 4, "actual partition getter global table pointer", False),)
+SHELL_PARTITION_HEADER = (
+    (0x01000040, 16, "partition table header through actual cached pointer; boot SRAM", False),
+)
+SHELL_PARTITION_TABLE = tuple(
+    (
+        address,
+        min(16, 0x01000328 - address),
+        "ACPT header-sized table entries/reserved/CRC; cached SRAM only",
+        False,
+    )
+    for address in range(0x01000050, 0x01000328, 16)
+)
 SHELL_PHASES = (
     SHELL_INIT_SUCCESS,
     SHELL_STREAM_SUCCESS,
@@ -154,9 +209,68 @@ SHELL_PHASES = (
     SHELL_ROOT_DESCRIPTORS,
     SHELL_ROOT_NAMES,
     SHELL_DBG_SUBCOMMAND,
+    SHELL_DBG_PREFIX,
+    SHELL_DBG_MORE,
+    SHELL_SDFS_NAME,
+    SHELL_SDFS_HANDLER,
+    SHELL_SD_OPEN,
+    SHELL_SD_BRANCH,
+    SHELL_NOR_DIRECTORY,
+    SHELL_NOR_PARTITION_PATH,
+    SHELL_PARTITION_GETTER,
+    SHELL_PARTITION_REFS,
+    SHELL_PARTITION_POINTER,
+    SHELL_PARTITION_HEADER,
+    SHELL_PARTITION_TABLE,
 )
 SHELL_BLOCKS = tuple(block for phase in SHELL_PHASES for block in phase)
 SHELL_GUARDS = (
+    (
+        SHELL_PARTITION_TABLE,
+        ((0x01000040, "414350540101e8021200180000000000", "ACPT header magic and table bounds"),),
+    ),
+    (SHELL_PARTITION_HEADER, ((0x1800ECB4, "40000001", "live partition table pointer"),)),
+    (SHELL_PARTITION_POINTER, ((0x10027788, "b4ec0018", "partition table global pointer literal"),)),
+    (
+        SHELL_PARTITION_REFS,
+        (
+            (0x10027720, "f8b5194b1c680022182304f1190702fb", "partition getter table literal load"),
+            (0x10027750, "17f805c08c4511d10c4b0d48c01a4001", "partition getter match continuation"),
+        ),
+    ),
+    (
+        SHELL_PARTITION_GETTER,
+        ((0x100266B4, "ff2e17d006f10a01c9b2002001f02ef8", "NOR partition plus10 getter call"),),
+    ),
+    (
+        SHELL_NOR_PARTITION_PATH,
+        ((0x10026654, "9df807601b78dbb1ff2e19d1574a584f", "NOR explicit partition branch"),),
+    ),
+    (SHELL_NOR_DIRECTORY, ((0x10026644, "5c4879f09efc9df80630002b4ad15a4b", "sd_fopen NOR fallthrough"),)),
+    (SHELL_SD_BRANCH, ((0x10026644, "5c4879f09efc9df80630002b4ad15a4b", "sd_fopen non-NOR branch"),)),
+    (
+        SHELL_SD_OPEN,
+        (
+            (0x10025414, "2de9f04103298cb0064614460ad15068", "sdfs argc check and filename load"),
+            (0x10025424, "01f0f6f8054640b901466368184a3046", "sdfs first filename call"),
+        ),
+    ),
+    (
+        SHELL_SDFS_HANDLER,
+        (
+            (0x100C6C2A, "7364667300", "confirmed sdfs syntax"),
+            (0x100BB9B4, "2f6c0c10000000001554021000000000", "sdfs handler pointer"),
+        ),
+    ),
+    (
+        SHELL_SDFS_NAME,
+        (
+            (0x100BB9A4, "00000000eb170a10000000002a6c0c10", "dbg descriptor 11 syntax pointer"),
+            (0x100BB9B4, "2f6c0c10000000001554021000000000", "dbg descriptor 11 help and handler"),
+        ),
+    ),
+    (SHELL_DBG_MORE, ((0x100BB944, "57180a10000000003f6b0c10456b0c10", "dbg array non-null continuation"),)),
+    (SHELL_DBG_PREFIX, ((0x100BBBA4, "00000000d4b80b10", "dbg static array pointer"),)),
     (
         SHELL_DBG_SUBCOMMAND,
         (

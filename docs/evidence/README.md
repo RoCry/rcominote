@@ -145,3 +145,7 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## shell registry与dbg静态表
 
 [首次](shell-registry-first-2026-10-12.json)、[重读](shell-registry-second-2026-10-12.json)、[分析](shell-registry-analysis-2026-10-12.json)：1535 B一致，新增758 B，累计5419不同映射字节。13项root registry、dbg descriptor及静态子命令数组指针已确认；子命令数组未读。[报告](../shell-registry-readback.md)、[结束状态](shell-registry-final-state-2026-10-12.json)。
+
+## 实机ACPT分区表
+
+[首次](partition-first-2026-10-12.json)、[重读](partition-second-2026-10-12.json)、[分析](partition-analysis-2026-10-12.json)：2987 B一致，新增1452 B，累计6871不同映射字节。完整744 B ACPT缓存表CRC703f5674，18项NOR配置覆盖4 MiB；不等于原始Flash镜像。[报告](../partition-readback.md)、[结束状态](partition-final-state-2026-10-12.json)。

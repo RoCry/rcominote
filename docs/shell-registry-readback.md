@@ -37,3 +37,5 @@
 每阶段跟随前验证已捕获父指令/表项；root边界或pointer变化立即拒绝。回归测试核对实际bounds、stride指令、`dbg\0`、静态数组指针，以及修改root边界后不读旧表。72项测试、24项子测试及wheel/sdist通过。
 
 重现仍用`uv run comi diag capture shell-code --out ...`和`uv run comi diag compare-references A B --shell --out ...`；当前profile为1535 B，旧777 B记录保留为历史证据。
+
+后续：[ACPT完整缓存表](partition-readback.md)已从dbg/sdfs/NOR路径取得；本文1535 B为历史阶段。

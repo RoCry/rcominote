@@ -13,6 +13,7 @@ from .boot_readback import BOOT_BLOCKS, BOOT_NAME_POINTERS
 from .card_readback import CARD_BLOCKS
 from .nor_readback import NOR_BLOCKS
 from .output import emit, new_output
+from .partition_table import inspect_acpt
 from .read_sets import BLOCKS, DISK_BLOCKS, HANDLER_BLOCKS, INFO_BLOCKS, INFO_STORAGE, VENDOR_BLOCKS
 from .shell_readback import SHELL_BLOCKS
 from .vendor_dispatch import BASE, TABLE, TABLE_END, inspect_dispatch
@@ -242,6 +243,12 @@ def inspect_references(
         report["flash_configuration"] = flash_configuration(captures[0])
     if nor:
         report["nor_state"] = nor_state(captures[0])
+    if shell:
+        table = b"".join(
+            read_block(captures[0], address, min(16, 0x01000328 - address))
+            for address in range(0x01000040, 0x01000328, 16)
+        )
+        report["partition_table"] = inspect_acpt(table)
     if vendor or shell:
         # Decode contiguous bytes together: 32-bit Thumb instructions can cross
         # 16-byte transport rows. Never resume decoding in their second half.
