@@ -1,0 +1,171 @@
+{
+  "image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "engine": "Unicorn 2.1.4 Thumb MCLASS",
+  "executed_region": "0x1003c914..0x1003ca36",
+  "scope": "Actual ARM section loader, synthetic section headers, intercepted seek/read/tell/log; MMIO backed by synthetic memory; success cases stop at first payload read",
+  "limits": [
+    "No physical RAM capacity or ownership behavior measured",
+    "Payload read destinations observed; DSP payload bytes neither copied nor executed",
+    "Post-read MMIO restoration statically inspected only",
+    "No firmware write or device I/O"
+  ],
+  "cases": {
+    "actual_first_code": {
+      "dsp_address": "0x00000000",
+      "kind": "code",
+      "section_bytes": 5312,
+      "return": null,
+      "stop_reason": "intercepted payload read",
+      "payload_reads": [
+        {
+          "destination": "0x01140000",
+          "bytes": 5312
+        }
+      ],
+      "mmio_address": "0x400010c0",
+      "mmio_accesses": [],
+      "instructions": 49
+    },
+    "actual_second_code": {
+      "dsp_address": "0x40000000",
+      "kind": "code",
+      "section_bytes": 8944,
+      "return": null,
+      "stop_reason": "intercepted payload read",
+      "payload_reads": [
+        {
+          "destination": "0x01040000",
+          "bytes": 8944
+        }
+      ],
+      "mmio_address": "0x400010c0",
+      "mmio_accesses": [
+        {
+          "operation": "read",
+          "value": "0xa5ff5a5a"
+        },
+        {
+          "operation": "write",
+          "value": "0xa4af5a5a"
+        }
+      ],
+      "instructions": 60
+    },
+    "ptcm_last": {
+      "dsp_address": "0x00001fff",
+      "kind": "code",
+      "section_bytes": 2,
+      "return": null,
+      "stop_reason": "intercepted payload read",
+      "payload_reads": [
+        {
+          "destination": "0x01143ffe",
+          "bytes": 2
+        }
+      ],
+      "mmio_address": "0x400010c0",
+      "mmio_accesses": [],
+      "instructions": 49
+    },
+    "ownership_last": {
+      "dsp_address": "0x0000bfff",
+      "kind": "code",
+      "section_bytes": 2,
+      "return": null,
+      "stop_reason": "intercepted payload read",
+      "payload_reads": [
+        {
+          "destination": "0x01057ffe",
+          "bytes": 2
+        }
+      ],
+      "mmio_address": "0x400010c0",
+      "mmio_accesses": [
+        {
+          "operation": "read",
+          "value": "0xa5ff5a5a"
+        },
+        {
+          "operation": "write",
+          "value": "0xa4af5a5a"
+        }
+      ],
+      "instructions": 63
+    },
+    "dtcm_first": {
+      "dsp_address": "0x00000000",
+      "kind": "data",
+      "section_bytes": 2,
+      "return": null,
+      "stop_reason": "intercepted payload read",
+      "payload_reads": [
+        {
+          "destination": "0x01100000",
+          "bytes": 2
+        }
+      ],
+      "mmio_address": "0x400010c0",
+      "mmio_accesses": [],
+      "instructions": 50
+    },
+    "data_c000_bank_fallback": {
+      "dsp_address": "0x0000c000",
+      "kind": "data",
+      "section_bytes": 2,
+      "return": null,
+      "stop_reason": "intercepted payload read",
+      "payload_reads": [
+        {
+          "destination": "0x01058000",
+          "bytes": 2
+        }
+      ],
+      "mmio_address": "0x400010c0",
+      "mmio_accesses": [],
+      "instructions": 65
+    },
+    "ext_last": {
+      "dsp_address": "0x40017fff",
+      "kind": "code",
+      "section_bytes": 2,
+      "return": null,
+      "stop_reason": "intercepted payload read",
+      "payload_reads": [
+        {
+          "destination": "0x0106fffe",
+          "bytes": 2
+        }
+      ],
+      "mmio_address": "0x400010c0",
+      "mmio_accesses": [],
+      "instructions": 56
+    },
+    "ext_end_rejected": {
+      "dsp_address": "0x40018000",
+      "kind": "code",
+      "section_bytes": 2,
+      "return": 4294967282,
+      "stop_reason": "section loader returned",
+      "payload_reads": [],
+      "mmio_address": "0x400010c0",
+      "mmio_accesses": [],
+      "instructions": 52
+    },
+    "start_only_no_section_end_check": {
+      "dsp_address": "0x00001fff",
+      "kind": "code",
+      "section_bytes": 16384,
+      "return": null,
+      "stop_reason": "intercepted payload read",
+      "payload_reads": [
+        {
+          "destination": "0x01143ffe",
+          "bytes": 16384
+        }
+      ],
+      "mmio_address": "0x400010c0",
+      "mmio_accesses": [],
+      "instructions": 49
+    }
+  }
+}
