@@ -63,3 +63,9 @@ block3和block6都出现单轮覆盖不足；合并多轮独立producer后各行
 | bank18 code | 52812 | 144 | `20483600` |
 
 主data正文合计36672 B，零size终止于52808；紧接bank18表52812。bank18终止于52964，紧接头部声明的bank19表52968。`20483600`是DSP编码地址，不是可直接读取的MCU或NOR物理地址。当前未完成bank19、bank34及整文件SDFS checksum验收。
+
+### bank19已取得
+
+随后重新验收block103..157，[bank19证据](evidence/record-dsp-bank19-2026-10-12.json)确认单段：头52968、正文52976、长度27656 B、DSP编码地址 `204c3600`。正文SHA256 `5983e6d9e8e304c8e35f7fe4c3e20c31686519631c2383fc62b220cf9c0f6d27`。零size终止于80632，紧接头部声明的bank34 code表80636。
+
+bank18与19的地址都带编码位，不能把数字直接当作物理RAM位置或据此断言它们可同时加载；bank切换和使用时序仍需单独核查。剩余bank34 code/data及整文件checksum尚未完成。
