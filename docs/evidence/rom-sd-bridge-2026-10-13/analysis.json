@@ -1,0 +1,102 @@
+{
+  "scope": "Two independent known-ROM336-byte source transfer proofs; no ROM extent, bulk throughput, mode entry, execution or restoration claim",
+  "source_range": [
+    "0x1900",
+    "0x1a50"
+  ],
+  "end_exclusive": true,
+  "oracle": "docs/evidence/rom-flow-2026-10-13.bin",
+  "oracle_sha256": "0dda0a4532813627df78b506bfa1f7e5dc8ae4b9886cc32173265592defcaa67",
+  "pair_exact_match": true,
+  "runs": [
+    {
+      "capture": "first",
+      "name": "rc6c7aab595e",
+      "device_path": "/SD:/RECORDER/Call-rc6c7aab595e.mp3",
+      "download_bytes": 336,
+      "sha256": "0dda0a4532813627df78b506bfa1f7e5dc8ae4b9886cc32173265592defcaa67",
+      "download_seconds": 0.18228254100540653,
+      "total_seconds": 9.661022583022714,
+      "stream_acks": 17,
+      "stream_complete": true,
+      "guards": [
+        {
+          "address": "0x10000000",
+          "bytes": 32,
+          "exact_match": true
+        },
+        {
+          "address": "0x10024a20",
+          "bytes": 64,
+          "exact_match": true
+        },
+        {
+          "address": "0x10024a60",
+          "bytes": 64,
+          "exact_match": true
+        },
+        {
+          "address": "0x10024aa0",
+          "bytes": 32,
+          "exact_match": true
+        },
+        {
+          "address": "0x1900",
+          "bytes": 16,
+          "exact_match": true
+        },
+        {
+          "address": "0x1a40",
+          "bytes": 16,
+          "exact_match": true
+        }
+      ],
+      "owned_idle_before_after": true
+    },
+    {
+      "capture": "second",
+      "name": "rc5413d06407",
+      "device_path": "/SD:/RECORDER/Call-rc5413d06407.mp3",
+      "download_bytes": 336,
+      "sha256": "0dda0a4532813627df78b506bfa1f7e5dc8ae4b9886cc32173265592defcaa67",
+      "download_seconds": 0.18384945899015293,
+      "total_seconds": 7.082787082996219,
+      "stream_acks": 17,
+      "stream_complete": true,
+      "guards": [
+        {
+          "address": "0x10000000",
+          "bytes": 32,
+          "exact_match": true
+        },
+        {
+          "address": "0x10024a20",
+          "bytes": 64,
+          "exact_match": true
+        },
+        {
+          "address": "0x10024a60",
+          "bytes": 64,
+          "exact_match": true
+        },
+        {
+          "address": "0x10024aa0",
+          "bytes": 32,
+          "exact_match": true
+        },
+        {
+          "address": "0x1900",
+          "bytes": 16,
+          "exact_match": true
+        },
+        {
+          "address": "0x1a40",
+          "bytes": 16,
+          "exact_match": true
+        }
+      ],
+      "owned_idle_before_after": true
+    }
+  ],
+  "residue": "Two retained non-audio SD files; no deletion attempted"
+}

@@ -1,0 +1,2045 @@
+{
+  "scope": "Host-only bounded static inventory; no device I/O, handler execution, RAM write or control-flow corruption",
+  "source": {
+    "path": "docs/evidence/minimal-image-2026-10-13/original-system.bin.gz",
+    "decoded_bytes": 927632,
+    "decoded_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f"
+  },
+  "method": "Python struct + Capstone 5.0.6; REA unavailable in this agent toolset; no REA Evidence claimed",
+  "root_range": [
+    "0x100ba674",
+    "0x100ba6dc"
+  ],
+  "root_stride": 8,
+  "descriptor_stride": 20,
+  "roots": [
+    {
+      "address": "0x100bce4c",
+      "path": [
+        "actlog"
+      ],
+      "help": "actlog commands (flash partition backend)",
+      "subcommand": "0x100bcf00",
+      "handler_thumb": "0x0",
+      "argument_word": "0x0",
+      "bytes": "63170d101e170d1000cf0b100000000000000000",
+      "root_entry": "0x100ba674"
+    },
+    {
+      "address": "0x100ba878",
+      "path": [
+        "app"
+      ],
+      "help": "Application shell commands",
+      "subcommand": "0x100ba88c",
+      "handler_thumb": "0x10002101",
+      "argument_word": "0x0",
+      "bytes": "4e450d1067090c108ca80b100121001000000000",
+      "root_entry": "0x100ba67c"
+    },
+    {
+      "address": "0x100bd83c",
+      "path": [
+        "bt"
+      ],
+      "help": "Bluetooth manager commands",
+      "subcommand": "0x100bd850",
+      "handler_thumb": "0x1006cdfd",
+      "argument_word": "0x0",
+      "bytes": "635f0d10875d0d1050d80b10fdcd061000000000",
+      "root_entry": "0x100ba684"
+    },
+    {
+      "address": "0x100bb6c4",
+      "path": [
+        "clear"
+      ],
+      "help": "Clear screen.",
+      "subcommand": "0x0",
+      "handler_thumb": "0x1002451d",
+      "argument_word": "0x1",
+      "bytes": "bc5f0c10c25f0c10000000001d45021001000000",
+      "root_entry": "0x100ba68c"
+    },
+    {
+      "address": "0x100bbfc4",
+      "path": [
+        "coredump"
+      ],
+      "help": "Coredump commands (flash partition backend)",
+      "subcommand": "0x100bc08c",
+      "handler_thumb": "0x0",
+      "argument_word": "0x0",
+      "bytes": "20940c10aa930c108cc00b100000000000000000",
+      "root_entry": "0x100ba694"
+    },
+    {
+      "address": "0x100bb8c0",
+      "path": [
+        "dbg"
+      ],
+      "help": "dbg commands",
+      "subcommand": "0x100bbba4",
+      "handler_thumb": "0x0",
+      "argument_word": "0x0",
+      "bytes": "dd690c10e1690c10a4bb0b100000000000000000",
+      "root_entry": "0x100ba69c"
+    },
+    {
+      "address": "0x100bb630",
+      "path": [
+        "devmem"
+      ],
+      "help": "Read/write physical memory\"devmem address [width [value]]",
+      "subcommand": "0x100bb66c",
+      "handler_thumb": "0x10022bfd",
+      "argument_word": "0x0",
+      "bytes": "995a0c10a05a0c106cb60b10fd2b021000000000",
+      "root_entry": "0x100ba6a4"
+    },
+    {
+      "address": "0x100bb674",
+      "path": [
+        "help"
+      ],
+      "help": "Prints the help message.",
+      "subcommand": "0x0",
+      "handler_thumb": "0x10023b65",
+      "argument_word": "0x1",
+      "bytes": "435e0c10e55d0c1000000000653b021001000000",
+      "root_entry": "0x100ba6ac"
+    },
+    {
+      "address": "0x100bb6d8",
+      "path": [
+        "history"
+      ],
+      "help": "Command history.",
+      "subcommand": "0x0",
+      "handler_thumb": "0x10024581",
+      "argument_word": "0x1",
+      "bytes": "7d5f0c10855f0c10000000008145021001000000",
+      "root_entry": "0x100ba6b4"
+    },
+    {
+      "address": "0x100bb59c",
+      "path": [
+        "kernel"
+      ],
+      "help": "Kernel commands",
+      "subcommand": "0x100bb628",
+      "handler_thumb": "0x0",
+      "argument_word": "0x0",
+      "bytes": "1f590c1026590c1028b60b100000000000000000",
+      "root_entry": "0x100ba6bc"
+    },
+    {
+      "address": "0x100bb6ec",
+      "path": [
+        "resize"
+      ],
+      "help": "Console gets terminal screen size or assumes default in case the readout fails. It must be executed after each terminal width change to ensure correct text display.",
+      "subcommand": "0x100bb72c",
+      "handler_thumb": "0x1002461d",
+      "argument_word": "0x101",
+      "bytes": "d15e0c10d85e0c102cb70b101d46021001010000",
+      "root_entry": "0x100ba6c4"
+    },
+    {
+      "address": "0x100bb700",
+      "path": [
+        "shell"
+      ],
+      "help": "Useful, not Unix-like shell commands.",
+      "subcommand": "0x100bb734",
+      "handler_thumb": "0x0",
+      "argument_word": "0x0",
+      "bytes": "95170d10965f0c1034b70b100000000000000000",
+      "root_entry": "0x100ba6cc"
+    },
+    {
+      "address": "0x100bcd08",
+      "path": [
+        "system"
+      ],
+      "help": "system commands",
+      "subcommand": "0x100bcd94",
+      "handler_thumb": "0x0",
+      "argument_word": "0x0",
+      "bytes": "230f0c10e40d0d1094cd0b100000000000000000",
+      "root_entry": "0x100ba6d4"
+    }
+  ],
+  "static_subcommand_tables": [
+    {
+      "selector": "0x100bcf00",
+      "path": [
+        "actlog"
+      ],
+      "dynamic": 0,
+      "array_or_callback": "0x100bce60",
+      "entries": [
+        {
+          "address": "0x100bce60",
+          "path": [
+            "actlog",
+            "find"
+          ],
+          "help": "Query if there is a stored actlog",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10056305",
+          "argument_word": "0x0",
+          "bytes": "9fba0c1048170d10000000000563051000000000"
+        },
+        {
+          "address": "0x100bce74",
+          "path": [
+            "actlog",
+            "erase"
+          ],
+          "help": "Erase stored actlog",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10056209",
+          "argument_word": "0x0",
+          "bytes": "2fb90c106a170d10000000000962051000000000"
+        },
+        {
+          "address": "0x100bce88",
+          "path": [
+            "actlog",
+            "print"
+          ],
+          "help": "Print stored actlog to shell",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10056475",
+          "argument_word": "0x0",
+          "bytes": "29940c107e170d10000000007564051000000000"
+        },
+        {
+          "address": "0x100bce9c",
+          "path": [
+            "actlog",
+            "level"
+          ],
+          "help": "Set level filter actlog to shell",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100562bd",
+          "argument_word": "0x0",
+          "bytes": "2ebc0c109b170d1000000000bd62051000000000"
+        },
+        {
+          "address": "0x100bceb0",
+          "path": [
+            "actlog",
+            "num"
+          ],
+          "help": "Set num filter actlog to shell",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10056249",
+          "argument_word": "0x0",
+          "bytes": "c4970d10bc170d10000000004962051000000000"
+        },
+        {
+          "address": "0x100bcec4",
+          "path": [
+            "actlog",
+            "info"
+          ],
+          "help": "get actlog info to shell",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100add61",
+          "argument_word": "0x0",
+          "bytes": "17bc0c10db170d100000000061dd0a1000000000"
+        },
+        {
+          "address": "0x100bced8",
+          "path": [
+            "actlog",
+            "rt_log"
+          ],
+          "help": "runtime log enable/disable save log to flash",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100561cd",
+          "argument_word": "0x0",
+          "bytes": "f4170d10fb170d1000000000cd61051000000000"
+        }
+      ],
+      "terminator": {
+        "address": "0x100bceec",
+        "bytes": "0000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "selector": "0x100ba88c",
+      "path": [
+        "app"
+      ],
+      "dynamic": 0,
+      "array_or_callback": "0x100ba894",
+      "entries": [
+        {
+          "address": "0x100ba894",
+          "path": [
+            "app",
+            "set_config"
+          ],
+          "help": "set system config",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100020a1",
+          "argument_word": "0x0",
+          "bytes": "82090c108d090c1000000000a120001000000000"
+        },
+        {
+          "address": "0x100ba8a8",
+          "path": [
+            "app",
+            "input"
+          ],
+          "help": "input key event",
+          "subcommand": "0x0",
+          "handler_thumb": "0x1009e433",
+          "argument_word": "0x0",
+          "bytes": "bfa90d109f090c100000000033e4091000000000"
+        },
+        {
+          "address": "0x100ba8bc",
+          "path": [
+            "app",
+            "btinfo"
+          ],
+          "help": "dump bt info",
+          "subcommand": "0x0",
+          "handler_thumb": "0x1009e429",
+          "argument_word": "0x0",
+          "bytes": "af090c10b6090c100000000029e4091000000000"
+        }
+      ],
+      "terminator": {
+        "address": "0x100ba8d0",
+        "bytes": "0000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "selector": "0x100bd850",
+      "path": [
+        "bt"
+      ],
+      "dynamic": 0,
+      "array_or_callback": "0x100bd858",
+      "entries": [
+        {
+          "address": "0x100bd858",
+          "path": [
+            "bt",
+            "info"
+          ],
+          "help": "dump bt info",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100b1b33",
+          "argument_word": "0x0",
+          "bytes": "17bc0c10b6090c1000000000331b0b1000000000"
+        },
+        {
+          "address": "0x100bd86c",
+          "path": [
+            "bt",
+            "br_test"
+          ],
+          "help": "br power test",
+          "subcommand": "0x0",
+          "handler_thumb": "0x1006cf3d",
+          "argument_word": "0x0",
+          "bytes": "a25d0d10aa5d0d10000000003dcf061000000000"
+        },
+        {
+          "address": "0x100bd880",
+          "path": [
+            "bt",
+            "ble_test"
+          ],
+          "help": "ble power test",
+          "subcommand": "0x0",
+          "handler_thumb": "0x1006ce8d",
+          "argument_word": "0x0",
+          "bytes": "b85d0d10c15d0d10000000008dce061000000000"
+        },
+        {
+          "address": "0x100bd894",
+          "path": [
+            "bt",
+            "ble_speed"
+          ],
+          "help": "Set ble speed",
+          "subcommand": "0x0",
+          "handler_thumb": "0x1006ce29",
+          "argument_word": "0x0",
+          "bytes": "d05d0d10da5d0d100000000029ce061000000000"
+        },
+        {
+          "address": "0x100bd8a8",
+          "path": [
+            "bt",
+            "hfp"
+          ],
+          "help": "send hfp cmd",
+          "subcommand": "0x0",
+          "handler_thumb": "0x1006cd51",
+          "argument_word": "0x0",
+          "bytes": "e85d0d10ec5d0d100000000051cd061000000000"
+        }
+      ],
+      "terminator": {
+        "address": "0x100bd8bc",
+        "bytes": "0000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "selector": "0x100bc08c",
+      "path": [
+        "coredump"
+      ],
+      "dynamic": 0,
+      "array_or_callback": "0x100bbfd8",
+      "entries": [
+        {
+          "address": "0x100bbfd8",
+          "path": [
+            "coredump",
+            "error"
+          ],
+          "help": "Get/clear backend error.",
+          "subcommand": "0x100bc094",
+          "handler_thumb": "0x0",
+          "argument_word": "0x0",
+          "bytes": "74bd0c10d6930c1094c00b100000000000000000"
+        },
+        {
+          "address": "0x100bbfec",
+          "path": [
+            "coredump",
+            "erase"
+          ],
+          "help": "Erase stored coredump",
+          "subcommand": "0x0",
+          "handler_thumb": "0x1002e72d",
+          "argument_word": "0x0",
+          "bytes": "2fb90c10ef930c10000000002de7021000000000"
+        },
+        {
+          "address": "0x100bc000",
+          "path": [
+            "coredump",
+            "find"
+          ],
+          "help": "Query if there is a stored coredump",
+          "subcommand": "0x0",
+          "handler_thumb": "0x1002e5c1",
+          "argument_word": "0x0",
+          "bytes": "9fba0c1005940c1000000000c1e5021000000000"
+        },
+        {
+          "address": "0x100bc014",
+          "path": [
+            "coredump",
+            "print"
+          ],
+          "help": "Print stored coredump to shell",
+          "subcommand": "0x0",
+          "handler_thumb": "0x1002e875",
+          "argument_word": "0x0",
+          "bytes": "29940c102f940c100000000075e8021000000000"
+        },
+        {
+          "address": "0x100bc028",
+          "path": [
+            "coredump",
+            "verify"
+          ],
+          "help": "Verify stored coredump",
+          "subcommand": "0x0",
+          "handler_thumb": "0x1002e5fd",
+          "argument_word": "0x0",
+          "bytes": "4e940c1055940c1000000000fde5021000000000"
+        }
+      ],
+      "terminator": {
+        "address": "0x100bc03c",
+        "bytes": "0000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "selector": "0x100bbba4",
+      "path": [
+        "dbg"
+      ],
+      "dynamic": 0,
+      "array_or_callback": "0x100bb8d4",
+      "entries": [
+        {
+          "address": "0x100bb8d4",
+          "path": [
+            "dbg",
+            "mdw"
+          ],
+          "help": "display memory by word: mdw address [,count]",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a18ef",
+          "argument_word": "0x0",
+          "bytes": "ee690c10f2690c1000000000ef180a1000000000"
+        },
+        {
+          "address": "0x100bb8e8",
+          "path": [
+            "dbg",
+            "mdh"
+          ],
+          "help": "display memory by half-word: mdh address [,count]",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a18e5",
+          "argument_word": "0x0",
+          "bytes": "1f6a0c10236a0c1000000000e5180a1000000000"
+        },
+        {
+          "address": "0x100bb8fc",
+          "path": [
+            "dbg",
+            "mdb"
+          ],
+          "help": "display memory by byte: mdb address [,count]",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a18db",
+          "argument_word": "0x0",
+          "bytes": "556a0c10596a0c1000000000db180a1000000000"
+        },
+        {
+          "address": "0x100bb910",
+          "path": [
+            "dbg",
+            "mww"
+          ],
+          "help": "memory write (fill) by word: mww address value [,count]",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a1863",
+          "argument_word": "0x0",
+          "bytes": "866a0c108a6a0c100000000063180a1000000000"
+        },
+        {
+          "address": "0x100bb924",
+          "path": [
+            "dbg",
+            "mwh"
+          ],
+          "help": "memory write (fill) by half-word: mwh address value [,count]",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a185d",
+          "argument_word": "0x0",
+          "bytes": "c26a0c10c66a0c10000000005d180a1000000000"
+        },
+        {
+          "address": "0x100bb938",
+          "path": [
+            "dbg",
+            "mwb"
+          ],
+          "help": "memory write (fill) by byte: mwb address value [,count]",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a1857",
+          "argument_word": "0x0",
+          "bytes": "036b0c10076b0c100000000057180a1000000000"
+        },
+        {
+          "address": "0x100bb94c",
+          "path": [
+            "dbg",
+            "snort"
+          ],
+          "help": "nor test : snort address size",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100257d5",
+          "argument_word": "0x0",
+          "bytes": "3f6b0c10456b0c1000000000d557021000000000"
+        },
+        {
+          "address": "0x100bb960",
+          "path": [
+            "dbg",
+            "fread"
+          ],
+          "help": "flash read : fread dev[sd/spi_flash/spinand] offset",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10025349",
+          "argument_word": "0x0",
+          "bytes": "636b0c10696b0c10000000004953021000000000"
+        },
+        {
+          "address": "0x100bb974",
+          "path": [
+            "dbg",
+            "snandr"
+          ],
+          "help": "nand logic read: offset start address; size read len;",
+          "subcommand": "0x0",
+          "handler_thumb": "0x1002549d",
+          "argument_word": "0x0",
+          "bytes": "9d6b0c10a46b0c10000000009d54021000000000"
+        },
+        {
+          "address": "0x100bb988",
+          "path": [
+            "dbg",
+            "snandw"
+          ],
+          "help": "nand logic write: offset start address; size read len;",
+          "subcommand": "0x0",
+          "handler_thumb": "0x1002502d",
+          "argument_word": "0x0",
+          "bytes": "da6b0c10e16b0c10000000002d50021000000000"
+        },
+        {
+          "address": "0x100bb99c",
+          "path": [
+            "dbg",
+            "dma_dump"
+          ],
+          "help": "dma info",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a17eb",
+          "argument_word": "0x0",
+          "bytes": "186c0c10216c0c1000000000eb170a1000000000"
+        },
+        {
+          "address": "0x100bb9b0",
+          "path": [
+            "dbg",
+            "sdfs"
+          ],
+          "help": "sdfs name size",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10025415",
+          "argument_word": "0x0",
+          "bytes": "2a6c0c102f6c0c10000000001554021000000000"
+        },
+        {
+          "address": "0x100bb9c4",
+          "path": [
+            "dbg",
+            "nvdump"
+          ],
+          "help": "nvram dump",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a17e1",
+          "argument_word": "0x0",
+          "bytes": "3e6c0c10456c0c1000000000e1170a1000000000"
+        },
+        {
+          "address": "0x100bb9d8",
+          "path": [
+            "dbg",
+            "nvram"
+          ],
+          "help": "nvram name (val)",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10025241",
+          "argument_word": "0x0",
+          "bytes": "8ade0c10506c0c10000000004152021000000000"
+        },
+        {
+          "address": "0x100bb9ec",
+          "path": [
+            "dbg",
+            "de_dump"
+          ],
+          "help": "de dump",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a17d7",
+          "argument_word": "0x0",
+          "bytes": "616c0c10696c0c1000000000d7170a1000000000"
+        },
+        {
+          "address": "0x100bba00",
+          "path": [
+            "dbg",
+            "lcd_dump"
+          ],
+          "help": "lcdc dump",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a17c9",
+          "argument_word": "0x0",
+          "bytes": "716c0c107a6c0c1000000000c9170a1000000000"
+        },
+        {
+          "address": "0x100bba14",
+          "path": [
+            "dbg",
+            "bb-reg"
+          ],
+          "help": "read/write btc bb ctl",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10024bd5",
+          "argument_word": "0x0",
+          "bytes": "846c0c108b6c0c1000000000d54b021000000000"
+        },
+        {
+          "address": "0x100bba28",
+          "path": [
+            "dbg",
+            "rf-reg"
+          ],
+          "help": "read/write btc rf ctl",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10024b69",
+          "argument_word": "0x0",
+          "bytes": "a16c0c10a86c0c1000000000694b021000000000"
+        },
+        {
+          "address": "0x100bba3c",
+          "path": [
+            "dbg",
+            "sleep"
+          ],
+          "help": "sleep",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10024d39",
+          "argument_word": "0x0",
+          "bytes": "be6c0c10be6c0c1000000000394d021000000000"
+        },
+        {
+          "address": "0x100bba50",
+          "path": [
+            "dbg",
+            "show_stack"
+          ],
+          "help": "show kernel stack",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a17bf",
+          "argument_word": "0x0",
+          "bytes": "c46c0c10cf6c0c1000000000bf170a1000000000"
+        },
+        {
+          "address": "0x100bba64",
+          "path": [
+            "dbg",
+            "reboot"
+          ],
+          "help": "reboot [adfu]",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10024dcd",
+          "argument_word": "0x0",
+          "bytes": "150f0c10e16c0c1000000000cd4d021000000000"
+        },
+        {
+          "address": "0x100bba78",
+          "path": [
+            "dbg",
+            "kheap"
+          ],
+          "help": "kheap [addr]",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10024c9d",
+          "argument_word": "0x0",
+          "bytes": "ef6c0c10f56c0c10000000009d4c021000000000"
+        },
+        {
+          "address": "0x100bba8c",
+          "path": [
+            "dbg",
+            "uimem"
+          ],
+          "help": "uimem dump [0|1|2], where 0-FB, 1-LVGL, 2-RES",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a1869",
+          "argument_word": "0x0",
+          "bytes": "026d0c10086d0c100000000069180a1000000000"
+        },
+        {
+          "address": "0x100bbaa0",
+          "path": [
+            "dbg",
+            "uiview"
+          ],
+          "help": "view dump",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a17a9",
+          "argument_word": "0x0",
+          "bytes": "366d0c103d6d0c1000000000a9170a1000000000"
+        },
+        {
+          "address": "0x100bbab4",
+          "path": [
+            "dbg",
+            "cpuload"
+          ],
+          "help": "show cpu load statistic preriodically",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10024abd",
+          "argument_word": "0x0",
+          "bytes": "476d0c104f6d0c1000000000bd4a021000000000"
+        },
+        {
+          "address": "0x100bbac8",
+          "path": [
+            "dbg",
+            "dumpbuf"
+          ],
+          "help": "dump buffer to file system: dumpbuf addr len path",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10024a29",
+          "argument_word": "0x0",
+          "bytes": "756d0c107d6d0c1000000000294a021000000000"
+        },
+        {
+          "address": "0x100bbadc",
+          "path": [
+            "dbg",
+            "dumpmsg"
+          ],
+          "help": "dump message: dumpmsg",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a179f",
+          "argument_word": "0x0",
+          "bytes": "bd6d0c10af6d0c10000000009f170a1000000000"
+        },
+        {
+          "address": "0x100bbaf0",
+          "path": [
+            "dbg",
+            "dumprbuf"
+          ],
+          "help": "dump rbuf in share ram",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10024a19",
+          "argument_word": "0x0",
+          "bytes": "c56d0c10ce6d0c1000000000194a021000000000"
+        },
+        {
+          "address": "0x100bbb04",
+          "path": [
+            "dbg",
+            "dbgsw"
+          ],
+          "help": "dbgsw cpu[dma]",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10024c41",
+          "argument_word": "0x0",
+          "bytes": "e56d0c10eb6d0c1000000000414c021000000000"
+        },
+        {
+          "address": "0x100bbb18",
+          "path": [
+            "dbg",
+            "resman"
+          ],
+          "help": "resource dump",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a1791",
+          "argument_word": "0x0",
+          "bytes": "fa6d0c10016e0c100000000091170a1000000000"
+        },
+        {
+          "address": "0x100bbb2c",
+          "path": [
+            "dbg",
+            "wksrct"
+          ],
+          "help": "wksrct  ms",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100249c1",
+          "argument_word": "0x0",
+          "bytes": "0f6e0c10166e0c1000000000c149021000000000"
+        },
+        {
+          "address": "0x100bbb40",
+          "path": [
+            "dbg",
+            "rtc"
+          ],
+          "help": "rtc get/set current time",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10024ee1",
+          "argument_word": "0x0",
+          "bytes": "216e0c10256e0c1000000000e14e021000000000"
+        },
+        {
+          "address": "0x100bbb54",
+          "path": [
+            "dbg",
+            "alarm8hz"
+          ],
+          "help": "alarm8hz set alarm time",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10024e61",
+          "argument_word": "0x0",
+          "bytes": "3e6e0c10476e0c1000000000614e021000000000"
+        },
+        {
+          "address": "0x100bbb68",
+          "path": [
+            "dbg",
+            "dvfs"
+          ],
+          "help": "dvfs set/unset level",
+          "subcommand": "0x0",
+          "handler_thumb": "0x1002495d",
+          "argument_word": "0x0",
+          "bytes": "cc630c105f6e0c10000000005d49021000000000"
+        },
+        {
+          "address": "0x100bbb7c",
+          "path": [
+            "dbg",
+            "mpu_set"
+          ],
+          "help": "mpu_set mem_base size ro[no/rw/ro]",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100248ed",
+          "argument_word": "0x0",
+          "bytes": "746e0c107c6e0c1000000000ed48021000000000"
+        }
+      ],
+      "terminator": {
+        "address": "0x100bbb90",
+        "bytes": "0000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "selector": "0x100bb66c",
+      "path": [
+        "devmem"
+      ],
+      "dynamic": 0,
+      "array_or_callback": "0x100bb644",
+      "entries": [
+        {
+          "address": "0x100bb644",
+          "path": [
+            "devmem",
+            "load"
+          ],
+          "help": "Usage:\ndevmem load [options] [address]\nOptions:\n-e\tlittle-endian parse",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10022d15",
+          "argument_word": "0x102",
+          "bytes": "75b70d10da5a0c1000000000152d021002010000"
+        }
+      ],
+      "terminator": {
+        "address": "0x100bb658",
+        "bytes": "0000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "selector": "0x100bb628",
+      "path": [
+        "kernel"
+      ],
+      "dynamic": 0,
+      "array_or_callback": "0x100bb5b0",
+      "entries": [
+        {
+          "address": "0x100bb5b0",
+          "path": [
+            "kernel",
+            "cycles"
+          ],
+          "help": "Kernel cycles.",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10022b79",
+          "argument_word": "0x0",
+          "bytes": "36590c103d590c1000000000792b021000000000"
+        },
+        {
+          "address": "0x100bb5c4",
+          "path": [
+            "kernel",
+            "stacks"
+          ],
+          "help": "List threads stack usage.",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10022a01",
+          "argument_word": "0x0",
+          "bytes": "4c590c1053590c1000000000012a021000000000"
+        },
+        {
+          "address": "0x100bb5d8",
+          "path": [
+            "kernel",
+            "threads"
+          ],
+          "help": "List kernel threads.",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100229c9",
+          "argument_word": "0x0",
+          "bytes": "6d590c1075590c1000000000c929021000000000"
+        },
+        {
+          "address": "0x100bb5ec",
+          "path": [
+            "kernel",
+            "uptime"
+          ],
+          "help": "Kernel uptime.",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100229ad",
+          "argument_word": "0x0",
+          "bytes": "8a590c1091590c1000000000ad29021000000000"
+        },
+        {
+          "address": "0x100bb600",
+          "path": [
+            "kernel",
+            "version"
+          ],
+          "help": "Kernel version.",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10022981",
+          "argument_word": "0x0",
+          "bytes": "554b0d10a0590c10000000008129021000000000"
+        }
+      ],
+      "terminator": {
+        "address": "0x100bb614",
+        "bytes": "0000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "selector": "0x100bb72c",
+      "path": [
+        "resize"
+      ],
+      "dynamic": 0,
+      "array_or_callback": "0x100bb7f8",
+      "entries": [
+        {
+          "address": "0x100bb7f8",
+          "path": [
+            "resize",
+            "default"
+          ],
+          "help": "Assume 80 chars screen width and send this setting to the terminal.",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10024545",
+          "argument_word": "0x1",
+          "bytes": "d05f0c10d85f0c10000000004545021001000000"
+        }
+      ],
+      "terminator": {
+        "address": "0x100bb80c",
+        "bytes": "0000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "selector": "0x100bb734",
+      "path": [
+        "shell"
+      ],
+      "dynamic": 0,
+      "array_or_callback": "0x100bb820",
+      "entries": [
+        {
+          "address": "0x100bb820",
+          "path": [
+            "shell",
+            "backspace_mode"
+          ],
+          "help": "Toggle backspace key mode.\nSome terminals are not sending separate escape code for backspace and delete button. This command forces shell to interpret delete key as backspace.",
+          "subcommand": "0x100bb714",
+          "handler_thumb": "0x0",
+          "argument_word": "0x0",
+          "bytes": "1c600c102b600c1014b70b100000000000000000"
+        },
+        {
+          "address": "0x100bb834",
+          "path": [
+            "shell",
+            "colors"
+          ],
+          "help": "Toggle colored syntax.",
+          "subcommand": "0x100bb71c",
+          "handler_thumb": "0x0",
+          "argument_word": "0x0",
+          "bytes": "db600c10e2600c101cb70b100000000000000000"
+        },
+        {
+          "address": "0x100bb848",
+          "path": [
+            "shell",
+            "echo"
+          ],
+          "help": "Toggle shell echo.",
+          "subcommand": "0x100bb724",
+          "handler_thumb": "0x100245c9",
+          "argument_word": "0x101",
+          "bytes": "f9600c10fe600c1024b70b10c945021001010000"
+        },
+        {
+          "address": "0x100bb85c",
+          "path": [
+            "shell",
+            "stats"
+          ],
+          "help": "Shell statistics.",
+          "subcommand": "0x100bb73c",
+          "handler_thumb": "0x0",
+          "argument_word": "0x0",
+          "bytes": "11610c1017610c103cb70b100000000000000000"
+        }
+      ],
+      "terminator": {
+        "address": "0x100bb870",
+        "bytes": "0000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "selector": "0x100bcd94",
+      "path": [
+        "system"
+      ],
+      "dynamic": 0,
+      "array_or_callback": "0x100bcd1c",
+      "entries": [
+        {
+          "address": "0x100bcd1c",
+          "path": [
+            "system",
+            "dumpmem"
+          ],
+          "help": "dump mem info.",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100534f9",
+          "argument_word": "0x0",
+          "bytes": "f40d0d10fc0d0d1000000000f934051000000000"
+        },
+        {
+          "address": "0x100bcd30",
+          "path": [
+            "system",
+            "set_config"
+          ],
+          "help": "set system config ",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10053391",
+          "argument_word": "0x0",
+          "bytes": "82090c100b0e0d10000000009133051000000000"
+        },
+        {
+          "address": "0x100bcd44",
+          "path": [
+            "system",
+            "set_voice_effect"
+          ],
+          "help": "set voice effect bypass ",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10053491",
+          "argument_word": "0x0",
+          "bytes": "1e0e0d102f0e0d10000000009134051000000000"
+        },
+        {
+          "address": "0x100bcd58",
+          "path": [
+            "system",
+            "set_music_effect"
+          ],
+          "help": "set music effect bypass ",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10053341",
+          "argument_word": "0x0",
+          "bytes": "480e0d10590e0d10000000004133051000000000"
+        },
+        {
+          "address": "0x100bcd6c",
+          "path": [
+            "system",
+            "wlock"
+          ],
+          "help": "wlock lock[unlock] ",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10053421",
+          "argument_word": "0x0",
+          "bytes": "720e0d10780e0d10000000002134051000000000"
+        }
+      ],
+      "terminator": {
+        "address": "0x100bcd80",
+        "bytes": "0000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "selector": "0x100bc094",
+      "path": [
+        "coredump",
+        "error"
+      ],
+      "dynamic": 0,
+      "array_or_callback": "0x100bc050",
+      "entries": [
+        {
+          "address": "0x100bc050",
+          "path": [
+            "coredump",
+            "error",
+            "clear"
+          ],
+          "help": "Clear Coredump error",
+          "subcommand": "0x0",
+          "handler_thumb": "0x1002e105",
+          "argument_word": "0x0",
+          "bytes": "bc5f0c106c940c100000000005e1021000000000"
+        },
+        {
+          "address": "0x100bc064",
+          "path": [
+            "coredump",
+            "error",
+            "get"
+          ],
+          "help": "Get Coredump error",
+          "subcommand": "0x0",
+          "handler_thumb": "0x1002e2b9",
+          "argument_word": "0x0",
+          "bytes": "81940c1085940c1000000000b9e2021000000000"
+        }
+      ],
+      "terminator": {
+        "address": "0x100bc078",
+        "bytes": "0000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "selector": "0x100bb714",
+      "path": [
+        "shell",
+        "backspace_mode"
+      ],
+      "dynamic": 0,
+      "array_or_callback": "0x100bb744",
+      "entries": [
+        {
+          "address": "0x100bb744",
+          "path": [
+            "shell",
+            "backspace_mode",
+            "backspace"
+          ],
+          "help": "Set different escape code for backspace and delete key.",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a14f9",
+          "argument_word": "0x1",
+          "bytes": "29610c1033610c1000000000f9140a1001000000"
+        },
+        {
+          "address": "0x100bb758",
+          "path": [
+            "shell",
+            "backspace_mode",
+            "delete"
+          ],
+          "help": "Set the same escape code for backspace and delete key.",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a153d",
+          "argument_word": "0x1",
+          "bytes": "6b610c1072610c10000000003d150a1001000000"
+        }
+      ],
+      "terminator": {
+        "address": "0x100bb76c",
+        "bytes": "0000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "selector": "0x100bb71c",
+      "path": [
+        "shell",
+        "colors"
+      ],
+      "dynamic": 0,
+      "array_or_callback": "0x100bb780",
+      "entries": [
+        {
+          "address": "0x100bb780",
+          "path": [
+            "shell",
+            "colors",
+            "off"
+          ],
+          "help": "Disable colored syntax.",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a14d7",
+          "argument_word": "0x1",
+          "bytes": "517a0c105a620c1000000000d7140a1001000000"
+        },
+        {
+          "address": "0x100bb794",
+          "path": [
+            "shell",
+            "colors",
+            "on"
+          ],
+          "help": "Enable colored syntax.",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a155f",
+          "argument_word": "0x1",
+          "bytes": "087a0c1072620c10000000005f150a1001000000"
+        }
+      ],
+      "terminator": {
+        "address": "0x100bb7a8",
+        "bytes": "0000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "selector": "0x100bb724",
+      "path": [
+        "shell",
+        "echo"
+      ],
+      "dynamic": 0,
+      "array_or_callback": "0x100bb7bc",
+      "entries": [
+        {
+          "address": "0x100bb7bc",
+          "path": [
+            "shell",
+            "echo",
+            "off"
+          ],
+          "help": "Disable shell echo. Editing keys and meta-keys are not handled",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a151b",
+          "argument_word": "0x1",
+          "bytes": "517a0c1008620c10000000001b150a1001000000"
+        },
+        {
+          "address": "0x100bb7d0",
+          "path": [
+            "shell",
+            "echo",
+            "on"
+          ],
+          "help": "Enable shell echo.",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a14b5",
+          "argument_word": "0x1",
+          "bytes": "087a0c1047620c1000000000b5140a1001000000"
+        }
+      ],
+      "terminator": {
+        "address": "0x100bb7e4",
+        "bytes": "0000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "selector": "0x100bb73c",
+      "path": [
+        "shell",
+        "stats"
+      ],
+      "dynamic": 0,
+      "array_or_callback": "0x100bb884",
+      "entries": [
+        {
+          "address": "0x100bb884",
+          "path": [
+            "shell",
+            "stats",
+            "reset"
+          ],
+          "help": "Reset shell statistics for the Logger module.",
+          "subcommand": "0x0",
+          "handler_thumb": "0x100a1493",
+          "argument_word": "0x1",
+          "bytes": "005d0d10a9610c100000000093140a1001000000"
+        },
+        {
+          "address": "0x100bb898",
+          "path": [
+            "shell",
+            "stats",
+            "show"
+          ],
+          "help": "Get shell statistics for the Logger module.",
+          "subcommand": "0x0",
+          "handler_thumb": "0x10024569",
+          "argument_word": "0x1",
+          "bytes": "d7610c10dc610c10000000006945021001000000"
+        }
+      ],
+      "terminator": {
+        "address": "0x100bb8ac",
+        "bytes": "0000000000000000000000000000000000000000"
+      }
+    }
+  ],
+  "counts": {
+    "roots": 13,
+    "tables": 15,
+    "subcommands": 81
+  },
+  "code_regions": [
+    {
+      "name": "log_tlv_dispatch",
+      "start": "0x1000c1f4",
+      "end_exclusive": "0x1000c308",
+      "bytes": "9df826309df825409df8247054ea03241ed0402c22464f4928bf40224046fff77bfc18b14c484d493043d8e7402c18d940234b49049800933a46234649f0aefea4f140014ff0ff32404692f032fe402407b3012f3ed043493a46584649f09efe18e017b1012f37d0f5e7022c12d1394a3d4953781278059842ea032217b249f08dfe122f1bd00ddc102f14d0112f14d0012f16d0039bc4f57f44fd3423449bb2039381e7202f03d0212ff3d1ff2300e00023ab71eee70123fbe70223f9e70323f7e72a49484649f069fe2b7943f002032b71dfe7002cddd03f2c23461d4a244928bf3f230027d75450461346224649f055fe29461f4817f0e1ff17f0dbff154994f091fd3946384617f0d8ff2846fff789fcbfe7",
+      "instructions": [
+        "1000c1f4 9df82630 ldrb.w r3, [sp, #0x26]",
+        "1000c1f8 9df82540 ldrb.w r4, [sp, #0x25]",
+        "1000c1fc 9df82470 ldrb.w r7, [sp, #0x24]",
+        "1000c200 54ea0324 orrs.w r4, r4, r3, lsl #8",
+        "1000c204 1ed0 beq #0x1000c244",
+        "1000c206 402c cmp r4, #0x40",
+        "1000c208 2246 mov r2, r4",
+        "1000c20a 4f49 ldr r1, [pc, #0x13c]",
+        "1000c20c 28bf it hs",
+        "1000c20e 4022 movhs r2, #0x40",
+        "1000c210 4046 mov r0, r8",
+        "1000c212 fff77bfc bl #0x1000bb0c",
+        "1000c216 18b1 cbz r0, #0x1000c220",
+        "1000c218 4c48 ldr r0, [pc, #0x130]",
+        "1000c21a 4d49 ldr r1, [pc, #0x134]",
+        "1000c21c 3043 orrs r0, r6",
+        "1000c21e d8e7 b #0x1000c1d2",
+        "1000c220 402c cmp r4, #0x40",
+        "1000c222 18d9 bls #0x1000c256",
+        "1000c224 4023 movs r3, #0x40",
+        "1000c226 4b49 ldr r1, [pc, #0x12c]",
+        "1000c228 0498 ldr r0, [sp, #0x10]",
+        "1000c22a 0093 str r3, [sp]",
+        "1000c22c 3a46 mov r2, r7",
+        "1000c22e 2346 mov r3, r4",
+        "1000c230 49f0aefe bl #0x10055f90",
+        "1000c234 a4f14001 sub.w r1, r4, #0x40",
+        "1000c238 4ff0ff32 mov.w r2, #-1",
+        "1000c23c 4046 mov r0, r8",
+        "1000c23e 92f032fe bl #0x1009eea6",
+        "1000c242 4024 movs r4, #0x40",
+        "1000c244 07b3 cbz r7, #0x1000c288",
+        "1000c246 012f cmp r7, #1",
+        "1000c248 3ed0 beq #0x1000c2c8",
+        "1000c24a 4349 ldr r1, [pc, #0x10c]",
+        "1000c24c 3a46 mov r2, r7",
+        "1000c24e 5846 mov r0, fp",
+        "1000c250 49f09efe bl #0x10055f90",
+        "1000c254 18e0 b #0x1000c288",
+        "1000c256 17b1 cbz r7, #0x1000c25e",
+        "1000c258 012f cmp r7, #1",
+        "1000c25a 37d0 beq #0x1000c2cc",
+        "1000c25c f5e7 b #0x1000c24a",
+        "1000c25e 022c cmp r4, #2",
+        "1000c260 12d1 bne #0x1000c288",
+        "1000c262 394a ldr r2, [pc, #0xe4]",
+        "1000c264 3d49 ldr r1, [pc, #0xf4]",
+        "1000c266 5378 ldrb r3, [r2, #1]",
+        "1000c268 1278 ldrb r2, [r2]",
+        "1000c26a 0598 ldr r0, [sp, #0x14]",
+        "1000c26c 42ea0322 orr.w r2, r2, r3, lsl #8",
+        "1000c270 17b2 sxth r7, r2",
+        "1000c272 49f08dfe bl #0x10055f90",
+        "1000c276 122f cmp r7, #0x12",
+        "1000c278 1bd0 beq #0x1000c2b2",
+        "1000c27a 0ddc bgt #0x1000c298",
+        "1000c27c 102f cmp r7, #0x10",
+        "1000c27e 14d0 beq #0x1000c2aa",
+        "1000c280 112f cmp r7, #0x11",
+        "1000c282 14d0 beq #0x1000c2ae",
+        "1000c284 012f cmp r7, #1",
+        "1000c286 16d0 beq #0x1000c2b6",
+        "1000c288 039b ldr r3, [sp, #0xc]",
+        "1000c28a c4f57f44 rsb.w r4, r4, #0xff00",
+        "1000c28e fd34 adds r4, #0xfd",
+        "1000c290 2344 add r3, r4",
+        "1000c292 9bb2 uxth r3, r3",
+        "1000c294 0393 str r3, [sp, #0xc]",
+        "1000c296 81e7 b #0x1000c19c",
+        "1000c298 202f cmp r7, #0x20",
+        "1000c29a 03d0 beq #0x1000c2a4",
+        "1000c29c 212f cmp r7, #0x21",
+        "1000c29e f3d1 bne #0x1000c288",
+        "1000c2a0 ff23 movs r3, #0xff",
+        "1000c2a2 00e0 b #0x1000c2a6",
+        "1000c2a4 0023 movs r3, #0",
+        "1000c2a6 ab71 strb r3, [r5, #6]",
+        "1000c2a8 eee7 b #0x1000c288",
+        "1000c2aa 0123 movs r3, #1",
+        "1000c2ac fbe7 b #0x1000c2a6",
+        "1000c2ae 0223 movs r3, #2",
+        "1000c2b0 f9e7 b #0x1000c2a6",
+        "1000c2b2 0323 movs r3, #3",
+        "1000c2b4 f7e7 b #0x1000c2a6",
+        "1000c2b6 2a49 ldr r1, [pc, #0xa8]",
+        "1000c2b8 4846 mov r0, sb",
+        "1000c2ba 49f069fe bl #0x10055f90",
+        "1000c2be 2b79 ldrb r3, [r5, #4]",
+        "1000c2c0 43f00203 orr r3, r3, #2",
+        "1000c2c4 2b71 strb r3, [r5, #4]",
+        "1000c2c6 dfe7 b #0x1000c288",
+        "1000c2c8 002c cmp r4, #0",
+        "1000c2ca ddd0 beq #0x1000c288",
+        "1000c2cc 3f2c cmp r4, #0x3f",
+        "1000c2ce 2346 mov r3, r4",
+        "1000c2d0 1d4a ldr r2, [pc, #0x74]",
+        "1000c2d2 2449 ldr r1, [pc, #0x90]",
+        "1000c2d4 28bf it hs",
+        "1000c2d6 3f23 movhs r3, #0x3f",
+        "1000c2d8 0027 movs r7, #0",
+        "1000c2da d754 strb r7, [r2, r3]",
+        "1000c2dc 5046 mov r0, sl",
+        "1000c2de 1346 mov r3, r2",
+        "1000c2e0 2246 mov r2, r4",
+        "1000c2e2 49f055fe bl #0x10055f90",
+        "1000c2e6 2946 mov r1, r5",
+        "1000c2e8 1f48 ldr r0, [pc, #0x7c]",
+        "1000c2ea 17f0e1ff bl #0x100242b0",
+        "1000c2ee 17f0dbff bl #0x100242a8",
+        "1000c2f2 1549 ldr r1, [pc, #0x54]",
+        "1000c2f4 94f091fd bl #0x100a0e1a",
+        "1000c2f8 3946 mov r1, r7",
+        "1000c2fa 3846 mov r0, r7",
+        "1000c2fc 17f0d8ff bl #0x100242b0",
+        "1000c300 2846 mov r0, r5",
+        "1000c302 fff789fc bl #0x1000bc18",
+        "1000c306 bfe7 b #0x1000c288"
+      ]
+    },
+    {
+      "name": "devmem_rw",
+      "start": "0x10022bfc",
+      "end_exclusive": "0x10022cb6",
+      "bytes": "8b1e022b2de9f34105468846144637d86068102200217af03bfcb8f1020f074621d0a0680a2200217af032fcc6b2234a3346002128467ef0d0f8b8f1040f22d0102e12d0202e14d0082e14d13a780023cde9002300211a4a28467ef0bef8002002b0bde8f0812026e1e73a8892b292b2ede73a68ebe7134a002128467ef0adf86ff01500ece7e068102200217af000fc0d4a03460446002128467ef09ef8102e06d0202e07d0082ee5d1e4b23c70d6e7a4b23c80d3e73c60d1e7",
+      "instructions": [
+        "10022bfc 8b1e subs r3, r1, #2",
+        "10022bfe 022b cmp r3, #2",
+        "10022c00 2de9f341 push.w {r0, r1, r4, r5, r6, r7, r8, lr}",
+        "10022c04 0546 mov r5, r0",
+        "10022c06 8846 mov r8, r1",
+        "10022c08 1446 mov r4, r2",
+        "10022c0a 37d8 bhi #0x10022c7c",
+        "10022c0c 6068 ldr r0, [r4, #4]",
+        "10022c0e 1022 movs r2, #0x10",
+        "10022c10 0021 movs r1, #0",
+        "10022c12 7af03bfc bl #0x1009d48c",
+        "10022c16 b8f1020f cmp.w r8, #2",
+        "10022c1a 0746 mov r7, r0",
+        "10022c1c 21d0 beq #0x10022c62",
+        "10022c1e a068 ldr r0, [r4, #8]",
+        "10022c20 0a22 movs r2, #0xa",
+        "10022c22 0021 movs r1, #0",
+        "10022c24 7af032fc bl #0x1009d48c",
+        "10022c28 c6b2 uxtb r6, r0",
+        "10022c2a 234a ldr r2, [pc, #0x8c]",
+        "10022c2c 3346 mov r3, r6",
+        "10022c2e 0021 movs r1, #0",
+        "10022c30 2846 mov r0, r5",
+        "10022c32 7ef0d0f8 bl #0x100a0dd6",
+        "10022c36 b8f1040f cmp.w r8, #4",
+        "10022c3a 22d0 beq #0x10022c82",
+        "10022c3c 102e cmp r6, #0x10",
+        "10022c3e 12d0 beq #0x10022c66",
+        "10022c40 202e cmp r6, #0x20",
+        "10022c42 14d0 beq #0x10022c6e",
+        "10022c44 082e cmp r6, #8",
+        "10022c46 14d1 bne #0x10022c72",
+        "10022c48 3a78 ldrb r2, [r7]",
+        "10022c4a 0023 movs r3, #0",
+        "10022c4c cde90023 strd r2, r3, [sp]",
+        "10022c50 0021 movs r1, #0",
+        "10022c52 1a4a ldr r2, [pc, #0x68]",
+        "10022c54 2846 mov r0, r5",
+        "10022c56 7ef0bef8 bl #0x100a0dd6",
+        "10022c5a 0020 movs r0, #0",
+        "10022c5c 02b0 add sp, #8",
+        "10022c5e bde8f081 pop.w {r4, r5, r6, r7, r8, pc}",
+        "10022c62 2026 movs r6, #0x20",
+        "10022c64 e1e7 b #0x10022c2a",
+        "10022c66 3a88 ldrh r2, [r7]",
+        "10022c68 92b2 uxth r2, r2",
+        "10022c6a 92b2 uxth r2, r2",
+        "10022c6c ede7 b #0x10022c4a",
+        "10022c6e 3a68 ldr r2, [r7]",
+        "10022c70 ebe7 b #0x10022c4a",
+        "10022c72 134a ldr r2, [pc, #0x4c]",
+        "10022c74 0021 movs r1, #0",
+        "10022c76 2846 mov r0, r5",
+        "10022c78 7ef0adf8 bl #0x100a0dd6",
+        "10022c7c 6ff01500 mvn r0, #0x15",
+        "10022c80 ece7 b #0x10022c5c",
+        "10022c82 e068 ldr r0, [r4, #0xc]",
+        "10022c84 1022 movs r2, #0x10",
+        "10022c86 0021 movs r1, #0",
+        "10022c88 7af000fc bl #0x1009d48c",
+        "10022c8c 0d4a ldr r2, [pc, #0x34]",
+        "10022c8e 0346 mov r3, r0",
+        "10022c90 0446 mov r4, r0",
+        "10022c92 0021 movs r1, #0",
+        "10022c94 2846 mov r0, r5",
+        "10022c96 7ef09ef8 bl #0x100a0dd6",
+        "10022c9a 102e cmp r6, #0x10",
+        "10022c9c 06d0 beq #0x10022cac",
+        "10022c9e 202e cmp r6, #0x20",
+        "10022ca0 07d0 beq #0x10022cb2",
+        "10022ca2 082e cmp r6, #8",
+        "10022ca4 e5d1 bne #0x10022c72",
+        "10022ca6 e4b2 uxtb r4, r4",
+        "10022ca8 3c70 strb r4, [r7]",
+        "10022caa d6e7 b #0x10022c5a",
+        "10022cac a4b2 uxth r4, r4",
+        "10022cae 3c80 strh r4, [r7]",
+        "10022cb0 d3e7 b #0x10022c5a",
+        "10022cb2 3c60 str r4, [r7]",
+        "10022cb4 d1e7 b #0x10022c5a"
+      ]
+    },
+    {
+      "name": "devmem_set_bypass",
+      "start": "0x10022cc8",
+      "end_exclusive": "0x10022d06",
+      "bytes": "70b50f4c054623780e4639b133b10d4a02217ef07cf86ff00f0070bd83f00103237033b1084a002128467ef070f801232370284631467ef0c1f80020ede7",
+      "instructions": [
+        "10022cc8 70b5 push {r4, r5, r6, lr}",
+        "10022cca 0f4c ldr r4, [pc, #0x3c]",
+        "10022ccc 0546 mov r5, r0",
+        "10022cce 2378 ldrb r3, [r4]",
+        "10022cd0 0e46 mov r6, r1",
+        "10022cd2 39b1 cbz r1, #0x10022ce4",
+        "10022cd4 33b1 cbz r3, #0x10022ce4",
+        "10022cd6 0d4a ldr r2, [pc, #0x34]",
+        "10022cd8 0221 movs r1, #2",
+        "10022cda 7ef07cf8 bl #0x100a0dd6",
+        "10022cde 6ff00f00 mvn r0, #0xf",
+        "10022ce2 70bd pop {r4, r5, r6, pc}",
+        "10022ce4 83f00103 eor r3, r3, #1",
+        "10022ce8 2370 strb r3, [r4]",
+        "10022cea 33b1 cbz r3, #0x10022cfa",
+        "10022cec 084a ldr r2, [pc, #0x20]",
+        "10022cee 0021 movs r1, #0",
+        "10022cf0 2846 mov r0, r5",
+        "10022cf2 7ef070f8 bl #0x100a0dd6",
+        "10022cf6 0123 movs r3, #1",
+        "10022cf8 2370 strb r3, [r4]",
+        "10022cfa 2846 mov r0, r5",
+        "10022cfc 3146 mov r1, r6",
+        "10022cfe 7ef0c1f8 bl #0x100a0e84",
+        "10022d02 0020 movs r0, #0",
+        "10022d04 ede7 b #0x10022ce2"
+      ]
+    },
+    {
+      "name": "devmem_load",
+      "start": "0x10022d14",
+      "end_exclusive": "0x10022dd2",
+      "bytes": "2de9f74f06462e48dff8cc90dff8cca0dff8ccb0002303600d462a482a4903600b7014468846012d274654f8043f24d9184602224946019396f0b9fd019b90b922689278003a18bf01221344184602225146019396f0abfd019b30b9012388f80030013ddfe70022efe7184649460193ddf7a0ff019bb0b904370022114678687af0f4fa114b00221146186078687af0edfa0f4b0f4918603046fff78bff002003b0bde8f08f1a782d2ae6d15a78002ae3d05a46002130467ef003f8d1e7",
+      "instructions": [
+        "10022d14 2de9f74f push.w {r0, r1, r2, r4, r5, r6, r7, r8, sb, sl, fp, lr}",
+        "10022d18 0646 mov r6, r0",
+        "10022d1a 2e48 ldr r0, [pc, #0xb8]",
+        "10022d1c dff8cc90 ldr.w sb, [pc, #0xcc]",
+        "10022d20 dff8cca0 ldr.w sl, [pc, #0xcc]",
+        "10022d24 dff8ccb0 ldr.w fp, [pc, #0xcc]",
+        "10022d28 0023 movs r3, #0",
+        "10022d2a 0360 str r3, [r0]",
+        "10022d2c 0d46 mov r5, r1",
+        "10022d2e 2a48 ldr r0, [pc, #0xa8]",
+        "10022d30 2a49 ldr r1, [pc, #0xa8]",
+        "10022d32 0360 str r3, [r0]",
+        "10022d34 0b70 strb r3, [r1]",
+        "10022d36 1446 mov r4, r2",
+        "10022d38 8846 mov r8, r1",
+        "10022d3a 012d cmp r5, #1",
+        "10022d3c 2746 mov r7, r4",
+        "10022d3e 54f8043f ldr r3, [r4, #4]!",
+        "10022d42 24d9 bls #0x10022d8e",
+        "10022d44 1846 mov r0, r3",
+        "10022d46 0222 movs r2, #2",
+        "10022d48 4946 mov r1, sb",
+        "10022d4a 0193 str r3, [sp, #4]",
+        "10022d4c 96f0b9fd bl #0x100b98c2",
+        "10022d50 019b ldr r3, [sp, #4]",
+        "10022d52 90b9 cbnz r0, #0x10022d7a",
+        "10022d54 2268 ldr r2, [r4]",
+        "10022d56 9278 ldrb r2, [r2, #2]",
+        "10022d58 003a subs r2, #0",
+        "10022d5a 18bf it ne",
+        "10022d5c 0122 movne r2, #1",
+        "10022d5e 1344 add r3, r2",
+        "10022d60 1846 mov r0, r3",
+        "10022d62 0222 movs r2, #2",
+        "10022d64 5146 mov r1, sl",
+        "10022d66 0193 str r3, [sp, #4]",
+        "10022d68 96f0abfd bl #0x100b98c2",
+        "10022d6c 019b ldr r3, [sp, #4]",
+        "10022d6e 30b9 cbnz r0, #0x10022d7e",
+        "10022d70 0123 movs r3, #1",
+        "10022d72 88f80030 strb.w r3, [r8]",
+        "10022d76 013d subs r5, #1",
+        "10022d78 dfe7 b #0x10022d3a",
+        "10022d7a 0022 movs r2, #0",
+        "10022d7c efe7 b #0x10022d5e",
+        "10022d7e 1846 mov r0, r3",
+        "10022d80 4946 mov r1, sb",
+        "10022d82 0193 str r3, [sp, #4]",
+        "10022d84 ddf7a0ff bl #0x10000cc8",
+        "10022d88 019b ldr r3, [sp, #4]",
+        "10022d8a b0b9 cbnz r0, #0x10022dba",
+        "10022d8c 0437 adds r7, #4",
+        "10022d8e 0022 movs r2, #0",
+        "10022d90 1146 mov r1, r2",
+        "10022d92 7868 ldr r0, [r7, #4]",
+        "10022d94 7af0f4fa bl #0x1009d380",
+        "10022d98 114b ldr r3, [pc, #0x44]",
+        "10022d9a 0022 movs r2, #0",
+        "10022d9c 1146 mov r1, r2",
+        "10022d9e 1860 str r0, [r3]",
+        "10022da0 7868 ldr r0, [r7, #4]",
+        "10022da2 7af0edfa bl #0x1009d380",
+        "10022da6 0f4b ldr r3, [pc, #0x3c]",
+        "10022da8 0f49 ldr r1, [pc, #0x3c]",
+        "10022daa 1860 str r0, [r3]",
+        "10022dac 3046 mov r0, r6",
+        "10022dae fff78bff bl #0x10022cc8",
+        "10022db2 0020 movs r0, #0",
+        "10022db4 03b0 add sp, #0xc",
+        "10022db6 bde8f08f pop.w {r4, r5, r6, r7, r8, sb, sl, fp, pc}",
+        "10022dba 1a78 ldrb r2, [r3]",
+        "10022dbc 2d2a cmp r2, #0x2d",
+        "10022dbe e6d1 bne #0x10022d8e",
+        "10022dc0 5a78 ldrb r2, [r3, #1]",
+        "10022dc2 002a cmp r2, #0",
+        "10022dc4 e3d0 beq #0x10022d8e",
+        "10022dc6 5a46 mov r2, fp",
+        "10022dc8 0021 movs r1, #0",
+        "10022dca 3046 mov r0, r6",
+        "10022dcc 7ef003f8 bl #0x100a0dd6",
+        "10022dd0 d1e7 b #0x10022d76"
+      ]
+    },
+    {
+      "name": "devmem_bypass_callback",
+      "start": "0x10022df8",
+      "end_exclusive": "0x10022ef4",
+      "bytes": "73b53e4b1c78182c02d10c78112c31d0013a0c465518a54225d18a5c1a700a78374ca2f13003092b04d922f02003413b052b04d823683349ca54013323602368022b34d110222f4800217af023fb2e4a136803f8010b13602c4a1368013313600023236023e014f8016b182ed3d12678112ed0d1254c264a2368019000217df0aeff01980021fff723ff224b187870b9214a23681168042b0bdc08b11160236013f003010cd1126813681bba136002b070bd086800ba41f8040b043b0120eae75b4203f0030358bf5942022907d112681168c1f3072343ea01239bb2e6e70329e5d1106802681104c2f3074301f47f010b4302f47f4213430360d8e7",
+      "instructions": [
+        "10022df8 73b5 push {r0, r1, r4, r5, r6, lr}",
+        "10022dfa 3e4b ldr r3, [pc, #0xf8]",
+        "10022dfc 1c78 ldrb r4, [r3]",
+        "10022dfe 182c cmp r4, #0x18",
+        "10022e00 02d1 bne #0x10022e08",
+        "10022e02 0c78 ldrb r4, [r1]",
+        "10022e04 112c cmp r4, #0x11",
+        "10022e06 31d0 beq #0x10022e6c",
+        "10022e08 013a subs r2, #1",
+        "10022e0a 0c46 mov r4, r1",
+        "10022e0c 5518 adds r5, r2, r1",
+        "10022e0e a542 cmp r5, r4",
+        "10022e10 25d1 bne #0x10022e5e",
+        "10022e12 8a5c ldrb r2, [r1, r2]",
+        "10022e14 1a70 strb r2, [r3]",
+        "10022e16 0a78 ldrb r2, [r1]",
+        "10022e18 374c ldr r4, [pc, #0xdc]",
+        "10022e1a a2f13003 sub.w r3, r2, #0x30",
+        "10022e1e 092b cmp r3, #9",
+        "10022e20 04d9 bls #0x10022e2c",
+        "10022e22 22f02003 bic r3, r2, #0x20",
+        "10022e26 413b subs r3, #0x41",
+        "10022e28 052b cmp r3, #5",
+        "10022e2a 04d8 bhi #0x10022e36",
+        "10022e2c 2368 ldr r3, [r4]",
+        "10022e2e 3349 ldr r1, [pc, #0xcc]",
+        "10022e30 ca54 strb r2, [r1, r3]",
+        "10022e32 0133 adds r3, #1",
+        "10022e34 2360 str r3, [r4]",
+        "10022e36 2368 ldr r3, [r4]",
+        "10022e38 022b cmp r3, #2",
+        "10022e3a 34d1 bne #0x10022ea6",
+        "10022e3c 1022 movs r2, #0x10",
+        "10022e3e 2f48 ldr r0, [pc, #0xbc]",
+        "10022e40 0021 movs r1, #0",
+        "10022e42 7af023fb bl #0x1009d48c",
+        "10022e46 2e4a ldr r2, [pc, #0xb8]",
+        "10022e48 1368 ldr r3, [r2]",
+        "10022e4a 03f8010b strb r0, [r3], #1",
+        "10022e4e 1360 str r3, [r2]",
+        "10022e50 2c4a ldr r2, [pc, #0xb0]",
+        "10022e52 1368 ldr r3, [r2]",
+        "10022e54 0133 adds r3, #1",
+        "10022e56 1360 str r3, [r2]",
+        "10022e58 0023 movs r3, #0",
+        "10022e5a 2360 str r3, [r4]",
+        "10022e5c 23e0 b #0x10022ea6",
+        "10022e5e 14f8016b ldrb r6, [r4], #1",
+        "10022e62 182e cmp r6, #0x18",
+        "10022e64 d3d1 bne #0x10022e0e",
+        "10022e66 2678 ldrb r6, [r4]",
+        "10022e68 112e cmp r6, #0x11",
+        "10022e6a d0d1 bne #0x10022e0e",
+        "10022e6c 254c ldr r4, [pc, #0x94]",
+        "10022e6e 264a ldr r2, [pc, #0x98]",
+        "10022e70 2368 ldr r3, [r4]",
+        "10022e72 0190 str r0, [sp, #4]",
+        "10022e74 0021 movs r1, #0",
+        "10022e76 7df0aeff bl #0x100a0dd6",
+        "10022e7a 0198 ldr r0, [sp, #4]",
+        "10022e7c 0021 movs r1, #0",
+        "10022e7e fff723ff bl #0x10022cc8",
+        "10022e82 224b ldr r3, [pc, #0x88]",
+        "10022e84 1878 ldrb r0, [r3]",
+        "10022e86 70b9 cbnz r0, #0x10022ea6",
+        "10022e88 214a ldr r2, [pc, #0x84]",
+        "10022e8a 2368 ldr r3, [r4]",
+        "10022e8c 1168 ldr r1, [r2]",
+        "10022e8e 042b cmp r3, #4",
+        "10022e90 0bdc bgt #0x10022eaa",
+        "10022e92 08b1 cbz r0, #0x10022e98",
+        "10022e94 1160 str r1, [r2]",
+        "10022e96 2360 str r3, [r4]",
+        "10022e98 13f00301 ands r1, r3, #3",
+        "10022e9c 0cd1 bne #0x10022eb8",
+        "10022e9e 1268 ldr r2, [r2]",
+        "10022ea0 1368 ldr r3, [r2]",
+        "10022ea2 1bba rev r3, r3",
+        "10022ea4 1360 str r3, [r2]",
+        "10022ea6 02b0 add sp, #8",
+        "10022ea8 70bd pop {r4, r5, r6, pc}",
+        "10022eaa 0868 ldr r0, [r1]",
+        "10022eac 00ba rev r0, r0",
+        "10022eae 41f8040b str r0, [r1], #4",
+        "10022eb2 043b subs r3, #4",
+        "10022eb4 0120 movs r0, #1",
+        "10022eb6 eae7 b #0x10022e8e",
+        "10022eb8 5b42 rsbs r3, r3, #0",
+        "10022eba 03f00303 and r3, r3, #3",
+        "10022ebe 58bf it pl",
+        "10022ec0 5942 rsbpl r1, r3, #0",
+        "10022ec2 0229 cmp r1, #2",
+        "10022ec4 07d1 bne #0x10022ed6",
+        "10022ec6 1268 ldr r2, [r2]",
+        "10022ec8 1168 ldr r1, [r2]",
+        "10022eca c1f30723 ubfx r3, r1, #8, #8",
+        "10022ece 43ea0123 orr.w r3, r3, r1, lsl #8",
+        "10022ed2 9bb2 uxth r3, r3",
+        "10022ed4 e6e7 b #0x10022ea4",
+        "10022ed6 0329 cmp r1, #3",
+        "10022ed8 e5d1 bne #0x10022ea6",
+        "10022eda 1068 ldr r0, [r2]",
+        "10022edc 0268 ldr r2, [r0]",
+        "10022ede 1104 lsls r1, r2, #0x10",
+        "10022ee0 c2f30743 ubfx r3, r2, #0x10, #8",
+        "10022ee4 01f47f01 and r1, r1, #0xff0000",
+        "10022ee8 0b43 orrs r3, r1",
+        "10022eea 02f47f42 and r2, r2, #0xff00",
+        "10022eee 1343 orrs r3, r2",
+        "10022ef0 0360 str r3, [r0]",
+        "10022ef2 d8e7 b #0x10022ea6"
+      ]
+    },
+    {
+      "name": "shell_set_bypass",
+      "start": "0x100a0e84",
+      "end_exclusive": "0x100a0e8a",
+      "bytes": "836899637047",
+      "instructions": [
+        "100a0e84 8368 ldr r3, [r0, #8]",
+        "100a0e86 9963 str r1, [r3, #0x38]",
+        "100a0e88 7047 bx lr"
+      ]
+    },
+    {
+      "name": "memory_fill_and_wrappers",
+      "start": "0x100a17f4",
+      "end_exclusive": "0x100a1868",
+      "bytes": "02292de9f04106468846174626d9102200217868fbf740fe102204460021b868fbf73afeb8f1040f05460bd11022f8680021fbf731fe02462346013a04d20020bde8f0810122f7e7042e02d11d603344f3e7022e0cbf1d801d70f8e76ff01500eee70120fff7ccbf0220fff7c9bf0420fff7c6bf",
+      "instructions": [
+        "100a17f4 0229 cmp r1, #2",
+        "100a17f6 2de9f041 push.w {r4, r5, r6, r7, r8, lr}",
+        "100a17fa 0646 mov r6, r0",
+        "100a17fc 8846 mov r8, r1",
+        "100a17fe 1746 mov r7, r2",
+        "100a1800 26d9 bls #0x100a1850",
+        "100a1802 1022 movs r2, #0x10",
+        "100a1804 0021 movs r1, #0",
+        "100a1806 7868 ldr r0, [r7, #4]",
+        "100a1808 fbf740fe bl #0x1009d48c",
+        "100a180c 1022 movs r2, #0x10",
+        "100a180e 0446 mov r4, r0",
+        "100a1810 0021 movs r1, #0",
+        "100a1812 b868 ldr r0, [r7, #8]",
+        "100a1814 fbf73afe bl #0x1009d48c",
+        "100a1818 b8f1040f cmp.w r8, #4",
+        "100a181c 0546 mov r5, r0",
+        "100a181e 0bd1 bne #0x100a1838",
+        "100a1820 1022 movs r2, #0x10",
+        "100a1822 f868 ldr r0, [r7, #0xc]",
+        "100a1824 0021 movs r1, #0",
+        "100a1826 fbf731fe bl #0x1009d48c",
+        "100a182a 0246 mov r2, r0",
+        "100a182c 2346 mov r3, r4",
+        "100a182e 013a subs r2, #1",
+        "100a1830 04d2 bhs #0x100a183c",
+        "100a1832 0020 movs r0, #0",
+        "100a1834 bde8f081 pop.w {r4, r5, r6, r7, r8, pc}",
+        "100a1838 0122 movs r2, #1",
+        "100a183a f7e7 b #0x100a182c",
+        "100a183c 042e cmp r6, #4",
+        "100a183e 02d1 bne #0x100a1846",
+        "100a1840 1d60 str r5, [r3]",
+        "100a1842 3344 add r3, r6",
+        "100a1844 f3e7 b #0x100a182e",
+        "100a1846 022e cmp r6, #2",
+        "100a1848 0cbf ite eq",
+        "100a184a 1d80 strheq r5, [r3]",
+        "100a184c 1d70 strbne r5, [r3]",
+        "100a184e f8e7 b #0x100a1842",
+        "100a1850 6ff01500 mvn r0, #0x15",
+        "100a1854 eee7 b #0x100a1834",
+        "100a1856 0120 movs r0, #1",
+        "100a1858 fff7ccbf b.w #0x100a17f4",
+        "100a185c 0220 movs r0, #2",
+        "100a185e fff7c9bf b.w #0x100a17f4",
+        "100a1862 0420 movs r0, #4",
+        "100a1864 fff7c6bf b.w #0x100a17f4"
+      ]
+    },
+    {
+      "name": "reboot_handler",
+      "start": "0x10024dcc",
+      "end_exclusive": "0x10024e44",
+      "bytes": "022938b5044615461ad11b495068dbf775ff014640b92046184a7bf0f6ff4ff48070fcf7cbfa0be015496868dbf766ff014698b9134a20467bf0e7fffcf7fefa0021c82077f00cf90f4a002120467bf0dcff0020fcf7b2fa002038bd0b496868dbf74cff01460028ead12046084a7bf0ccff4ff4c060d4e7",
+      "instructions": [
+        "10024dcc 0229 cmp r1, #2",
+        "10024dce 38b5 push {r3, r4, r5, lr}",
+        "10024dd0 0446 mov r4, r0",
+        "10024dd2 1546 mov r5, r2",
+        "10024dd4 1ad1 bne #0x10024e0c",
+        "10024dd6 1b49 ldr r1, [pc, #0x6c]",
+        "10024dd8 5068 ldr r0, [r2, #4]",
+        "10024dda dbf775ff bl #0x10000cc8",
+        "10024dde 0146 mov r1, r0",
+        "10024de0 40b9 cbnz r0, #0x10024df4",
+        "10024de2 2046 mov r0, r4",
+        "10024de4 184a ldr r2, [pc, #0x60]",
+        "10024de6 7bf0f6ff bl #0x100a0dd6",
+        "10024dea 4ff48070 mov.w r0, #0x100",
+        "10024dee fcf7cbfa bl #0x10021388",
+        "10024df2 0be0 b #0x10024e0c",
+        "10024df4 1549 ldr r1, [pc, #0x54]",
+        "10024df6 6868 ldr r0, [r5, #4]",
+        "10024df8 dbf766ff bl #0x10000cc8",
+        "10024dfc 0146 mov r1, r0",
+        "10024dfe 98b9 cbnz r0, #0x10024e28",
+        "10024e00 134a ldr r2, [pc, #0x4c]",
+        "10024e02 2046 mov r0, r4",
+        "10024e04 7bf0e7ff bl #0x100a0dd6",
+        "10024e08 fcf7fefa bl #0x10021408",
+        "10024e0c 0021 movs r1, #0",
+        "10024e0e c820 movs r0, #0xc8",
+        "10024e10 77f00cf9 bl #0x1009c02c",
+        "10024e14 0f4a ldr r2, [pc, #0x3c]",
+        "10024e16 0021 movs r1, #0",
+        "10024e18 2046 mov r0, r4",
+        "10024e1a 7bf0dcff bl #0x100a0dd6",
+        "10024e1e 0020 movs r0, #0",
+        "10024e20 fcf7b2fa bl #0x10021388",
+        "10024e24 0020 movs r0, #0",
+        "10024e26 38bd pop {r3, r4, r5, pc}",
+        "10024e28 0b49 ldr r1, [pc, #0x2c]",
+        "10024e2a 6868 ldr r0, [r5, #4]",
+        "10024e2c dbf74cff bl #0x10000cc8",
+        "10024e30 0146 mov r1, r0",
+        "10024e32 0028 cmp r0, #0",
+        "10024e34 ead1 bne #0x10024e0c",
+        "10024e36 2046 mov r0, r4",
+        "10024e38 084a ldr r2, [pc, #0x20]",
+        "10024e3a 7bf0ccff bl #0x100a0dd6",
+        "10024e3e 4ff4c060 mov.w r0, #0x600",
+        "10024e42 d4e7 b #0x10024dee"
+      ]
+    }
+  ],
+  "literal_pools": [
+    {
+      "start": "0x10022cb8",
+      "end_exclusive": "0x10022cc8",
+      "bytes": "b0590c10db590c10c5590c10ed590c10",
+      "words": [
+        "0x100c59b0",
+        "0x100c59db",
+        "0x100c59c5",
+        "0x100c59ed"
+      ]
+    },
+    {
+      "start": "0x10022d08",
+      "end_exclusive": "0x10022d14",
+      "bytes": "e5ed0318025a0c103d5a0c10",
+      "words": [
+        "0x1803ede5",
+        "0x100c5a02",
+        "0x100c5a3d"
+      ]
+    },
+    {
+      "start": "0x10022dd4",
+      "end_exclusive": "0x10022df8",
+      "bytes": "8cc0001894c00018e6ed031888c0001890c00018f92d0210ff290d10675a0c106a5a0c10",
+      "words": [
+        "0x1800c08c",
+        "0x1800c094",
+        "0x1803ede6",
+        "0x1800c088",
+        "0x1800c090",
+        "0x10022df9",
+        "0x100d29ff",
+        "0x100c5a67",
+        "0x100c5a6a"
+      ]
+    },
+    {
+      "start": "0x10022ef4",
+      "end_exclusive": "0x10022f14",
+      "bytes": "e7ed03188cc00018e3ed031888c0001894c000187f5a0c10e6ed031890c00018",
+      "words": [
+        "0x1803ede7",
+        "0x1800c08c",
+        "0x1803ede3",
+        "0x1800c088",
+        "0x1800c094",
+        "0x100c5a7f",
+        "0x1803ede6",
+        "0x1800c090"
+      ]
+    },
+    {
+      "start": "0x10024e44",
+      "end_exclusive": "0x10024e60",
+      "bytes": "7b650c1080650c108e650c1097650c10b5650c10a2650c10a7650c10",
+      "words": [
+        "0x100c657b",
+        "0x100c6580",
+        "0x100c658e",
+        "0x100c6597",
+        "0x100c65b5",
+        "0x100c65a2",
+        "0x100c65a7"
+      ]
+    }
+  ],
+  "console_codes": {
+    "0x01": "ctx[4] |= 2 (prepare)",
+    "0x10": "ctx[6] = 1",
+    "0x11": "ctx[6] = 2",
+    "0x12": "ctx[6] = 3",
+    "0x20": "ctx[6] = 0",
+    "0x21": "ctx[6] = 255"
+  },
+  "findings": [
+    "Type0 requires two bytes, treats them as signed16 opcode, and never interprets a payload address or program. Actual switch has no0x13 branch.",
+    "devmem load saves parsed target in1800c088/1800c090 and installs fixed callback10022df9 through10022cc8 and100a0e84. Callback writes data, optionally byte-swaps on exit, and returns. No user-address branch.",
+    "mwb/mwh/mww select width1/2/4 and tailcall100a17f4; store loop returns. devmem also supports direct width8/16/32 read/write.",
+    "No declared arbitrary RAM call/load-and-execute command found in the enumerated static tree. This is not a whole-firmware proof of absence.",
+    "reboot accepts fixed adfu/poweroff/jtag choices, not an arbitrary RAM entry. Callees and reset success were not re-audited."
+  ],
+  "limits": [
+    "No audit of all shell handler internals, external services, alternate firmware configurations or hidden opcode paths outside this dispatch.",
+    "Reference devmem bypass input transport is not established as reachable through BLE shell_execute_cmd; no supported BLE upload protocol or allocator/cache/ABI/exit contract established.",
+    "Memory writes could corrupt live state; no memory allocation, safe scratch address, executable permission, or recoverability claim.",
+    "Do not reuse console-code term to imply executable machine code; do not turn the absence of a normal entry into callback/stack corruption experiments."
+  ]
+}

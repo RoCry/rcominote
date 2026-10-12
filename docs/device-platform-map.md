@@ -52,6 +52,8 @@
 | 本机system / boot / DSP | 实际ABI、驱动、启动、安全/OTA约束；本机代码强于不匹配参考默认值 | 反汇编不等于源码；DSP提取不证明可在自写固件中加载执行或再分发 |
 | [自建M4 ELF / ACTH与实际checker oracle](minimal-firmware-image.md) | 948 B自建镜像可重复构建，通过原厂recovery实际指令的离线局部准入检查；原厂正/损坏负例校准 | 仅镜像fixture；缺BSP/原始表示/早期授权/可恢复入口，未执行候选代码或证明RAM可用 |
 | [原厂RAM→SD→Boyi通道](sd-file-bridge.md) | 固定4KiB RAM与单次boot0 ring导出均匹配独立原始字节，绕过数百次mdb小读 | [recovery缺失30扇区均双读一致且完整校验](recovery-complete.md)；留SD测试文件，流程仍不适合整片备份；直接XIP源失败原因暂存 |
+| [已知ROM→SD两次导出](rom-sd-bridge.md) | `1900..1a50`共336 B均匹配旧独立oracle；该源可用文件通道 | 未建立ROM总范围、任意地址可读性或批量吞吐；扩展语料需可信边界 |
+| [正常态RAM入口盘点](normal-ram-entry-inventory.md) | 完整静态命令树及候选直接路径区分日志控制、内存写入和执行 | 已检查接口没有受支持的RAM执行合同；不代表全固件无隐藏入口，不以控制流破坏补缺 |
 
 ## 下一阶段只抓三个交付物
 

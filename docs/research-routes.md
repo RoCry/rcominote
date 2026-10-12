@@ -63,6 +63,14 @@ temporary SD writes are acceptable research side effects, distinct from firmware
 NOR writes. Fixed4 KiB RAM transfer and one baseline-qualified boot0 ring export
 match independent originals. [Recovery tail acquisition](recovery-complete.md) now adds30 paired missing sectors and a complete63,288-byte image with valid stored checksums. The bounded critical artifact is delivered; keep full-NOR bulk work and failed direct-XIP diagnosis parked.
 
+[Known ROM source transfer](rom-sd-bridge.md) now matches the independent336 B
+oracle twice. This establishes that source window only; a larger corpus needs
+credible ROM extent/readable-map evidence, not an assumed32 KiB size.
+[Normal-mode entry inventory](normal-ram-entry-inventory.md) covers13 roots,
+15 static tables/81 subcommands and the direct candidate handlers: code-TLV
+controls logging, `devmem load` writes memory; no supported RAM execution contract
+was found within that coverage. Park this route until new explicit entry material.
+
 ## Capability ledger and evidence gates
 
 | Workstream | Reuse now | Next decisive evidence |
@@ -83,6 +91,7 @@ Android login remains deferred by user. Do not infer reference ATS3089 board equ
 
 | Path | Status / reason | Reconsider only when |
 |---|---|---|
+| code-TLV / devmem load as an existing RAM executor | **Unsupported by bounded actual inventory**: code-TLV switches log modes; load installs a fixed byte-writing callback, no uploaded-address call. [Tables and direct paths](normal-ram-entry-inventory.md); no whole-firmware absence claim | New explicit entry/protocol/configuration; do not substitute callback/stack corruption or an unbounded indirect-call scan |
 | Bulk NOR through fread→printk ring→mdb | **Retired default route**, not invalid data. ~232 commands/~22 s per512 B plus retries; [measured audit](nor-efficiency.md). Exporter modules moved to `src/rcominote/archive/`; default CLI entries removed | Native SDK/host options compared and bounded experiment demonstrates material throughput/reliability gain |
 | ATS3089/M33 reference build as CoMi firmware target | **Not an established target**: live firmware declares ATS3085L; [manufacturer L-family M4F specs and reference differences](ats3085l-primary-sources.md). Keep the successful build only as host/toolchain evidence | Exact BSP or independently verified core/peripheral/configuration compatibility |
 | Unchanged LARK init+rs as read-only backup | **Rejected for both UART and USB variants**: [UART initialization](lark-nor-init-side-effects.md) and [independent USB audit](lark-usb-storage-exit.md) send06/01, discard original status1 and may clear status2 bit6 | Matched transport and audited initialization preserving NOR state; simply skipping init is not sufficient |

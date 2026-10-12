@@ -173,3 +173,8 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## 自建M4镜像与实际checker（2026-10-13）
 
 [方法/边界](../minimal-firmware-image.md)；[构建记录](minimal-image-2026-10-13/build-report.json)、[重复构建](minimal-image-2026-10-13/reproducibility.json)、[原厂正例gzip](minimal-image-2026-10-13/original-system.bin.gz)、[正例来源/哈希](minimal-image-2026-10-13/original-system.json)、[自建948 B ACTH](minimal-image-2026-10-13/minimal-acth.bin)、[实际checker结果矩阵](minimal-image-2026-10-13/gate-results.json)。无设备I/O；局部准入，不等于硬件启动或恢复能力。
+
+## 已知ROM文件导出与正常态入口盘点（2026-10-13）
+
+[ROM方法/边界](../rom-sd-bridge.md)；[首读](rom-sd-bridge-2026-10-13/first-download.bin)、[重读](rom-sd-bridge-2026-10-13/second-download.bin)、[首读帧/状态](rom-sd-bridge-2026-10-13/first-report.json)、[重读帧/状态](rom-sd-bridge-2026-10-13/second-report.json)、[复验分析](rom-sd-bridge-2026-10-13/analysis.json)：两份336 B与旧ROM oracle完全一致，留下两个非音频SD文件，无模式切换或NOR写入。
+[正常态入口结论](../normal-ram-entry-inventory.md)、[全部表项与候选直接代码](normal-ram-entry-2026-10-13.json)：13 root、15表、81子命令；host-only，未建立RAM执行合同。

@@ -2,6 +2,8 @@
 
 2026-10-13，C261CF0430 / FW010004。**RAM→SD→蓝牙下载已验证；固定 NOR boot0 经 printk ring 导出已验证一次。** 尚不是完整备份、可靠批量导出、烧录或恢复能力。实测后停止，未扩大 offset。
 
+后续：[完整recovery取得](recovery-complete.md)；[已知ROM336 B两次独立导出](rom-sd-bridge.md)。本报告保留首次实验范围。
+
 ## 为什么改变路线
 
 旧 `fread→printk ring→mdb` 每512 B约232条命令；[效率审计](nor-efficiency.md)已淘汰默认批量路线。

@@ -1,4 +1,4 @@
-"""Fixed RAM → SD → Boyi experiment; leaves retained non-audio SD files."""
+"""Fixed known-source → SD → Boyi experiment; retains non-audio SD files."""
 
 import asyncio
 import hashlib
@@ -39,6 +39,7 @@ class Source(StrEnum):
     mapped = "mapped"
     ram = "ram"
     nor_ring = "nor-ring"
+    rom_flow = "rom-flow"
 
 
 # RAM source: independently decoded startup memcpy(18000000,100dd500,12c8).
@@ -46,7 +47,17 @@ SOURCES = {
     Source.mapped: (0x10000000, 0),
     Source.ram: (0x18000000, 0xDD500),
     Source.nor_ring: (BUFFER, None),
+    Source.rom_flow: (0x1900, None),
 }
+
+
+def rom_oracle() -> bytes:
+    data = Path("docs/evidence/rom-flow-2026-10-13.bin").read_bytes()
+    if len(data) != 336 or hashlib.sha256(data).hexdigest() != (
+        "0dda0a4532813627df78b506bfa1f7e5dc8ae4b9886cc32173265592defcaa67"
+    ):
+        raise ValueError("Independent ROM1900..1a50 oracle changed")
+    return data
 
 
 def ring_rows(data: bytes):
@@ -186,6 +197,11 @@ async def create_file(conn: Connection, report: dict, image: bytes) -> None:
             await verify(address, length)
         if report["source"] == Source.ram:
             await verify(0x18000000, 32, image_offset=0xDD500)
+        if report["source"] == Source.rom_flow:
+            known = rom_oracle()
+            for address, expected_bytes in ((0x1900, known[:16]), (0x1A40, known[-16:])):
+                if await read_live(address, 16) != expected_bytes:
+                    raise ValueError(f"Live ROM source guard differs at {address:#x}")
         if report["source"] == Source.nor_ring:
             for address, expected_hex in (*RING_GUARDS, *STATE_GUARDS, *FREAD_GUARDS):
                 await verify(address, len(bytes.fromhex(expected_hex)))
@@ -240,8 +256,8 @@ async def capture(report: dict, image: bytes, oracle: bytes | None, out: Path) -
         data = bytearray()
 
         def sink(chunk):
-            if len(data) + len(chunk) > SIZE:
-                raise ValueError("SD bridge file exceeds fixed 4096-byte experiment")
+            if len(data) + len(chunk) > report["source_bytes"]:
+                raise ValueError("SD bridge file exceeds fixed source profile")
             data.extend(chunk)
 
         started = time.monotonic()
@@ -280,7 +296,7 @@ async def capture(report: dict, image: bytes, oracle: bytes | None, out: Path) -
         report["oracle_comparison"] = "Unavailable; requires independent repeat and complete image checksum"
         return
     if compared != oracle:
-        raise ValueError("SD bridge bytes differ from independently acquired mapped image")
+        raise ValueError("SD bridge bytes differ from independently acquired source oracle")
     report["exact_match"] = True
 
 
@@ -316,9 +332,12 @@ def main(
         if hashlib.sha256(known).hexdigest() != oracle_sha:
             raise ValueError("Independent NOR oracle changed")
         oracle = known[nor_block * 512 : (nor_block + 1) * 512] or None
+    elif source == Source.rom_flow:
+        oracle = rom_oracle()
     else:
         oracle = data[offset : offset + SIZE]
-    command = f"dbg dumpbuf {address} 4096 {device_path}"
+    size = len(oracle) if source == Source.rom_flow else SIZE
+    command = f"dbg dumpbuf {address} {size} {device_path}"
     console_packet(command)  # Pure preflight, before any device I/O.
     out.mkdir(parents=True, exist_ok=False)
     report = {
@@ -330,13 +349,13 @@ def main(
         "source": source.value,
         "source_address": hex(address),
         "oracle_file_offset": offset,
-        "source_bytes": SIZE,
+        "source_bytes": size,
         "source_image_sha256": SHA,
         "expected_sha256": hashlib.sha256(oracle).hexdigest() if oracle is not None else None,
         "fixed_text_commands": [],
         "sd_write_attempted": False,
         "residue_policy": "Retained SD test file; no audited safe deletion command; not valid audio",
-        "scope": "Fixed transfer proof; not full NOR backup or atomic printk snapshot",
+        "scope": "Fixed transfer proof; not ROM extent, full NOR backup or atomic printk snapshot",
         "ok": False,
     }
     if source == Source.nor_ring:
