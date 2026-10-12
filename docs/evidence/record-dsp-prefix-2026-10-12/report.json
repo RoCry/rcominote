@@ -1,0 +1,96 @@
+{
+  "scope": "Guarded, non-atomic fixed NOR-target log rows; no full-device backup or recovery proof",
+  "producer": "dbg fread spi_flash 0x24d400",
+  "target": "record-dsp",
+  "offset": 2413568,
+  "input_files": 4,
+  "distinct_sources": 4,
+  "required_rows": 32,
+  "observed_rows": 4,
+  "confirmed_rows": 4,
+  "missing_rows": [
+    "0x40",
+    "0x50",
+    "0x60",
+    "0x70",
+    "0x80",
+    "0x90",
+    "0xa0",
+    "0xb0",
+    "0xc0",
+    "0xd0",
+    "0xe0",
+    "0xf0",
+    "0x100",
+    "0x110",
+    "0x120",
+    "0x130",
+    "0x140",
+    "0x150",
+    "0x160",
+    "0x170",
+    "0x180",
+    "0x190",
+    "0x1a0",
+    "0x1b0",
+    "0x1c0",
+    "0x1d0",
+    "0x1e0",
+    "0x1f0"
+  ],
+  "unconfirmed_rows": [],
+  "conflicts": [],
+  "complete": false,
+  "rows": [
+    {
+      "offset": "0x0",
+      "variants": [
+        {
+          "hex": "78687179000003010000000000000001",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x10",
+      "variants": [
+        {
+          "hex": "8e0000001c020000f03e000000000000",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x20",
+      "variants": [
+        {
+          "hex": "00000000000000000000000000000000",
+          "sources": 2
+        }
+      ]
+    },
+    {
+      "offset": "0x30",
+      "variants": [
+        {
+          "hex": "00000000000000000000000000000000",
+          "sources": 2
+        }
+      ]
+    }
+  ],
+  "prefix_sha256": "7a2ffeba96ec86f19dd4b771b1f205a60121deffa1e0b455b33b4c8f6b722970",
+  "prefix_hex": "786871790000030100000000000000018e0000001c020000f03e0000000000000000000000000000000000000000000000000000000000000000000000000000",
+  "prefix_bytes": 64,
+  "header_fields": {
+    "magic_bytes": "xhqy",
+    "tool_version_word": "0x1030000",
+    "file_type": 0,
+    "file_subtype": 0,
+    "algorithm_version_word": "0x1000000",
+    "entry_point": "0x8e",
+    "code_section_offset": "0x21c",
+    "data_section_offset": "0x3ef0",
+    "full_540_byte_header_acquired": false
+  }
+}

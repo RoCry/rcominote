@@ -13,6 +13,7 @@ from . import (
     code_sample,
     log_capture,
     log_probe,
+    nor_batch_cli,
     nor_windows,
     printk_ring,
     printk_state,
@@ -136,3 +137,5 @@ app.command("inspect-printk-ring")(printk_ring.main)
 app.command("assemble-nor-sector")(nor_windows.main)
 
 app.command("inspect-dsp-directory")(sdfs_directory.main)
+
+app.command("capture-nor-sector")(nor_batch_cli.main)

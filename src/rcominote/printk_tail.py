@@ -17,6 +17,7 @@ class NorTarget(StrEnum):
     backup_boot = "backup-boot"
     system = "system"
     dsp = "dsp"
+    record_dsp = "record-dsp"
 
 
 TARGET_OFFSETS = {
@@ -24,6 +25,7 @@ TARGET_OFFSETS = {
     NorTarget.backup_boot: 0x2000,
     NorTarget.system: 0x24000,
     NorTarget.dsp: 0x240000,
+    NorTarget.record_dsp: 0x24D400,
 }
 MARKER = f"dbg mdb {printk_ring.CONTEXT:x} 1c"
 
@@ -115,7 +117,10 @@ def append_tail(capture: dict) -> None:
         and capture["range_frame_spans"][MARKER][1] is not None
     ):
         verify(capture | {"ok": True})
-        capture["fixed_text_commands"].extend(range_commands(tail_ranges(capture | {"ok": True})))
+        capture["fixed_text_commands"].extend(
+            [f"dbg mdb {address:x} {length:x}" for address, length in tail_ranges(capture | {"ok": True})]
+            + ["help"]
+        )
         capture["tail_appended"] = True
 
 

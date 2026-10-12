@@ -79,3 +79,42 @@ def verify_readback(result: dict) -> None:
             result["console_ring"] = ring
         if state is not None:
             result["console_state"] = state
+
+
+def finish_capture(result: dict, stream, expected_acks: int) -> None:
+    """Finalize the physical stream once; only then accept its logical windows."""
+    result |= {
+        "ack_count": stream.acks,
+        "expected_ack_count": expected_acks,
+        "end_received": stream.ended,
+        "pending_hex": stream.pending.hex(),
+        "text_bytes": sum(
+            len(bytes.fromhex(row["hex"])) - 8 for row in stream.frames if row["command"] == 0xF0
+        ),
+    }
+    result["ok"] = (
+        "error" not in result
+        and "stop_error" not in result
+        and stream.acks == expected_acks
+        and stream.ended
+        and not stream.pending
+    )
+    verify_readback(result)
+    session_ok = result["ok"]
+    for record in result.get("batch_records", []):
+        record["ok"] = session_ok
+        record["shared_transport"] = {
+            "ack_count": stream.acks,
+            "expected_ack_count": expected_acks,
+            "end_received": stream.ended,
+            "pending_hex": stream.pending.hex(),
+        }
+        record["end_received"] = stream.ended
+        if stream.ended:
+            record["session_end_frame"] = next(
+                row for row in reversed(stream.frames) if row["command"] == 0xF1
+            )
+        verify_readback(record)
+        if not record["ok"]:
+            result["ok"] = False
+            result["error"] = record.get("error", "Shared NOR batch transport failed")

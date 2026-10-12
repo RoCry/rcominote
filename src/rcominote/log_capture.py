@@ -7,7 +7,7 @@ from datetime import UTC, datetime
 from bleak import BleakClient
 from bleak.exc import BleakError
 
-from . import printk_ring, printk_tail
+from . import nor_batch, printk_ring, printk_tail
 from .ble_target import OWNED_SERIAL, find_device
 from .boot_readback import BOOT_PHASES
 from .card_readback import CARD_PHASES
@@ -60,7 +60,7 @@ from .read_sets import (
     flushed_phases,
     flushed_reads,
 )
-from .readback_verify import verify_readback
+from .readback_verify import finish_capture
 from .shell_readback import SHELL_PHASES
 
 START = bytes.fromhex("1d108105000002002000")
@@ -99,7 +99,14 @@ async def capture(
     printk_tail_probe: bool = False,
     ring_window: int = 0,
     nor_target: printk_tail.NorTarget = printk_tail.NorTarget.boot,
+    batch_windows: tuple[int, ...] = (),
 ) -> dict:
+    if (
+        len(batch_windows) > 21
+        or any(type(w) is not int or not 0 <= w <= 10 for w in batch_windows)
+        or (batch_windows and not printk_tail_probe)
+    ):
+        raise ValueError("NOR batch requires at most21 fixed windows0..10 and printk-nor-tail")
     nor_target = printk_tail.validate_options(nor_target, ring_window, printk_tail_probe)
     printk_state = printk_state or printk_buffer or printk_tail_probe
     selected_ranges = image_ranges(image_chunks)
@@ -469,6 +476,10 @@ async def capture(
                     await pump(timeout=remaining)
                 except TimeoutError:
                     break
+            if batch_windows:
+                result["batch_records"] = await nor_batch.capture_remaining(
+                    result, stream, request, pump, batch_windows
+                )
         except (ValueError, RuntimeError, OSError, BleakError) as error:
             result["error"] = str(error) or type(error).__name__
         finally:
@@ -482,20 +493,5 @@ async def capture(
                     result["stop_error"] = str(error) or type(error).__name__
             if client.is_connected:
                 await client.stop_notify(NOTIFY)
-    result |= {
-        "ack_count": stream.acks,
-        "end_received": stream.ended,
-        "pending_hex": stream.pending.hex(),
-        "text_bytes": sum(
-            len(bytes.fromhex(row["hex"])) - 8 for row in stream.frames if row["command"] == 0xF0
-        ),
-    }
-    result["ok"] = (
-        "error" not in result
-        and "stop_error" not in result
-        and stream.acks == expected_acks
-        and stream.ended
-        and not stream.pending
-    )
-    verify_readback(result)
+    finish_capture(result, stream, expected_acks)
     return result

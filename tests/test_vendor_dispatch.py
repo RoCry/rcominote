@@ -7,7 +7,7 @@ import pytest
 
 from rcominote.code_guards import observed_handler_entry, observed_vendor_call
 from rcominote.code_references import inspect_references
-from rcominote.log_capture import verify_readback
+from rcominote.readback_verify import verify_readback
 
 EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence"
 

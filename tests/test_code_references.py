@@ -7,7 +7,8 @@ import pytest
 
 from rcominote.code_guards import observed_capacity_entries
 from rcominote.code_references import inspect_references
-from rcominote.log_capture import observed_logsrv_literals, observed_vendor_code, verify_readback
+from rcominote.log_capture import observed_logsrv_literals, observed_vendor_code
+from rcominote.readback_verify import verify_readback
 
 EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence"
 FIRST = EVIDENCE / "code-references-first-2026-10-12.json"
