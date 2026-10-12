@@ -24,7 +24,7 @@ This supports focused source reuse, not a compatible image/helper selection.
   [Manufacturer ATS3085L datasheets](ats3085l-primary-sources.md) establish the
   public L family as **M4F 128 MHz + DSP 192 MHz, 481 KB SRAM + 4 MB PSRAM**.
   Thus this pinned M33 board is not an exact L CPU configuration. CoMi's physical
-  core is still unread. [CubieTech's page][cubie], fetched 2026-10-12, agrees on
+  core is now independently measured as [M4 r0p1](cpu-identity.md). [CubieTech's page][cubie], fetched 2026-10-12, agrees on
   M4F but lists DSP 128 MHz; prose says SPI NAND, feature list says 32 Mbit NOR.
   Prefer manufacturer's family table; neither source proves CoMi's exact part.
 

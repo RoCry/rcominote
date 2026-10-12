@@ -2,6 +2,7 @@
 
 import asyncio
 import json
+import re
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -18,7 +19,7 @@ from rcominote.log_stream import Stream
 from rcominote.range_readback import read_range
 
 
-async def capture(report: dict) -> None:
+async def capture(report: dict, *, cpu: bool = False) -> None:
     async with Connection(await find_device(serial=OWNED_SERIAL, seconds=12)) as conn:
         identity = await read_info(conn, OWNED_SERIAL)
         report["identity"] = identity
@@ -86,6 +87,39 @@ async def capture(report: dict) -> None:
             guard = await read(0x100A0B00, 16)
             if guard.hex() != "4ff08073586800f53a7070474ff08070":
                 raise RuntimeError(f"Actual parameter getter changed: {guard.hex()}")
+            if cpu:
+                # Actual mdw width4 wrapper and the word-load branch in print_buffer.
+                for address, expected_hex in (
+                    (0x100A18E0, "fff7d0bf13460a460221fff7cbbf13460a460421fff7c6bf73b582f7d5fc0024"),
+                    (0x100251A0, "c8440198a6eb0a06cbe7042d03aa0dd1dbf8003042f829301d4a019000217bf0"),
+                ):
+                    if (await read(address, len(bytes.fromhex(expected_hex)))).hex() != expected_hex:
+                        raise RuntimeError("Actual word-read implementation changed")
+                start = len(stream.frames)
+                await text("dbg mdw e000ed00 1")
+                await text("help")
+                async with asyncio.timeout(5):
+                    while not re.search(
+                        r"(?m)^e000ed00: ([0-9a-fA-F]{8})[ \t]+[^\r\n]*\r?\n",
+                        "".join(frame.get("text", "") for frame in stream.frames[start:]),
+                    ):
+                        await pump()
+                report["cpuid_frame_span"] = [start, len(stream.frames)]
+                words = re.findall(
+                    r"(?m)^e000ed00: ([0-9a-fA-F]{8})[ \t]+[^\r\n]*\r?\n",
+                    "".join(frame.get("text", "") for frame in stream.frames[start:]),
+                )
+                if len(words) != 1:
+                    raise RuntimeError("Expected exactly one CPUID row")
+                value = int(words[0], 16)
+                report["cpuid"] = {
+                    "raw": f"0x{value:08x}",
+                    "implementer": value >> 24,
+                    "variant": (value >> 20) & 15,
+                    "architecture": (value >> 16) & 15,
+                    "part": f"0x{(value >> 4) & 0xFFF:03x}",
+                    "revision": value & 15,
+                }
             boot = await read(0x01000000, 16)
             if int.from_bytes(boot[4:8], "little") != 0x01000040:
                 raise RuntimeError("Parameter pointer differs; no pointer chasing performed")
@@ -109,13 +143,13 @@ async def capture(report: dict) -> None:
         raise RuntimeError("Incomplete log transport")
 
 
-def main(out: Path):
-    """Capture a fixed128 B identity block; no storage reads/writes or getter execution."""
+def main(out: Path, cpu: bool = False):
+    """Read cached identity; --cpu also reads one fixed aligned CPUID word (read-only)."""
     if out.exists():
         raise FileExistsError(out)
     report = {"serial": OWNED_SERIAL, "captured_at": datetime.now(UTC).isoformat(), "ok": False}
     try:
-        asyncio.run(capture(report))
+        asyncio.run(capture(report, cpu=cpu))
         report["ok"] = True
     except BaseException as error:
         report["error"] = f"{type(error).__name__}: {error}"
@@ -124,7 +158,10 @@ def main(out: Path):
         out.parent.mkdir(parents=True, exist_ok=True)
         with out.open("x") as handle:
             handle.write(json.dumps(report, indent=2, ensure_ascii=False) + "\n")
-    print(json.dumps({key: report[key] for key in ("ok", "board_name", "version_name")}, ensure_ascii=False))
+    summary = {key: report[key] for key in ("ok", "board_name", "version_name")}
+    if cpu:
+        summary["cpuid"] = report["cpuid"]
+    print(json.dumps(summary, ensure_ascii=False))
 
 
 if __name__ == "__main__":

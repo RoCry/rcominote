@@ -29,12 +29,10 @@ real architecture mismatch to that family, despite shared APIs/formats and some
 `CHIP_NAME="ATS3085L"` packaging files. Do not call the built ATS3089 firmware a
 CoMi starting binary or assume Cortex-M33 instructions/MPU setup are usable.
 
-Owned-device silicon/core identity remains unmeasured: firmware metadata can be
-inherited, and shared Thumb instructions do not distinguish M4 from M33. A
-validated actual CPUID reading or physical marking is still needed to promote
-this strong family lead to a confirmed core. Current disassembly observations
-remain useful where instructions agree; family register/ROM/helper assumptions
-need their own checks.
+Follow-up: [two live CPUID reads](cpu-identity.md) independently establish
+Cortex-M4 r0p1 (`410fc241`). Physical SoC marking, FPU configuration and board
+wiring remain unmeasured. Family register/ROM/helper assumptions still require
+their own checks.
 
 ## Development-board lead and its limits
 
