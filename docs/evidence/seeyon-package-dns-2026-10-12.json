@@ -1,0 +1,47 @@
+{
+  "google": {
+    "Status": 0,
+    "TC": false,
+    "RD": true,
+    "RA": true,
+    "AD": false,
+    "CD": false,
+    "Question": [
+      {
+        "name": "seeyon-install-packages.seeyoncloud.com.",
+        "type": 1
+      }
+    ],
+    "Answer": [
+      {
+        "name": "seeyon-install-packages.seeyoncloud.com.",
+        "type": 1,
+        "TTL": 600,
+        "data": "10.2.5.70"
+      }
+    ],
+    "Comment": "Response from 170.33.73.27."
+  },
+  "cloudflare": {
+    "Status": 0,
+    "TC": false,
+    "RD": true,
+    "RA": true,
+    "AD": false,
+    "CD": false,
+    "Question": [
+      {
+        "name": "seeyon-install-packages.seeyoncloud.com",
+        "type": 1
+      }
+    ],
+    "Answer": [
+      {
+        "name": "seeyon-install-packages.seeyoncloud.com",
+        "type": 1,
+        "TTL": 600,
+        "data": "10.2.5.70"
+      }
+    ]
+  }
+}

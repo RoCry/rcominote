@@ -5,6 +5,13 @@ APK JS. No account login, authenticated API request, server execution or device 
 Package inspection remains pending. Parent retained page Markdown locally at
 `artifacts/seeyon-backend-deployment-2930.md`.
 
+Follow-up: [two public DNS-over-HTTPS answers](evidence/seeyon-package-dns-2026-10-12.json)
+from Google and Cloudflare both resolve the installation hostname to private
+IPv4 `10.2.5.70`. Local system DNS instead returns proxy synthetic `198.18.60.139`.
+This is a concrete external acquisition obstacle, not proof of package absence.
+Prefer an externally reachable vendor download link or supplied archive over
+repeated TLS retries. Public DNS can change; observation is dated above.
+
 ## New useful lead
 
 [Official CoMi Note（录音卡1.1）部署手册](https://open.seeyoncloud.com/v5doc/2366/2853/2930.html)

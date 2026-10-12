@@ -1,0 +1,775 @@
+{
+  "serial": "C261CF0430",
+  "notifications": [
+    {
+      "seconds": 6.960620666970499,
+      "phase": "recording",
+      "size": 108
+    },
+    {
+      "seconds": 7.053152957989369,
+      "phase": "recording",
+      "size": 128
+    },
+    {
+      "seconds": 7.05410133296391,
+      "phase": "recording",
+      "size": 126
+    },
+    {
+      "seconds": 7.0541613749810494,
+      "phase": "recording",
+      "size": 118
+    },
+    {
+      "seconds": 7.0833016249816865,
+      "phase": "recording",
+      "size": 118
+    },
+    {
+      "seconds": 7.113163625006564,
+      "phase": "recording",
+      "size": 160
+    },
+    {
+      "seconds": 7.17171441699611,
+      "phase": "recording",
+      "size": 138
+    },
+    {
+      "seconds": 7.201286832976621,
+      "phase": "recording",
+      "size": 154
+    },
+    {
+      "seconds": 7.230301957984921,
+      "phase": "recording",
+      "size": 128
+    },
+    {
+      "seconds": 7.2611672499915585,
+      "phase": "recording",
+      "size": 154
+    },
+    {
+      "seconds": 7.290392333001364,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 7.351777667005081,
+      "phase": "recording",
+      "size": 152
+    },
+    {
+      "seconds": 7.380633499997202,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 7.411172124964651,
+      "phase": "recording",
+      "size": 140
+    },
+    {
+      "seconds": 7.441113582986873,
+      "phase": "recording",
+      "size": 134
+    },
+    {
+      "seconds": 7.501018582959659,
+      "phase": "recording",
+      "size": 150
+    },
+    {
+      "seconds": 7.532501082983799,
+      "phase": "recording",
+      "size": 140
+    },
+    {
+      "seconds": 7.562803042004816,
+      "phase": "recording",
+      "size": 146
+    },
+    {
+      "seconds": 7.5932434579590335,
+      "phase": "recording",
+      "size": 150
+    },
+    {
+      "seconds": 7.622858249989804,
+      "phase": "recording",
+      "size": 138
+    },
+    {
+      "seconds": 7.651866749976762,
+      "phase": "recording",
+      "size": 148
+    },
+    {
+      "seconds": 7.70939004200045,
+      "phase": "recording",
+      "size": 146
+    },
+    {
+      "seconds": 7.739363875007257,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 7.769613207958173,
+      "phase": "recording",
+      "size": 136
+    },
+    {
+      "seconds": 7.802417833008803,
+      "phase": "recording",
+      "size": 146
+    },
+    {
+      "seconds": 7.8314523749868385,
+      "phase": "recording",
+      "size": 152
+    },
+    {
+      "seconds": 7.861987916985527,
+      "phase": "recording",
+      "size": 132
+    },
+    {
+      "seconds": 7.920006125001237,
+      "phase": "recording",
+      "size": 160
+    },
+    {
+      "seconds": 7.935669208003674,
+      "phase": "recording",
+      "size": 126
+    },
+    {
+      "seconds": 7.979453332955018,
+      "phase": "recording",
+      "size": 148
+    },
+    {
+      "seconds": 8.009492541954387,
+      "phase": "recording",
+      "size": 156
+    },
+    {
+      "seconds": 8.06978729198454,
+      "phase": "recording",
+      "size": 142
+    },
+    {
+      "seconds": 8.085428207996301,
+      "phase": "recording",
+      "size": 134
+    },
+    {
+      "seconds": 8.114483582961839,
+      "phase": "recording",
+      "size": 154
+    },
+    {
+      "seconds": 8.144453041953966,
+      "phase": "recording",
+      "size": 138
+    },
+    {
+      "seconds": 8.205187707964797,
+      "phase": "recording",
+      "size": 138
+    },
+    {
+      "seconds": 8.235566874966025,
+      "phase": "recording",
+      "size": 146
+    },
+    {
+      "seconds": 8.26626279199263,
+      "phase": "recording",
+      "size": 148
+    },
+    {
+      "seconds": 8.294794791960157,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 8.355207582993899,
+      "phase": "recording",
+      "size": 142
+    },
+    {
+      "seconds": 8.385169499961194,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 8.430296208010986,
+      "phase": "recording",
+      "size": 152
+    },
+    {
+      "seconds": 8.448233791976236,
+      "phase": "recording",
+      "size": 136
+    },
+    {
+      "seconds": 8.490988541976549,
+      "phase": "recording",
+      "size": 152
+    },
+    {
+      "seconds": 8.520176541991532,
+      "phase": "recording",
+      "size": 134
+    },
+    {
+      "seconds": 8.565307457989547,
+      "phase": "recording",
+      "size": 150
+    },
+    {
+      "seconds": 8.594519625010435,
+      "phase": "recording",
+      "size": 134
+    },
+    {
+      "seconds": 8.639515624963678,
+      "phase": "recording",
+      "size": 150
+    },
+    {
+      "seconds": 8.669408416957594,
+      "phase": "recording",
+      "size": 156
+    },
+    {
+      "seconds": 8.699676707969047,
+      "phase": "recording",
+      "size": 130
+    },
+    {
+      "seconds": 8.73015687498264,
+      "phase": "recording",
+      "size": 142
+    },
+    {
+      "seconds": 8.774799041973893,
+      "phase": "recording",
+      "size": 152
+    },
+    {
+      "seconds": 8.8054754579789,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 8.850435542000923,
+      "phase": "recording",
+      "size": 132
+    },
+    {
+      "seconds": 8.87981720798416,
+      "phase": "recording",
+      "size": 156
+    },
+    {
+      "seconds": 8.939477249979973,
+      "phase": "recording",
+      "size": 150
+    },
+    {
+      "seconds": 8.955313249956816,
+      "phase": "recording",
+      "size": 132
+    },
+    {
+      "seconds": 8.985227041994222,
+      "phase": "recording",
+      "size": 152
+    },
+    {
+      "seconds": 9.045117583009414,
+      "phase": "recording",
+      "size": 128
+    },
+    {
+      "seconds": 9.061988707981072,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 9.090087499993388,
+      "phase": "recording",
+      "size": 160
+    },
+    {
+      "seconds": 9.136452541977633,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 9.164868999971077,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 9.210743542003911,
+      "phase": "recording",
+      "size": 138
+    },
+    {
+      "seconds": 9.240383957978338,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 9.285104249953292,
+      "phase": "recording",
+      "size": 140
+    },
+    {
+      "seconds": 9.30149766698014,
+      "phase": "recording",
+      "size": 158
+    },
+    {
+      "seconds": 9.35969849996036,
+      "phase": "recording",
+      "size": 128
+    },
+    {
+      "seconds": 9.389900624984875,
+      "phase": "recording",
+      "size": 148
+    },
+    {
+      "seconds": 9.419668166956399,
+      "phase": "recording",
+      "size": 154
+    },
+    {
+      "seconds": 9.450219791964628,
+      "phase": "recording",
+      "size": 146
+    },
+    {
+      "seconds": 9.510024291987065,
+      "phase": "recording",
+      "size": 136
+    },
+    {
+      "seconds": 9.527029374963604,
+      "phase": "recording",
+      "size": 150
+    },
+    {
+      "seconds": 9.55698987498181,
+      "phase": "recording",
+      "size": 124
+    },
+    {
+      "seconds": 9.585150207974948,
+      "phase": "recording",
+      "size": 166
+    },
+    {
+      "seconds": 9.630110832978971,
+      "phase": "recording",
+      "size": 128
+    },
+    {
+      "seconds": 9.675859624985605,
+      "phase": "recording",
+      "size": 150
+    },
+    {
+      "seconds": 9.705654041958041,
+      "phase": "recording",
+      "size": 146
+    },
+    {
+      "seconds": 9.736658042005729,
+      "phase": "recording",
+      "size": 134
+    },
+    {
+      "seconds": 9.795987416990101,
+      "phase": "recording",
+      "size": 146
+    },
+    {
+      "seconds": 9.812367792008445,
+      "phase": "recording",
+      "size": 156
+    },
+    {
+      "seconds": 9.842439082975034,
+      "phase": "recording",
+      "size": 134
+    },
+    {
+      "seconds": 9.884307708009146,
+      "phase": "recording",
+      "size": 150
+    },
+    {
+      "seconds": 9.929340625007171,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 9.95939166698372,
+      "phase": "recording",
+      "size": 152
+    },
+    {
+      "seconds": 10.020258917007595,
+      "phase": "recording",
+      "size": 136
+    },
+    {
+      "seconds": 10.03741137497127,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 10.079465999966487,
+      "phase": "recording",
+      "size": 150
+    },
+    {
+      "seconds": 10.10967624996556,
+      "phase": "recording",
+      "size": 138
+    },
+    {
+      "seconds": 10.139395999955013,
+      "phase": "recording",
+      "size": 148
+    },
+    {
+      "seconds": 10.16952462500194,
+      "phase": "recording",
+      "size": 142
+    },
+    {
+      "seconds": 10.214856208011042,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 10.244459707988426,
+      "phase": "recording",
+      "size": 128
+    },
+    {
+      "seconds": 10.2896540829679,
+      "phase": "recording",
+      "size": 152
+    },
+    {
+      "seconds": 10.31955883296905,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 10.365196124999784,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 10.395217416982632,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 10.425221124954987,
+      "phase": "recording",
+      "size": 140
+    },
+    {
+      "seconds": 10.455198000010569,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 10.500421500008088,
+      "phase": "recording",
+      "size": 160
+    },
+    {
+      "seconds": 10.546050291974097,
+      "phase": "recording",
+      "size": 128
+    },
+    {
+      "seconds": 10.575525916996412,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 10.62127108295681,
+      "phase": "recording",
+      "size": 150
+    },
+    {
+      "seconds": 10.651429624995217,
+      "phase": "recording",
+      "size": 142
+    },
+    {
+      "seconds": 10.681674249994103,
+      "phase": "recording",
+      "size": 146
+    },
+    {
+      "seconds": 10.710245082969777,
+      "phase": "recording",
+      "size": 156
+    },
+    {
+      "seconds": 10.75575499999104,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 10.785630416998174,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 10.83015841699671,
+      "phase": "recording",
+      "size": 128
+    },
+    {
+      "seconds": 10.860360999999102,
+      "phase": "recording",
+      "size": 160
+    },
+    {
+      "seconds": 10.892389374959748,
+      "phase": "recording",
+      "size": 140
+    },
+    {
+      "seconds": 10.936753832967952,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 10.965462207968812,
+      "phase": "recording",
+      "size": 148
+    },
+    {
+      "seconds": 10.996330291964114,
+      "phase": "recording",
+      "size": 134
+    },
+    {
+      "seconds": 11.04122108296724,
+      "phase": "recording",
+      "size": 146
+    },
+    {
+      "seconds": 11.085281207982916,
+      "phase": "recording",
+      "size": 148
+    },
+    {
+      "seconds": 11.115077374968678,
+      "phase": "recording",
+      "size": 132
+    },
+    {
+      "seconds": 11.145440457970835,
+      "phase": "recording",
+      "size": 150
+    },
+    {
+      "seconds": 11.175221624958795,
+      "phase": "recording",
+      "size": 140
+    },
+    {
+      "seconds": 11.236516750010196,
+      "phase": "recording",
+      "size": 136
+    },
+    {
+      "seconds": 11.253846083011013,
+      "phase": "recording",
+      "size": 164
+    },
+    {
+      "seconds": 11.296724332962185,
+      "phase": "recording",
+      "size": 130
+    },
+    {
+      "seconds": 11.32622716698097,
+      "phase": "recording",
+      "size": 148
+    },
+    {
+      "seconds": 11.37122112500947,
+      "phase": "recording",
+      "size": 146
+    },
+    {
+      "seconds": 11.400195333000738,
+      "phase": "recording",
+      "size": 138
+    },
+    {
+      "seconds": 11.43103166698711,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 11.464421874959953,
+      "phase": "recording",
+      "size": 146
+    },
+    {
+      "seconds": 11.520865124999546,
+      "phase": "recording",
+      "size": 140
+    },
+    {
+      "seconds": 11.537505499960389,
+      "phase": "recording",
+      "size": 162
+    },
+    {
+      "seconds": 11.580768874962814,
+      "phase": "recording",
+      "size": 136
+    },
+    {
+      "seconds": 11.610931332979817,
+      "phase": "recording",
+      "size": 152
+    },
+    {
+      "seconds": 11.657238791987766,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 11.701037791965064,
+      "phase": "recording",
+      "size": 144
+    },
+    {
+      "seconds": 11.717984416987747,
+      "phase": "recording",
+      "size": 132
+    },
+    {
+      "seconds": 11.748028707981575,
+      "phase": "recording",
+      "size": 142
+    },
+    {
+      "seconds": 11.807253625011072,
+      "phase": "recording",
+      "size": 156
+    },
+    {
+      "seconds": 11.83663091697963,
+      "phase": "recording",
+      "size": 132
+    },
+    {
+      "seconds": 11.865742124966346,
+      "phase": "recording",
+      "size": 142
+    },
+    {
+      "seconds": 11.89629841700662,
+      "phase": "recording",
+      "size": 146
+    },
+    {
+      "seconds": 11.958383707969915,
+      "phase": "stopping",
+      "size": 144
+    },
+    {
+      "seconds": 11.986467499984428,
+      "phase": "stopping",
+      "size": 158
+    }
+  ],
+  "before": {
+    "serial": "C261CF0430",
+    "bound": false,
+    "device": {
+      "total_capacity": 59634,
+      "free_capacity": 59632,
+      "charging": true,
+      "battery": 100,
+      "recording_state": "idle",
+      "version": "010004",
+      "usb_mode": true,
+      "mode": "call",
+      "indicator_light": null,
+      "noise_reduction": 9,
+      "voice_control": null,
+      "segment_duration": 3,
+      "screen_backlight": false,
+      "raw": "0000e8f20000e8f00264000100040101ff78696e6b5f746573740000000000000000000000000009ff0300010000000000000000"
+    }
+  },
+  "idle_bytes": 0,
+  "start": {
+    "action": "start",
+    "name": "20261012222510",
+    "reply_hex": "00323032363130313232323235313001",
+    "ok": true,
+    "state_before": "idle",
+    "state_after": "recording"
+  },
+  "stop": {
+    "action": "stop",
+    "name": "20261012222510",
+    "reply_hex": "00323032363130313232323235313000004eec0101",
+    "size": 20204,
+    "need_sync": true,
+    "ok": true,
+    "state_before": "recording",
+    "state_after": "idle"
+  },
+  "error": "TimeoutError('CoMi response deadline exceeded')",
+  "comparison": {
+    "realtime_bytes": 20204,
+    "offline_bytes": 20204,
+    "exact_match": true,
+    "sha256": "4e85939ef508a93ae7305126282340608acb27f84ccf852444a1145a5346e37f"
+  },
+  "independent_audio_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "mp3",
+        "sample_rate": "16000",
+        "channels": 1,
+        "bit_rate": "32000"
+      }
+    ],
+    "format": {
+      "duration": "5.051000",
+      "size": "20204"
+    }
+  },
+  "ffmpeg_full_decode_exit_code": 0,
+  "download_connection": "fresh connection after original post-unsubscribe info timeout",
+  "scope": "single 5 second recording; mode field call; raw audio kept private"
+}
