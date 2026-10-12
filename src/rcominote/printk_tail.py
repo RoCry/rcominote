@@ -12,7 +12,8 @@ MARKER = f"dbg mdb {printk_ring.CONTEXT:x} 1c"
 INITIAL = (
     range_commands(printk_ring.READS[: len(printk_ring.GUARDS) + 1])
     + range_commands(tuple((a, len(bytes.fromhex(v))) for a, v in GUARDS))
-    + [PRODUCER, MARKER, "help"]
+    + [PRODUCER, MARKER]
+    + ["kernel version"] * 8
 )
 
 
@@ -25,11 +26,24 @@ def verify(capture: dict) -> None:
 
 def tail_ranges(capture: dict) -> tuple[tuple[int, int], ...]:
     write = printk_ring.context(capture, 28)["write_index"]
-    start = (write - 256) % printk_ring.CAPACITY
+    window = capture.get("ring_window", 0)
+    if type(window) is not int or not 0 <= window <= 10:
+        raise ValueError("Ring window must be one of 0..10")
+    start = (write - (256 + 192 * window)) % printk_ring.CAPACITY
     first = min(256, printk_ring.CAPACITY - start)
     return ((printk_ring.BUFFER + start, first),) + (
         ((printk_ring.BUFFER, 256 - first),) if first < 256 else ()
     )
+
+
+def flush_due(capture: dict, command: str) -> bool:
+    """Eight small version queries flush context without a full help listing."""
+    if command == "help":
+        return True
+    if capture.get("printk_tail") and command == "kernel version":
+        capture["tail_flush_queries"] = capture.get("tail_flush_queries", 0) + 1
+        return capture["tail_flush_queries"] == 8
+    return False
 
 
 def append_tail(capture: dict) -> None:
@@ -52,6 +66,7 @@ def inspect(capture: dict) -> dict:
     raw = b"".join(printk_ring.read(capture, a, n) for a, n in tail_ranges(capture))
     return {
         "producer": PRODUCER,
+        "window": capture.get("ring_window", 0),
         "context": printk_ring.context(capture, 28),
         "ranges": tail_ranges(capture),
         "bytes": len(raw),

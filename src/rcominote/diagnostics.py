@@ -8,7 +8,7 @@ from typing import Annotated
 
 import typer
 
-from . import code_references, code_sample, log_capture, log_probe, printk_ring, printk_state
+from . import code_references, code_sample, log_capture, log_probe, nor_windows, printk_ring, printk_state
 from .ble_target import OWNED_SERIAL
 from .output import emit, new_output
 
@@ -71,9 +71,9 @@ PROFILE_FLAGS = {
 }
 
 
-async def capture_profile(profile: Profile, serial: str, duration: float) -> dict:
+async def capture_profile(profile: Profile, serial: str, duration: float, ring_window: int = 0) -> dict:
     flags = {PROFILE_FLAGS[profile.value]: True} if profile.value in PROFILE_FLAGS else {}
-    return await log_capture.capture(serial=serial, duration=duration, **flags)
+    return await log_capture.capture(serial=serial, duration=duration, ring_window=ring_window, **flags)
 
 
 @app.command("capture")
@@ -82,10 +82,11 @@ def capture(
     out: Annotated[Path, typer.Option()],
     serial: str = OWNED_SERIAL,
     duration: Annotated[float, typer.Option(min=1, max=30)] = 5,
+    ring_window: Annotated[int, typer.Option(min=0, max=10)] = 0,
 ):
     """Capture fixed diagnostics; code profiles validate exact bytes, nor-header may lack data."""
     new_output(out)
-    result = asyncio.run(capture_profile(profile, serial, duration))
+    result = asyncio.run(capture_profile(profile, serial, duration, ring_window))
     encoded = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("x") as handle:
@@ -112,3 +113,5 @@ app.command("compare-references")(code_references.main)
 app.command("inspect-printk")(printk_state.main)
 
 app.command("inspect-printk-ring")(printk_ring.main)
+
+app.command("assemble-nor-sector")(nor_windows.main)

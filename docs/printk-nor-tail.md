@@ -34,6 +34,8 @@ The earlier partial `1d0` row lacks its complete offset label and is not counted
 
 The mapped system header has32 zero bytes at its own offsets `[1e0,200)`, unlike this tail. These are different address spaces/regions; this comparison establishes neither encryption nor a physical mapping formula.
 
+后续[重叠窗口采集](nor-sector-zero.md)已取得完整512 B双覆盖；本页保留最初32 B实验方法和边界。
+
 ## Remaining work
 
 The prior whole-ring snapshot self-overwrites. This short window survived twice, but help/output volume, background logs, drops and non-atomic indices still constrain reliability. No claim that arbitrary repeated sessions always succeed. Current CLI emits diagnostic text, not a verified backup file.

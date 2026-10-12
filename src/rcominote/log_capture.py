@@ -97,7 +97,10 @@ async def capture(
     printk_state: bool = False,
     printk_buffer: bool = False,
     printk_tail_probe: bool = False,
+    ring_window: int = 0,
 ) -> dict:
+    if type(ring_window) is not int or not 0 <= ring_window <= 10 or (ring_window and not printk_tail_probe):
+        raise ValueError("Ring window 0..10 is only available with printk-nor-tail")
     printk_state = printk_state or printk_buffer or printk_tail_probe
     selected_ranges = image_ranges(image_chunks)
     image_header = image_header or bool(selected_ranges) or printk_state
@@ -125,6 +128,7 @@ async def capture(
         "printk_state": printk_state,
         "printk_buffer": printk_buffer,
         "printk_tail": printk_tail_probe,
+        "ring_window": ring_window,
         "range_frame_spans": {},
         "scope": "PREPARE/DEFAULT_START/STOP; fixed diagnostics and optional bounded reads; no storage writes/reboot",
         "fixed_text_commands": (
@@ -443,7 +447,7 @@ async def capture(
                         pending_reads.extend(
                             (a + offset, min(16, n - offset), frame_start) for offset in range(0, n, 16)
                         )
-                    elif command == "help":
+                    elif printk_tail.flush_due(result, command):
                         # A captured long burst lost row b504 with all ACKs.
                         # Require this batch's actual rows before issuing more reads.
                         async with asyncio.timeout(5):
