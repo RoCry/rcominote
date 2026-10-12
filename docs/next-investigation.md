@@ -27,3 +27,5 @@
 最新进展：[代码读回](mapped-code-readback.md)、[官方远程页面与原厂包](official-acquisition-followup.md)。
 
 后续：已沿入口指令取得69 B、五个非连续位置的独立一致读回，实际字符串`_logsrv_init`支持与SDK初始化代码对应；[代码引用报告](code-reference-followup.md)。[当前官方页面复查](official-acquisition-next.md)仍未取得原厂固件。
+
+公开LEOPARD helper已静态确认`rm`/`rs`读取处理器；NAND首次读取有延迟初始化，尚不能视为无写入备份路径。[helper证据](helper-static-followup.md)、[可复现Ubuntu反编译](offline-helper-analysis.md)。Android实机CoMi1.2.4停在登录页，用户选择暂不登录；[运行时记录](android-runtime-followup.md)。

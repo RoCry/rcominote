@@ -2,8 +2,7 @@
 
 更新：2026-10-12。此文是研究路线，不代表已经验证能刷机。
 
-第二轮进度：已做用户确认数据线的 USB 拔插对照、固定日志 PREPARE 握手；[实测结果](usb-log-probe.md)。
-仍未定位 CoMi USB 数据接口，握手成功不代表 shell 已开放。构建依赖与恢复 host 另见 [构建](build-feasibility.md)、[恢复](recovery-transport.md)。
+当前进度：USB 拔插对照仍未定位 CoMi 数据接口；之后已实测原厂 shell、单键 NVRAM 读取，以及五处共69 B映射代码/常量读回。[代码证据](code-reference-followup.md)。完整备份、物理存储布局、恢复和自写固件启动仍未证明。构建依赖与恢复 host 另见 [构建](build-feasibility.md)、[恢复](recovery-transport.md)。
 
 ## 证据决定路径
 
@@ -21,7 +20,7 @@
 ## 本轮修正的交接推断
 
 - **“BLE-only / 线只能充电”**：此前连接方式的观察。App 存在 `SET_USB_MODE=0x13`，设备当前上报 `usb_mode=true`，仍不能据此确认 USB 数据线连通或某种 USB class。`usb-devices` 主要列串口，不出现 CoMi 串口也不能排除 MSC/HID/专用下载接口。
-- **“未鉴权任意 shell 已存在”**：SDK 服务注册和命令分发确有对应源码；shell 执行受编译配置限制。CoMi 服务存在已实测，命令执行能力没有实测。
+- **“未鉴权任意 shell 已存在”**：固定诊断命令执行与返回已实测，不需要绑定；不能因此宣称任意命令、写入或恢复能力已验证。CLI只暴露已审计的固定查询。
 - **“OTA 不签名”**：外层容器 CRC 与固件签名是不同层；SDK 存在签名和 secure boot 支持。CoMi 状态未知。
 - **“Mova OTA 已可用”**：App 常量/UUID 不等于完整升级实现，更不等于 Boyi 设备支持。见 [APK 分析](app-upgrade.md)。
 
@@ -42,7 +41,7 @@ just usb diff artifacts/usb-before.json artifacts/usb-after.json
 
 当前 Mac 的 `system_profiler` USB 清单为空但 IOKit 可见设备，故使用 `just usb`，不能把前者空输出当作无设备。
 
-日志通道现已核对 framing 并验证固定 PREPARE；工具不提供通用命令执行器。将来添加 flash 目标时必须先有准确目标选择、分区保护、失败不自动启动和实机验收，当前 `just` 默认只列出命令。
+日志通道已核对 framing、实际 shell 返回及固定代码行；工具不提供通用命令执行器。长输出可能在设备端丢失，固定代码profile因此另验证完整数据行。将来添加 flash 目标时必须先有准确目标选择、分区保护、失败不自动启动和实机验收，当前 `just` 默认只列出命令。
 
 ## 明确未知
 

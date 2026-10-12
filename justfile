@@ -11,6 +11,7 @@ check:
     uv run --locked ruff format --check src tests tools
     uv run --locked ruff check src tests tools
     bash -n tools/setup_sdk.sh
+    bash -n tools/setup_re_tools.sh tools/analyze_helper.sh
     just test
 
 build:
@@ -41,3 +42,10 @@ sdk-setup:
 
 sdk-build *args:
     uv run --locked tools/build_sdk.py --sdk "$HOME/w/_tmp/lv_port_actions_technology" --toolchain "$HOME/.cache/rcominote/gcc-arm-none-eabi-10.3-2021.10" {{args}}
+
+# Linux x86_64 only; isolated host tools, no device I/O.
+re-setup:
+    bash tools/setup_re_tools.sh
+
+helper-analyze helper out:
+    bash tools/analyze_helper.sh {{quote(helper)}} {{quote(out)}}

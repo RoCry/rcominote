@@ -1,0 +1,394 @@
+{
+  "scope": "static offline analysis; no device I/O or target execution",
+  "source_commit": "26f51e584940d5b141cd1d09d2629d69b595f579",
+  "source_path": "action_technology_sdk/zephyr/tools/prebuilt/leopard/common/bin/adfus.bin",
+  "sha256": "470827c527a7111cebeb74e60dd32c007390df34453bce519998963db3ad5953",
+  "size": 56108,
+  "load_address": "0x2ff70000",
+  "address_basis": "matching fw_product.cfg ADFUS download/run addresses",
+  "token_file_offset": "0xc2a",
+  "token_bytes": "67667269726d776d697369637369726372737773657363667272736672786166",
+  "pointer_file_offset": "0xc4c",
+  "pointer_bytes": "8547f72fa547f72f1d48f72fc547f72fad48f72f4949f72f5d4af72f1d49f72fcd4bf72f0d4bf72f394cf72f854cf72f8148f72fad4cf72f7149f72fcd4cf72f",
+  "commands": [
+    {
+      "index": 0,
+      "token": "gf",
+      "thumb_pointer": "0x2ff74785",
+      "code_file_offset": "0x4784"
+    },
+    {
+      "index": 1,
+      "token": "ri",
+      "thumb_pointer": "0x2ff747a5",
+      "code_file_offset": "0x47a4"
+    },
+    {
+      "index": 2,
+      "token": "rm",
+      "thumb_pointer": "0x2ff7481d",
+      "code_file_offset": "0x481c"
+    },
+    {
+      "index": 3,
+      "token": "wm",
+      "thumb_pointer": "0x2ff747c5",
+      "code_file_offset": "0x47c4"
+    },
+    {
+      "index": 4,
+      "token": "is",
+      "thumb_pointer": "0x2ff748ad",
+      "code_file_offset": "0x48ac"
+    },
+    {
+      "index": 5,
+      "token": "ic",
+      "thumb_pointer": "0x2ff74949",
+      "code_file_offset": "0x4948"
+    },
+    {
+      "index": 6,
+      "token": "si",
+      "thumb_pointer": "0x2ff74a5d",
+      "code_file_offset": "0x4a5c"
+    },
+    {
+      "index": 7,
+      "token": "rc",
+      "thumb_pointer": "0x2ff7491d",
+      "code_file_offset": "0x491c"
+    },
+    {
+      "index": 8,
+      "token": "rs",
+      "thumb_pointer": "0x2ff74bcd",
+      "code_file_offset": "0x4bcc"
+    },
+    {
+      "index": 9,
+      "token": "ws",
+      "thumb_pointer": "0x2ff74b0d",
+      "code_file_offset": "0x4b0c"
+    },
+    {
+      "index": 10,
+      "token": "es",
+      "thumb_pointer": "0x2ff74c39",
+      "code_file_offset": "0x4c38"
+    },
+    {
+      "index": 11,
+      "token": "cf",
+      "thumb_pointer": "0x2ff74c85",
+      "code_file_offset": "0x4c84"
+    },
+    {
+      "index": 12,
+      "token": "rr",
+      "thumb_pointer": "0x2ff74881",
+      "code_file_offset": "0x4880"
+    },
+    {
+      "index": 13,
+      "token": "sf",
+      "thumb_pointer": "0x2ff74cad",
+      "code_file_offset": "0x4cac"
+    },
+    {
+      "index": 14,
+      "token": "rx",
+      "thumb_pointer": "0x2ff74971",
+      "code_file_offset": "0x4970"
+    },
+    {
+      "index": 15,
+      "token": "af",
+      "thumb_pointer": "0x2ff74ccd",
+      "code_file_offset": "0x4ccc"
+    }
+  ],
+  "code": {
+    "dispatcher": {
+      "file_start": "0x467c",
+      "file_end_exclusive": "0x46be",
+      "instruction_count": 28,
+      "selected_instructions": [
+        "0x2ff74682: 1022 movs r2, #0x10",
+        "0x2ff74688: 07f028fc bl #0x2ff7bedc",
+        "0x2ff7468c: 1028 cmp r0, #0x10",
+        "0x2ff74692: bdf80010 ldrh.w r1, [sp]",
+        "0x2ff74698: 32f8020b ldrh r0, [r2], #2",
+        "0x2ff7469c: 8142 cmp r1, r0",
+        "0x2ff746a4: 52f82330 ldr.w r3, [r2, r3, lsl #2]",
+        "0x2ff746a8: 9847 blx r3",
+        "0x2ff746b2: 102b cmp r3, #0x10"
+      ]
+    },
+    "rm": {
+      "file_start": "0x481c",
+      "file_end_exclusive": "0x4878",
+      "instruction_count": 36,
+      "selected_instructions": [
+        "0x2ff74820: 8568 ldr r5, [r0, #8]",
+        "0x2ff74822: 4468 ldr r4, [r0, #4]",
+        "0x2ff74824: b5f1804f cmp.w r5, #0x40000000",
+        "0x2ff74832: b4f5804f cmp.w r4, #0x4000",
+        "0x2ff74842: 3846 mov r0, r7",
+        "0x2ff74844: fff764fb bl #0x2ff73f10",
+        "0x2ff74850: 07f022fa bl #0x2ff7bc98",
+        "0x2ff7485e: 074b ldr r3, [pc, #0x1c]",
+        "0x2ff74860: 2246 mov r2, r4",
+        "0x2ff74862: 2946 mov r1, r5",
+        "0x2ff74864: 1868 ldr r0, [r3]",
+        "0x2ff74866: 07f017fa bl #0x2ff7bc98"
+      ]
+    },
+    "rs": {
+      "file_start": "0x4bcc",
+      "file_end_exclusive": "0x4c28",
+      "instruction_count": 35,
+      "selected_instructions": [
+        "0x2ff74bd0: 8568 ldr r5, [r0, #8]",
+        "0x2ff74bd2: 4468 ldr r4, [r0, #4]",
+        "0x2ff74bf0: b4f5804f cmp.w r4, #0x4000",
+        "0x2ff74bfc: d8f80000 ldr.w r0, [r8]",
+        "0x2ff74c02: 0368 ldr r3, [r0]",
+        "0x2ff74c04: 2946 mov r1, r5",
+        "0x2ff74c06: d3f804a0 ldr.w sl, [r3, #4]",
+        "0x2ff74c0c: d047 blx sl",
+        "0x2ff74c12: d9f80000 ldr.w r0, [sb]",
+        "0x2ff74c16: 07f03ff8 bl #0x2ff7bc98"
+      ]
+    },
+    "is": {
+      "file_start": "0x48ac",
+      "file_end_exclusive": "0x490a",
+      "instruction_count": 42,
+      "selected_instructions": [
+        "0x2ff748b0: 4688 ldrh r6, [r0, #2]",
+        "0x2ff748cc: 3046 mov r0, r6",
+        "0x2ff748ce: fdf7a9fd bl #0x2ff72424",
+        "0x2ff748d8: 0368 ldr r3, [r0]",
+        "0x2ff748da: 1b68 ldr r3, [r3]",
+        "0x2ff748dc: 9847 blx r3",
+        "0x2ff748e2: 2068 ldr r0, [r4]",
+        "0x2ff748ea: 5b69 ldr r3, [r3, #0x14]",
+        "0x2ff748ec: 9847 blx r3"
+      ]
+    },
+    "nand_read": {
+      "file_start": "0x325c",
+      "file_end_exclusive": "0x32c0",
+      "selected_instructions": [
+        "0x2ff73264: 03f2ff13 addw r3, r3, #0x1ff",
+        "0x2ff73268: 5c0a lsrs r4, r3, #9",
+        "0x2ff73272: 4d0a lsrs r5, r1, #9",
+        "0x2ff73274: 73b9 cbnz r3, #0x2ff73294",
+        "0x2ff73278: 01f084f9 bl #0x2ff74584",
+        "0x2ff732bc: 01f03ab8 b.w #0x2ff74334"
+      ]
+    }
+  },
+  "limitations": [
+    "Public SDK helper; not recovered from CoMi.",
+    "Load address is configuration-derived, not observed execution.",
+    "Command semantics inferred from static data flow, not hardware testing.",
+    "ROM transport, authentication and compatible CoMi storage driver remain unknown.",
+    "Post-init callback is a no-op; initializers and NAND lazy init may have side effects."
+  ],
+  "host_artifacts": [
+    {
+      "name": "ActDbgUsb.dll",
+      "size": 57344,
+      "sha256": "8c218d139ac7624db341ae45a02399afba4f6f17f54f91ef2893aca6f8cbab9b",
+      "exports": {
+        "actdbgusb_close": "0x1430",
+        "actdbgusb_dev_exist": "0x1000",
+        "actdbgusb_flush": "0x1580",
+        "actdbgusb_open": "0x1120",
+        "actdbgusb_read": "0x15b0",
+        "actdbgusb_read_once": "0x1490",
+        "actdbgusb_read_waiting": "0x1630",
+        "actdbgusb_send_vendor_cmd": "0x1740",
+        "actdbgusb_write": "0x1660",
+        "circbuf_available_data_size": "0x18a0",
+        "circbuf_clear": "0x1860",
+        "circbuf_free": "0x1820",
+        "circbuf_init": "0x1780",
+        "circbuf_read": "0x18d0",
+        "circbuf_write": "0x1aa0"
+      }
+    },
+    {
+      "name": "ATDUsbComm.dll",
+      "size": 70656,
+      "sha256": "36d4970203dadfabfb0f28cb235312126bb8686ea805ed2b3c49a6523512352f",
+      "exports": {
+        "ActATTUsb_Close": "0x1d60",
+        "ActATTUsb_DevExists": "0x1c90",
+        "ActATTUsb_DeviceInfo": "0x1f30",
+        "ActATTUsb_Open": "0x1ca0",
+        "ActATTUsb_Read": "0x1db0",
+        "ActATTUsb_SetTimeout": "0x1c50",
+        "ActATTUsb_SetUSBBlockSize": "0x1c70",
+        "ActATTUsb_Write": "0x1e00"
+      }
+    },
+    {
+      "name": "Hardware_C.dll",
+      "size": 13312,
+      "sha256": "541df654824561537be4e0a500ad7a7997ba9df848dfae4c9202a29dc65fcc5b",
+      "exports": {
+        "Py_ADFU_Close": "0x1f10",
+        "Py_ADFU_Enum": "0x1880",
+        "Py_ADFU_EnumEx": "0x17b0",
+        "Py_ADFU_Open": "0x1e00",
+        "Py_ADFU_OpenDevPath": "0x19e0",
+        "Py_ADFU_OpenEP": "0x1d00",
+        "Py_ADFU_RAWIO": "0x1f60",
+        "Py_EnumByType": "0x1700",
+        "Py_SwitchAdfu": "0x14b0",
+        "Py_SwitchAdfuByType": "0x11f0",
+        "Py_UDISK_Enum": "0x1930"
+      }
+    },
+    {
+      "name": "HardwareEx.dll",
+      "size": 165888,
+      "sha256": "986582c243fb0f300c41c483cbc3100f6ff897057b4cace0d30510624a769aa3",
+      "exports": {
+        "??0CCommUSB@@QAE@H@Z": "0xe910",
+        "??0CEnumUSB@@QAE@XZ": "0xe720",
+        "??1CCommUSB@@QAE@XZ": "0xea50",
+        "??1CEnumUSB@@QAE@XZ": "0xe7a0",
+        "??4CCommUSB@@QAEAAV0@ABV0@@Z": "0x1000",
+        "??4CEnumUSB@@QAEAAV0@ABV0@@Z": "0x1000",
+        "?ADFURead@CCommUSB@@QAEHPAEKE0@Z": "0xebb0",
+        "?ADFUWrite@CCommUSB@@QAEHPAEKE0@Z": "0xebf0",
+        "?AddSubcode@CCommUSB@@QAEHPAX@Z": "0xed90",
+        "?CallingEntry@CCommUSB@@QAEHPAE@Z": "0xec60",
+        "?Close@CCommUSB@@QAEHXZ": "0xeaf0",
+        "?DetachDevice@CCommUSB@@QAEHXZ": "0xed60",
+        "?DoRawIO@CCommUSB@@QAEHEPAEAAK@Z": "0xee40",
+        "?DoUserCommand@CCommUSB@@QAEHPAE0E@Z": "0xee00",
+        "?Eject@CCommUSB@@QAEHXZ": "0xeb20",
+        "?EnableDevice@CCommUSB@@QAEXH@Z": "0xeb50",
+        "?EnumDevice@CEnumUSB@@QAEHPAKI@Z": "0xe7e0",
+        "?ExtCommand@CCommUSB@@QAEHEPAE0K@Z": "0xedc0",
+        "?GetDeviceCount@CEnumUSB@@QAEHI@Z": "0xe820",
+        "?GetDeviceInfo@CEnumUSB@@QAEKKPAG0@Z": "0xe850",
+        "?GetStatusInfo@CCommUSB@@QAEHPAE0@Z": "0xecc0",
+        "?GetSysInfo@CCommUSB@@QAEHPAE@Z": "0xed00",
+        "?Open@CCommUSB@@QAEHPBG0K@Z": "0xea80",
+        "?PollingReady@CCommUSB@@QAEHPAE@Z": "0xec90",
+        "?SCSIAdfuSwitch@CEnumUSB@@QAEHG@Z": "0xe890",
+        "?SCSICustomCmd@CEnumUSB@@QAEHGPAEK0K@Z": "0xe8c0",
+        "?SendIfActions@CCommUSB@@QAEHPAE@Z": "0xed30",
+        "?SetTimeout@CCommUSB@@QAEXK@Z": "0xeb80",
+        "?Switch@CCommUSB@@QAEHPAE@Z": "0xec30",
+        "?SwitchToAdfu@CCommUSB@@QAEHXZ": "0xeac0"
+      }
+    }
+  ],
+  "archive": {
+    "source_path": "tools/config_tool.rar",
+    "sha256": "cec0aa29b8d77ba0a58178bb37d4790f621b2e500c918cd9cdc778094f450bf4",
+    "cab_sha256": "d5b2d15da4b270761c5dea3ac01fef2c1d05ed691e95c94dd4c944c4ba023115",
+    "package": "config_tool_1.28.01_20230825/en",
+    "msi_file_rows": 543,
+    "version_ini": "[CONFIG]\nSOLUTION=US302A_V1.0\nCFGVER=0x20002000\n",
+    "limitations": "Windows package version/config does not establish ATS308x or CoMi compatibility."
+  },
+  "read_semantics": {
+    "rm": "command+4 length, command+8 memory address; sends bytes via common output function; copy branch for >=0x40000000",
+    "rs": "command+4 length, command+8 storage offset; storage virtual callback+4 then common output function; 0x4000-byte chunks",
+    "is": "post-init virtual callback+0x14 resolves to no-op for NOR/SD/NAND; initializer effects unresolved",
+    "nand_read": "offset>>9; ceil(length/512); first read invokes lazy initializer file0x4584, effects unresolved; data readerfile0x4334"
+  },
+  "storage_tables": [
+    {
+      "kind": "nor",
+      "table_file_offset": "0x958",
+      "thumb_pointers": [
+        "0x2ff73c09",
+        "0x2ff73e49",
+        "0x2ff73ddd",
+        "0x2ff73af5",
+        "0x2ff73d6d",
+        "0x2ff73af1",
+        "0x2ff73b9d"
+      ],
+      "post_init_slot": "0x14",
+      "post_init_code": {
+        "file_start": "0x3af0",
+        "file_end_exclusive": "0x3af4",
+        "instructions": [
+          "0x2ff73af0: 0020 movs r0, #0",
+          "0x2ff73af2: 7047 bx lr"
+        ]
+      }
+    },
+    {
+      "kind": "sd",
+      "table_file_offset": "0x530",
+      "thumb_pointers": [
+        "0x2ff72c29",
+        "0x2ff72d31",
+        "0x2ff72e6d",
+        "0x2ff72f21",
+        "0x2ff72ee9",
+        "0x2ff72575",
+        "0x2ff72579"
+      ],
+      "post_init_slot": "0x14",
+      "post_init_code": {
+        "file_start": "0x2574",
+        "file_end_exclusive": "0x2578",
+        "instructions": [
+          "0x2ff72574: 0020 movs r0, #0",
+          "0x2ff72576: 7047 bx lr"
+        ]
+      }
+    },
+    {
+      "kind": "nand",
+      "table_file_offset": "0x87c",
+      "thumb_pointers": [
+        "0x2ff737d1",
+        "0x2ff7325d",
+        "0x2ff73369",
+        "0x2ff73495",
+        "0x2ff732d5",
+        "0x2ff73249",
+        "0x2ff73329"
+      ],
+      "post_init_slot": "0x14",
+      "post_init_code": {
+        "file_start": "0x3248",
+        "file_end_exclusive": "0x324c",
+        "instructions": [
+          "0x2ff73248: 0020 movs r0, #0",
+          "0x2ff7324a: 7047 bx lr"
+        ]
+      }
+    }
+  ],
+  "nand_lazy_init": {
+    "file_start": "0x4584",
+    "file_end_exclusive": "0x4660",
+    "code_bytes": "38b5044607f030fa6278237843ea0223a27843ea0243e27843ea026393f8261093f8252042ea012293f8271093f8283042ea014252ea036201d0204690472046fff71afe054618b14ff0ff35284638bd204603f0b9f801281cd06278237843ea0223a27843ea0243e27843ea02631a7c002ae9d0597b1a7b42ea0122997bdb7b42ea014252ea0363ded0d122134914489847d9e7204603f0cafd2946204605f066fb29462046fff751ff6278237843ea0223a27843ea0243e27843ea0263997e5a7e42ea0122d97e1b7f42ea014252ea0362bbd020469047b8e700bf",
+    "direct_calls": [
+      "0x2ff74588: 07f030fa bl #0x2ff7b9ec",
+      "0x2ff745c0: 9047 blx r2",
+      "0x2ff745c4: fff71afe bl #0x2ff741fc",
+      "0x2ff745d6: 03f0b9f8 bl #0x2ff7774c",
+      "0x2ff74614: 9847 blx r3",
+      "0x2ff7461a: 03f0cafd bl #0x2ff781b2",
+      "0x2ff74622: 05f066fb bl #0x2ff79cf2",
+      "0x2ff7462a: fff751ff bl #0x2ff744d0",
+      "0x2ff7465a: 9047 blx r2"
+    ],
+    "limitation": "callee side effects unresolved; not matched to archive function symbols"
+  }
+}

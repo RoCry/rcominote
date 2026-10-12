@@ -36,6 +36,7 @@
 13. [读回通路与下一阶段](docs/next-investigation.md)：当前能推进什么、每一步需要什么新证据。
 
 14. [实机代码读回](docs/mapped-code-readback.md)：16字节独立重读一致、Thumb解码、实时入口检查和长输出丢失。
+15. [原厂helper静态分析](docs/helper-static-followup.md)：rm/rs处理器、存储初始化边界；[Ubuntu反编译工具](docs/offline-helper-analysis.md)。
 15. [官方产物继续核查](docs/official-acquisition-followup.md)：远程页面配置、发布包与加固壳边界。
 
 ## 统一 uv CLI

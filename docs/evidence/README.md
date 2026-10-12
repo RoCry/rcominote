@@ -81,3 +81,5 @@ wheel和sdist构建成功；Ubuntu运行wheel的doctor与两份实际代码样�
 ## 第八轮：沿实机指令读取常量与函数名
 
 [首次](code-references-first-2026-10-12.json)、[独立重读](code-references-second-2026-10-12.json)、[离线分析](code-references-analysis-2026-10-12.json)：五处共69 B一致，实际读到`_logsrv_init\0`，支持公开SDK源码对应。完整推导及未知见[报告](../code-reference-followup.md)。CLI新增固定code-literals/code-references及离线比较；传输完成与读回完整分别校验，丢正文不能再报代码读取成功。
+
+原厂公开helper新增[命令/指令证据](helper-command-map-2026-10-12.json)与[静态报告](../helper-static-followup.md)：确认rm/rs处理器和NAND首次读取的延迟初始化，未在CoMi加载或执行。[Ubuntu离线反编译](../offline-helper-analysis.md)已运行并保存可复现脚本。
