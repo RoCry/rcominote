@@ -9,7 +9,7 @@ import json
 import unittest
 from pathlib import Path
 
-from log_capture import Stream
+from log_capture import Stream, observed_logsrv_entry
 
 EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence"
 
@@ -34,6 +34,17 @@ class LogTests(unittest.TestCase):
         self.assertIn("nvram get: FW_VERION fail", text)
         self.assertIn("nvram get(len=14): BT_LE_NAME", text)
         self.assertIn("43 6f 4d 69 20 4e 6f 74 65 20 32 46 30 31", text)
+
+    def test_live_entry_guard_accepts_observed_thread_and_rejects_changed_firmware(self):
+        capture = json.loads((EVIDENCE / "log-threads-2026-10-12.json").read_text())
+        frames = capture["frames"]
+        self.assertTrue(observed_logsrv_entry(frames))
+        changed = [
+            dict(row, text=row.get("text", "").replace("entry: 0x1000bf21", "entry: 0x1000cf21")) for row in frames
+        ]
+        with self.assertRaisesRegex(ValueError, "entry changed"):
+            observed_logsrv_entry(changed)
+        self.assertFalse(observed_logsrv_entry([]))
 
     def test_disconnect_mid_frame_preserves_incomplete_evidence(self):
         capture = json.loads((EVIDENCE / "log-device-info-2026-10-12.json").read_text())

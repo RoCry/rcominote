@@ -51,3 +51,7 @@ SDK 首个不足 504 B 的日志块可能没有立即发送；默认日志空白
 - 证明现有配置 getter 的数据正文能经 shell/BLE 返回；不证明 NOR 原始数据可导出，更不是完整备份。
 
 复现：`just log-capture --platform-info --out artifacts/platform.json`。仅两个固定键，不接收写值或任意键名；源码 getter 上限63 B。最终 Boyi info 查询再次成功，版本/容量/idle 未变。输出路由和源码依据见 [读取通路](readback-routes.md)。
+
+## 后续：已读回实机程序字节
+
+[映射代码读回](mapped-code-readback.md)记录kernel帮助/线程/栈元数据、当前logsrv入口的两次16字节读取与Thumb解码。原始flash fread仍无正文；新增mdb路径能够传回限定映射字节。

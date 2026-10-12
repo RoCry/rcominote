@@ -59,3 +59,11 @@ APK/SDK 由各专题文档记录样本哈希、固定版本及复现入口。原
 - [REA 1.2.4 归档摘要](rea-apk124-inventory-2026-10-12.json)：保留实际 Evidence ID/限制；完整 bundle 留 artifacts。Android provider 缺少调用者提供的 JADX MCP JAR，没有执行反编译。
 - [APK 不透明文件](apk124-candidates-2026-10-12.json)：普通 ZIP 字节核查，独立于 REA；包含准确 SHA/熵/有限字面搜索范围。未发现可用原厂固件，未证明这些文件的用途。
 - `just check` 格式/lint/语法及11个离线测试通过；新 oracle 对照真实 NVRAM 字节响应。
+
+## 第六轮：线程、代码读回与远程页面入口
+
+- [kernel帮助](log-kernel-help-2026-10-12.json)、[线程](log-threads-2026-10-12.json)、[紧凑栈表](log-stacks-2026-10-12.json)：后者25条线程+IRQ；详细线程输出在设备端截断，ACK/F1完整不代表正文完整。
+- [首次16字节](log-code-sample-2026-10-12.json)、[独立重读](log-code-sample-repeat-2026-10-12.json)、[Capstone离线报告](code-sample-analysis-2026-10-12.json)：两次相同，全部解码；报告为普通离线工具结果，不冒充REA Evidence。
+- 工具第二次起强制本次会话logsrv入口校验，再发送固定16字节读取；没有任意地址参数。最终Boyi info成功，FW/idle/容量未变。
+- [官方产物报告](../official-acquisition-followup.md)：精确远程页面配置、GET500、服务端包澄清、本地JADX加载壳证据；未获得官方固件。
+- `just check` 格式/lint/语法及12个离线测试通过；包含入口变化拒绝路径。离线代码检查实跑并验证两份真实捕获一致。

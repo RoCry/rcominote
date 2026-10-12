@@ -14,7 +14,7 @@ SDK 固定为 `lvgl/lv_port_actions_technology@26f51e584940d5b141cd1d09d2629d69b
 | 能烧录自己的固件吗？ | SDK 有 OTA 写入/校验、ADFU 生产配置及 J-Link 存储支持；启动层有条件签名路径。[OTA 写入][ota-write] [传输研究](recovery-transport.md) [签名][sign] | 能找到本机入口、匹配芯片/存储/板级配置且获得启动授权，才可能运行自写固件 | 型号、分区、接口、签名/加密策略；尚无可直接使用的 CoMi 配方 |
 | 烧进去之后会怎样？ | SDK 会检查镜像头、入口地址、长度与 checksum；通过后跳入应用。[镜像检查][image-check] [跳转][nor-boot] | 包可能被拒绝；镜像可能写入但启动检查失败；也可能进入应用后黑屏、失去 BLE、重启或无法录音 | 参考板固件行为不可预测；尚未在 CoMi 写入/启动 |
 | 失败后能恢复官方吗？ | SDK 有独立 recovery、临时升级区、ADFU 入口；但本公开 recovery 的 `ota_main()` 是无限循环占位实现。[启动流程][recovery-main] [占位实现][ota-stub] | 保留有效 boot/recovery，且应用死掉仍可进入已验证恢复入口，并有正确原厂包/备份，才有恢复基础 | 当前没有验证恢复入口、原厂完整包或回刷；不能承诺“随便刷，刷坏再救” |
-| 能提取正在运行的固件吗？ | CoMi 已实测执行 shell 并返回 `Zephyr version 2.7.0`；SDK 有条件编译的 flash/内存读取命令，但部分处理器有单位/长度问题。[实测](evidence/log-device-info-2026-10-12.json) [命令与开关][shell-reg] [读取处理器][shell-read] | 本机帮助已列读取命令，固定 NOR 头读取进入 handler 但未传回数据；需先解决读取输出，再评估分区级备份；SWD/匹配只读 helper 是其他候选 | shell 可执行不等于 flash 可读取；没有本机固件 dump |
+| 能提取正在运行的固件吗？ | CoMi 已实测执行 shell 并返回 `Zephyr version 2.7.0`；SDK 有条件编译的 flash/内存读取命令，但部分处理器有单位/长度问题。[实测](evidence/log-device-info-2026-10-12.json) [命令与开关][shell-reg] [读取处理器][shell-read] | 本机帮助已列读取命令，固定 NOR 头读取进入 handler 但未传回数据；需先解决读取输出，再评估分区级备份；SWD/匹配只读 helper 是其他候选 | 后续已重读16字节映射代码，见[代码读回](mapped-code-readback.md)；没有完整物理flash备份 |
 
 ## 新证据：recovery 不等于自动回滚
 

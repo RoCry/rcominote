@@ -46,3 +46,7 @@ sdk-build *args:
 # Bounded log session and explicit fixed diagnostic queries.
 log-capture *args:
     uv run tools/log_capture.py {{args}}
+
+# Offline compare and Thumb-decode two fixed real-device code samples.
+code-sample *args:
+    uv run tools/code_sample.py {{args}}

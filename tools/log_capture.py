@@ -3,10 +3,11 @@
 # requires-python = ">=3.13"
 # dependencies = ["bleak>=1.1,<2", "typer>=0.16,<1"]
 # ///
-"""Bounded Actions logs and fixed diagnostic queries; no arbitrary shell, writes, or reboot."""
+"""Bounded Actions logs and fixed diagnostic queries; no arbitrary shell, storage writes, or reboot."""
 
 import asyncio
 import json
+import re
 import time
 from datetime import UTC, datetime
 from pathlib import Path
@@ -61,6 +62,14 @@ class Stream:
             self.frames.append(row)
 
 
+def observed_logsrv_entry(frames: list[dict]) -> bool:
+    text = "".join(frame.get("text", "") for frame in frames)
+    match = re.search(r"(?m)^\*0x[0-9a-f]+ logsrv[ \t]*\r?\n[^\n]*\n[^\n]*entry: (0x[0-9a-f]+)", text)
+    if match and match[1] != "0x1000bf21":
+        raise ValueError(f"Live logsrv entry changed: {match[1]}; fixed sample is not applicable")
+    return match is not None
+
+
 async def capture(
     *,
     serial: str,
@@ -69,7 +78,13 @@ async def capture(
     commands: bool = False,
     flash_header: bool = False,
     platform_info: bool = False,
+    kernel_info: bool = False,
+    threads: bool = False,
+    stacks: bool = False,
+    code_sample: bool = False,
 ) -> dict:
+    if code_sample and serial != OWNED_SERIAL:
+        raise ValueError("Code sample address is evidenced only for owned C261CF0430 FW 1.0.4")
     queue = asyncio.Queue()
     stream = Stream()
     origin = time.monotonic()
@@ -77,12 +92,16 @@ async def capture(
         "captured_at": datetime.now(UTC).isoformat(),
         "serial": serial,
         "duration_seconds": duration,
-        "scope": "PREPARE/DEFAULT_START/STOP; fixed queries only; optional 512-byte NOR header read",
+        "scope": "PREPARE/DEFAULT_START/STOP; fixed diagnostics and optional bounded reads; no storage writes/reboot",
         "fixed_text_commands": (
             (["kernel version", "device levels", "device levels"] if device_info else [])
             + (["help", "dbg"] if commands else [])
             + (["dbg fread spi_flash 0", "help"] if flash_header else [])
             + (["app", "system", "dbg nvram FW_VERION", "dbg nvram BT_LE_NAME", "help"] if platform_info else [])
+            + (["kernel", "kernel uptime", "help"] if kernel_info else [])
+            + (["kernel uptime", "kernel threads", "kernel uptime", "help"] if threads else [])
+            + (["kernel stacks", "help"] if stacks else [])
+            + (["kernel threads", "dbg mdb 1000bf20 10", "help"] if code_sample else [])
         ),
         "notifications": [],
         "writes": [],
@@ -133,6 +152,11 @@ async def capture(
             for command in result["fixed_text_commands"]:
                 # Fixed source-audited queries only. Help/duplicate table output may
                 # fill the SDK's 504-byte initial buffer; never infer failure from silence.
+                if command == "dbg mdb 1000bf20 10":
+                    # Revalidate the live entry in this session before any memory read.
+                    async with asyncio.timeout(5):
+                        while not observed_logsrv_entry(stream.frames):
+                            await pump(timeout=5)
                 encoded = command.encode("ascii")
                 tlv = b"\x01" + len(encoded).to_bytes(2, "little") + encoded
                 await request(b"\x1d\x10\x81" + len(tlv).to_bytes(2, "little") + tlv)
@@ -181,6 +205,12 @@ def main(
     commands: Annotated[bool, typer.Option(help="Also request fixed help and bare dbg command listings")] = False,
     flash_header: Annotated[bool, typer.Option(help="Read only NOR offset 0, fixed 512 bytes; not a backup")] = False,
     platform_info: Annotated[bool, typer.Option(help="Fixed app/system help and two bounded NVRAM getters")] = False,
+    kernel_info: Annotated[bool, typer.Option(help="Fixed kernel help and uptime queries")] = False,
+    threads: Annotated[bool, typer.Option(help="Fixed thread listing bracketed by uptime; verify help first")] = False,
+    stacks: Annotated[bool, typer.Option(help="Compact thread stack-usage table; no stack contents")] = False,
+    code_sample: Annotated[
+        bool, typer.Option(help="Owned FW1.0.4 only: 16 bytes at observed logsrv code entry")
+    ] = False,
 ):
     if out.exists():
         raise FileExistsError(f"Output already exists: {out}")
@@ -192,6 +222,10 @@ def main(
             commands=commands,
             flash_header=flash_header,
             platform_info=platform_info,
+            kernel_info=kernel_info,
+            threads=threads,
+            stacks=stacks,
+            code_sample=code_sample,
         )
     )
     out.parent.mkdir(parents=True, exist_ok=True)

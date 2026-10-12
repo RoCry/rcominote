@@ -4,6 +4,8 @@
 
 [本轮平台查询](evidence/log-platform-info-2026-10-12.json)确认：`app` 仅列出 `set_config/input/btinfo`；`system` 与参考命令一致；`FW_VERION` 读取失败；`BT_LE_NAME` 返回 14 字节 `CoMi Note 2F01`。这证明**NVRAM 单键内容可以经 BLE 读回**，没有证明原始 flash 或完整固件可读回。
 
+后续已依据实时线程入口、ABI布局核对并成功读取16字节映射代码；此前“不能自动把线程entry当映射”的限制仍成立，新增证据与固定白名单见 [代码读回](mapped-code-readback.md)。完整flash与恢复尚未知。
+
 ## 为什么 NOR 读取只有状态行
 
 参考实现存在两条独立输出链：

@@ -180,3 +180,5 @@ was changed. Archive inspection remained available. Therefore this pass adds no 
 or incoming-reference proof for the opaque files. Next useful artifact work requires a usable
 Android analysis provider and, for protected code, an authorized app runtime or an unprotected
 vendor package. Installing a decompiler alone does not establish access to protected code.
+
+后续修正：1.1.2的Capacitor配置指向远程录音页面；已用本机JADX CLI成功解出1.2.4加载壳，但未恢复其原应用。见 [官方产物继续核查](official-acquisition-followup.md)。打包JS的否定结论不能覆盖当前在线页面。

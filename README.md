@@ -13,6 +13,7 @@
 | USB | 用户确认数据线后做拔插对照，仍未见明确 CoMi 枚举；`usb_mode=true` 不等于主机数据接口已启用，板级走线/其他模式待查 |
 | 日志/shell | 实机执行 `kernel version` 返回 Zephyr 2.7.0；`help`/`dbg` 列出存储读取与 ADFU 重启命令，后者未执行 |
 | 配置读回 | `dbg nvram BT_LE_NAME` 已返回14字节实机内容；原始 flash 正文仍未通过 BLE 取得 |
+| 程序字节读回 | 已独立读回并核对 logsrv 入口16字节映射代码；尚无完整固件/物理分区备份 |
 | 自定义固件 | Actions 有构建、OTA、ADFU 等参考代码，也有签名/安全启动配置；CoMi 是否接受自签/未签名镜像尚未知 |
 | Linux 构建 | Ubuntu 上参考板 hello_world 已生成 ELF/BIN/HEX；SDK 无源码补丁，构建后 tracked 文件干净；尚不是 CoMi 固件 |
 
@@ -33,6 +34,9 @@
 12. [实机诊断](docs/device-diagnostics.md)：已执行 shell、命令清单及有限读取结果。
 
 13. [读回通路与下一阶段](docs/next-investigation.md)：当前能推进什么、每一步需要什么新证据。
+
+14. [实机代码读回](docs/mapped-code-readback.md)：16字节独立重读一致、Thumb解码、实时入口检查和长输出丢失。
+15. [官方产物继续核查](docs/official-acquisition-followup.md)：远程页面配置、发布包与加固壳边界。
 
 ## 可直接运行
 

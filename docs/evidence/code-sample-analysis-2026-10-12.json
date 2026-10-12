@@ -1,0 +1,56 @@
+{
+  "scope": "16 mapped bytes only; Thumb decoding is inference, not full firmware or physical flash backup",
+  "capture_sha256": [
+    "95fb0a6575984b141a907197f442379159791c0fd0ddac10793e2350fc2d581e",
+    "df691d2372acb3c62c46e88a2959582e630c59de5d847274cd5c2f63cf152c4a"
+  ],
+  "address": "0x1000bf20",
+  "length": 16,
+  "hex": "2de9f0476149624e86b05020a1f0abfa",
+  "sha256": "3314944ac8ca0faa67e68af9cff62b0daa5959ae0a1f1d9b0ea00bbf689e1cef",
+  "independent_reads_match": true,
+  "decoder": "Capstone 5.0.6, ARM Thumb little-endian",
+  "decoded_bytes": 16,
+  "instructions": [
+    {
+      "address": "0x1000bf20",
+      "bytes": "2de9f047",
+      "mnemonic": "push.w",
+      "operands": "{r4, r5, r6, r7, r8, sb, sl, lr}"
+    },
+    {
+      "address": "0x1000bf24",
+      "bytes": "6149",
+      "mnemonic": "ldr",
+      "operands": "r1, [pc, #0x184]"
+    },
+    {
+      "address": "0x1000bf26",
+      "bytes": "624e",
+      "mnemonic": "ldr",
+      "operands": "r6, [pc, #0x188]"
+    },
+    {
+      "address": "0x1000bf28",
+      "bytes": "86b0",
+      "mnemonic": "sub",
+      "operands": "sp, #0x18"
+    },
+    {
+      "address": "0x1000bf2a",
+      "bytes": "5020",
+      "mnemonic": "movs",
+      "operands": "r0, #0x50"
+    },
+    {
+      "address": "0x1000bf2c",
+      "bytes": "a1f0abfa",
+      "mnemonic": "bl",
+      "operands": "#0x100ad486"
+    }
+  ],
+  "limitations": [
+    "Does not execute code",
+    "No physical offset or image extent established"
+  ]
+}
