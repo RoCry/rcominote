@@ -1,0 +1,13 @@
+{
+  "effective_seed": "0x0a15a191",
+  "fit_rank_first_block": 32,
+  "fit_rank_zero_block": 32,
+  "reset_bytes": 32,
+  "verified_bytes": 512,
+  "held_out_bytes_after_first_block_fit": 480,
+  "raw_sha256": "28b2e50ba95630f6485bd5e3ccfbd8ebe5f1406ffa36d6c0c4e35c4c71af0678",
+  "plain_sha256": "911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5",
+  "reencode_matches": true,
+  "decode_matches": true,
+  "scope": "actual system header only; seed is effective state, not proven efuse key"
+}

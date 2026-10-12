@@ -1,0 +1,20 @@
+[
+  {
+    "target": "boot",
+    "raw_sha256": "72952b98341a3089765c6cc8dd35ddc93ae699698d1455ce74dea1071cc277ec",
+    "decoded_sha256": "714f2e5b578ffe061c5b963339b20c1301ac19744d2f55415831b04c6f683e79",
+    "magic": "ACTHHTCA",
+    "prefix64": "4143544848544341000001016d6272656300000039000101200e00007daa6412665a0c94ed0ba343f05f08819010c005c85d5b30d47ae49f0a0868ea237a9e71",
+    "sum512": "0x1c3d4149",
+    "scope": "First512 B only; boot header layout not validated"
+  },
+  {
+    "target": "recovery",
+    "raw_sha256": "9a79e301960bcb9cefeae206a64e9375ecc86d0a1616dd2010c3746f26c96449",
+    "decoded_sha256": "121a4b6beb56293ded54630fb33cfc871cfc64cbfaf23454e7f3e1d7763374b9",
+    "magic": "ACTHHTCA",
+    "prefix64": "4143544848544341d52300116200000000000000d523001138f500006a0b5b55c81d0cff00020000000000000000000000000000000000000000000000000000",
+    "sum512": "0xffffffff",
+    "scope": "First512 B only; boot header layout not validated"
+  }
+]
