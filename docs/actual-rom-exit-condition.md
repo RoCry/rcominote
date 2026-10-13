@@ -126,3 +126,9 @@ Normal firmware shutdown does not demonstrate an independent physical reset
 after ROM entry. No button operation or live PMU-register snapshot was performed
 for this follow-up: an enabled bit alone cannot prove button routing, hold time,
 reset scope or retention after the ROM changes clocks/power state.
+
+The supplied [three manual photographs](manual-2026-10-13.md) now provide
+direct documentary evidence: normal power on/off requires≥3s; separate power
+button and recording slider are shown. No forced reset, ROM/download entry or
+recovery procedure appears in those photos. This corroborates the owner's
+report within the supplied pages, without establishing an independent escape.

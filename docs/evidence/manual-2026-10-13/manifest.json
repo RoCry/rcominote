@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-13",
+  "source": "Owner-supplied photographs of CoMi Note printed manual",
+  "inspection_order": [
+    "IMG_6810.heic",
+    "IMG_6809.heic",
+    "IMG_6808.heic"
+  ],
+  "archive_method": "macOS ImageIO pixel-only JPEG re-encode, quality0.85, full dimensions. Original EXIF/GPS/device metadata not copied; encoder-generated color/dimension EXIF allowed. Original HEIC files remain owner-local.",
+  "evidence_scope": "Product-document statements, not physical BOM, electrical measurements or runtime acceptance",
+  "images": [
+    {
+      "original_filename": "IMG_6810.heic",
+      "original_sha256": "a64d63a32b1fdbe6f63ee1efb97328b8d1df1bcdc4bb50ff1c502b36a70bda23",
+      "archive_filename": "IMG_6810.jpg",
+      "archive_sha256": "52f37f779f7c9875d934fddad760680aa7b6af3101a8964a63257d7a7ff9a52e",
+      "pixel_dimensions": [
+        2268,
+        4032
+      ],
+      "visible_sections": "产品信息"
+    },
+    {
+      "original_filename": "IMG_6809.heic",
+      "original_sha256": "e52df6311d71b9edf70c2e50ccae95927ff3744814a802ba29a8c0b14720469d",
+      "archive_filename": "IMG_6809.jpg",
+      "archive_sha256": "6672ba90b3a8ef0670d61dc80c734836d0531da90df97f5b0b8ea9a005ee41e0",
+      "pixel_dimensions": [
+        4032,
+        2268
+      ],
+      "visible_sections": "暂停/结束、NOTE/CALL、App配置、蓝牙连接"
+    },
+    {
+      "original_filename": "IMG_6808.heic",
+      "original_sha256": "45a4d17512d25f425f899d3c33d45b50d41de27d188084d1a562a96b63e96402",
+      "archive_filename": "IMG_6808.jpg",
+      "archive_sha256": "4ab89395082e2ca8db0136ada0f3f66296bfc55ea950e3a122cc4e93a2326cbf",
+      "pixel_dimensions": [
+        5712,
+        3213
+      ],
+      "visible_sections": "封面、结构图、按键操作"
+    }
+  ],
+  "host_audio_crosscheck": {
+    "source": "Locally retained scratch recording from docs/evidence/delete-live-2026-10-13.json",
+    "file_size": 10256,
+    "ffprobe": {
+      "codec": "mp3",
+      "sample_rate": 16000,
+      "channels": 1,
+      "bit_rate": 32000,
+      "duration_seconds": 2.564
+    },
+    "ffmpeg_full_decode_exit_code": 0,
+    "device_io_this_turn": false,
+    "decryption_step": false,
+    "limit": "Export path only; not SD-at-rest or every mode"
+  }
+}

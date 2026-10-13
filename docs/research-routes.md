@@ -81,6 +81,14 @@ negative evidence, not proof that PMU long-press reset is absent. Do not wait
 for manual photographs as an established unlock, or enter ROM on this basis.
 Reopen with matched PMU documentation, a reliable independent power-disconnect
 method, or a production recovery chain with verified exit behavior.
+[Owner-supplied manual photographs](manual-2026-10-13.md) now independently
+confirm normal power hold≥3s and magnetic charging contacts; no forced-reset,
+download or recovery instruction appears in the supplied three images. They
+add analog-silicon plus bone-conduction pickup types and NOTE/CALL button
+behavior. Keep one bounded audio question: relate known mode state to actual
+ADC/DSP selection using the retained complete image; do not reopen generic
+SDK searches, speculative recording decryption or ROM entry from this manual.
+The precise installed microphone count and contact pinout remain unknown.
 Client failure isolation is closed at the host-session boundary (see [CLI](cli.md));
 do not expand it into automatic cancellation/resume while platform work has priority.
 Explicit download/sync Ctrl-C now uses the [existing stop contract](download-cancel-contract.md#implemented-host-boundary-2026-10-13):
