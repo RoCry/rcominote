@@ -5,6 +5,10 @@
 本页是证据历史，不是待办清单；执行优先级只看[当前路线](../research-routes.md)。
 Wi-Fi的实际固件、App与精确型号证据由[专题汇总](../wifi-capability-2026-10-13.md)串联。
 
+## 国内第三方源码续查，2026-10-13
+
+[实际获取与查询收据](domestic-sdk-renewed-2026-10-13.json)：新Gitee Actions Android宿主源码两仓库固定版本/选定文件哈希已核对；CSDN开发者原文给出旧LARK `SDK-TAG_ZS308A_2700_220112`、板型及具名固件。同系列221215仓库为空；已下载SDK30F手册属于2004年Z80/ATJ208X。记录原生搜索、公开Git、索引/登录/验证码边界；未取得匹配M4 BSP或CoMi恢复包。[内容与价值](../domestic-sdk-followup-2026-10-13.md#renewed-domestic-pass-source-acquired-exact-older-lark-package-identified)。
+
 ## Linux普通CLI，2026-10-13
 
 [直接LE/Boyi验收](linux-boyi-cli-2026-10-13.json)：已绕开BlueZ5.72错误BR/EDR选择，状态、12项列表成功；已有240522 B文件导出4.2746s，SHA256匹配此前Mac独立基线，完整MP3解码通过。12s空闲watch成功；前后新连接完整info/列表相同，无录音/设置/删除/固件操作。保留单文件及平台验收范围，不能代替Actions日志可靠性、整片NOR或恢复证明。

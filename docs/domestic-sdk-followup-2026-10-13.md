@@ -10,6 +10,75 @@ CoMi evidence supports common vendor APIs, not a measured small source diff.
 Companion [GitHub acquisition](github-sdk-followup-2026-10-13.md) records two
 additional complete SDK trees and their architecture checks.
 
+## Renewed domestic pass: source acquired, exact older LARK package identified
+
+User explicitly reopened domestic third-party sharing after Ubuntu handoff.
+[Acquisition receipt](evidence/domestic-sdk-renewed-2026-10-13.json) records actual
+payloads, hashes, query/tree scope and current access failures. Host-only; no
+device commands, contact messages, account login or downloaded-code execution.
+
+| New acquired repository | Fixed revision / payload | Actual value and boundary |
+|---|---|---|
+| [nopointer/OTA-JX-New](https://gitee.com/nopointer/OTA-JX-New/tree/ca814e72158ac616647deb9bf105e882cefcc8d1) | `ca814e72158ac616647deb9bf105e882cefcc8d1`; 198 tracked files, 84 Java | ActionsIbluz/ActionsLog/ActionsOta/ActionsDial/ActionsSpeed host source; no C/H MCU BSP |
+| [nopointer/OTA-JuXin](https://gitee.com/nopointer/OTA-JuXin/tree/51e36cd8af999da16b1a863bca9e915e77962f21) | `51e36cd8af999da16b1a863bca9e915e77962f21`; 65 files, 31 Java | Older Android BLE/OTA implementation; no matched SoC/board source |
+
+Normal public clones are retained at `~/w/_tmp/comi-gitee-ota-jx-new` and
+`~/w/_tmp/comi-gitee-ota-juxin`; clean revisions and selected source SHA256s
+verified. These are real source acquisitions, not repository-name hits.
+Third-party hosting and `com.actions` package names do not independently prove
+untouched manufacturer provenance.
+
+The newer repository's `ActionsLog/.../LogManager.java` implements Actions
+server1D/command10 text TLVs and F0/F1 parsing; `Global.java` declares the same
+e49a3001/3002/3003 log UUID lineage. This gives a source-level host reference.
+Its byte-scanning/partial-frame handling is not an integrity oracle; do not copy
+it to hide missing fragments. OTA defaults differ from CoMi F5F0. Named older
+Android MTU workarounds are not a demonstrated Linux/Mac loss cause. No new
+device sender/backpressure contract or reason to rerun failed log trials follows.
+
+**Sharper M4 acquisition target:** the [original developer setup report](https://blog.csdn.net/u010860832/article/details/124030196)
+names `SDK-TAG_ZS308A_2700_220112`, build path
+`application/bt_watch_call/outdir/lark_dvb_watch/zephyr/ksym.bin`, and firmware
+`lark_dvb_watch_ext_nor_220408.fw`. This identifies an older LARK package family,
+unlike the previously acquired ZS308B/LEOPARD trees; it supplies no archive URL.
+The [separate developer note](https://github.com/peterlintang/normal-data-types/blob/17f59dabf77d3876530130254844e6ef5c531731/bak/3085c%20sdk.txt)
+references `ats3085c_dvb_watch_ext_nor_max` and an `ATS308x_zs308A` application
+document. Note content and complete2205-entry repository tree were inspected;
+no matched package acquired. Two related backup trees also supply no matched
+named payload; arbitrary unrelated archives were not treated as SDKs.
+
+The newly found [ZS308A221215 repository](https://github.com/lgpww/SDK-TAG_ZS308A_2700_221215_REL3_N)
+is **empty**: metadata size0, normal `git ls-remote` succeeds with zero refs,
+release list empty. Keep this rejection so its promising name is not rediscovered
+as source. An independently cloned [GitCode SDK guide attachment](https://gitcode.com/open-source-toolkit/d9173/tree/e3701ba9be43135a06630396717d93cea5cec1a9)
+contains one PDF: SDK30F v1.1, June2004, Z80/ATJ208X material; it is not LARK/M4
+source or a matching programming manual. Third-party PDFs/source stay outside Git.
+
+Current search boundaries:
+
+- Gitee native search returned405/security CAPTCHA. Public v5 search did not
+  return even known `rec_jx3`; empty responses do not prove source absence.
+  Ordinary public git and uploader repository lists worked. Complete returned
+  lists for `szsheep`28 and `yekingsheng`2 were checked; known M33 trees excluded
+  from new-source claims.
+- AtomGit repository searches for ATS3085/ATS3089/actions_technology/炬芯/炬力/
+  ZS308A displayed zero repository matches. Issue/user counts are not source.
+  C-x-chen's ATS3085E public git/page remained inaccessible; legacy GitCode.net
+  path redirected to login. OpenHarmony's ATS3089 entry is a short overview.
+- CSDN's ordinary public search API was located through its search-page bundle.
+  Model/tag queries and download-only `t=doc` inspected one page each; fuzzy
+  tokenized results were manually distinguished from real matching artifacts.
+  `t=download` did not filter downloads and was not used as a download-only oracle.
+- Native forum/download and course checks are recorded in the receipt. Search
+  misses, unavailable pages and contact-gated descriptions are not package absence
+  or successful acquisition.
+
+**Result:** additional Actions host source plus concrete ZS308A package/document
+identifiers; still no complete LARK M4 BSP, CoMi original restore bundle or
+independent exit proof. Future acquisition can target these exact older package
+names and any actual attachment/ref. Do not substitute another M33 build or
+repeat empty-repository/known-access-failure checks for a matched payload.
+
 ## Acquired material and search boundary
 
 | Public repository / fixed revision | Acquired scope | Finding |

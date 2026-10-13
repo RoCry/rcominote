@@ -1,0 +1,399 @@
+{
+  "scope": "User-requested renewed domestic third-party vendor-source acquisition; host-only, no device I/O or execution of acquired code",
+  "verified_at": "2026-10-13T04:14:03.789955+00:00",
+  "new_source_repositories": [
+    {
+      "url": "https://gitee.com/nopointer/OTA-JX-New",
+      "checkout": "/home/rocry/w/_tmp/comi-gitee-ota-jx-new",
+      "commit": "ca814e72158ac616647deb9bf105e882cefcc8d1",
+      "tracked_files": 198,
+      "status_porcelain": "",
+      "java_files": 84,
+      "c_or_h_files": [],
+      "classification": "Android host source, not MCU BSP; no LARK/ATS3085L platform closure",
+      "selected_sources": [
+        {
+          "path": "ActionsIbluz/src/main/java/com/actions/ibluz/device/bluzdevice/BluzDeviceBle.java",
+          "sha256": "680c56596c4f5fbdbb7976363c87e9018cde9d3b64b759b9c3c033efcf12f5be",
+          "bytes": 28420
+        },
+        {
+          "path": "ActionsLog/src/main/java/com/actions/actionslog/LogManager.java",
+          "sha256": "bc8928dfb5bf301645fa8da333ac7e900995bd5c3278ae66777b7ed730e1b100",
+          "bytes": 14149
+        },
+        {
+          "path": "ActionsOta/src/main/java/com/actions/aticonsota/OTAManager.java",
+          "sha256": "3179220f250f22ed1b6b4f8f553b8d8004eedfc39bb71f3135ec097482edd6e2",
+          "bytes": 34205
+        },
+        {
+          "path": "app/src/main/java/com/actions/bluetoothutils/global/Global.java",
+          "sha256": "c2eca3499652f9c71ac16c1a316878ce2951db124042efa6cd1c2c4cff48b7a3",
+          "bytes": 2365
+        },
+        {
+          "path": "settings.gradle",
+          "sha256": "c2b0777f91fcd0f882f01a537ea34d4f288d025fe914dbdd5addb4d2a9055db5",
+          "bytes": 342
+        }
+      ]
+    },
+    {
+      "url": "https://gitee.com/nopointer/OTA-JuXin",
+      "checkout": "/home/rocry/w/_tmp/comi-gitee-ota-juxin",
+      "commit": "51e36cd8af999da16b1a863bca9e915e77962f21",
+      "tracked_files": 65,
+      "status_porcelain": "",
+      "java_files": 31,
+      "c_or_h_files": [],
+      "classification": "Android host source, not MCU BSP; no LARK/ATS3085L platform closure",
+      "selected_sources": [
+        {
+          "path": "blueota/src/main/java/com/actions/bluetooth/ota/OTAManager.java",
+          "sha256": "0a912f1fb3f81f8dd6c85d6eb92292d5a8bafdc2a0688d63448886387e8f9639",
+          "bytes": 32706
+        },
+        {
+          "path": "blueota/src/main/java/com/actions/ibluz/device/BluzDeviceBle.java",
+          "sha256": "cd8e42a3106ca183a6c2ac480d426641cc14747f6471c42dbb9541d03d785f78",
+          "bytes": 28817
+        },
+        {
+          "path": "settings.gradle",
+          "sha256": "acc75c030dd544a9520afcf4a5a58ef85dcd5b18b8d635bca9f8e6a83b98cf80",
+          "bytes": 27
+        }
+      ]
+    }
+  ],
+  "new_exact_lark_package_lead": {
+    "source": "https://blog.csdn.net/u010860832/article/details/124030196",
+    "captured_text_sha256": "c999901d50c366e7ec8a816262a303d7d30cf8311cc0c5ccd8f7e2f9a941dcc6",
+    "sdk_directory": "SDK-TAG_ZS308A_2700_220112",
+    "build_path": "application/bt_watch_call/outdir/lark_dvb_watch/zephyr/ksym.bin",
+    "named_firmware": "lark_dvb_watch_ext_nor_220408.fw",
+    "limit": "Original developer report identifies a concrete older LARK package; no archive linked/acquired and no CoMi compatibility established"
+  },
+  "exact_tag_hosting_followup": {
+    "scope": "Exact new ZS308A package-tag follow-up; native public GitHub repository/code APIs and public Git, no payload execution or hardware",
+    "package_lead": "SDK-TAG_ZS308A_2700_220112",
+    "repository_query": {
+      "query": "ZS308A",
+      "total_count": 1,
+      "incomplete_results": false,
+      "result": "lgpww/SDK-TAG_ZS308A_2700_221215_REL3_N",
+      "classification": "Empty placeholder, not acquired SDK",
+      "metadata_size": 0,
+      "ls_remote_exit_code": 0,
+      "ls_remote_output_file": "zs308a-refs.txt",
+      "ls_remote_output_bytes": 0,
+      "releases": 0,
+      "owner_other_repo": "lgpww/Repository",
+      "owner_other_repo_tree": "a20b3c36a01be6cf05dd89d9f94078ba1edb08c3",
+      "owner_other_repo_tree_entries": 18,
+      "owner_other_repo_truncated": false,
+      "owner_other_repo_scope": "Unrelated desktop software packages; no matching SDK acquired"
+    },
+    "code_queries": [
+      {
+        "query": "ZS308A -repo:RoCry/rcominote",
+        "total_count": 61,
+        "incomplete_results": false
+      },
+      {
+        "query": "\"SDK-TAG_ZS308A\" -repo:RoCry/rcominote -repo:rocrp/rlcdv",
+        "total_count": 0,
+        "incomplete_results": false
+      },
+      {
+        "query": "\"lark_dvb_watch_ext_nor\" -repo:RoCry/rcominote -repo:rocrp/rlcdv",
+        "total_count": 3,
+        "incomplete_results": false,
+        "classification": "Only previously acquired LVGL/ZS308B/ATS3089 unpack_configtxt.sh paths"
+      }
+    ],
+    "notes_lead": {
+      "repository": "peterlintang/normal-data-types",
+      "commit": "17f59dabf77d3876530130254844e6ef5c531731",
+      "path": "bak/3085c sdk.txt",
+      "git_blob_sha1": "49107077f2d57d1955403c06e4a27f23b33bcb75",
+      "bytes": 19835,
+      "body_saved_as": "3085c-sdk-notes.txt",
+      "findings": [
+        "References ats3085c_dvb_watch_ext_nor_max board.h/board.c/board_cfg.h and application configuration",
+        "References ATS308x_zs308A application-development document page19",
+        "Discusses vendor media, stream, service/message and BLE APIs",
+        "No SDK archive URL or LARK SoC source supplied in note"
+      ],
+      "tree_entries": 2205,
+      "tree_truncated": false,
+      "tree_classification": "Notes and generic source/archives; no matching named SoC/BSP or ZS308A package path",
+      "owner_list_scope": "First100 public repositories only; not exhaustive owner inventory",
+      "related_backup_trees": [
+        {
+          "repository": "peterlintang/back-for",
+          "tree": "a3206a727e766ad38f9278835bb68fa73f7bb509",
+          "entries": 33,
+          "truncated": false
+        },
+        {
+          "repository": "peterlintang/back-for2",
+          "tree": "80893b5816373f6438c9afc300f3e457801c5c26",
+          "entries": 67,
+          "truncated": false
+        }
+      ],
+      "backup_boundary": "No matched named SDK package; unrelated archives not downloaded"
+    },
+    "conclusion": "Exact older ZS308A alias improves acquisition targeting, but this hosting pass acquired no matching M4 platform payload. Empty repository and notes must not be counted as source package."
+  },
+  "rejected_actual_archive": {
+    "url": "https://gitcode.com/open-source-toolkit/d9173",
+    "checkout": "/home/rocry/w/_tmp/comi-domestic-sdk-guide",
+    "commit": "e3701ba9be43135a06630396717d93cea5cec1a9",
+    "tracked_files": 3,
+    "archive_name": "炬力SDK编程指导（全集）.rar",
+    "archive_bytes": 1205663,
+    "archive_sha256": "93cf06271a2ba5e1b4805fa8d93b8eab5879ebc9bf908372679ed209942a9b2a",
+    "contents": "One PDF SDK30f编程指导.pdf (3294508B) and its directory",
+    "pdf_sha256": "60edba4e263e7208ef2ceeb02ed785cc4fd45bbb9bd5c9b27d160d2d4e0f68a2",
+    "classification": "SDK30F application programming manual v1.1, June2004; Z80/ATJ208X references; not ATS3085L/LARK/M4 source or programming reference"
+  },
+  "search_receipts": [
+    {
+      "file": "csdn-api-3085c-sdk.json",
+      "response_sha256": "ef58c3c0995bd8b4454ed9e7550cf0d854d13fc006fc537efec68125f6295b2d",
+      "api": "https://so.csdn.net/api/v3/search",
+      "reported_total": 11,
+      "inspected_rows": 12,
+      "boundary": "One page; reported total may not equal returned row count; tokenized unrelated results not counted as source matches",
+      "query_parameters": {
+        "q": "ATS3085C SDK",
+        "t": "all",
+        "p": 1
+      }
+    },
+    {
+      "file": "csdn-api-actions-doc.json",
+      "response_sha256": "d7614eb8593d7449c521e3e99fddbc0bbf7383e034ad6e3b72e21c241b708de4",
+      "api": "https://so.csdn.net/api/v3/search",
+      "reported_total": 6,
+      "inspected_rows": 6,
+      "boundary": "One page; reported total may not equal returned row count; tokenized unrelated results not counted as source matches",
+      "query_parameters": {
+        "q": "炬芯 SDK",
+        "t": "doc",
+        "p": 1
+      }
+    },
+    {
+      "file": "csdn-api-ats-sdk-doc.json",
+      "response_sha256": "cfa27f77c5c98059b5a5819d1dd4b905d277d60228bebac136f94d0464fdec75",
+      "api": "https://so.csdn.net/api/v3/search",
+      "reported_total": 1,
+      "inspected_rows": 2,
+      "boundary": "One page; reported total may not equal returned row count; tokenized unrelated results not counted as source matches",
+      "query_parameters": {
+        "q": "ATS3085 SDK",
+        "t": "doc",
+        "p": 1
+      }
+    },
+    {
+      "file": "csdn-api-ats3085.json",
+      "response_sha256": "af1a184671bd5c519f14200b8ba5be88e3a98691136dbbb5ef0b1d1a956c0092",
+      "api": "https://so.csdn.net/api/v3/search",
+      "reported_total": 426,
+      "inspected_rows": 27,
+      "boundary": "One page; reported total may not equal returned row count; tokenized unrelated results not counted as source matches",
+      "query_parameters": {
+        "q": "ATS3085",
+        "t": "all",
+        "p": 1
+      }
+    },
+    {
+      "file": "csdn-api-ats308x-doc.json",
+      "response_sha256": "491230154524343a90d90daff762a3790200834d17d656816c0340aa4bfe3040",
+      "api": "https://so.csdn.net/api/v3/search",
+      "reported_total": 565,
+      "inspected_rows": 30,
+      "boundary": "One page; reported total may not equal returned row count; tokenized unrelated results not counted as source matches",
+      "query_parameters": {
+        "q": "ATS308X",
+        "t": "doc",
+        "p": 1
+      }
+    },
+    {
+      "file": "csdn-api-lark-board.json",
+      "response_sha256": "e19fa19884aa3c6d2e020105507fa0c84f59dfbf980452915ed33ab3388c4ee9",
+      "api": "https://so.csdn.net/api/v3/search",
+      "reported_total": 0,
+      "inspected_rows": 0,
+      "boundary": "One page; reported total may not equal returned row count; tokenized unrelated results not counted as source matches",
+      "query_parameters": {
+        "q": "lark_dvb_watch",
+        "t": "all",
+        "p": 1
+      }
+    },
+    {
+      "file": "csdn-api-lark-doc.json",
+      "response_sha256": "ea56e370a4932fa71c76f08187ac48fa118f97d04ec5096a371ea14c58bccafb",
+      "api": "https://so.csdn.net/api/v3/search",
+      "reported_total": 11,
+      "inspected_rows": 11,
+      "boundary": "One page; reported total may not equal returned row count; tokenized unrelated results not counted as source matches",
+      "query_parameters": {
+        "q": "ATS3085L",
+        "t": "doc",
+        "p": 1
+      }
+    },
+    {
+      "file": "csdn-api-lark-sdk.json",
+      "response_sha256": "472cfbb5f94bc5f711e4bdd29a17c7b20b47fcb1d7554aba8d228bf388907818",
+      "api": "https://so.csdn.net/api/v3/search",
+      "reported_total": 823,
+      "inspected_rows": 30,
+      "boundary": "One page; reported total may not equal returned row count; tokenized unrelated results not counted as source matches",
+      "query_parameters": {
+        "q": "lark_sdk",
+        "t": "all",
+        "p": 1
+      }
+    },
+    {
+      "file": "csdn-api-lark.json",
+      "response_sha256": "c281d13582252e0f14237fba2c0474c525bf01c27177d52c7ddb6f7a93022994",
+      "api": "https://so.csdn.net/api/v3/search",
+      "reported_total": 87,
+      "inspected_rows": 15,
+      "boundary": "One page; reported total may not equal returned row count; tokenized unrelated results not counted as source matches",
+      "query_parameters": {
+        "q": "ATS3085L",
+        "t": "all",
+        "p": 1
+      }
+    },
+    {
+      "file": "csdn-api-sdk-download.json",
+      "response_sha256": "c9a1819a3dc6866c58448d6119a979320bb893203be4f718b5caab8cce73f908",
+      "api": "https://so.csdn.net/api/v3/search",
+      "reported_total": 121,
+      "inspected_rows": 30,
+      "boundary": "One page; reported total may not equal returned row count; tokenized unrelated results not counted as source matches",
+      "query_parameters": {
+        "q": "炬芯 SDK",
+        "t": "download",
+        "p": 1
+      }
+    },
+    {
+      "file": "csdn-api-zs308.json",
+      "response_sha256": "c841c61cd927513ac6971bc455d365c93215d8c4a182a3c1a9c9d5950612d225",
+      "api": "https://so.csdn.net/api/v3/search",
+      "reported_total": 90,
+      "inspected_rows": 30,
+      "boundary": "One page; reported total may not equal returned row count; tokenized unrelated results not counted as source matches",
+      "query_parameters": {
+        "q": "ZS308",
+        "t": "all",
+        "p": 1
+      }
+    },
+    {
+      "file": "csdn-api-zs308a-doc.json",
+      "response_sha256": "82dfd82ce49cee4d203f6cd16c1f50b89b01c85e5ff58677b9b4818febc231a2",
+      "api": "https://so.csdn.net/api/v3/search",
+      "reported_total": 2,
+      "inspected_rows": 2,
+      "boundary": "One page; reported total may not equal returned row count; tokenized unrelated results not counted as source matches",
+      "query_parameters": {
+        "q": "ZS308A",
+        "t": "doc",
+        "p": 1
+      }
+    },
+    {
+      "file": "csdn-api-zs308a.json",
+      "response_sha256": "a71a25d215b8191fa92434914ac2d41215a2bd632bdaa7404b53fd22ba50b2a9",
+      "api": "https://so.csdn.net/api/v3/search",
+      "reported_total": 90,
+      "inspected_rows": 30,
+      "boundary": "One page; reported total may not equal returned row count; tokenized unrelated results not counted as source matches",
+      "query_parameters": {
+        "q": "ZS308A",
+        "t": "all",
+        "p": 1
+      }
+    }
+  ],
+  "access_limits": [
+    "localwebrs search unavailable: Kagi credential absent; used web search fallback",
+    "so.gitee widget initial ATS308 request HTTP405; ordinary browser search page shows safety CAPTCHA; stopped",
+    "Gitee v5 repository search returned [] for aliases AND known-positive rec_jx3; these are not valid no-source evidence; stopped remaining queries",
+    "Normal public Git clone and users/{owner}/repos APIs work; acquired both new linked repositories",
+    "szsheep public repository list returned28 entries; yekingsheng returned2; known M33 repositories not promoted as new",
+    "Google search via localwebrs did not load; web search fallback used",
+    "AtomGit q parameter required; initial keyword parameter produced unfiltered results and was excluded",
+    "AtomGit repository-only q=ATS3085/ATS3089/actions_technology/炬芯/炬力/ZS308A yielded zero displayed repository matches, not code/archive absence; issues/users not counted",
+    "gitcode.com/c-x-chen/ATS3085E returned404; ordinary public git403 project not found; gitcode.net path redirects to login; no package acquired",
+    "OpenHarmony-ChipBoards ATS3089 entry is a short chip overview with official-site link, not a downloadable SDK",
+    "CSDN API discovered from public search bundle; t=doc filters downloads, t=download did not and is not treated as a download-only search; tokenizer returned unrelated results for model strings",
+    "CSDN155524197 content extraction failed; no inference from inaccessible full content"
+  ],
+  "conclusion": "Two new Actions Android host-source repositories and sharper ZS308A LARK package identifiers acquired; no matched M4 SoC/BSP, CoMi restore bundle or recovery/backup execution proof",
+  "limits": [
+    "Third-party com.actions namespace/source module names do not independently prove original unmodified vendor provenance",
+    "Matching Actions log UUID/TLV lineage supports protocol comparison, not root-cause attribution for missing HCI notifications",
+    "Downloaded archive/Java code were inspected only; no external build scripts/APKs/loaders executed",
+    "Searches cover stated queries/pages/trees only; no internet-wide or domestic-site-wide absence claim"
+  ],
+  "forum_followup": {
+    "date": "2026-10-13",
+    "result": "No new matched SDK source archive acquired through bounded Chinese hardware forum/share pass.",
+    "eeworld": {
+      "url": "https://download.eeworld.com.cn/eewsearcher?s=&kw=ATS3085",
+      "method": "localwebrs ordinary launched Chrome",
+      "records": 3,
+      "hit_titles": [
+        "1N3085/1N3111/1N516250V 150A Std. Recovery Diode",
+        "LY3085系列4.2V锂电充电IC",
+        "SN65HVD3082E,SN75HVD3082E,SN65HVD3085E,SH65HVD3088E"
+      ],
+      "classification": "fuzzy unrelated electronic component matches; not ATS3085 SDK"
+    },
+    "bilibili": {
+      "url": "https://www.bilibili.com/video/BV1mztn65EA8/",
+      "title": "基于炬芯ATS3085的智能手表系统设计",
+      "aid": 117184709856328,
+      "duration_seconds": 213,
+      "view_api": "https://api.bilibili.com/x/web-interface/view?bvid=BV1mztn65EA8",
+      "description": "",
+      "comments_api": "https://api.bilibili.com/x/v2/reply?type=1&oid=117184709856328&sort=1&ps=20",
+      "comment_result": "code0, replies[], top null",
+      "first_frame": "public first-frame image only watch/title; no SDK metadata/download link",
+      "classification": "video title/source lead, not source acquisition"
+    },
+    "bluetooth52": {
+      "url": "https://www.52bluetooth.com/plugin.php?id=attachcenter%3Alist&fid=65&typeid=89&mobile=no",
+      "direct_result": "redirect placeholder",
+      "render_result": "mostly footer",
+      "indexed_list": "ATS282X and ATS300X documents/tool/firmware attachments; not a proven ATS3085 match",
+      "classification": "native content limited; no claim of complete index coverage"
+    },
+    "queries": "27 query-*.json plus exact-*.json preserve web fallback replies; quoted ATS3085 site searches for EEWorld/21ic/52bluetooth/elecfans/OSCHINA/51hei/amobbs/oshwhub empty",
+    "boundaries": [
+      "No payment/login/contact",
+      "No downloaded code executed",
+      "No hardware I/O",
+      "Indexed-search absence not proof of global source absence",
+      "No tracked edits"
+    ]
+  },
+  "forum_followup_receipt_sha256": "0e690c1e530ff24522de57be686b25d590721da87dd043aad71ffc92797a6b1a",
+  "search_receipts_directory": "artifacts/domestic-sdk-renewed-2026-10-13/"
+}
