@@ -1,0 +1,31 @@
+{
+  "scope": "Offline exact-byte comparison; no device I/O, repaired capture or loss-layer attribution",
+  "source_sha256": {
+    "log-commands-2026-10-12.json": "83c1953103d69c5ceb8d6374bf15c24a997840c4e58b940a9100a6c47bc722d7",
+    "note-call-runtime-attempt-2026-10-13.json": "15558bc251416d33540b91ca87709eff5e476845d26af27b2792ebe4349f9482"
+  },
+  "baseline_first_frame_sha256": "df6fc0e2e0dfa701b20b8bac81cde4e1dfd8bea11f98f9c58f5b4cca06bf3603",
+  "baseline_second_frame_sha256": "5b2c3ae07d3720aef4193ce83a00143f8181ce64b6b70e698083b1f5a54a1f33",
+  "failed_first_frame_matches": true,
+  "second_frame_received_slices": [
+    [
+      244,
+      488
+    ],
+    [
+      488,
+      512
+    ]
+  ],
+  "missing_slice_relative_to_baseline": [
+    0,
+    244
+  ],
+  "missing_contains": "8-byte frame/TLV header plus 236 text bytes",
+  "limits": [
+    "Missing relative to the independent baseline, not an over-the-air packet trace",
+    "Does not distinguish device enqueue/controller, radio/host stack, or callback delivery",
+    "Pre-framing text loss alone cannot explain this header-and-payload gap",
+    "No evidence that this failure and the old recording's 244-byte gap have the same cause"
+  ]
+}

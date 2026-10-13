@@ -1,0 +1,110 @@
+{
+  "scope": "Fixed source review and attempted independent Linux host control; no successful Linux GATT session or Actions diagnostic payload",
+  "sdk_commit": "26f51e584940d5b141cd1d09d2629d69b595f579",
+  "source_files": [
+    {
+      "path": "action_technology_sdk/application/bt_watch/src/bt_log/log_service.c",
+      "sha256": "2788a6f26a6c77d325b0beeb3231e1fea49d8c6b3edc13b6b34b6ac5261670ae",
+      "line_ranges": [
+        [
+          263,
+          273
+        ],
+        [
+          500,
+          538
+        ]
+      ]
+    },
+    {
+      "path": "action_technology_sdk/framework/bluetooth/bt_manager/bt_manager_sppble_stream.c",
+      "sha256": "9ad3ab7c24bdcee19c67e3d90b64c4ae77eec9e43496885d34f9cfe567a69aa7",
+      "line_ranges": [
+        [
+          666,
+          731
+        ]
+      ]
+    },
+    {
+      "path": "action_technology_sdk/framework/bluetooth/bt_manager/bt_manager_ble.c",
+      "sha256": "4962773df5c308088f776fa31fe0ac69b4420fbec798fb60c5c924127f80eebf",
+      "line_ranges": [
+        [
+          893,
+          903
+        ]
+      ]
+    },
+    {
+      "path": "action_technology_sdk/framework/bluetooth/bt_stack/src/bt_stack/gatt.c",
+      "sha256": "c65adef58e890f68ab09566b684018e0bc909c6259cebb3cb6da826d12c67e17",
+      "line_ranges": [
+        [
+          1983,
+          1998
+        ]
+      ]
+    },
+    {
+      "path": "action_technology_sdk/framework/bluetooth/bt_stack/src/bt_stack/att.c",
+      "sha256": "793ea4c21d53b522e4d15d09c21fd51fc4cdba926080dbbf2a1b1ca3417ef4b0",
+      "line_ranges": [
+        [
+          2992,
+          3031
+        ]
+      ]
+    }
+  ],
+  "source_findings": [
+    "Whole stream write serialized; negative BLE send does not advance fragment offset; logs configure infinite retry with 5ms interval. No visible skip-first-fragment branch.",
+    "GATT copies payload to a separate buffer before ATT submission. Nonnegative send result can mean queued, not delivered.",
+    "Log whole-frame retry after short write could duplicate prefix or change TLV type; not sufficient explanation for captured clean missing prefix.",
+    "Reference source not matched through actual firmware BLE leaf functions; not proof of actual-device defect or fix."
+  ],
+  "ubuntu_control": {
+    "cli_commit": "fddb544",
+    "scan_seconds": 10,
+    "scan": [
+      {
+        "address": "50:C0:F0:AE:7C:0E",
+        "name": "CoMi Note 2F01",
+        "rssi": -85,
+        "serial": "C261CF0430",
+        "mac": "50:C0:F0:AE:7C:0E"
+      }
+    ],
+    "info_attempts": 2,
+    "first": "TimeoutError; empty info output; chained diagnostic never started",
+    "second_target_only_trace": [
+      "2026-10-13 10:58:44,177 bleak.backends.bluezdbus.client MainThread DEBUG: Connecting to device @ 50:C0:F0:AE:7C:0E",
+      "2026-10-13 10:58:44,178 bleak.backends.bluezdbus.client MainThread DEBUG: Connecting to BlueZ path /org/bluez/hci0/dev_50_C0_F0_AE_7C_0E",
+      "2026-10-13 10:58:49,311 bleak.backends.bluezdbus.manager MainThread DEBUG: received D-Bus signal: org.freedesktop.DBus.ObjectManager.InterfacesRemoved (/): ['/org/bluez/hci0/dev_50_C0_F0_AE_7C_0E', ['org.freedesktop.DBus.Properties', 'org.freedesktop.DBus.Introspectable', 'org.bluez.Device1']]",
+      "2026-10-13 10:59:04,186 bleak.backends.bluezdbus.client MainThread DEBUG: _cleanup_all(/org/bluez/hci0/dev_50_C0_F0_AE_7C_0E)",
+      "{\"ok\": false, \"error\": \"TimeoutError\", \"type\": \"TimeoutError\"}"
+    ],
+    "trace_sha256": "1fda3b9d2f24c10dea4935f010580d149626abd5f47f5f82fd8f4a7ceb85e520",
+    "conclusion": "Advertised target found; BlueZ connection did not complete within 20s; no diagnostic comparison. Cause unestablished, not attributed to RSSI alone."
+  },
+  "mac_final_info": {
+    "serial": "C261CF0430",
+    "bound": false,
+    "device": {
+      "total_capacity": 59634,
+      "free_capacity": 59598,
+      "charging": false,
+      "battery": 100,
+      "recording_state": "idle",
+      "version": "010004",
+      "usb_mode": true,
+      "mode": "note",
+      "indicator_light": null,
+      "noise_reduction": 9,
+      "voice_control": null,
+      "segment_duration": 3,
+      "screen_backlight": false,
+      "raw": "0000e8f20000e8ce0064000100040101ff78696e6b5f746573740000000000000000000000000009ff0300000000000000000000"
+    }
+  }
+}

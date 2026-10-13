@@ -13,6 +13,11 @@ Wi-Fi的实际固件、App与精确型号证据由[专题汇总](../wifi-capabil
 新工具guard与旧工具Actions-only对照均帧错误；未启动录音、未取得运行GPIO/ADC快照。
 新连接确认NOTE待机；暂停读取路线。[解释与限制](../note-call-audio-2026-10-13.md)。
 
+[独立旧帧逐字节对照](log-fragment-loss-2026-10-13.json)：首512 B一致，第二帧缺首244 B、后268 B一致；
+`uv run tools/verify_log_fragment_loss.py`可离线复验，不重建缺字节。
+[SDK发送链及Ubuntu对照](log-fragment-host-control-2026-10-13.json)：可见源码未建立丢片根因，
+Linux两次停于连接阶段，Mac最终NOTE/idle；不是修复或可靠传输验收。
+
 ## USB配置往返与主机枚举，2026-10-13
 
 [脱敏实机摘要](usb-settings-live-2026-10-13.json)：USB_COPY on→off→on读回通过，
