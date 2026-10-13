@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-13",
+  "firmware": "010004",
+  "owner_reported_setup": {
+    "mode": "CALL",
+    "magnetically_attached_to_phone_back": true,
+    "charging_cable_connected": false,
+    "output_route": "phone loudspeaker, explicitly confirmed",
+    "video_loop_minutes_approx": 4,
+    "phone_volume_percent_approx": 30
+  },
+  "before_device_info": {
+    "total_capacity": 59634,
+    "free_capacity": 59599,
+    "charging": false,
+    "battery": 100,
+    "recording_state": "idle",
+    "version": "010004",
+    "usb_mode": true,
+    "mode": "call",
+    "indicator_light": null,
+    "noise_reduction": 9,
+    "voice_control": null,
+    "segment_duration": 3,
+    "screen_backlight": false,
+    "raw": "0000e8f20000e8cf0064000100040102ff78696e6b5f746573740000000000000000000000000009ff0300000000000000000000"
+  },
+  "recording": {
+    "start": {
+      "action": "start",
+      "name": "20261013095139",
+      "reply_hex": "00323032363130313330393531333900"
+    },
+    "stop": {
+      "action": "stop",
+      "name": "20261013095139",
+      "reply_hex": "0032303236313031333039353133390003ab8a0001",
+      "size": 240522,
+      "need_sync": true,
+      "ok": true,
+      "state_before": "recording",
+      "state_after": "idle"
+    },
+    "tail_seconds": 1
+  },
+  "audio": {
+    "bytes": 240522,
+    "sha256": "a20cccdc3934e00ec1afa832a1c0eebc867191ba8930b5204a4f0630b7815414",
+    "realtime_equals_complete_download": true,
+    "ffprobe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "16000",
+          "channels": 1,
+          "bit_rate": "32000"
+        }
+      ],
+      "format": {
+        "duration": "60.130500",
+        "size": "240522"
+      }
+    },
+    "full_ffmpeg_decode_exit_code": 0,
+    "decoded_overall_peak_dbfs": -3.179423,
+    "decoded_overall_rms_dbfs": -25.205896,
+    "decoded_samples": 962496
+  },
+  "download": {
+    "scope": "complete_recording",
+    "offset": 0,
+    "transfer_seconds": 6.990213666984346,
+    "average_bytes_per_second": 34408.39028083155
+  },
+  "limitations": [
+    "Single loudspeaker CALL sample; no NOTE or receiver comparison yet.",
+    "Video start phase not controlled; not a microphone routing, sensitivity or speech intelligibility measurement.",
+    "No source reference or listening assessment; nonzero audio levels alone do not establish successful speech capture.",
+    "File duration about one minute; download timing is for this file, not sustained long-transfer acceptance.",
+    "Audio and raw logs retained only in ignored artifacts."
+  ]
+}

@@ -15,6 +15,19 @@
 
 实验后文件列表由8条变10条，原8条元数据不变，新增恰为两段自建样本；保留样本，未删除文件。原录音内容未重新下载，不能把列表核对写成原文件字节校验。设备停在用户确认的 CALL，等待下一轮手机播放对照；未声称已恢复 NOTE。
 
+## 手机扬声器外放：一分钟 CALL 基线
+
+[2026-10-13现场证据](evidence/note-call-phone-2026-10-13.json)。用户确认：录音卡磁吸手机背面、拔充电线、CALL；手机扬声器外放约4分钟循环视频，音量约30%。采集前读回CALL、idle、未充电、降噪9。CLI录制60s并停止，停止读回idle。
+
+- 完整文件240,522 B；实时通知拼接与完整下载逐字节一致，SHA-256 `a20cccdc3934e00ec1afa832a1c0eebc867191ba8930b5204a4f0630b7815414`。
+- ffprobe：60.1305s、MP3、16 kHz、mono、32 kbps；ffmpeg完整解码exit0。
+- ffmpeg `astats=metadata=0:reset=0` 解码总体峰值−3.179423 dBFS、RMS−25.205896 dBFS、962496样本。这些是音频电平，不是声压级、可懂度或麦克风灵敏度。
+- 完整下载6.9902s，34,408 B/s（约33.6 KiB/s）。一分钟文件可在约7秒导出；不外推长录音持续速度或无丢包保证。
+
+视频播放相位未控制，本段没有同步声源参考、NOTE或听筒对照，未作试听判断。扬声器同时向空气发声，不能由这段确定接触拾音器/骨传导路由。下一步优先让电话自动语音走听筒，保持贴附、CALL、未充电；用户确认准备后再采集。若比较模式，尽量重复同一段提示音；不同内容不用于模式优劣判断。
+
+本地私有音频/日志在 `artifacts/note-call-phone-2026-10-13/`，只提交数值和协议证据。复验命令（`FILE`为本次完整下载的MP3）：`ffprobe -v error -show_entries stream=codec_name,sample_rate,channels,bit_rate:format=duration,size -of json FILE`；`ffmpeg -hide_banner -nostdin -i FILE -af astats=metadata=0:reset=0 -f null -`。实时文件与完整下载另做字节比较。
+
 以下均为**离线静态证据**；未读物理 GPIO 电平、未测增益效果、未执行新固件。
 
 [原始字节与完整/局部指令范围](evidence/note-call-static-2026-10-13.json)绑定[原厂 system](evidence/minimal-image-2026-10-13/original-system.bin.gz)：解压927632 B，SHA-256 `ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f`。地址、offset、消息号采用十六进制；表内注明十进制的数值例外。使用 Capstone，代码、TBB 与池数据分开保存；未执行代码或递归展开 DSP。
