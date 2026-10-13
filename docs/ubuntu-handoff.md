@@ -55,6 +55,7 @@ uv run tools/verify_linux_log_capture.py artifacts/linux-att-bind-check
 ## 不能丢的其他结论
 
 - 用户重新要求国内第三方代码获取：[续查收据](evidence/domestic-sdk-renewed-2026-10-13.json)/[材料分类](domestic-sdk-followup-2026-10-13.md#renewed-domestic-pass-source-acquired-exact-older-lark-package-identified)。两份Gitee Actions Android SDK源码已克隆并固定版本；新精确LARK目标为`SDK-TAG_ZS308A_2700_220112`及`ATS308x_zs308A`应用文档。同系列221215仓库为空、SDK30F附件属2004年Z80，不能当匹配BSP；目前仍未取得M4芯片层整包。没有因此重开日志/ROM实验。
+- [精确上传者补查](evidence/domestic-sdk-owner-followup-2026-10-13.json)已覆盖全部303公开仓库、相关Zephyr/VG-Lite fork及7个匿名7z附件；附件目录均为GPCV6248相机SDK，未取得匹配M4包。此上传者的已记录入口无需再从头枚举；新包/ref/下载链接或板级退出证据到来后继续主线。
 - [日志缺片复验](log-buffer-wrap.md)：Mac失败捕获相对独立旧成功帧缺首244 B，后268 B完全匹配；不是解析器误切，也不能只用封帧前ring丢文本解释。Linux已缩小到HCI观察点之前，仍不能把SDK潜在bug直接当本机根因。
 - [NOTE/CALL](note-call-audio-2026-10-13.md)：模式/文件枚举已真机纠正；选定BLE START不强制同模式；132项增益表与LARK SDK匹配，请求36.5/40.5 dB，ADC字段不同。运行GPIO/ADC和物理拾音器切换仍未读回，用户说听起来相近。
 - 完整系统、boot0、recovery、DSP及部分配置已取得；**不是完整4MiB原始NOR备份**。无可靠原厂恢复、ROM独立退出或自写固件上机证明。不要为了进度盲进ROM、执行helper或刷写。

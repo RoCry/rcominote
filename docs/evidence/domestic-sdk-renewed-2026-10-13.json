@@ -395,5 +395,17 @@
     ]
   },
   "forum_followup_receipt_sha256": "0e690c1e530ff24522de57be686b25d590721da87dd043aad71ffc92797a6b1a",
-  "search_receipts_directory": "artifacts/domestic-sdk-renewed-2026-10-13/"
+  "search_receipts_directory": "artifacts/domestic-sdk-renewed-2026-10-13/",
+  "subsequent_exact_owner_followup": {
+    "receipt": "domestic-sdk-owner-followup-2026-10-13.json",
+    "public_repositories": 303,
+    "pagination_counts": [
+      100,
+      100,
+      100,
+      3
+    ],
+    "attached_7z_archives_inspected": 7,
+    "note": "Earlier first100/undownloaded-archive statements describe the initial pass; followup closes these specific gaps without matched M4 acquisition."
+  }
 }

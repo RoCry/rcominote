@@ -47,6 +47,17 @@ document. Note content and complete2205-entry repository tree were inspected;
 no matched package acquired. Two related backup trees also supply no matched
 named payload; arbitrary unrelated archives were not treated as SDKs.
 
+**Exact-uploader follow-up:** [independent receipt](evidence/domestic-sdk-owner-followup-2026-10-13.json)
+completes all303 public repositories (pages100/100/100/3). Relevant Zephyr fork
+is an independently verified upstream commit; VG-Lite fork is NXP middleware.
+Companion Zephyr readme/script only link upstream SDK0.16.1; BLE note gives
+vendor API names without a package link. Seven ambiguous `hello*.7z`/`test*.7z`
+attachments were subsequently downloaded and Git-blob verified: complete header
+listings1215–1223 entries each, all rooted at `GPCV6248_HuntingCam_SDK_20211119`,
+no ATS308/ZS308/LARK/Zephyr/Actions-named paths. No extraction or code execution.
+This closes the initial first100-repository/unknown-archive gaps for this uploader;
+it does not audit arbitrary contents of all303 repositories or prove global absence.
+
 The newly found [ZS308A221215 repository](https://github.com/lgpww/SDK-TAG_ZS308A_2700_221215_REL3_N)
 is **empty**: metadata size0, normal `git ls-remote` succeeds with zero refs,
 release list empty. Keep this rejection so its promising name is not rediscovered

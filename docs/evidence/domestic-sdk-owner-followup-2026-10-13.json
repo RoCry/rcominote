@@ -1,0 +1,226 @@
+{
+  "scope": "Follow exact ATS3085C-note uploader to completion; inspect related unnamed source archives by header only; no source execution or hardware I/O",
+  "verified_at": "2026-10-13T04:26:28.159431+00:00",
+  "owner_followup": {
+    "date": "2026-10-13",
+    "task": "Complete public repositories of exact ATS3085C note uploader; bounded additional three pages",
+    "owner": "peterlintang",
+    "endpoint": "https://api.github.com/users/peterlintang/repos?per_page=100&page={page}",
+    "pages": [
+      {
+        "page": 1,
+        "count": 100,
+        "receipt": "../astra/peterlintang-repos.json",
+        "previously_acquired": true
+      },
+      {
+        "page": 2,
+        "count": 100,
+        "receipt": "peterlintang-repos-page2.json"
+      },
+      {
+        "page": 3,
+        "count": 100,
+        "receipt": "peterlintang-repos-page3.json"
+      },
+      {
+        "page": 4,
+        "count": 3,
+        "receipt": "peterlintang-repos-page4.json"
+      }
+    ],
+    "total_public_repositories": 303,
+    "pagination_complete": true,
+    "findings": [
+      {
+        "repository": "peterlintang/zephyr",
+        "commit": "149df6b61b6b3baee686cd62c9eb92237ff58d84",
+        "branches": [
+          "main"
+        ],
+        "fork_parent": "zephyrproject-rtos/zephyr",
+        "classification": "Upstream Zephyr commit independently resolves in upstream repository; only advertised branch is main. Root soc directory and soc/arm contain no Actions or LARK vendor layer.",
+        "receipts": [
+          "zephyr-repo.json",
+          "zephyr-branches.json",
+          "zephyr-upstream-commit.json",
+          "zephyr-soc-root.json",
+          "zephyr-soc-arm.json"
+        ]
+      },
+      {
+        "repository": "peterlintang/vglite_zephyr",
+        "commit": "1785a1d6309a17318c1d09352385e0e8040b6aac",
+        "fork_parent": "dberlin/vglite_zephyr",
+        "classification": "Small NXP Vivante VG-Lite graphics middleware Zephyr port. Complete recursive tree, NXP support source and MCUX/i.MX RT500/RT1170 changelog; not Actions/LARK SoC BSP or board firmware.",
+        "receipts": [
+          "vglite-repo.json",
+          "vglite-main.json",
+          "vglite-tree.json",
+          "vglite-Kconfig.txt",
+          "vglite-nxp_support.c",
+          "vglite-ChangeLogKSDK.txt"
+        ]
+      }
+    ],
+    "other_relevant_metadata": "MCU/SDK/OTA names map to generic libraries or other vendors: STM32 CMSIS/USB, RT-Thread ota_downloader, ESP Tasmota, Memfault, NXP ISSDK, generic mcu_bsdiff_upgrade/HPatchLite/mOTA. No additional Actions/ATS308/LARK repository or matching SDK download link identified in complete owner metadata.",
+    "archive_scope": "Archive payload examination is independently recorded below; original subagent receipt retains its earlier inspection boundary.",
+    "archive_history": [
+      {
+        "path": "bak/test.7z",
+        "commit": "b40f2f50f7b7012ca732b85753b1aab4497fe183",
+        "message": "bak",
+        "date": "2022-04-02T07:06:12Z",
+        "receipt": "test-archive-commits.json"
+      },
+      {
+        "path": "bak/hello.7z",
+        "commit": "9f52b927058360e8b6775172d0b2dafe25e4cfc8",
+        "message": "my test",
+        "date": "2022-04-09T06:39:42Z",
+        "receipt": "hello-archive-commits.json"
+      }
+    ],
+    "conclusion": "Complete public owner metadata and the two specifically relevant forks yielded no additional matching M4 SDK or package download link.",
+    "limits": "Complete public repository listing, not exhaustive contents of all 303 repositories. No hardware access, no foreign code execution, no tracked changes."
+  },
+  "notes_checkout": {
+    "repository": "https://github.com/peterlintang/normal-data-types",
+    "commit": "17f59dabf77d3876530130254844e6ef5c531731",
+    "local": "/home/rocry/w/_tmp/comi-3085c-notes",
+    "method": "Shallow blob-filtered clone, no checkout; selected blobs read with git show"
+  },
+  "companion_files": [
+    {
+      "path": "README.md",
+      "bytes": 95,
+      "sha256": "b989160cab8b48a5c737923406360137977325b807bd539bbcf2c54a794c6e65"
+    },
+    {
+      "path": "bak/readme.txt",
+      "bytes": 3255,
+      "sha256": "6a97a79d71c80684b1ce9653a66e2a98e8cc1af462238af1d4c0eb637802bbfa"
+    },
+    {
+      "path": "bak/ReadMe.txt",
+      "bytes": 2155,
+      "sha256": "c2692b5c177823d1bf5d7be398a0befd6245758588db91caae37bfd692b2ac07"
+    },
+    {
+      "path": "bak/zephyr-readme.txt",
+      "bytes": 1796,
+      "sha256": "efe563b0823bac6f5a3af6f22b1938245da10eded361d1080156241f797e5143"
+    },
+    {
+      "path": "bak/zephyr.sh",
+      "bytes": 1213,
+      "sha256": "ee8de4de1c01ab3eb05d00d44772e54652202b18341b02124a92ad958b085e22"
+    },
+    {
+      "path": "bak/3085c蓝牙ble通信.txt",
+      "bytes": 449,
+      "sha256": "40d7c4ba5ba124fe2e191b11bb9048b34b36d99206b4b3c2036f440c1e63f892"
+    }
+  ],
+  "companion_findings": [
+    "Zephyr readme/script link upstream zephyrproject-rtos SDK0.16.1 and generic west setup, not Actions/LARK vendor source",
+    "BLE note documents bt_manager_ble_service_reg/bt_manager_ble_send_data and MSG_BT_ENGINE_READY; no archive URL",
+    "README identifies general data-structure/algorithm and unarr archive-library work; this context alone did not establish compressed payload identity"
+  ],
+  "archive_method": "All seven known hello/test7z blobs were acquired; Git blob SHA1 verified against pinned complete tree; libarchive returned EOF after complete header enumeration; no extraction or payload execution",
+  "archive_total_bytes": 156189768,
+  "archives": [
+    {
+      "archive": "bak/hello.7z",
+      "bytes": 22457066,
+      "blob_sha1": "4157b13855edddc960b314c6eb6ea925db63768a",
+      "sha256": "415fbc8b37dc48aefbc7089141a76b0618e951427c1f957cb65b0d08b63f540a",
+      "entry_count": 1218,
+      "top_level": [
+        "GPCV6248_HuntingCam_SDK_20211119"
+      ],
+      "named_platform_matches": [],
+      "listing_sha256": "38b3cb31d40fa86d842851e53720f64008784b4e48454090e14efc43eae156d5"
+    },
+    {
+      "archive": "bak/hello2.7z",
+      "bytes": 22381437,
+      "blob_sha1": "e47de85eda39e550ed37b0124d99b1de74acf393",
+      "sha256": "fddd01959a78984ef32123d70a4444e6f28fe1cf74c62c9193a8a2be033f3c60",
+      "entry_count": 1219,
+      "top_level": [
+        "GPCV6248_HuntingCam_SDK_20211119"
+      ],
+      "named_platform_matches": [],
+      "listing_sha256": "bcb52f6a99a523e61e6db7b9f6c6af0d1950bc0200c242aedf3879e942ce1a96"
+    },
+    {
+      "archive": "bak/test.7z",
+      "bytes": 21737037,
+      "blob_sha1": "598eff05cbf79bd24d9526b0abae979b97dbdc3c",
+      "sha256": "97c6f7076c70b33710808d1ecc7074c5b5076cb37b33c5b153345091c23a3db1",
+      "entry_count": 1215,
+      "top_level": [
+        "GPCV6248_HuntingCam_SDK_20211119"
+      ],
+      "named_platform_matches": [],
+      "listing_sha256": "a6ed9f50d14386f7ac2b015680665b39e92f23752b14caf032ac0cb8baf38f60"
+    },
+    {
+      "archive": "bak/test2.7z",
+      "bytes": 22377832,
+      "blob_sha1": "0273296db91d466d3c9dcc19fc01ac9bc1448598",
+      "sha256": "c876580f644bdc3b22fc9d6ab377927bbeb99f0f7ee5cc926357f7f5536c74a4",
+      "entry_count": 1219,
+      "top_level": [
+        "GPCV6248_HuntingCam_SDK_20211119"
+      ],
+      "named_platform_matches": [],
+      "listing_sha256": "b89f427398360af24a82fb13c4758061cd1760eb32251f1829c33e990bbb354c"
+    },
+    {
+      "archive": "bak/test3.7z",
+      "bytes": 22470488,
+      "blob_sha1": "5502870f3b98cf7a0c77b13cda9c524144486c0b",
+      "sha256": "491fa3958315429455d3c17076231ab5aeaee9a60b4cd5486d06e9777c891d06",
+      "entry_count": 1221,
+      "top_level": [
+        "GPCV6248_HuntingCam_SDK_20211119"
+      ],
+      "named_platform_matches": [],
+      "listing_sha256": "6d23b5a3d58507cd29754aa5ba2105dcbc1016921d29ad18bc74b0e8707f5270"
+    },
+    {
+      "archive": "bak/test4.7z",
+      "bytes": 22383342,
+      "blob_sha1": "c36701e6b003f56e52a8f1d156ea9634ed2c446a",
+      "sha256": "e7dfa0f946301c38581b57f459cd2cace681a75eb1fab197aaf37e5cb1529231",
+      "entry_count": 1222,
+      "top_level": [
+        "GPCV6248_HuntingCam_SDK_20211119"
+      ],
+      "named_platform_matches": [],
+      "listing_sha256": "9776bbe2fe78dc506f3c860d892b8906a66bc6408f7b158fb2e00afa260087ad"
+    },
+    {
+      "archive": "bak/test5.7z",
+      "bytes": 22382566,
+      "blob_sha1": "36fd8c9b82f07874830afd3d93662c3c36da97d3",
+      "sha256": "088e8b97d805bc13dadfa670f7f52c7fead3c94543546955a6dc681e71924ac2",
+      "entry_count": 1223,
+      "top_level": [
+        "GPCV6248_HuntingCam_SDK_20211119"
+      ],
+      "named_platform_matches": [],
+      "listing_sha256": "19bb22384376027b7da5a3794b47be72ce32eac166c3d5b5133b3c7763b96c90"
+    }
+  ],
+  "archive_classification": "All seven roots are GPCV6248_HuntingCam_SDK_20211119;1215..1223 entries each; no ATS308/ZS308/LARK/Zephyr/Actions-named paths. Source tree names identify a different camera-platform candidate, not an acquired matched Actions M4 BSP.",
+  "raw_receipts": "artifacts/domestic-sdk-renewed-2026-10-13/followup/",
+  "conclusion": "This exact uploader/package lead is exhausted within public owner metadata, named companion files, relevant forks and seven attached ambiguous archives. Matching ZS308A/LARK package payload still not acquired.",
+  "limits": [
+    "Public repository list complete at query time; arbitrary contents of all303 repositories not audited",
+    "Archive headers/paths inspected, not semantic analysis or compilation of camera SDK source and binary members",
+    "No claim of internet-wide source absence; no new physical reset/cable evidence, complete raw NOR, factory recovery or own-firmware hardware run"
+  ]
+}
