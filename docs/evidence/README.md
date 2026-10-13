@@ -5,6 +5,14 @@
 本页是证据历史，不是待办清单；执行优先级只看[当前路线](../research-routes.md)。
 Wi-Fi的实际固件、App与精确型号证据由[专题汇总](../wifi-capability-2026-10-13.md)串联。
 
+## NOTE/CALL增益与失败读回，2026-10-13
+
+[47段固定镜像字节及SDK合同](note-call-runtime-static-2026-10-13.json)：
+闭合选定BLE START异步路由；132项增益表全部匹配LARK源码，365/405分别请求
+36.5/40.5 dB、ADC字段不同。[两次诊断失败与原始通知](note-call-runtime-attempt-2026-10-13.json)：
+新工具guard与旧工具Actions-only对照均帧错误；未启动录音、未取得运行GPIO/ADC快照。
+新连接确认NOTE待机；暂停读取路线。[解释与限制](../note-call-audio-2026-10-13.md)。
+
 ## USB配置往返与主机枚举，2026-10-13
 
 [脱敏实机摘要](usb-settings-live-2026-10-13.json)：USB_COPY on→off→on读回通过，

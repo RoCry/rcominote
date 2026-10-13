@@ -14,7 +14,7 @@
 | 固件存储 | [ACPT 实读 CRC 通过](partition-readback.md)：18项连续覆盖4 MiB；[缓存 JEDEC ID](nor-driver-readback.md) `16405e` 对应 Zbit32 Mbit 系列 | NOR 与用户录音存储分离；具体型号、接线及完整物理读回待确认 |
 | 录音存储 | [实际驱动与状态](card-state-readback.md)：SD 协议、MMC_1、122138624×512 B = 62,534,975,488 B | 不把“64 GB”当固件 Flash 或 eMMC 身份；实体存储封装仍未知 |
 | 系统 | [实机 shell](device-diagnostics.md)返回 Zephyr2.7.0；[初始化表](init-audio-board-evidence.md)已定位 | 与 Actions SDK 有共同接口/格式；不是可重建的完整源代码 |
-| 音频 | [实际录音配置](recorder-media-config.md)：16 kHz、16-bit、单声道、MP3/32 kbps；[codec 分派](recorder-codec-dispatch.md)用 `mp3e` / `aeRECORD.dsp`；[随机说明书](manual-2026-10-13.md)记载模拟硅麦+骨传导麦，CALL贴手机收音 | 已有两类拾音器的产品文档依据；精确数量、NOTE/CALL选路、供电与 DMA/时钟配方仍缺；单声道不等于单麦 |
+| 音频 | [实际录音配置](recorder-media-config.md)：16 kHz、16-bit、单声道、MP3/32 kbps；[codec 分派](recorder-codec-dispatch.md)用 `mp3e` / `aeRECORD.dsp`；[说明书](manual-2026-10-13.md)记载模拟硅麦+骨传导麦；[模式核对](note-call-audio-2026-10-13.md)定位相反GPIOB18请求、36.5/40.5 dB增益及不同ADC字段 | 软件模式和静态配置已区分；现场GPIO/ADC读回因日志帧失败暂挂。精确麦数量、外部接线、实际切换、供电与 DMA/时钟配方仍缺 |
 | 屏幕 | [实际驱动](display-board-evidence.md)：CH1115标签、72×40、I2C_0/0x3c、GPIOA24/25；[pinmux](board-pinmux-evidence.md)：GPIO14/15为总线候选 | 可约束移植；物理控制器、SCL/SDA方向、电压未确认 |
 | 通信 | [BLE 客户端](cli-capabilities.md)可查状态、录音、下载；[USB 插拔对照](usb-log-probe.md)未归属到 CoMi 枚举 | 普通模式未枚举不证明无 USB 数据通路；ROM 下载模式尚未实测 |
 

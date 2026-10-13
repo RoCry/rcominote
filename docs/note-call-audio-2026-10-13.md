@@ -41,7 +41,7 @@
 
 后续用户试听反馈：**“感觉两个都几乎一样了”**。记录为本条件下未感到明显差异，非盲测/同步片段的等效性证明。模式状态和文件分类已确认切换，但实际GPIO电平、拾音器归属及声学切换效果尚未确认；不能将“模式编号正确”扩大成“麦克风切换正常”。
 
-针对此疑问，有界复核同一固定system：BLE START的直接handler `1000abf4`不写`ctx+470`或调用模式GPIO helper，而请求进入view37；常规启动`1000d9f0→1000da9c→1000d6a4`不覆盖模式，producer仍按当前模式选择gain。另一入口`1000dca8→1000dd2e`按参数选择mode1/2，也不是固定模式。常规START依赖此前手动切换留下的GPIO状态。已审路径不支持“CLI把两模式强制成同一路”的解释；异步UI桥及全部下层副作用未完整展开，仍不宣称整个硬件切换链正常。
+针对此疑问，[补充静态证据](evidence/note-call-runtime-static-2026-10-13.json)闭合了选定的异步UI桥：BLE opcode06→`1000abf4`→view37 handler `100142a4`→layout `10014314`→`1000d2d4`向launcher发送typeCD/cmd0→`100093b8`→`1000d9f0`→producer `1000d6a4`。这条启动路径未直接覆盖模式或调用模式GPIO helper；producer仍按当前模式选择gain。另一入口`1000dca8→1000dd2e`按参数选择mode1/2，也不是固定模式。常规START依赖此前手动切换留下的GPIO状态。已审路径不支持“CLI把两模式强制成同一路”的解释；这是静态消息路由，不是现场执行trace，未递归审完所有通用helper或后台副作用。
 
 **真实失败序列**：NOTE采集`realtime --record --duration 20`退出1，错误为断连且同连接清理失败；新连接GET_INFO明确仍为recording；另一次`record stop`返回文件名、长度和idle，随后该文件完整下载、长度/hash核对、解码成功。断连发生的具体阶段和原因未捕获；不能归因于NOTE、听筒或手机干扰。失败没有发布成功的实时文件，也没有把离线补救写成实时一致。
 
@@ -92,9 +92,29 @@ NOTE/CALL 栏按实际文件名前缀命名，与上面的独立屏幕/回复对
 
 `1000207c` 将增益写到 policy+0a，再将 policy 指针交给 `100571e8`，保存于 `180195b0`。录音 constructor `10057290` 对 stream10 调用 `100570cc`；其 TBB 进入 `10057100`，从 policy+0a **有符号读取**输入gain。`10057306` 存入对象+0e，随后 `10057336..38` 连同相邻字段搬到 adapter 参数；其中 P+0a 就是该gain。
 
-[完整 adapter](audio-parameter-adapter.md) `1002abb4` 将 P+0a 复制到四个 ADC gain 字段；[既有 policy](audio-parameter-adapter.md)对 stream10 保持 channel8/key4000。这是同一 ADC 入口使用不同gain的证据，**不证明切换了哪个芯片内部ADC通道，更不证明安装四颗麦克风**。本轮不把365/405赋予dB单位。
+[完整 adapter](audio-parameter-adapter.md) `1002abb4` 将 P+0a 复制到四个 ADC gain 字段；[既有 policy](audio-parameter-adapter.md)对 stream10 保持 channel8/key4000。这是同一 ADC 入口使用不同gain的证据，**不证明切换了哪个芯片内部ADC通道，更不证明安装四颗麦克风**。补充核对已建立增益单位和实际ADC字段，见下。
 
 gain写入发生在 producer 创建录音链时。**仅待机切换模式，`180015e2`可能仍保留前次录音值**；应在对应模式录音已启动后观察，不能把待机旧值判为异常。两个已知producer caller `1000da9c`、`1000dd2e`都进入同一参数构造；后者所在 `1000dca8..1000dd4c` 先设置模式和GPIO，再创建文件/媒体。
+
+### 已核实增益单位与硬件字段；尚无现场读回
+
+[固定SDK的API合同](https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/include/drivers/audio/audio_in.h#L292-L301)定义请求值为dB的10倍。实际系统`100bfd54`的132项、每项6 B增益表，与同一commit的[phy_lark ADC表](https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/drivers/audio/phy_lark/phy_audio_adc.c#L706-L839)全部字段一致；实际选择器取首项gain≥请求，365/405均精确命中不同项。47段原始字节已逐项与固定system核对，SDK文件及表hash见补充静态证据。
+
+| 配置 | NOTE | CALL |
+|---|---|---|
+| 请求输入增益 | 36.5 dB | 40.5 dB |
+| 表index（十进制） | 44 | 52 |
+| input_res / feedback_res / digital_gain | 1 / 13 / 4 | 2 / 14 / 3 |
+| ADC ch0 digital：`4005c104 & 0000000f` | `4` | `3` |
+| ADC ch0 analog：`4005c130 & 0000f003` | `0000d001` | `0000e002` |
+
+实际key4000板级映射为`03,00,00,00`；匹配LARK驱动解释为ch0差分输入，其余禁用，并跳过单端输入的+60补偿。两模式不是请求不同却量化到同档；数字字段单独较小不代表总增益更低，需连同模拟字段解释。**4 dB是API请求差，不是最终录音响度实测差**；这些配置不识别外部拾音器、隔离程度或物理麦克风数量。不能仅据此解释听起来相似的原因。
+
+固定地址实验工具在`src/rcominote/experiments/audio_state.py`，需显式`--record`：先校验本地镜像hash、设备身份和现场代码字节，之后才启动一段自有录音；读取mode/policy/gain及三个32位寄存器，并按文件名核对录音归属再停止。只允许固定读地址；不写RAM/MMIO。寄存器读依据是实际驱动的普通LDR/读改写，尚无独立芯片手册证明。**工具未通过真机验收，不是可用CLI能力。**
+
+[现场失败与对照](evidence/note-call-runtime-attempt-2026-10-13.json)：首次在第一条代码guard的`mdb+help`阶段发生日志帧错误`20636c6561`，未发送录音START、未读运行RAM/MMIO。改用已有Actions-only诊断profile `commands`作一次对照，仍在504 B文本帧后收到非协议头`7973696361`。因此新工具同时订阅Boyi不是唯一解释；尚不能定位固件发送、BLE送达或其他层。两次均尝试日志STOP但未确认结束帧；随后独立GET_INFO成功，设备NOTE、idle、未充电，设置与容量字段不变。没有重启或刷写。
+
+暂停现场读回，不丢弃错误字节、不自动重试、不将部分行当完整快照。原始对照通知已入库，离线回放验证严格拒绝；实验工具补充原始通知/残留和主错误保留。重开条件：已有明确的日志完整性修复或独立可靠读取通道；无需用户为了此失败反复切模式。若通道恢复，先验NOTE录音中ADC字段，成功后才安排CALL对照。
 
 ### +3c 是降噪索引，不是麦模式
 
@@ -112,4 +132,4 @@ opcode17 setter `1000af98` 将输入byte写 `ctx+0c`，用实际 `DENOISE_IDX` �
 
 保持USB、降噪等其他设置不变；由用户按说明书在待机切NOTE/CALL，分别保留显示模式、原始GET_INFO/event、一次短录音的START/STOP/列表种类与音频。若需定位电路差异，只比较已证明的模式byte、录音启动后的gain半字和GPIOB IDAT bit18；不写RAM、不探测未知寄存器、不扩大采集范围。最后恢复原模式并核对状态。
 
-停止条件：原始回复/显示/文件种类足以解决标签；静态与有界读回足以判断GPIO/gain是否随模式变化后，不继续逐ADC或DSP callee展开。物理拾音器精确数量/接线、gain单位、DSP内部算法仍未知，等匹配资料或明确听音问题再继续。这些结果增加音频BSP知识，不解除首次运行、整机恢复或完整NOR备份门槛。
+停止条件：标签、选定启动路由、增益单位及寄存器预期已解决；现场读取因日志完整性失败暂挂，不继续逐ADC或DSP callee展开。物理拾音器精确数量/接线、GPIO/ADC实际状态、DSP内部算法仍未知，等匹配资料或可靠通道再继续。这些结果增加音频BSP知识，不解除首次运行、整机恢复或完整NOR备份门槛。

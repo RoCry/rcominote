@@ -32,8 +32,9 @@ USB配置往返及on后拔插均未出现新USB接口。原配整根磁吸线的
 | 客户端 | 固定官方App的[23个请求opcode均有主机路径](docs/remaining-client-contracts.md)，不等于全部实机验收。BLE状态、录音控制、文件下载、部分配置已实测；[短窗口实时流与离线MP3逐字节相同](docs/realtime-live.md)，不保证长时无丢失 |
 
 下一步核心依赖是匹配BSP/生产包、板级与独立退出证据；没有新入口时不重复泛搜。
-可独立推进一次NOTE/CALL→ADC/DSP的有界离线核对，补充自写录音固件所需知识；
-它不替代恢复条件。[当前路线与停止条件](docs/research-routes.md)。
+[NOTE/CALL音频核对](docs/note-call-audio-2026-10-13.md)已确认软件模式、启动路由及不同ADC增益配置；
+现场GPIO/ADC读回因日志完整性失败暂挂，尚不能确认实际拾音器切换。它不替代恢复条件。
+[当前路线与停止条件](docs/research-routes.md)。
 
 ## 使用 CLI
 
