@@ -8,7 +8,7 @@
 - **可复用**：实际系统、boot0、recovery、DSP、参数槽等已取得；部分 LARK 外设资料、匹配 M4 的最小镜像构建和局部 checker 仿真。[平台地图](device-platform-map.md)。
 - **未完成**：完整物理 NOR 备份、原厂恢复、自写固件在设备运行。参考 SDK 构建和离线校验不替代这些验收。
 - **当前不能提供**：Wi-Fi 快传、USB U 盘、CLI 切换 NOTE/CALL。前两项没有可用本机传输链；后一项只有读状态与手动按钮操作依据。
-- **Linux已到达诊断通道，缺片已缩小范围**：[Ubuntu交接](ubuntu-handoff.md)。CID4 bind修正已真机通过LE/MTU247/服务发现；`help`仍缺244 B，且[HCI已缺该片](evidence/linux-log-hci-loss-2026-10-13.json)，不是Python解析器丢失。完整日志通道未验收；停止重复连接和同条件help测试。
+- **Linux已到达诊断通道，缺片已缩小范围**：[Ubuntu交接](ubuntu-handoff.md)。CID4 bind修正已真机通过LE/MTU247/服务发现；`help`仍缺244 B，且[HCI已缺该片](evidence/linux-log-hci-loss-2026-10-13.json)，不是Python解析器丢失。完整日志通道未验收；短读取加版本查询也在HCI缺24 B尾部，停止重复连接、help或短输出填充测试。
 
 ## 下一步：先解除什么约束
 
@@ -31,7 +31,7 @@
 | Wi-Fi 快传/扩展功能 | 本机无线硬件和入口未证实；相关 Mova/3085S 命令不能移植；[精确型号记录](wifi-radio-model-2026-10-13.md)仅列蓝牙，原始认证待核 | 型号对应的官方 Wi-Fi 流程、无线模块/原始认证或匹配固件实现；不再重复 UI 字符串搜索 |
 | 普通 USB U 盘 | 设置往返、on 后拔插都未枚举；[完整线材的数据接线未验证](usb-next-steps-2026-10-13.md) | 新线材接线/正常模式实现证据；不重复同线同接口的 toggle/replug |
 | NOR 经日志逐扇区批量导出 | 有效证据保留，默认路径已退役，脚本在 `src/rcominote/archive/` | 有界实验先证明吞吐/可靠性实质改善；不用更多重试延续旧任务 |
-| 录音中GPIO/ADC日志读回 | [旧成功帧对照](log-buffer-wrap.md#2026-10-13另一种失败完整帧的首个ble分片缺失)确认首244 B分片缺失；SDK可见层无已证根因。Linux修正版已连接，HCI同样缺片，尚无运行态快照 | 按[Ubuntu交接](ubuntu-handoff.md)以空口证据继续定位，或先证明短输出刷新合同；不重复旧配置诊断或猜测填字节 |
+| 录音中GPIO/ADC日志读回 | [旧成功帧对照](log-buffer-wrap.md#2026-10-13另一种失败完整帧的首个ble分片缺失)确认首244 B分片缺失；SDK可见层无已证根因。Linux修正版已连接，HCI同样缺片，尚无运行态快照 | 按[Ubuntu交接](ubuntu-handoff.md)以新增空口/设备发送证据继续定位；短输出刷新已失败，不重复旧配置诊断或猜测填字节 |
 | 现有 M33 SDK 直接给 CoMi 刷写 | 板型/核/库不匹配；成功参考构建只证明工具链 | 匹配 LARK M4 BSP 或独立兼容性证据 |
 | 原样加载 LARK helper/JLink loader | 初始化会改 NOR 状态/映射；SD loader 接口与本机不符 | 匹配且审清初始化、传输、边界、退出和错误处理的实现 |
 | F5F0 OTA / ATT 请求当备份 | 已审方向是设备索取主机文件，不是导出本机 Flash | 新的实际设备到主机内容导出实现 |
