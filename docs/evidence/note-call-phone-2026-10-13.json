@@ -392,5 +392,10 @@
     "segment_duration": 3,
     "screen_backlight": false,
     "raw": "0000e8f20000e8ce0064000100040101ff78696e6b5f746573740000000000000000000000000009ff0300000000000000000000"
+  },
+  "owner_listening_feedback": {
+    "observation": "感觉两个都几乎一样了",
+    "scope": "Owner impression of receiver CALL and NOTE recordings; not a blind or synchronized comparison.",
+    "interpretation": "No clearly perceived mode difference reported. Does not establish identical input routing or a defective switch."
   }
 }
