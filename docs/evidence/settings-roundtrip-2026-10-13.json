@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-13",
+  "serial": "C261CF0430",
+  "firmware": "010004",
+  "scope": "Existing CLI setting/readback acceptance only; no physical display or timed segmentation proof",
+  "operations": [
+    {
+      "capture": "backlight-on",
+      "setting": "backlight",
+      "before": false,
+      "value": true,
+      "changed": true,
+      "reply_hex": "00",
+      "verification": "device_readback"
+    },
+    {
+      "capture": "backlight-restored",
+      "setting": "backlight",
+      "before": true,
+      "value": false,
+      "changed": true,
+      "reply_hex": "00",
+      "verification": "device_readback"
+    },
+    {
+      "capture": "segment-1h",
+      "setting": "segment",
+      "before": 3,
+      "value": 1,
+      "changed": true,
+      "reply_hex": "00",
+      "verification": "device_readback"
+    },
+    {
+      "capture": "segment-restored",
+      "setting": "segment",
+      "before": 1,
+      "value": 3,
+      "changed": true,
+      "reply_hex": "00",
+      "verification": "device_readback"
+    }
+  ],
+  "independent_new_connection_info": [
+    {
+      "capture": "before-info",
+      "recording_state": "idle",
+      "raw_payload_byte41": 3,
+      "raw_payload_byte42": 0,
+      "raw_payload_39_to43_hex": "09ff0300"
+    },
+    {
+      "capture": "backlight-on-info",
+      "recording_state": "idle",
+      "raw_payload_byte41": 3,
+      "raw_payload_byte42": 1,
+      "raw_payload_39_to43_hex": "09ff0301"
+    },
+    {
+      "capture": "backlight-restored-info",
+      "recording_state": "idle",
+      "raw_payload_byte41": 3,
+      "raw_payload_byte42": 0,
+      "raw_payload_39_to43_hex": "09ff0300"
+    },
+    {
+      "capture": "segment-1h-info",
+      "recording_state": "idle",
+      "raw_payload_byte41": 1,
+      "raw_payload_byte42": 0,
+      "raw_payload_39_to43_hex": "09ff0100"
+    },
+    {
+      "capture": "segment-restored-info",
+      "recording_state": "idle",
+      "raw_payload_byte41": 3,
+      "raw_payload_byte42": 0,
+      "raw_payload_39_to43_hex": "09ff0300"
+    }
+  ],
+  "all_exposed_settings_restored": true,
+  "recording_list_unchanged": true,
+  "physical_effect_verified": false,
+  "reboot_persistence_verified": false,
+  "excluded": [
+    "USB toggle",
+    "null indicator/voice setters",
+    "reset",
+    "firmware writes"
+  ],
+  "side_effects": "Four explicit setters; firmware may persist configuration internally",
+  "private_capture_directory": "artifacts/settings-live-2026-10-13",
+  "normal_recording_count": 7
+}

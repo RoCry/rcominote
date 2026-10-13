@@ -170,6 +170,21 @@ qualifies as verified deletion. List absence does not prove physical/secure eras
 
 The package implements the source-derived explicit setters with readback and rejects unavailable values. This pass additionally observed recording start/pause/resume/stop, recording-info, complete download/sync, and noise9→8→9 with matching state readback. All other setters retain their source-only write-status boundary. Clock synchronization has no known readback getter and was not live-tested. See [validation](evidence/cli-validation-2026-10-12.json) and [usage](cli.md).
 
+### 2026-10-13: two more setters accepted on owned hardware
+
+[Existing CLI roundtrip evidence](evidence/settings-roundtrip-2026-10-13.json),
+FW010004: backlight00→01→00, segment03→01→03. Each of four setters changed
+the reported field; each subsequent independent connection returned the expected
+raw device-info byte42/41. All five info snapshots idle; final full info/settings
+restored exactly, complete before/after recording lists identical at7 files.
+
+Matching response payload00 is retained without assigning ACK semantics.
+Acceptance is reported-field state, not physical screen effect, automatic timed
+segmentation, persistence across reset or all possible values. Setters may trigger
+internal configuration writes. No USB toggle, null indicator/voice setter,
+recording, file deletion, reset or firmware-write request performed in this pass.
+Raw local outputs remain ignored; public evidence omits the recording list.
+
 ## Later firmware research status
 
 Complete owned-device mapped-system export now succeeds: 927632 B, validated header and body checksum; reproducible Ubuntu offline analysis. Actual ACPT contains18 NOR entries over4 MiB logical range. These replace the earlier partial-read status, not the raw-backup/recovery limitations. `diag capture printk-state` and `diag inspect-printk` verify console snapshots; two observations select the UART_0 DMA path. See [current roadmap](firmware-roadmap.md) and [mapping boundary](mapping-candidate-audit.md).

@@ -17,6 +17,13 @@
 原始配置、capture和hash留本地忽略目录，未进入Git；仅合成packer oracle
 纳入测试。[方法、私有离线复验和限制](../factory-rw-backup.md)。不是完整NOR或恢复证明。
 
+## 普通设置往返验收，2026-10-13
+
+[backlight/segment现有CLI实测](settings-roundtrip-2026-10-13.json)：4次变更，
+5次独立连接info；原始byte42验证00→01→00、byte41验证03→01→03。
+最终完整info及设置恢复，7项录音列表不变。仅证明字段读回，不证明屏幕
+物理效果、长时分段或重启持久化；未切换USB或执行删除/复位/固件写入。
+
 ## 首轮实测（419b628）
 
 - [gatt-2026-10-12.json](gatt-2026-10-12.json)：`uv run tools/gatt.py --out artifacts/gatt-2026-10-12.json`，UTC 02:18:21；广告序列号选中 `C261CF0430`，连接后枚举，无应用特征读写/通知订阅。4 个服务，MTU 247，日志服务存在，普通模式 OTA 服务未出现。macOS 缓存/设备当前模式限制仍适用，不是所有模式的证明。

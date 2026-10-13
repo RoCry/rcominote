@@ -124,7 +124,7 @@ uv run comi settings set segment 1h     # 30m/1h/2h/3h
 
 所有setter均显式选择；已有值相同就返回 `already_matches`，不重复发送。设备报告null时拒绝setter。设置后的 `GET_DEVICE_INFO` 必须等于请求值，收到ACK本身不算成功。失败不会自动猜测/追加其他命令。
 
-当前实机确认noise可写并读回；其他setter来自固定官方App源码，设备支持仍以读回为准。segment四档来自App标签映射，不是已证明的固件边界。当前设备indicator/voice报告null，backlight报告false。精确协议依据见 [能力规格](cli-capabilities.md)。
+当前实机确认noise、backlight、segment可写并读回。[2026-10-13往返验收](evidence/settings-roundtrip-2026-10-13.json)：backlight关→开→关，segment3h→1h→3h；每次新连接info原始字段吻合，结束原值恢复、7项录音不变。USB setter未实测，indicator/voice仍报告null。未观察屏幕物理效果、长时自动分段或重启保持；segment四档是App标签，不是已证明的固件边界。精确协议依据见[能力规格](cli-capabilities.md)。
 
 ## 日志、固定诊断与代码样本
 
