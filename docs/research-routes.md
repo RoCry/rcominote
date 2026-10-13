@@ -92,8 +92,10 @@ ordinary smoke tests; retain explicit unverified status. This trial closes the
 new CLI acceptance gap without reopening automatic-resume research.
 [Explicit single-file deletion](file-deletion.md) now covers another documented
 client operation: source-backed request, serial/name confirmation, complete list
-readback, unknown outcome on interrupted exchange. Host tested only; no device
-deletion, secure-erasure proof or platform/recovery advance claimed.
+readback, unknown outcome on interrupted exchange. One newly created scratch
+recording now passes real deletion acceptance after two identical full exports;
+fresh complete list restores original7 entries. No secure-erasure, restart
+persistence or platform/recovery advance claimed; hidden SD files stay outside scope.
 [Remaining official requests](remaining-client-contracts.md) are now grouped as
 explicit maintenance submissions. All23 fixed-App request opcodes have host
 paths; this is encoding/interface coverage, not all hardware effects or hidden

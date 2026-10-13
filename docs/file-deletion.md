@@ -1,7 +1,8 @@
 # Single-recording deletion: source contract and verification boundary
 
-2026-10-13. Host-only review of fixed official CoMi1.1.2 JavaScript. No device
-delete, format, unbind or reset executed. This is a client-capability contract,
+2026-10-13. Initial source review: fixed official CoMi1.1.2 JavaScript,
+host-only. Later bounded hardware acceptance below removes one newly created
+scratch recording. No format, unbind or reset. This is client-capability evidence,
 not firmware-backup or recovery progress.
 
 ## Primary source and independent request oracle
@@ -51,8 +52,8 @@ established by this app source. Preserve raw response and call it
 [Actual dispatcher](vendor-dispatch-followup.md#command-to-call-map) independently
 routes0d at1000b4c6 to1009ee42 with payload pointer/length. That existing evidence
 does not establish the callee's accepted names, unlink result, response timing
-or durable storage semantics. No new callee expansion was needed for this
-source-backed client contract; target deletion remains untested.
+or durable storage semantics. No new callee expansion was needed for the
+source-backed contract; later hardware acceptance is scoped separately below.
 
 ## Explicit CLI contract
 
@@ -91,3 +92,22 @@ completion contracts. In particular, official RESET12 means **factory reset**,
 not an ordinary reboot or independently established hardware escape. The app's
 write-only success and expected disconnect do not prove reset/unbind completed.
 This deletion slice adds no implementation or execution approval for them.
+
+## Owned scratch recording: real CLI acceptance
+
+[2026-10-13 evidence](evidence/delete-live-2026-10-13.json), FW010004:
+
+- Complete baseline7 files, idle. Existing CLI START/STOP returned the same new
+  name`20261013080716`; stopped list had exactly this additional10256-byte entry,
+  original7 entries unchanged. Target was not selected by newest-name inference.
+- Two independent new CLI connections downloaded the full scratch recording.
+  Local bytes identical; length matches STOP and complete-list size. Both audio
+  copies retained privately; audio and original list omitted from public evidence.
+- `comi delete` used exact serial/name confirmation. Raw response00 retained;
+  acceptance came from complete post-list absence, not response semantics.
+  No retry. A fresh connection's complete list equals the original7 entries;
+  finalinfo idle. Existing recordings were never deletion targets.
+
+This closes one real`listed_recording_absence` acceptance case. No secure
+erasure, reboot persistence, original-recording byte comparison, hidden SD-file
+cleanup or firmware recovery claim. Uncertain deletion still must not retry.

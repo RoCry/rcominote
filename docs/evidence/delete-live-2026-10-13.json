@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-13",
+  "serial": "C261CF0430",
+  "firmware": "010004",
+  "scope": "New owned scratch recording removed from complete lists; no secure-erasure or reboot-persistence proof",
+  "scratch_name": "20261013080716",
+  "scratch_size_bytes": 10256,
+  "start_stop_same_new_name": true,
+  "before_count": 7,
+  "created_count": 8,
+  "after_count": 7,
+  "independent_full_downloads": 2,
+  "download_bytes_equal": true,
+  "local_audio_retained": true,
+  "delete_response_received": true,
+  "delete_reply_hex": "00",
+  "delete_result_status": "target_absent",
+  "delete_verification": "absent_from_complete_file_list",
+  "retry_attempted": false,
+  "fresh_connection_list_equals_original": true,
+  "original_list_metadata_unchanged": true,
+  "final_state": "idle",
+  "limitations": [
+    "No byte comparison of original recordings",
+    "No secure erasure verification",
+    "No persistence across reset",
+    "No hidden SD test-file cleanup",
+    "No firmware backup or recovery advance"
+  ],
+  "private_capture_directory": "artifacts/delete-live-2026-10-13",
+  "public_evidence_excludes": [
+    "audio bytes and hashes",
+    "original recording list"
+  ]
+}
