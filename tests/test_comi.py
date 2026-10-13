@@ -56,6 +56,21 @@ class WireTests(unittest.TestCase):
         self.assertEqual(info["version"], "010004")
         self.assertEqual(info["recording_state"], "idle")
 
+    def test_mode_matches_owner_screen_and_live_info_pair(self):
+        # 2026-10-13, FW010004: owner confirmed NOTE then CALL on the screen.
+        # Captured reply payloads, not constructed with protocol.py constants.
+        samples = {
+            "note": "0000e8f20000e8cf0264000100040101ff78696e6b5f746573740000000000000000000000000009ff0300010000000000000000",
+            "call": "0000e8f20000e8cf0164000100040102ff78696e6b5f746573740000000000000000000000000009ff0300010000000000000000",
+        }
+        for screen_mode, raw in samples.items():
+            with self.subTest(screen_mode=screen_mode):
+                self.assertEqual(P.parse_device_info(bytes.fromhex(raw))["mode"], screen_mode)
+
+    def test_unknown_mode_is_not_silently_classified_as_note(self):
+        with self.assertRaisesRegex(ValueError, "Unknown recording mode byte: 0x00"):
+            P.recording_mode(0)
+
 
 if __name__ == "__main__":
     unittest.main()

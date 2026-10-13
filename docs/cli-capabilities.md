@@ -99,12 +99,16 @@ Readback alone does not prove persistence across reboot or physical effect.
 
 All requests below have empty payload. ASCII names occupy 14 bytes; numeric
 file sizes are u32 big-endian. Kind 0 means call, any other value note. Record
-state and recording mode are different fields.
+state and recording mode are different fields. Actual mode is NOTE01/CALL02 in
+GET_DEVICE_INFO byte15 and event0f byte3; unknown mode values fail parsing. This
+corrects the pinned App labels using actual firmware and physical-screen readback.
+START/STOP/file kind remains Note01/Call00; do not reuse the mode enum.
+[Static paths and two-mode live samples](note-call-audio-2026-10-13.md).
 
 | Opcode | Request | Valid reply payload |
 |---:|---|---|
 | `0x06` | start | At least 16 bytes: status `00`, name `[1,15)`, kind byte 15 |
-| `0x07` | stop | At least 21: status `00`, name `[1,15)`, size `[15,19)`, mode byte 19 (`01` call, else memo), need-sync byte 20 (`01` true) |
+| `0x07` | stop | At least 21: status `00`, name `[1,15)`, size `[15,19)`, kind byte 19 (`01` note, `00` call; pinned App STOP label corrected), need-sync byte 20 (`01` true) |
 | `0x08` | pause | At least 16: status `00`, name `[1,15)`, kind byte 15 |
 | `0x09` | resume | Same layout as pause |
 | `0x15` | recording-info | Exact `01`: idle. Otherwise at least 20: status `00` recording / `02` paused, name `[1,15)`, size `[15,19)`, kind byte 19 |
@@ -131,9 +135,9 @@ Control methods: `[236151,238428)`; parser: `[221179,223211)`.
 | Stop transfer | Empty `0c`; immediate reply and possible worker-exit reply both00; first ACK is not a completion barrier | `[244253,244532)`; [actual CLI SIGINT trial](download-cancel-contract.md#actual-cli-sigint-validation-2026-10-13): exit130, exact4,416 B prefix; fresh full/offset exports equal independent baseline. No automatic resume, same-session reuse or worker-exit proof; sync batch cancellation remains host-tested |
 | Delete one recording | `0d` + raw ASCII name, no padding; app accepts generic matching reply | `[240494,240849)`; [scratch-file real acceptance](file-deletion.md#owned-scratch-recording-real-cli-acceptance): new10256B recording downloaded twice identically, deleted, fresh list restored original7 entries. Listed absence only; no secure-erasure or reboot-persistence proof, no retry |
 | Set time | `04`: local year-2000,month,day,hour,minute,second, each one byte | `[234663,235121)`; generic response, no readback established |
-| Device events | `0f`: >=20 payload; charging0,battery1,USB-mode2,mode3,power-off4,noise5,voice6,indicator7,segment8,backlight9,USB-connected10 | `Y8` `[220352,220806)`; [client watch implemented](client-events.md), replay verified; passive live sample observed zero events |
+| Device events | `0f`: >=20 payload; charging0,battery1,USB-mode2,mode3,power-off4,noise5,voice6,indicator7,segment8,backlight9,USB-connected10 | `Y8` `[220352,220806)`; [client watch implemented](client-events.md), replay verified; earlier passive sample had zero events; later manual CALL switch captured mode3=`02` |
 | Voice events | `19`: >=5; enabled byte0==1,size u32BE bytes1..4 | `Z8` `[220806,220992)`; app emits no public event; our client preserves it, live field semantics unverified |
-| Realtime audio | Raw notifications on e5e3, forwarded as bytes | [Live MP3 equality including pause/resume](realtime-live.md); app handler itself supplies no packet/codec decoder |
+| Realtime audio | Raw notifications on e5e3, forwarded as bytes | [Historical byte equality including pause/resume](realtime-live.md); historical CLI-only CALL labels are unreliable. [Physically confirmed NOTE/CALL short samples](note-call-audio-2026-10-13.md) both MP3/16kHz/mono/32kbps with realtime/full-download equality; app handler supplies no packet/codec decoder |
 | Logs / fixed diagnostics / bounded code sample | Separate Actions e49a3001 service | [device-diagnostics.md](device-diagnostics.md), [mapped-code-readback.md](mapped-code-readback.md); does not establish whole-flash backup |
 
 ### Excluded from capability verification
@@ -168,6 +172,11 @@ List absence does not prove physical/secure erasure or restart persistence.
   [USB trial](usb-next-steps-2026-10-13.md). These prove selected reported values,
   not all values, physical effects or reboot persistence. Indicator/voice-control
   setters remain source-derived with no live mutation acceptance.
+- **Mode and short-audio acceptance:** physical NOTE→info01, CALL→info02 plus
+  event0f mode02; each mode has a6s MP3/16kHz/mono/32kbps sample whose realtime
+  bytes equal its complete download. This does not establish microphone wiring,
+  acoustic selectivity or long-recording reliability. Historical mode labels
+  based only on the old CLI are not physical-mode evidence.
 - **Firmware investigation verified separately:** Zephyr version shell output,
   NVRAM configuration read, two matching 16-byte code samples. Each has its own
   bounded evidence; none is a restorable official firmware image.

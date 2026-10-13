@@ -22,15 +22,15 @@
 - NOTE是普通会议/访谈录音；CALL要求把设备贴在手机上，用设备的骨传导麦克风收音。这里说明的是接触拾音用途，**不是蓝牙HFP/手机系统通话音频接口证据**。[IMG_6809]
 - 亮屏且未录音时双击按键在NOTE/CALL间切换；笔记栏操作句写“切换至通话模式”，通话栏写“切换至笔记模式”，均描述切离本栏模式。录音中双击切换后“重新开始录音”。它是有录音生命周期副作用的操作，不能作为无副作用查询。照片未明确旧文件如何提交、是否改名、切换间隙或两模式的完整处理差异。[IMG_6809]
 
-协议已有独立模式字段：GET_DEVICE_INFO byte15=`1`由官方App解释为call、其他值为memo；STOP reply byte19同样以`1`表示call；文件列表byte19却以`0`表示call。**不能统一套用一个布尔值解释三种包。** 这些是协议标签映射，不是本轮观察到物理双击、显示或拾音切换。[固定App合同](cli-capabilities.md)、[实际解析](../src/rcominote/protocol.py)
+后续实际固件与用户屏幕对照纠正了固定App标签：GET_DEVICE_INFO byte15和event0f byte3直接携带模式，**NOTE=`01`、CALL=`02`**；START byte15、STOP byte19及文件列表kind另用**Note=`01`、Call=`00`**。不能统一套用布尔解释。用户确认两种屏幕模式，CALL切换捕获event raw02；拾音电路/声学差异仍未验证。[实际代码及两模式实测](note-call-audio-2026-10-13.md)、[修正后的合同](cli-capabilities.md)
 
 ## “录音加密”与实际可解码输出
 
 产品表写“录音是否加密：是”，并列MP3、32kbps；没有算法、密钥、加密层或传输/存储范围说明。[IMG_6810]
 
-已有两个短CALL模式实机样本：e5e3实时通知拼接与新连接同名完整下载逐字节一致；独立ffprobe为MP3/16kHz/mono/32kbps，ffmpeg完整解码成功，无需应用层解密。固定官方App的实时handler直接转发bytes；实际format1分派选择`mp3e`及`aeRECORD.dsp`。这与手册的MP3/32kbps一致，也表明**所测交付路径不需要额外录音密文解码器**。[实时实证](realtime-live.md)、[App/固件传输](realtime-source.md)、[codec分派](recorder-codec-dispatch.md)
+历史两个短样本曾被旧CLI标为CALL；该标签不可靠，不能继续作为物理CALL证据，但实时/下载字节相等、MP3/16kHz/mono/32kbps及完整解码结论保留。后续用户物理确认NOTE/CALL各6s样本，均为同样音频格式，e5e3实时拼接与各自完整下载逐字节一致，无需应用层解密。[两模式新实证](note-call-audio-2026-10-13.md)。固定官方App的实时handler直接转发bytes；实际format1分派选择`mp3e`及`aeRECORD.dsp`。这与手册的MP3/32kbps一致，也表明**所测交付路径不需要额外录音密文解码器**。[实时实证](realtime-live.md)、[App/固件传输](realtime-source.md)、[codec分派](recorder-codec-dispatch.md)
 
-不能因此把说明书判为“全部加密声明虚假”，也不能声称SD物理介质、BLE链路、其他模式或后台存储均未加密。映射/原始NOR之间已确认的固件存储转换属于另一对象，不能拿来解释录音表格中的“加密”。本轮不新增加密实现或猜密钥。[NOR转换范围](raw-storage-codec.md)
+不能因此把说明书判为“全部加密声明虚假”，也不能声称SD物理介质、BLE链路、其他录音条件或后台存储均未加密。映射/原始NOR之间已确认的固件存储转换属于另一对象，不能拿来解释录音表格中的“加密”。本轮不新增加密实现或猜密钥。[NOR转换范围](raw-storage-codec.md)
 
 ## 充电触点与退出边界
 
@@ -40,15 +40,15 @@
 
 开/关机均明确为长按电源键3秒；待机灭屏时短按点亮屏幕。提供的三张照片没有强制复位、独立reset键或ROM模式退出条款。3秒普通操作不能替代实际PMU候选寄存器`40004108`的硬件长按复位语义、物理连接或ROM期间有效性；也不能反推芯片没有该功能。**照片没有解除ROM首次实验门槛。**[IMG_6808]；[实际PMU/退出边界](actual-rom-exit-condition.md)
 
-## 已有静态定位点与有界下一题
+## 已闭合的模式关系与剩余边界
 
-以下只列现成证据，不在本轮递归展开callee：
+后续有界静态分析及短样本已经完成；不把未测声学结果提前归于某种拾音器：
 
 | 问题 | 已存定位点 | 仍需证明；何时停止 |
 |---|---|---|
-| NOTE/CALL是否改变ADC输入、增益或DSP处理 | 参数producer`1000d6a4..1000d7f4`，其caller`1000da9c/1000dd2e`；param+3c来自运行时状态，含义未定 | 先建立模式字段→实际参数的直接数据关系；手册只提供用途，不能直接给字段命名。若现有完整镜像没有可确认关系，停在未知，不请求更多零散实机函数读取 |
+| NOTE/CALL是否改变ADC输入、增益或DSP处理 | producer`1000d6a4`按mode1/2设置gain原始值365/405；GPIOB18请求高/低。param+3c已确定为`DENOISE_IDX` | [静态链已闭合](note-call-audio-2026-10-13.md)，固定channel/key/编码不变；增益单位、物理拾音器归属、DSP内部算法仍未知，不追加逐callee读取 |
 | 两种拾音器如何落到板级配置 | policy`100ae284/100ae2ec`；audio open`10038694`→ADC API`1003b811`；映射helper`1002dcb8`及表`100bfcf2`，key4000输出0003/0000 | 表值不等于已确认的模拟麦数量、ch0/ch1或接线；需匹配LARK输入定义/板级资料或有明确问题的模式对照，不能照搬M33板表 |
-| 录音字节交付在哪层可能变换 | stream write`1009ef96`同时送ring与文件分支；文件分支`1000d9d4`；e5e3路由已有完整有界证据 | 现有CALL实证已满足客户端直接MP3使用，不因手册一句话重开泛加密搜索；只有SD原始录音存储证据或其他模式出现不一致才扩范围 |
+| 录音字节交付在哪层可能变换 | stream write`1009ef96`同时送ring与文件分支；文件分支`1000d9d4`；e5e3路由已有完整有界证据 | 物理确认的NOTE/CALL短样本均支持客户端直接MP3使用；不因手册一句话重开泛加密搜索。只有SD原始录音存储证据或新的字节不一致才扩范围 |
 
 定位来源：[媒体参数](recorder-media-config.md)、[输入映射](audio-open-path.md)、[适配层](audio-parameter-adapter.md)、[双分支stream](recorder-stream-path.md)、[e5e3路径](realtime-source.md)。这些材料可支撑一次模式/音频路由问题，不能取代匹配M4 BSP、独立退出、完整备份或恢复验收。
 

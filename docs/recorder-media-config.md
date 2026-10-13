@@ -17,11 +17,11 @@
 | +20..21 | halfword0020 | capture bitrate32 kbps |
 | +24 | NULL | capture input stream未直接提供 |
 | +28 | 实际stream pointer | capture output stream |
-| +3c | 某状态对象+c byte | 额外运行时参数，不由本轮赋予语义 |
+| +3c | 状态`1800ba00+c` byte | 后续已由setter/属性确认是`DENOISE_IDX`，非NOTE/CALL模式 |
 
 offset与打包word为十六进制，rate/bits/channels/bitrate解释为十进制。字段顺序依据[media_init_param_t](https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/framework/media/include/media_service.h#L420-L437)，格式值1依据[MP3_TYPE enum](https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/framework/media/include/media_type.h#L25-L31)。实际唯一word literal在1000d808，未从默认config猜测。
 
-函数根据状态+460是否为1，把参数+a halfword设为58或0；附近日志为`denoise: %d, avr_mode: %d`。暂不直接把这个字段或数值翻译为去噪强度/阈值，避免仅凭日志附近字段猜含义。状态+470还影响另一helper参数，但不改变上述固定rate/channel word。
+函数根据状态+460是否为1，把参数+a halfword设为58或0；附近日志为`denoise: %d, avr_mode: %d`。暂不直接把这个字段或数值翻译为去噪强度/阈值，避免仅凭日志附近字段猜含义。后续确认状态+470为模式1=NOTE/2=CALL，分别选择GPIOB18请求高/低，并在录音启动时选择ADC输入gain原始值365/405；不改变上述固定rate/channel word。param+3c由实际opcode17 setter及`DENOISE_IDX`属性独立确认；不把它和+a或mode混淆。[完整有界模式链](note-call-audio-2026-10-13.md)。
 
 ## 调用关联
 
@@ -34,6 +34,6 @@ offset与打包word为十六进制，rate/bits/channels/bitrate解释为十进�
 
 此producer选择stream10；已确认policy将其映射为ADC channel8、key4000，adapter固定width0。key4000的板级映射值为0003/0000；仍需下层解释才能判定物理模拟/数字输入。单声道是配置的输出通道数，**不等于设备只有一颗麦克风**。
 
-仍缺：调用者的用户可见模式归属、实际运行选路、录音文件头/编码参数、音频输入电气与采样测量、下层增益/输入选择。下一步应核对producer的stream目标或解析已有真实文件；不把静态配置写成已观测录音结果。
+2026-10-13后续已完成用户屏幕NOTE/CALL与原始模式01/02对照，两模式各6s样本均为MP3/16kHz/mono/32kbps，实时拼接与各自完整下载逐字节一致。历史仅由旧CLI标为CALL的样本不能证明物理模式，但其格式/字节结论不受影响。仍缺物理麦克风接线、声学差异、gain单位及DSP内部处理；不再把已完成的模式/格式核对列为下一任务。
 
-后续[实际codec分派](recorder-codec-dispatch.md)确认format1编码方向选中`mp3e`硬件记录与`aeRECORD.dsp`，支持MP3配置判断；[输出stream](recorder-stream-path.md)的`opus_ringbuf`标签不能据此改判Opus。静态选择不等于已验收DSP执行或输出文件。
+后续[实际codec分派](recorder-codec-dispatch.md)确认format1编码方向选中`mp3e`硬件记录与`aeRECORD.dsp`，支持MP3配置判断；[输出stream](recorder-stream-path.md)的`opus_ringbuf`标签不能据此改判Opus。静态选择本身不证明DSP执行；后续短样本输出证据另见模式报告，不能扩大为DSP内部算法或所有时长验收。

@@ -28,8 +28,13 @@ byte ranges: Y8 `[220352,220806)`, Z8 `[220806,220992)`.
 
 | Event | Minimum payload | Parsed fields |
 |---|---|---|
-| `0f device_status` | 20 B | charging0 (`!=0`), battery1, usb_mode2 (`==1`), mode3 (`1=call`, otherwise memo), power_off_duration4, noise_reduction5, voice_control6, indicator_light7, segment_duration8, screen_backlight9, usb_connected10 (`==1`) |
+| `0f device_status` | 20 B | charging0 (`!=0`), battery1, usb_mode2 (`==1`), mode3 (`1=note`, `2=call`; other values rejected), power_off_duration4, noise_reduction5, voice_control6, indicator_light7, segment_duration8, screen_backlight9, usb_connected10 (`==1`) |
 | `19 voice_control` | 5 B | enabled0 (`==1`), file_size1..4 (u32 big-endian) |
+
+Mode labels above correct the pinned App mapping: actual firmware copies raw
+`RECORD_MODE` into event byte3, and user-confirmed CALL switching produced raw02.
+GET_DEVICE_INFO byte15 independently matched physical NOTE01/CALL02. File-kind
+bytes use a separate enum, Note01/Call00. See [actual code and paired live evidence](note-call-audio-2026-10-13.md).
 
 Voice/indicator/backlight values `ff` map to null; other bytes map to `==1`.
 Power-off/segment duration units and meanings beyond these source fields remain
@@ -74,3 +79,5 @@ Live bounded check: `comi watch --duration 5` completed serial/bind/device-info
 queries on C261CF0430 and returned zero events. [Saved result](evidence/client-events-passive-2026-10-12.json).
 This proves the new connection/observer path completes on the device; it does
 not verify event fields or prove absence of event support. No settings changed.
+The later manual NOTE→CALL trial captured event0f with mode byte02; it validates
+that correlated mode observation, not every other event field.

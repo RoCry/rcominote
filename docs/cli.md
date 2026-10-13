@@ -23,6 +23,8 @@ uv run comi recording-info
 uv run comi settings show
 ```
 
+设备模式以当前固件及用户屏幕对照为准：`mode=note`对应原始01，`mode=call`对应02；未知模式拒绝解析。文件/START/STOP的`kind`另用Note01/Call00，不能套用模式枚举。旧CLI曾将模式01误标CALL；历史仅有该标签的记录不能证明物理CALL。CLI没有已确认的模式setter，按说明书手动切换。见[模式与音频验收](note-call-audio-2026-10-13.md)。
+
 结果是 JSON；错误非零退出，通常向 stderr 输出 JSON 错误；带操作观测的取消或删除未验证会保留 stdout JSON。证据文件拒绝覆盖。macOS 的宿主终端需有蓝牙权限；官方 App 先断开。Linux 设备访问依赖本机 BlueZ/适配器/权限；SSH 不会把 Mac 的 USB/BLE 自动转发过去。`doctor`不把“依赖已安装”说成“蓝牙权限已通过”。
 
 ## 录音与导出
@@ -86,8 +88,7 @@ uv run comi realtime --record --duration 5 --out artifacts/live-test.bin
 
 最长300秒、最多16 MiB，输出拒绝覆盖；失败不发布成功文件。
 原样保存 e5e3 通知拼接字节，JSON 报告字节数、包数、hash及录音身份。
-`.bin`表示指定时间窗口的实时数据，不保证完整录音；MP3已在当前模式短录音中验证，
-其他模式/长时丢包未验证。需要完整文件时按报告中的录音名另行 `download` 对照。
+`.bin`表示指定时间窗口的实时数据，不保证完整录音。物理确认的NOTE/CALL各6s样本均为MP3/16kHz/mono/32kbps，实时拼接与各自完整下载逐字节一致；这不证明物理麦克风接线、声学差异或长时无丢包。需要完整文件时按报告中的录音名另行 `download` 对照。
 被动采集可能得到零字节；不会因此自行启动录音。
 
 `--record`尝试清理自己启动的录音；START等请求失败导致连接失效时，无法再用同一连接确认或停止。错误会明确提示录音可能仍在运行，需重连查看状态并按需停止；不把清理尝试当成停止成功。

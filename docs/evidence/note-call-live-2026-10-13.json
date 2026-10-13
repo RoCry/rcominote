@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-13",
+  "firmware": "010004",
+  "evidence_scope": "Owner screen observations paired with BLE replies; two uncontrolled ambient recordings, not acoustic comparison.",
+  "mode_oracle": {
+    "note": "Owner replied 已切到 NOTE before note-info capture",
+    "call": "Owner replied 已切到 CALL after monitored switch"
+  },
+  "initial_mode_limit": "Initial raw01 was not independently observed on screen; initial CLI CALL label was wrong. No initial physical toggle is established.",
+  "samples": {
+    "note": {
+      "info_raw": "0000e8f20000e8cf0264000100040101ff78696e6b5f746573740000000000000000000000000009ff0300010000000000000000",
+      "raw_mode": 1,
+      "corrected_parser_mode": "note",
+      "noise_reduction": 9,
+      "start_reply_hex": "00323032363130313330393432333501",
+      "stop_reply_hex": "00323032363130313330393432333500005ea40101",
+      "file_kind_start": 1,
+      "file_kind_stop": 1,
+      "bytes": 24228,
+      "sha256": "b11c2b3ad9f2c4d85fc2bd1f00065075e571e120ce9d1d25efe6116c39d7741b",
+      "realtime_equals_complete_download": true,
+      "state_after_stop": "idle",
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "16000",
+            "channels": 1,
+            "bit_rate": "32000"
+          }
+        ],
+        "format": {
+          "duration": "6.057000",
+          "size": "24228"
+        }
+      }
+    },
+    "call": {
+      "info_raw": "0000e8f20000e8cf0164000100040102ff78696e6b5f746573740000000000000000000000000009ff0300010000000000000000",
+      "raw_mode": 2,
+      "corrected_parser_mode": "call",
+      "noise_reduction": 9,
+      "start_reply_hex": "00323032363130313330393435313100",
+      "stop_reply_hex": "00323032363130313330393435313100005f360001",
+      "file_kind_start": 0,
+      "file_kind_stop": 0,
+      "bytes": 24374,
+      "sha256": "e50c1b9b0ce19204ecd30967f5770bc0cd0b5182f8b54b08b225c12e556e9e8c",
+      "realtime_equals_complete_download": true,
+      "state_after_stop": "idle",
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "16000",
+            "channels": 1,
+            "bit_rate": "32000"
+          }
+        ],
+        "format": {
+          "duration": "6.093500",
+          "size": "24374"
+        }
+      }
+    }
+  },
+  "call_switch_event": {
+    "frame_hex": "d22d010f14026401020009ffff030001000000000000000000a390",
+    "corrected_parse": {
+      "event": "device_status",
+      "charging": true,
+      "battery": 100,
+      "usb_mode": true,
+      "mode": "call",
+      "power_off_duration": 0,
+      "noise_reduction": 9,
+      "voice_control": null,
+      "indicator_light": null,
+      "segment_duration": 3,
+      "screen_backlight": false,
+      "usb_connected": true,
+      "opcode": 15,
+      "raw": "026401020009ffff030001000000000000000000"
+    }
+  },
+  "fixed_cli_call_readback": {
+    "raw": "0000e8f20000e8cf0264000100040102ff78696e6b5f746573740000000000000000000000000009ff0300010000000000000000",
+    "mode": "call",
+    "recording_state": "idle"
+  },
+  "limitations": [
+    "Audio stays in ignored artifacts; no controlled stimulus in these two samples.",
+    "Short downloads are not sustained-throughput measurements.",
+    "No physical GPIO, microphone wiring, ADC gain units or DSP behavior measured.",
+    "No flash write, RAM execution, full NOR backup or restoration performed."
+  ],
+  "file_inventory": {
+    "before_count": 8,
+    "after_count": 10,
+    "original_entries_metadata_unchanged": true,
+    "added_count": 2,
+    "added_entries_match_owned_test_names": true,
+    "scope": "List metadata only; original audio bytes not re-downloaded. Two new recordings retained."
+  }
+}

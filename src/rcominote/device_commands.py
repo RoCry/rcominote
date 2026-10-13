@@ -94,7 +94,7 @@ def watch(
                 "watch_seconds": duration,
                 "event_scope": "notifications since connection setup, including identity queries",
                 "events": await conn.watch(duration),
-                "parser_source": "official CoMi 1.1.2 Y8/Z8; see docs/client-events.md",
+                "parser_source": "CoMi 1.1.2 Y8/Z8 layout; mode labels corrected on FW010004 hardware",
             }
 
     emit(asyncio.run(run()), out)

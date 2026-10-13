@@ -1,0 +1,335 @@
+{
+  "scope": "Host-only static actual-image paths; no device reads/writes or runtime proof",
+  "source": {
+    "path": "docs/evidence/minimal-image-2026-10-13/original-system.bin.gz",
+    "decoded_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+    "bytes": 927632,
+    "base": "10000000"
+  },
+  "addresses": {
+    "record_mode_byte": "1800be70",
+    "denoise_index_byte": "1800ba0c",
+    "record_gain_halfword": "180015e2",
+    "policy_pointer": "180195b0",
+    "gpiob_input_word": "40068234",
+    "gpiob_output_latch_word": "40068204",
+    "gpiob_pin_bit": 18
+  },
+  "comparison": {
+    "1": {
+      "filename_prefix": "Note-",
+      "gpio_helper_arg": 0,
+      "gpio_requested_output": 1,
+      "adc_gain_raw": 365
+    },
+    "2": {
+      "filename_prefix": "Call-",
+      "gpio_helper_arg": 1,
+      "gpio_requested_output": 0,
+      "adc_gain_raw": 405
+    }
+  },
+  "wire_domains": {
+    "device_info_payload15": "raw RECORD_MODE",
+    "status_0f_payload3": "raw RECORD_MODE",
+    "start_payload15_stop_payload19": "prefix-derived Note=1 Call=0, separate from RECORD_MODE"
+  },
+  "limits": [
+    "Gain is written when producer opens recording; idle-only mode switch need not update it",
+    "Physical microphone topology and GPIO electrical response not proven",
+    "ADC gain unit and nonlinear hardware programming not established",
+    "No mode-specific DSP algorithm proof; parameter+3c is DENOISE_IDX",
+    "Code/data spans are separated; partial fragments named explicitly"
+  ],
+  "ranges": [
+    {
+      "name": "info_mode",
+      "start": "1000ab30",
+      "end_exclusive": "1000ab52",
+      "kind": "code",
+      "hex": "2e4c8df80e309df802308df8113094f85e348df8123094f87034bdf800208df81330",
+      "instructions": "1000ab30 ldr r4, [pc, #0xb8]; 1000ab32 strb.w r3, [sp, #0xe]; 1000ab36 ldrb.w r3, [sp, #2]; 1000ab3a strb.w r3, [sp, #0x11]; 1000ab3e ldrb.w r3, [r4, #0x45e]; 1000ab42 strb.w r3, [sp, #0x12]; 1000ab46 ldrb.w r3, [r4, #0x470]; 1000ab4a ldrh.w r2, [sp]; 1000ab4e strb.w r3, [sp, #0x13]"
+    },
+    {
+      "name": "info_send",
+      "start": "1000abb2",
+      "end_exclusive": "1000abbe",
+      "kind": "code",
+      "hex": "01a905208df83330fff765fe",
+      "instructions": "1000abb2 add r1, sp, #4; 1000abb4 movs r0, #5; 1000abb6 strb.w r3, [sp, #0x33]; 1000abba bl #0x1000a888"
+    },
+    {
+      "name": "info_base_literal",
+      "start": "1000abec",
+      "end_exclusive": "1000abf0",
+      "kind": "data",
+      "hex": "00ba0018"
+    },
+    {
+      "name": "event_fields",
+      "start": "1000ac9e",
+      "end_exclusive": "1000acc6",
+      "kind": "code",
+      "hex": "1c4b8df8050093f85e24003a18bf01228df8062093f870248df80720da788df808201a7b8df80920",
+      "instructions": "1000ac9e ldr r3, [pc, #0x70]; 1000aca0 strb.w r0, [sp, #5]; 1000aca4 ldrb.w r2, [r3, #0x45e]; 1000aca8 subs r2, #0; 1000acaa it ne; 1000acac movne r2, #1; 1000acae strb.w r2, [sp, #6]; 1000acb2 ldrb.w r2, [r3, #0x470]; 1000acb6 strb.w r2, [sp, #7]; 1000acba ldrb r2, [r3, #3]; 1000acbc strb.w r2, [sp, #8]; 1000acc0 ldrb r2, [r3, #0xc]; 1000acc2 strb.w r2, [sp, #9]"
+    },
+    {
+      "name": "event_send",
+      "start": "1000acea",
+      "end_exclusive": "1000acf8",
+      "kind": "code",
+      "hex": "14228df80e0001a90f20fff7c8fd",
+      "instructions": "1000acea movs r2, #0x14; 1000acec strb.w r0, [sp, #0xe]; 1000acf0 add r1, sp, #4; 1000acf2 movs r0, #0xf; 1000acf4 bl #0x1000a888"
+    },
+    {
+      "name": "mode_property_init",
+      "start": "1000d1d2",
+      "end_exclusive": "1000d1e8",
+      "kind": "code",
+      "hex": "3048a0f001f9c0b2012884f8700435d1002020f020fe",
+      "instructions": "1000d1d2 ldr r0, [pc, #0xc0]; 1000d1d4 bl #0x100ad3da; 1000d1d8 uxtb r0, r0; 1000d1da cmp r0, #1; 1000d1dc strb.w r0, [r4, #0x470]; 1000d1e0 bne #0x1000d24e; 1000d1e2 movs r0, #0; 1000d1e4 bl #0x1002de28"
+    },
+    {
+      "name": "mode2_init_gpio",
+      "start": "1000d24e",
+      "end_exclusive": "1000d256",
+      "kind": "code",
+      "hex": "0228cad10120c6e7",
+      "instructions": "1000d24e cmp r0, #2; 1000d250 bne #0x1000d1e8; 1000d252 movs r0, #1; 1000d254 b #0x1000d1e4"
+    },
+    {
+      "name": "mode_property_literal",
+      "start": "1000d294",
+      "end_exclusive": "1000d298",
+      "kind": "data",
+      "hex": "fb290c10"
+    },
+    {
+      "name": "mode_toggle",
+      "start": "1000eb9c",
+      "end_exclusive": "1000ec10",
+      "kind": "code",
+      "hex": "c368002b3ff484ae3168474a91427ff47fae464c94f87054012d1fd1022284f87024d86803f1fc013ef03cfe28461ff02df994f870143e4841f0fef93c489ef033fc1422002103a8aaf070fd2c2303a938488df80e3041f019f959e6022de8d1012284f87024d86803f1f0013ef01afe0020dce7",
+      "instructions": "1000eb9c ldr r3, [r0, #0xc]; 1000eb9e cmp r3, #0; 1000eba0 beq.w #0x1000e8ac; 1000eba4 ldr r1, [r6]; 1000eba6 ldr r2, [pc, #0x11c]; 1000eba8 cmp r1, r2; 1000ebaa bne.w #0x1000e8ac; 1000ebae ldr r4, [pc, #0x118]; 1000ebb0 ldrb.w r5, [r4, #0x470]; 1000ebb4 cmp r5, #1; 1000ebb6 bne #0x1000ebf8; 1000ebb8 movs r2, #2; 1000ebba strb.w r2, [r4, #0x470]; 1000ebbe ldr r0, [r3, #0xc]; 1000ebc0 add.w r1, r3, #0xfc; 1000ebc4 bl #0x1004d840; 1000ebc8 mov r0, r5; 1000ebca bl #0x1002de28; 1000ebce ldrb.w r1, [r4, #0x470]; 1000ebd2 ldr r0, [pc, #0xf8]; 1000ebd4 bl #0x1004ffd4; 1000ebd8 ldr r0, [pc, #0xf0]; 1000ebda bl #0x100ad444; 1000ebde movs r2, #0x14; 1000ebe0 movs r1, #0; 1000ebe2 add r0, sp, #0xc; 1000ebe4 bl #0x100b96c8; 1000ebe8 movs r3, #0x2c; 1000ebea add r1, sp, #0xc; 1000ebec ldr r0, [pc, #0xe0]; 1000ebee strb.w r3, [sp, #0xe]; 1000ebf2 bl #0x1004fe28; 1000ebf6 b #0x1000e8ac; 1000ebf8 cmp r5, #2; 1000ebfa bne #0x1000ebce; 1000ebfc movs r2, #1; 1000ebfe strb.w r2, [r4, #0x470]; 1000ec02 ldr r0, [r3, #0xc]; 1000ec04 add.w r1, r3, #0xf0; 1000ec08 bl #0x1004d840; 1000ec0c movs r0, #0; 1000ec0e b #0x1000ebca"
+    },
+    {
+      "name": "mode_start_caller",
+      "start": "1000dca8",
+      "end_exclusive": "1000dd4c",
+      "kind": "code",
+      "hex": "f0b50024d3b007462e22214604a8254d254e0394abf004fd244bed1a96f844306d01032b05f47f4507d021482149284348f05af9204653b0f0bd012f15bf02232046012086f8707418bf86f8703420f097f8052095f044fe174810a921f048fa002805dafff78afd10b9134821f088f9fff79efd114b124a009332210e4b03a88ff0fcf903a8fff7b9fc0446024645f00f7000230b4986f8443040f0310048f023f9c7e7",
+      "instructions": "1000dca8 push {r4, r5, r6, r7, lr}; 1000dcaa movs r4, #0; 1000dcac sub sp, #0x14c; 1000dcae mov r7, r0; 1000dcb0 movs r2, #0x2e; 1000dcb2 mov r1, r4; 1000dcb4 add r0, sp, #0x10; 1000dcb6 ldr r5, [pc, #0x94]; 1000dcb8 ldr r6, [pc, #0x94]; 1000dcba str r4, [sp, #0xc]; 1000dcbc bl #0x100b96c8; 1000dcc0 ldr r3, [pc, #0x90]; 1000dcc2 subs r5, r5, r3; 1000dcc4 ldrb.w r3, [r6, #0x44]; 1000dcc8 lsls r5, r5, #5; 1000dcca cmp r3, #3; 1000dccc and r5, r5, #0xff00; 1000dcd0 beq #0x1000dce2; 1000dcd2 ldr r0, [pc, #0x84]; 1000dcd4 ldr r1, [pc, #0x84]; 1000dcd6 orrs r0, r5; 1000dcd8 bl #0x10055f90; 1000dcdc mov r0, r4; 1000dcde add sp, #0x14c; 1000dce0 pop {r4, r5, r6, r7, pc}; 1000dce2 cmp r7, #1; 1000dce4 itete ne; 1000dce6 movne r3, #2; 1000dce8 moveq r0, r4; 1000dcea movne r0, #1; 1000dcec strbeq.w r7, [r6, #0x470]; 1000dcf0 it ne; 1000dcf2 strbne.w r3, [r6, #0x470]; 1000dcf6 bl #0x1002de28; 1000dcfa movs r0, #5; 1000dcfc bl #0x100a3988; 1000dd00 ldr r0, [pc, #0x5c]; 1000dd02 add r1, sp, #0x40; 1000dd04 bl #0x1002f198; 1000dd08 cmp r0, #0; 1000dd0a bge #0x1000dd18; 1000dd0c bl #0x1000d824; 1000dd10 cbnz r0, #0x1000dd18; 1000dd12 ldr r0, [pc, #0x4c]; 1000dd14 bl #0x1002f028; 1000dd18 bl #0x1000d858; 1000dd1c ldr r3, [pc, #0x44]; 1000dd1e ldr r2, [pc, #0x48]; 1000dd20 str r3, [sp]; 1000dd22 movs r1, #0x32; 1000dd24 ldr r3, [pc, #0x38]; 1000dd26 add r0, sp, #0xc; 1000dd28 bl #0x1009d124; 1000dd2c add r0, sp, #0xc; 1000dd2e bl #0x1000d6a4; 1000dd32 mov r4, r0; 1000dd34 mov r2, r0; 1000dd36 orr r0, r5, #0x23c0000; 1000dd3a movs r3, #0; 1000dd3c ldr r1, [pc, #0x2c]; 1000dd3e strb.w r3, [r6, #0x44]; 1000dd42 orr r0, r0, #0x31; 1000dd46 bl #0x10055f90; 1000dd4a b #0x1000dcdc"
+    },
+    {
+      "name": "mode_start_pool",
+      "start": "1000dd4c",
+      "end_exclusive": "1000dd70",
+      "kind": "data",
+      "hex": "64a50b1000ba00186ca30b1011002102a72b0c1089160c1026ba001877060c10ba2b0c10"
+    },
+    {
+      "name": "producer",
+      "start": "1000d6a4",
+      "end_exclusive": "1000d7f4",
+      "kind": "code",
+      "hex": "2de9f04391b04022002107466846acf009f800f061fc032105460068dff85c814b4e4c4c43f0bafe8146c0b1286844f0b7fa0023c8f80030341b600100f47f4040f46e00444940f0110048f04ffc6ff00105fff7a7ff284611b0bde8f0832b68c8f80030002be7d0384644f00dfe0546a8b1022143f092fea0b1284644f0d4fac8f80490341b640104f47f4444f4740032493a4640f0110048f028fcd7e7c8f80400efe7c8f804502d4d95f87034022b3cd140f29510f4f78ffc02238df800300a238df80330274b069340f20113adf81c302023adf8203000230993d8f800300a9395f8603420482a7b8df83c20341b012b4fea441414bf0021582104f47f44adf80a102043194948f0f0fb68464bf005fd174a106060b944f08e70154940f0110048f0e3fb6ff0150592e740f26d10c1e74bf067fb054600288cd044f091700d4940f0110048f0d1fb6ff00d0580e7",
+      "instructions": "1000d6a4 push.w {r4, r5, r6, r7, r8, sb, lr}; 1000d6a8 sub sp, #0x44; 1000d6aa movs r2, #0x40; 1000d6ac movs r1, #0; 1000d6ae mov r7, r0; 1000d6b0 mov r0, sp; 1000d6b2 bl #0x100b96c8; 1000d6b6 bl #0x1000df7c; 1000d6ba movs r1, #3; 1000d6bc mov r5, r0; 1000d6be ldr r0, [r0]; 1000d6c0 ldr.w r8, [pc, #0x15c]; 1000d6c4 ldr r6, [pc, #0x12c]; 1000d6c6 ldr r4, [pc, #0x130]; 1000d6c8 bl #0x10051440; 1000d6cc mov sb, r0; 1000d6ce cbz r0, #0x1000d702; 1000d6d0 ldr r0, [r5]; 1000d6d2 bl #0x10051c44; 1000d6d6 movs r3, #0; 1000d6d8 str.w r3, [r8]; 1000d6dc subs r4, r6, r4; 1000d6de lsls r0, r4, #5; 1000d6e0 and r0, r0, #0xff00; 1000d6e4 orr r0, r0, #0xee0000; 1000d6e8 ldr r1, [pc, #0x110]; 1000d6ea orr r0, r0, #0x11; 1000d6ee bl #0x10055f90; 1000d6f2 mvn r5, #1; 1000d6f6 bl #0x1000d648; 1000d6fa mov r0, r5; 1000d6fc add sp, #0x44; 1000d6fe pop.w {r4, r5, r6, r7, r8, sb, pc}; 1000d702 ldr r3, [r5]; 1000d704 str.w r3, [r8]; 1000d708 cmp r3, #0; 1000d70a beq #0x1000d6dc; 1000d70c mov r0, r7; 1000d70e bl #0x1005232c; 1000d712 mov r5, r0; 1000d714 cbz r0, #0x1000d742; 1000d716 movs r1, #2; 1000d718 bl #0x10051440; 1000d71c cbz r0, #0x1000d748; 1000d71e mov r0, r5; 1000d720 bl #0x10051ccc; 1000d724 str.w sb, [r8, #4]; 1000d728 subs r4, r6, r4; 1000d72a lsls r4, r4, #5; 1000d72c and r4, r4, #0xff00; 1000d730 orr r0, r4, #0xf40000; 1000d734 ldr r1, [pc, #0xc8]; 1000d736 mov r2, r7; 1000d738 orr r0, r0, #0x11; 1000d73c bl #0x10055f90; 1000d740 b #0x1000d6f2; 1000d742 str.w r0, [r8, #4]; 1000d746 b #0x1000d728; 1000d748 str.w r5, [r8, #4]; 1000d74c ldr r5, [pc, #0xb4]; 1000d74e ldrb.w r3, [r5, #0x470]; 1000d752 cmp r3, #2; 1000d754 bne #0x1000d7d0; 1000d756 movw r0, #0x195; 1000d75a bl #0x1000207c; 1000d75e movs r3, #2; 1000d760 strb.w r3, [sp]; 1000d764 movs r3, #0xa; 1000d766 strb.w r3, [sp, #3]; 1000d76a ldr r3, [pc, #0x9c]; 1000d76c str r3, [sp, #0x18]; 1000d76e movw r3, #0x101; 1000d772 strh.w r3, [sp, #0x1c]; 1000d776 movs r3, #0x20; 1000d778 strh.w r3, [sp, #0x20]; 1000d77c movs r3, #0; 1000d77e str r3, [sp, #0x24]; 1000d780 ldr.w r3, [r8]; 1000d784 str r3, [sp, #0x28]; 1000d786 ldrb.w r3, [r5, #0x460]; 1000d78a ldr r0, [pc, #0x80]; 1000d78c ldrb r2, [r5, #0xc]; 1000d78e strb.w r2, [sp, #0x3c]; 1000d792 subs r4, r6, r4; 1000d794 cmp r3, #1; 1000d796 lsl.w r4, r4, #5; 1000d79a ite ne; 1000d79c movne r1, #0; 1000d79e moveq r1, #0x58; 1000d7a0 and r4, r4, #0xff00; 1000d7a4 strh.w r1, [sp, #0xa]; 1000d7a8 orrs r0, r4; 1000d7aa ldr r1, [pc, #0x64]; 1000d7ac bl #0x10055f90; 1000d7b0 mov r0, sp; 1000d7b2 bl #0x100591c0; 1000d7b6 ldr r2, [pc, #0x5c]; 1000d7b8 str r0, [r2]; 1000d7ba cbnz r0, #0x1000d7d6; 1000d7bc orr r0, r4, #0x11c0000; 1000d7c0 ldr r1, [pc, #0x54]; 1000d7c2 orr r0, r0, #0x11; 1000d7c6 bl #0x10055f90; 1000d7ca mvn r5, #0x15; 1000d7ce b #0x1000d6f6; 1000d7d0 movw r0, #0x16d; 1000d7d4 b #0x1000d75a; 1000d7d6 bl #0x10058ea8; 1000d7da mov r5, r0; 1000d7dc cmp r0, #0; 1000d7de beq #0x1000d6fa; 1000d7e0 orr r0, r4, #0x1220000; 1000d7e4 ldr r1, [pc, #0x34]; 1000d7e6 orr r0, r0, #0x11; 1000d7ea bl #0x10055f90; 1000d7ee mvn r5, #0xd; 1000d7f2 b #0x1000d6f6"
+    },
+    {
+      "name": "producer_pool",
+      "start": "1000d7f4",
+      "end_exclusive": "1000d824",
+      "kind": "data",
+      "hex": "64a50b106ca30b10842a0c105d190c1000ba001801101010320019019c2a0c1080be0018b62a0c10d02a0c1074be0018"
+    },
+    {
+      "name": "filename_builder",
+      "start": "1000d858",
+      "end_exclusive": "1000d90c",
+      "kind": "code",
+      "hex": "00b58bb02b488cf0ddff18b1836807a99b68984728481e220021abf029ff274890f87034012b2cd19df81c3005939df81d3004939df81e3003939df81f3002939df8203001330193bdf8223003f26c7300931b4b1b4a1e2126308ff037fc1a4b1a48154a1a49c01a400100f47f4040f4d20040f0310048f05ffb00200bb05df804fb022bebd19df81c3005939df81d3004939df81e3003939df81f3002939df8203001330193bdf8223003f26c730093084bcfe7",
+      "instructions": "1000d858 push {lr}; 1000d85a sub sp, #0x2c; 1000d85c ldr r0, [pc, #0xac]; 1000d85e bl #0x1009a81c; 1000d862 cbz r0, #0x1000d86c; 1000d864 ldr r3, [r0, #8]; 1000d866 add r1, sp, #0x1c; 1000d868 ldr r3, [r3, #8]; 1000d86a blx r3; 1000d86c ldr r0, [pc, #0xa0]; 1000d86e movs r2, #0x1e; 1000d870 movs r1, #0; 1000d872 bl #0x100b96c8; 1000d876 ldr r0, [pc, #0x9c]; 1000d878 ldrb.w r3, [r0, #0x470]; 1000d87c cmp r3, #1; 1000d87e bne #0x1000d8da; 1000d880 ldrb.w r3, [sp, #0x1c]; 1000d884 str r3, [sp, #0x14]; 1000d886 ldrb.w r3, [sp, #0x1d]; 1000d88a str r3, [sp, #0x10]; 1000d88c ldrb.w r3, [sp, #0x1e]; 1000d890 str r3, [sp, #0xc]; 1000d892 ldrb.w r3, [sp, #0x1f]; 1000d896 str r3, [sp, #8]; 1000d898 ldrb.w r3, [sp, #0x20]; 1000d89c adds r3, #1; 1000d89e str r3, [sp, #4]; 1000d8a0 ldrh.w r3, [sp, #0x22]; 1000d8a4 addw r3, r3, #0x76c; 1000d8a8 str r3, [sp]; 1000d8aa ldr r3, [pc, #0x6c]; 1000d8ac ldr r2, [pc, #0x6c]; 1000d8ae movs r1, #0x1e; 1000d8b0 adds r0, #0x26; 1000d8b2 bl #0x1009d124; 1000d8b6 ldr r3, [pc, #0x68]; 1000d8b8 ldr r0, [pc, #0x68]; 1000d8ba ldr r2, [pc, #0x54]; 1000d8bc ldr r1, [pc, #0x68]; 1000d8be subs r0, r0, r3; 1000d8c0 lsls r0, r0, #5; 1000d8c2 and r0, r0, #0xff00; 1000d8c6 orr r0, r0, #0x690000; 1000d8ca orr r0, r0, #0x31; 1000d8ce bl #0x10055f90; 1000d8d2 movs r0, #0; 1000d8d4 add sp, #0x2c; 1000d8d6 ldr pc, [sp], #4; 1000d8da cmp r3, #2; 1000d8dc bne #0x1000d8b6; 1000d8de ldrb.w r3, [sp, #0x1c]; 1000d8e2 str r3, [sp, #0x14]; 1000d8e4 ldrb.w r3, [sp, #0x1d]; 1000d8e8 str r3, [sp, #0x10]; 1000d8ea ldrb.w r3, [sp, #0x1e]; 1000d8ee str r3, [sp, #0xc]; 1000d8f0 ldrb.w r3, [sp, #0x1f]; 1000d8f4 str r3, [sp, #8]; 1000d8f6 ldrb.w r3, [sp, #0x20]; 1000d8fa adds r3, #1; 1000d8fc str r3, [sp, #4]; 1000d8fe ldrh.w r3, [sp, #0x22]; 1000d902 addw r3, r3, #0x76c; 1000d906 str r3, [sp]; 1000d908 ldr r3, [pc, #0x20]; 1000d90a b #0x1000d8ac"
+    },
+    {
+      "name": "filename_pool",
+      "start": "1000d90c",
+      "end_exclusive": "1000d930",
+      "kind": "data",
+      "hex": "f6190c1026ba001800ba00183e220c10e92a0c106ca30b1064a50b10082b0c1044220c10"
+    },
+    {
+      "name": "noise_setter",
+      "start": "1000af98",
+      "end_exclusive": "1000afe6",
+      "kind": "code",
+      "hex": "37b5134a134c83781348144d14492b73a41a640104f47f4420431a464af0ecff297b104845f00af804460e48a2f03efa4cb98df80440012201a91720fff758fc204603b030bd01228df80420f4e7",
+      "instructions": "1000af98 push {r0, r1, r2, r4, r5, lr}; 1000af9a ldr r2, [pc, #0x4c]; 1000af9c ldr r4, [pc, #0x4c]; 1000af9e ldrb r3, [r0, #2]; 1000afa0 ldr r0, [pc, #0x4c]; 1000afa2 ldr r5, [pc, #0x50]; 1000afa4 ldr r1, [pc, #0x50]; 1000afa6 strb r3, [r5, #0xc]; 1000afa8 subs r4, r4, r2; 1000afaa lsls r4, r4, #5; 1000afac and r4, r4, #0xff00; 1000afb0 orrs r0, r4; 1000afb2 mov r2, r3; 1000afb4 bl #0x10055f90; 1000afb8 ldrb r1, [r5, #0xc]; 1000afba ldr r0, [pc, #0x40]; 1000afbc bl #0x1004ffd4; 1000afc0 mov r4, r0; 1000afc2 ldr r0, [pc, #0x38]; 1000afc4 bl #0x100ad444; 1000afc8 cbnz r4, #0x1000afde; 1000afca strb.w r4, [sp, #4]; 1000afce movs r2, #1; 1000afd0 add r1, sp, #4; 1000afd2 movs r0, #0x17; 1000afd4 bl #0x1000a888; 1000afd8 mov r0, r4; 1000afda add sp, #0xc; 1000afdc pop {r4, r5, pc}; 1000afde movs r2, #1; 1000afe0 strb.w r2, [sp, #4]; 1000afe4 b #0x1000afd0"
+    },
+    {
+      "name": "noise_pool",
+      "start": "1000aff4",
+      "end_exclusive": "1000b000",
+      "kind": "data",
+      "hex": "00ba001868220c1087220c10"
+    },
+    {
+      "name": "gain_register",
+      "start": "1000207c",
+      "end_exclusive": "10002086",
+      "kind": "code",
+      "hex": "024b5881184655f0b1b8",
+      "instructions": "1000207c ldr r3, [pc, #8]; 1000207e strh r0, [r3, #0xa]; 10002080 mov r0, r3; 10002082 b.w #0x100571e8"
+    },
+    {
+      "name": "gain_base",
+      "start": "10002088",
+      "end_exclusive": "1000208c",
+      "kind": "data",
+      "hex": "d8150018"
+    },
+    {
+      "name": "policy_register",
+      "start": "100571e8",
+      "end_exclusive": "100571f0",
+      "kind": "code",
+      "hex": "014b186000207047",
+      "instructions": "100571e8 ldr r3, [pc, #4]; 100571ea str r0, [r3]; 100571ec movs r0, #0; 100571ee bx lr"
+    },
+    {
+      "name": "policy_pointer",
+      "start": "100571f0",
+      "end_exclusive": "100571f4",
+      "kind": "data",
+      "hex": "b0950118"
+    },
+    {
+      "name": "gain_dispatch",
+      "start": "100570cc",
+      "end_exclusive": "100570d6",
+      "kind": "code",
+      "hex": "053811281cd8dfe800f0",
+      "instructions": "100570cc subs r0, #5; 100570ce cmp r0, #0x11; 100570d0 bhi #0x1005710c; 100570d2 tbb [pc, r0]"
+    },
+    {
+      "name": "gain_dispatch_table",
+      "start": "100570d6",
+      "end_exclusive": "100570e8",
+      "kind": "data",
+      "hex": "15091b1b1b15151b1b1b1b1b1b15151b150f"
+    },
+    {
+      "name": "gain_read",
+      "start": "100570e8",
+      "end_exclusive": "10057110",
+      "kind": "code",
+      "hex": "094b186878b1b0f906007047064b186848b1b0f908007047034b186818b1b0f90a00704700207047",
+      "instructions": "100570e8 ldr r3, [pc, #0x24]; 100570ea ldr r0, [r3]; 100570ec cbz r0, #0x1005710e; 100570ee ldrsh.w r0, [r0, #6]; 100570f2 bx lr; 100570f4 ldr r3, [pc, #0x18]; 100570f6 ldr r0, [r3]; 100570f8 cbz r0, #0x1005710e; 100570fa ldrsh.w r0, [r0, #8]; 100570fe bx lr; 10057100 ldr r3, [pc, #0xc]; 10057102 ldr r0, [r3]; 10057104 cbz r0, #0x1005710e; 10057106 ldrsh.w r0, [r0, #0xa]; 1005710a bx lr; 1005710c movs r0, #0; 1005710e bx lr"
+    },
+    {
+      "name": "gain_read_pool",
+      "start": "10057110",
+      "end_exclusive": "10057114",
+      "kind": "data",
+      "hex": "b0950118"
+    },
+    {
+      "name": "constructor_fields_partial",
+      "start": "100572e6",
+      "end_exclusive": "10057386",
+      "kind": "code",
+      "hex": "284657f000f8e070284656f0eaff6071284656f0e4ffa0812846fff7e4fe637ae08143f004036372a378a6711bb92846fff7c9fea070a378012b56d1022323721c22002101a862f0ccf9a3798df80630e36803939df810306ff300038df81030a3788df8053010238df80a309df8043043f020038df8043063690593638aadf81230e3788df80730207856f088ff774badf8080001a8cde90634d3f718fce061",
+      "instructions": "100572e6 mov r0, r5; 100572e8 bl #0x100ae2ec; 100572ec strb r0, [r4, #3]; 100572ee mov r0, r5; 100572f0 bl #0x100ae2c8; 100572f4 strb r0, [r4, #5]; 100572f6 mov r0, r5; 100572f8 bl #0x100ae2c4; 100572fc strh r0, [r4, #0xc]; 100572fe mov r0, r5; 10057300 bl #0x100570cc; 10057304 ldrb r3, [r4, #9]; 10057306 strh r0, [r4, #0xe]; 10057308 orr r3, r3, #4; 1005730c strb r3, [r4, #9]; 1005730e ldrb r3, [r4, #2]; 10057310 strb r6, [r4, #6]; 10057312 cbnz r3, #0x1005731c; 10057314 mov r0, r5; 10057316 bl #0x100570ac; 1005731a strb r0, [r4, #2]; 1005731c ldrb r3, [r4, #2]; 1005731e cmp r3, #1; 10057320 bne #0x100573d0; 10057322 movs r3, #2; 10057324 strb r3, [r4, #8]; 10057326 movs r2, #0x1c; 10057328 movs r1, #0; 1005732a add r0, sp, #4; 1005732c bl #0x100b96c8; 10057330 ldrb r3, [r4, #6]; 10057332 strb.w r3, [sp, #6]; 10057336 ldr r3, [r4, #0xc]; 10057338 str r3, [sp, #0xc]; 1005733a ldrb.w r3, [sp, #0x10]; 1005733e bfc r3, #0, #1; 10057342 strb.w r3, [sp, #0x10]; 10057346 ldrb r3, [r4, #2]; 10057348 strb.w r3, [sp, #5]; 1005734c movs r3, #0x10; 1005734e strb.w r3, [sp, #0xa]; 10057352 ldrb.w r3, [sp, #4]; 10057356 orr r3, r3, #0x20; 1005735a strb.w r3, [sp, #4]; 1005735e ldr r3, [r4, #0x14]; 10057360 str r3, [sp, #0x14]; 10057362 ldrh r3, [r4, #0x12]; 10057364 strh.w r3, [sp, #0x12]; 10057368 ldrb r3, [r4, #3]; 1005736a strb.w r3, [sp, #7]; 1005736e ldrb r0, [r4]; 10057370 bl #0x100ae284; 10057374 ldr r3, [pc, #0x1dc]; 10057376 strh.w r0, [sp, #8]; 1005737a add r0, sp, #4; 1005737c strd r3, r4, [sp, #0x18]; 10057380 bl #0x1002abb4; 10057384 str r0, [r4, #0x1c]"
+    },
+    {
+      "name": "gpio_mode",
+      "start": "1002de28",
+      "end_exclusive": "1002de5a",
+      "kind": "code",
+      "hex": "38b505460b486cf0f5fc044670b14ff40072122176f0f8f9012d0cbf002201221221204676f0fef9002038bd6ff01500fbe7",
+      "instructions": "1002de28 push {r3, r4, r5, lr}; 1002de2a mov r5, r0; 1002de2c ldr r0, [pc, #0x2c]; 1002de2e bl #0x1009a81c; 1002de32 mov r4, r0; 1002de34 cbz r0, #0x1002de54; 1002de36 mov.w r2, #0x200; 1002de3a movs r1, #0x12; 1002de3c bl #0x100a4230; 1002de40 cmp r5, #1; 1002de42 ite eq; 1002de44 moveq r2, #0; 1002de46 movne r2, #1; 1002de48 movs r1, #0x12; 1002de4a mov r0, r4; 1002de4c bl #0x100a424c; 1002de50 movs r0, #0; 1002de52 pop {r3, r4, r5, pc}; 1002de54 mvn r0, #0x15; 1002de58 b #0x1002de52"
+    },
+    {
+      "name": "gpio_mode_pool",
+      "start": "1002de5c",
+      "end_exclusive": "1002de60",
+      "kind": "data",
+      "hex": "29900c10"
+    },
+    {
+      "name": "gpio_config_and_set_wrapper",
+      "start": "100a4230",
+      "end_exclusive": "100a426c",
+      "kind": "code",
+      "hex": "70b4056986682b6801248c4023ea04032b6022f48052336870bc1847012303fa01f103691b68194218bf82f0010212b18368db68184783681b69fbe7",
+      "instructions": "100a4230 push {r4, r5, r6}; 100a4232 ldr r5, [r0, #0x10]; 100a4234 ldr r6, [r0, #8]; 100a4236 ldr r3, [r5]; 100a4238 movs r4, #1; 100a423a lsls r4, r1; 100a423c bic.w r3, r3, r4; 100a4240 str r3, [r5]; 100a4242 bic r2, r2, #0x1000; 100a4246 ldr r3, [r6]; 100a4248 pop {r4, r5, r6}; 100a424a bx r3; 100a424c movs r3, #1; 100a424e lsl.w r1, r3, r1; 100a4252 ldr r3, [r0, #0x10]; 100a4254 ldr r3, [r3]; 100a4256 tst r1, r3; 100a4258 it ne; 100a425a eorne r2, r2, #1; 100a425e cbz r2, #0x100a4266; 100a4260 ldr r3, [r0, #8]; 100a4262 ldr r3, [r3, #0xc]; 100a4264 bx r3; 100a4266 ldr r3, [r0, #8]; 100a4268 ldr r3, [r3, #0x10]; 100a426a b #0x100a4264"
+    },
+    {
+      "name": "gpio_get_raw",
+      "start": "10030608",
+      "end_exclusive": "1003064a",
+      "kind": "code",
+      "hex": "38b54468227a73f0b7ff237a032b09d0636803f50c7353f822300b6073f0b5ff002038bd0023074d0b6055f823200c68c2f300429a4001332243042b0a60f4d1ece7",
+      "instructions": "10030608 push {r3, r4, r5, lr}; 1003060a ldr r4, [r0, #4]; 1003060c ldrb r2, [r4, #8]; 1003060e bl #0x100a4580; 10030612 ldrb r3, [r4, #8]; 10030614 cmp r3, #3; 10030616 beq #0x1003062c; 10030618 ldr r3, [r4, #4]; 1003061a add.w r3, r3, #0x230; 1003061e ldr.w r3, [r3, r2, lsl #2]; 10030622 str r3, [r1]; 10030624 bl #0x100a4592; 10030628 movs r0, #0; 1003062a pop {r3, r4, r5, pc}; 1003062c movs r3, #0; 1003062e ldr r5, [pc, #0x1c]; 10030630 str r3, [r1]; 10030632 ldr.w r2, [r5, r3, lsl #2]; 10030636 ldr r4, [r1]; 10030638 ubfx r2, r2, #0x10, #1; 1003063c lsls r2, r3; 1003063e adds r3, #1; 10030640 orrs r2, r4; 10030642 cmp r3, #4; 10030644 str r2, [r1]; 10030646 bne #0x10030632; 10030648 b #0x10030624"
+    },
+    {
+      "name": "gpio_set_partial",
+      "start": "10030740",
+      "end_exclusive": "1003076e",
+      "kind": "code",
+      "hex": "70b54268147a73f01bff137a032b0ed0536803f5047343f8241073f01aff137a032b02d1c8206bf0b9fe002070bd",
+      "instructions": "10030740 push {r4, r5, r6, lr}; 10030742 ldr r2, [r0, #4]; 10030744 ldrb r4, [r2, #8]; 10030746 bl #0x100a4580; 1003074a ldrb r3, [r2, #8]; 1003074c cmp r3, #3; 1003074e beq #0x1003076e; 10030750 ldr r3, [r2, #4]; 10030752 add.w r3, r3, #0x210; 10030756 str.w r1, [r3, r4, lsl #2]; 1003075a bl #0x100a4592; 1003075e ldrb r3, [r2, #8]; 10030760 cmp r3, #3; 10030762 bne #0x1003076a; 10030764 movs r0, #0xc8; 10030766 bl #0x1009c4dc; 1003076a movs r0, #0; 1003076c pop {r4, r5, r6, pc}"
+    },
+    {
+      "name": "gpio_masked_rmw_partial",
+      "start": "1003096c",
+      "end_exclusive": "100309a4",
+      "kind": "code",
+      "hex": "f8b54668347a73f005fe337a032b13d0736803f5007353f824506a401140694043f8241073f0fffd337a032b02d1c8206bf09efd0020f8bd",
+      "instructions": "1003096c push {r3, r4, r5, r6, r7, lr}; 1003096e ldr r6, [r0, #4]; 10030970 ldrb r4, [r6, #8]; 10030972 bl #0x100a4580; 10030976 ldrb r3, [r6, #8]; 10030978 cmp r3, #3; 1003097a beq #0x100309a4; 1003097c ldr r3, [r6, #4]; 1003097e add.w r3, r3, #0x200; 10030982 ldr.w r5, [r3, r4, lsl #2]; 10030986 eors r2, r5; 10030988 ands r1, r2; 1003098a eors r1, r5; 1003098c str.w r1, [r3, r4, lsl #2]; 10030990 bl #0x100a4592; 10030994 ldrb r3, [r6, #8]; 10030996 cmp r3, #3; 10030998 bne #0x100309a0; 1003099a movs r0, #0xc8; 1003099c bl #0x1009c4dc; 100309a0 movs r0, #0; 100309a2 pop {r3, r4, r5, r6, r7, pc}"
+    },
+    {
+      "name": "gpio_device",
+      "start": "100b9fc0",
+      "end_exclusive": "100b9fe0",
+      "kind": "data",
+      "hex": "29900c10f0c10b10c0c10b10d02c001804f900180000000000000000d82c0018"
+    },
+    {
+      "name": "gpio_api",
+      "start": "100bc1c0",
+      "end_exclusive": "100bc1d4",
+      "kind": "data",
+      "hex": "e9070310090603106d0903104107031095070310"
+    },
+    {
+      "name": "gpio_config",
+      "start": "100bc1f0",
+      "end_exclusive": "100bc1fc",
+      "kind": "data",
+      "hex": "ffffffff0080064001000000"
+    },
+    {
+      "name": "start_reply",
+      "start": "1000b14a",
+      "end_exclusive": "1000b198",
+      "kind": "code",
+      "hex": "fdb92046a6f10902791d00f8015baef07bfa6e4905223846aef0aefb40b90123e373f21fd2b221460620fff788fb97e0684905223846aef09ffb0028f1d1e573efe7012d40f08c8025702a46ebe7",
+      "instructions": "1000b14a cbnz r5, #0x1000b18c; 1000b14c mov r0, r4; 1000b14e sub.w r2, r6, #9; 1000b152 adds r1, r7, #5; 1000b154 strb r5, [r0], #1; 1000b158 bl #0x100b9652; 1000b15c ldr r1, [pc, #0x1b8]; 1000b15e movs r2, #5; 1000b160 mov r0, r7; 1000b162 bl #0x100b98c2; 1000b166 cbnz r0, #0x1000b17a; 1000b168 movs r3, #1; 1000b16a strb r3, [r4, #0xf]; 1000b16c subs r2, r6, #7; 1000b16e uxtb r2, r2; 1000b170 mov r1, r4; 1000b172 movs r0, #6; 1000b174 bl #0x1000a888; 1000b178 b #0x1000b2aa; 1000b17a ldr r1, [pc, #0x1a0]; 1000b17c movs r2, #5; 1000b17e mov r0, r7; 1000b180 bl #0x100b98c2; 1000b184 cmp r0, #0; 1000b186 bne #0x1000b16c; 1000b188 strb r5, [r4, #0xf]; 1000b18a b #0x1000b16c; 1000b18c cmp r5, #1; 1000b18e bne.w #0x1000b2aa; 1000b192 strb r5, [r4]; 1000b194 mov r2, r5; 1000b196 b #0x1000b170"
+    },
+    {
+      "name": "stop_reply",
+      "start": "1000b198",
+      "end_exclusive": "1000b1f8",
+      "kind": "code",
+      "hex": "4dbb2046a6f10902791d00f8015baef054fa5d4b5d48d3f86c14a31909ba43f8081c94f0e4fe564905223846aef07dfb40b90123e3740123b21e2375d2b221460720cbe74f4905223846aef06efb0028f1d1e574efe7012d5bd125702a46eee7",
+      "instructions": "1000b198 cbnz r5, #0x1000b1ee; 1000b19a mov r0, r4; 1000b19c sub.w r2, r6, #9; 1000b1a0 adds r1, r7, #5; 1000b1a2 strb r5, [r0], #1; 1000b1a6 bl #0x100b9652; 1000b1aa ldr r3, [pc, #0x174]; 1000b1ac ldr r0, [pc, #0x174]; 1000b1ae ldr.w r1, [r3, #0x46c]; 1000b1b2 adds r3, r4, r6; 1000b1b4 rev r1, r1; 1000b1b6 str r1, [r3, #-0x8]; 1000b1ba bl #0x1009ff86; 1000b1be ldr r1, [pc, #0x158]; 1000b1c0 movs r2, #5; 1000b1c2 mov r0, r7; 1000b1c4 bl #0x100b98c2; 1000b1c8 cbnz r0, #0x1000b1dc; 1000b1ca movs r3, #1; 1000b1cc strb r3, [r4, #0x13]; 1000b1ce movs r3, #1; 1000b1d0 subs r2, r6, #2; 1000b1d2 strb r3, [r4, #0x14]; 1000b1d4 uxtb r2, r2; 1000b1d6 mov r1, r4; 1000b1d8 movs r0, #7; 1000b1da b #0x1000b174; 1000b1dc ldr r1, [pc, #0x13c]; 1000b1de movs r2, #5; 1000b1e0 mov r0, r7; 1000b1e2 bl #0x100b98c2; 1000b1e6 cmp r0, #0; 1000b1e8 bne #0x1000b1ce; 1000b1ea strb r5, [r4, #0x13]; 1000b1ec b #0x1000b1ce; 1000b1ee cmp r5, #1; 1000b1f0 bne #0x1000b2aa; 1000b1f2 strb r5, [r4]; 1000b1f4 mov r2, r5; 1000b1f6 b #0x1000b1d6"
+    },
+    {
+      "name": "file_prefix_literals",
+      "start": "1000b318",
+      "end_exclusive": "1000b324",
+      "kind": "data",
+      "hex": "3e220c1044220c1000ba0018"
+    }
+  ]
+}

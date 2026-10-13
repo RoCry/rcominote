@@ -1,4 +1,4 @@
-"""CoMi Note (Boyi branch) wire format, from the official app's JS (CoMi 1.1.2)."""
+"""Boyi wire format: official app layout, corrected by owned-device evidence."""
 
 import struct
 from dataclasses import dataclass
@@ -78,6 +78,17 @@ def parse_file_entry(payload: bytes) -> FileEntry:
     return FileEntry(name=text(payload[1:15]), size=size, kind="call" if payload[19] == 0 else "note")
 
 
+def recording_mode(value: int) -> str:
+    """FW010004 screen/readback oracle: mode1 NOTE, mode2 CALL; not file kind0/1."""
+    match value:
+        case 1:
+            return "note"
+        case 2:
+            return "call"
+        case _:
+            raise ValueError(f"Unknown recording mode byte: {value:#04x}")
+
+
 def parse_device_info(payload: bytes) -> dict:
     if len(payload) < 44:
         raise ValueError(f"Device info is {len(payload)} bytes, app expects >= 44: {payload.hex()}")
@@ -94,7 +105,7 @@ def parse_device_info(payload: bytes) -> dict:
         "recording_state": {0: "idle", 1: "recording"}.get(payload[10], "paused"),
         "version": payload[11:14].hex(),
         "usb_mode": payload[14] == 1,
-        "mode": "call" if payload[15] == 1 else "memo",
+        "mode": recording_mode(payload[15]),
         "indicator_light": tri(payload[16]),
         "noise_reduction": payload[39],
         "voice_control": tri(payload[40]),
@@ -105,7 +116,7 @@ def parse_device_info(payload: bytes) -> dict:
 
 
 def parse_event(cmd: int, payload: bytes) -> dict:
-    """Official CoMi 1.1.2 Y8/Z8 layouts; retain uninterpreted bytes as raw."""
+    """Y8/Z8 layouts with live-corrected mode labels; retain unknown fields as raw."""
     match cmd:
         case 15:
             if len(payload) < 20:
@@ -119,7 +130,7 @@ def parse_event(cmd: int, payload: bytes) -> dict:
                 "charging": payload[0] != 0,
                 "battery": payload[1],
                 "usb_mode": payload[2] == 1,
-                "mode": "call" if payload[3] == 1 else "memo",
+                "mode": recording_mode(payload[3]),
                 "power_off_duration": payload[4],
                 "noise_reduction": payload[5],
                 "voice_control": tri(payload[6]),
