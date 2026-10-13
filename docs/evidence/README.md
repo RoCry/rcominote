@@ -5,6 +5,18 @@
 本页是证据历史，不是待办清单；执行优先级只看[当前路线](../research-routes.md)。
 Wi-Fi的实际固件、App与精确型号证据由[专题汇总](../wifi-capability-2026-10-13.md)串联。
 
+## Android第三主机与完整HCI，2026-10-13
+
+[原始逐包收据及源哈希](android-log-hci-loss-2026-10-13.json)：无root bugreport
+在完整HCI启用后取得515846 B raw snoop；原disabled摘要只有command/event、0ACL。
+最小安卓工具已实机完成身份/状态查询；一次help仍缺第二512 B帧首244 B，
+全部11条Actions通知与Linux HCI逐字节相同，手机HCI与全部应用回调/特征写一致。
+STOP独立尝试并保留原始ACK/F1，整体仍失败；独立结束info完整payload等于初始、NOTE/idle。
+[方法、复验及决策](../android-runtime-followup.md)。原始bugreport/手机记录留ignored目录。
+[实际异步TX调用链](android-tx-path-2026-10-13.json)已将入队成功、异步发送、共享HCI
+ring失败及队列释放绑定同一CoMi镜像；20窗口和dispatch表可离线复验。它证明实际
+候选机制，未证明捕获时执行了该失败分支，不能宣布缺片根因。
+
 ## 国内第三方源码续查，2026-10-13
 
 [实际获取与查询收据](domestic-sdk-renewed-2026-10-13.json)：新Gitee Actions Android宿主源码两仓库固定版本/选定文件哈希已核对；CSDN开发者原文给出旧LARK `SDK-TAG_ZS308A_2700_220112`、板型及具名固件。同系列221215仓库为空；已下载SDK30F手册属于2004年Z80/ATJ208X。记录原生搜索、公开Git、索引/登录/验证码边界；未取得匹配M4 BSP或CoMi恢复包。[内容与价值](../domestic-sdk-followup-2026-10-13.md#renewed-domestic-pass-source-acquired-exact-older-lark-package-identified)。

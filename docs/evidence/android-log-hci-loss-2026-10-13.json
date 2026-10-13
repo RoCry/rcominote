@@ -1,0 +1,361 @@
+{
+  "scope": "Pinned Android HCI raw-record/discovery/callback/baseline comparison; no byte reconstruction",
+  "sources": {
+    "artifacts/android-20261013/android-btsnoop_hci.log": {
+      "bytes": 515846,
+      "sha256": "3764b2af668271f075d01b7e827e374b3e498d7481adc44c67ed8aaf15df1ab7"
+    },
+    "artifacts/android-20261013/help.jsonl": {
+      "bytes": 11781,
+      "sha256": "bb4d41c834add3750eeac5ccbb407bb010d02560f69611157e610073d7b6d8f5"
+    },
+    "docs/evidence/log-commands-2026-10-12.json": {
+      "bytes": 17518,
+      "sha256": "83c1953103d69c5ceb8d6374bf15c24a997840c4e58b940a9100a6c47bc722d7"
+    },
+    "docs/evidence/linux-log-hci-loss-2026-10-13.json": {
+      "bytes": 4176,
+      "sha256": "38b2feb15584244f20899e3275430b44645c5e47ac5d8e18fdab4d034a34af7e"
+    }
+  },
+  "snoop_records": 3338,
+  "truncated_records": 0,
+  "reported_drops": 0,
+  "connection_handle": 5,
+  "connection_packet": 2458,
+  "disconnect_packet": 2652,
+  "discovered_characteristics": [
+    {
+      "packet": 2499,
+      "handle": 3,
+      "uuid": "00002a05-0000-1000-8000-00805f9b34fb"
+    },
+    {
+      "packet": 2499,
+      "handle": 6,
+      "uuid": "00002b29-0000-1000-8000-00805f9b34fb"
+    },
+    {
+      "packet": 2499,
+      "handle": 8,
+      "uuid": "00002b2a-0000-1000-8000-00805f9b34fb"
+    },
+    {
+      "packet": 2512,
+      "handle": 11,
+      "uuid": "00002a00-0000-1000-8000-00805f9b34fb"
+    },
+    {
+      "packet": 2512,
+      "handle": 13,
+      "uuid": "00002a01-0000-1000-8000-00805f9b34fb"
+    },
+    {
+      "packet": 2512,
+      "handle": 15,
+      "uuid": "00002a04-0000-1000-8000-00805f9b34fb"
+    },
+    {
+      "packet": 2521,
+      "handle": 18,
+      "uuid": "00002a19-0000-1000-8000-00805f9b34fb"
+    },
+    {
+      "packet": 2534,
+      "handle": 22,
+      "uuid": "e49a3002-f69a-11e8-8eb2-f2801f1b9fd1"
+    },
+    {
+      "packet": 2534,
+      "handle": 24,
+      "uuid": "e49a3003-f69a-11e8-8eb2-f2801f1b9fd1"
+    },
+    {
+      "packet": 2549,
+      "handle": 28,
+      "uuid": "0000f5f1-0000-1000-8000-00805f9b34fb"
+    },
+    {
+      "packet": 2549,
+      "handle": 30,
+      "uuid": "0000f5f2-0000-1000-8000-00805f9b34fb"
+    },
+    {
+      "packet": 2561,
+      "handle": 34,
+      "uuid": "0000e5e1-0000-1000-8000-00805f9b34fb"
+    },
+    {
+      "packet": 2561,
+      "handle": 36,
+      "uuid": "0000e5e2-0000-1000-8000-00805f9b34fb"
+    },
+    {
+      "packet": 2561,
+      "handle": 39,
+      "uuid": "0000e5e3-0000-1000-8000-00805f9b34fb"
+    },
+    {
+      "packet": 2561,
+      "handle": 42,
+      "uuid": "0000e5e4-0000-1000-8000-00805f9b34fb"
+    }
+  ],
+  "link_parameters": [
+    {
+      "packet": 2470,
+      "att_opcode": 2,
+      "mtu": 247
+    },
+    {
+      "packet": 2473,
+      "att_opcode": 3,
+      "mtu": 247
+    },
+    {
+      "packet": 2483,
+      "subcode": 7,
+      "hex": "070500fb0048081b004801",
+      "tx_octets": 251,
+      "rx_octets": 27
+    },
+    {
+      "packet": 2490,
+      "subcode": 12,
+      "hex": "0c0005000202",
+      "tx_phy": 2,
+      "rx_phy": 2
+    },
+    {
+      "packet": 2492,
+      "subcode": 7,
+      "hex": "070500fb002804fb002804",
+      "tx_octets": 251,
+      "rx_octets": 251
+    },
+    {
+      "packet": 2505,
+      "subcode": 3,
+      "hex": "0300050006000000f401",
+      "interval_ms": 7.5
+    },
+    {
+      "packet": 2576,
+      "att_opcode": 2,
+      "mtu": 512
+    },
+    {
+      "packet": 2578,
+      "att_opcode": 3,
+      "mtu": 247
+    },
+    {
+      "packet": 2582,
+      "subcode": 3,
+      "hex": "0300050024000000f401",
+      "interval_ms": 45.0
+    },
+    {
+      "packet": 2601,
+      "subcode": 3,
+      "hex": "030005000c000000f401",
+      "interval_ms": 15.0
+    },
+    {
+      "packet": 2634,
+      "subcode": 3,
+      "hex": "0300050024000000f401",
+      "interval_ms": 45.0
+    }
+  ],
+  "all_notifications_and_characteristic_writes_match_callbacks": true,
+  "hci_actions_notifications": [
+    {
+      "packet": 2599,
+      "timestamp_us": 63960163161673198,
+      "characteristic": "e49a3003-f69a-11e8-8eb2-f2801f1b9fd1",
+      "hex": "1d108107007f0400a0860100"
+    },
+    {
+      "packet": 2605,
+      "timestamp_us": 63960163161761591,
+      "characteristic": "e49a3003-f69a-11e8-8eb2-f2801f1b9fd1",
+      "hex": "1d108107007f0400a0860100"
+    },
+    {
+      "packet": 2609,
+      "timestamp_us": 63960163161823706,
+      "characteristic": "e49a3003-f69a-11e8-8eb2-f2801f1b9fd1",
+      "hex": "1df081fb0100f8015b6c6f677372765d5b495d5b3634325d3a206c6f677372763a20636f646520307832300a0d0a000d0a506c6561736520707265737320746865203c5461623e20627574746f6e20746f2073656520616c6c20617661696c61626c6520636f6d6d616e64732e0d0a596f752063616e20616c736f2075736520746865203c5461623e20627574746f6e20746f2070726f6d7074206f72206175746f2d636f6d706c65746520616c6c20636f6d6d616e6473206f722069747320737562636f6d6d616e64732e0d0a596f752063616e2074727920746f2063616c6c20636f6d6d616e64732077697468203c2d683e"
+    },
+    {
+      "packet": 2610,
+      "timestamp_us": 63960163161825032,
+      "characteristic": "e49a3003-f69a-11e8-8eb2-f2801f1b9fd1",
+      "hex": "206f72203c2d2d68656c703e20706172616d6574657220666f72206d6f726520696e666f726d6174696f6e2e0d0a0d0a5368656c6c20737570706f72747320666f6c6c6f77696e67206d6574612d6b6579733a0d0a20204374726c202b202861206b65792066726f6d3a206162636465666b6c6e707577290d0a2020416c7420202b202861206b65792066726f6d3a206266290d0a506c6561736520726566657220746f207368656c6c20646f63756d656e746174696f6e20666f72206d6f72652064657461696c732e0d0a0d0a417661696c61626c6520636f6d6d616e64733a0d0a20206163746c6f67202020203a6163746c"
+    },
+    {
+      "packet": 2611,
+      "timestamp_us": 63960163161825505,
+      "characteristic": "e49a3003-f69a-11e8-8eb2-f2801f1b9fd1",
+      "hex": "6f6720636f6d6d616e64732028666c617368207061727469"
+    },
+    {
+      "packet": 2612,
+      "timestamp_us": 63960163161826504,
+      "characteristic": "e49a3003-f69a-11e8-8eb2-f2801f1b9fd1",
+      "hex": "79736963616c206d656d6f7279226465766d656d2061646472657373205b7769647468205b76616c75655d5d0d0a202068656c702020202020203a5072696e7473207468652068656c70206d6573736167652e0d0a2020686973746f72792020203a436f6d6d616e6420686973746f72792e0d0a20206b65726e656c202020203a4b65726e656c20636f6d6d616e64730d0a2020726573697a65202020203a436f6e736f6c652067657473207465726d696e616c2073637265656e2073697a65206f7220617373756d65732064656661756c7420696e2063617365207468650d0a1b5b313343726561646f7574206661696c732e"
+    },
+    {
+      "packet": 2613,
+      "timestamp_us": 63960163161826960,
+      "characteristic": "e49a3003-f69a-11e8-8eb2-f2801f1b9fd1",
+      "hex": "204974206d75737420626520657865637574656420616674"
+    },
+    {
+      "packet": 2614,
+      "timestamp_us": 63960163161837817,
+      "characteristic": "e49a3003-f69a-11e8-8eb2-f2801f1b9fd1",
+      "hex": "1df081c20000bf0065722065616368207465726d696e616c207769647468206368616e67650d0a1b5b313343746f20656e7375726520636f7272656374207465787420646973706c61792e0d0a20207368656c6c20202020203a55736566756c2c206e6f7420556e69782d6c696b65207368656c6c20636f6d6d616e64732e0d0a202073797374656d202020203a73797374656d20636f6d6d616e64730d0a5b6c6f677372765d5b495d5b3637395d3a206c6f677372763a20636d642834292068656c700d0a0a"
+    },
+    {
+      "packet": 2616,
+      "timestamp_us": 63960163161851453,
+      "characteristic": "e49a3003-f69a-11e8-8eb2-f2801f1b9fd1",
+      "hex": "1d108107007f0400a0860100"
+    },
+    {
+      "packet": 2620,
+      "timestamp_us": 63960163161941789,
+      "characteristic": "e49a3003-f69a-11e8-8eb2-f2801f1b9fd1",
+      "hex": "1d108107007f0400a0860100"
+    },
+    {
+      "packet": 2621,
+      "timestamp_us": 63960163161942215,
+      "characteristic": "e49a3003-f69a-11e8-8eb2-f2801f1b9fd1",
+      "hex": "1df1810000"
+    }
+  ],
+  "all11_actions_notifications_match_linux_hci": true,
+  "second_frame_received_slices": [
+    [
+      244,
+      488
+    ],
+    [
+      488,
+      512
+    ]
+  ],
+  "missing_slice_relative_to_independent_baseline": [
+    0,
+    244
+  ],
+  "experiment_ok": false,
+  "comparison_verified": true,
+  "limits": [
+    "Pinned unfragmented CID4 capture verifier, not a general HCI/L2CAP parser",
+    "Zero reported drops does not prove controller/logger completeness",
+    "No over-the-air or device-TX trace; shared device enqueue/controller path remains a hypothesis",
+    "Raw STOP ACK/F1 after parser failure is not strict session success"
+  ],
+  "date": "2026-10-13",
+  "phone": {
+    "model": "Redmi K30 Pro",
+    "android": "12",
+    "sdk": 31,
+    "root_used": false,
+    "rea_evidence": "ev_ab2211882b6116224238bc408d201a20cbd634b6621acff46383f1b5733389d5"
+  },
+  "preflight": {
+    "baseline_bugreport_raw_snoop_members": 0,
+    "btsnooz_records": 2132,
+    "btsnooz_acl_records": 0,
+    "full_snoop_after_enable": true,
+    "after_bugreport_snoop_members": [
+      "FS/data/misc/bluetooth/logs/btsnoop_hci.log"
+    ],
+    "last_members": [],
+    "usb_install_blocker": "Owner observed SIM-card requirement; probe installed through normal phone file manager",
+    "official_comi_installed": false,
+    "owner_has_comi_account": false
+  },
+  "source_artifacts": {
+    "artifacts/android-20261013/bugreport-baseline.zip": {
+      "bytes": 12604273,
+      "sha256": "4929af860c3cc58fdf24c18354504f2c005afe08969c0f79dbcd6e0a5fa4ab79"
+    },
+    "artifacts/android-20261013/bugreport-after.zip": {
+      "bytes": 13012056,
+      "sha256": "c7412994693c5117707bdf60aa38fbc21a0ae427f28b6b712b130f4f56f23247"
+    },
+    "artifacts/android-20261013/baseline-summary.btsnoop": {
+      "bytes": 103619,
+      "sha256": "0ca96d3846f90d2a91b1bec1afbd6f89782c41bcc3bfc8f7510749d1fddc34f3"
+    },
+    "artifacts/android-20261013/info-before.jsonl": {
+      "bytes": 3591,
+      "sha256": "38c3b2f67aa417b91e281a4d24207a8b86591644fb947cc1595c993f049fe42d"
+    },
+    "artifacts/android-20261013/info-after.jsonl": {
+      "bytes": 3683,
+      "sha256": "f0bb3bcd4b49eb9649aa0b098275c77c2fb3f12c1b3614b8db28ecc3883d0baf"
+    },
+    "artifacts/android-20261013/help.jsonl": {
+      "bytes": 11781,
+      "sha256": "bb4d41c834add3750eeac5ccbb407bb010d02560f69611157e610073d7b6d8f5"
+    },
+    "artifacts/android-20261013/android.btmon.txt": {
+      "bytes": 3177474,
+      "sha256": "1a2d63f969d81a1390fa55cbd2fca8a8c2a30f6f791511b37cc691152bc7702a"
+    },
+    "artifacts/android-20261013/acquisition/btsnooz.py": {
+      "bytes": 6661,
+      "sha256": "ff4c96875c555f50e34eb5031ad23b53894cf0d8cfc59aac6289f711645a66bd"
+    },
+    "artifacts/android-20261013/acquisition/android-repository.xml": {
+      "bytes": 375813,
+      "sha256": "8639415997d7309d0cb1199c2f0dc3a5bb22acde7a4730e951437116bc72679f"
+    },
+    "artifacts/android-probe-build-ready/comi-probe.apk": {
+      "bytes": 20907,
+      "sha256": "8f6d2b3457e0ea5d6464b3cc9923d381572af9b13794bd63a57312c8c4de31bf"
+    },
+    "tools/android_probe/MainActivity.java": {
+      "bytes": 20686,
+      "sha256": "9d6dfae499ef078dad8a5866885de841fe7fac07aabaf56d6cfd4032321b7d3a"
+    },
+    "tools/android_probe/AndroidManifest.xml": {
+      "bytes": 891,
+      "sha256": "2247288e0c6ed69c2044ce1b9c699a285200f7b3f9614f6f58a555210c8def56"
+    }
+  },
+  "post_state": {
+    "independent_info_before_after_equal": true,
+    "full_info_payload_sha256": "730d9c259459be46ddadfe5ecf038a87bea9370556f05777c786f667230e254e",
+    "recording_state": "idle",
+    "mode": "note",
+    "version": "010004",
+    "capacity_total": 59634,
+    "capacity_free": 59598
+  },
+  "cleanup": {
+    "stop_submitted": true,
+    "raw_stop_write_callback_status": 0,
+    "raw_tail": [
+      "1d108107007f0400a0860100",
+      "1d108107007f0400a0860100",
+      "1df1810000"
+    ],
+    "strict_stop_confirmation": false,
+    "overall_probe_success": false,
+    "probe_duration_seconds": 6.848979372
+  },
+  "reproduce": [
+    "uv run tools/verify_android_probe.py artifacts/android-20261013/help.jsonl  # expected exit1",
+    "uv run tools/verify_android_log_capture.py artifacts/android-20261013  # comparison exit0"
+  ],
+  "installed_probe_apk_sha256": "8f6d2b3457e0ea5d6464b3cc9923d381572af9b13794bd63a57312c8c4de31bf",
+  "installed_probe_matches_built_apk": true
+}

@@ -1,0 +1,354 @@
+{
+  "scope": "Offline fixed actual CoMi image, selected byte ranges and manual Capstone/source call-chain analysis; no target instruction execution or hardware I/O",
+  "result": "An end-to-end static candidate mechanism is now bound to actual CoMi code: upstream accepts notification into an async queue; later HCI shared-ring submission may fail; async layer releases/discards without notifying stream_write. This is possibility evidence, not incident root-cause attribution.",
+  "image": {
+    "path": "artifacts/mapped-system-20261012.bin",
+    "bytes": 927632,
+    "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f"
+  },
+  "raw_evidence": {
+    "path": "artifacts/android-20261013/astra-source-followup.json",
+    "bytes": 289224,
+    "sha256": "44c26a76ed238261bfee2b5347acf381232a5d9b930388eea7265f0d7cc58be1"
+  },
+  "region_columns": [
+    "name",
+    "start",
+    "end_exclusive",
+    "raw_sha256"
+  ],
+  "regions": [
+    [
+      "generic_stream_write",
+      "0x100517fc",
+      "0x10051974",
+      "e96e16db83475981810450d8c220d3f19ba861c686bc4bf045e84b182e88b678"
+    ],
+    [
+      "sppble_stream_factory",
+      "0x1006cd44",
+      "0x1006cd4c",
+      "a62d4a3abb08ce5dd91a0237798389ab12fac95477db8dfd5f47020246215dc4"
+    ],
+    [
+      "sppble_write_and_ble_fragment_loop",
+      "0x100b194a",
+      "0x100b1a22",
+      "050712a9c34d79fde58dbc3b0dece42ca3da68105ec6b0db1fd9c5b62abd4608"
+    ],
+    [
+      "ble_send_manager",
+      "0x1006bfc8",
+      "0x1006c082",
+      "01aeb06ec78b1329b2a41967d6854cdc22a36bdfe4c0389deb05d32c230de709"
+    ],
+    [
+      "hostif_notify_wrapper",
+      "0x100b241e",
+      "0x100b245c",
+      "232191f012e8b1dc33d409a831d5450a8d47de57f7d154295b9eb1357c43fe9a"
+    ],
+    [
+      "gatt_notify_frontend",
+      "0x10077568",
+      "0x10077642",
+      "3734098138881c6e3177bda61231f220676fbf2c93b84fd76ef92b573ea015b9"
+    ],
+    [
+      "gatt_notify_buffer_copy",
+      "0x10076dc4",
+      "0x10076ee2",
+      "28a60d76c923bb3bbda377eb1c33ee371244f5c3ac4419ab9b7288a7ebaacd9d"
+    ],
+    [
+      "att_send_first_async_queue",
+      "0x100b4df2",
+      "0x100b4e84",
+      "05823f28aad2c61c4e91dfdbed6c6ec2c66cea884d8849d8e83476c340009ac5"
+    ],
+    [
+      "independent_conn_send_enqueue_candidate",
+      "0x100748f8",
+      "0x100749ea",
+      "95b3880c5c044be9dd107f11f5ed317cab6d81d62d7917ccdf6ec1bfbba4c8ec"
+    ],
+    [
+      "independent_l2cap_send_wrapper",
+      "0x100b3ed2",
+      "0x100b3f04",
+      "3473ad717ca8cd1d487e0df46082be869d9c930dff5775478ec6c1d359eb7e9f"
+    ],
+    [
+      "independent_hci_send_dispatch",
+      "0x10071fa4",
+      "0x10071fc0",
+      "b8e8ad5740a6f04693cf08c59ba62b419e0186595301d4c47c7fd38d903bbc77"
+    ],
+    [
+      "independent_driver_send_cases",
+      "0x10035500",
+      "0x1003552e",
+      "26292f17d5ada9b77803c4f01fcadafd5a33b671c0c79e7f22dc44d4139a9402"
+    ],
+    [
+      "independent_btdrv_send_ring_failure",
+      "0x10034f94",
+      "0x100350a2",
+      "909241fd6b652a1cc9468aadcf5161dcb78c00a8f7a164a3be742606edfc5232"
+    ],
+    [
+      "att_channel_send",
+      "0x1007821c",
+      "0x100782de",
+      "aec7e2b365555a23d839d28dfa0aea7c1e06ee5846f8675c56747e0c3ecdf3a1"
+    ],
+    [
+      "conn_process_tx_with_inlined_send_buf",
+      "0x10074ce0",
+      "0x10074e04",
+      "26134b720bbaafe6c4e8b15dd4bfa56ac408edfafb7a156b447223ab9bbbed4f"
+    ],
+    [
+      "send_fragment_driver_and_failure_cleanup",
+      "0x10074b84",
+      "0x10074cc6",
+      "a7e1792b763841d40ab43e5646c0237a9f57e7623c5550ac3ee68965e7530979"
+    ],
+    [
+      "hci_driver_register",
+      "0x1007280c",
+      "0x10072830",
+      "a9327e080c8b8af8426ecc0bdad00e3f0097aed32fc95b67fd2d55788f5c5116"
+    ],
+    [
+      "hci_acts_driver_init",
+      "0x100354cc",
+      "0x100354de",
+      "24cb0dd793096648774900020959aca4322e15bbea87f406e9b5569135cb7927"
+    ],
+    [
+      "net_buffer_unref",
+      "0x1006d3d4",
+      "0x1006d434",
+      "a49936dfb687dfc94a1d4ec2aff2f125a78687ce80d962d22807fdd366d416a7"
+    ],
+    [
+      "rbuf_put_claim",
+      "0x100a3f74",
+      "0x100a4008",
+      "770f298cf07ed29aac13f8379d2075917d2a972f98954b235b3c14c942eebcfc"
+    ]
+  ],
+  "source_commit": "26f51e584940d5b141cd1d09d2629d69b595f579",
+  "source_columns": [
+    "path",
+    "sha256",
+    "inclusive_line_ranges"
+  ],
+  "sources": [
+    [
+      "action_technology_sdk/application/bt_watch/src/bt_log/log_service.c",
+      "2788a6f26a6c77d325b0beeb3231e1fea49d8c6b3edc13b6b34b6ac5261670ae",
+      [
+        [
+          263,
+          273
+        ],
+        [
+          500,
+          538
+        ],
+        [
+          737,
+          800
+        ]
+      ]
+    ],
+    [
+      "action_technology_sdk/framework/base/utils/stream/stream.c",
+      "e9c7bc46411685e0f69fa4dc969679ae98537d2c1e5118db2b80e68ebc0967c2",
+      [
+        [
+          262,
+          343
+        ]
+      ]
+    ],
+    [
+      "action_technology_sdk/framework/bluetooth/bt_manager/bt_manager_sppble_stream.c",
+      "9ad3ab7c24bdcee19c67e3d90b64c4ae77eec9e43496885d34f9cfe567a69aa7",
+      [
+        [
+          666,
+          731
+        ],
+        [
+          773,
+          788
+        ]
+      ]
+    ],
+    [
+      "action_technology_sdk/framework/bluetooth/bt_manager/bt_manager_ble.c",
+      "4962773df5c308088f776fa31fe0ac69b4420fbec798fb60c5c924127f80eebf",
+      [
+        [
+          893,
+          903
+        ],
+        [
+          991,
+          1042
+        ]
+      ]
+    ],
+    [
+      "action_technology_sdk/framework/bluetooth/bt_stack/src/bt_stack/gatt.c",
+      "c65adef58e890f68ab09566b684018e0bc909c6259cebb3cb6da826d12c67e17",
+      [
+        [
+          1983,
+          2000
+        ]
+      ]
+    ],
+    [
+      "action_technology_sdk/framework/bluetooth/bt_stack/src/bt_stack/att.c",
+      "793ea4c21d53b522e4d15d09c21fd51fc4cdba926080dbbf2a1b1ca3417ef4b0",
+      [
+        [
+          135,
+          235
+        ],
+        [
+          2992,
+          3031
+        ]
+      ]
+    ],
+    [
+      "action_technology_sdk/framework/bluetooth/bt_stack/src/bt_stack/conn.c",
+      "d7dea0a5a95e32bcd84cc953bc81c52cfefc20864539e27500e460ede3ff2824",
+      [
+        [
+          1085,
+          1134
+        ],
+        [
+          1200,
+          1276
+        ],
+        [
+          1464,
+          1504
+        ],
+        [
+          3483,
+          3493
+        ]
+      ]
+    ],
+    [
+      "action_technology_sdk/framework/bluetooth/bt_stack/src/bt_stack/hci_core.c",
+      "6053bbf8ceeba0974aa99c6b1f77ea947dbe9768a4e872534b84e9aa41f66b0b",
+      [
+        [
+          6767,
+          6785
+        ]
+      ]
+    ],
+    [
+      "action_technology_sdk/zephyr/drivers/bluetooth/hci_acts.c",
+      "1a146fe6025f9941c199da007ed507962a336d64fe6c8eed91e761f9f556e981",
+      [
+        [
+          88,
+          121
+        ]
+      ]
+    ],
+    [
+      "action_technology_sdk/zephyr/drivers/bluetooth/bt_drv.c",
+      "be90486e3e022025654cb48cd35c2a74351203f95ffabcf7b67c04660260bc94",
+      [
+        [
+          843,
+          911
+        ]
+      ]
+    ],
+    [
+      "action_technology_sdk/zephyr/lib/rbuf/rbuf_core.c",
+      "02760a83a98ec34fc2028d6966600d73ab9b2b330984f3af0c3e8aa8577a3ae4",
+      [
+        [
+          78,
+          132
+        ]
+      ]
+    ]
+  ],
+  "static_chain": [
+    "log init BL0x1006cd44; factory uses ops0x100bd7f8; stream_create stores ops at handle+0x50; stream_write dispatches ops+0x1c=0x100b194b",
+    "actual writer0x100b194a fragments at MTU-3, calls0x1006bfc8, advances send offset only on nonnegative result, retries negative result with5ms under forever timeout",
+    "manager notify branch BL0x100b241e; zeroed callback parameters; BL0x10077568; connected notify path BL0x10076dc4",
+    "ordinary notify path creates opcode0x1b buffer, copies payload, tail-branches0x100b4df2",
+    "ATT0x100b4df2 calls channel helper0x1007821c; negative sends can reach queue-put0x100b2568 at0x100b4e44 and return0",
+    "channel helper0x1007821c BL0x100b3ed2 at0x100782b8; L2CAP wrapper tail-branches0x100748f8 at0x100b3f00",
+    "conn_send queues through0x100b2568 at0x100749b4 using conn+0x38 and returns0 before asynchronous drain",
+    "actual conn_process_tx0x10074ce0 dequeues same conn+0x38 through0x100b252c at0x10074d70",
+    "unfragmented path passes same buffer with always_consume=0 to0x10074b84 at0x10074db0",
+    "fragment sender calls HCI dispatcher0x10071fa4 at0x10074c0c; driver failure causes credit/TX-context cleanup and false return",
+    "queue drain tests false at0x10074db4;0x10074dc6..10074dd0 tail-releases original buffer via0x1006d3d4 without requeue or upstream failure signal",
+    "built-in driver registration uses table0x100bc3f8 send pointer0x100354e9; stores same global driver slot read by dispatcher",
+    "driver0x100354e8 calls0x10034f94, calls buffer_unref at0x1003550e unconditionally, returns preserved driver result",
+    "rbuf claim0x100a3f74 can returnNULL for insufficient free/contiguous space; btdrv_send claimNULL with remaining bytes returns-22 and clears TX context"
+  ],
+  "hci_driver_binding": {
+    "bt_dev_base": "0x18001388",
+    "driver_pointer_offset": "0x16c",
+    "driver_pointer_ram_address": "0x180014f4",
+    "init_function": "0x100354cc",
+    "registration_call": "0x100354d6",
+    "registration_function": "0x1007280c",
+    "registration_store": "0x1007281c",
+    "table_address": "0x100bc3f8",
+    "table_hex": "bcb50c10000000000200000035550310e9540310",
+    "table_words": [
+      "0x100cb5bc",
+      "0x0",
+      "0x2",
+      "0x10035535",
+      "0x100354e9"
+    ],
+    "open_offset": "0xc",
+    "send_offset": "0x10",
+    "send_thumb_pointer": "0x100354e9",
+    "dispatcher_function": "0x10071fa4",
+    "runtime_pointer_not_read": true
+  },
+  "ownership_caveat": {
+    "observed_static": "On unfragmented driver-error branch, driver invokes unref on original buffer, then async queue-drain caller invokes unref on same pointer again. Helper0x1006d3d4 decrements byte refcount at+4 and releases atzero.",
+    "boundary": "Potential duplicate-release ownership mismatch. Exact live references, allocator/reuse interleavings and incident branch execution unobserved; no claim of observed corruption."
+  },
+  "remaining_limits": [
+    "Runtime value of driver slot0x180014f4 and successful execution of built-in initializer not measured; registration/dispatch binding is static.",
+    "No device-side ring occupancy, claim return, driver-error count, controller receipt or air trace during Android/Linux/Mac capture.",
+    "Runtime ATT/ACL MTU and packet segmentation on device side not read; unfragmented error path is feasible, not demonstrated for this notification.",
+    "No complete scheduler timing/concurrency audit or proof why precisely the fourth help notification disappears."
+  ],
+  "android_exact_comparison": {
+    "first_frame_exact": true,
+    "second_frame_244_to_488_exact": true,
+    "second_frame_488_to_512_exact": true,
+    "third_frame_exact": true,
+    "raw_tail": [
+      "1d108107007f0400a0860100",
+      "1d108107007f0400a0860100",
+      "1df1810000"
+    ],
+    "source_sha256": "bb4d41c834add3750eeac5ccbb407bb010d02560f69611157e610073d7b6d8f5"
+  },
+  "timing_decision": "START-write to help-write88.574271ms. Vendor1s sleep follows CCCD/MTU and documents prevention of Android133 connection errors, not a START-to-help settling rule. Do not rerun timing permutations without a candidate-derived prediction. A one-time initial delay cannot generally pace the device internal multi-notification help burst."
+}

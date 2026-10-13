@@ -11,6 +11,9 @@
 
 [Ubuntu 接手入口](docs/ubuntu-handoff.md)：Linux普通CLI已用直接LE连接完成状态/列表/既有录音导出验收；Actions日志仍在HCI缺片，后续门槛见交接记录。
 
+[Android第三主机对照](docs/android-runtime-followup.md)：最小诊断工具已实测；无root
+完整HCI确认同样缺244 B，11条通知与Linux HCI逐字节相同。状态复核通过，日志出口未修复。
+
 [随附说明书核对](docs/manual-2026-10-13.md)：模拟硅麦+骨传导麦、NOTE/CALL、
 电源按键与录音滑键、磁吸充电口；照片与校验值已归档。尚不能确定精确麦克风颗数或独立复位方法。
 
