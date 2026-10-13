@@ -7,6 +7,13 @@ then own firmware. No single artifact or passing test substitutes for these goal
 
 ## Focus: platform before peripheral detail
 
+User-directed Wi-Fi follow-up2026-10-13: [chip / SDK / actual-device audit](wifi-capability-2026-10-13.md).
+REC_JX3 supplies external ESP32-C3 SPI/AP/WebSocket host code, with integration
+gaps; not CoMi hardware proof. Actual CoMi has linked WIFI_OTA_VIEW strings,
+while App Wi-Fi controls belong to Mova, not owned Boyi. Next bounded question:
+trace actual view events to transport/module initialization. No guessed commands
+or repeated USB reconnects; park if no concrete transport evidence emerges.
+
 User direction: prioritize device, firmware, SoC and SDK understanding; park
 blocked details and switch questions. Start with [device/platform map](device-platform-map.md).
 Current deliverables, in order:

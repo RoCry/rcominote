@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-13",
+  "scope": "Offline retained original system image and CoMi 1.1.2 main JS; no device commands",
+  "system_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "system_bytes": 927632,
+  "wifi_strings": [
+    {
+      "address": "0x100c398a",
+      "text": "view_id == WIFI_OTA_VIEW",
+      "aligned_pointer_refs": [
+        "0x10015b38"
+      ]
+    },
+    {
+      "address": "0x100c39a3",
+      "text": "WEST_TOPDIR/application/bt_watch/src/recorder/record/record_wifi_ota_view.c",
+      "aligned_pointer_refs": [
+        "0x10015b40"
+      ]
+    },
+    {
+      "address": "0x100c39ef",
+      "text": "wifi_ota_state == %d",
+      "aligned_pointer_refs": [
+        "0x10015b78"
+      ]
+    },
+    {
+      "address": "0x100c3a05",
+      "text": "_wifi_ota_view_layout_update",
+      "aligned_pointer_refs": [
+        "0x10015b44"
+      ]
+    },
+    {
+      "address": "0x100c3a22",
+      "text": "_wifi_ota_view_handler",
+      "aligned_pointer_refs": [
+        "0x10015b3c"
+      ]
+    }
+  ],
+  "other_ascii_literal_counts": {
+    "wi-fi": 0,
+    "wlan": 0,
+    "ssid": 0,
+    "lwip": 0,
+    "esp32": 0,
+    "esp_hosted": 0,
+    "spihd": 0,
+    "802.11": 0,
+    "socket": 0,
+    "tcp": 0,
+    "udp": 0
+  },
+  "app_main_sha256": "167d837a68310664ecec8de6960fd96f6962036cf21a101cc546b1d9c489cc9c",
+  "app_main_bytes": 588988,
+  "app_method_byte_offsets": {
+    "setWifiEnabled": [
+      276346,
+      279153,
+      279193
+    ],
+    "getWifiStatus": [
+      276592,
+      279219,
+      279256
+    ]
+  },
+  "limits": [
+    "Literal absence does not prove absence of networking hardware or code.",
+    "Wi-Fi methods belong to Mova branch, not the owned Boyi device.",
+    "WIFI_OTA_VIEW is a linked UI clue, transport implementation not established."
+  ]
+}
