@@ -9,6 +9,11 @@
 原配整根磁吸线接Mac，数据接线尚未验证。未重插、重启、挂载、进入ROM或写固件；
 配置setter可持久化NVRAM。[研究与下一步](../usb-next-steps-2026-10-13.md)。
 
+[随后明确的on→磁吸头断开→接回](usb-replug-live-2026-10-13.json)：本机充电
+true→false→true、USB_COPY始终on、始终idle，三个完整Mac清单均同一15节点。
+本次on命令走already_matches，没有发送setter；重连无传输提示或新USB节点。
+无重启/ROM试验；不证明数据针脚不存在或启动门控不存在。
+
 ## 随机说明书照片，2026-10-13
 
 [三张归档JPEG、原始HEIC与归档校验值](manual-2026-10-13/manifest.json)，

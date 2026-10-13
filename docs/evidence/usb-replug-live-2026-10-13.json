@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-13",
+  "serial": "C261CF0430",
+  "firmware": "010004",
+  "question": "Does enabling USB_COPY then explicitly removing/reconnecting the magnetic head expose a USB data interface?",
+  "owner_actions": [
+    "Disconnected only CoMi magnetic head and left disconnected",
+    "Reconnected magnetic head with unchanged Mac-side port; no USB/transfer prompt"
+  ],
+  "ensure_on_result": {
+    "setting": "usb",
+    "value": true,
+    "changed": false,
+    "verification": "already_matches"
+  },
+  "phases": [
+    {
+      "phase": "connected",
+      "snapshot_time_utc": "2026-10-13T00:59:28.336456+00:00",
+      "device_count": 15,
+      "charging": true,
+      "usb_mode": true,
+      "recording_state": "idle",
+      "mode": "call"
+    },
+    {
+      "phase": "disconnected",
+      "snapshot_time_utc": "2026-10-13T01:02:41.849125+00:00",
+      "device_count": 15,
+      "charging": false,
+      "usb_mode": true,
+      "recording_state": "idle",
+      "mode": "call"
+    },
+    {
+      "phase": "reconnected",
+      "snapshot_time_utc": "2026-10-13T01:03:51.037998+00:00",
+      "device_count": 15,
+      "charging": true,
+      "usb_mode": true,
+      "recording_state": "idle",
+      "mode": "call"
+    }
+  ],
+  "complete_usb_inventories_identical": true,
+  "diff_connected_disconnected": {
+    "removed": [],
+    "added": [],
+    "changed": []
+  },
+  "diff_disconnected_reconnected": {
+    "removed": [],
+    "added": [],
+    "changed": []
+  },
+  "reconnected_recording_count": 8,
+  "reconnected_file_list_equals_earlier_usb_roundtrip_final_list": true,
+  "fresh_pre_unplug_file_list_taken": false,
+  "host_log": {
+    "window": "last3m at collection; USB subsystem/usbd and enumeration/attach/connect/fail keywords",
+    "entry_count": 0,
+    "absence_not_electrical_measurement": true
+  },
+  "raw_capture_sha256": {
+    "ensure-on.json": "b70205720a25bdae1d5a489aff80c3356e18e2dc4e5376a8d4c98247de48382d",
+    "connected.json": "23b002a62a7bddf80acfac1b50d50cf3061fde731774b997babbae117f691551",
+    "connected-info.json": "e161bad1d5153726b5472cae53de390d116fda4dc71b34208a8efceec59be1a0",
+    "disconnected.json": "b1d9c3e9ae562e7598fa9576a16ade12de76a484934e26f28050c47ee0aed449",
+    "disconnected-info.json": "52dc556fd5051d7a6bd4a19f1f5f8d2871c495583700d343b8e02655ab66f4a8",
+    "reconnected.json": "1dc0e701602127c923be58ff5fa3a76bd87c82019186cc9e11ac33866e4fa167",
+    "reconnected-info.json": "7d21e5b133377c6e2ba2fe38a55dd870e33219c06e43caa3a8b9a975d8d3cb62",
+    "host-log.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "scope": [
+    "Passive Mac USB registry and normal read-only Boyi queries",
+    "No USB_COPY setter sent: already_matches path",
+    "No recording control, reset, ROM entry, USB control/bulk transfer, disk mount or firmware write requested"
+  ],
+  "conclusion": "No visible USB data interface after this explicit on/unplug/replug sequence with current cable/port/FW; power disconnect/reconnect confirmed through target charging flag",
+  "limits": [
+    "No cable pinout or D+/D- continuity/electrical measurement",
+    "No power-on/boot-gated or ROM-mode experiment",
+    "Does not establish absence of all USB capability",
+    "No raw USB transient capture; complete registries are sampled endpoints",
+    "Recording bytes not compared; final file metadata compared with earlier trial, not a new pre-unplug list"
+  ]
+}

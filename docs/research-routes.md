@@ -77,6 +77,11 @@ readback passes but three Mac descriptor inventories remain identical. Follow
 the actual connection/class/backend chain and cable evidence; do not repeat
 this toggle, CDC worker inventory or descriptor scan without new material.
 Ordinary USB storage, ROM download and NOR recovery remain separate questions.
+[Explicit on/unplug/replug follow-up](usb-next-steps-2026-10-13.md#明确验证on后重插)
+now confirms target charging true→false→true with USB_COPY alwayson and three
+identical15-node Mac inventories. This current-cable/port/FW trial adds no USB
+node; close the simple reconnect hypothesis here. Cable data wiring, boot-gated
+behavior and other firmware modes remain unresolved; no repeat without new input.
 
 Current acquisition boundary: [official manual/index follow-up](official-acquisition-next.md#2026-10-13-bounded-manualreset-follow-up)
 yielded no device reset procedure or firmware/BSP package. Matching platform
