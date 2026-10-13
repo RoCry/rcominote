@@ -152,29 +152,34 @@ All effects remain unverified; submitted requests exit3 with `ok=false`, not
 effect-success0. Unbind/reset use one serialized write, invalidate and close the
 session without ACK wait or reconnect. [Complete23-opcode coverage and goldens](remaining-client-contracts.md).
 
-`DELETE_FILE=0d` is implemented with explicit confirmation and list readback;
-no device deletion was performed to validate it. Matching ACK alone never
-qualifies as verified deletion. List absence does not prove physical/secure erasure.
+`DELETE_FILE=0d` is implemented with explicit confirmation and list readback.
+[Owned-device acceptance](file-deletion.md) removed one newly created scratch
+recording after two identical retained exports; a fresh complete list restored
+the original7 entries. Matching ACK alone never qualifies as verified deletion.
+List absence does not prove physical/secure erasure or restart persistence.
 
 ## Verification ledger
 
 - **Verified on owned device, previous work:** discovery/status, file listing and
   recording export; previous recording controls/time evidence retained in repo.
   See [protocol.md](protocol.md) and [evidence index](evidence/README.md).
-- **Source-only in this specification:** six settings setter encodings/domains,
-  current-recording request layout, full event parser. Live readback must promote
-  individual capabilities; avoid claiming all setters tested together.
+- **Settings with actual field roundtrips:** noise9→8→9, backlight00→01→00,
+  segment03→01→03, USB on→off→on. Evidence below and
+  [USB trial](usb-next-steps-2026-10-13.md). These prove selected reported values,
+  not all values, physical effects or reboot persistence. Indicator/voice-control
+  setters remain source-derived with no live mutation acceptance.
 - **Firmware investigation verified separately:** Zephyr version shell output,
   NVRAM configuration read, two matching 16-byte code samples. Each has its own
   bounded evidence; none is a restorable official firmware image.
-- **Unresolved:** full physical storage map/size, complete firmware readback,
+- **Unresolved:** complete physical Flash contents and physical-device confirmation,
+  complete firmware readback,
   independent recovery path, official image acquisition, signing restrictions,
   exact board/SoC identity. A comprehensive device CLI helps collect evidence for
   these questions but does not itself settle them.
 
 ## Unified CLI live validation
 
-The package implements the source-derived explicit setters with readback and rejects unavailable values. This pass additionally observed recording start/pause/resume/stop, recording-info, complete download/sync, and noise9→8→9 with matching state readback. All other setters retain their source-only write-status boundary. Clock synchronization has no known readback getter and was not live-tested. See [validation](evidence/cli-validation-2026-10-12.json) and [usage](cli.md).
+The package implements the source-derived explicit setters with readback and rejects unavailable values. The2026-10-12 pass observed recording start/pause/resume/stop, recording-info, complete download/sync, and noise9→8→9 with matching state readback. Later backlight/segment/USB roundtrips are accounted for above. Clock synchronization has no known readback getter and was not live-tested. See [validation](evidence/cli-validation-2026-10-12.json) and [usage](cli.md).
 
 ### 2026-10-13: two more setters accepted on owned hardware
 

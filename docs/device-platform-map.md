@@ -56,7 +56,9 @@
 | [已知ROM→SD两次导出](rom-sd-bridge.md) | `1900..1a50`共336 B均匹配旧独立oracle；该源可用文件通道 | 未建立ROM总范围、任意地址可读性或批量吞吐；扩展语料需可信边界 |
 | [正常态RAM入口盘点](normal-ram-entry-inventory.md) | 完整静态命令树及候选直接路径区分日志控制、内存写入和执行 | 已检查接口没有受支持的RAM执行合同；不代表全固件无隐藏入口，不以控制流破坏补缺 |
 
-## 下一阶段只抓三个交付物
+## 固件主线的三个缺口
+
+以下是完成条件，不表示当前均可执行；实际优先级、封存路线和可选有界任务见[当前路线](research-routes.md)。
 
 1. **匹配平台资料包**：ATS3085L/LARK M4 BSP、寄存器/引脚资料、开发板材料、生产配置和host。现有SDK保留实质外设源码，但缺SoC/板级闭环及匹配M4媒体/蓝牙库；[可重建性清单](platform-source-followup.md#rebuildability-peripheral-source-survives-platform-closure-does-not)已区分。另定位 `BAREMETAL_CMSIS/lark_sdk` / LarkHal / Flashloader，NOR/SD接口对照完成；精确公共检索未取得源包，有新入口再继续。不重复泛搜或已完成的接口分析。
 2. **固件与恢复全景**：原厂包获取线索、镜像依赖/布局、安全约束、ROM→helper→NOR路径。先回答哪种路径值得验证，再决定是否一次性采集有界ROM语料；不逐callee新增实机实验。

@@ -6,15 +6,17 @@
 
 1. [设备、固件与 SDK 总览](docs/device-platform-map.md)：已知平台、固件组成、可复用材料、关键缺口及暂存问题。
 2. [当前研究路线与淘汰记录](docs/research-routes.md)：唯一执行优先级；历史报告的“下一步”不作为计划。
-3. [平台资料获取核查](docs/platform-source-followup.md)、[新增 GitHub SDK](docs/github-sdk-followup-2026-10-13.md)、[Gitee 录音卡源码对照](docs/domestic-sdk-followup-2026-10-13.md)：固定源码、平台分类和可复用的录音流程。
-4. [CLI 能力边界](docs/cli-capabilities.md)与[使用说明](docs/cli.md)：区分源码线索、实测能力与未验证行为。
-5. [证据索引](docs/evidence/README.md)：采集、样本、来源及历史研究记录。
+3. [CLI 使用说明](docs/cli.md)与[能力边界](docs/cli-capabilities.md)：可用命令、实测能力与未验证行为。
+4. [证据索引](docs/evidence/README.md)：原始样本与复验；[历史路线](docs/archive/research-routes-2026-10-13.md)仅供溯源。
 
-[随机说明书核对](docs/manual-2026-10-13.md)：模拟硅麦+骨传导麦、NOTE/CALL、
+[随附说明书核对](docs/manual-2026-10-13.md)：模拟硅麦+骨传导麦、NOTE/CALL、
 电源按键与录音滑键、磁吸充电口；照片与校验值已归档。尚不能确定精确麦克风颗数或独立复位方法。
 
 [USB文件传输研究](docs/usb-next-steps-2026-10-13.md)：CLI能读NOTE/CALL、不能切换；
-USB配置实机on→off→on读回通过，但未出现新USB接口。原配磁吸线的数据接线仍待确认。
+USB配置往返及on后拔插均未出现新USB接口。原配整根磁吸线的数据接线仍待确认。
+
+[Wi-Fi研究结论](docs/wifi-capability-2026-10-13.md)：未找到本机可用的Wi-Fi传输链；
+参考SDK依赖外接芯片，相关App协议与本机不同。当前不提供Wi-Fi快传，等待新硬件或官方功能证据。
 
 ## 当前认识（2026-10-13）
 
@@ -26,10 +28,12 @@ USB配置实机on→off→on读回通过，但未出现新USB接口。原配磁�
 | 已取得固件 | 完整[927632 B系统映射镜像](docs/offline-system-analysis.md)、[boot0](docs/boot-complete.md)、[110148 B录音DSP](docs/record-dsp-export.md)、分区表；[recovery完整63,288 B](docs/recovery-complete.md)校验通过；[param双槽原始各4KiB](docs/param-slots.md)，主槽有效、备用槽全FF；[factory-RW原始8KiB私有备份](docs/factory-rw-backup.md)，12条记录CRC通过。不是整片原始备份 |
 | 恢复/刷写 | 已分析[实际boot](docs/actual-boot-flow.md)、[ROM下载入口](docs/actual-rom-adfu-entry.md)、[OTA容器](docs/ota-container-contract.md)；无匹配官方恢复包、实测ROM传输或恢复证明 |
 | 自写镜像 | [最小M4 ELF与948 B ACTH镜像](docs/minimal-firmware-image.md)可重复构建，通过本机recovery真实checker离线仿真；未在硬件运行 |
-| USB | 已知数据线拔插对照未发现CoMi枚举；ROM模式未试，不能断言接口只充电 |
+| USB | 原配磁吸线设置/拔插对照未发现CoMi枚举；整根线的数据能力未验证，ROM模式未试 |
 | 客户端 | 固定官方App的[23个请求opcode均有主机路径](docs/remaining-client-contracts.md)，不等于全部实机验收。BLE状态、录音控制、文件下载、部分配置已实测；[短窗口实时流与离线MP3逐字节相同](docs/realtime-live.md)，不保证长时无丢失 |
 
-优先获取匹配BSP/芯片资料、量产下载链、官方固件；细节疑点先记录，待其影响路线选择时再追。低效NOR日志批量导出已归档，不再作为默认备份方案。
+下一步核心依赖是匹配BSP/生产包、板级与独立退出证据；没有新入口时不重复泛搜。
+可独立推进一次NOTE/CALL→ADC/DSP的有界离线核对，补充自写录音固件所需知识；
+它不替代恢复条件。[当前路线与停止条件](docs/research-routes.md)。
 
 ## 使用 CLI
 
@@ -53,7 +57,11 @@ uv run comi diag capture platform --out artifacts/platform-NEW.json
 
 macOS需蓝牙权限，官方App先断开；Linux需本机BlueZ/适配器。APK、SDK、原始录音、完整日志在忽略的 `artifacts/`；仓库不依赖rlcdv、Obsidian或临时交接文件。
 
-显式单文件删除见[CLI说明](docs/cli.md)：必填serial和文件名确认，只以完整列表中目标消失为验收；尚未实机执行。`maintenance`提供绑定／解绑／格式化／恢复出厂／手机类型的显式请求；退出3表示提交但效果未验证，没有实机执行这些管理操作。
+显式单文件删除见[CLI说明](docs/cli.md)：必填serial和文件名确认；已用新建且双下载留存的测试录音实机验收，删除后列表恢复原状，不证明安全擦除。`maintenance`提供绑定／解绑／格式化／恢复出厂／手机类型的显式请求；退出3表示提交但效果未验证，没有实机执行这些管理操作。
+
+目录用途：`src/rcominote/`为CLI，`tools/`为资料获取和离线分析，`firmware/`为最小镜像/参考定义；
+`docs/`保留专题结论，`docs/evidence/`保存可复验证据。`docs/archive/`和`src/rcominote/archive/`保留历史或退役方法，
+不作为默认执行入口。私有录音、配置与大型下载在忽略的`artifacts/`中，不批量删除。
 
 ## 开发与参考构建
 
