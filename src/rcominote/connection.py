@@ -20,6 +20,14 @@ REALTIME_BYTE_LIMIT = 16 * 1024 * 1024
 CANCEL_TIMEOUT = 1.0
 
 
+def create_client(device, *, timeout: float, disconnected_callback: Callable):
+    if sys.platform == "linux":
+        from .linux_client import LinuxClient
+
+        return LinuxClient(device, timeout=timeout, disconnected_callback=disconnected_callback)
+    return BleakClient(device, timeout=timeout, disconnected_callback=disconnected_callback)
+
+
 @dataclass(slots=True)
 class RealtimeCapture:
     """Local capture accounting; sink failure must not prevent recording cleanup."""
@@ -91,7 +99,7 @@ class Connection:
         self.queue: asyncio.Queue[tuple[str, bytes] | None] = asyncio.Queue(maxsize=BUFFER_LIMIT)
         self.events: asyncio.Queue[dict | None] = asyncio.Queue(maxsize=BUFFER_LIMIT)
         self._failure: Exception | None = None
-        self.client = BleakClient(device, timeout=20, disconnected_callback=self._dropped)
+        self.client = create_client(device, timeout=20, disconnected_callback=self._dropped)
         self._transaction = asyncio.Lock()
         self._realtime_enabled = False
         self._realtime_capture: RealtimeCapture | None = None

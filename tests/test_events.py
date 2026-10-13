@@ -88,7 +88,7 @@ class EventRoutingTests(unittest.IsolatedAsyncioTestCase):
     async def asyncSetUp(self):
         client = AsyncMock()
         client.services.get_service = lambda _uuid: object()
-        with patch("rcominote.connection.BleakClient", return_value=client):
+        with patch("rcominote.connection.create_client", return_value=client):
             self.conn = Connection("replay")
         await self.conn.__aenter__()
         self.callbacks = {call.args[0]: call.args[1] for call in client.start_notify.await_args_list}

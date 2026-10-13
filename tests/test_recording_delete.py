@@ -35,7 +35,7 @@ BUSY = bytes.fromhex(
 def replay(*, before=(TARGET, OTHER_FILE, LIST_END), after=(OTHER_FILE, LIST_END), on_delete=None, info=IDLE):
     client = AsyncMock()
     client.services.get_service = lambda _uuid: object()
-    with patch("rcominote.connection.BleakClient", return_value=client):
+    with patch("rcominote.connection.create_client", return_value=client):
         conn = Connection("delete-replay")
     lists = 0
 

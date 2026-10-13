@@ -48,7 +48,7 @@ def test_all_bytes_received_but_list_size_changed_never_shows_saved(tmp_path):
 def replay_cli(out, command, *, offset=0, listed_size=3, terminal):
     client = AsyncMock()
     client.services.get_service = lambda _uuid: object()
-    with patch("rcominote.connection.BleakClient", return_value=client):
+    with patch("rcominote.connection.create_client", return_value=client):
         conn = Connection("progress-replay")
 
     def on_write(_uuid, packet, **_kwargs):

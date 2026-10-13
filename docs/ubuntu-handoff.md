@@ -21,6 +21,16 @@
 
 固定BlueZ源码commit `770ad5614e7e8074133e6f563495ce4822f63fe4`；地址选择[adapter.c](https://github.com/bluez/bluez/blob/770ad5614e7e8074133e6f563495ce4822f63fe4/src/adapter.c#L7272)、[device.c](https://github.com/bluez/bluez/blob/770ad5614e7e8074133e6f563495ce4822f63fe4/src/device.c#L2480)，[GATT server MTU oracle](https://github.com/bluez/bluez/blob/770ad5614e7e8074133e6f563495ce4822f63fe4/src/shared/gatt-server.c#L1502)。
 
+## Ubuntu普通CLI已修复并验收
+
+继续接手时用户确认Mac/官方App已断开；没有新增嗅探器、BSP或板级信息。原配磁吸线仍接着，数据能力未证。与Astra审查后，优先修复已证实的普通CLI连接缺陷，不重跑日志实验。
+
+- `Connection`在Linux使用`linux_att.py`/`linux_client.py`：扫描按serial选择，要求public地址，明确LE/CID4连接、双方MTU处理，分页发现并校验Boyi服务/特征/CCCD。沿用原有Boyi CRC、事务、下载长度和取消逻辑；macOS仍走Bleak。
+- 生产通道不保存全量ATT，取消旧实验4096 PDU总量限制；通知队列有界，空闲等待无10s截止，溢出/损坏/断连失败传播。不自动重试、重连、配对或改BlueZ全局配置。
+- [实机验收收据](evidence/linux-boyi-cli-2026-10-13.json)：`info`、12项完整`files`成功；已有240522 B录音导出4.2746s、56268 B/s，SHA256与此前Mac独立完整下载/实时样本一致；MP3完整解码通过。`watch --duration 12`成功、无事件；随后新连接完整info/列表均等于初始，NOTE/idle/charging。音频与完整列表留`artifacts/linux-boyi-cli/`。
+- 离线覆盖Linux发现/分流/断连/请求超时/取消STOP；本次未实测Linux录音、设置、管理、实时流或物理Ctrl-C。单文件不能代表长期无丢包。
+- `comi gatt`和Actions诊断仍用各自原路径；**Boyi成功不修复Actions日志缺片**。原目标的整片NOR、原厂恢复、自写固件运行仍缺证据。
+
 ## 修正版真机结果与下一步
 
 `860a73a`的CID4 bind修正已于03:28 UTC真机复验：LE连接、双方MTU247、完整服务发现、Actions特征/CCCD均成功。随后`help`仍缺第二个512 B帧的首244 B；**HCI已经缺片**，不再怀疑Python拼帧丢掉这一片。[逐字节收据](evidence/linux-log-hci-loss-2026-10-13.json)。

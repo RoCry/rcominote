@@ -27,7 +27,7 @@ class RealtimeExportTests(unittest.IsolatedAsyncioTestCase):
         self.out = Path(self.directory.name) / "capture.bin"
         self.client = AsyncMock()
         self.client.services.get_service = lambda _uuid: object()
-        with patch("rcominote.connection.BleakClient", return_value=self.client):
+        with patch("rcominote.connection.create_client", return_value=self.client):
             self.conn = Connection("replay")
         await self.conn.__aenter__()
 

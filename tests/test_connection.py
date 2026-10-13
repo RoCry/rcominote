@@ -32,7 +32,7 @@ class ConnectionTests(unittest.IsolatedAsyncioTestCase):
     def replay(self, *events):
         client = AsyncMock()
         client.services.get_service = lambda _uuid: object()
-        with patch("rcominote.connection.BleakClient", return_value=client):
+        with patch("rcominote.connection.create_client", return_value=client):
             conn = Connection("replay")
         for event in events:
             conn.queue.put_nowait(event)

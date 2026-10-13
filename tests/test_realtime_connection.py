@@ -12,7 +12,7 @@ from rcominote.connection import Connection
 class RealtimeConnectionTests(unittest.IsolatedAsyncioTestCase):
     async def asyncSetUp(self):
         self.client = AsyncMock()
-        with patch("rcominote.connection.BleakClient", return_value=self.client):
+        with patch("rcominote.connection.create_client", return_value=self.client):
             self.conn = Connection(object())
 
     async def test_capture_close_retains_subscription_and_second_capture_excludes_gap(self):

@@ -1,0 +1,114 @@
+{
+  "scope": "Linux production Boyi CLI read-only acceptance; explicit LE/public ATT; no Actions log experiment",
+  "verified_at": "2026-10-13T03:57:02.083309+00:00",
+  "device_serial": "C261CF0430",
+  "address": "50:C0:F0:AE:7C:0E",
+  "selection": "Exact advertised serial, BlueZ AddressType=public, then GET_SERIAL equality",
+  "transport": "Direct Linux L2CAP fixed ATT CID4, own peer/client MTU handling; BlueZ scanning only",
+  "commands": [
+    "info",
+    "files",
+    "download 20261013095139",
+    "watch --duration 12",
+    "info",
+    "files"
+  ],
+  "bounds": "Per-process timeout --signal=INT 35..45s; setup20s; ATT request10s; Boyi existing transaction deadlines",
+  "initial_info": {
+    "serial": "C261CF0430",
+    "bound": false,
+    "device": {
+      "total_capacity": 59634,
+      "free_capacity": 59598,
+      "charging": true,
+      "battery": 100,
+      "recording_state": "idle",
+      "version": "010004",
+      "usb_mode": true,
+      "mode": "note",
+      "indicator_light": null,
+      "noise_reduction": 9,
+      "voice_control": null,
+      "segment_duration": 3,
+      "screen_backlight": false,
+      "raw": "0000e8f20000e8ce0264000100040101ff78696e6b5f746573740000000000000000000000000009ff0300010000000000000000"
+    }
+  },
+  "final_info_equals_initial": true,
+  "initial_file_count": 12,
+  "final_complete_file_list_equals_initial": true,
+  "download": {
+    "name": "20261013095139",
+    "path": "artifacts/linux-boyi-cli/download/20261013095139.mp3",
+    "bytes": 240522,
+    "sha256": "a20cccdc3934e00ec1afa832a1c0eebc867191ba8930b5204a4f0630b7815414",
+    "offset": 0,
+    "scope": "complete_recording",
+    "transfer_seconds": 4.274580110330135,
+    "average_bytes_per_second": 56267.982770692295
+  },
+  "independent_baseline": {
+    "source": "docs/evidence/note-call-phone-2026-10-13.json",
+    "report": "docs/note-call-audio-2026-10-13.md",
+    "bytes": 240522,
+    "sha256": "a20cccdc3934e00ec1afa832a1c0eebc867191ba8930b5204a4f0630b7815414",
+    "matches": true,
+    "comparison": "SHA256 of local Linux file equals retained prior Mac full download/realtime digest; prior audio not present on Ubuntu"
+  },
+  "audio_verification": {
+    "ffprobe": {
+      "codec_name": "mp3",
+      "sample_rate": 16000,
+      "channels": 1,
+      "bit_rate": 32000,
+      "duration_seconds": 60.1305
+    },
+    "ffmpeg_complete_decode_exit_code": 0
+  },
+  "watch": {
+    "serial": "C261CF0430",
+    "watch_seconds": 12.0,
+    "event_scope": "notifications since connection setup, including identity queries",
+    "events": [],
+    "parser_source": "CoMi 1.1.2 Y8/Z8 layout; mode labels corrected on FW010004 hardware"
+  },
+  "source_sha256": {
+    "download.json": "d86399c80ec05234b1661015b021d501d7ad19c16d192629d084d8d0e4687739",
+    "download.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "files-after.json": "059cb3d8f6fc0f24fcb56914c82fc1f275f67597bde6976b0389abee0672cc15",
+    "files-after.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "files-after.stdout": "059cb3d8f6fc0f24fcb56914c82fc1f275f67597bde6976b0389abee0672cc15",
+    "files-before.json": "059cb3d8f6fc0f24fcb56914c82fc1f275f67597bde6976b0389abee0672cc15",
+    "files.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "files.stdout": "059cb3d8f6fc0f24fcb56914c82fc1f275f67597bde6976b0389abee0672cc15",
+    "info-after.json": "50722dbf1e51f0290c58fd78ec7e166e5432799c8db42688f92c8030bb608195",
+    "info-after.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "info-after.stdout": "50722dbf1e51f0290c58fd78ec7e166e5432799c8db42688f92c8030bb608195",
+    "info-before.json": "50722dbf1e51f0290c58fd78ec7e166e5432799c8db42688f92c8030bb608195",
+    "info.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "info.stdout": "50722dbf1e51f0290c58fd78ec7e166e5432799c8db42688f92c8030bb608195",
+    "watch.json": "8a4d78ccf03e32ed7d258b6acf0e823b056c8056ef9ea6870d3756e020f82020",
+    "watch.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "watch.stdout": "8a4d78ccf03e32ed7d258b6acf0e823b056c8056ef9ea6870d3756e020f82020"
+  },
+  "limits": [
+    "Single 240522B existing-file comparison; not long-window reliability or full dataset verification",
+    "Linux recording/settings/management/realtime and physical Ctrl-C not exercised; transport routing/cancel tested offline",
+    "Actions log/GATT diagnostic paths retain separate experimental/BlueZ transports; missing log fragments remain unresolved",
+    "No new recording, setting change, deletion, restart, ROM/helper execution, firmware write or host service restart",
+    "No full raw NOR backup, factory recovery or own-firmware hardware execution proof"
+  ],
+  "validation": {
+    "just_check": {
+      "passed": 433,
+      "subtests_passed": 126
+    },
+    "uv_build": "sdist and wheel succeeded",
+    "macos_live": "not run; native Bleak path retained; Linux packet-socket test classes skipped off Linux"
+  },
+  "code_sha256": {
+    "src/rcominote/connection.py": "5024ddb82b9eec10f2ae7eca98b16fe0258dfc7ef7109eb704121e15362423dc",
+    "src/rcominote/linux_att.py": "7fa5d92c34d0b2c5285578ed3cd9dcc0bb325b9d407076422dffbf27c98ef65f",
+    "src/rcominote/linux_client.py": "4e0c975d8e66a83a31d4852e7c5d90a517f4b5286ad80681e454c8839a6845ab"
+  }
+}

@@ -31,7 +31,7 @@ BUSY = bytes.fromhex(
 def replay(*, info=IDLE, respond=True, on_mutation=None):
     client = AsyncMock()
     client.services.get_service = lambda _uuid: object()
-    with patch("rcominote.connection.BleakClient", return_value=client):
+    with patch("rcominote.connection.create_client", return_value=client):
         conn = Connection("maintenance-replay")
 
     async def on_write(_uuid, packet, **_kwargs):

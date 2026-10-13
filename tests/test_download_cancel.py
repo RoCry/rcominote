@@ -26,7 +26,7 @@ STOP_ACK = bytes.fromhex("d22d010c01007e1b")
 class DownloadCancelTests(unittest.IsolatedAsyncioTestCase):
     def connection(self):
         client = AsyncMock()
-        with patch("rcominote.connection.BleakClient", return_value=client):
+        with patch("rcominote.connection.create_client", return_value=client):
             conn = Connection("captured-cancel-sequence")
         return conn, client
 
@@ -340,7 +340,7 @@ class DownloadCancelCliTests(unittest.TestCase):
     def assert_cancelled_cli(self, command):
         client = AsyncMock()
         client.services.get_service = lambda _uuid: object()
-        with patch("rcominote.connection.BleakClient", return_value=client):
+        with patch("rcominote.connection.create_client", return_value=client):
             conn = Connection("cli-replay")
         actual_download = conn.download
 
