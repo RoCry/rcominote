@@ -75,10 +75,322 @@
     "average_bytes_per_second": 34408.39028083155
   },
   "limitations": [
-    "Single loudspeaker CALL sample; no NOTE or receiver comparison yet.",
+    "Loudspeaker CALL and receiver CALL/NOTE samples acquired; source content not synchronized and call volume not documented. No mode sensitivity comparison established.",
     "Video start phase not controlled; not a microphone routing, sensitivity or speech intelligibility measurement.",
     "No source reference or listening assessment; nonzero audio levels alone do not establish successful speech capture.",
     "File duration about one minute; download timing is for this file, not sustained long-transfer acceptance.",
-    "Audio and raw logs retained only in ignored artifacts."
-  ]
+    "Audio and raw logs retained only in ignored artifacts.",
+    "Receiver NOTE realtime trial disconnected; manual reconnect/STOP recovered idle. Complete offline file exported, but no realtime equality proof for NOTE trial."
+  ],
+  "receiver_call": {
+    "owner_reported_setup": {
+      "mode": "CALL",
+      "output_route": "phone receiver; owner confirmed playback ready",
+      "attachment": "same phone back, magnetic",
+      "charging_cable_connected": false,
+      "call_volume": "not reported; do not reuse previous media volume30%",
+      "prompt_identity": "not captured",
+      "continuous_playback_during_window": "not independently confirmed"
+    },
+    "before_device_info": {
+      "total_capacity": 59634,
+      "free_capacity": 59599,
+      "charging": false,
+      "battery": 100,
+      "recording_state": "idle",
+      "version": "010004",
+      "usb_mode": true,
+      "mode": "call",
+      "indicator_light": null,
+      "noise_reduction": 9,
+      "voice_control": null,
+      "segment_duration": 3,
+      "screen_backlight": false,
+      "raw": "0000e8f20000e8cf0064000100040102ff78696e6b5f746573740000000000000000000000000009ff0300000000000000000000"
+    },
+    "recording": {
+      "start": {
+        "action": "start",
+        "name": "20261013095846",
+        "reply_hex": "00323032363130313330393538343600"
+      },
+      "stop": {
+        "action": "stop",
+        "name": "20261013095846",
+        "reply_hex": "003230323631303133303935383436000139760001",
+        "size": 80246,
+        "need_sync": true,
+        "ok": true,
+        "state_before": "recording",
+        "state_after": "idle"
+      },
+      "tail_seconds": 1
+    },
+    "audio": {
+      "bytes": 80246,
+      "sha256": "ab23cf5c9b4c0f5338598c222caa4e4a6a217f2df256041779f43cf30eae8d3b",
+      "realtime_equals_complete_download": true,
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "16000",
+            "channels": 1,
+            "bit_rate": "32000"
+          }
+        ],
+        "format": {
+          "duration": "20.061500",
+          "size": "80246"
+        }
+      },
+      "full_ffmpeg_decode_exit_code": 0,
+      "decoded_overall_peak_dbfs": -3.980331,
+      "decoded_overall_rms_dbfs": -27.140516,
+      "decoded_samples": 321408
+    },
+    "download": {
+      "scope": "complete_recording",
+      "offset": 0,
+      "transfer_seconds": 4.440127375011798,
+      "average_bytes_per_second": 18072.904946738556
+    }
+  },
+  "receiver_note": {
+    "owner_reported_setup": {
+      "mode": "NOTE",
+      "output_route": "phone receiver; owner confirmed playback ready",
+      "attachment": "same phone back, magnetic",
+      "charging_cable_connected": false,
+      "call_volume": "not reported; requested unchanged",
+      "same_prompt_repeated": "not independently confirmed",
+      "continuous_playback_during_window": "not independently confirmed"
+    },
+    "before_device_info": {
+      "total_capacity": 59634,
+      "free_capacity": 59599,
+      "charging": false,
+      "battery": 100,
+      "recording_state": "idle",
+      "version": "010004",
+      "usb_mode": true,
+      "mode": "note",
+      "indicator_light": null,
+      "noise_reduction": 9,
+      "voice_control": null,
+      "segment_duration": 3,
+      "screen_backlight": false,
+      "raw": "0000e8f20000e8cf0064000100040101ff78696e6b5f746573740000000000000000000000000009ff0300000000000000000000"
+    },
+    "realtime_failure": {
+      "command": "uv run comi realtime --serial C261CF0430 --seconds 8 --duration 20 --record --out artifacts/note-call-phone-2026-10-13/receiver-note-realtime.bin",
+      "exit_code": 1,
+      "stderr_from_tool_result": {
+        "ok": false,
+        "error": "Realtime recording failed: CoMi disconnected before completing the request; recording cleanup also failed: CoMi disconnected before completing the request. Recording may still be running; reconnect, check its status, and stop it if needed.",
+        "type": "RuntimeError"
+      },
+      "recovery": "Fresh info showed recording; separate record stop returned idle.",
+      "phase_of_disconnect": "not captured; do not infer from elapsed time",
+      "cause": "unknown"
+    },
+    "fresh_info_after_disconnect": {
+      "total_capacity": 59634,
+      "free_capacity": 59598,
+      "charging": false,
+      "battery": 100,
+      "recording_state": "recording",
+      "version": "010004",
+      "usb_mode": true,
+      "mode": "note",
+      "indicator_light": null,
+      "noise_reduction": 9,
+      "voice_control": null,
+      "segment_duration": 3,
+      "screen_backlight": false,
+      "raw": "0000e8f20000e8ce0064010100040101ff78696e6b5f746573740000000000000000000000000009ff0300000000000000000000"
+    },
+    "recovery_stop": {
+      "action": "stop",
+      "name": "20261013100015",
+      "reply_hex": "003230323631303133313030303135000166740101",
+      "size": 91764,
+      "need_sync": true,
+      "ok": true,
+      "state_before": "recording",
+      "state_after": "idle"
+    },
+    "audio": {
+      "bytes": 91764,
+      "sha256": "2062f40cb52228ca0f40549625a3b97ac9e54480cfc6d27e1bfe11741021a877",
+      "realtime_equals_complete_download": null,
+      "realtime_status": "failed; no successful realtime capture published",
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "16000",
+            "channels": 1,
+            "bit_rate": "32000"
+          }
+        ],
+        "format": {
+          "duration": "22.941000",
+          "size": "91764"
+        }
+      },
+      "full_ffmpeg_decode_exit_code": 0,
+      "decoded_overall_peak_dbfs": -3.681271,
+      "decoded_overall_rms_dbfs": -25.431554,
+      "decoded_samples": 367488
+    },
+    "download": {
+      "scope": "complete_recording",
+      "offset": 0,
+      "transfer_seconds": 15.809493500040844,
+      "average_bytes_per_second": 5804.360525513542
+    }
+  },
+  "file_inventory_anomaly": {
+    "baseline_entries": 10,
+    "expected_with_three_new": 13,
+    "observed_entries": 12,
+    "two_fresh_lists_equal": true,
+    "unchanged_retained_old_entries": 9,
+    "new_entries_match_three_owned_tests": true,
+    "missing_entry": {
+      "name": "20261012222510",
+      "size": 20204,
+      "kind": "note",
+      "provenance": "Owned 2026-10-12 realtime-probe test; original report already had download timeout"
+    },
+    "owner_reports_no_deletion_or_cleanup": true,
+    "direct_read_attempts": 2,
+    "both_direct_read_errors": "Short download: 19960/20204 bytes",
+    "retained_second_read": {
+      "status": "incomplete",
+      "bytes": 19960,
+      "sha256": "a64d55c85ca7c5f28cdd42193d6208d5b7f33566ebae95f94d90852cfed32f8b",
+      "prior_realtime_bytes": 20204,
+      "prior_realtime_sha256": "4e85939ef508a93ae7305126282340608acb27f84ccf852444a1145a5346e37f",
+      "equals_prior_realtime_prefix": false,
+      "packet_sizes": [
+        244,
+        244,
+        24,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        244,
+        172
+      ]
+    },
+    "offline_comparison": {
+      "first_mismatch_offset": 756,
+      "size_delta": 244,
+      "matches_one_contiguous_omission_at_first_mismatch": true
+    },
+    "interpretation": "Name remains addressable, export incomplete. Does not establish deletion, storage corruption or notification loss. No write/repair attempted.",
+    "static_list_review": {
+      "system_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+      "function_range": "0x1000b838..0x1000b97c",
+      "finding": "No fixed item count or synchronized flag filter in complete handler; iterate readdir to empty name, filter regular file, MP3 suffix class and Note-/Call- name format.",
+      "scope_limit": "Underlying filesystem and notification delivery not reviewed."
+    }
+  },
+  "final_state": {
+    "total_capacity": 59634,
+    "free_capacity": 59598,
+    "charging": false,
+    "battery": 100,
+    "recording_state": "idle",
+    "version": "010004",
+    "usb_mode": true,
+    "mode": "note",
+    "indicator_light": null,
+    "noise_reduction": 9,
+    "voice_control": null,
+    "segment_duration": 3,
+    "screen_backlight": false,
+    "raw": "0000e8f20000e8ce0064000100040101ff78696e6b5f746573740000000000000000000000000009ff0300000000000000000000"
+  }
 }

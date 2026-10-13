@@ -92,6 +92,7 @@ uv run comi realtime --record --duration 5 --out artifacts/live-test.bin
 被动采集可能得到零字节；不会因此自行启动录音。
 
 `--record`尝试清理自己启动的录音；START等请求失败导致连接失效时，无法再用同一连接确认或停止。错误会明确提示录音可能仍在运行，需重连查看状态并按需停止；不把清理尝试当成停止成功。
+2026-10-13听筒NOTE测试实际遇到此序列：断连后新连接仍读到recording，显式STOP恢复idle，离线文件完整导出；实时采集仍记失败。[现场记录](note-call-audio-2026-10-13.md#电话听筒call--note-与一次断连恢复)。
 
 连接期间保留e5e3订阅，结束采集只移除本地接收处理，再断开连接。
 原因及实测见[共享CCC状态](realtime-ccc-gating.md)、[实时MP3比对](realtime-live.md)。
