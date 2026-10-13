@@ -20,7 +20,7 @@ Linux两次停于连接阶段，Mac最终NOTE/idle；不是修复或可靠传输
 
 [后续Linux HCI及位置对照](linux-le-hci-2026-10-13.json)：普通客户端实发BR/EDR并Page Timeout；
 显式LE靠近PC后成功到达ATT，旧gatttool拒绝设备MTU请求。新诊断首试缺CID bind导致EINVAL；
-修正已离线验证，仍待真机复验。[Ubuntu接手和验收](../ubuntu-handoff.md)。完整HCI含周边设备，保留ignored目录。
+修正随后已真机完成LE/双向MTU/发现；[日志HCI对照](linux-log-hci-loss-2026-10-13.json)确认缺片已在HCI边界之前。[Ubuntu接手和验收](../ubuntu-handoff.md)。完整HCI含周边设备，保留ignored目录。
 
 ## USB配置往返与主机枚举，2026-10-13
 

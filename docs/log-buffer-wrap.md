@@ -106,3 +106,12 @@ Ubuntu/BlueZ对照：10s扫描发现同一序列号，RSSI −85；两次`info`�
 下一步只接受可区分丢失层的新证据：成功建立的独立主机链路，或与主机通知同时保存的HCI/空口记录。先解决传输完整性，再重开运行态寄存器读取；本次不足以重开逐扇区NOR批量导出。
 
 后续已取得[Linux HCI](evidence/linux-le-hci-2026-10-13.json)：普通BlueZ连接实际选择BR/EDR并Page Timeout；强制LE后，用户将卡靠近PC，已收到实际服务表，但gatttool不处理设备MTU请求。新固定ATT诊断已实现；首试EINVAL后补本地CID4 bind，待真机复验。[Ubuntu交接](ubuntu-handoff.md)给出唯一下一步。此进展解决独立对照的前置问题，仍未回答Mac日志分片丢失层。
+
+
+### Linux独立通道已连接：缺片也在HCI中
+
+CID4 bind修正版`860a73a`实际完成LE、双向MTU247和完整服务发现。03:28 UTC这轮`help`再次缺第二帧首244 B；[HCI逐字节收据](evidence/linux-log-hci-loss-2026-10-13.json)确认HCI #552–554完整构成旧帧1，#555–556仅为旧帧2的后268 B。`uv run tools/verify_linux_log_capture.py artifacts/linux-att-bind-check`从原始btmon和socket报告独立复验，不填补数据。
+
+11个HCI日志通知中，前9个与原始socket记录完全一致；解码器因坏帧只消费7个。完整帧3、help ACK、STOP ACK、F1实际都在HCI；最后ACK/F1在socket关闭后到达。因此本轮`end_received=false`不能解释成设备未发END，清理失败也不能成为额外丢包证据。
+
+此结果排除本次缺244 B由Python解码或socket消费造成；它在主机HCI观察点之前已不存在。没有空口/设备侧收据，设备固件、控制器或更底层传输尚未区分。下一步不重复相同help：有嗅探器才做空口/HCI同步；若需恢复短读取，先核实短输出刷新合同。全程无录音、配置或固件写入，不宣称恢复了可靠日志传输。

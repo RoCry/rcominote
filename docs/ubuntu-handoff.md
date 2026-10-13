@@ -21,42 +21,28 @@
 
 固定BlueZ源码commit `770ad5614e7e8074133e6f563495ce4822f63fe4`；地址选择[adapter.c](https://github.com/bluez/bluez/blob/770ad5614e7e8074133e6f563495ce4822f63fe4/src/adapter.c#L7272)、[device.c](https://github.com/bluez/bluez/blob/770ad5614e7e8074133e6f563495ce4822f63fe4/src/device.c#L2480)，[GATT server MTU oracle](https://github.com/bluez/bluez/blob/770ad5614e7e8074133e6f563495ce4822f63fe4/src/shared/gatt-server.c#L1502)。
 
-## 已备好的实验与唯一下一步
+## 修正版真机结果与下一步
 
-`src/rcominote/experiments/linux_att.py`：固定public LE/CID4，正确响应对端MTU，通知队列及原始ATT记录，超时/不匹配明确失败，关闭socket。`linux_log.py`：按序列号扫描，发现并验证Actions服务/特征/CCCD，然后仅执行PREPARE、START日志、help、dbg、STOP日志。**此START不是启动录音。** 无任意shell、RAM/NOR写入或刷机入口；不是正式CLI Linux支持已验收。
+`860a73a`的CID4 bind修正已于03:28 UTC真机复验：LE连接、双方MTU247、完整服务发现、Actions特征/CCCD均成功。随后`help`仍缺第二个512 B帧的首244 B；**HCI已经缺片**，不再怀疑Python拼帧丢掉这一片。[逐字节收据](evidence/linux-log-hci-loss-2026-10-13.json)。
 
-第一版真机在connect立即报EINVAL，未发送ATT。已按[BlueZ bind顺序](https://github.com/bluez/bluez/blob/770ad5614e7e8074133e6f563495ce4822f63fe4/btio/btio.c#L1955)修正：先bind本地ANY/public/CID4。Linux未bind时SEQPACKET仍是连接型channel，PSM0触发EINVAL；CID bind才转固定channel。**修正版有离线测试，尚未真机重试。下一步就是验证它。**
+- HCI #552–554等于独立旧成功帧1；#555–556等于帧2的`[244:488]`、`[488:512]`。没有`[0:244]`。
+- HCI共11个日志通知；socket记录9个，与HCI前9个逐字节相同；解码器只消费7个。严格解析失败后STOP清理仍读同一个坏stream，再失败并关闭socket。
+- HCI仍有完整帧3、help ACK、STOP ACK、F1。报告`ack_count=2/end_received=false`不是设备没发ACK/END的证明。原始捕获在两机`artifacts/linux-att-bind-check/`，所有进程已结束，无录音/配置/固件写入。
+- 没有空口抓包，不能断言设备固件一定是根因；尚不能区分设备发送/控制器、无线链路、主机控制器/驱动。Mac与Linux同样缺片削弱了单一宿主上层错误的解释。
 
-在两个本地终端分别执行；输出路径必须新建，已有时换后缀：
-
-```sh
-# 终端1：有限窗口HCI记录；不后台常驻
-cd ~/w/_hw/rcominote
-mkdir -p artifacts/linux-att-next
-sudo timeout --signal=INT 60s btmon -i 0 \
-  -w artifacts/linux-att-next/session.btsnoop \
-  > artifacts/linux-att-next/session.btmon.txt 2>&1
-```
+离线复验（无需硬件）：
 
 ```sh
-# 终端2：直接使用Git中的修正版，不用旧的忽略目录源码副本
-cd ~/w/_hw/rcominote
-uv run -m rcominote.experiments.linux_log artifacts/linux-att-next/report.json
+uv run tools/verify_linux_log_capture.py artifacts/linux-att-bind-check
 ```
 
-验收必须同时检查：
+下一轮不要原样重跑`help`或重查BlueZ连接。若继续独立定位：先将诊断原始收集与帧解码失败解耦，有界收集至STOP响应结束；保留原始失败判定，禁止重同步/补造。只有已具备BLE空口嗅探硬件时，再同步一次空口与HCI，判断缺片是否真正发送/确认；不假定现场已有嗅探器。
 
-- HCI发LE连接，服务发现完整结束，Actions UUID/句柄/CCCD实际匹配。
-- 设备若发`02f700`，主机回`03f700`；没有旧工具的错误响应循环。
-- 实验JSON `ok=true`、5个Actions ACK、F1到达、pending为空，保留全部ATT收发与日志通知。
-- 将HCI中Actions通知值与JSON通知逐字节比较。若HCI有完整数据而脚本没有，查主机；若HCI本身缺片，主机重同步不能恢复。
-- 失败先按阶段和原始包定位；不重复同条件尝试，不把部分帧或补造字节当成功。诊断关闭与设备录音状态分别验收。
-
-若读通，再用此可靠通道做当前NOTE录音中的固定GPIO/ADC只读快照；复用`audio_state.py`已审地址/归属保护，不直接把全部Bleak操作换成新后端。更长录音、CALL声学对照不在这轮。
+若目标是恢复短寄存器读取，先依据已有固件/SDK确认短输出是否有可靠刷新方式，再做一个固定已知字节的最小试验。现有`audio_state.py`每读后执行大段`help`，不能原样移到Linux便宣称问题已解决。可靠通道未证明前，不启动音频实验、不重开NOR批量读取。需要HCI时继续用有界`sudo timeout --signal=INT 60s btmon -i 0 -w NEW.btsnoop`，不常驻，不覆盖旧证据。
 
 ## 不能丢的其他结论
 
-- [日志缺片复验](log-buffer-wrap.md)：Mac失败捕获相对独立旧成功帧缺首244 B，后268 B完全匹配；不是解析器误切，也不能只用封帧前ring丢文本解释。丢失层尚未定位，不能把SDK潜在bug直接当本机根因。
+- [日志缺片复验](log-buffer-wrap.md)：Mac失败捕获相对独立旧成功帧缺首244 B，后268 B完全匹配；不是解析器误切，也不能只用封帧前ring丢文本解释。Linux已缩小到HCI观察点之前，仍不能把SDK潜在bug直接当本机根因。
 - [NOTE/CALL](note-call-audio-2026-10-13.md)：模式/文件枚举已真机纠正；选定BLE START不强制同模式；132项增益表与LARK SDK匹配，请求36.5/40.5 dB，ADC字段不同。运行GPIO/ADC和物理拾音器切换仍未读回，用户说听起来相近。
 - 完整系统、boot0、recovery、DSP及部分配置已取得；**不是完整4MiB原始NOR备份**。无可靠原厂恢复、ROM独立退出或自写固件上机证明。不要为了进度盲进ROM、执行helper或刷写。
 - USB原配线数据接线未证，普通模式未枚举；Wi-Fi没有本机链路证据。旧NOR逐扇区日志路线已退役，未先证明可靠性/吞吐改善就不重开。
