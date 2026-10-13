@@ -15,8 +15,8 @@ from . import protocol as P
 from .ble_target import OWNED_SERIAL, advertised_serial, find_device
 from .connection import Connection, recording_output_name, validate_filename
 from .download_cancel import DownloadCancelled
+from .download_progress import export_with_progress
 from .output import emit, new_output
-from .recording_export import export_recording
 
 app = typer.Typer(no_args_is_help=True)
 DEFAULT_OUT = Path.home() / ".local/share/comi-research"
@@ -122,7 +122,7 @@ def download(
             if entry is None:
                 raise ValueError(f"Recording not listed: {name}")
             try:
-                return await export_recording(conn, name, out, expected_size=entry.size, offset=offset)
+                return await export_with_progress(conn, name, out, expected_size=entry.size, offset=offset)
             except DownloadCancelled as error:
                 if error.export_result is None:
                     raise RuntimeError("Canceled export did not supply an outcome") from error
@@ -157,7 +157,7 @@ def sync(out: Path = DEFAULT_OUT, serial: str = OWNED_SERIAL, seconds: ScanSecon
                     }
                 else:
                     try:
-                        result = await export_recording(conn, entry.name, out, expected_size=entry.size)
+                        result = await export_with_progress(conn, entry.name, out, expected_size=entry.size)
                     except DownloadCancelled as error:
                         if error.export_result is None:
                             raise RuntimeError("Canceled export did not supply an outcome") from error

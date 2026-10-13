@@ -5,19 +5,28 @@ import hashlib
 import json
 import os
 import tempfile
+from collections.abc import Callable
 from pathlib import Path
+from time import monotonic
 
 from .connection import Connection, recording_output_name
 from .download_cancel import DownloadCancelled
 
 
 async def export_recording(
-    conn: Connection, name: str, out: Path, expected_size: int | None = None, *, offset: int = 0
+    conn: Connection,
+    name: str,
+    out: Path,
+    expected_size: int | None = None,
+    *,
+    offset: int = 0,
+    on_progress: Callable[[int], None] | None = None,
 ) -> dict:
     """Publish a complete requested range without replacing an existing file.
 
     SHA-256 identifies local bytes; the device supplies no hash oracle. Only
     explicit cancellation preserves a labeled prefix, never a complete MP3.
+    Progress reports cumulative bytes written for this requested range.
     """
     filename = recording_output_name(name, offset)
     if expected_size is not None and expected_size < 0:
@@ -41,7 +50,18 @@ async def export_recording(
                 count = handle.write(data)
                 digest.update(data[:count])
                 written_bytes += count
+                if on_progress is not None:
+                    on_progress(written_bytes)
                 return count
+
+            started = monotonic()
+
+            def transfer_metrics() -> dict:
+                elapsed = monotonic() - started
+                return {
+                    "transfer_seconds": elapsed,
+                    "average_bytes_per_second": written_bytes / elapsed if elapsed > 0 else 0.0,
+                }
 
             try:
                 received = await conn.download(name, write, offset=offset)
@@ -79,6 +99,7 @@ async def export_recording(
                     "scope": "incomplete_recording_suffix" if offset else "incomplete_recording_prefix",
                     "stop": error.stop_result,
                     "automatic_resume": False,
+                    **transfer_metrics(),
                 }
                 error.export_result = report
                 if written_bytes:
@@ -108,6 +129,7 @@ async def export_recording(
                             f"metadata={manifest} may be incomplete"
                         ) from save_error
                 raise error
+            metrics = transfer_metrics()
             if expected_size is not None and received + offset != expected_size:
                 raise ValueError(f"File-list size changed: expected {expected_size}, received {received}")
             handle.flush()
@@ -121,6 +143,7 @@ async def export_recording(
             "sha256": digest.hexdigest(),
             "offset": offset,
             "scope": "recording_suffix" if offset else "complete_recording",
+            **metrics,
         }
     finally:
         part.unlink(missing_ok=True)

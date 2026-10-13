@@ -81,12 +81,20 @@ class ConnectionTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(received, 0)
 
     async def test_nonzero_offset_uses_total_size_and_exports_only_suffix(self):
-        conn = self.replay(("cmd", SIZE_THREE), ("off", b"bc"), ("cmd", DOWNLOAD_END))
-        with tempfile.TemporaryDirectory() as directory:
-            result = await export_recording(conn, "recording", Path(directory), expected_size=3, offset=1)
+        conn = self.replay(("cmd", SIZE_THREE), ("off", b"b"), ("off", b"c"), ("cmd", DOWNLOAD_END))
+        progress = []
+        with (
+            tempfile.TemporaryDirectory() as directory,
+            patch("rcominote.recording_export.monotonic", side_effect=[10.0, 12.0]),
+        ):
+            result = await export_recording(
+                conn, "recording", Path(directory), expected_size=3, offset=1, on_progress=progress.append
+            )
             self.assertEqual(Path(result["path"]).name, "recording.offset-1.bin")
             self.assertEqual(Path(result["path"]).read_bytes(), b"bc")
             self.assertEqual(result["scope"], "recording_suffix")
+            self.assertEqual(progress, [1, 2])
+            self.assertEqual((result["transfer_seconds"], result["average_bytes_per_second"]), (2.0, 1.0))
         wire = conn.client.write_gatt_char.call_args.args[1]
         self.assertEqual(wire[5:-2], b"recording\0\0\0\0\0\x00\x00\x00\x01")
 

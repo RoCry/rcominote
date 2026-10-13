@@ -171,13 +171,19 @@ class DownloadCancelTests(unittest.IsolatedAsyncioTestCase):
             patch.object(conn, "download", new=observed_download),
         ):
             out = Path(directory)
-            task = asyncio.create_task(export_recording(conn, "recording", out, expected_size=3, offset=1))
+            progress = []
+            task = asyncio.create_task(
+                export_recording(
+                    conn, "recording", out, expected_size=3, offset=1, on_progress=progress.append
+                )
+            )
             self.addAsyncCleanup(self.finish_task, task)
             await asyncio.wait_for(accepted.wait(), timeout=2)
             task.cancel()
             with self.assertRaises(DownloadCancelled) as caught:
                 await task
             report = caught.exception.export_result
+            self.assertEqual(progress, [1])
             partial = Path(report["partial_path"])
             manifest = Path(report["manifest_path"])
             self.assertEqual(partial.read_bytes(), b"a")

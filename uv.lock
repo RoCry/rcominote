@@ -246,6 +246,7 @@ source = { editable = "." }
 dependencies = [
     { name = "bleak" },
     { name = "capstone" },
+    { name = "rich" },
     { name = "typer" },
 ]
 
@@ -260,6 +261,7 @@ dev = [
 requires-dist = [
     { name = "bleak", specifier = ">=1.1,<2" },
     { name = "capstone", specifier = "==5.0.6" },
+    { name = "rich", specifier = ">=15,<16" },
     { name = "typer", specifier = ">=0.16,<1" },
 ]
 
