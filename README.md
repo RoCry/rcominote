@@ -9,6 +9,8 @@
 3. [CLI 使用说明](docs/cli.md)与[能力边界](docs/cli-capabilities.md)：可用命令、实测能力与未验证行为。
 4. [证据索引](docs/evidence/README.md)：原始样本与复验；[历史路线](docs/archive/research-routes-2026-10-13.md)仅供溯源。
 
+[Ubuntu 接手入口](docs/ubuntu-handoff.md)：当前Linux连接问题、HCI证据、新诊断通道、唯一下一步和验收条件；修正版仍待真机复验。
+
 [随附说明书核对](docs/manual-2026-10-13.md)：模拟硅麦+骨传导麦、NOTE/CALL、
 电源按键与录音滑键、磁吸充电口；照片与校验值已归档。尚不能确定精确麦克风颗数或独立复位方法。
 

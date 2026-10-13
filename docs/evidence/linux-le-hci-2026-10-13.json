@@ -1,0 +1,146 @@
+{
+  "scope": "Linux HCI observations, no recording/NOR writes; direct ATT helper still awaiting live validation after local CID bind correction",
+  "device_serial": "C261CF0430",
+  "source_artifacts": {
+    "linux-info.btsnoop": {
+      "bytes": 31511,
+      "sha256": "0d158459bac4b6116e2442c050ab9d697955079869e6d58f7cd1ead78752ceb5"
+    },
+    "linux-info.btmon.txt": {
+      "bytes": 367474,
+      "sha256": "8f0926b713fc1c63d57b9ef64f231b0ac2577f65dc3a4395b0e64abb630a583b"
+    },
+    "direct-le.btsnoop": {
+      "bytes": 1146,
+      "sha256": "439bb65f68a5f8bf1f2732be803a2dcfb1b89c5bad13680f4bb15c7f324cdc23"
+    },
+    "direct-le.btmon.txt": {
+      "bytes": 7361,
+      "sha256": "f4ff4e0600b107c1849a103110ef3dae9ab57fadf397cdb621863578a6195f5f"
+    },
+    "near-pc.btsnoop": {
+      "bytes": 84107,
+      "sha256": "3e92ac21873ae5c381d647fefe08d181fa18a85b61542c082edbebb4173a9ff2"
+    },
+    "near-pc.btmon.txt": {
+      "bytes": 1002230,
+      "sha256": "15eb8454132af3f68484ffc0d8f780eb28b9730b96c17c2259032af54b8335c3"
+    },
+    "att-helper.btsnoop": {
+      "bytes": 104612,
+      "sha256": "7dfc404f0f1485a074eff789d3f692f220bfdd0cc095a03cada0706d78b66d7c"
+    },
+    "att-helper.json": {
+      "bytes": 360,
+      "sha256": "e772c7d4bd999eff83fc7f1b0d626c4b4f4ddf9b8c63d177e3dc85f1fc7fe70c"
+    }
+  },
+  "host": {
+    "bluez": "5.72",
+    "kernel": "6.14.0-36-generic",
+    "adapter": "hci0",
+    "managed_python_has_AF_BLUETOOTH": false,
+    "adapter_ConnectDevice_exposed": false
+  },
+  "trials": [
+    {
+      "name": "ordinary_bleak",
+      "controller_command": "BR/EDR Create Connection, 0x0405",
+      "controller_result": "Page Timeout,0x04",
+      "att_payload": false,
+      "inference": "CoMi advertising flags02 mark neither BR/EDR unsupported nor LE-only; BlueZ5.72 updates both bearer timestamps and tie-selects BR/EDR."
+    },
+    {
+      "name": "direct_le_at_original_position",
+      "tool": "gatttool -t public --primary",
+      "rssi_dbm": -88,
+      "controller_command": "LE Extended Create Connection,0x2043",
+      "initial_connection_status": 0,
+      "remote_features_status": "0x3e",
+      "disconnect_reason": "0x3e",
+      "att_payload": false,
+      "reported_error": "Function not implemented(38)",
+      "limit": "Initial connection complete success is not successful usable ATT; cause not established."
+    },
+    {
+      "name": "direct_le_near_pc",
+      "user_report": [
+        "original distance3m",
+        "moved recording card next to Linux PC"
+      ],
+      "rssi_dbm": -76,
+      "remote_features_status": 0,
+      "observed_service_ranges": [
+        [
+          "0001",
+          "0008",
+          "1801"
+        ],
+        [
+          "0009",
+          "000f",
+          "1800"
+        ],
+        [
+          "0010",
+          "0013",
+          "180f"
+        ],
+        [
+          "0014",
+          "0019",
+          "e49a3001-f69a-11e8-8eb2-f2801f1b9fd1"
+        ],
+        [
+          "001a",
+          "001f",
+          "f5f0"
+        ],
+        [
+          "0020",
+          "002b",
+          "e5e0"
+        ]
+      ],
+      "peer_request": "02f700",
+      "host_response": "0102000006",
+      "peer_followup": "0101000006",
+      "gatttool_output": "Discover all primary services failed: Request attribute has encountered an unlikely error",
+      "gatttool_exit_code": 0,
+      "subsequent_standard_cli": "BR/EDR page timeout again; diagnostic commands not executed",
+      "limit": "Position change coincided with reaching ATT; no claim that distance alone explains original failure."
+    },
+    {
+      "name": "new_helper_first_attempt",
+      "report": {
+        "serial": "C261CF0430",
+        "started_at": "2026-10-13T03:18:11.772664+00:00",
+        "ok": false,
+        "scope": "Direct public LE ATT; service discovery, MTU, log CCCD, PREPARE/START/help/dbg/STOP only",
+        "address": "50:C0:F0:AE:7C:0E",
+        "att_packets": [],
+        "error": "OSError: [Errno 22] LE ATT connect failed",
+        "ended_at": "2026-10-13T03:18:14.783662+00:00"
+      },
+      "interpretation": "EINVAL before ATT; source audit requires local public/CID4 bind before connect. Fixed subsequently; no retry yet."
+    }
+  ],
+  "source_contracts": {
+    "bluez_commit": "770ad5614e7e8074133e6f563495ce4822f63fe4",
+    "bearer_selection": [
+      "src/adapter.c:7272-7284",
+      "src/device.c:2480-2546"
+    ],
+    "forced_le": [
+      "attrib/utils.c:57-85",
+      "btio/btio.c:1955-1956"
+    ],
+    "legacy_mtu": [
+      "attrib/gatttool.c:138-166",
+      "attrib/interactive.c:709-763",
+      "src/shared/att.c:1023-1029"
+    ],
+    "kernel_reference": "torvalds/linux@v6.14 net/bluetooth/l2cap_core.c:230-236,6931-6933; net/bluetooth/l2cap_sock.c:138-139,1842-1844"
+  },
+  "next": "Run fixed linux_log helper under btmon locally on Ubuntu; require peer MTU reply03f700, complete discovery, valid Actions frames/ACK/F1; no blind retries."
+}
