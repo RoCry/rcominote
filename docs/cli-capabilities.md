@@ -57,6 +57,12 @@ caller establishing a narrower domain; the main member contains setters and
 wrappers. Backlight source label is “屏幕常亮”: always-on toggle, not brightness.
 USB toggle means “USB support”; USB class/enumeration must be observed separately.
 
+[Owned-device USB roundtrip2026-10-13](usb-next-steps-2026-10-13.md) now verifies
+on→off→on field readback and restoration; passive Mac USB inventories remain
+identical, complete8-file lists unchanged. This is not MSC activation or proof
+that the original magnetic cable carries data. NOTE/CALL is readable but has
+no confirmed setter among these23 fixed-App requests.
+
 Setter slice SHA-256 values:
 
 | Setting | SHA-256 |

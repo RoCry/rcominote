@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-13",
+  "serial": "C261CF0430",
+  "firmware": "010004",
+  "owner_connection_report": "Original complete four-contact magnetic cable connected to this Mac; data capability not independently verified",
+  "scope": "Normal Boyi USB configuration roundtrip and passive macOS registry observation; not physical reconnect or ROM experiment",
+  "set_off": {
+    "setting": "usb",
+    "before": true,
+    "value": false,
+    "changed": true,
+    "reply_hex": "00",
+    "verification": "device_readback"
+  },
+  "restore_on": {
+    "setting": "usb",
+    "before": false,
+    "value": true,
+    "changed": true,
+    "reply_hex": "00",
+    "verification": "device_readback"
+  },
+  "snapshot_device_counts": [
+    16,
+    16,
+    16
+  ],
+  "snapshot_times_utc": [
+    "2026-10-13T00:47:02.395199+00:00",
+    "2026-10-13T00:50:00.223249+00:00",
+    "2026-10-13T00:50:11.367636+00:00"
+  ],
+  "diff_before_off": {
+    "removed": [],
+    "added": [],
+    "changed": []
+  },
+  "diff_off_on": {
+    "removed": [],
+    "added": [],
+    "changed": []
+  },
+  "full_info_initial_equals_final": true,
+  "initial_and_final_state": "idle",
+  "initial_and_final_charging": true,
+  "initial_and_final_mode": "call",
+  "recording_count": 8,
+  "complete_file_lists_equal": true,
+  "read_only_watch_seconds": 3,
+  "watch_event_count": 0,
+  "raw_capture_sha256": {
+    "before.json": "394059039a9cc646a5680b92fe5d4e6912c8b4cf609cc5c10ddbe493f13900e9",
+    "off-snapshot.json": "9f28c8b031fe282b7f4b17679b6fc1638c6f9ede808cd3bd70451e6cd2495daf",
+    "on-snapshot.json": "9b2e12ab30ea1a3ca0883223d455b8962dc2860fd380e282906c8699c212d480"
+  },
+  "limits": [
+    "No CoMi USB node attributed",
+    "No USB control/bulk transfers, mounting or disk reads",
+    "No cable continuity or D+/D- measurement",
+    "No ROM entry, helper execution, reset or firmware writes",
+    "Configuration setter may persist NVRAM; not a no-NOR-write claim",
+    "No claim about reconnect/boot-gated behavior or all USB modes"
+  ],
+  "owner_port_change_followup": {
+    "owner_report": "Moved magnetic cable to a different port",
+    "snapshot_time_utc": "2026-10-13T00:53:56.376481+00:00",
+    "device_count": 16,
+    "devices_identical_to_restored_on_snapshot": true,
+    "device_state": {
+      "serial": "C261CF0430",
+      "firmware": "010004",
+      "recording_state": "idle",
+      "charging": true,
+      "usb_mode": true,
+      "mode": "call"
+    },
+    "filtered_host_log_window": "last5m; USB subsystem/usbd, enumeration/attach/connect/fail keywords",
+    "filtered_host_log_entries": 19,
+    "identified_log_device": "Previously identified separate rcwodle console,38f4:ffff,port00120000",
+    "log_attribution_limit": "No entry attributed to CoMi. Error rows without a VID share that port; do not assign them to CoMi or infer no physical USB activity from filtered log absence.",
+    "new_device_writes": false,
+    "raw_snapshot_sha256": "a927eb6762ba4d28f035f2bbedcac5ca4c1276db30aeda86670c3cb6df2eb308",
+    "raw_host_log_sha256": "9c9837f8f20f8c5ae617e5078fe1271cd0ad1df5063c7ba70ae3f07cd3d998e7"
+  }
+}

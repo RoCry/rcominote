@@ -70,6 +70,14 @@ artifacts. Each task needs a route-changing question and a stopping condition.
 Stop when the bounded source search or evidence cannot answer it; record the
 gap instead of repeatedly expanding the same investigation.
 
+User-directed exception2026-10-13: prioritize a bounded normal-USB file-transfer /
+MSC inquiry, [current plan and real settings trial](usb-next-steps-2026-10-13.md).
+Original complete magnetic cable's data wiring is unverified; on→off→on USB_COPY
+readback passes but three Mac descriptor inventories remain identical. Follow
+the actual connection/class/backend chain and cable evidence; do not repeat
+this toggle, CDC worker inventory or descriptor scan without new material.
+Ordinary USB storage, ROM download and NOR recovery remain separate questions.
+
 Current acquisition boundary: [official manual/index follow-up](official-acquisition-next.md#2026-10-13-bounded-manualreset-follow-up)
 yielded no device reset procedure or firmware/BSP package. Matching platform
 acquisition and ROM enumeration now need new material or an independently
