@@ -118,7 +118,10 @@ Helper`100a0a0a..100a0a26` also replaces a zero bits19..20 field with1.
 LEOPARD source assigns1 to reset,2 to restart; this bit meaning still comes
 from a different M33 platform, not a matched LARK silicon specification.
 
-Owner reports one button, long press for normal power on/off; manual pending.
+Owner reports one button, long press for normal power on/off. Follow-up2026-10-13:
+no separate forced-reset/reset button seen; manual supplies no forced-reset
+procedure. This does not prove absence of a PMU long-press reset function, but
+closes the anticipated manual instruction as an available escape contract.
 Normal firmware shutdown does not demonstrate an independent physical reset
 after ROM entry. No button operation or live PMU-register snapshot was performed
 for this follow-up: an enabled bit alone cannot prove button routing, hold time,

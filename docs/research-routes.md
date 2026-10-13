@@ -75,8 +75,12 @@ yielded no device reset procedure or firmware/BSP package. Matching platform
 acquisition and ROM enumeration now need new material or an independently
 established physical escape; further generic searches/callee reads are parked.
 Physical-exit lead, user report2026-10-13: one button, long press powers on/off
-in normal mode; manual photographs expected later. This is not a hard-reset or
-ROM-mode exit contract. Do not enter ROM based on the normal power-button report.
+in normal mode. Owner subsequently inspected device/manual: no separate reset
+button seen, no forced-reset procedure documented. This is owner-reported
+negative evidence, not proof that PMU long-press reset is absent. Do not wait
+for manual photographs as an established unlock, or enter ROM on this basis.
+Reopen with matched PMU documentation, a reliable independent power-disconnect
+method, or a production recovery chain with verified exit behavior.
 Client failure isolation is closed at the host-session boundary (see [CLI](cli.md));
 do not expand it into automatic cancellation/resume while platform work has priority.
 Explicit download/sync Ctrl-C now uses the [existing stop contract](download-cancel-contract.md#implemented-host-boundary-2026-10-13):
