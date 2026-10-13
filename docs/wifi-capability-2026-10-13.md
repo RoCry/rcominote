@@ -4,6 +4,12 @@
 
 **External Wi-Fi is a concrete Actions reference design, but CoMi Wi-Fi hardware and a usable fast-transfer path remain unconfirmed. Do not assume a large recording implies a second radio.**
 
+Later exact-model follow-up: [radio index and decision](wifi-radio-model-2026-10-13.md)
+finds SY-N2A3F-5H2 listed as Bluetooth equipment/module in a third-party approval
+index. Primary certificate remains unverified. Together with actual firmware,
+this favors treating original-firmware Wi-Fi as unavailable, rather than assuming
+a hidden switch. Owner confirms Wi-Fi was an analogy to other recorders.
+
 | Layer | Evidence | Conclusion |
 |---|---|---|
 | ATS3085L | Actions identifies dual-mode Bluetooth SoC; documents Bluetooth RF/baseband, M4F, DSP, SPI peripherals | No integrated Wi-Fi capability specified; SPI offers a plausible external-module interface |

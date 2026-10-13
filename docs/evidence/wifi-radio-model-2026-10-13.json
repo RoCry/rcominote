@@ -1,0 +1,26 @@
+{
+  "retrieved": "2026-10-13",
+  "source": "https://cmiitid.cn/2026-6996",
+  "source_type": "Third-party regulatory index; not independently verified against regulator certificate",
+  "html_sha256": "74c118b277158738baa6c023cd9ef36b9647305ba31b3819d263f0beb88db0a0",
+  "html_bytes": 16511,
+  "reported_fields": {
+    "model": "SY-N2A3F-5H2",
+    "applicant": "北京致远互联软件股份有限公司",
+    "equipment_name": "蓝牙设备",
+    "approval_number": "2026-6996",
+    "approval_code": "26J11X2GE501",
+    "issued": "2026-04-15",
+    "technical_module": "蓝牙",
+    "modulation": "GFSK π/4-DQPSK 8DPSK",
+    "occupied_bandwidth": "≤2MHz",
+    "frequency": "2400-2483.5MHz",
+    "power": "≤20dBm(e.i.r.p.)"
+  },
+  "limits": [
+    "Exact manual model matches, but unit label/certificate not cross-checked.",
+    "Generic frequency-use label WiFi/WLAN/BT on same page is not model-specific capability.",
+    "Official MIIT query form loaded in Chrome but category/result data did not populate; no primary certificate acquired.",
+    "This does not prove absence of a separate module or hardware revision."
+  ]
+}

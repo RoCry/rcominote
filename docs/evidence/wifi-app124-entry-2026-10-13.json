@@ -1,0 +1,335 @@
+{
+  "apk_sha256": "8aade0a4ca1f9e25b9ebbd51dee97702bf0954e5a66adcf91312b4331414ace7",
+  "method": "UTF8 candidate asset text/config members; literal search only, no decryption, DEX recovery or runtime",
+  "regex": "noteweb|familyrobot|wifi|server.url|serverurl|recordingcard",
+  "capacitor_members": [],
+  "readable_member_count": 51,
+  "undecodable_candidates": [],
+  "members": [
+    {
+      "member": "assets/ali_copylist.txt",
+      "bytes": 22,
+      "sha256": "4138c46681d0063380a9e5825fce3c05cff832b07acc40f27bb811fd785eb05a",
+      "matches": []
+    },
+    {
+      "member": "assets/cei.json",
+      "bytes": 2828,
+      "sha256": "85378faa5e8d59640d5339c9f9b7d24e8d48f6a8be20d342f7cda2946552677e",
+      "matches": []
+    },
+    {
+      "member": "assets/copylist.txt",
+      "bytes": 22,
+      "sha256": "4138c46681d0063380a9e5825fce3c05cff832b07acc40f27bb811fd785eb05a",
+      "matches": []
+    },
+    {
+      "member": "assets/grs_sdk_global_route_config_apptouchupdatesdk.json",
+      "bytes": 2575,
+      "sha256": "7dc4b0f365b5992cd6412584693795d91174359e72843ebf8e1c44c9523ca261",
+      "matches": []
+    },
+    {
+      "member": "assets/grs_sdk_global_route_config_hmscoreInstallerSDK.json",
+      "bytes": 9880,
+      "sha256": "799f02f0819af6364b373b694c0527bcad9aa9f71fb2bbefa7a59870f122cec3",
+      "matches": []
+    },
+    {
+      "member": "assets/grs_sdk_global_route_config_mlkit.json",
+      "bytes": 9809,
+      "sha256": "a66226ead7f3042c475e180e3d5be5cfceb216136877a545318159b7a1df06a1",
+      "matches": []
+    },
+    {
+      "member": "assets/grs_sdk_global_route_config_opendevicesdk.json",
+      "bytes": 7356,
+      "sha256": "82dfe770713531e0acfe7070fa0aee56518c16e9e147e14ef66d3edc46afc668",
+      "matches": []
+    },
+    {
+      "member": "assets/grs_sdk_global_route_config_opensdkService.json",
+      "bytes": 10277,
+      "sha256": "04dbafd08d136814d01ea6a6fd261a8f55e2404322693f3165af484401a878e7",
+      "matches": []
+    },
+    {
+      "member": "assets/grs_sdk_global_route_config_updatesdk.json",
+      "bytes": 3294,
+      "sha256": "3ac38ba0e038ecff8c80190e8f216840f73b75cb8215e340094e6b24fffc380e",
+      "matches": []
+    },
+    {
+      "member": "assets/grs_sdk_server_config.json",
+      "bytes": 370,
+      "sha256": "3c4d369f6c9f7e5a91aa0fcc341a9c8afa27e855f9b2f35615d47200873a2080",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/@wangeditor/editor-for-vue@5.1.12/index.js",
+      "bytes": 3479,
+      "sha256": "7092bee9a8a45634ca7f33675a84705a3bbb491425ddb353b340e887318ea982",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/@wangeditor/editor@5.1.23/index.js",
+      "bytes": 1358121,
+      "sha256": "0373fb0ccd48e19475cc369a8770829868b11c2e63876d3b631caf4e6ca783a7",
+      "matches": [
+        {
+          "character_offset": 674928,
+          "text": "serverUrl"
+        },
+        {
+          "character_offset": 674990,
+          "text": "serverUrl"
+        }
+      ]
+    },
+    {
+      "member": "assets/h5/img/vendors/clipboard@2.0.11/clipboard.min.js",
+      "bytes": 9166,
+      "sha256": "21708db6d7f8e20387183d7358648065dc45f7d635370fedb24df591f68f1e6b",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/echarts@5.5.1/echarts.min.js",
+      "bytes": 1034147,
+      "sha256": "873a889da5ecf780d88ce440cebcc75b57ef405b2cf08f78f43554f864b1b2bd",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/highlight.js@11.11.1/highlight.min.js",
+      "bytes": 10281,
+      "sha256": "a7780a4e8d09041025e2c44eb585fa194a89a5a88e9453b9e741d288f96a2e4b",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/infographic@0.2.16/infographic.min.js",
+      "bytes": 866335,
+      "sha256": "d28f6037969043087183cad0eefa262852529439e698ea682235cdc7ef31a7ba",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/jquery@3.7.1/jquery.min.js",
+      "bytes": 87535,
+      "sha256": "7aa6b0e08f48a0f95d8df7ea89e4cbfe1ef3d1e8c0f7373f7f25edfb4e4a325e",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/json5@2.2.3/json5.min.js",
+      "bytes": 31632,
+      "sha256": "e1e26e35fa405a191dbbb8949db1c859d1f189eacfcb0caac213daf7f8fc6d3c",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/lodash-es@4.17.21/lodash.min.js",
+      "bytes": 73154,
+      "sha256": "095adb100506cd3ef102efb3e5c2393751939f471c95233542e3de5c4259185f",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/markdown-it-abbr@2.0.0/markdown-it-abbr.js",
+      "bytes": 2421,
+      "sha256": "cba4034126879e31ff0baee1f32762dce664390cf75aecc9be10006e78337ae5",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/markdown-it-container@4.0.0/markdown-it-container.js",
+      "bytes": 1684,
+      "sha256": "64bf14d52984117da9a9854cfe36a499cfd7dc5844d0ad14f32595a6f16d5d98",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/markdown-it-deflist@3.0.0/markdown-it-deflist.js",
+      "bytes": 2251,
+      "sha256": "ca0e9265774cb86585fccb854767f54eb0681749b51470db739428780b9375a2",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/markdown-it-emoji@3.0.0/markdown-it-emoji.js",
+      "bytes": 61152,
+      "sha256": "420440dbec30a9eb0b164993f27dfb7165beda6ea0c32ad372af06134d385779",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/markdown-it-footnote@4.0.0/markdown-it-footnote.js",
+      "bytes": 5626,
+      "sha256": "eacf704b3345ec509f4ee4d81b15459ad99007176017c5911d5a58b1b796fc1e",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/markdown-it-ins@4.0.0/markdown-it-ins.js",
+      "bytes": 1603,
+      "sha256": "234b0732502952f84745dd81bfff9751cda8d0bf953ce31bb9a4a5d4ead69705",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/markdown-it-mark@4.0.0/markdown-it-mark.js",
+      "bytes": 1623,
+      "sha256": "4b30a6995c733af1b3742c61ed23c9c291d228b6aa15721814df0486fdd5aa24",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/markdown-it-task-lists@2.1.1/markdown-it-task-lists.js",
+      "bytes": 2704,
+      "sha256": "174d0a643fb7c72d13d3275fa001daf6246b45c85aa53373495e157e07358d38",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/markdown-it-toc-done-right@4.2.0/markdown-it-toc-done-right.js",
+      "bytes": 3591,
+      "sha256": "74062c74dacd4bdf5e8fc4d2a296b765f3db82c68fb0e75a5d0b8b9607a1eff5",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/markdown-it@12.3.2/markdown-it.min.js",
+      "bytes": 101025,
+      "sha256": "e9a70059e3f89d3306ad3a12044378e0d3065a4db0d02eb498e78a980f691fdd",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/img/vendors/mermaid@11.9.0/mermaid.min.js",
+      "bytes": 2710354,
+      "sha256": "8ef6aa9740b9bb0e99f013bb5c16759b7371c29b37c741ee7d6be04ebc485d33",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/@wangeditor/editor-for-vue@5.1.12/index.js",
+      "bytes": 3479,
+      "sha256": "7092bee9a8a45634ca7f33675a84705a3bbb491425ddb353b340e887318ea982",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/@wangeditor/editor@5.1.23/index.js",
+      "bytes": 1358121,
+      "sha256": "0373fb0ccd48e19475cc369a8770829868b11c2e63876d3b631caf4e6ca783a7",
+      "matches": [
+        {
+          "character_offset": 674928,
+          "text": "serverUrl"
+        },
+        {
+          "character_offset": 674990,
+          "text": "serverUrl"
+        }
+      ]
+    },
+    {
+      "member": "assets/h5/vendors/clipboard@2.0.11/clipboard.min.js",
+      "bytes": 9166,
+      "sha256": "21708db6d7f8e20387183d7358648065dc45f7d635370fedb24df591f68f1e6b",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/echarts@5.5.1/echarts.min.js",
+      "bytes": 1034147,
+      "sha256": "873a889da5ecf780d88ce440cebcc75b57ef405b2cf08f78f43554f864b1b2bd",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/highlight.js@11.11.1/highlight.min.js",
+      "bytes": 10281,
+      "sha256": "a7780a4e8d09041025e2c44eb585fa194a89a5a88e9453b9e741d288f96a2e4b",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/infographic@0.2.16/infographic.min.js",
+      "bytes": 866335,
+      "sha256": "d28f6037969043087183cad0eefa262852529439e698ea682235cdc7ef31a7ba",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/jquery@3.7.1/jquery.min.js",
+      "bytes": 87535,
+      "sha256": "7aa6b0e08f48a0f95d8df7ea89e4cbfe1ef3d1e8c0f7373f7f25edfb4e4a325e",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/json5@2.2.3/json5.min.js",
+      "bytes": 31632,
+      "sha256": "e1e26e35fa405a191dbbb8949db1c859d1f189eacfcb0caac213daf7f8fc6d3c",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/lodash-es@4.17.21/lodash.min.js",
+      "bytes": 73154,
+      "sha256": "095adb100506cd3ef102efb3e5c2393751939f471c95233542e3de5c4259185f",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-abbr@2.0.0/markdown-it-abbr.js",
+      "bytes": 2421,
+      "sha256": "cba4034126879e31ff0baee1f32762dce664390cf75aecc9be10006e78337ae5",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-container@4.0.0/markdown-it-container.js",
+      "bytes": 1684,
+      "sha256": "64bf14d52984117da9a9854cfe36a499cfd7dc5844d0ad14f32595a6f16d5d98",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-deflist@3.0.0/markdown-it-deflist.js",
+      "bytes": 2251,
+      "sha256": "ca0e9265774cb86585fccb854767f54eb0681749b51470db739428780b9375a2",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-emoji@3.0.0/markdown-it-emoji.js",
+      "bytes": 61152,
+      "sha256": "420440dbec30a9eb0b164993f27dfb7165beda6ea0c32ad372af06134d385779",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-footnote@4.0.0/markdown-it-footnote.js",
+      "bytes": 5626,
+      "sha256": "eacf704b3345ec509f4ee4d81b15459ad99007176017c5911d5a58b1b796fc1e",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-ins@4.0.0/markdown-it-ins.js",
+      "bytes": 1603,
+      "sha256": "234b0732502952f84745dd81bfff9751cda8d0bf953ce31bb9a4a5d4ead69705",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-mark@4.0.0/markdown-it-mark.js",
+      "bytes": 1623,
+      "sha256": "4b30a6995c733af1b3742c61ed23c9c291d228b6aa15721814df0486fdd5aa24",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-task-lists@2.1.1/markdown-it-task-lists.js",
+      "bytes": 2704,
+      "sha256": "174d0a643fb7c72d13d3275fa001daf6246b45c85aa53373495e157e07358d38",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-toc-done-right@4.2.0/markdown-it-toc-done-right.js",
+      "bytes": 3591,
+      "sha256": "74062c74dacd4bdf5e8fc4d2a296b765f3db82c68fb0e75a5d0b8b9607a1eff5",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it@12.3.2/markdown-it.min.js",
+      "bytes": 101025,
+      "sha256": "e9a70059e3f89d3306ad3a12044378e0d3065a4db0d02eb498e78a980f691fdd",
+      "matches": []
+    },
+    {
+      "member": "assets/h5/vendors/mermaid@11.9.0/mermaid.min.js",
+      "bytes": 2710354,
+      "sha256": "8ef6aa9740b9bb0e99f013bb5c16759b7371c29b37c741ee7d6be04ebc485d33",
+      "matches": []
+    },
+    {
+      "member": "assets/nui.json",
+      "bytes": 1352,
+      "sha256": "ef0587505bdfce3382c44c327a07aba03f41464258b8cd9ee67ce2e641186bef",
+      "matches": []
+    }
+  ],
+  "conclusion": "Only editor serverUrl matches; no new recorder frontend URL or Wi-Fi entry from this bounded readable subset."
+}

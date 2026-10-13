@@ -121,3 +121,25 @@ frontend or a matching deployed bundle, then inspecting its device selection and
 transfer activation. Until then, preserve the actual firmware's
 `record_wifi_ota_view.c` lead separately: an OTA view is not evidence that this
 App exports recording files through Wi-Fi.
+
+## 1.2.4 entry follow-up and acquisition stop
+
+The retained1.2.4 APK was rehashed to the already pinned
+`8aade0a4ca1f9e25b9ebbd51dee97702bf0954e5a66adcf91312b4331414ace7`.
+[Candidate asset inventory](evidence/wifi-app124-entry-2026-10-13.json)
+records readable text/config member hashes and the exact literal-search scope.
+No member name contains `capacitor`; no matching recorder frontend URL or
+Wi-Fi entry was recovered. Matches are `serverUrl` in two copies of the
+wangEditor bundle. This does not inspect protected application logic and does
+not establish that1.2.4 removed recorder functionality or uses the old URL.
+
+Reconciliation with [prior acquisition](official-acquisition-next.md): the old
+remote URL's HTTP500 was already known on2026-10-12; the2026-10-13 fetch is a
+reconfirmation, not a newly discovered route. Stop re-fetching it or repeating
+the same asset searches without a changed endpoint/package.
+
+The unresolved input is a matching deployed frontend/runtime observation or
+direct hardware/official-model Wi-Fi evidence. The owner deferred App login;
+the last current ADB inventory has no phone attached. Preserve those boundaries
+rather than bypassing login, installing unrelated clients, or guessing radio
+commands. Existing evidence does not justify a working CoMi Wi-Fi CLI claim.

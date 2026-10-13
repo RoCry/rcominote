@@ -16,6 +16,11 @@ Shipped App defaults to remote frontend (currentlyHTTP500), so packaged assets
 are not complete live-feature coverage. Related3085S Wi-Fi0x1b selects actual
 Boyi default error; do not transplant it. Next material: actual runtime frontend,
 matching transport or hardware evidence. No guessed commands/repeated USB reconnects.
+[Exact-model radio lead](wifi-radio-model-2026-10-13.md) lists Bluetooth module
+only in a third-party index; official certificate query did not yield a record.
+Owner's Wi-Fi premise was analogy, not a product claim. Prefer an evidence-based
+unavailable-feature conclusion over implementing guessed switches; reopen on
+primary radio/hardware or actual official Wi-Fi workflow evidence.
 
 User direction: prioritize device, firmware, SoC and SDK understanding; park
 blocked details and switch questions. Start with [device/platform map](device-platform-map.md).
