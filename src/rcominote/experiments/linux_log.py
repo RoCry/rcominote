@@ -11,6 +11,8 @@ from uuid import UUID
 import typer
 
 from rcominote.ble_target import OWNED_SERIAL, find_device
+from rcominote.code_guards import observed_block
+from rcominote.experiments.audio_state import IMAGE_SHA, guard_bytes
 from rcominote.experiments.linux_att import AttError, AttLink
 from rcominote.log_capture import START, STOP
 from rcominote.log_probe import NOTIFY, PREPARE, SERVICE, WRITE
@@ -82,9 +84,41 @@ async def discover(link: AttLink, report: dict) -> tuple[int, int, int]:
     return write["value"], notify["value"], cccd
 
 
-async def capture(report: dict) -> None:
+async def short_read(send, stream: Stream, report: dict) -> None:
+    """One known mapped-code row, with at most eight read-only version fillers."""
+    address = 0x1000AB40
+    expected = guard_bytes()[address]
+    report["short_read"] = {
+        "address": f"{address:08x}",
+        "bytes": len(expected),
+        "image_sha256": IMAGE_SHA,
+        "expected_hex": expected.hex(),
+        "flush_queries": 0,
+    }
+
+    async def text(command: str):
+        encoded = command.encode()
+        tlv = b"\x01" + len(encoded).to_bytes(2, "little") + encoded
+        await send(b"\x1d\x10\x81" + len(tlv).to_bytes(2, "little") + tlv)
+
+    await text("dbg mdb 1000ab40 10")
+    for count in range(9):
+        if (value := observed_block(stream.frames, address, len(expected))) is not None:
+            report["short_read"]["observed_hex"] = value.hex()
+            if value != expected:
+                raise ValueError("Known mapped-code row differs from independent image")
+            return
+        if count == 8:
+            raise ValueError("Known row not received within eight version fillers")
+        report["short_read"]["flush_queries"] = count + 1
+        await text("kernel version")
+
+
+async def capture(report: dict, *, read_short: bool = False) -> None:
     if sys.platform != "linux":
         raise RuntimeError("Direct LE experiment requires Linux; no device access attempted")
+    if read_short:
+        guard_bytes()  # Reject a changed oracle before any device access.
     device = await find_device(serial=OWNED_SERIAL, seconds=10)
     report["address"] = device.address
     async with AttLink(device.address, report) as link:
@@ -117,9 +151,12 @@ async def capture(report: dict) -> None:
             attempted = True
             await send(START)
             # Same exact commands as the failed macOS control, no newline added.
-            for text in (b"help", b"dbg"):
-                tlv = b"\x01" + len(text).to_bytes(2, "little") + text
-                await send(b"\x1d\x10\x81" + len(tlv).to_bytes(2, "little") + tlv)
+            if read_short:
+                await short_read(send, stream, report)
+            else:
+                for text in (b"help", b"dbg"):
+                    tlv = b"\x01" + len(text).to_bytes(2, "little") + text
+                    await send(b"\x1d\x10\x81" + len(tlv).to_bytes(2, "little") + tlv)
         except BaseException as error:
             report["capture_error"] = f"{type(error).__name__}: {error}"
             raise
@@ -134,6 +171,10 @@ async def capture(report: dict) -> None:
                 report["stop_error"] = f"{type(error).__name__}: {error}"
                 if "capture_error" not in report:
                     raise
+                # Keep the independent raw ATT reader alive after decoder failure.
+                # No resynchronization and no promotion of raw ACK/F1 to success.
+                await asyncio.sleep(0.5)
+                report["raw_cleanup_window_seconds"] = 0.5
             finally:
                 report.update(
                     mtu=link.mtu,
@@ -145,23 +186,27 @@ async def capture(report: dict) -> None:
         if stream.acks != expected or not stream.ended or stream.pending:
             raise ValueError("Incomplete Actions stream")
         text = "".join(row.get("text", "") for row in stream.frames)
-        if "Available commands:" not in text or "dbg" not in text:
+        if not read_short and ("Available commands:" not in text or "dbg" not in text):
             raise ValueError("Missing expected diagnostic output")
         report["text_bytes"] = sum(
             len(bytes.fromhex(row["hex"])) - 8 for row in stream.frames if row["command"] == 0xF0
         )
 
 
-def main(out: Path):
+def main(out: Path, read_short: bool = typer.Option(False, "--short-read")):
     new_output(out)
     report = {
         "serial": OWNED_SERIAL,
         "started_at": datetime.now(UTC).isoformat(),
         "ok": False,
-        "scope": "Direct public LE ATT; service discovery, MTU, log CCCD, PREPARE/START/help/dbg/STOP only",
+        "scope": (
+            "Direct LE ATT; one fixed mapped-code read, at most eight kernel version fillers; no recording"
+            if read_short
+            else "Direct public LE ATT; service discovery, MTU, log CCCD, PREPARE/START/help/dbg/STOP only"
+        ),
     }
     try:
-        asyncio.run(capture(report))
+        asyncio.run(capture(report, read_short=read_short))
         report["ok"] = True
     except BaseException as error:
         report["error"] = f"{type(error).__name__}: {error}"

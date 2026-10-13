@@ -4,7 +4,8 @@ import unittest
 from unittest.mock import AsyncMock
 
 from rcominote.experiments.linux_att import AttError
-from rcominote.experiments.linux_log import discover, table_rows
+from rcominote.experiments.linux_log import discover, short_read, table_rows
+from rcominote.log_stream import Stream
 
 # CoMi ranges observed in 2026-10-13 near-PC btmon: GAP/GATT/battery, Actions, Boyi.
 SERVICES = [
@@ -19,6 +20,31 @@ CHARACTERS = bytes.fromhex(
 
 
 class LinuxLogTests(unittest.IsolatedAsyncioTestCase):
+    async def test_short_read_rejects_changed_code_row(self):
+        stream = Stream()
+        # Independent image row at1000ab40 begins5e; simulate a changed first byte.
+        text = "1000ab40: 00 34 8d f8 12 30 94 f8 70 34 bd f8 00 20 8d f8    .4...0..p4... ..\r\n"
+        payload = b"\x00" + len(text).to_bytes(2, "little") + text.encode()
+
+        async def send(_packet):
+            stream.feed(b"\x1d\xf0\x81" + len(payload).to_bytes(2, "little") + payload)
+
+        with self.assertRaisesRegex(ValueError, "differs from independent image"):
+            await short_read(send, stream, {})
+
+    async def test_short_read_missing_output_stops_at_bounded_fillers(self):
+        packets = []
+        stream = Stream()
+
+        async def send(packet):
+            packets.append(packet)
+            # Captured Actions ACK; command success alone is not readback proof.
+            stream.feed(bytes.fromhex("1d108107007f0400a0860100"))
+
+        with self.assertRaisesRegex(ValueError, "not received within eight"):
+            await short_read(send, stream, {})
+        self.assertEqual(len(packets), 9)  # One fixed read plus the explicit eight-query budget.
+
     async def test_complete_discovery_uses_verified_values_and_cccd(self):
         link = AsyncMock()
         link.request.side_effect = [
