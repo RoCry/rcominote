@@ -43,8 +43,22 @@ Hash-verified main JS has three occurrences each of `setWifiEnabled` and `getWif
 
 The owned Boyi E5E device is not the Mova Nordic-UART-style service. No Boyi Wi-Fi opcode was established. These methods therefore provide neither permission nor protocol justification to send 0xf3/0xf4 to CoMi. Scope is extracted 1.1.2 main JS; not all versions/assets, and not logged-in 1.2.4 runtime.
 
+## Follow-up: actual UI and App loading path
+
+[Actual view trace](wifi-actual-view-2026-10-13.md) follows registered view0x58 and its0x96 status consumer. The inspected handler creates/releases UI and switches to the recording launcher on one status; no transport initializer was established. Do not promote the Wi-Fi name into a working radio/transfer capability. Direct-call coverage does not exclude indirect or dynamically selected paths.
+
+[Whole packaged App audit](wifi-app-paths-2026-10-13.md) adds an important coverage correction: shipped1.1.2 defaults to a remote Capacitor frontend, `https://doll.familyrobot.site/noteweb/`. Packaged JS is therefore not a complete runtime-feature inventory. Root GET on2026-10-13 returned HTTP500/nginx,186 B; [response digest and supplemental transport references](evidence/wifi-transport-followup-2026-10-13.json). This is one current server observation, not permanent unavailability or an observed App launch.
+
+Supplemental actual-system pointer scan: SPI_2 name100c9e3f points only from descriptor100ba2e0; that descriptor points only from init entry100b9edc. UART_1 name100c98b9 points only from its descriptor. This does not reproduce the reference SDK's explicit SPI_2 name binding, but cannot exclude computed names, direct MMIO or a different bus. Full image digest and exact aligned references are retained in the same JSON.
+
+[Related-app Wi-Fi comparison](wifi-oem-comparison-2026-10-13.md) supplies another concrete protocol, rather than a CoMi command: AI DVR Link's3085S path uses0x1b for Wi-Fi activation. Rechecking the **actual CoMi** complete Boyi table at1000b410 maps0x1b,0x1f,0x20 to1000b544, whose default returns−134. The retained JSON includes table bytes and default disassembly. Thus transplanting that related recorder's Wi-Fi opcodes into this Boyi endpoint is ruled out by actual firmware; a different endpoint remains a separate question.
+
+## More than file transfer: conditional capabilities
+
+The acquired REC_JX3 Wi-Fi protocol has handlers for handshake, file list, sync, delete, stop and FOTA ([source audit](wifi-sdk-reference-2026-10-13.md)). These are potential reusable designs **if matching Wi-Fi hardware/transport is established**, not features exposed by the current CoMi CLI. Firmware updating remains a separate acceptance/recovery problem even if a faster link becomes available. No source-bound path yet establishes live audio streaming, direct cloud upload, LAN discovery or an arbitrary remote shell on CoMi Wi-Fi.
+
 ## Next useful evidence / stopping condition
 
-Prioritize the actual `WIFI_OTA_VIEW` registration, event producers and transport initialization; a concrete Boyi command or external-module initialization would justify a targeted real-device trial. OTA UI alone does not imply recording-file transfer. If that bounded chain supplies no transport, park it until matching firmware/source or hardware evidence appears. Do not repeat broad Wi-Fi keyword searches, send Mova commands, or re-run the exhausted normal-USB reconnect experiment.
+The bounded view trace supplies no transport entry; park repeated inspection of that handler. Next useful material is the actual remote/runtime frontend or a matching Boyi transport implementation, not more strings from the same view. `adb devices -l` returned no attached Android devices during this follow-up, so no current installed-app/cache observation was possible; earlier connected-phone state is not current evidence. Existing owner preference to defer login remains in force. A concrete Boyi command or external-module initialization would justify a targeted real-device trial. OTA UI alone does not imply recording-file transfer. Do not send Mova commands or re-run the exhausted normal-USB reconnect experiment.
 
 No new CLI Wi-Fi command, faster-transfer claim, hardware change or flashing claim follows from this pass. Existing BLE transfer progress and measured throughput remain the available client capability.

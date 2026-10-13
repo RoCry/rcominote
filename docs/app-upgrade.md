@@ -3,6 +3,11 @@
 Research date: 2026-10-12. Host-only inspection; no device commands, app execution,
 account login, or flashing. Primary evidence: original bytes inside official APKs.
 
+Coverage correction2026-10-13: [bridge/default configuration audit](wifi-app-paths-2026-10-13.md)
+shows1.1.2 defaults to a remote frontend. Conclusions below concern packaged
+code and selected decompiled sources, not a complete inventory of live App
+features. The configured remote page returned HTTP500 in the new host fetch.
+
 ## Conclusions relevant to custom firmware
 
 1. **Boyi has an explicit USB-enable command.** App defines opcode `0x13`, sends

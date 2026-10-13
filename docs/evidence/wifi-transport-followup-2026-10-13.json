@@ -1,0 +1,86 @@
+{
+  "scope": "Aligned absolute pointer search in full retained mapped application, not general absence proof",
+  "image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "targets": [
+    {
+      "name": "SPI_2 name",
+      "address": "0x100c9e3f",
+      "word_refs": [
+        "0x100ba2e0"
+      ]
+    },
+    {
+      "name": "SPI_2 descriptor",
+      "address": "0x100ba2e0",
+      "word_refs": [
+        "0x100b9edc"
+      ]
+    },
+    {
+      "name": "UART_1 name",
+      "address": "0x100c98b9",
+      "word_refs": [
+        "0x100b9f40"
+      ]
+    }
+  ],
+  "remote_frontend": {
+    "url": "https://doll.familyrobot.site/noteweb/",
+    "status": 500,
+    "date": "2026-10-13",
+    "body_sha256": "d3af065b1a979140769859a3464a3dc0f167dee16085068f13a63e12b1e6ab0d",
+    "limitation": "Current fetch only; not observed App navigation or proof of permanent outage."
+  },
+  "actual_boyi_dispatch": {
+    "table_address": "0x1000b410",
+    "table_hex": "1d22272c31363b40454a4f555b9a9a61676c72777c81868b9a909a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a9a95",
+    "selected_entries": [
+      {
+        "command": "0x1b",
+        "table_byte": "0x9a",
+        "target": "0x1000b544"
+      },
+      {
+        "command": "0x1f",
+        "table_byte": "0x9a",
+        "target": "0x1000b544"
+      },
+      {
+        "command": "0x20",
+        "table_byte": "0x9a",
+        "target": "0x1000b544"
+      }
+    ],
+    "default_instructions": [
+      {
+        "address": "0x1000b544",
+        "instruction": "ldr r0, [pc, #0x20]"
+      },
+      {
+        "address": "0x1000b546",
+        "instruction": "ldr r1, [pc, #0x24]"
+      },
+      {
+        "address": "0x1000b548",
+        "instruction": "orrs r0, r5"
+      },
+      {
+        "address": "0x1000b54a",
+        "instruction": "mov r2, r7"
+      },
+      {
+        "address": "0x1000b54c",
+        "instruction": "bl #0x10055f90"
+      },
+      {
+        "address": "0x1000b550",
+        "instruction": "mvn r0, #0x85"
+      },
+      {
+        "address": "0x1000b554",
+        "instruction": "b #0x1000b400"
+      }
+    ],
+    "interpretation": "The related3085s Wi-Fi command identifiers select the actual CoMi Boyi default error path, not a hidden Wi-Fi handler. No command sent."
+  }
+}

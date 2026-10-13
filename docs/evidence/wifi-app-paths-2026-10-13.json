@@ -1,0 +1,783 @@
+{
+  "date": "2026-10-13",
+  "authority": "shipped-artifact + JADX-decompiled text; static, no runtime execution",
+  "apk_sha256": "b6f1409ccaa054406c47350b4c6b05231334633778a84dfe59d4fc5c5bd95118",
+  "offset_convention": "zero-based byte offsets in uncompressed ZIP members",
+  "text_inventory": [
+    {
+      "member": "assets/capacitor.config.json",
+      "bytes": 686,
+      "sha256": "18aefbea93c9108967e0124e4fb39ee807cc83bd13c9a16d12f1d70cc76c00b9"
+    },
+    {
+      "member": "assets/capacitor.plugins.json",
+      "bytes": 683,
+      "sha256": "09b72292e4d585ad641927785cbbfa714ad8ddec03cb55182cee5a847596b661"
+    },
+    {
+      "member": "assets/cei.json",
+      "bytes": 2828,
+      "sha256": "85378faa5e8d59640d5339c9f9b7d24e8d48f6a8be20d342f7cda2946552677e"
+    },
+    {
+      "member": "assets/grs_sdk_global_route_config_apptouchupdatesdk.json",
+      "bytes": 2575,
+      "sha256": "7dc4b0f365b5992cd6412584693795d91174359e72843ebf8e1c44c9523ca261"
+    },
+    {
+      "member": "assets/grs_sdk_global_route_config_hmscoreInstallerSDK.json",
+      "bytes": 9880,
+      "sha256": "799f02f0819af6364b373b694c0527bcad9aa9f71fb2bbefa7a59870f122cec3"
+    },
+    {
+      "member": "assets/grs_sdk_global_route_config_mlkit.json",
+      "bytes": 9809,
+      "sha256": "a66226ead7f3042c475e180e3d5be5cfceb216136877a545318159b7a1df06a1"
+    },
+    {
+      "member": "assets/grs_sdk_global_route_config_opendevicesdk.json",
+      "bytes": 7356,
+      "sha256": "82dfe770713531e0acfe7070fa0aee56518c16e9e147e14ef66d3edc46afc668"
+    },
+    {
+      "member": "assets/grs_sdk_global_route_config_opensdkService.json",
+      "bytes": 10277,
+      "sha256": "04dbafd08d136814d01ea6a6fd261a8f55e2404322693f3165af484401a878e7"
+    },
+    {
+      "member": "assets/grs_sdk_global_route_config_updatesdk.json",
+      "bytes": 3294,
+      "sha256": "3ac38ba0e038ecff8c80190e8f216840f73b75cb8215e340094e6b24fffc380e"
+    },
+    {
+      "member": "assets/grs_sdk_server_config.json",
+      "bytes": 370,
+      "sha256": "3c4d369f6c9f7e5a91aa0fcc341a9c8afa27e855f9b2f35615d47200873a2080"
+    },
+    {
+      "member": "assets/h5/vendors/@wangeditor/editor-for-vue@5.1.12/index.js",
+      "bytes": 3476,
+      "sha256": "0af9a21d0f6e83a30f7243fa499527c10562402aede546c898f164dd2f935545"
+    },
+    {
+      "member": "assets/h5/vendors/@wangeditor/editor@5.1.23/index.js",
+      "bytes": 1333992,
+      "sha256": "6459533f0e50fbfa763c98c6e61360153fc17dee901e4d50c7f1a1508ddfaa4e"
+    },
+    {
+      "member": "assets/h5/vendors/clipboard@2.0.11/clipboard.min.js",
+      "bytes": 9160,
+      "sha256": "e17a1d816e13c0826e0ed7febfabc3277f45571234bde0bf9120829a7169edc9"
+    },
+    {
+      "member": "assets/h5/vendors/echarts@5.5.1/echarts.min.js",
+      "bytes": 1034102,
+      "sha256": "bf4a223524e40b77c304bec67e1222cf551f14880cf42c69dc046558e11c07b1"
+    },
+    {
+      "member": "assets/h5/vendors/highlight.js@11.11.1/highlight.min.js",
+      "bytes": 9998,
+      "sha256": "7474a09564d82501720c3b5ed3cda3c59ceec29ac8907e761699dfc285ba69f3"
+    },
+    {
+      "member": "assets/h5/vendors/jquery@3.7.1/jquery.min.js",
+      "bytes": 87533,
+      "sha256": "fc9a93dd241f6b045cbff0481cf4e1901becd0e12fb45166a8f17f95823f0b1a"
+    },
+    {
+      "member": "assets/h5/vendors/json5@2.2.3/json5.min.js",
+      "bytes": 31631,
+      "sha256": "4bb96d9d53f380ac801819411b8c10868ac9a984de863e56402ac00c2289b9f1"
+    },
+    {
+      "member": "assets/h5/vendors/lodash-es@4.17.21/lodash.min.js",
+      "bytes": 73015,
+      "sha256": "a9705dfc47c0763380d851ab1801be6f76019f6b67e40e9b873f8b4a0603f7a9"
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-abbr@2.0.0/markdown-it-abbr.js",
+      "bytes": 2419,
+      "sha256": "a8866f434296fbb46e6800bbb5356f2472472b3fd10bd5471951dc48daefdcac"
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-container@4.0.0/markdown-it-container.js",
+      "bytes": 1682,
+      "sha256": "5bda29f8cc0e613e04c4eb077a363cc86ab8a238f487b7792f2bdeb7a7b27ff4"
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-deflist@3.0.0/markdown-it-deflist.js",
+      "bytes": 2249,
+      "sha256": "ab393099a725e532d63bf877b4c6a5c9c57b87bf8d8d467e5c3a8d8ced33692e"
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-emoji@3.0.0/markdown-it-emoji.js",
+      "bytes": 61150,
+      "sha256": "84486c9d5a51b28aa90c5a3cb2625473dbde2415e2e106f8f40ea617de66dae0"
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-footnote@4.0.0/markdown-it-footnote.js",
+      "bytes": 5624,
+      "sha256": "d6fee58a3b56c5742fa18f3e01f1d317cc99975683ebd39c9195cb2aff0c2e42"
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-ins@4.0.0/markdown-it-ins.js",
+      "bytes": 1601,
+      "sha256": "7a04eeab0d2b25e1d6fe6710ce781710d9d40ac2773cb57ec1f06f2252add11a"
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-mark@4.0.0/markdown-it-mark.js",
+      "bytes": 1621,
+      "sha256": "68a50a0e42702e482f403eaa7f36446341313dfa6b4c502bc4f4b689a2caa203"
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-task-lists@2.1.1/markdown-it-task-lists.js",
+      "bytes": 2702,
+      "sha256": "4f3b23f41bb3787957da2602fbccc4df0d017928c1fce62583159e096b832a81"
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it-toc-done-right@4.2.0/markdown-it-toc-done-right.js",
+      "bytes": 3589,
+      "sha256": "bfaf24a817b7b455872df1345a30371c3d4674f4f559ecfd81f1d73eac33c186"
+    },
+    {
+      "member": "assets/h5/vendors/markdown-it@12.3.2/markdown-it.min.js",
+      "bytes": 101022,
+      "sha256": "2e77c809205e08971b002366974580295051cad390a607cc25c12731b066790c"
+    },
+    {
+      "member": "assets/h5/vendors/mermaid@11.9.0/mermaid.min.js",
+      "bytes": 2707695,
+      "sha256": "0b3ed4374117363815daefdadfcc20ff704d7dd4513b55ed803abddcbd86a898"
+    },
+    {
+      "member": "assets/native-bridge.js",
+      "bytes": 52815,
+      "sha256": "b557d2e057122ebfea396f602cc2d022f793fdf0ebb98d2a80fffed20724707e"
+    },
+    {
+      "member": "assets/nui.json",
+      "bytes": 1352,
+      "sha256": "ef0587505bdfce3382c44c327a07aba03f41464258b8cd9ee67ce2e641186bef"
+    },
+    {
+      "member": "assets/public/assets/PageView-DCunHBKv.js",
+      "bytes": 1218,
+      "sha256": "2a0a991cf12e5b989217f77d64da0da7cb486af637dcf0f4fb7fbb56901772b2"
+    },
+    {
+      "member": "assets/public/assets/_...all_-BwFAlecG.js",
+      "bytes": 523,
+      "sha256": "0367426a89b56e5c2be2fd8b5df3255a8323307c331d7ef20b44f70e56d95378"
+    },
+    {
+      "member": "assets/public/assets/apnote-sdk.web-BXdUnUEh.js",
+      "bytes": 919,
+      "sha256": "f18580c2a4eec02ecf7e8e06483d03522e30bba11115b10655adec199cfd7705"
+    },
+    {
+      "member": "assets/public/assets/index-19fXxoTY.js",
+      "bytes": 731,
+      "sha256": "d579098b2a0af58d4b8effc0180b79018f4314b75542951ec7cefe1142404fce"
+    },
+    {
+      "member": "assets/public/assets/index-BgwyjEIH.js",
+      "bytes": 40698,
+      "sha256": "5daa216f0c85b65e72888c233b2cb731d248f35cd3c1fe473b7e73d70f700b54"
+    },
+    {
+      "member": "assets/public/assets/index-Bkv2T7qf.js",
+      "bytes": 44147,
+      "sha256": "94b04b6ebd72dfb07651bc77ed8aa1a04d6b3089cdcb3836ea6d77963692bafd"
+    },
+    {
+      "member": "assets/public/assets/index-Btih_BUR.js",
+      "bytes": 588988,
+      "sha256": "167d837a68310664ecec8de6960fd96f6962036cf21a101cc546b1d9c489cc9c"
+    },
+    {
+      "member": "assets/public/assets/index-CJpYEoey.js",
+      "bytes": 4940,
+      "sha256": "0bdc4da84af6c85c0bec7a14e8f45d79b239ff58ccf99387fbee00c74b7fbe54"
+    },
+    {
+      "member": "assets/public/assets/index-CPQTL8Yp.js",
+      "bytes": 5700,
+      "sha256": "02f24b04a58d1b0ec25685698c0af6dcf5d5762e9871a038da77edfa26f1e4cf"
+    },
+    {
+      "member": "assets/public/assets/index-CgX_s-dj.js",
+      "bytes": 11326,
+      "sha256": "dc568af2473cd43e8fd5f80db1ebe8469d3919d251c950c9064bab96b0b5af79"
+    },
+    {
+      "member": "assets/public/assets/time-tgk2eUlP.js",
+      "bytes": 2757,
+      "sha256": "1b316ca2ecc8b968e5129986d44b7d444bee4151fc1e9af2a28a7166651e4283"
+    },
+    {
+      "member": "assets/public/assets/unbind-CGf5F5Zr.js",
+      "bytes": 4504,
+      "sha256": "60f0be269b76083ab552f7bfe3eee852fd8740125d7e6ef62f5f525e60390520"
+    },
+    {
+      "member": "assets/public/assets/useApNoteSDK-CVokbotu.js",
+      "bytes": 2517,
+      "sha256": "9d9ce139305afa427a20d66c68578ac632722133be5a03fd2e1b6d27148feb2c"
+    },
+    {
+      "member": "assets/public/assets/useNativeMp3StreamVisualizer-B-cfpUCa.js",
+      "bytes": 11103,
+      "sha256": "18af229c123ea0677877d52824916bc9c740969eb4b617b1ecf122bc76fd3b34"
+    },
+    {
+      "member": "assets/public/assets/vconsole-B5TZrEPI.js",
+      "bytes": 286637,
+      "sha256": "5eb5f38383417fdacfebda1ee9f1c57775293c3de4978f95405217a76674227e"
+    },
+    {
+      "member": "assets/public/assets/web-Cya90-_C.js",
+      "bytes": 1246,
+      "sha256": "6b4bce6f687030c47e4b4bbb56c2cd5054db2b7a505430a17151bdba8229d745"
+    },
+    {
+      "member": "assets/public/assets/web-PpQmeXfA-zuy6-k1X.js",
+      "bytes": 5582,
+      "sha256": "4d651572e22799657095f7bf25557e8fdb0c8aa5a7c9cb06d29b2440f7088b6a"
+    },
+    {
+      "member": "assets/public/assets/web-_ZE27VjT.js",
+      "bytes": 8318,
+      "sha256": "f59beff3105744b675916ae16d541db81cf50fb2e1796244d630c12fe692baa6"
+    },
+    {
+      "member": "assets/public/assets/web-wnbKxzDe.js",
+      "bytes": 8694,
+      "sha256": "9cc029b90fac0fdfd388a0ce3dde130126cbf7686f96dce8c5dadefc246dcdaf"
+    },
+    {
+      "member": "assets/public/assets/workbox-window.prod.es5-BIl4cyR9.js",
+      "bytes": 5761,
+      "sha256": "ef75dc538a74d630094d7453bce980f4e7c78096700d40489d8ead191131d8ba"
+    },
+    {
+      "member": "assets/public/cordova.js",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "member": "assets/public/cordova_plugins.js",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "member": "assets/public/index.html",
+      "bytes": 863,
+      "sha256": "dfc4f3457a13de3a67c8b2f1884bec8198c55fb7603056be653d851d67afc740"
+    },
+    {
+      "member": "assets/public/index.legacy.html",
+      "bytes": 1086,
+      "sha256": "675b5943b853028bd62785e156dd9f4804918ed038fa86cfda7e763b5d81da41"
+    },
+    {
+      "member": "assets/public/manifest.json",
+      "bytes": 279,
+      "sha256": "850ee11879e6f3abf7889b57d0ef8fd5c2f9479d48056e49df385627e37f3e01"
+    },
+    {
+      "member": "assets/public/sw.js",
+      "bytes": 2416,
+      "sha256": "492cc82c44e2d81afb4a76a99969b20dc2b62e80dd39d633376d7b3fe315df57"
+    },
+    {
+      "member": "assets/public/version.json",
+      "bytes": 225,
+      "sha256": "00d4d9f6fad341d3cdb19b559f583cf67e461561be2f2494afbc7d2ae315ab74"
+    },
+    {
+      "member": "assets/public/workbox-1ef09536.js",
+      "bytes": 15037,
+      "sha256": "e7784d1b575e453664b21a5d98534f8ae60542d661b3fc4cdd7722301826538d"
+    }
+  ],
+  "javascript_ast": {
+    "parser": "@babel/parser",
+    "version": "8.0.4",
+    "parse_count": 44,
+    "errors": [],
+    "selected_nodes": [
+      {
+        "member": "assets/h5/vendors/@wangeditor/editor@5.1.23/index.js",
+        "type": "NewExpression",
+        "property": "WebSocket",
+        "byte_offset": 658761,
+        "owners": [
+          "FunctionExpression:<anonymous>",
+          "ClassExpression:UppySocket",
+          "ClassMethod:open"
+        ],
+        "code": "new WebSocket(this.opts.target)"
+      },
+      {
+        "member": "assets/h5/vendors/@wangeditor/editor@5.1.23/index.js",
+        "type": "NewExpression",
+        "property": "Socket",
+        "byte_offset": 684572,
+        "owners": [
+          "FunctionExpression:<anonymous>",
+          "ClassExpression:XHRUpload",
+          "ClassMethod:uploadRemote",
+          "ArrowFunctionExpression:<anonymous>",
+          "ArrowFunctionExpression:<anonymous>"
+        ],
+        "code": "new Socket({\n            target: `${host}/api/${token}`,\n            autoOpen: false\n          })"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "ClassMethod",
+        "property": "downloadFile",
+        "byte_offset": 240849,
+        "owners": [
+          "ClassDeclaration:eC"
+        ],
+        "code": "async downloadFile(e,r,l,s,c=0){console.log(`[Request] 下载文件: ${r}${c>0?` (断点续传从 ${c} 字节开始)`:\"\"}`);try{const u=new Uint8Array(14);for(let K=0;K<r.length&&K<14;K++)u[K]=r.charCodeAt(K);const d=new Uint8Array(4);Bt.setUint32(d,0,c);const g=new Uint8Array(18);g.se"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "ClassMethod",
+        "property": "downloadFile",
+        "byte_offset": 249726,
+        "owners": [
+          "ClassDeclaration:nC"
+        ],
+        "code": "async downloadFile(e,r,l,s,c){return this.request.downloadFile(e,r,l,s,c)}"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "MemberExpression",
+        "property": "downloadFile",
+        "byte_offset": 249763,
+        "owners": [
+          "ClassDeclaration:nC",
+          "ClassMethod:downloadFile"
+        ],
+        "code": "this.request.downloadFile"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "ClassMethod",
+        "property": "downloadFile",
+        "byte_offset": 252670,
+        "owners": [
+          "ClassDeclaration:iC"
+        ],
+        "code": "async downloadFile(e,r,l,s,c){const u=await this.recorder.downloadFile(e,r,l,s,c);return u.success?{success:!0,data:{fileName:u.data.fileName,fileSize:u.data.fileSize}}:{success:!1,error:u.error}}"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "MemberExpression",
+        "property": "downloadFile",
+        "byte_offset": 252714,
+        "owners": [
+          "ClassDeclaration:iC",
+          "ClassMethod:downloadFile"
+        ],
+        "code": "this.recorder.downloadFile"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "StringLiteral",
+        "property": "wifi_info",
+        "byte_offset": 266040,
+        "owners": [
+          "ClassDeclaration:NC",
+          "ClassMethod:handleCommandNotification"
+        ],
+        "code": "\"wifi_info\""
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "StringLiteral",
+        "property": "wifi_info",
+        "byte_offset": 266543,
+        "owners": [
+          "ClassDeclaration:NC",
+          "ClassMethod:getEventTypeForCommand"
+        ],
+        "code": "\"wifi_info\""
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "ClassMethod",
+        "property": "downloadFile",
+        "byte_offset": 273492,
+        "owners": [
+          "ClassDeclaration:xC"
+        ],
+        "code": "async downloadFile(e,r,l,s){const c=pC(r);return new Promise(u=>{let d=0,g=null,h=!1;const y=()=>{g&&(clearTimeout(g),g=null),b(),this.notificationHandler.unregisterCommandHandler(ne.GET_FILE_DATA)},S=_=>{if(_.type!==\"offline_data\")return;const E=_.data;h&&(d+"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "ClassMethod",
+        "property": "setWifiEnabled",
+        "byte_offset": 276340,
+        "owners": [
+          "ClassDeclaration:xC"
+        ],
+        "code": "async setWifiEnabled(e,r){const l=Xg(r),s=await this.sendCommand(e,l,ne.WIFI_SWITCH,5e3);if(!s.success)return{success:!1,error:s.error};const c=s.data;return c.length>=2&&c[1]===zn.SUCCESS?{success:!0}:{success:!1,error:\"设置WiFi开关失败\"}}"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "ClassMethod",
+        "property": "getWifiStatus",
+        "byte_offset": 276586,
+        "owners": [
+          "ClassDeclaration:xC"
+        ],
+        "code": "async getWifiStatus(e){const r=Xg(void 0),l=await this.sendCommand(e,r,ne.WIFI_SWITCH,3e3);if(!l.success)return{success:!1,error:l.error};const s=l.data;return s.length>=1?{success:!0,data:s[0]===1}:{success:!1,error:\"查询WiFi状态失败\"}}"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "ClassMethod",
+        "property": "downloadFile",
+        "byte_offset": 278585,
+        "owners": [
+          "ClassDeclaration:LC"
+        ],
+        "code": "async downloadFile(e,r,l,s,c){return this.request.downloadFile(e,r,l,s)}"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "MemberExpression",
+        "property": "downloadFile",
+        "byte_offset": 278622,
+        "owners": [
+          "ClassDeclaration:LC",
+          "ClassMethod:downloadFile"
+        ],
+        "code": "this.request.downloadFile"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "ClassMethod",
+        "property": "setWifiEnabled",
+        "byte_offset": 279147,
+        "owners": [
+          "ClassDeclaration:LC"
+        ],
+        "code": "async setWifiEnabled(e,r){return this.request.setWifiEnabled(e,r)}"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "MemberExpression",
+        "property": "setWifiEnabled",
+        "byte_offset": 279180,
+        "owners": [
+          "ClassDeclaration:LC",
+          "ClassMethod:setWifiEnabled"
+        ],
+        "code": "this.request.setWifiEnabled"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "ClassMethod",
+        "property": "getWifiStatus",
+        "byte_offset": 279213,
+        "owners": [
+          "ClassDeclaration:LC"
+        ],
+        "code": "async getWifiStatus(e){return this.request.getWifiStatus(e)}"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "MemberExpression",
+        "property": "getWifiStatus",
+        "byte_offset": 279243,
+        "owners": [
+          "ClassDeclaration:LC",
+          "ClassMethod:getWifiStatus"
+        ],
+        "code": "this.request.getWifiStatus"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "MemberExpression",
+        "property": "downloadFile",
+        "byte_offset": 348460,
+        "owners": [
+          "FunctionDeclaration:xw",
+          "ArrowFunctionExpression:<anonymous>"
+        ],
+        "code": "d().downloadFile"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "MemberExpression",
+        "property": "downloadFile",
+        "byte_offset": 363623,
+        "owners": [
+          "ClassDeclaration:kw",
+          "ClassMethod:_downloadFileCore"
+        ],
+        "code": "this.config.downloadFile"
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "ClassMethod",
+        "property": "downloadFile",
+        "byte_offset": 365527,
+        "owners": [
+          "ClassDeclaration:kw"
+        ],
+        "code": "async downloadFile(e,r,l){const s=r.id;if(console.log(`[FileSyncService] downloadFile 被调用: ${r.fileName} (状态: ${r.status})`),r.status===be.DOWNLOADED||r.status===be.UPLOADING||r.status===be.UPLOAD_FAILED||r.status===be.UPLOADED){console.log(`[FileSyncService] "
+      },
+      {
+        "member": "assets/public/assets/index-Btih_BUR.js",
+        "type": "MemberExpression",
+        "property": "downloadFile",
+        "byte_offset": 371944,
+        "owners": [
+          "ClassDeclaration:kw",
+          "ClassMethod:triggerDownloadTasks"
+        ],
+        "code": "this.downloadFile"
+      },
+      {
+        "member": "assets/public/assets/web-PpQmeXfA-zuy6-k1X.js",
+        "type": "ClassMethod",
+        "property": "downloadFile",
+        "byte_offset": 153,
+        "owners": [
+          "ClassDeclaration:R"
+        ],
+        "code": "async downloadFile(e){try{const t=this.buildUrl(e.url,e.params),s=new Headers(e.headers),o={method:e.method||\"GET\",headers:s,redirect:e.disableRedirects?\"manual\":\"follow\"},r=new AbortController,l=e.connectTimeout||6e4,c=setTimeout(()=>r.abort(),l);let n,a=0;tr"
+      },
+      {
+        "member": "assets/public/assets/web-wnbKxzDe.js",
+        "type": "MemberExpression",
+        "property": "downloadFile",
+        "byte_offset": 446,
+        "owners": [
+          "ClassDeclaration:g",
+          "ClassMethod:constructor"
+        ],
+        "code": "this.downloadFile"
+      }
+    ]
+  },
+  "config": {
+    "assets/capacitor.config.json": {
+      "sha256": "18aefbea93c9108967e0124e4fb39ee807cc83bd13c9a16d12f1d70cc76c00b9",
+      "data": {
+        "appId": "com.webnote.ap",
+        "appName": "AP笔记",
+        "webDir": "dist",
+        "plugins": {
+          "BluetoothLe": {
+            "displayStrings": {
+              "scanning": "扫描蓝牙设备",
+              "cancel": "取消",
+              "availableDevices": "可用设备",
+              "noDeviceFound": "未找到设备"
+            }
+          },
+          "Filesystem": {},
+          "Preferences": {},
+          "StatusBar": {
+            "overlaysWebView": false,
+            "style": "LIGHT",
+            "backgroundColor": "#ffffff"
+          },
+          "Keyboard": {
+            "resize": "body",
+            "style": "LIGHT",
+            "resizeOnFullScreen": true
+          }
+        },
+        "server": {
+          "url": "https://doll.familyrobot.site/noteweb/",
+          "androidScheme": "https",
+          "cleartext": false
+        },
+        "android": {
+          "allowMixedContent": false
+        }
+      }
+    },
+    "assets/capacitor.plugins.json": {
+      "sha256": "09b72292e4d585ad641927785cbbfa714ad8ddec03cb55182cee5a847596b661",
+      "data": [
+        {
+          "pkg": "@capacitor-community/bluetooth-le",
+          "classpath": "com.capacitorjs.community.plugins.bluetoothle.BluetoothLe"
+        },
+        {
+          "pkg": "@capacitor/file-transfer",
+          "classpath": "com.capacitorjs.plugins.filetransfer.FileTransferPlugin"
+        },
+        {
+          "pkg": "@capacitor/filesystem",
+          "classpath": "com.capacitorjs.plugins.filesystem.FilesystemPlugin"
+        },
+        {
+          "pkg": "@capacitor/keyboard",
+          "classpath": "com.capacitorjs.plugins.keyboard.KeyboardPlugin"
+        },
+        {
+          "pkg": "@capacitor/preferences",
+          "classpath": "com.capacitorjs.plugins.preferences.PreferencesPlugin"
+        },
+        {
+          "pkg": "@capacitor/status-bar",
+          "classpath": "com.capacitorjs.plugins.statusbar.StatusBarPlugin"
+        }
+      ]
+    }
+  },
+  "native_sources": [
+    {
+      "jadx_relative_path": "com/webnote/ap/sdk/ApNoteActivity.java",
+      "sha256": "137d32cd9431bebedff2c6366a663aaec22e1dba8a83d44b66ce9552183ae5f4",
+      "snippets": [
+        {
+          "start_line": 14,
+          "end_line": 25,
+          "text": "public class ApNoteActivity extends BridgeActivity {\n    private static final String TAG = \"ApNoteActivity\";\n    private OnBackPressedCallback backPressedCallback;\n\n    @Override // com.getcapacitor.BridgeActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity\n    protected void onCreate(Bundle bundle) {\n        Log.d(TAG, \"onCreate called\");\n        registerPlugin(ApNoteSDKPlugin.class);\n        Log.d(TAG, \"ApNoteSDKPlugin registered\");\n        super.onCreate(bundle);\n        Log.d(TAG, \"super.onCreate completed\");\n        this.backPressedCallback = new OnBackPressedCallback(this, true) { // from class: com.webnote.ap.sdk.ApNoteActivity.1"
+        },
+        {
+          "start_line": 44,
+          "end_line": 61,
+          "text": "        loadEntryPage();\n    }\n\n    @Override // androidx.activity.ComponentActivity, android.app.Activity\n    @Deprecated\n    public void onBackPressed() {\n        Log.d(TAG, \"onBackPressed called (deprecated), ignoring\");\n    }\n\n    private void loadEntryPage() {\n        if (this.bridge == null || this.bridge.getWebView() == null) {\n            return;\n        }\n        this.bridge.getWebView().reload();\n    }\n\n    private void checkBluetoothPlugin() {\n        try {"
+        }
+      ]
+    },
+    {
+      "jadx_relative_path": "com/webnote/ap/plugin/ApNoteSDKPlugin.java",
+      "sha256": "3d3b6e234454a15cc6345a2058d3549162c61b5ae9c8a4d9356efbc4e2a75c3b",
+      "snippets": [
+        {
+          "start_line": 34,
+          "end_line": 45,
+          "text": "    @PluginMethod\n    public void getLaunchParams(PluginCall pluginCall) {\n        Log.d(TAG, \"getLaunchParams called\");\n        JSObject jSObject = new JSObject();\n        jSObject.put(\"uid\", launchUid);\n        jSObject.put(\"token\", launchToken);\n        jSObject.put(\"phone\", launchPhone);\n        Log.d(TAG, \"getLaunchParams result: uid=\" + launchUid + \", token=\" + (launchToken != null ? \"***\" : \"null\") + \", phone=\" + launchPhone);\n        pluginCall.resolve(jSObject);\n    }\n\n    @PluginMethod"
+        },
+        {
+          "start_line": 76,
+          "end_line": 82,
+          "text": "    @PluginMethod\n    public void syncTodos(PluginCall pluginCall) {\n        Log.d(TAG, \"syncTodos called\");\n        final String string = pluginCall.getString(\"data\");\n        if (string == null || string.isEmpty()) {\n            Log.w(TAG, \"syncTodos: data is null or empty\");\n            pluginCall.reject(\"Data is null or empty\");"
+        },
+        {
+          "start_line": 106,
+          "end_line": 112,
+          "text": "    @PluginMethod\n    public void syncSummary(PluginCall pluginCall) {\n        Log.d(TAG, \"syncSummary called\");\n        final String string = pluginCall.getString(\"data\");\n        if (string == null || string.isEmpty()) {\n            Log.w(TAG, \"syncSummary: data is null or empty\");\n            pluginCall.reject(\"Data is null or empty\");"
+        }
+      ]
+    },
+    {
+      "jadx_relative_path": "com/getcapacitor/BridgeActivity.java",
+      "sha256": "7e9312bdcfdd3e0d4e0da0ccbb130a8973390e1ae20015fa3d5378213a7198ba",
+      "snippets": [
+        {
+          "start_line": 14,
+          "end_line": 46,
+          "text": "    protected CapConfig config;\n    protected boolean keepRunning = true;\n    protected int activityDepth = 0;\n    protected List<Class<? extends Plugin>> initialPlugins = new ArrayList();\n    protected final Bridge.Builder bridgeBuilder = new Bridge.Builder(this);\n\n    @Override // androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity\n    protected void onCreate(Bundle bundle) {\n        super.onCreate(bundle);\n        this.bridgeBuilder.setInstanceState(bundle);\n        getApplication().setTheme(R.style.AppTheme_NoActionBar);\n        setTheme(R.style.AppTheme_NoActionBar);\n        try {\n            setContentView(R.layout.capacitor_bridge_layout_main);\n            try {\n                this.bridgeBuilder.addPlugins(new PluginManager(getAssets()).loadPluginClasses());\n            } catch (PluginLoadException e) {\n                Logger.error(\"Error loading plugins.\", e);\n            }\n            load();\n        } catch (Exception unused) {\n            setContentView(R.layout.no_webview);\n        }\n    }\n\n    protected void load() {\n        Logger.debug(\"Starting BridgeActivity\");\n        Bridge bridgeCreate = this.bridgeBuilder.addPlugins(this.initialPlugins).setConfig(this.config).create();\n        this.bridge = bridgeCreate;\n        this.keepRunning = bridgeCreate.shouldKeepRunning();\n        onNewIntent(getIntent());\n    }\n"
+        }
+      ]
+    },
+    {
+      "jadx_relative_path": "com/getcapacitor/Bridge.java",
+      "sha256": "a19fd80724cbd12363861104bb7bfdaca1e2cd1fe3cc58f628fbef9edf22172d",
+      "snippets": [
+        {
+          "start_line": 150,
+          "end_line": 163,
+          "text": "        this.preferences = cordovaPreferences;\n        handlerThread.start();\n        this.taskHandler = new Handler(handlerThread.getLooper());\n        capConfig = capConfig == null ? CapConfig.loadDefault(getActivity()) : capConfig;\n        this.config = capConfig;\n        Logger.init(capConfig);\n        initWebView();\n        setAllowedOriginRules();\n        this.msgHandler = new MessageHandler(this, webView, pluginManager);\n        this.intentUri = appCompatActivity.getIntent().getData();\n        registerAllPlugins();\n        loadWebView();\n    }\n"
+        },
+        {
+          "start_line": 187,
+          "end_line": 215,
+          "text": "    private void loadWebView() {\n        JSInjector jSInjector;\n        String string;\n        boolean zIsHTML5Mode = this.config.isHTML5Mode();\n        JSInjector jSInjector2 = getJSInjector();\n        if (WebViewFeature.isFeatureSupported(WebViewFeature.DOCUMENT_START_SCRIPT)) {\n            try {\n                WebViewCompat.addDocumentStartJavaScript(this.webView, jSInjector2.getScriptString(), Collections.singleton(Uri.parse(this.appUrl).buildUpon().path(null).fragment(null).clearQuery().build().toString()));\n                jSInjector = null;\n            } catch (IllegalArgumentException unused) {\n                Logger.warn(\"Invalid url, using fallback\");\n                jSInjector = jSInjector2;\n            }\n        } else {\n            jSInjector = jSInjector2;\n        }\n        WebViewLocalServer webViewLocalServer = new WebViewLocalServer(this.context, this, jSInjector, this.authorities, zIsHTML5Mode);\n        this.localServer = webViewLocalServer;\n        webViewLocalServer.hostAssets(DEFAULT_WEB_ASSET_DIR);\n        Logger.debug(\"Loading app at \" + this.appUrl);\n        this.webView.setWebChromeClient(new BridgeWebChromeClient(this));\n        this.webView.setWebViewClient(this.webViewClient);\n        if (this.config.isResolveServiceWorkerRequests()) {\n            ServiceWorkerController.getInstance().setServiceWorkerClient(new ServiceWorkerClient() { // from class: com.getcapacitor.Bridge.1\n                @Override // android.webkit.ServiceWorkerClient\n                public WebResourceResponse shouldInterceptRequest(WebResourceRequest webResourceRequest) {\n                    return Bridge.this.getLocalServer().shouldInterceptRequest(webResourceRequest);\n                }\n            });"
+        },
+        {
+          "start_line": 227,
+          "end_line": 239,
+          "text": "        }\n        ServerPath serverPath = this.serverPath;\n        if (serverPath != null) {\n            if (serverPath.getType() == ServerPath.PathType.ASSET_PATH) {\n                setServerAssetPath(this.serverPath.getPath());\n                return;\n            } else {\n                setServerBasePath(this.serverPath.getPath());\n                return;\n            }\n        }\n        this.webView.loadUrl(this.appUrl);\n    }"
+        },
+        {
+          "start_line": 428,
+          "end_line": 451,
+          "text": "        this.appUrlConfig = getServerUrl();\n        String host = getHost();\n        this.authorities.add(host);\n        String scheme = getScheme();\n        String str = scheme + \"://\" + host;\n        this.localUrl = str;\n        if (this.appUrlConfig != null) {\n            try {\n                this.authorities.add(new URL(this.appUrlConfig).getAuthority());\n                String str2 = this.appUrlConfig;\n                this.localUrl = str2;\n                this.appUrl = str2;\n            } catch (Exception e) {\n                Logger.error(\"Provided server url is invalid: \" + e.getMessage());\n                return;\n            }\n        } else {\n            this.appUrl = str;\n            if (!scheme.equals(\"http\") && !scheme.equals(\"https\")) {\n                this.appUrl += \"/\";\n            }\n        }\n        String startPath = this.config.getStartPath();\n        if (startPath == null || startPath.trim().isEmpty()) {"
+        }
+      ]
+    },
+    {
+      "jadx_relative_path": "com/getcapacitor/CapConfig.java",
+      "sha256": "4e3214725b3f85ed37f87e9659fb86f788f9f313c1bf351c1c418fd0304c526d",
+      "snippets": [
+        {
+          "start_line": 92,
+          "end_line": 102,
+          "text": "    public static CapConfig loadDefault(Context context) {\n        CapConfig capConfig = new CapConfig();\n        if (context == null) {\n            Logger.error(\"Capacitor Config could not be created from file. Context must not be null.\");\n            return capConfig;\n        }\n        capConfig.loadConfigFromAssets(context.getAssets(), null);\n        capConfig.deserializeConfig(context);\n        return capConfig;\n    }\n"
+        },
+        {
+          "start_line": 167,
+          "end_line": 180,
+          "text": "\n    private void loadConfigFromAssets(AssetManager assetManager, String str) {\n        if (str == null) {\n            str = \"\";\n        } else if (str.charAt(str.length() - 1) != '/') {\n            str = str + \"/\";\n        }\n        try {\n            this.configJSON = new JSONObject(FileUtils.readFileFromAssets(assetManager, str + \"capacitor.config.json\"));\n        } catch (IOException e) {\n            Logger.error(\"Unable to load capacitor.config.json. Run npx cap copy first\", e);\n        } catch (JSONException e2) {\n            Logger.error(\"Unable to parse capacitor.config.json. Make sure it's valid json\", e2);\n        }"
+        },
+        {
+          "start_line": 198,
+          "end_line": 206,
+          "text": "    private void deserializeConfig(Context context) {\n        boolean z = (context == null || (context.getApplicationInfo().flags & 2) == 0) ? false : true;\n        this.html5mode = JSONUtils.getBoolean(this.configJSON, \"server.html5mode\", this.html5mode);\n        this.serverUrl = JSONUtils.getString(this.configJSON, \"server.url\", null);\n        this.hostname = JSONUtils.getString(this.configJSON, \"server.hostname\", this.hostname);\n        this.errorPath = JSONUtils.getString(this.configJSON, \"server.errorPath\", null);\n        this.startPath = JSONUtils.getString(this.configJSON, \"server.appStartPath\", null);\n        String string = JSONUtils.getString(this.configJSON, \"server.androidScheme\", this.androidScheme);\n        if (validateScheme(string)) {"
+        }
+      ]
+    },
+    {
+      "jadx_relative_path": "com/capacitorjs/community/plugins/bluetoothle/Device.java",
+      "sha256": "ab19583d448014c427fadee4870e1649ef2f9e45fa2af6eef84871f4a673a22a",
+      "snippets": [
+        {
+          "start_line": 331,
+          "end_line": 355,
+          "text": "    public final void connect(long timeout, Function1<? super CallbackResponse, Unit> callback) {\n        Intrinsics.checkNotNullParameter(callback, \"callback\");\n        this.callbackMap.put(\"connect\", callback);\n        if (isConnected()) {\n            resolve(\"connect\", \"Already connected.\");\n            return;\n        }\n        BluetoothGatt bluetoothGatt = this.bluetoothGatt;\n        if (bluetoothGatt != null) {\n            bluetoothGatt.close();\n        }\n        this.connectionState = 1;\n        initializeCallbacksHandlerThread();\n        BluetoothDevice bluetoothDevice = this.device;\n        Context context = this.context;\n        BluetoothGattCallback bluetoothGattCallback = this.gattCallback;\n        Handler handler = this.callbacksHandler;\n        if (handler == null) {\n            Intrinsics.throwUninitializedPropertyAccessException(\"callbacksHandler\");\n            handler = null;\n        }\n        BluetoothGatt bluetoothGattConnectGatt = bluetoothDevice.connectGatt(context, false, bluetoothGattCallback, 2, 0, handler);\n        this.bluetoothGatt = bluetoothGattConnectGatt;\n        setConnectionTimeout(\"connect\", \"Connection timeout.\", bluetoothGattConnectGatt, timeout);\n    }"
+        },
+        {
+          "start_line": 547,
+          "end_line": 578,
+          "text": "    public final void write(UUID serviceUUID, UUID characteristicUUID, String value, int writeType, long timeout, Function1<? super CallbackResponse, Unit> callback) {\n        Intrinsics.checkNotNullParameter(serviceUUID, \"serviceUUID\");\n        Intrinsics.checkNotNullParameter(characteristicUUID, \"characteristicUUID\");\n        Intrinsics.checkNotNullParameter(value, \"value\");\n        Intrinsics.checkNotNullParameter(callback, \"callback\");\n        String str = \"write|\" + serviceUUID + \"|\" + characteristicUUID;\n        this.callbackMap.put(str, callback);\n        BluetoothGatt bluetoothGatt = this.bluetoothGatt;\n        BluetoothGattService service = bluetoothGatt != null ? bluetoothGatt.getService(serviceUUID) : null;\n        BluetoothGattCharacteristic characteristic = service != null ? service.getCharacteristic(characteristicUUID) : null;\n        if (characteristic == null) {\n            reject(str, \"Characteristic not found.\");\n            return;\n        }\n        byte[] bArrStringToBytes = ConversionKt.stringToBytes(value);\n        if (Build.VERSION.SDK_INT >= 33) {\n            BluetoothGatt bluetoothGatt2 = this.bluetoothGatt;\n            Integer numValueOf = bluetoothGatt2 != null ? Integer.valueOf(bluetoothGatt2.writeCharacteristic(characteristic, bArrStringToBytes, writeType)) : null;\n            if (numValueOf == null || numValueOf.intValue() != 0) {\n                reject(str, \"Writing characteristic failed with status code \" + numValueOf + FileUtil.FILE_EXTENSION_SEPARATOR);\n                return;\n            }\n        } else {\n            characteristic.setValue(bArrStringToBytes);\n            characteristic.setWriteType(writeType);\n            BluetoothGatt bluetoothGatt3 = this.bluetoothGatt;\n            if (!Intrinsics.areEqual((Object) (bluetoothGatt3 != null ? Boolean.valueOf(bluetoothGatt3.writeCharacteristic(characteristic)) : null), (Object) true)) {\n                reject(str, \"Writing characteristic failed.\");\n                return;\n            }\n        }\n        setTimeout(str, \"Write timeout.\", timeout);"
+        },
+        {
+          "start_line": 590,
+          "end_line": 603,
+          "text": "            this.callbackMap.put(str2, notifyCallback);\n        }\n        BluetoothGatt bluetoothGatt = this.bluetoothGatt;\n        BluetoothGattService service = bluetoothGatt != null ? bluetoothGatt.getService(serviceUUID) : null;\n        BluetoothGattCharacteristic characteristic = service != null ? service.getCharacteristic(characteristicUUID) : null;\n        if (characteristic == null) {\n            reject(str, \"Characteristic not found.\");\n            return;\n        }\n        BluetoothGatt bluetoothGatt2 = this.bluetoothGatt;\n        if (!Intrinsics.areEqual((Object) (bluetoothGatt2 != null ? Boolean.valueOf(bluetoothGatt2.setCharacteristicNotification(characteristic, enable)) : null), (Object) true)) {\n            reject(str, \"Setting notification failed.\");\n            return;\n        }"
+        }
+      ]
+    },
+    {
+      "jadx_relative_path": "com/capacitorjs/plugins/filetransfer/FileTransferPlugin.java",
+      "sha256": "7ae34f146d7c6bba40fd98f4bc27ecc5b3e2e6f206bc9ef6c75989e19676ed13",
+      "snippets": [
+        {
+          "start_line": 223,
+          "end_line": 246,
+          "text": "    @PluginMethod\n    public final void downloadFile(PluginCall call) {\n        Intrinsics.checkNotNullParameter(call, \"call\");\n        String string = call.getString(\"url\");\n        if (string == null) {\n            sendError(call, FileTransferErrors.INSTANCE.getInvalidParameters(), \"URL is required\");\n            return;\n        }\n        String string2 = call.getString(\"path\");\n        if (string2 == null) {\n            sendError(call, FileTransferErrors.INSTANCE.getInvalidParameters(), \"Path is required\");\n            return;\n        }\n        if (!isStoragePermissionGranted()) {\n            requestAllPermissions(call, \"permissionCallback\");\n            return;\n        }\n        Boolean bool = call.getBoolean(\"progress\", false);\n        if (bool == null) {\n            bool = false;\n        }\n        boolean zBooleanValue = bool.booleanValue();\n        FlowKt.launchIn(FlowKt.m3356catch(FlowKt.onEach(getController().downloadFile(new IONFLTRDownloadOptions(string, string2, createHttpOptions(call, \"GET\"))), new AnonymousClass1(zBooleanValue, this, string, string2, call, null)), new AnonymousClass2(string, string2, this, call, null)), getIoScope());\n    }"
+        },
+        {
+          "start_line": 357,
+          "end_line": 390,
+          "text": "    @PluginMethod\n    public final void uploadFile(PluginCall call) {\n        Intrinsics.checkNotNullParameter(call, \"call\");\n        String string = call.getString(\"url\");\n        if (string == null) {\n            sendError(call, FileTransferErrors.INSTANCE.getInvalidParameters(), \"URL is required\");\n            return;\n        }\n        String string2 = call.getString(\"path\");\n        if (string2 == null) {\n            sendError(call, FileTransferErrors.INSTANCE.getInvalidParameters(), \"Path is required\");\n            return;\n        }\n        if (!isStoragePermissionGranted()) {\n            requestAllPermissions(call, \"permissionCallback\");\n            return;\n        }\n        Boolean bool = call.getBoolean(\"progress\", false);\n        if (bool == null) {\n            bool = false;\n        }\n        boolean zBooleanValue = bool.booleanValue();\n        Boolean bool2 = call.getBoolean(\"chunkedMode\", false);\n        if (bool2 == null) {\n            bool2 = false;\n        }\n        boolean zBooleanValue2 = bool2.booleanValue();\n        String string3 = call.getString(\"mimeType\");\n        String string4 = call.getString(\"fileKey\");\n        if (string4 == null) {\n            string4 = Constants.PARAM_FILE;\n        }\n        FlowKt.launchIn(FlowKt.m3356catch(FlowKt.onEach(getController().uploadFile(new IONFLTRUploadOptions(string, string2, zBooleanValue2, string3, string4, null, createHttpOptions(call, \"POST\"), 32, null)), new C01851(zBooleanValue, this, string, call, null)), new C01862(string2, string, this, call, null)), getIoScope());\n    }"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "No logged-in runtime or device I/O",
+    "No Android1.2.4 encrypted DEX recovery",
+    "AST named/static call-site coverage; dynamic/reflection routes unknown",
+    "JADX output has previously recorded decompilation failures; absence in source is bounded"
+  ],
+  "alternate_transport_literal_scope": {
+    "pattern": "(?i)hotspot|\\bssid\\b|rfcomm|\\bspp\\b|BluetoothSerial|BluetoothClassic|WifiManager|WifiNetworkSpecifier|192\\.168\\.|\\bws://|\\bwss://|\\bcreateConnection\\b|\\bnet\\.connect\\b",
+    "members": 59,
+    "total_bytes": 6632401,
+    "matches": []
+  }
+}

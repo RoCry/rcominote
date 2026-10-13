@@ -10,9 +10,12 @@ then own firmware. No single artifact or passing test substitutes for these goal
 User-directed Wi-Fi follow-up2026-10-13: [chip / SDK / actual-device audit](wifi-capability-2026-10-13.md).
 REC_JX3 supplies external ESP32-C3 SPI/AP/WebSocket host code, with integration
 gaps; not CoMi hardware proof. Actual CoMi has linked WIFI_OTA_VIEW strings,
-while App Wi-Fi controls belong to Mova, not owned Boyi. Next bounded question:
-trace actual view events to transport/module initialization. No guessed commands
-or repeated USB reconnects; park if no concrete transport evidence emerges.
+while App Wi-Fi controls belong to Mova, not owned Boyi. Actual view follow-up
+finds UI/state consumption, no transport; park repeated handler inspection.
+Shipped App defaults to remote frontend (currentlyHTTP500), so packaged assets
+are not complete live-feature coverage. Related3085S Wi-Fi0x1b selects actual
+Boyi default error; do not transplant it. Next material: actual runtime frontend,
+matching transport or hardware evidence. No guessed commands/repeated USB reconnects.
 
 User direction: prioritize device, firmware, SoC and SDK understanding; park
 blocked details and switch questions. Start with [device/platform map](device-platform-map.md).
