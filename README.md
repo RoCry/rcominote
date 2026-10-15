@@ -27,6 +27,8 @@
 
 ## CLI
 
+日常使用请装独立仓库 [`recorders`](https://github.com/RoCry/recorders) 里的 `comi`（同一协议实现，去掉了固件诊断子命令）。本仓库的 `comi` 是研究冻结版，实验脚本和证据收据依赖它，不再演进。
+
 ```sh
 uv sync --all-extras
 uv run comi scan
