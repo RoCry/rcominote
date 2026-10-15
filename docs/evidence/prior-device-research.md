@@ -7,7 +7,7 @@ updated: 2026-10-12
 # 致远 CoMi Note
 
 > 历史笔记快照。下文关于 USB 仅充电、已证实 shell 的措辞已由
-> [本轮核查](../firmware-roadmap.md)修正；路径仅作来源，不是运行依赖。
+> [本轮核查](../archive/firmware-roadmap.md)修正；路径仅作来源，不是运行依赖。
 
 ## 结论（2026-10-12 实机更新）
 

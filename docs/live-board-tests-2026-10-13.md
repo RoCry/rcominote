@@ -2,7 +2,7 @@
 
 更新至2026-10-14；C261CF0430 / FW010004。**已在真机验证小块映射 Flash→SD→Boyi 导出，并取得七处代码守卫与实际printk上下文。完整 NOR 备份、烧录、恢复及自写固件上机仍未完成。**
 
-最新：[7.5ms/CE1连接策略](sd-interval-live-2026-10-14.md)完整RAM4096B；随后[新context→ring基线→boot0对照](sd-nor-interval-live-2026-10-14.md)分别通过，原始NOR512B匹配独立oracle。下文3852B记录保留为此前失败历史；非零偏移、独立双读与整片覆盖仍待新策略验收。
+最新：[7.5ms/CE1连接策略](archive/sd-interval-live-2026-10-14.md)完整RAM4096B；随后[新context→ring基线→boot0对照](archive/sd-nor-interval-live-2026-10-14.md)分别通过，原始NOR512B匹配独立oracle。下文3852B记录保留为此前失败历史；非零偏移、独立双读与整片覆盖仍待新策略验收。
 
 ## 已执行
 
@@ -69,17 +69,17 @@ MTU实验的[独立HCI收据](evidence/linux-mtu128-2026-10-13.json)明确区分
 
 baseline独立HCI核对：17条Boyi内容通知总计3852B，逐字节等于保存的partial；长度为`[244,244,24] + 13×244 + [168]`。**不能假定八组固定512B帧**。实际发送函数负返回时重新按剩余长度取最多512B，重试可改变分组边界；它与现象兼容，尚无现场返回值证明具体根因。
 
-接续关注两个可区分的问题：小文件通道能否读取实际logsrv堆上下文，以及是否存在可验证的稳定日志快照合同。直接分八次读可变ring不保证原子性或新鲜度，不据此推进整片NOR；[CPU/DMA切换审计](log-ring-freeze-boundary-2026-10-14.md)存在无超时等待及恢复失败忽略，也不作为冻结锁。
+接续关注两个可区分的问题：小文件通道能否读取实际logsrv堆上下文，以及是否存在可验证的稳定日志快照合同。直接分八次读可变ring不保证原子性或新鲜度，不据此推进整片NOR；[CPU/DMA切换审计](archive/log-ring-freeze-boundary-2026-10-14.md)存在无超时等待及恢复失败忽略，也不作为冻结锁。
 
 ## logsrv独立上下文实测
 
-[原始字节、收据与复验](logsrv-context-live-2026-10-14.md)：新增三处代码守卫96B匹配；随后global4B得到`P=180111fc`，独立P/32B采样完整通过。flags=3、type/newtype=0、rd=wr=204、slot4长度139、drop=0。两次完整Actions/下载/结束状态验收；指针试验空闲量59597→59596MiB，其余不变。此次新增五个SD文件；截至该采样累计十七个。
+[原始字节、收据与复验](archive/logsrv-context-live-2026-10-14.md)：新增三处代码守卫96B匹配；随后global4B得到`P=180111fc`，独立P/32B采样完整通过。flags=3、type/newtype=0、rd=wr=204、slot4长度139、drop=0。两次完整Actions/下载/结束状态验收；指针试验空闲量59597→59596MiB，其余不变。此次新增五个SD文件；截至该采样累计十七个。
 
 这是pre-STOP历史元数据，尚未读槽正文；两次采样非原子，RAM边界检查不证明期间指针持续有效或当前堆归属。它为一次固定已知mdb输出→指定槽→512B新文件试验提供依据，仍不证明该路径可用或可推广到NOR。
 
 ## 已知mdb16→slot→新SD512，一次真机通过
 
-[完整验收与公开收据](logsrv-slot-live-2026-10-14.md)。先增加两段布局/复制代码守卫80B，再独立重采global4/context32；指针、stream、flags/type及完整rd/wr204保持预期。然后唯一一次试验执行：PREPARE、START、global4新随机路径dump、固定`dbg mdb 1000ab40 10`、context32 dump、slot4/512 dump、STOP。
+[完整验收与公开收据](archive/logsrv-slot-live-2026-10-14.md)。先增加两段布局/复制代码守卫80B，再独立重采global4/context32；指针、stream、flags/type及完整rd/wr204保持预期。然后唯一一次试验执行：PREPARE、START、global4新随机路径dump、固定`dbg mdb 1000ab40 10`、context32 dump、slot4/512 dump、STOP。
 
 实际7次ATT写及7ACK、F1、空pending均通过；三个文件分别完整下载4/32/512B。metadata槽4长度431；正文限定`slot[8:8+431]`，唯一完整本次done标记在body`[138,191)`，随后完整mdb行在`[195,274)`，含16B、ASCII和CRLF全部匹配既有独立代码oracle。原始slot512私有保存，公开仅安全标记与已知代码行，不发布未知旧尾部。
 
@@ -89,7 +89,7 @@ baseline独立HCI核对：17条Boyi内容通知总计3852B，逐字节等于保�
 
 ## GPIO28 CTRL：首次运行寄存器读回
 
-[原件、适用边界与复验](gpio28-word-live-2026-10-14.md)。两段现场守卫验证mdw入口width4和真正LDR32；新global/context采样counter206，选槽6，未沿用历史204。首次连接仅到服务发现即ERR110，无ATT写或Actions；第二次调用因路径日期输错在离线校验失败。两份失败报告保留。新独立连接首次实际发送固定`dbg mdw 40068074 1`，整体通过，无重复GPIO读取。
+[原件、适用边界与复验](archive/gpio28-word-live-2026-10-14.md)。两段现场守卫验证mdw入口width4和真正LDR32；新global/context采样counter206，选槽6，未沿用历史204。首次连接仅到服务发现即ERR110，无ATT写或Actions；第二次调用因路径日期输错在离线校验失败。两份失败报告保留。新独立连接首次实际发送固定`dbg mdw 40068074 1`，整体通过，无重复GPIO读取。
 
 实际读值`0x00001805`，完整55B行（含ASCII/CRLF）在本次随机done标记后，均落在槽6有效前缀L406内。7写/7ACK/F1/空pending、4/32/512B下载及后置状态全部通过；before/after完整一致，free59595MiB。新增七份SD测试文件（两守卫、两preflight、三trial），累计31份；无寄存器/NOR写、录音、重启或ROM进入。
 
@@ -97,7 +97,7 @@ LARK定义解释为MFP5/UART0、SMIT位0、普通上拉、驱动等级1；早期
 
 ## slot0两字：实际映射起点与CRC属性
 
-[合并收据与复验](map0-entry-live-2026-10-14.md)：两个固定单word目标分别新采pointer/context。`40010300=1000000f`（counter208/slot0），`40010304=00024000`（counter210/slot2）；各自7写/7ACK/F1、4/32/512B下载、nonce→55B行及后置状态完整通过。第二目标首份context32虽收全但后置info ENOSYS，原报告保持失败；使用另一份新采样context-b作parent，不重用失败采样或派生改判。
+[合并收据与复验](archive/map0-entry-live-2026-10-14.md)：两个固定单word目标分别新采pointer/context。`40010300=1000000f`（counter208/slot0），`40010304=00024000`（counter210/slot2）；各自7写/7ACK/F1、4/32/512B下载、nonce→55B行及后置状态完整通过。第二目标首份context32虽收全但后置info ENOSYS，原报告保持失败；使用另一份新采样context-b作parent，不重用失败采样或派生改判。
 
 两个时点分别支持CPU地址高位10000000、初始化低f编码、物理offset候选24000及bit31=0；不称原子entry、不推窗口大小，CRC属性不等于分区加密标志。actual recovery是caller先给1000000f、helper再OR1；boot另一实现才ORf。仅静态已验证普通LDR读取，不改变映射或探测新alias/镜像之外地址。
 
@@ -105,7 +105,7 @@ LARK定义解释为MFP5/UART0、SMIT位0、普通上拉、驱动等级1；早期
 
 ## 既有RAM4096：7.5ms/CE1策略首个完整结果
 
-[完整参数、收据与复验](sd-interval-live-2026-10-14.md)：只读原固定RAM文件，无Actions或SD写。原认证入口因stdin EOF在设备I/O前失败；保留原报告。新目录b首个实际硬件trial从45ms连接基线发送一次更新，HCI确认interval6=7.5ms、latency0、原timeout500、CE hints1/1；同handle参数在整个下载期间有效。
+[完整参数、收据与复验](archive/sd-interval-live-2026-10-14.md)：只读原固定RAM文件，无Actions或SD写。原认证入口因stdin EOF在设备I/O前失败；保留原报告。新目录b首个实际硬件trial从45ms连接基线发送一次更新，HCI确认interval6=7.5ms、latency0、原timeout500、CE hints1/1；同handle参数在整个下载期间有效。
 
 完整4096B SHA256`35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b`与独立系统初始化切片逐字节一致。前后FW010004/NOTE/idle/charging及free59593MiB全部相同，最终报告ok=true；115条HCI记录/8554B保留私有，监控55s退出。不是纯interval单变量实验，也不是历史15ms条件的受控对照；本次实际完整结果不改判过去失败。
 
@@ -113,7 +113,7 @@ LARK定义解释为MFP5/UART0、SMIT位0、普通上拉、驱动等级1；早期
 
 ## 新ring基线与boot0：首次新策略原始NOR闭环
 
-[原件与复验](sd-nor-interval-live-2026-10-14.md)：fresh context28为rd=wr1284、used0、capacity4096、buffer1803ee09、init1/panic0。首次连接在Actions服务发现超时110，未发ATT写/SD写，结束状态一致；失败报告保留，另一次独立context-b完整通过。
+[原件与复验](archive/sd-nor-interval-live-2026-10-14.md)：fresh context28为rd=wr1284、used0、capacity4096、buffer1803ee09、init1/panic0。首次连接在Actions服务发现超时110，未发ATT写/SD写，结束状态一致；失败报告保留，另一次独立context-b完整通过。
 
 新baseline含唯一完整当次dump echo且无旧NOR行；新boot仅一次`dbg fread spi_flash 0`及新ring dump。二者均完整下载4096B，Actions分别4/5ACK+F1，HCI确认7.5ms/CE1策略覆盖整个下载。boot32连续行解析出的原始512B与旧独立oracle全字节一致，SHA72952…7ec；前后free59593及其他完整状态一致。
 

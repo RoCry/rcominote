@@ -2,6 +2,7 @@
 
 import asyncio
 import socket
+import sys
 import unittest
 from unittest.mock import AsyncMock, patch
 
@@ -22,6 +23,7 @@ from rcominote.log_capture import STOP
 from rcominote.log_probe import ACK, NOTIFY
 
 
+@unittest.skipUnless(sys.platform == "linux", "AF_UNIX SOCK_SEQPACKET pairs exist only on Linux")
 class DualWireTests(unittest.IsolatedAsyncioTestCase):
     async def asyncSetUp(self):
         self.report = {"att_packets": []}

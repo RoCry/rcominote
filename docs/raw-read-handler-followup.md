@@ -2,7 +2,7 @@
 
 2026-10-12；C261CF0430 / FW010004。仅离线分析已保存mapped chunks，无设备I/O、Flash操作、MMIO访问或复位。
 
-2026-10-14现场更新：[新ring/SD传输策略](sd-nor-interval-live-2026-10-14.md)已完整取得boot0对照，[非零4200独立双读](sd-nor-offset4200-live-2026-10-14.md)匹配raw oracle。下文“尚无完整返回”是该历史分析时点；不把后续成功归为已释放buffer直接导出。
+2026-10-14现场更新：[新ring/SD传输策略](archive/sd-nor-interval-live-2026-10-14.md)已完整取得boot0对照，[非零4200独立双读](archive/sd-nor-offset4200-live-2026-10-14.md)匹配raw oracle。下文“尚无完整返回”是该历史分析时点；不把后续成功归为已释放buffer直接导出。
 
 **实机确有fread读取分支，但尚无经BLE完整返回原始NOR字节的已验证路径。** 本轮把既有[输出路由源码解释](readback-routes.md)推进为实际handler/输出调用证据：状态与十六进制正文使用不同formatter。最终printk backend及实际Flash read效果未证明，不能把该分流直接宣布为全部丢正文的动态原因。
 
@@ -41,7 +41,7 @@ fread descriptor准确20 B：`636b0c10696b0c10000000004953021000000000`；help=`
 
 ### 2026-10-14：新短日志通道不解除buffer生命周期约束
 
-[logsrv槽→SD短读](logsrv-slot-live-2026-10-14.md)及[GPIO单字实测](gpio28-word-live-2026-10-14.md)已通过，但不把`fread`状态行中的已释放heap地址升级为raw备份接口。对“同会话fread后立即dump该地址”的候选，离线free链为`100b958e→100b8944→100a0136→100a00ae→10020994→100206a4`。big-heap且不向左合并时，free-list字段可写到常规user pointer的前4B；small-heap/左合并位置不同。当次heap类型和邻块状态未测，既不能断言必然污染，也不能保证完整512B保留。实际`fs_open` wrapper另用slab，未证明必然复用该块。
+[logsrv槽→SD短读](archive/logsrv-slot-live-2026-10-14.md)及[GPIO单字实测](archive/gpio28-word-live-2026-10-14.md)已通过，但不把`fread`状态行中的已释放heap地址升级为raw备份接口。对“同会话fread后立即dump该地址”的候选，离线free链为`100b958e→100b8944→100a0136→100a00ae→10020994→100206a4`。big-heap且不向左合并时，free-list字段可写到常规user pointer的前4B；small-heap/左合并位置不同。当次heap类型和邻块状态未测，既不能断言必然污染，也不能保证完整512B保留。实际`fs_open` wrapper另用slab，未证明必然复用该块。
 
 状态行仍在read之前，错误分支同样free并返回0；ACK或没有看到failure文本不代替数据生命周期证明。此候选本轮未执行，不用偏移、补片或已知boot残留相等推广成未知页面备份。继续原始NOR路线需直接、可验证的内容出口或匹配下载链。
 

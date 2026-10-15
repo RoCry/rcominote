@@ -6,7 +6,7 @@
 
 - 原始512 B SHA256：`28b2e50ba95630f6485bd5e3ccfbd8ebe5f1406ffa36d6c0c4e35c4c71af0678`。
 - 已校验mapped-system头512 B SHA256：`911454d9fa79203ffa52b8af6073fd3f4a1106febb4459c0f181ea43e6271bc5`。
-- [原始/映射字节、报告和采集窗口归档](evidence/system-raw-header-2026-10-12/)。这些输入足以离线重现比较，无需设备或rlcdv项目。
+- [原始/映射字节、报告和采集窗口归档](evidence/system-raw-header-2026-10-12)。这些输入足以离线重现比较，无需设备或rlcdv项目。
 
 ## 观察
 

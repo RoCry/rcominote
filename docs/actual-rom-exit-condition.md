@@ -90,7 +90,7 @@ continuation: `01010414` restores its caller LR before tail-branching to
 therefore preserves the earlier caller's continuation, not an explicit normal
 application handoff. That earlier caller context remains unresolved.
 
-Per [current route priorities](research-routes.md), park clock units, individual
+Per [current route priorities](archive/research-routes.md), park clock units, individual
 callee roles and earlier caller context. Revisit together from matching platform
 documentation or a justified bounded ROM corpus. For a future enumeration-only
 trial, independently established reset/power-cycle escape may replace a fully

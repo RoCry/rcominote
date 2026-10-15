@@ -1,6 +1,6 @@
 # 历史研究路线快照 — 2026-10-13
 
-仅供溯源；原文中的优先级和下一步均已被[当前路线](../research-routes.md)取代。
+仅供溯源；原文中的优先级和下一步均已被[当前路线](research-routes.md)取代。
 已验证事实继续由各专题证据支持。本次归档只重定向相对链接。
 
 # Research route decisions
@@ -188,11 +188,11 @@ Android login remains deferred by user. Do not infer reference ATS3089 board equ
 | Path | Status / reason | Reconsider only when |
 |---|---|---|
 | code-TLV / devmem load as an existing RAM executor | **Unsupported by bounded actual inventory**: code-TLV switches log modes; load installs a fixed byte-writing callback, no uploaded-address call. [Tables and direct paths](../normal-ram-entry-inventory.md); no whole-firmware absence claim | New explicit entry/protocol/configuration; do not substitute callback/stack corruption or an unbounded indirect-call scan |
-| Bulk NOR through fread→printk ring→mdb | **Retired default route**, not invalid data. ~232 commands/~22 s per512 B plus retries; [measured audit](../nor-efficiency.md). Exporter modules moved to `src/rcominote/archive/`; default CLI entries removed | Native SDK/host options compared and bounded experiment demonstrates material throughput/reliability gain |
+| Bulk NOR through fread→printk ring→mdb | **Retired default route**, not invalid data. ~232 commands/~22 s per512 B plus retries; [measured audit](nor-efficiency.md). Exporter modules moved to `src/rcominote/archive/`; default CLI entries removed | Native SDK/host options compared and bounded experiment demonstrates material throughput/reliability gain |
 | ATS3089/M33 reference build as CoMi firmware target | **Not an established target**: live firmware declares ATS3085L; [manufacturer L-family M4F specs and reference differences](../ats3085l-primary-sources.md). Keep the successful build only as host/toolchain evidence | Exact BSP or independently verified core/peripheral/configuration compatibility |
 | Unchanged LARK init+rs as read-only backup | **Rejected for both UART and USB variants**: [UART initialization](../lark-nor-init-side-effects.md) and [independent USB audit](../lark-usb-storage-exit.md) send06/01, discard original status1 and may clear status2 bit6 | Matched transport and audited initialization preserving NOR state; simply skipping init is not sufficient |
 | Community ATS3085S BLE flasher as CoMi updater | **Rejected unchanged**: [source audit and real watch OTA](../ats3085s-community-tool-audit.md); wrong GATT, ignores device range requests, wrong host06 semantics; upstream marks unfinished | Actual CoMi responder and recovery proof; retain offline container evidence only |
-| Boot decoded with32 B codec reset | **Disproven** beyond first32 B; fails body checksum. [Bad artifact isolated](../archive/rejected-boot-reset32/README.md) | No routine retry: use verified512 B boot decode |
+| Boot decoded with32 B codec reset | **Disproven** beyond first32 B; fails body checksum. [Bad artifact isolated](rejected-boot-reset32/README.md) | No routine retry: use verified512 B boot decode |
 | Normal ABTP rm/rs as bulk read | **Unsupported by inspected implementation**: header constants exist, SDK parser and actual CoMi parser lack those cases; [actual dispatch](../audio-fixed-rate-path.md) | Different shipped dispatcher implementing them, with body/side effects understood |
 | Enable CDC just to search for backup | **Removed from backup candidates**: complete inspected worker/IRQ/TX/timer provide testing/configuration, no bulk read; [coverage and limits](../usb-cdc-command-inventory.md). Unknown commands may write NVRAM | A different actual content-transfer handler found offline; do not fuzz commands |
 | ATT/USP FREAD as device backup | **Wrong direction**: device requests host test-file bytes (`tool_att.c`) | A distinct device-to-host storage handler is found |

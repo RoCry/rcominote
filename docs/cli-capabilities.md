@@ -207,4 +207,4 @@ Raw local outputs remain ignored; public evidence omits the recording list.
 
 ## Later firmware research status
 
-Complete owned-device mapped-system export now succeeds: 927632 B, validated header and body checksum; reproducible Ubuntu offline analysis. Actual ACPT contains18 NOR entries over4 MiB logical range. These replace the earlier partial-read status, not the raw-backup/recovery limitations. `diag capture printk-state` and `diag inspect-printk` verify console snapshots; two observations select the UART_0 DMA path. See [current roadmap](firmware-roadmap.md) and [mapping boundary](mapping-candidate-audit.md).
+Complete owned-device mapped-system export now succeeds: 927632 B, validated header and body checksum; reproducible Ubuntu offline analysis. Actual ACPT contains18 NOR entries over4 MiB logical range. These replace the earlier partial-read status, not the raw-backup/recovery limitations. `diag capture printk-state` and `diag inspect-printk` verify console snapshots; two observations select the UART_0 DMA path. See [current roadmap](archive/firmware-roadmap.md) and [mapping boundary](mapping-candidate-audit.md).

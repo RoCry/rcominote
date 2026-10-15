@@ -1,6 +1,6 @@
 # 现有固件读回：输出路由与下一步
 
-2026-10-13更新：[RAM→SD→Boyi](sd-file-bridge.md)固定RAM与boot0环形日志导出已通过独立字节比较；是新的提取候选，不是完整备份能力。后续选择以[研究路线](research-routes.md)为准。
+2026-10-13更新：[RAM→SD→Boyi](sd-file-bridge.md)固定RAM与boot0环形日志导出已通过独立字节比较；是新的提取候选，不是完整备份能力。后续选择以[研究路线](archive/research-routes.md)为准。
 
 2026-10-12；本文作者仅做源码审计；主调查进程新增了下述固定查询实测。固定 SDK `26f51e584940d5b141cd1d09d2629d69b595f579`；原厂固件行为以[实机记录](device-diagnostics.md)为准。
 

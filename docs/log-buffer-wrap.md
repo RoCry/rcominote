@@ -105,7 +105,7 @@ Ubuntu/BlueZ对照：10s扫描发现同一序列号，RSSI −85；两次`info`�
 
 下一步只接受可区分丢失层的新证据：成功建立的独立主机链路，或与主机通知同时保存的HCI/空口记录。先解决传输完整性，再重开运行态寄存器读取；本次不足以重开逐扇区NOR批量导出。
 
-后续已取得[Linux HCI](evidence/linux-le-hci-2026-10-13.json)：普通BlueZ连接实际选择BR/EDR并Page Timeout；强制LE后，用户将卡靠近PC，已收到实际服务表，但gatttool不处理设备MTU请求。新固定ATT诊断已实现；首试EINVAL后补本地CID4 bind，待真机复验。[Ubuntu交接](ubuntu-handoff.md)给出唯一下一步。此进展解决独立对照的前置问题，仍未回答Mac日志分片丢失层。
+后续已取得[Linux HCI](evidence/linux-le-hci-2026-10-13.json)：普通BlueZ连接实际选择BR/EDR并Page Timeout；强制LE后，用户将卡靠近PC，已收到实际服务表，但gatttool不处理设备MTU请求。新固定ATT诊断已实现；首试EINVAL后补本地CID4 bind，待真机复验。[Ubuntu交接](archive/ubuntu-handoff.md)给出唯一下一步。此进展解决独立对照的前置问题，仍未回答Mac日志分片丢失层。
 
 
 ### Linux独立通道已连接：缺片也在HCI中

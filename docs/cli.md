@@ -27,7 +27,7 @@ uv run comi settings show
 
 结果是 JSON；错误非零退出，通常向 stderr 输出 JSON 错误；带操作观测的取消或删除未验证会保留 stdout JSON。证据文件拒绝覆盖。macOS 的宿主终端需有蓝牙权限；官方 App 先断开。Linux 设备访问依赖本机 BlueZ/适配器/权限；SSH 不会把 Mac 的 USB/BLE 自动转发过去。`doctor`不把“依赖已安装”说成“蓝牙权限已通过”。
 
-Linux普通Boyi命令用显式LE/public ATT连接，避免BlueZ5.72自动选BR/EDR；要求扫描得到public地址、设备靠近本机适配器。本机验收无须sudo、配对或修改BlueZ服务。[实机验收](evidence/linux-boyi-cli-2026-10-13.json)覆盖info/files、已有240522 B录音完整导出与12s watch；录音/设置/实时流/物理Ctrl-C尚未在Linux实测。`gatt`与Actions诊断仍为独立通道，当前日志缺片限制见[Ubuntu交接](ubuntu-handoff.md)。
+Linux普通Boyi命令用显式LE/public ATT连接，避免BlueZ5.72自动选BR/EDR；要求扫描得到public地址、设备靠近本机适配器。本机验收无须sudo、配对或修改BlueZ服务。[实机验收](evidence/linux-boyi-cli-2026-10-13.json)覆盖info/files、已有240522 B录音完整导出与12s watch；录音/设置/实时流/物理Ctrl-C尚未在Linux实测。`gatt`与Actions诊断仍为独立通道，当前日志缺片限制见[Ubuntu交接](archive/ubuntu-handoff.md)。
 
 ## 录音与导出
 

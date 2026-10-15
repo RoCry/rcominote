@@ -1,6 +1,6 @@
 # Boyi BLE 协议与独立工具
 
-来源：官方 CoMi 1.1.2 APK 的原始 JS，及 2026-10-12 自有设备捕获帧。来源/迁移版本见 [证据索引](evidence/README.md)，解析实现见 [protocol.py](../src/rcominote/protocol.py)。这是设备的 Boyi 分支；Mova 的 UUID/opcode 不能混用。当前功能验收以[能力表](cli-capabilities.md)为准，调研优先级以[路线决策](research-routes.md)为准。
+来源：官方 CoMi 1.1.2 APK 的原始 JS，及 2026-10-12 自有设备捕获帧。来源/迁移版本见 [证据索引](evidence/README.md)，解析实现见 [protocol.py](../src/rcominote/protocol.py)。这是设备的 Boyi 分支；Mova 的 UUID/opcode 不能混用。当前功能验收以[能力表](cli-capabilities.md)为准，调研优先级以[路线决策](archive/research-routes.md)为准。
 
 ## GATT
 

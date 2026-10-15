@@ -69,7 +69,7 @@ objdump -d --start-address=0x40174c --stop-address=0x40193d \
 ## Actual CoMi checks now possible
 
 Retained [directory report](evidence/nor-partition-prefixes-2026-10-12/dsp-directory.json)
-and [raw double-read captures](evidence/nor-partition-prefixes-2026-10-12/dsp/):
+and [raw double-read captures](evidence/nor-partition-prefixes-2026-10-12/dsp):
 
 | Quantity | Actual value / result |
 |---|---|

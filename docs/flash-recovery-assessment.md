@@ -7,7 +7,7 @@ SDK 固定为 `lvgl/lv_port_actions_technology@26f51e584940d5b141cd1d09d2629d69b
 **理论上存在自写固件与恢复路径；当前还没有 CoMi 可烧录、可完整备份、失败后可恢复的实证。**
 编译成功只满足第一环。闭环还需匹配板配置、实际写入入口、启动授权、完整原厂资料及独立恢复入口。
 
-当前实证：Cortex-M4 r0p1；固件板名`ats3085l_dvb_watch_ext_nor_max`；ACPT覆盖4 MiB NOR，录音另走SD。完整system927632 B、boot3672 B、录音DSP110148 B已校验；[recovery原始/明文63,288 B完整校验](recovery-complete.md)，应用交接已静态解释。仍无整片原始备份、匹配官方恢复包、烧录或独立恢复验收。优先级以[研究路线](research-routes.md)为准。
+当前实证：Cortex-M4 r0p1；固件板名`ats3085l_dvb_watch_ext_nor_max`；ACPT覆盖4 MiB NOR，录音另走SD。完整system927632 B、boot3672 B、录音DSP110148 B已校验；[recovery原始/明文63,288 B完整校验](recovery-complete.md)，应用交接已静态解释。仍无整片原始备份、匹配官方恢复包、烧录或独立恢复验收。优先级以[研究路线](archive/research-routes.md)为准。
 
 ## 四个问题的直接答案
 
@@ -16,7 +16,7 @@ SDK 固定为 `lvgl/lv_port_actions_technology@26f51e584940d5b141cd1d09d2629d69b
 | 能烧录自己的固件吗？ | [实际OTA写入/提交链](ota-write-commit.md)、[boot→ROM入口](actual-boot-flow.md)已定位；本机为M4，公开完整参考BSP为M33 | 匹配传输、板级初始化、镜像格式与启动授权后才可能运行 | 更早启动授权、交接运行态、ROM加载权限、匹配M4 BSP/库、独立恢复仍未闭合；没有可直接使用的CoMi烧录配方 |
 | 烧进去之后会怎样？ | [实际boot](actual-boot-flow.md)加载recovery；[完整recovery](recovery-complete.md)揭示slot0映射、加法验收与PSP/BX，晚期失败不能保证旧映射恢复 | 包可能被拒绝；已写入镜像也可能不能启动；错误外设初始化可能使BLE/显示/录音失效 | 尚无自写镜像的实机写入/启动，不能用参考板编译或OTA CRC通过预测结果 |
 | 失败后能恢复官方吗？ | 实际分区只有一个system；boot/param有镜像，另有recovery/TEMP；[成功通知早于新固件启动](ota-write-commit.md) | 有应用之外的入口、匹配完整内容与可验证写回方式，才有恢复基础 | 独立入口/退出与官方回刷未验证；boot/param双槽不是整套系统回滚 |
-| 能提取正在运行的固件吗？ | system、boot、DSP和ACPT已取得；system映射字节不是整片物理NOR；recovery完整校验；[factory-RW8KiB私有备份](factory-rw-backup.md)完成 | 可靠bulk读回与逐区完整性验收可以进一步形成可恢复备份 | factory-RO/user NVRAM、其余资源、分区副本仍未齐；[慢速日志NOR批量导出已退役](nor-efficiency.md)，不继续盲目长跑 |
+| 能提取正在运行的固件吗？ | system、boot、DSP和ACPT已取得；system映射字节不是整片物理NOR；recovery完整校验；[factory-RW8KiB私有备份](factory-rw-backup.md)完成 | 可靠bulk读回与逐区完整性验收可以进一步形成可恢复备份 | factory-RO/user NVRAM、其余资源、分区副本仍未齐；[慢速日志NOR批量导出已退役](archive/nor-efficiency.md)，不继续盲目长跑 |
 
 ## 启动授权问题：缺的材料与不能替代它的产物
 
@@ -95,7 +95,7 @@ SYSTEM 的 `ota_embed=TEMP` 指向临时升级路径。临时区放在 `storage_
 
 | 候选路径 | 固定源码实际行为 | 研究边界 |
 |---|---|---|
-| `dbg fread spi_flash <offset>` | `CONFIG_CMD_SPINOR` 控制；精确名称 `spi_flash` 才传长度 512，`offset` 用 base 0 解析；NOR 驱动按 byte 读取。[处理器][shell-read] [NOR 驱动][nor-read] | 早期正文不回问题后由printk ring读回取得boot/部分recovery；[吞吐与失败率审计](nor-efficiency.md)使其退出默认批量备份路线；不能把handler返回0当完整数据 |
+| `dbg fread spi_flash <offset>` | `CONFIG_CMD_SPINOR` 控制；精确名称 `spi_flash` 才传长度 512，`offset` 用 base 0 解析；NOR 驱动按 byte 读取。[处理器][shell-read] [NOR 驱动][nor-read] | 早期正文不回问题后由printk ring读回取得boot/部分recovery；[吞吐与失败率审计](archive/nor-efficiency.md)使其退出默认批量备份路线；不能把handler返回0当完整数据 |
 | `dbg fread sd/spinand <offset>` | 同一处理器传 `size=1`，注释称 sector；但 SD 驱动把 byte len 右移 9 得零，SPI NAND 驱动要求 offset/len 为 512 B 倍数，因此命令与驱动不匹配。[处理器][shell-read] [SD 驱动][sd-read] [NAND 驱动][nand-read] | **不能按帮助文本把它作为 SD/NAND 备份工具**；失败处理器仍可能返回 0，必须判正文与收到的字节 |
 | `dbg snandr <offset> <size>` | `CONFIG_CMD_SPINAND` 控制；固定分配 2048 B，直接使用用户 size，缺少上界；驱动要求 byte 对齐且不超过逻辑容量。[处理器][shell-read] [注册][shell-reg] [驱动][nand-read] | 若未来验证可用，只能受控对齐分块；逻辑 NAND read 不保证含 OOB、坏块表和隐藏启动区域 |
 | `dbg mdb/mdh/mdw` | `CONFIG_CMD_MEMORY` 控制；地址/数量按十六进制解析，直接解引用；没有“仅 flash 地址”检查。[处理器][mem-read] [注册][shell-reg] | 读取未知地址可能 fault 或访问 MMIO；XIP 读出的映射内容也不等于完整物理存储 |
@@ -115,7 +115,7 @@ SYSTEM 的 `ota_embed=TEMP` 指向临时升级路径。临时区放在 `storage_
 5. **证据清单**：设备与固件版本、来源、每块起始地址/长度/单位、原始文件、SHA-256、两次独立读一致；动态 NVRAM 区变化需解释，不能悄悄忽略。
 6. **恢复闭环**：独立入口可反复进入/退出，写回工具与范围经过核查，官方完整包或可写回备份与本机匹配；最终需实际恢复启动、录音、BLE 与身份校准验收，才称“恢复已验证”。
 
-以上是备份验收要求，不是已具备的恢复能力。板名/分区/存储与部分镜像已取得；后续优先匹配平台/生产资料、官方镜像和高效读回路线，以[研究路线](research-routes.md)为准。现有EVK固件不能直接用于CoMi烧录实验。
+以上是备份验收要求，不是已具备的恢复能力。板名/分区/存储与部分镜像已取得；后续优先匹配平台/生产资料、官方镜像和高效读回路线，以[研究路线](archive/research-routes.md)为准。现有EVK固件不能直接用于CoMi烧录实验。
 
 ## 固定源码索引
 

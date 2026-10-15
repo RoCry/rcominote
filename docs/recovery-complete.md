@@ -4,7 +4,7 @@
 
 ## 取得了什么
 
-证据目录：[recovery-complete-2026-10-13](evidence/recovery-complete-2026-10-13/)。
+证据目录：[recovery-complete-2026-10-13](evidence/recovery-complete-2026-10-13)。
 
 | 产物 / 检查 | 结果 |
 |---|---|

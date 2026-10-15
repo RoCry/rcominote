@@ -6,7 +6,7 @@
 
 ## 为什么改变路线
 
-旧 `fread→printk ring→mdb` 每512 B约232条命令；[效率审计](nor-efficiency.md)已淘汰默认批量路线。
+旧 `fread→printk ring→mdb` 每512 B约232条命令；[效率审计](archive/nor-efficiency.md)已淘汰默认批量路线。
 之前因 `dumpbuf` 写文件而排除，范围过严：写SD临时文件与写启动NOR的后果不同。
 现用固件已有命令，把固定RAM区写到独有测试路径，再复用已验证Boyi下载器。
 这项工作直接影响固件提取路径；不延伸成通用内存/文件管理CLI。
@@ -62,7 +62,7 @@ uv run -m rcominote.experiments.sd_bridge artifacts/mapped-system/mapped-system.
 
 命令会写SD文件内容及文件系统元数据；未发固件NOR写、删除、录音或重启命令。两个失败尝试后设备仍可查询，未观察到设备无法启动。
 
-[保留证据](evidence/sd-bridge-2026-10-13/)含失败/成功报告、代码guard/log frames、下载原始字节和boot0结果；略去个人录音列表。
+[保留证据](evidence/sd-bridge-2026-10-13)含失败/成功报告、代码guard/log frames、下载原始字节和boot0结果；略去个人录音列表。
 boot oracle来自[先前独立备份](evidence/boot-complete-2026-10-12/raw.bin)，不是从本次ring生成的期望值。
 
 ## 停止点
