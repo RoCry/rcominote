@@ -16,7 +16,7 @@
 
 | # | 目标 | 完成标准 | 状态 |
 |---|---|---|---|
-| M1 | 全片备份 | 两次独立读取 4 MiB，`verify_full_dump.py` 全部 known slice 匹配且两份一致 | 等拆机 |
+| M1 | 全片备份 | 两次独立读取 4 MiB，`verify_full_dump.py` 全部 known slice 匹配且两份一致 | 等拆机，[issue #1](https://github.com/RoCry/rcominote/issues/1) |
 | M2 | 可恢复 | SWD 只读 attach 读到 CPUID `410fc241`；或夹子回写同一镜像后设备正常开机、BLE `info` 一致 | 待 M1 |
 | M3 | RAM 跑自写代码 | SWD 把最小程序载入 SRAM 执行，UART 打印或 OLED 出图 | 待 M2 |
 | M4 | 自写固件进 NOR | boot 分区换成自建镜像，上电从它启动并点屏；随时能用 M1 镜像恢复 | 待 M3 |
