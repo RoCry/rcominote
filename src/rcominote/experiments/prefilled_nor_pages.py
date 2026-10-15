@@ -67,7 +67,8 @@ def budgets(count, *, startup_policy=C.startup.LEGACY_POLICY):
 def policy_gate(plan):
     if (
         plan.get("content_policy") != C.F.STRICT_POLICY
-        or plan.get("gap_policy") not in (C.F.PREFILL_GAP_POLICY, C.F.PREFILL_WAKE_GAP_POLICY)
+        or plan.get("gap_policy")
+        not in (C.F.PREFILL_GAP_POLICY, C.F.PREFILL_WAKE_GAP_POLICY, C.F.PREFILL_VSYNC_GAP_POLICY)
         or "prefix_policy" in plan
         or "oracles" in plan
         or plan.get("ram_oracle", {}).get("sha256") != P.RAM_SHA
@@ -85,7 +86,7 @@ def policy_gate(plan):
 def prepare(
     image, parent, offsets, *, gap_policy=C.F.PREFILL_GAP_POLICY, startup_policy=C.startup.LEGACY_POLICY
 ):
-    if gap_policy not in (C.F.PREFILL_GAP_POLICY, C.F.PREFILL_WAKE_GAP_POLICY):
+    if gap_policy not in (C.F.PREFILL_GAP_POLICY, C.F.PREFILL_WAKE_GAP_POLICY, C.F.PREFILL_VSYNC_GAP_POLICY):
         raise ValueError("Unknown explicit prefilled gap policy before parent admission")
     startup_control.budget(BUDGET, startup_policy)
     plan, baseline = C._prepare(image, parent, offsets)

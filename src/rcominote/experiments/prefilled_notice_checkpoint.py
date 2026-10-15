@@ -39,7 +39,17 @@ CODE = {
 }
 
 
+def capture_module(failed):
+    from rcominote.experiments import prefilled_vsync_checkpoint
+
+    if A.A.sha((failed / "report.json").read_bytes()) == prefilled_vsync_checkpoint.PINS["report.json"]:
+        return prefilled_vsync_checkpoint
+    return None
+
+
 def failed_prefix(failed, source, baseline):
+    if module := capture_module(failed):
+        return module.verify(failed, source, baseline)
     refs = {name: C.pins.pinned(failed / name, digest)[1] for name, digest in PINS.items()}
     job = json.loads((failed / "report.json").read_bytes())
     plan = json.loads(C.J.check_reference(failed, job["plan"]).read_bytes())
@@ -159,7 +169,7 @@ def header(checkpoint):
         or "ok" in checkpoint
         or type(checkpoint.get("new_raw_nor_coverage_bytes")) is not int
         or checkpoint["new_raw_nor_coverage_bytes"] != 0
-        or checkpoint["parent"]["profile"] != C.PREFILLED_PROFILE
+        or checkpoint["parent"]["profile"] not in (C.PREFILLED_PROFILE, C.PREFILLED_LINK_CP)
     ):
         raise ValueError("Requires distinct pinned NEXT3 offline ownership node, zero coverage")
     C.J.time_order(checkpoint["failed"]["failed_ended_at"], checkpoint["created_at"])
@@ -210,7 +220,8 @@ def create(image, failed, newout):
     from rcominote.experiments.paired_nor_runtime import private_output
 
     private_output(newout)
-    plan = json.loads(C.pins.pinned(failed / "plan.json", PINS["plan.json"])[0])
+    pins = module.PINS if (module := capture_module(failed)) else PINS
+    plan = json.loads(C.pins.pinned(failed / "plan.json", pins["plan.json"])[0])
     baseline, _state, source = C.parent_gate(Path(plan["parent"]["directory"]), image)
     current, _state, result = failed_prefix(failed, source, baseline)
     checkpoint = {

@@ -1,5 +1,7 @@
 # Ubuntu 接手：CoMi 真机研究
 
+**2026-10-15 暂停交接，优先于下方历史快照**：用户要求本会话停止研究、提交推送后交他人继续。其间新增一次有限真机采集 `artifacts/prefilled-factory-remaining-four-20261015`：仅 page0-1ed800 完整 pair512 计入覆盖；原 whole 及 page1-1eda00 SECOND 内容校验仍失败（精确58B composer `vsync 99999 us` 间隔），不得提升失败页。工厂 raw 当前6656/8192B，缺 `[1eda00,1ee000)`1536B；A47888/B155204/潜在203092B。当前 owned SD 前件来自**失败页 SECOND 的完整4096下载**，不是已接受page0或旧LinkCP；全5DL/15事务/最终身份通信验证与NOR内容接受必须分开。历史身份UTC15日01:36:15.286456Z、history98。原始捕获及静态vsync证据留在 ignored artifacts；完整交接 `/tmp/rcominote-handoff-2026-10-15.md`。显式v4与独立通信checkpoint源码仅为停止时候选：尚缺checkpoint合成负例/最终独立review、未正式freeze/create新CP/plan、未真机运行v4。后续接手先完成这些离线门槛，不直接重跑旧plan；新remaining收据尚待补。完整4MiB/恢复/自写固件仍未完成。
+
 更新至2026-10-14。仓库`~/w/_hw/rcominote`，分支`main`。保持原目标：实用CLI、实际硬件/固件/SDK理解、完整NOR备份、可靠恢复、自写固件运行；后三项仍未完成。先读本页，再按需查[当前路线](research-routes.md)和[平台地图](device-platform-map.md)，不要重做历史泛搜。
 
 **最新执行点：next4b失败，只接受首pair512**：[activity next4b原whole失败/首pair512接受](prefilled-factory-activity-next4b-live-2026-10-15.md)：仅1ed600完整pair新增512私有raw；1ed800 LE已连但21ATT/58HCI仅MTU-discovery，未应答FindInformation→reason08/errno110，零identity/baseline/Actions/RAM/NOR/SDwrite，后两页零I/O。总283ATT510HCI/15complete/0pending/status；原whole/page1false和parentgate拒绝保持。最后actualcurrent是page0second4096，identityUTC14日18:57:20.885464Z FW010004NOTEidle/unbound/charging100/free59589；失败后未SD重读。独立无HCI post-info不能补原after/whole。90plannednonce全reserved，与cohortmax72不同。实际FAST/no pulse，新DEFAULT集成/wake form未radio；新helper review不等于正式CP/plan/live。factory/carrier/sectorhash/hex/nonces私有，无binary，先commit/push后按交接独立检查接续，不自动retry。

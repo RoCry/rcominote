@@ -14,6 +14,9 @@ FORMAT_POLICY = "canonical-row-and-status-formatter-constants-v5"
 PREFILL_GAP_POLICY = "prefill-exact-three-producer-dump-layouts-v2"
 PREFILL_WAKE_GAP_POLICY = "prefill-exact-four-layouts-wake-lock-zero-v3"
 WAKE_GAP = b"\n[os][I][1145]: Ble wake lock 0\r\n\r\n[logsrv][I][679]: "
+PREFILL_VSYNC_GAP_POLICY = "prefill-exact-five-layouts-vsync-99999-v4"
+# Observed single value of a dynamic %u formatter; not a general constant mask.
+VSYNC_GAP = b"\n[composer][I][335]: vsync 99999 us\n\r\n\r\n[logsrv][I][679]: "
 
 
 def markers(data: bytes, pattern: re.Pattern) -> list:
@@ -64,7 +67,11 @@ def _parse_ring(
     An unchanged predecessor marker is historical and must precede the nonce.
     Reusing its exact physical location conservatively fails; no retry/salvage.
     """
-    if gap_policy is not None and gap_policy not in (PREFILL_GAP_POLICY, PREFILL_WAKE_GAP_POLICY):
+    if gap_policy is not None and gap_policy not in (
+        PREFILL_GAP_POLICY,
+        PREFILL_WAKE_GAP_POLICY,
+        PREFILL_VSYNC_GAP_POLICY,
+    ):
         raise ValueError("Unknown explicit producer/dump gap policy")
     if type(prefix_policy) is not str or prefix_policy not in (
         STRICT_POLICY,
@@ -133,12 +140,17 @@ def _parse_ring(
     gap = scope[producer.end() :]
     notice = gap == b"\n" + F.COMPOSER_FPS2 + F.LOG_PREFIX
     new_notice = gap == b"\n\r\n" + F.COMPOSER_FPS2 + F.LOG_PREFIX[2:]
-    wake_notice = gap_policy == PREFILL_WAKE_GAP_POLICY and gap == WAKE_GAP
+    wake_notice = gap_policy in (PREFILL_WAKE_GAP_POLICY, PREFILL_VSYNC_GAP_POLICY) and gap == WAKE_GAP
+    vsync_notice = gap_policy == PREFILL_VSYNC_GAP_POLICY and gap == VSYNC_GAP
     if (
         gap != b"\n" + F.LOG_PREFIX
         and not notice
-        and not (gap_policy in (PREFILL_GAP_POLICY, PREFILL_WAKE_GAP_POLICY) and new_notice)
+        and not (
+            gap_policy in (PREFILL_GAP_POLICY, PREFILL_WAKE_GAP_POLICY, PREFILL_VSYNC_GAP_POLICY)
+            and new_notice
+        )
         and not wake_notice
+        and not vsync_notice
     ):
         raise ValueError("Unexpected text after current producer before dump")
 
@@ -154,7 +166,7 @@ def _parse_ring(
         (end + producer.start(), end + producer.end()),
         (dump_start, F.CAPACITY),
     ]
-    if gap_policy == PREFILL_WAKE_GAP_POLICY:
+    if gap_policy in (PREFILL_WAKE_GAP_POLICY, PREFILL_VSYNC_GAP_POLICY):
         critical.append((end + producer.end(), dump_start))
     exemptions, status_exemptions, formatter_exemptions = [], [], []
     status_literals = _status_literals(status) if prefix_policy in (STATUS_POLICY, FORMAT_POLICY) else {}
@@ -266,7 +278,9 @@ def _parse_ring(
         proof["composer_fps2"] = notice or new_notice
         proof["producer_dump_gap"] = {
             "policy": gap_policy,
-            "form": "wake-lock-zero"
+            "form": "vsync-exact-99999"
+            if vsync_notice
+            else "wake-lock-zero"
             if wake_notice
             else "composer-before-crlf"
             if notice
@@ -276,7 +290,7 @@ def _parse_ring(
             "hex": gap.hex(),
             "span": span(end + producer.end(), dump_start),
         }
-        if gap_policy == PREFILL_WAKE_GAP_POLICY:
+        if gap_policy in (PREFILL_WAKE_GAP_POLICY, PREFILL_VSYNC_GAP_POLICY):
             proof["producer_dump_gap"]["inside_written_prefix"] = True
     if marker_previous is not None:
         proof.update(
@@ -308,7 +322,7 @@ def parse_prefilled_ring(
     """Only structural known0/4200: separate full SD seed from ring history."""
     if type(nor_offset) is not int or nor_offset not in (0, 0x4200):
         raise ValueError("Prefilled parser is restricted to known0 and4200")
-    if gap_policy == PREFILL_WAKE_GAP_POLICY:
+    if gap_policy in (PREFILL_WAKE_GAP_POLICY, PREFILL_VSYNC_GAP_POLICY):
         raise ValueError("Known prefilled controls retain original three-layout policy")
     if (
         any(
