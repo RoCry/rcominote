@@ -85,6 +85,30 @@ implicit cleanup target; a name absent from the normal list cannot satisfy the
 precondition above. Serial and confirmation reduce accidental targeting but
 do not provide cryptographic authentication or a protocol transaction ID.
 
+## Hidden scratch: bounded static follow-up, 2026-10-14
+
+[Fixed-image inspector](../tools/inspect_owned_scratch_delete.py) and
+[raw instruction/string evidence](evidence/owned-scratch-delete-static-2026-10-14.json)
+expand the actual0d callee; no device operation. Image SHA remains `ce2ddd…a1e2f`.
+
+| Actual location | Observation |
+|---|---|
+| `1009ee42..ee84` | Nonempty payload calls `1000ba28`; empty payload passes byte00/length1 to response builder yet returns−1. Reply bytes alone cannot establish deletion. |
+| `1000ba28..bae8` | Builds `/SD:/RECORDER/Call-<name>.mp3`, calls unlink `1002f0e0`; only a negative result falls back to `Note-<name>.mp3`. No visible-list token check in these bodies. |
+| `1000ba4e..ba82`, `100017ec..17f8`, `100b9652..966e` | Allocates exactly payload length, copies exactly that length, then uses `%s`; no explicit filename NUL store in the bounded path. Allocator padding/contents remain unknown, so do not infer safe hidden-name acceptance. |
+| `100adba0..dbac` | Two pre-unlink wrappers forward arguments1,5 to `10053034`/`100530b8`; their effects remain unresolved. |
+
+Deleting and recreating the dedicated scratch could theoretically avoid an old
+logical tail: a new file would need to grow from0 to4096. This is **unverified**;
+the production CLI deliberately rejects hidden names absent from the complete
+normal list. Do not bypass that guard from these static observations. No hidden
+file was deleted or recreated; overwrite authorization does not establish this
+different operation. Existing NOR export continues using the retained same file
+and its explicit freshness checks.
+
+Reproduce without device access:
+`uv run tools/inspect_owned_scratch_delete.py artifacts/mapped-system-20261012.bin`.
+
 ## Adjacent commands remain separate
 
 Binding/unbinding, formatting and factory reset have different effect and

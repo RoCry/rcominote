@@ -1,0 +1,328 @@
+{
+  "schema": "bounded-prefill-known-success-receipt-v1",
+  "date": "2026-10-15",
+  "date_timezone": "Asia/Hong_Kong",
+  "capture_utc_date": "2026-10-14",
+  "outcome": "original v2 fixed known0/4200 control succeeded; no new raw coverage",
+  "references": {
+    "report": {
+      "file": "artifacts/prefilled-nor-known-v2-20261015/report.json",
+      "bytes": 127337,
+      "sha256": "f188a4e10784dff8e6c54d1fbb64db69c38fcb724e4881652c1571e558855989"
+    },
+    "plan": {
+      "file": "artifacts/prefilled-nor-known-v2-20261015/plan.json",
+      "bytes": 8124,
+      "sha256": "20db668806f36fdde6fa9e590a0673fe5a9bf30d569c1b1b5ab1e37a32027aea"
+    },
+    "hci": {
+      "file": "artifacts/prefilled-nor-known-v2-20261015/session.btsnoop",
+      "bytes": 38893,
+      "sha256": "89deae8908b878c69b1b49f97e81c99b2c0957e1dae86c16cb927c4d288d5ed0"
+    },
+    "source_manifest": {
+      "file": "artifacts/prefilled-nor-known-v2-20261015/source-snapshot/manifest.json",
+      "bytes": 46962,
+      "sha256": "cf72f9e3c5d325ddbdcdbb34d168e5bebcd4aaa9c43124cb11087e80f0139767"
+    },
+    "preflight_review": {
+      "file": "artifacts/prefilled-nor-known-v2-20261015/preflight-review.json",
+      "bytes": 928,
+      "sha256": "c9b48774a513514d24dcf9ac94bc1c53207a6f34877203420a24f964ab513ebb"
+    },
+    "checks_before": {
+      "file": "artifacts/prefilled-nor-known-v2-preflight-20261015/checks-before.json",
+      "bytes": 36206,
+      "sha256": "c461808260ae90878f6b46c2967a8890beedaab3d25d1a94a29cd849396549c2"
+    },
+    "checks_after": {
+      "file": "artifacts/prefilled-nor-known-v2-preflight-20261015/checks-after.json",
+      "bytes": 36206,
+      "sha256": "c461808260ae90878f6b46c2967a8890beedaab3d25d1a94a29cd849396549c2"
+    },
+    "just_check_log": {
+      "file": "artifacts/prefilled-nor-known-v2-preflight-20261015/just-check.log",
+      "bytes": 2959,
+      "sha256": "e102dd778567f4e292152b069892ad210ae4a364533558ab49ef5af38d7ea8d8"
+    },
+    "build_log": {
+      "file": "artifacts/prefilled-nor-known-v2-preflight-20261015/uv-build.log",
+      "bytes": 179,
+      "sha256": "937bcf6f77f21fd510d0bc6ebfcac53235c976fc096e61be3a67efeb891e959c"
+    },
+    "v1_content_checkpoint": {
+      "file": "artifacts/prefilled-nor-content-checkpoint-20261015/checkpoint.json",
+      "bytes": 8023,
+      "sha256": "3a351682aed84f94e0817c4ef85f76dcee00c0fb5e4827129ddfca5cb1cc6427"
+    },
+    "checkpoint_source_manifest": {
+      "file": "artifacts/prefilled-nor-content-checkpoint-20261015/source-snapshot/manifest.json",
+      "bytes": 46962,
+      "sha256": "cf72f9e3c5d325ddbdcdbb34d168e5bebcd4aaa9c43124cb11087e80f0139767"
+    },
+    "sanitized_root_replay": {
+      "file": "artifacts/prefilled-nor-known-v2-20261015/sanitized-root-replay.json",
+      "bytes": 885,
+      "sha256": "63fde9bc15d0fce8b23500842af8a249577fa84ba279f4c0203361e39b1ef63f"
+    }
+  },
+  "chronology": {
+    "source_frozen_at": "2026-10-14T16:10:20.399992+00:00",
+    "v1_checkpoint_created_at": "2026-10-14T16:10:21.013351+00:00",
+    "v1_observed_ended_at": "2026-10-14T11:52:36.513316+00:00",
+    "planned_at": "2026-10-14T16:10:48.910501+00:00",
+    "started_at": "2026-10-14T16:10:49.743806+00:00",
+    "ended_at": "2026-10-14T16:11:31.894453+00:00",
+    "started_hkt": "2026-10-15T00:10:49.743806+08:00",
+    "ended_hkt": "2026-10-15T00:11:31.894453+08:00"
+  },
+  "source_verification": {
+    "source_files": 145,
+    "test_files": 129,
+    "snapshot_files": 274,
+    "isolated_source": "/home/rocry/w/_tmp/rcominote-prefill-v2-frozen-20261015",
+    "snapshot_and_isolated_all_lengths_hashes_equal": true,
+    "checks_before_equal_after": true,
+    "check_inputs": 337,
+    "inherited_full_check": "2547 passed +159 subtests in40.04s;331format/lint;sdist+wheel passed",
+    "new_full_check_run": false,
+    "snapshot_modules_in_independent_replay": 101,
+    "current_source_equality_claimed": false
+  },
+  "v1_ownership_checkpoint": {
+    "profile": "verified-content-failure-communication-checkpoint-v2",
+    "failure_role": "complete-prefill-first-nor-content-proof-only",
+    "original_capture_profile": "verified-ram-prefill-strict-known-nor-control-v1",
+    "communication_verified": true,
+    "original_job_ok": false,
+    "original_operation_ok": false,
+    "live_capture_performed": false,
+    "new_raw_nor_coverage_bytes": 0,
+    "prior_names": 52,
+    "current_bytes": 4096,
+    "content_hash_withheld": true,
+    "baseline_matches_all4096_actual_bytes": true,
+    "original_v1_failure_retained": true,
+    "original_error_reproduced": "ValueError: Unexpected text after current producer before dump",
+    "new_policy_not_used_to_admit_old_failure": true
+  },
+  "plan": {
+    "profile": "verified-ram-prefill-strict-known-nor-control-v2",
+    "known_offsets": [
+      0,
+      16896
+    ],
+    "content_policy": "all-critical-chain-bytes-in-difference-prefix-v2",
+    "gap_policy": "prefill-exact-three-producer-dump-layouts-v2",
+    "startup_policy": "startup-remote-fast-only",
+    "status_event_policy": "unchanged-status20-usb-connected-max8",
+    "budget": {
+      "connections": 1,
+      "downloads": 5,
+      "producers": 2,
+      "ram_exports": 2,
+      "sd_writes": 4,
+      "new_files": 0,
+      "nor_writes": 0,
+      "ram_writes": 0,
+      "deletes": 0,
+      "parameter_transactions": 15,
+      "active_seconds": 60,
+      "monitor_seconds": 70,
+      "stage_seconds": 18,
+      "new_raw_nor_coverage_bytes": 0
+    },
+    "dual_predecessor_roles": [
+      "verified full RAM file for difference-prefix",
+      "last retained NOR carrier for marker/nonce freshness"
+    ]
+  },
+  "observed": {
+    "original_ok": true,
+    "connections": 1,
+    "att_packets": 266,
+    "hci_records": 456,
+    "hci_bytes": 38893,
+    "parameter_transactions": 15,
+    "pending": 0,
+    "status_events": 1,
+    "status_event_att_indices": [
+      97
+    ],
+    "status_event_full_ledger_and_wire_binding_verified": true,
+    "downloads": 5,
+    "ram_exports": 2,
+    "nor_producers": 2,
+    "same_file_sd_overwrites": 4,
+    "new_files": 0,
+    "deletions": 0,
+    "nor_writes": 0,
+    "ram_writes": 0,
+    "normal_disconnect": {
+      "status": 0,
+      "reason": 22,
+      "record": 455,
+      "after_final_att": true,
+      "bounded_close_verified": true
+    },
+    "monitor_exit": 0
+  },
+  "stages": [
+    {
+      "stage": "baseline",
+      "bytes": 4096,
+      "original_ok": true,
+      "readonly": true,
+      "admitted_v1_current_match": true,
+      "immediate_identity_verified": true,
+      "content_hash_withheld": true
+    },
+    {
+      "stage": "prefill-first",
+      "kind": "prefill",
+      "bytes": 4096,
+      "original_ok": true,
+      "live_complete": true,
+      "barrier_complete": true,
+      "acks": 4,
+      "f1": true,
+      "pending_bytes": 0,
+      "f0_frames": 0,
+      "current_hash_withheld": true,
+      "independent_ram_oracle_sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b",
+      "full_ram_match": true,
+      "last_byte": "48"
+    },
+    {
+      "stage": "first",
+      "kind": "nor",
+      "bytes": 4096,
+      "original_ok": true,
+      "live_complete": true,
+      "barrier_complete": true,
+      "acks": 6,
+      "f1": true,
+      "pending_bytes": 0,
+      "f0_frames": 0,
+      "current_hash_withheld": true,
+      "nor_offset": 0,
+      "strict_difference_proven_prefix": 4096,
+      "formatter_exemptions": false,
+      "critical_chain_inside_prefix": true,
+      "last_byte_changed_from_RAM48": true,
+      "independent_known_sector_oracle_sha256": "72952b98341a3089765c6cc8dd35ddc93ae699698d1455ce74dea1071cc277ec",
+      "known_sector_bytes": 512,
+      "producer_dump_gap_form": "plain",
+      "new_composer_gap_branch_exercised": false,
+      "marker_history_predecessor_verified": true
+    },
+    {
+      "stage": "prefill-second",
+      "kind": "prefill",
+      "bytes": 4096,
+      "original_ok": true,
+      "live_complete": true,
+      "barrier_complete": true,
+      "acks": 4,
+      "f1": true,
+      "pending_bytes": 0,
+      "f0_frames": 0,
+      "current_hash_withheld": true,
+      "independent_ram_oracle_sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b",
+      "full_ram_match": true,
+      "last_byte": "48"
+    },
+    {
+      "stage": "second",
+      "kind": "nor",
+      "bytes": 4096,
+      "original_ok": true,
+      "live_complete": true,
+      "barrier_complete": true,
+      "acks": 6,
+      "f1": true,
+      "pending_bytes": 0,
+      "f0_frames": 0,
+      "current_hash_withheld": true,
+      "nor_offset": 16896,
+      "strict_difference_proven_prefix": 4096,
+      "formatter_exemptions": false,
+      "critical_chain_inside_prefix": true,
+      "last_byte_changed_from_RAM48": true,
+      "independent_known_sector_oracle_sha256": "51327e9d7a7d8d4c3538c83688753b5f99735b85e981756effb63efd1dc33713",
+      "known_sector_bytes": 512,
+      "producer_dump_gap_form": "plain",
+      "new_composer_gap_branch_exercised": false,
+      "marker_history_predecessor_verified": true
+    }
+  ],
+  "gap_policy_scope": {
+    "closed_three_forms_host_tested": true,
+    "actual_nor_forms": [
+      "plain",
+      "plain"
+    ],
+    "new_crlf_before_composer_radio_exercised": false,
+    "arbitrary_text_or_whitespace_normalization_allowed": false,
+    "old_v1_error_preserved": true
+  },
+  "latest_observation": {
+    "observed_at": "2026-10-14T16:11:31.894453+00:00",
+    "owned_file_bytes": 4096,
+    "current_file": "artifacts/prefilled-nor-known-v2-20261015/second/download.bin",
+    "content_hash_withheld": true,
+    "whole_successful_job_parent_gate_passed": true,
+    "live_baseline_byte_compare_required_before_future_overwrite": true,
+    "firmware": "010004",
+    "mode": "NOTE",
+    "running": "idle",
+    "bound": false,
+    "charging": true,
+    "battery_percent": 100,
+    "free_capacity": 59589,
+    "before_stage_barriers_final_after_equal": true,
+    "ancestor_names": 52,
+    "new_planned_names": 2,
+    "history_names": 54
+  },
+  "coverage": {
+    "added_raw_nor_bytes": 0,
+    "strong_available_bytes": 41744,
+    "potential_available_bytes": 196948,
+    "historical_B_bytes_not_upgraded": 155204,
+    "system_contiguous_range": [
+      147456,
+      153600
+    ],
+    "system_bytes": 6144,
+    "factory_verified_private_bytes": 512,
+    "factory_remaining_missing_full_pair_bytes": 7680,
+    "cohort_confirmed": 70,
+    "cohort_older_declared": 1,
+    "cohort_historical_possible": 1,
+    "cohort_upper_bound": 72,
+    "full4MiB_backup_restore_own_firmware_complete": false
+  },
+  "privacy": {
+    "all_baseline_and_current_carrier_hashes_withheld": true,
+    "sd_prefill_clears_resident_ring_claimed": false,
+    "known_target_implies_nonsensitive_carrier_claimed": false,
+    "published_binary": false,
+    "factory_raw_config_values_published": false,
+    "only_preexisting_public_known_sector_oracle_digests_listed": true
+  },
+  "physical_controls": {
+    "user_exact": "只有电源键和录音滑键",
+    "RESET_hole_or_button_confirmed": false,
+    "exposed_removable_battery_connector_confirmed": false,
+    "long_press_power_independent_ROM_exit_proven": false,
+    "absence_of_all_hidden_points_claimed": false
+  },
+  "limits": [
+    "Two fixed independently known targets verified in this one connection; no general unknown-address or scale reliability proof.",
+    "Logical contiguous4096 prefix evidence does not establish SD atomicity or clear resident log history.",
+    "Actual NOR gaps both PLAIN; new composer layout remains host-tested only.",
+    "Original v1/factory/STATUS4/v3/17 failures retained; no retrospective success or coverage upgrade.",
+    "No automatic retry, deletion, new coverage, complete4MiB backup or reliable restoration claim."
+  ]
+}

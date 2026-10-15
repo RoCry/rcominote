@@ -1,0 +1,242 @@
+{
+  "schema": "status-remaining-live-v1",
+  "scope": "Frozen failed three-slot job: complete unexpected remote startup settlement before any Actions; final identity retained",
+  "result": {
+    "original_job_ok": false,
+    "original_error": "ValueError: Observed parameter transaction differs from the next fixed experiment stage",
+    "completed_slots": [],
+    "failed_slot": "2a00",
+    "unexecuted_slots": [
+      "2c00",
+      "2e00"
+    ],
+    "new_verified_bytes": 0,
+    "verified_partition_prefix": [8192, 10752],
+    "verified_partition_bytes": 2560,
+    "partition_bytes": 4096,
+    "remaining_unverified_range": [10752, 12288],
+    "remaining_unverified_bytes": 1536,
+    "assembled_outputs": false,
+    "producer_executions": 0,
+    "actions_commands": 0,
+    "sd_write_attempts": 0,
+    "new_scratch_files": 0,
+    "nor_flash_write_attempted": false
+  },
+  "job": {
+    "report": {
+      "file": "artifacts/status-remaining-20261014/report.json",
+      "bytes": 471,
+      "sha256": "3f98ac2ba0ffa9edad7e0f02a29fec24d7623fac9b20a116454e9be8ad74eedf"
+    },
+    "plan": {
+      "file": "artifacts/status-remaining-20261014/job-plan.json",
+      "bytes": 27887,
+      "sha256": "bea49b62e1aa3b547d8f4720532e2ec680c56d9419a1ba9a627ca55413b03976"
+    },
+    "planned_at": "2026-10-14T03:53:45.644867+00:00",
+    "started_at": "2026-10-14T03:53:45.645208+00:00",
+    "ended_at": "2026-10-14T03:54:02.232197+00:00",
+    "fixed_slots": [
+      10752,
+      11264,
+      11776
+    ],
+    "planned_nonce_count": 6,
+    "max_connections": 3,
+    "max_producer_executions": 6,
+    "max_sd_test_files": 6,
+    "completed_checkpoint_count": 0,
+    "nonce_target_parent_prestate_chronology_verified": true,
+    "later_slots_empty": true
+  },
+  "source_snapshot": {
+    "manifest": {
+      "file": "artifacts/status-remaining-20261014/source-snapshot/manifest.json",
+      "bytes": 16054,
+      "sha256": "737a353e0b97be16b918a43b9119665270692d2bbcc23cc22c52cb300d22364a"
+    },
+    "record": {
+      "file": "artifacts/status-remaining-20261014/source-snapshot/record.json",
+      "bytes": 648,
+      "sha256": "5f57fbf53242f02e17610bc00a7b790bf1add5dbf637f5211f3d35f17bb7f2ef"
+    },
+    "created_at": "2026-10-14T03:53:37.067832+00:00",
+    "source_count": 113,
+    "all_archived_files_verified": true,
+    "recorded_checks": {
+      "just_check": {
+        "passed": 1516,
+        "subtests_passed": 159
+      },
+      "uv_build": "passed"
+    },
+    "health_gate_recorded_before_io": true,
+    "health_gate_independently_replayed": true,
+    "archived_dependencies_used_for_this_review": true,
+    "current_source_equality_claimed": false
+  },
+  "previous_checkpoint": {
+    "job_report": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/status-boot-tail-20261014/report.json",
+      "bytes": 954,
+      "sha256": "075dcfc01378eec6c56b82071ea65416f715ad3c6989efa86f7aeb2446de4567"
+    },
+    "all_historical_modern_sources_replayed": true,
+    "complete_summary_equals_immutable_plan": true,
+    "prefix_bytes": 2560,
+    "prefix_sha256": "2b6e99ee899e1515e0cc44b220424cd9da6906b39490504bdcca2236755db51c",
+    "verified_prefix": [8192, 10752],
+    "prior_planned_scratch_names": 25,
+    "failed_discovery_sd_write_attempts": 0,
+    "latest_state_equals_new_actual_before_after": true
+  },
+  "health_preflight": {
+    "report": {
+      "file": "artifacts/status-link-health-20261014/report.json",
+      "bytes": 10676,
+      "sha256": "20133998df7c702e36bd6f01eba06caeabd79a0251466a4380b144e031bdbaa8"
+    },
+    "capture": {
+      "file": "artifacts/status-link-health-20261014/session.btsnoop",
+      "bytes": 4201,
+      "sha256": "db073382d26242da08a7567418ed4676f25588f5f133ed9f8cf7c3816f5d3552"
+    },
+    "private_source": {
+      "file": "artifacts/status-link-health-20261014/probe.py",
+      "bytes": 7620,
+      "sha256": "6bab70df911d71bea7ced9b204eefb061a2ce4ec4e72012eb5718d98b61d13e4"
+    },
+    "source_sha_equals_recorded": true,
+    "runpy_audit_equals_saved_verification": true,
+    "after_equals_checkpoint_and_new_actual_before_after": true,
+    "ended_at": "2026-10-14T03:43:12.860150+00:00"
+  },
+  "failed2a00": {
+    "report": {
+      "file": "artifacts/status-remaining-20261014/2a00/report.json",
+      "bytes": 15295,
+      "sha256": "03165ecada9f4d8bf178eec4b8e94352b0f5f34d0b4e8fdc3d34b3711cc08be6"
+    },
+    "capture": {
+      "file": "artifacts/status-remaining-20261014/2a00/session.btsnoop",
+      "bytes": 4995,
+      "sha256": "bc8a88ab18853c551bbe34c9330cd4975370493e449ee6bfcb007721729401fe"
+    },
+    "original_flags": {
+      "ok": false,
+      "pair_verified": false,
+      "final_audit_complete": false
+    },
+    "capture_error": "ValueError: Observed parameter transaction differs from the next fixed experiment stage",
+    "started_at": "2026-10-14T03:53:51.841052+00:00",
+    "ended_at": "2026-10-14T03:54:02.231614+00:00",
+    "stage": "Complete GATT, initial identity and file list; fixed startup FAST gate rejects complete remote24..40 settlement before Actions; cleanup final identity succeeds",
+    "records": 119,
+    "att_packets": 61,
+    "att_binding": {
+      "verified": true,
+      "packets": 61,
+      "comparison": "exact within each direction"
+    },
+    "setup_span": [0, 34],
+    "before_identity_span": [34, 40],
+    "file_list_span": [40, 55],
+    "after_identity_span": [55, 61],
+    "final_identity_hci_record_range": [111, 119],
+    "status_events": {
+      "policy": "unchanged-status20-usb-connected-max8",
+      "events": 0,
+      "indices": []
+    },
+    "captured_disconnects": 0,
+    "monitor_exit": 0,
+    "monitor_stop": {
+      "signal": "SIGINT",
+      "requested": true,
+      "delivery": "sent"
+    },
+    "download_files_exist": false
+  },
+  "startup_mismatch": {
+    "initial_connection_parameters": [
+      12,
+      0,
+      500
+    ],
+    "initial_connection_record": 18,
+    "expected_origin": "remote",
+    "expected_request": [
+      6,
+      12,
+      0,
+      500
+    ],
+    "actual_origin": "remote",
+    "actual_request": [
+      24,
+      40,
+      0,
+      500
+    ],
+    "actual_applied": [
+      36,
+      0,
+      500
+    ],
+    "cid": 5,
+    "identifier": 5,
+    "request_records": [
+      104
+    ],
+    "accept_records": [
+      106
+    ],
+    "controller_command_record": 107,
+    "status_record": 108,
+    "update_record": 110,
+    "complete_transactions": 1,
+    "pending_transactions": 0,
+    "host_origin_normalizations": 0,
+    "offline_expected_stage_error_reproduced": true,
+    "final_actual_identity_after_settlement": true,
+    "unexpected_tuple_automatically_accepted": false
+  },
+  "latest_actual_state": {
+    "source": "This failed2a00 cleanup final actual identity; complete HCI-bound three-request/reply exchange after update110",
+    "owned_serial_verified": true,
+    "complete_device_info_bytes": 52,
+    "bound": false,
+    "firmware": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "charging": true,
+    "battery": 100,
+    "free_capacity_mib": 59590,
+    "before_equals_after_equals_expected_before": true,
+    "equals_successful2800_and_health_after": true,
+    "read_only_state_verification": {
+      "other_state_equal": true,
+      "free_capacity_unit": "MiB (integer firmware report)",
+      "free_capacity_before": 59590,
+      "free_capacity_after": 59590,
+      "free_capacity_decrease": 0,
+      "allowed_decrease": 0
+    }
+  },
+  "original_replay_rejections": {
+    "remaining_job": "Archived job requires original success and original end timestamp",
+    "remaining2a00": "Original NOR-window pair failed; retain without promotion"
+  },
+  "original_input_files_unchanged_at_review": 194,
+  "limits": [
+    "Startup mismatch, not incomplete negotiation or GATT discovery timeout; remote24..40/0/500 fully settled to36 before rejection.",
+    "Initial connection12/0/500 differs from earlier48/4/600 observations; this alone does not establish firmware selector causality.",
+    "Identity equality does not imply equality of BLE connection parameter state.",
+    "Latest identity observed after mismatch settlement; no disconnect captured and no later physical worker state established.",
+    "No Actions, producer, SD export or new NOR coverage; prepared nonces are not created files.",
+    "Zero actual status events; live insertion path not exercised.",
+    "Original failures remain failed; no full fw1_boot/full NOR backup, restoration or flashing guarantee.",
+    "Raw HCI/ATT, identity, inventory and scratch names remain private."
+  ]
+}

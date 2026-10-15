@@ -1,0 +1,37 @@
+
+fread 512b: offset=0x0, buf=0x1804fe68
+
+
+
+       0: db d5 f9 a3 89 60 bf dc 58 95 bc ea 6f f3 e3 41 
+      10: 3d ae  a 57 93 73 96 69  4 e6 87 7b 4b 24 8c 21 
+      20: fc cc a1 7f 2e b8 d4 ce ca 49 b6 6a 91 c0 56 e9 
+      30: 87 94 9c 1e 48 61 a6 59 d7 16  4  6 59 8e 61  b 
+      40: fe bd 83 47 9f cd a5 e2 26 13 57 4d b7 78 a7 5b 
+      50: 1c  b 8f ef  c b0 49 69 8f a0 49 6d 75 7a 5a 77 
+      60: f8 3c f3 93 21 a2 c4 8a dd  d 6e 78 b7 9d 25 b9 
+      70: b9 b0 95 11 f3 80 60 ae c4 8d 6c c2 c7 e3 58 e7 
+      80: 68 78 57 f5  4  4 41 7a d3 ec ba 44  9 93 f6 b9 
+      90: 1b 8f 16 88 b3 bc e0 6d a6 20 a2 ab bc 25 15 c0 
+      a0: e0 fa 34 48 13 bd d2 cf 5c cc c7 c8 f3 2e 3d 77 
+      b0: e8 8c fb aa 62 db 97 dd 65 cc a4 6f  2 61 ca  2 
+      c0: 50 32 82 7e 4b 4b e4  9 70  0 dd  d f1 d1 31 f9 
+      d0: 5f af 39 ba 9d af 6f 67 bd 25 ac 62 de 2d cc 81 
+      e0: b1 90 93 5f 16 a2 c4 ea d9 95 19 dc 7d 31 f4  2 
+      f0:  1 47 78 c2 e0 e7 eb b1 17 a1 80 f1 26 f0 82 5f 
+     100: 13 17 44 aa 32 61 e7 2f 58 d8 d7 e7 70 74 10 6b 
+     110: 79 a7 d5 8d 19 aa c6 b6 9b d2 21 5b 99 78 84 73 
+     120:  4 1b ab 1d 25 de 2a 9d 74 92 58 78 ce e9 7c 4b 
+     130: e1 f4  f a6 46 1f 4e ea 2c 52 42 d6 73 2e 9b 90 
+     140: 19 63 e4 7e 7d 8f 97 f6 de  8 41 60 c7 9a 84 3f 
+     150: 82 1c cd 50 6f dd c2 47 dd 35 cb e3 64 fe 7c e1 
+     160: 9c 6b 2a 46 3b df ef 29 b6 af ec 8a e6 fa e7 8c 
+     170: 5a a7 4b d3 e7 9d d3 69 30 f2 e5 9a c1 b6 3e 38 
+     180: c6 13 47 c2 ac 4f c7 49 a1 5d  f 3b 4a 76 fa 29 
+     190: ea 76 f0 81 c2 ae fa 54  f a9 b3 43 e0 d1 92 86 
+     1a0:  a 91 a7 ad 1e dd a6 c1 96 bf de 4f dd  a 90  2 
+     1b0: 5d b0 b5 13 4c 89  9 a3 b5 b7 dc 2f ee 39 93 4d 
+     1c0: f2 e0 3c 4d 3f 46 1e cb 30 64 2c ce 69 74 3b 96 
+     1d0: 5b 24 fa f5 fe 7d 95 21 c2 31 96 1d  c 2d  b 67 
+     1e0: b7 13 b7 80 78 f2 cd 58 e3 7b 82 e2 c3 86 2e a2 
+     1f0: 9f 8b 4b 71 c1 a8 d7 8e 2e 69 f7 cc 8b b5 48 e1 

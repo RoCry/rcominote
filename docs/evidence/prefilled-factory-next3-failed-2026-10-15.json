@@ -1,0 +1,353 @@
+{
+  "schema": "bounded-private-prefilled-factory-content-failure-receipt-v1",
+  "date": "2026-10-15",
+  "date_timezone": "Asia/Hong_Kong",
+  "capture_utc_date": "2026-10-14",
+  "outcome": "original three-page job failed; first full pair accepted512 separately; next first-NOR original gap rejected",
+  "references": {
+    "job_report": {
+      "file": "artifacts/prefilled-factory-next3-20261015/report.json",
+      "bytes": 4621,
+      "sha256": "ebf89fc59e7d675151797e15acf7d5abd3cecdb8efa1ba0994dfdad5c5f45c44"
+    },
+    "plan": {
+      "file": "artifacts/prefilled-factory-next3-20261015/plan.json",
+      "bytes": 11517,
+      "sha256": "ce57a141d0ab9fe5c4cb2d19479b3c2b385027d56d1031325841e6d528d57685"
+    },
+    "accepted_page_report": {
+      "file": "artifacts/prefilled-factory-next3-20261015/page0-1eca00/report.json",
+      "bytes": 127694,
+      "sha256": "41f505a765762ca7f53d49dceca66a6054025c328b5fc83893af36568c7b4a69"
+    },
+    "accepted_hci": {
+      "file": "artifacts/prefilled-factory-next3-20261015/page0-1eca00/session.btsnoop",
+      "bytes": 38700,
+      "sha256": "1633d1299c8d574a6e322fe267dfc7e693ad5666650f32bf3f19544d949f4271"
+    },
+    "failed_page_report": {
+      "file": "artifacts/prefilled-factory-next3-20261015/page1-1ecc00/report.json",
+      "bytes": 76820,
+      "sha256": "db8c3426ad15729b0c4127837d6b955a0c7633e68a3a89bf1e0a8c620a1fec99"
+    },
+    "failed_hci": {
+      "file": "artifacts/prefilled-factory-next3-20261015/page1-1ecc00/session.btsnoop",
+      "bytes": 24849,
+      "sha256": "80d9e6197b978631ef49db486a44db5690301471e489d0238b66a089d87617d1"
+    },
+    "source_manifest": {
+      "file": "artifacts/prefilled-factory-next3-20261015/source-snapshot/manifest.json",
+      "bytes": 48106,
+      "sha256": "32c990c53544e8f2eb33d4681f7cadf5fade6a952e93be68b93859d0df1a1cfd"
+    },
+    "preflight_review": {
+      "file": "artifacts/prefilled-factory-next3-20261015/preflight-review.json",
+      "bytes": 1375,
+      "sha256": "73422bb4a008c921827bbe95638f97053b6758ff5bd308a94a2920ee71923a1d"
+    },
+    "original_checks_before": {
+      "file": "artifacts/prefilled-factory-one-preflight-20261015/checks-before.json",
+      "bytes": 37015,
+      "sha256": "fc510a57e013412970ff94da7772ba692da6e6105c3a0b7fcbfffb8910b23071"
+    },
+    "original_checks_after": {
+      "file": "artifacts/prefilled-factory-one-preflight-20261015/checks-after.json",
+      "bytes": 37015,
+      "sha256": "fc510a57e013412970ff94da7772ba692da6e6105c3a0b7fcbfffb8910b23071"
+    },
+    "original_just_check_log": {
+      "file": "artifacts/prefilled-factory-one-preflight-20261015/just-check.log",
+      "bytes": 3047,
+      "sha256": "6d05b34216a9c3fb27e45321144310c93db8ed6bde2422c018b8a5ce2146594a"
+    },
+    "original_build_log": {
+      "file": "artifacts/prefilled-factory-one-preflight-20261015/uv-build.log",
+      "bytes": 179,
+      "sha256": "937bcf6f77f21fd510d0bc6ebfcac53235c976fc096e61be3a67efeb891e959c"
+    },
+    "sanitized_root_replay": {
+      "file": "artifacts/prefilled-factory-next3-20261015/sanitized-root-replay.json",
+      "bytes": 1593,
+      "sha256": "a1934f6c56145e1edbbf903764586de058b7a04be27cd60ac59f9a5c4250884f"
+    },
+    "gap_diagnostic_metadata": {
+      "file": "artifacts/prefilled-factory-next3-20261015/private-gap-diagnostic.json",
+      "bytes": 403,
+      "sha256": "38c9e0134a1924b286e2f749799b8adcd2aca05b8ca2b7f2d61adff7c251029e"
+    },
+    "bounded_prefix_format_metadata": {
+      "file": "artifacts/factory-prefix-format-20261015/sanitized-summary.json",
+      "bytes": 1120,
+      "sha256": "f2f592018b2b7014bbf5f64805dabac2acd931b3552349008bdfcf831c91f55a"
+    }
+  },
+  "source": {
+    "source_files": 147,
+    "test_files": 133,
+    "snapshot_files": 280,
+    "snapshot_and_isolated_all_lengths_hashes_equal": true,
+    "isolated_source": "/home/rocry/w/_tmp/rcominote-prefilled-link-frozen-20261015",
+    "inherited_full_checks": "2634 tests +159 subtests in48.10s;338format/lint;sdist+wheel passed",
+    "original_check_window_inputs_unchanged": 344,
+    "new_full_check_run": false,
+    "independent_replay_snapshot_modules": 104,
+    "current_root_source_equality_claimed": false
+  },
+  "chronology": {
+    "manifest_created_at": "2026-10-14T16:58:41.897692+00:00",
+    "planned_at": "2026-10-14T17:07:29.183853+00:00",
+    "whole_started_at": "2026-10-14T17:08:24.274742+00:00",
+    "accepted_page_started_at": "2026-10-14T17:08:29.659632+00:00",
+    "accepted_page_ended_at": "2026-10-14T17:09:05.642022+00:00",
+    "failed_page_started_at": "2026-10-14T17:09:06.348111+00:00",
+    "final_identity_response_at": "2026-10-14T17:09:26.871464+00:00",
+    "failed_page_ended_at": "2026-10-14T17:09:29.041263+00:00",
+    "whole_ended_at": "2026-10-14T17:09:29.041613+00:00",
+    "whole_started_hkt": "2026-10-15T01:08:24.274742+08:00",
+    "whole_ended_hkt": "2026-10-15T01:09:29.041613+08:00"
+  },
+  "plan": {
+    "profile": "bounded-physical-nor-ram-prefilled-pairs-v1",
+    "offsets": [
+      2017792,
+      2018304,
+      2018816
+    ],
+    "budget": {
+      "connections": 3,
+      "downloads": 15,
+      "producers": 6,
+      "ram_exports": 6,
+      "sd_writes": 12,
+      "new_files": 0,
+      "nor_writes": 0,
+      "ram_writes": 0,
+      "deletes": 0,
+      "parameter_transactions": 45,
+      "max_verified_bytes": 1536
+    },
+    "max_new_private_bytes": 1536,
+    "parent_successful_one_report_sha256": "faea542373793c9bdcd59637d35ef6f15ce7cd13c1f024c4558a9271cc1138f7",
+    "parent_history_names": 64,
+    "planned_fresh_nor_nonce_count": 6,
+    "nonce_values_withheld": true,
+    "content_policy": "all-critical-chain-bytes-in-difference-prefix-v2",
+    "gap_policy": "prefill-exact-three-producer-dump-layouts-v2",
+    "independent_nor_oracle_used": false,
+    "independent_ram_oracle_bytes": 4096,
+    "independent_ram_oracle_sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b",
+    "ram_prefill_before_each_nor": true,
+    "distinct_sd_difference_and_nor_marker_predecessors": true
+  },
+  "accepted_prefix": {
+    "original_completed_pages": 1,
+    "physical_range": [
+      2017792,
+      2018304
+    ],
+    "paired_private_bytes": 512,
+    "original_page_ok": true,
+    "original_all_five_stages_complete": true,
+    "att_packets": 261,
+    "hci_records": 451,
+    "hci_bytes": 38700,
+    "complete_parameter_transactions": 15,
+    "pending": 0,
+    "status_events": 0,
+    "downloads": 5,
+    "ram_exports": 2,
+    "nor_producers": 2,
+    "same_file_overwrites": 4,
+    "new_files": 0,
+    "acks": [
+      4,
+      6,
+      4,
+      6
+    ],
+    "f0_frames": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "strict_nor_difference_prefix_bytes": [
+      4096,
+      4096
+    ],
+    "two_actual512_results_equal": true,
+    "two_ram_full_oracle_matches": true,
+    "factory_byte_oracle": false,
+    "normal_disconnect_reason": 22,
+    "normal_disconnect_record": 450,
+    "carrier_and_sector_hashes_withheld": true
+  },
+  "failed_page": {
+    "target": 2018304,
+    "original_ok": false,
+    "original_first_nor_ok": false,
+    "error": "ValueError: Unexpected text after current producer before dump",
+    "only_error_fields_removed_in_local_communication_view": [
+      "error",
+      "capture_error",
+      "operations[1].error"
+    ],
+    "all_original_flags_unchanged": true,
+    "baseline_original_ok": true,
+    "prefill_first_original_ok": true,
+    "prefill_full4096_independent_oracle_match": true,
+    "first_nor_full4096_download": true,
+    "first_nor_barrier_complete": true,
+    "original_content_returned": false,
+    "first_sector_bin_exists": false,
+    "nor_oracle_compared": false,
+    "new_policy_parse_used": false,
+    "strict_difference_prefix_against_ram": 4096,
+    "gap_bytes": 53,
+    "gap_ascii_escaped": "\\n[os][I][1145]: Ble wake lock 0\\r\\n\\r\\n[logsrv][I][679]: ",
+    "gap_matches_original_three_forms": false,
+    "original_gap_error_reproduced": true,
+    "no_power_state_or_root_cause_inference": true,
+    "att_packets": 176,
+    "hci_records": 310,
+    "hci_bytes": 24849,
+    "complete_parameter_transactions": 9,
+    "pending": 0,
+    "status_events": 0,
+    "downloads": 3,
+    "ram_exports": 1,
+    "nor_producer_attempts": 1,
+    "same_file_overwrites": 2,
+    "acks": [
+      4,
+      6
+    ],
+    "f0_frames": [
+      0,
+      0
+    ],
+    "normal_disconnect_reason": 22,
+    "normal_disconnect_record": 309,
+    "prefill_second_and_second_nor_untouched": true,
+    "third_page_1ece00_zero_io": true,
+    "accepted_nor_bytes": 0,
+    "carrier_and_sector_hashes_withheld": true
+  },
+  "totals": {
+    "connections": 2,
+    "att_packets": 437,
+    "hci_records": 761,
+    "hci_bytes": 63549,
+    "complete_parameter_transactions": 24,
+    "pending": 0,
+    "status_events": 0,
+    "downloads": 8,
+    "ram_exports": 3,
+    "nor_producers_or_attempts": 3,
+    "same_file_overwrites": 6,
+    "new_files": 0,
+    "deletions": 0,
+    "nor_memory_writes": 0,
+    "ram_memory_writes": 0,
+    "normal_disconnects": 2,
+    "original_whole_ok": false,
+    "accepted_private_bytes": 512,
+    "no_automatic_retry": true
+  },
+  "latest_verified_observation": {
+    "identity_response_at": "2026-10-14T17:09:26.871464+00:00",
+    "failed_page_end": "2026-10-14T17:09:29.041263+00:00",
+    "whole_end": "2026-10-14T17:09:29.041613+00:00",
+    "firmware": "010004",
+    "mode": "NOTE",
+    "running": "idle",
+    "bound": false,
+    "charging": true,
+    "battery_percent": 100,
+    "free_capacity": 59589,
+    "all_actual_state_barriers_final_after_unchanged": true,
+    "current_file_bytes": 4096,
+    "current_file": "artifacts/prefilled-factory-next3-20261015/page1-1ecc00/first/download.bin",
+    "current_file_changed_since_one_success": true,
+    "old_one_file_still_current_claimed": false,
+    "content_hash_withheld": true,
+    "nor_content_accepted": false,
+    "whole_failed_job_parent_gate_rejects": true,
+    "new_failure_checkpoint_exists": false,
+    "ancestor_reserved_names": 64,
+    "new_planned_names": 6,
+    "reserved_history_names": 70,
+    "actual_new_nor_producers": 3,
+    "unexecuted_nor_names_reserved": 3,
+    "all_reserved_are_observed_successes_claimed": false
+  },
+  "coverage_overlay": {
+    "previous_strong_bytes": 43792,
+    "previous_potential_bytes": 198996,
+    "new_private_bytes": 512,
+    "strong_available_bytes": 44304,
+    "potential_available_bytes": 199508,
+    "historical_B_bytes_not_upgraded": 155204,
+    "new_private_raw_range": [
+      2017792,
+      2018304
+    ],
+    "factory_total_fully_paired_bytes": 3072,
+    "factory_paired_union": [
+      2015232,
+      2018304
+    ],
+    "factory_remaining_missing_full_pair_bytes": 5120,
+    "system_contiguous_range": [
+      147456,
+      153600
+    ],
+    "system_bytes": 6144,
+    "frozen_ASOF_inventory_unchanged": true,
+    "cross_capture_union_not_atomic_snapshot": true,
+    "cohort_confirmed": 70,
+    "cohort_older_declared": 1,
+    "cohort_historical_possible": 1,
+    "cohort_upper_bound": 72,
+    "complete_4MiB_backup_restore_own_runtime": false
+  },
+  "privacy": {
+    "factory_raw_config_values_withheld": true,
+    "factory_sector_and_carrier_hex_withheld": true,
+    "factory_sector_and_carrier_content_hashes_withheld": true,
+    "nonce_values_and_nonce_hashes_withheld": true,
+    "published_binary": false,
+    "system_codec_decode_or_comparison": false,
+    "only_transport_report_plan_source_file_digests_and_preexisting_public_RAM_oracle_published": true
+  },
+  "limits": [
+    "Only first page accepted512; failed1ecc00 first full carrier is not accepted raw NOR, last page zeroIO.",
+    "OSnotice is exact observed metadata; no new grammar allowance, power-state/root-cause inference or automatic retry.",
+    "Current failed-first file/state fully observed but original failedwhole remains inadmissible; no new checkpoint.",
+    "Old ONE successful file is historical, not current after these overwrites.",
+    "Logical strict4096 evidence does not establish SD atomicity, clear resident history or prove general reliability.",
+    "No deletion, full factory backup, full4MiB backup, reliable restore or own firmware completion."
+  ],
+  "bounded_host_format_check": {
+    "scope": "existing six fully paired sectors concatenated privately, no new physical acquisition or coverage",
+    "captured_prefix_bytes": 3072,
+    "six_first_second_pairs_equal": true,
+    "header_magic": "NVSR",
+    "header_version": 1,
+    "header_crc_valid": true,
+    "header_crc_not_whole_segment_crc": true,
+    "declared_segment_bytes": 4096,
+    "complete_records_with_crc_valid": 12,
+    "record_name_hash_span_padding_checked": true,
+    "first_measured_empty_item_header_at": 416,
+    "measured_FF_bytes_after_records": 2656,
+    "uncaptured_first_segment_tail_bytes": 1024,
+    "whole_factory_missing_bytes": 5120,
+    "unread_bytes_filled_or_inferred": false,
+    "keys_values_content_hashes_withheld": true,
+    "active_runtime_selection_verified": false,
+    "atomic_snapshot_or_restore_proof": false,
+    "new_raw_coverage_bytes": 0,
+    "historical12_record_claim_newly_invented": false
+  }
+}

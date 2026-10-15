@@ -1,0 +1,2 @@
+# Preserve raw evidence bytes, including captures with CRLF text payloads.
+docs/evidence/**/*.bin binary

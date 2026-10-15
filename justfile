@@ -27,3 +27,8 @@ check-image image:
 [group('firmware')]
 check-lark toolchain:
     "{{ toolchain }}/bin/arm-none-eabi-gcc" -mcpu=cortex-m4 -mthumb -mfloat-abi=soft -ffreestanding -std=c11 -Wall -Wextra -Werror -pedantic -fsyntax-only firmware/reference/lark_layout_assertions.c
+
+# Offline compile + CPU-model UART trace comparison; no physical UART access.
+[group('firmware')]
+check-uart toolchain image out:
+    uv run tools/check_comi_uart.py "{{ toolchain }}" "{{ image }}" "{{ out }}"

@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "scope": "Static official hardware docs. Source identities pinned; no vendor code, no hardware access. Typed selected records only; no electrical connectivity claims.",
+  "revision_warning": "Archive and member filenames claim V1.3_20230822; workbook Sheet1!D2 still says ATS3085C_Production_Test_Board_V1.2_20230705.sch_BOM. Revision equality unproven.",
+  "sources": [
+    {"archive": "ATS3085C_Production_Test_Board_V1.3_20230822.7z", "member": "ATS3085C_Production_Test_Board_V1.3_20230822.pcb", "file": "unpacked/ATS3085C_Production_Test_Board_V1.3_20230822/ATS3085C_Production_Test_Board_V1.3_20230822.pcb", "bytes": 1465111, "sha256": "3e0d3722134d37a7287d61108fa31a2ed27c2dc5e7effcab8410f7b6cc656ea0"},
+    {"archive": "ATS3085C_Production_Test_Board_V1.3_20230822.7z", "member": "ATS3085C_Production_Test_Board_V1.3_20230822.sch", "file": "unpacked/ATS3085C_Production_Test_Board_V1.3_20230822/ATS3085C_Production_Test_Board_V1.3_20230822.sch", "bytes": 325986, "sha256": "078718b5601da3f33e8d5f1a75f147fa1f913d0e716e1c395a49443dc279a68a"},
+    {"archive": "ATS3085C_Production_Test_Board_V1.3_20230822.7z", "member": "ATS3085C_Production_Test_Board_V1.3_BOM_20230822.xlsx", "file": "unpacked/ATS3085C_Production_Test_Board_V1.3_20230822/ATS3085C_Production_Test_Board_V1.3_BOM_20230822.xlsx", "bytes": 13810, "sha256": "7409b7119315dac19dfb77d0378de4472053c27ce3fe7c602dca0bc343ce45dc"}
+  ],
+  "primary_parsers": [
+    {"name": "KiCad PADS Logic schema", "commit": "ac8691a64afa0a78d04f0073e82896bcdec82657", "url": "https://github.com/KiCad/kicad-source-mirror/tree/ac8691a64afa0a78d04f0073e82896bcdec82657/eeschema/sch_io/pads", "files": ["pads_sch_binary.ksy", "pads_sch_sdb.cpp", "pads_sch_binary_parser.cpp"], "use": "Limited Python field/directory decoder follows these schemas; not full KiCad import."},
+    {"name": "padsts", "commit": "a01e30148f8ce919773489e6cdb9ac852f728bb4", "url": "https://github.com/tscircuit/padsts/tree/a01e30148f8ce919773489e6cdb9ac852f728bb4", "use": "Direct Bun parser source; checked parsed PCB serialization byte-for-byte equal original."}
+  ],
+  "bom": {
+    "format": "OOXML ZIP SpreadsheetML",
+    "zip_crc_pass": true,
+    "sheet": "Sheet1",
+    "sheet_member": "xl/worksheets/sheet1.xml",
+    "xml_member_sha256": {
+      "xl/workbook.xml": "f4da34d962782857981f291f77601bfa66f37e08161d2c7f2ec6e32085a28ccb",
+      "xl/_rels/workbook.xml.rels": "353383fbe90f202be596bdf0a86439c704d7024f4f8c19ebc9d06b42a341dba1",
+      "xl/sharedStrings.xml": "e4ce0c958136081db74c5c2d4d662e3dfa32c727e0412fc45d5a3109ba52bd7b",
+      "xl/worksheets/sheet1.xml": "7c6d0ea4a4531da8607ee600d41ee94fa8813f6b911b0955c49882051cdb2073"
+    },
+    "selected_cells": {
+      "D2": "ATS3085C_Production_Test_Board_V1.2_20230705.sch_BOM",
+      "B27": "Flash",
+      "C27": "UN1",
+      "D27": "SOIC8-W",
+      "E27": "GD25Q128EWIG",
+      "B33": "MCU",
+      "C33": "U2",
+      "D33": "QFNWB68",
+      "E33": "ATS3085C",
+      "B77": "USB Port",
+      "C77": "JU2",
+      "D77": "USB-SMT4",
+      "E77": "minUSB",
+      "B78": "USB TYPE-C单排12PIN SMT L=6.5mm,H=3.2mm",
+      "C78": "J11",
+      "D78": "USB#UBC019-12P-D95",
+      "E78": "UBC019-12P-D95"
+    },
+    "limitation": "Parts list only; no netlist; revision caveat above."
+  },
+  "schematic": {
+    "format": "PADS Logic binary",
+    "version": "0x000d",
+    "file_bytes": 325986,
+    "header": {
+      "offset": 0,
+      "bytes": 32,
+      "raw_hex": "00fe0d0000000000000000000000000000000000000000000000000000000000",
+      "sha256": "4a620a62b1ad1df25ff84ec29ba08a6e314ca7b4a0750844bf67bdaa3d77ea67"
+    },
+    "outer_directory": {
+      "offset": 32,
+      "entries": 20,
+      "entry_bytes": 28,
+      "end_offset": 592
+    },
+    "outer_controller_ordinal": {
+      "offset": 592,
+      "value": 36
+    },
+    "outer_pool_bounds": [
+      {"controller": 3, "offset": 6676, "bytes": 240, "count": 5},
+      {"controller": 4, "offset": 6916, "bytes": 808, "count": 404},
+      {"controller": 8, "offset": 18268, "bytes": 13464, "count": 153}
+    ],
+    "sheets": [
+      {"index": 0, "offset": 54995, "bytes": 93621},
+      {"index": 1, "offset": 148616, "bytes": 22061},
+      {"index": 2, "offset": 170677, "bytes": 68737},
+      {"index": 3, "offset": 239414, "bytes": 61966},
+      {"index": 4, "offset": 301380, "bytes": 24560}
+    ],
+    "footer": {
+      "offset": 325944,
+      "bytes": 42,
+      "raw_hex": "7b46343939374437302d414638412d313144302d413337332d3030303030303030303030307d34f90400",
+      "sha256": "25cb3a6b7e0d48229607ae77baa3dd243ca31572ffee6b7bbe454a75d29529aa"
+    },
+    "derived_blocks_end_offset": 325940,
+    "global_net_record_bytes": 88,
+    "global_net_count": 153,
+    "selected_global_nets": [
+      {"record": 1, "name": "VCC_NAND", "membership_count": 1, "name_field_relative_offset": 24, "name_field_bytes": 56, "offset": 18356, "bytes": 88, "raw_hex": "00000000f6000000ffffffffffffffff01000000000000005643435f4e414e44000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffff", "sha256": "8cf49ff736c594f49a7eb34897661973979018152693bd5040a8c6ffe28260e9"},
+      {"record": 25, "name": "R_MCU_RX", "membership_count": 1, "name_field_relative_offset": 24, "name_field_bytes": 56, "offset": 20468, "bytes": 88, "raw_hex": "0000000055010000ffffffffffffffff0100000000000000525f4d43555f5258000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffff", "sha256": "e492813a3bac4db5656827c6940fe9c0ea8adbcb36d71e82893cb81fa0584182"},
+      {"record": 30, "name": "R_MCU_TX", "membership_count": 1, "name_field_relative_offset": 24, "name_field_bytes": 56, "offset": 20908, "bytes": 88, "raw_hex": "0000000056010000ffffffffffffffff0100000000000000525f4d43555f5458000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffff", "sha256": "560aa3e5667bac3a6a143200123ba43690a8f61eb3d07f762cd10e3b737b4a04"},
+      {"record": 60, "name": "L_MCU_TX", "membership_count": 1, "name_field_relative_offset": 24, "name_field_bytes": 56, "offset": 23548, "bytes": 88, "raw_hex": "0000000057010000ffffffffffffffff01000000000000004c5f4d43555f5458000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffff", "sha256": "7de64fa9481fbb67f730f3e4180241a7920ed27abd33e5b696d53e258bb683c8"},
+      {"record": 113, "name": "WIO1", "membership_count": 2, "name_field_relative_offset": 24, "name_field_bytes": 56, "offset": 28212, "bytes": 88, "raw_hex": "0000000087000000ffffffffffffffff020000000000000057494f3100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffff", "sha256": "cec783090ead698edf881b93c3cde8f185c8e68789995a9d783c2d8b29dee59a"},
+      {"record": 114, "name": "WIO0", "membership_count": 2, "name_field_relative_offset": 24, "name_field_bytes": 56, "offset": 28300, "bytes": 88, "raw_hex": "0000000089000000ffffffffffffffff020000000000000057494f3000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffff", "sha256": "f105bb39b49ed481bca9aa26e8fa265b89f9e23d62c017b8ac1938d580a879dd"},
+      {"record": 130, "name": "USB_DM", "membership_count": 2, "name_field_relative_offset": 24, "name_field_bytes": 56, "offset": 29708, "bytes": 88, "raw_hex": "00000000d9000000ffffffffffffffff02000000000000005553425f444d0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffff", "sha256": "a2358b3572635febab8129e5416989fbd621b7bd10fbfae9f90990a77038d95e"},
+      {"record": 132, "name": "USB_DP", "membership_count": 2, "name_field_relative_offset": 24, "name_field_bytes": 56, "offset": 29884, "bytes": 88, "raw_hex": "00000000db000000ffffffffffffffff02000000000000005553425f44500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffff", "sha256": "e5dfe6db33f9cd450840aa28cd7ec007ced000b0184c99e4a5bf1b110103a923"},
+      {"record": 142, "name": "L_MCU_RX", "membership_count": 1, "name_field_relative_offset": 24, "name_field_bytes": 56, "offset": 30764, "bytes": 88, "raw_hex": "0000000058010000ffffffffffffffff01000000000000004c5f4d43555f5258000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffff", "sha256": "e3f661c89377fdab1d62d2af4ce34764a81bf5d835fbaa9b5695bcb2eec05377"}
+    ],
+    "selected_placements": [
+      {"sheet_index": 2, "record": 31, "reference": "U2", "reference_field_relative_offset": 94, "reference_field_bytes": 40, "offset": 210006, "bytes": 136, "raw_hex": "ffffffffffffffff00000000000000000000000035000000140000009900000003c6a2cc00000000840301040000030001049d030000010086c525cc88cd27d4fcff0b0077008900e0ff00004500020061006100610061000a0a0a0a0000553200000000000000000000000000000000000000000000000000000000000000000000000000000002", "sha256": "307b2c69d494789703818d28126cbb5673f7fe688f87f9f4c3f44da9257c2848"},
+      {"sheet_index": 2, "record": 44, "reference": "UN1", "reference_field_relative_offset": 94, "reference_field_bytes": 40, "offset": 211774, "bytes": 136, "raw_hex": "ffffffffffffffff000000000000000000000000940000002400000001000000ddd28bca000000007800140000000000e8fefbff0000000053d23fc9c3d4dfcafcff0e007a00b200d3ff00000800010064006400640064000a0a0a0a0000554e31000000000000000000000000000000000000000000000000000000000000000000000000000002", "sha256": "28c1d884685be818b8019f1e5b489efdb88b55ff3289ce2d758ed716da7388f7"},
+      {"sheet_index": 3, "record": 22, "reference": "JU2", "reference_field_relative_offset": 94, "reference_field_bytes": 40, "offset": 280104, "bytes": 136, "raw_hex": "ffffffffffffffff00000000000000000000000034000000180000001b000000e6c406c800000100f4019600000004000000ceff0000060073c270c769c4bec9fcff0b007800ba00e9ff00000900030061006100610061000a0a0a0600004a553200000000000000000000000000000000000000000000000000000000000000000000000000000a", "sha256": "ce4b5f9eded88298e633e4c847bfdd2864f40e03cfe2a26ec70ad9d3324369ac"},
+      {"sheet_index": 3, "record": 36, "reference": "J11", "reference_field_relative_offset": 94, "reference_field_bytes": 40, "offset": 282008, "bytes": 136, "raw_hex": "ffffffffffffffff0000000000000000000000005e00000036000000b80000002fcfc6c40000000000001d0600000000000000000000000080ce7ac49ad222cbfcff13007f008600dbff00001400010061006400640064000a0a0a0a00004a3131000000000000000000000000000000000000000000000000000000000000000000000000000002", "sha256": "892bd0a23f73f735749f5bbcebd7482e2a7ac69e4a4ccefa535d8285611ebcb5"}
+    ],
+    "limitation": "Verified bounded outer/sheet pools, net reserved fields, fixed name/reference fields, footer/back-pointer. No full symbol, pin-number, connection, reset/debug topology decode."
+  },
+  "pcb": {
+    "format": "PADS binary",
+    "version": "0x2026",
+    "file_bytes": 1465111,
+    "header": {
+      "offset": 0,
+      "bytes": 10,
+      "raw_hex": "00ff2620000000000000",
+      "sha256": "d657235a235ccb7965c4dea26be28ce16f49968fcc2888f8fbf80465fe378749"
+    },
+    "directory": {
+      "offset": 10,
+      "entries": 74,
+      "entry_bytes": 16,
+      "end_offset": 1194
+    },
+    "last_section_end_offset": 1068760,
+    "footer": {
+      "offset": 1465065,
+      "bytes": 46,
+      "raw_hex": "000000007b32464531383332302d363434382d313164312d413431322d3030303030303030303030307de95a1600",
+      "sha256": "1a6c1eb5c4ce7f04c90bbfe86e1628048cb3ee01fd8c5bd96ada56168f265905"
+    },
+    "round_trip_identical": true,
+    "reported_layers": ["TOP", "BOTTOM"],
+    "limitation": "Lossless container preservation establishes no electrical correctness. Semantic section support partial/opaque; no copper, route, or connector connectivity claims."
+  },
+  "applicability": "Official ATS3085C board/part reference; does not identify CoMi magnetic cable pinout, independent reset, exact package/revision, helper compatibility, or safe restore image."
+}

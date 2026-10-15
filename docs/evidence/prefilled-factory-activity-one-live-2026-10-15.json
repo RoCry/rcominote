@@ -1,0 +1,206 @@
+{
+  "schema": "fixed-prefilled-factory-activity-one-success-receipt-v1",
+  "date": "2026-10-15",
+  "date_timezone": "Asia/Hong_Kong",
+  "capture_utc_date": "2026-10-14",
+  "outcome": "Independent fixed1ecc00 pair succeeded;512 new private physical NOR bytes; actualFAST branch only",
+  "references": {
+    "whole_report": {
+      "file": "artifacts/prefilled-factory-activity-one-20261015/report.json",
+      "bytes": 6609,
+      "sha256": "435925dd8ffb04e0f7a0d664d893f1bf434e40f4e22af5174b8b034d56b6ccda"
+    },
+    "plan": {
+      "file": "artifacts/prefilled-factory-activity-one-20261015/plan.json",
+      "bytes": 8133,
+      "sha256": "11383ed4baffde1254aa1830593717d43c432e9b8a5585d9fb3ba3def8406939"
+    },
+    "page_report": {
+      "file": "artifacts/prefilled-factory-activity-one-20261015/page0-1ecc00/report.json",
+      "bytes": 128011,
+      "sha256": "41299c162c2f3299bb4ee0080aad36943eb8399569ae29cc26ad7ff2d6cf0c0c"
+    },
+    "hci": {
+      "file": "artifacts/prefilled-factory-activity-one-20261015/page0-1ecc00/session.btsnoop",
+      "bytes": 38700,
+      "sha256": "90506b4dd4cc42ec1d233968e11a91ff6739038876234482a05c969f72e797e6"
+    },
+    "source_manifest": {
+      "file": "artifacts/prefilled-factory-activity-one-20261015/source-snapshot/manifest.json",
+      "bytes": 50655,
+      "sha256": "aa5a0b4faf2bc4c49db74e08ecf50b9124f929d7c8c9a02d25cb5bc30b58818e"
+    },
+    "preflight_review": {
+      "file": "artifacts/prefilled-factory-activity-one-20261015/preflight-review.json",
+      "bytes": 1887,
+      "sha256": "9e97245c843a27d4ee2806d2a44bc78275e02ac5d8ab7868f3af253c3c7a7631"
+    },
+    "default_ownership_checkpoint": {
+      "file": "artifacts/prefilled-factory-default-checkpoint-20261015/checkpoint.json",
+      "bytes": 8936,
+      "sha256": "f8709545602b0321deebaf03d4026b703935d850f60333fe1e4547079f61f248"
+    },
+    "checks_before": {
+      "file": "artifacts/prefilled-factory-activity-preflight-20261015/checks-before.json",
+      "bytes": 38536,
+      "sha256": "cc1c7b3ea77073aedb508d283a31b8057e169e5398e9c28aa5ae30c9186efe5b"
+    },
+    "checks_after": {
+      "file": "artifacts/prefilled-factory-activity-preflight-20261015/checks-after.json",
+      "bytes": 38536,
+      "sha256": "cc1c7b3ea77073aedb508d283a31b8057e169e5398e9c28aa5ae30c9186efe5b"
+    },
+    "just_check_log": {
+      "file": "artifacts/prefilled-factory-activity-preflight-20261015/just-check.log",
+      "bytes": 3215,
+      "sha256": "7d48b74d05ca40a4ead2d7e4c70b820cdeb62c11c5cd27afbb3ef7b6cc2f284f"
+    },
+    "build_log": {
+      "file": "artifacts/prefilled-factory-activity-preflight-20261015/uv-build.log",
+      "bytes": 179,
+      "sha256": "937bcf6f77f21fd510d0bc6ebfcac53235c976fc096e61be3a67efeb891e959c"
+    },
+    "host_throughput_review": {
+      "file": "artifacts/raw-export-throughput-host-review-20261015/evidence.json",
+      "bytes": 33327,
+      "sha256": "23ac6c5da08d874451b8335d77824cae24651bdabe47526dd922cbae7d6c6b5f"
+    }
+  },
+  "source": {
+    "source_files": 153,
+    "test_files": 140,
+    "snapshot_files": 293,
+    "snapshot_and_isolated_all_lengths_hashes_equal": true,
+    "isolated_source": "/home/rocry/w/_tmp/rcominote-prefilled-activity-frozen-20261015",
+    "fresh_preIO_checks": "2786tests+159subtests56.73s/351formatlint/build",
+    "declared_check_inputs_before_equal_after": 357,
+    "new_full_check_run": true,
+    "independent_snapshot_modules": 106,
+    "later_current_source_checks_claimed": false
+  },
+  "chronology": {
+    "manifest_created_at": "2026-10-14T18:40:49.763403+00:00",
+    "default_checkpoint_created_at": "2026-10-14T18:41:34.898170+00:00",
+    "planned_at": "2026-10-14T18:41:35.610362+00:00",
+    "whole_started_at": "2026-10-14T18:43:43.274495+00:00",
+    "page_started_at": "2026-10-14T18:43:48.507707+00:00",
+    "actual_final_identity_response_at": "2026-10-14T18:44:21.057460+00:00",
+    "page_ended_at": "2026-10-14T18:44:23.247140+00:00",
+    "whole_ended_at": "2026-10-14T18:44:23.255244+00:00",
+    "time_fields_not_interchanged": true
+  },
+  "offline_checkpoint": {
+    "device_io": 0,
+    "new_raw_nor_coverage_bytes": 0,
+    "original_notice_one_and_NEXT3_failures_retained": true,
+    "old_notice_checkpoint_SD4096_provenance_carried_forward": true,
+    "notice_one_zero_write_and_complete_identity_proof": true,
+    "latest_identity_response_at": "2026-10-14T18:13:06.952796+00:00",
+    "historical_reserved_names": 72,
+    "new_SD_read_at_checkpoint_identity_not_claimed": true,
+    "resident_printk_ring_unchanged_assumed": false,
+    "new_trial_live_full_baseline_equals_checkpoint_object": true
+  },
+  "actual_success": {
+    "whole_and_page_original_ok": true,
+    "completed_pairs": 1,
+    "physical_range": [
+      "0x1ecc00",
+      "0x1ece00"
+    ],
+    "new_private_physical_bytes": 512,
+    "two_actual_sector_files_equal": true,
+    "each_sector_bytes": 512,
+    "independent_NOR_byte_oracle": false,
+    "two_fresh_producers_and_nonces": true,
+    "strict_difference_written_prefix_bytes": [
+      4096,
+      4096
+    ],
+    "both_RAM_prefills_full4096_equal_independent_oracle": true,
+    "all_five_stage_communication_content_source_and_state_gates_passed": true,
+    "first_and_second_gap_forms": [
+      "plain",
+      "composer-before-crlf"
+    ],
+    "new_wake_notice_form_radio_exercised": false,
+    "startup_policy": "startup-remote-fast-or-default-once",
+    "actual_startup_mode": "fast",
+    "startup_pulse_performed": false,
+    "integrated_DEFAULT_pulse_branch_radio_exercised": false,
+    "no_automatic_retry_or_extension": true
+  },
+  "actual_communication": {
+    "att_packets": 261,
+    "hci_records": 451,
+    "hci_bytes": 38700,
+    "complete_parameter_transactions": 15,
+    "pending_parameter_transactions": 0,
+    "status_events": 0,
+    "full_GATT_host_ATT_HCI_epoch_binding": true,
+    "normal_disconnect_reason": "0x16",
+    "disconnect_after_final_ATT_within_bounded_close": true,
+    "actual_before_after_equal": true,
+    "firmware_version": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "bound": false,
+    "charging": true,
+    "battery_percent": 100,
+    "free_capacity": 59589
+  },
+  "actual_budget": {
+    "connections": 1,
+    "downloads": 5,
+    "RAM_exports": 2,
+    "NOR_producers": 2,
+    "same_owned_file_SD_overwrites": 4,
+    "new_files": 0,
+    "NOR_writes": 0,
+    "explicit_RAM_writes": 0,
+    "deletes": 0,
+    "new_raw_NOR_coverage_bytes": 512,
+    "active_seconds_limit": 60,
+    "not_zero_storage_writes": true
+  },
+  "ownership_history_and_coverage": {
+    "fresh_live_baseline_verified_before_overwrites": true,
+    "latest_actual_owned_file_complete_bytes": 4096,
+    "successful_parent_gate_admitted": true,
+    "reserved_nonce_history_before": 72,
+    "new_NOR_names": 2,
+    "reserved_nonce_history_after": 74,
+    "scratch_cohort_confirmed": 70,
+    "scratch_cohort_old_declared": 1,
+    "scratch_cohort_historical_possible": 1,
+    "scratch_cohort_upper_bound": 72,
+    "cohort_distinct_from_nonce_history": true,
+    "strong_A_bytes": 44816,
+    "historical_B_bytes": 155204,
+    "potential_available_bytes": 200020,
+    "factory_complete_pair_bytes": 3584,
+    "factory_missing_bytes": 4608,
+    "system_contiguous_raw_bytes": 6144,
+    "system_physical_range": [
+      "0x24000",
+      "0x25800"
+    ],
+    "ASOF24200_inventory_unchanged_overlay_only": true
+  },
+  "host_throughput_context": {
+    "host_review_only_no_device_IO_or_coverage": true,
+    "actlog_sdfs2_consumer_not_established_as_binary_bridge": true,
+    "idealized_failure_free_linear_projection": "36s per512 pair ->81.16h for4MiB;160MiB downloads/128MiB SDwrites",
+    "projection_is_not_ETA_or_new_export_capability": true,
+    "review_semantics_not_independently_rederived_by_this_receipt": true,
+    "do_not_blindly_scale_existing_route_to_whole_flash": true
+  },
+  "privacy_and_limits": {
+    "all_factory_carrier_sector_content_bytes_hashes_hex_and_nonces_withheld": true,
+    "metadata_only_no_public_binary": true,
+    "all_old_receipts_captures_checkpoints_unchanged": true,
+    "original_failed_jobs_still_replay_rejected": true,
+    "later_plans_captures_not_part_of_this_receipt": true,
+    "full_4MiB_backup_restore_own_runtime_incomplete": true
+  }
+}

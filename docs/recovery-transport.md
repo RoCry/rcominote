@@ -47,7 +47,9 @@ vendor CDB `cd`，子命令：RAM 写 `13`、storage 写 `10`、切换 helper `2
 仍会上传/执行 helper，且 `bEraseFlag` 来自默认为真的 `erase_flash`；**不能把这个选项当作 CoMi 无损探测模式**。
 本轮仅阅读源码。[旧升级路径][old-upgrade] [默认配置][old-config]
 
-未从本次核查获得 ATS308x ROM 命令号、端点或认证握手与旧协议一致的证据。
+2026-10-13续查：[恢复的maker宿主](host-selection-followup.md#2026-10-13-recovered-maker-host-conditional-default-now-identified)独立确认31 B `USBC`/`cd`包头、13上传和20切换构造；显式指定已持有DLL时走family0/CClassical。样例入口接收既有transport对象，没有CoMi→该选择的证据；函数读取13 B状态但不校验内容。它补上参考host的具体调用链，不证明本机ROM兼容。
+
+仍未获得CoMi ROM端点、认证握手或对上述命令的实际验收。
 独立 host 值得研究，但应先拿对应 ROM/原厂下载器的静态证据或匹配 EVK trace 做逐字节核对，不能先改 PID 再试。
 
 ## 恢复触发的准确边界

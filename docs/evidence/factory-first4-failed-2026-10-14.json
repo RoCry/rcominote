@@ -1,0 +1,358 @@
+{
+  "kind": "sanitized-private-factory-four-page-job-failure",
+  "date": "2026-10-14",
+  "original_job_ok": false,
+  "original_failed_retained": true,
+  "new_strong_coverage_bytes": 512,
+  "public_binary_outputs": [],
+  "factory_content_or_digest_published": false,
+  "originals": {
+    "report": {
+      "file": "artifacts/paired-nor-factory-first4-20261014/report.json",
+      "bytes": 3985,
+      "sha256": "ff4b584ca01ad11ab0f2c5775e08500acc2688b9ef631b725d947e8c385b97c3"
+    },
+    "plan": {
+      "file": "artifacts/paired-nor-factory-first4-20261014/plan.json",
+      "bytes": 8695,
+      "sha256": "a5736ce9d45f8204dab7c71088199095bf3010ef6505c1e0f34beba0ebba65be"
+    },
+    "preflight_review": {
+      "file": "artifacts/paired-nor-factory-first4-20261014/preflight-review.json",
+      "bytes": 763,
+      "sha256": "9ecc7fe856622f0e78acfc6c22f0c8129a85c2488c71aa2322d87c6c99c9f649"
+    }
+  },
+  "frozen_source": {
+    "manifest": {
+      "file": "artifacts/paired-nor-factory-first4-20261014/source-snapshot/manifest.json",
+      "bytes": 44794,
+      "sha256": "9af7580903246d32070e9e59933b126b79cb72c335216ecf9a365d6563e7ff24"
+    },
+    "source_files": 140,
+    "test_files": 122,
+    "isolated_source": "/home/rocry/w/_tmp/rcominote-stage1-frozen-20261014",
+    "snapshot_and_isolated_all262_lengths_hashes_verified": true,
+    "checks_inherited_from_root_pre_io": {
+      "tests_passed": 2301,
+      "subtests_passed": 159,
+      "formatted": 319,
+      "lint": "passed",
+      "uv_build": "passed",
+      "new_full_check_run": false
+    },
+    "snapshot_project_modules": 98,
+    "all_origins_from_frozen_snapshot": true,
+    "current_evolving_source_not_used": true
+  },
+  "chronology": {
+    "planned_at": "2026-10-14T11:15:40.569276+00:00",
+    "started_at": "2026-10-14T11:15:46.521263+00:00",
+    "ended_at": "2026-10-14T11:16:39.193113+00:00",
+    "source_manifest_created_at": "2026-10-14T11:14:49.712217+00:00",
+    "manifest_before_plan_before_start": true
+  },
+  "planned_physical_offsets": [
+    2015232,
+    2015744,
+    2016256,
+    2016768
+  ],
+  "original_budget": {
+    "connections": 4,
+    "downloads": 12,
+    "producers": 8,
+    "sd_writes": 8,
+    "new_files": 0,
+    "parameter_transactions": 36,
+    "max_verified_bytes": 2048
+  },
+  "pages": [
+    {
+      "physical_range": [
+        2015232,
+        2015744
+      ],
+      "original_ok": true,
+      "report": {
+        "file": "artifacts/paired-nor-factory-first4-20261014/page0-1ec000/report.json",
+        "bytes": 82609,
+        "sha256": "db765e41b3c270f90e2bc482a52443344a011b40eddc56cb02e91bdf9f5b705e"
+      },
+      "hci": {
+        "file": "artifacts/paired-nor-factory-first4-20261014/page0-1ec000/session.btsnoop",
+        "bytes": 25213,
+        "sha256": "4991ddf64c7e899f6f14488fcf4519652dc92130623c773e943f7e00d24f0dd6"
+      },
+      "started_at": "2026-10-14T11:15:51.358103+00:00",
+      "ended_at": "2026-10-14T11:16:14.797080+00:00",
+      "att_packets": 182,
+      "hci_records": 318,
+      "complete_parameter_transactions": 9,
+      "pending": 0,
+      "status_events": 0,
+      "complete_downloads": 3,
+      "private_rings": [
+        {
+          "file": "artifacts/paired-nor-factory-first4-20261014/page0-1ec000/baseline/download.bin",
+          "bytes": 4096,
+          "private_contents_and_digest_not_published": true
+        },
+        {
+          "file": "artifacts/paired-nor-factory-first4-20261014/page0-1ec000/first/download.bin",
+          "bytes": 4096,
+          "private_contents_and_digest_not_published": true
+        },
+        {
+          "file": "artifacts/paired-nor-factory-first4-20261014/page0-1ec000/second/download.bin",
+          "bytes": 4096,
+          "private_contents_and_digest_not_published": true
+        }
+      ],
+      "private_sector_files": [
+        {
+          "file": "artifacts/paired-nor-factory-first4-20261014/page0-1ec000/first/sector.bin",
+          "bytes": 512,
+          "private_contents_and_digest_not_published": true
+        },
+        {
+          "file": "artifacts/paired-nor-factory-first4-20261014/page0-1ec000/second/sector.bin",
+          "bytes": 512,
+          "private_contents_and_digest_not_published": true
+        }
+      ],
+      "normal_disconnect": {
+        "status": 0,
+        "reason": 22,
+        "record": 317
+      },
+      "final_identity_verified": true,
+      "free_capacity_mib": 59589,
+      "pair_accepted": true,
+      "accepted_coverage_bytes": 512
+    },
+    {
+      "physical_range": [
+        2015744,
+        2016256
+      ],
+      "original_ok": false,
+      "report": {
+        "file": "artifacts/paired-nor-factory-first4-20261014/page1-1ec200/report.json",
+        "bytes": 79219,
+        "sha256": "3ced0d93deb87e7e69f4cd533378909f6eeea7af1566cb2035071b346d6aaa05"
+      },
+      "hci": {
+        "file": "artifacts/paired-nor-factory-first4-20261014/page1-1ec200/session.btsnoop",
+        "bytes": 25213,
+        "sha256": "d9f8239a7c3bbe6bb3a72ac55ce52265f3b4ac3cfe8dafdcd42f4592f05deedb"
+      },
+      "started_at": "2026-10-14T11:16:15.360890+00:00",
+      "ended_at": "2026-10-14T11:16:39.192750+00:00",
+      "att_packets": 182,
+      "hci_records": 318,
+      "complete_parameter_transactions": 9,
+      "pending": 0,
+      "status_events": 0,
+      "complete_downloads": 3,
+      "private_rings": [
+        {
+          "file": "artifacts/paired-nor-factory-first4-20261014/page1-1ec200/baseline/download.bin",
+          "bytes": 4096,
+          "private_contents_and_digest_not_published": true
+        },
+        {
+          "file": "artifacts/paired-nor-factory-first4-20261014/page1-1ec200/first/download.bin",
+          "bytes": 4096,
+          "private_contents_and_digest_not_published": true
+        },
+        {
+          "file": "artifacts/paired-nor-factory-first4-20261014/page1-1ec200/second/download.bin",
+          "bytes": 4096,
+          "private_contents_and_digest_not_published": true
+        }
+      ],
+      "private_sector_files": [
+        {
+          "file": "artifacts/paired-nor-factory-first4-20261014/page1-1ec200/first/sector.bin",
+          "bytes": 512,
+          "private_contents_and_digest_not_published": true
+        }
+      ],
+      "normal_disconnect": {
+        "status": 0,
+        "reason": 22,
+        "record": 317
+      },
+      "final_identity_verified": true,
+      "free_capacity_mib": 59589,
+      "pair_accepted": false,
+      "accepted_coverage_bytes": 0
+    }
+  ],
+  "failure": {
+    "original_error": "ValueError: Current chain depends on tail outside difference-proven written prefix",
+    "page_offset": 2015744,
+    "operation": "second",
+    "first_original_ok": true,
+    "second_original_ok": false,
+    "second_original_live_complete": false,
+    "second_barrier_complete": true,
+    "full_second_download_and_final_after_complete": true,
+    "second_sector_file_present": false,
+    "original_policy": "canonical-row-address-leading-spaces-only-v3",
+    "exact_original_error_reproduced": true,
+    "difference_proven_prefix_bytes": 4095,
+    "first_unproven_physical_byte": 4095,
+    "column": 41,
+    "current_and_previous_ascii": "f",
+    "field": "variable low hexadecimal payload digit",
+    "not_formatter_constant": true,
+    "constant_only_formatter_mask_cannot_prove_this_byte": true,
+    "new_mask_or_second_payload_oracle_comparison": false,
+    "actual_short_write_or_precise_root_cause_proven": false,
+    "next_page_first_single_observation_coverage_bytes": 0,
+    "later_pages_zero_io": [
+      2016256,
+      2016768
+    ]
+  },
+  "actual_budget": {
+    "connections": 2,
+    "complete_downloads": 6,
+    "download_bytes_each": 4096,
+    "producer_and_existing_file_overwrites": 4,
+    "new_files": 0,
+    "deletions": 0,
+    "att_packets": 364,
+    "hci_records": 636,
+    "hci_bytes": 50426,
+    "complete_parameter_transactions": 18,
+    "pending": 0,
+    "status_events": 0,
+    "normal_disconnects": 2,
+    "acks_each": 6,
+    "f1_each": true,
+    "f0_each": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cohort": {
+      "confirmed": 70,
+      "older_declared": 1,
+      "historical_possible": 1,
+      "maximum": 72
+    }
+  },
+  "current_observation": {
+    "at": "2026-10-14T11:16:39.193113+00:00",
+    "owned_ring_bytes": 4096,
+    "private_current": {
+      "file": "artifacts/paired-nor-factory-first4-20261014/page1-1ec200/second/download.bin",
+      "bytes": 4096,
+      "private_contents_and_digest_not_published": true
+    },
+    "current_content_digest_published": false,
+    "firmware": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "bound": false,
+    "charging": true,
+    "battery": 100,
+    "free_capacity_mib": 59589,
+    "whole_current_file_and_final_identity_verified": true,
+    "failed_job_parent_admission": false,
+    "new_current_communication_checkpoint_created": false,
+    "ancestor_names": 42,
+    "all_original_planned_names": 8,
+    "union_reserved_names": 50
+  },
+  "actual_stage1_parent_checkpoint": {
+    "checkpoint": {
+      "file": "artifacts/paired-nor-status-content-checkpoint-20261014/checkpoint.json",
+      "bytes": 7160,
+      "sha256": "44671cc064c673c0643621d4e20a35b884589e2c8ab5dec3d3d6b12420503f48"
+    },
+    "attached_source_manifest": {
+      "file": "artifacts/paired-nor-status-content-checkpoint-20261014/source-snapshot/manifest.json",
+      "bytes": 44794,
+      "sha256": "9af7580903246d32070e9e59933b126b79cb72c335216ecf9a365d6563e7ff24"
+    },
+    "profile": "verified-content-failure-communication-checkpoint-v2",
+    "original_capture_profile": "single-connection-known-pairs-status-literals-v2",
+    "created_at": "2026-10-14T11:14:50.265626+00:00",
+    "original_observation_ended_at": "2026-10-14T10:50:08.889093+00:00",
+    "device_io": 0,
+    "new_coverage_bytes": 0,
+    "full_original_status4_nine_communication_and_failure_replayed": true,
+    "prior_names": 42,
+    "all_original_failed_flags_retained": true,
+    "following_live_factory_baseline_matches_all4096": true
+  },
+  "coverage_overlay": {
+    "previous_strong_bytes": 41232,
+    "previous_potential_available_bytes": 196436,
+    "accepted_private_pair_bytes": 512,
+    "strong_bytes": 41744,
+    "potential_available_bytes": 196948,
+    "factory_total_range": [
+      2015232,
+      2023424
+    ],
+    "factory_total_bytes": 8192,
+    "factory_fully_replayable_available_bytes": 512,
+    "factory_missing_bytes": 7680,
+    "system_contiguous_bytes_unchanged": 6144,
+    "system_range": [
+      147456,
+      153600
+    ],
+    "asof24200_inventory_unchanged": true,
+    "old_bulk_receipt": {
+      "file": "docs/evidence/paired-nor25000-four-live-2026-10-14.json",
+      "bytes": 14630,
+      "sha256": "0a5f8a8722a20f728468513485df9bc85f301d7c1e1b1ef0a5642c564a11b314"
+    },
+    "original_status_failure_receipt": {
+      "file": "docs/evidence/status-known-failed-2026-10-14.json",
+      "bytes": 10172,
+      "sha256": "84877210a358e0ca4d984ac1583c771e5c9954f1e3034aea566b31f3e3662db5"
+    },
+    "full_4mib_backup_restore_own_firmware_complete": false
+  },
+  "physical_controls_user_report": {
+    "quote": "只有电源键和录音滑键",
+    "reported_controls": [
+      "power button",
+      "recording slider"
+    ],
+    "reset_hole_or_button_confirmed": false,
+    "exposed_removable_battery_connector_confirmed": false,
+    "long_press_power_independent_rom_exit_proven": false,
+    "no_claim_all_unobserved_hidden_points_absent": true
+  },
+  "limits": [
+    "Private factorybytes/configvalues/contenthashes remain private; only transport/source/report/plan/checkpoint provenance digests published.",
+    "Only completed first512 pair counts; next first observation and rejected second do not count.",
+    "Full current communication/state is verified but no new checkpoint or successful failed-job parent admission.",
+    "Formatter-constant mask cannot certify an unchanged variable payload digit outside the difference prefix.",
+    "No automatic retry, new policy reparse, system codec decode, NOR write, deletion or device action by this review.",
+    "All original captures/flags/source snapshots and old frozen receipts unchanged."
+  ],
+  "next_plan_only": {
+    "document": "docs/verified-prefill-control-plan-2026-10-14.md",
+    "live_verified": false,
+    "known_offsets": [
+      0,
+      16896
+    ],
+    "connections": 1,
+    "downloads": 5,
+    "owned_file_writes": 4,
+    "parameter_transactions": 15,
+    "new_raw_nor_coverage_bytes": 0,
+    "strict_prefix_required": 4096
+  }
+}

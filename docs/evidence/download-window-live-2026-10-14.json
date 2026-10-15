@@ -1,0 +1,262 @@
+{
+  "schema": 1,
+  "status": "final-success-two-existing-file-download-windows",
+  "profile": "per-download-window-known-ram4096",
+  "owned_serial": "C261CF0430",
+  "original_ok": true,
+  "started_at": "2026-10-14T01:32:45.146076+00:00",
+  "ended_at": "2026-10-14T01:33:08.058112+00:00",
+  "scope": "Two offset0 reads of the existing known RAM4096 SD test file; no Actions commands, new SD files or NOR operations",
+  "existing_test_filename": "rc6ae65544fe",
+  "result": {
+    "connections": 1,
+    "exact_oracle_downloads": 2,
+    "bytes_each": 4096,
+    "parameter_transactions": 5,
+    "host_normalizations": 2,
+    "accepted_remote_transactions": 3,
+    "new_sd_test_files": 0,
+    "actions_commands": 0,
+    "nor_operations": 0,
+    "new_raw_nor_coverage_bytes": 0,
+    "whole_session_fixed_interval6_required": false,
+    "long_term_reliability_proven": false,
+    "full_nor_backup_or_flashing_proven": false
+  },
+  "original_report": {
+    "file": "artifacts/window-ram-20261014/report.json",
+    "bytes": 45433,
+    "sha256": "8ffa203974b1f939ba3365186c771bc4128fa37aeba8efbb5133f9c5ab8aaa6e"
+  },
+  "complete_private_hci_capture": {
+    "file": "artifacts/window-ram-20261014/session.btsnoop",
+    "bytes": 16535,
+    "sha256": "248e57886ca3d61e02ba5694d310fefe6194e7f709c921a0b4baf6ab12da7277",
+    "records": 205,
+    "reported_drops": 0
+  },
+  "att_hci_binding": {
+    "verified": true,
+    "packets": 115,
+    "comparison": "exact within each direction"
+  },
+  "monitor_exit": 0,
+  "monitor_stop": {
+    "signal": "SIGINT",
+    "requested": true,
+    "delivery": "sent"
+  },
+  "original_ram_file_parent": {
+    "source_report": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/live-sd-bootstrap-20261013/report.json",
+      "bytes": 9787,
+      "sha256": "a76e99224ef2482f8749f1a4d7036774cd9eda761171ff5cd97c7ae83ffbd8a9"
+    },
+    "original_overall_ok": false,
+    "creation_actions_verified": true,
+    "original_status_modified": false
+  },
+  "oracle": {
+    "published_compressed_image": "minimal-image-2026-10-13/original-system.bin.gz",
+    "image_decompressed_bytes": 927632,
+    "image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+    "slice": [906496, 910592],
+    "bytes": 4096,
+    "sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b",
+    "new_public_binary_created": false
+  },
+  "time_origin": {
+    "event": "Owned Connection Complete",
+    "record": 18,
+    "timestamp_us": 63960197578780009,
+    "initial_interval": 48,
+    "initial_latency": 4,
+    "initial_timeout": 600
+  },
+  "parameter_transactions": [
+    {"stage": "startup-remote-fast", "origin": "remote", "remote_request": {"record": 104, "relative_us": 5057443, "identifier": 235, "min": 6, "max": 12, "latency": 0, "timeout": 500}, "remote_accept": {"record": 106, "relative_us": 5057555, "identifier": 235, "result": 0}, "request": {"record": 107, "relative_us": 5057579, "min": 6, "max": 12, "latency": 0, "timeout": 500, "min_length": 0, "max_length": 0}, "status": {"record": 108, "relative_us": 5059061, "status": 0}, "update": {"record": 110, "relative_us": 6016101, "latency": 0, "timeout": 500, "interval": 12, "status": 0}},
+    {"stage": "first-host-normalization", "origin": "host", "remote_request": null, "remote_accept": null, "request": {"record": 112, "relative_us": 6034167, "min": 6, "max": 6, "latency": 0, "timeout": 500, "min_length": 1, "max_length": 1}, "status": {"record": 113, "relative_us": 6035051, "status": 0}, "update": {"record": 114, "relative_us": 6151080, "latency": 0, "timeout": 500, "interval": 6, "status": 0}},
+    {"stage": "first-remote-slow", "origin": "remote", "remote_request": {"record": 137, "relative_us": 6347447, "identifier": 236, "min": 32, "max": 48, "latency": 4, "timeout": 600}, "remote_accept": {"record": 140, "relative_us": 6347478, "identifier": 236, "result": 0}, "request": {"record": 141, "relative_us": 6347500, "min": 32, "max": 48, "latency": 4, "timeout": 600, "min_length": 0, "max_length": 0}, "status": {"record": 142, "relative_us": 6348998, "status": 0}, "update": {"record": 144, "relative_us": 6436012, "latency": 4, "timeout": 600, "interval": 48, "status": 0}},
+    {"stage": "second-host-normalization", "origin": "host", "remote_request": null, "remote_accept": null, "request": {"record": 155, "relative_us": 7065074, "min": 6, "max": 6, "latency": 0, "timeout": 500, "min_length": 1, "max_length": 1}, "status": {"record": 156, "relative_us": 7066089, "status": 0}, "update": {"record": 157, "relative_us": 7996036, "latency": 0, "timeout": 500, "interval": 6, "status": 0}},
+    {"stage": "second-remote-slow", "origin": "remote", "remote_request": {"record": 180, "relative_us": 8185436, "identifier": 237, "min": 32, "max": 48, "latency": 4, "timeout": 600}, "remote_accept": {"record": 183, "relative_us": 8185483, "identifier": 237, "result": 0}, "request": {"record": 184, "relative_us": 8185503, "min": 32, "max": 48, "latency": 4, "timeout": 600, "min_length": 0, "max_length": 0}, "status": {"record": 185, "relative_us": 8187020, "status": 0}, "update": {"record": 187, "relative_us": 8296142, "latency": 4, "timeout": 600, "interval": 48, "status": 0}}
+  ],
+  "download_windows": [
+    {
+      "operation_id": "first",
+      "original_ok": true,
+      "live_complete": true,
+      "download": {
+        "file": "artifacts/window-ram-20261014/first/download.bin",
+        "bytes": 4096,
+        "sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b"
+      },
+      "download_bytes": 4096,
+      "received_bytes": 4096,
+      "independent_oracle_equal": true,
+      "normalization_invoked_relative_us": 6020610,
+      "normalization_update_record": 114,
+      "window_start": {
+        "att_index": 55,
+        "first_hci_record": 116,
+        "last_hci_record": 116,
+        "relative_us": 6157300
+      },
+      "window_end": {
+        "att_index": 75,
+        "first_hci_record": 139,
+        "last_hci_record": 139,
+        "relative_us": 6347449
+      },
+      "request_tx_to_boyi_end_us": 190149,
+      "remote_slow_request_record": 137,
+      "remote_slow_request_minus_boyi_end_us": -2,
+      "slow_effective_update_record": 144,
+      "slow_update_minus_boyi_end_us": 88563,
+      "identity_barrier": {
+        "first_hci_record": 145,
+        "last_hci_record": 153,
+        "first_relative_us": 6452699,
+        "last_relative_us": 7037524
+      },
+      "state_verification": {
+        "other_state_equal": true,
+        "free_capacity_unit": "MiB (integer firmware report)",
+        "free_capacity_before": 59591,
+        "free_capacity_after": 59591,
+        "free_capacity_decrease": 0,
+        "allowed_decrease": 0
+      },
+      "checkpoint": {
+        "file": "artifacts/window-ram-20261014/first/checkpoint.json",
+        "bytes": 26596,
+        "sha256": "15c1ec8bcf2c81bb7715279725e65cd5640c399ae4c92463eaafaedcb4c57a96"
+      }
+    },
+    {
+      "operation_id": "second",
+      "original_ok": true,
+      "live_complete": true,
+      "download": {
+        "file": "artifacts/window-ram-20261014/second/download.bin",
+        "bytes": 4096,
+        "sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b"
+      },
+      "download_bytes": 4096,
+      "received_bytes": 4096,
+      "independent_oracle_equal": true,
+      "normalization_invoked_relative_us": 7041892,
+      "normalization_update_record": 157,
+      "window_start": {
+        "att_index": 82,
+        "first_hci_record": 159,
+        "last_hci_record": 159,
+        "relative_us": 7998830
+      },
+      "window_end": {
+        "att_index": 102,
+        "first_hci_record": 182,
+        "last_hci_record": 182,
+        "relative_us": 8185436
+      },
+      "request_tx_to_boyi_end_us": 186606,
+      "remote_slow_request_record": 180,
+      "remote_slow_request_minus_boyi_end_us": 0,
+      "slow_effective_update_record": 187,
+      "slow_update_minus_boyi_end_us": 110706,
+      "identity_barrier": {
+        "first_hci_record": 188,
+        "last_hci_record": 196,
+        "first_relative_us": 8340583,
+        "last_relative_us": 8897445
+      },
+      "state_verification": {
+        "other_state_equal": true,
+        "free_capacity_unit": "MiB (integer firmware report)",
+        "free_capacity_before": 59591,
+        "free_capacity_after": 59591,
+        "free_capacity_decrease": 0,
+        "allowed_decrease": 0
+      },
+      "checkpoint": {
+        "file": "artifacts/window-ram-20261014/second/checkpoint.json",
+        "bytes": 42713,
+        "sha256": "983e765efcd86b3d0cea6bd8a91061988e53542cc19ac20658c81642ec2fa45a"
+      }
+    }
+  ],
+  "causal_boundaries": {
+    "startup_remote_transaction_completed_before_first_normalization": true,
+    "complete_initial_identity_and_file_list_before_first_download": true,
+    "prior_logical_parameter_settlement_required_before_each_normalization": true,
+    "normalization_update_complete_precedes_download_request": true,
+    "remote_slow_request_can_precede_boyi_end": true,
+    "second_remote_request_and_end_have_equal_timestamp_but_distinct_ordered_records": true,
+    "actual_slow_update_complete_after_boyi_end": true,
+    "post_download_identity_begins_after_slow_update_complete": true,
+    "first_identity_barrier_complete_before_second_normalization": true,
+    "no_effective_parameter_update_inside_either_download_window": true,
+    "whole_session_parameter_changes_observed": true,
+    "final_capture_logical_pending": [],
+    "captured_disconnects": [],
+    "physical_worker_exit_observed": false,
+    "hidden_device_parameter_cache_proven_empty": false,
+    "record_order_preserved_no_timestamp_sort_or_repair": true
+  },
+  "before_and_final_state": {
+    "version": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "charging": true,
+    "battery": 100,
+    "free_capacity": 59591
+  },
+  "state_verification": {
+    "other_state_equal": true,
+    "free_capacity_unit": "MiB (integer firmware report)",
+    "free_capacity_before": 59591,
+    "free_capacity_after": 59591,
+    "free_capacity_decrease": 0,
+    "allowed_decrease": 0
+  },
+  "source_snapshot": {
+    "manifest": {
+      "file": "artifacts/window-ram-20261014/source-snapshot/manifest.json",
+      "bytes": 2738,
+      "sha256": "8af620d7f6db3c9b9a1408221f41c46645f83ffa12b8d6ba4b85e4ea788c00dc"
+    },
+    "files": 18,
+    "source_hashes": {
+      "src/rcominote/experiments/window_ram_probe.py": {"bytes": 11254, "sha256": "49b49179c13fa6c4c5aa64aa85249cefa2c59fa9746a4cfdb2fee2ccfc4bdf49"},
+      "src/rcominote/experiments/window_ram_audit.py": {"bytes": 11042, "sha256": "846ac5c306c9c1bc392e08522b0d1ddfb3ed462932ca8ee0a005005956c32250"},
+      "src/rcominote/experiments/param_window.py": {"bytes": 13004, "sha256": "54cf3ec892edb98a05cc78fa9196d1bd3fc89c5b9926728affe5debc70fd151c"},
+      "src/rcominote/experiments/dual_nor_probe.py": {"bytes": 17662, "sha256": "d25c4f66d2e60b0f1f99f2317ad349ddd88eb5fc6d0d06ab68dbe2e31a1152ff"},
+      "src/rcominote/experiments/dual_client.py": {"bytes": 7691, "sha256": "673445a29e3b1208cd14c8a3786068904cc377271741626bf8a7ee63cc9c8163"},
+      "src/rcominote/experiments/dual_audit.py": {"bytes": 14349, "sha256": "b977b34a083e12d5753d9b3ffb780a9a5268b33146f02dd69dd9d51145337a49"},
+      "src/rcominote/experiments/dual_hci.py": {"bytes": 3856, "sha256": "6164a5a2dfdfae7faf79008b626fb4992984c09fc09ff7bdede92a2e8f8cfc8f"},
+      "src/rcominote/experiments/sd_warm_download.py": {"bytes": 6050, "sha256": "f58f8d8cb9f67397c5fbd930c407c9815bf04d4376a64c9d0c71c14604a89102"},
+      "src/rcominote/experiments/sd_nor_probe.py": {"bytes": 20783, "sha256": "62f9bae44a5e205bd167bdd0827e81c73f20cadccb1ee0b2e598eda1f917cb4b"},
+      "src/rcominote/experiments/sd_nor_targets.py": {"bytes": 7445, "sha256": "176f60c522839afa584b4e4371f819f7181e9b87498663a68afda58591cdc358"},
+      "src/rcominote/experiments/sd_bootstrap.py": {"bytes": 14847, "sha256": "e7847be080d6dc96b351a26b7b184e6a130b812634dbd7bfb52040f2ebc0faf7"},
+      "src/rcominote/experiments/hci_interval.py": {"bytes": 8425, "sha256": "3120e3939d38185861259b3ca61772fcbe81cb1682b2921e1f92203009d282d9"},
+      "src/rcominote/experiments/hci_interval_io.py": {"bytes": 7462, "sha256": "366c06104a507ce01299366b044f55d8bd1b9aa3127dc17686468c8fcef10783"},
+      "src/rcominote/experiments/hci_monitor.py": {"bytes": 3738, "sha256": "f3632128e2ec96e890339ba43ba8d8e9e8d04199971d20df9603693a516956d2"},
+      "src/rcominote/linux_att.py": {"bytes": 12563, "sha256": "2570b758c881b37057210bc8554e536d2b67b207a4948a31bcec1fa5b9d71537"},
+      "src/rcominote/linux_client.py": {"bytes": 9444, "sha256": "4e0c975d8e66a83a31d4852e7c5d90a517f4b5286ad80681e454c8839a6845ab"},
+      "src/rcominote/connection.py": {"bytes": 17634, "sha256": "5024ddb82b9eec10f2ae7eca98b16fe0258dfc7ef7109eb704121e15362423dc"},
+      "src/rcominote/protocol.py": {"bytes": 5113, "sha256": "9c8c55fff945202dbf6efb06be03026779eb023fdae94c3c5f5357e0a6ac1db2"}
+    }
+  },
+  "offline_validation": {
+    "device_io": false,
+    "full_R_replay_including_parent_and_original_capture_passed": true,
+    "all18_snapshot_source_hashes_verified": true,
+    "both_retained_downloads_equal_independent_oracle": true,
+    "original_failed_artifacts_promoted": false
+  },
+  "publication": {
+    "metadata_only": true,
+    "complete_private_att_hci_downloads_info_audio_inventory_published": false,
+    "new_binary_or_verifier_created": false,
+    "original_files_modified": false
+  }
+}

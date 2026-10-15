@@ -1,0 +1,256 @@
+{
+  "kind": "failed-status4-known-control-with-complete-nine-transaction-communication",
+  "date": "2026-10-14",
+  "original_ok": false,
+  "original_failed_retained": true,
+  "new_raw_nor_coverage_bytes": 0,
+  "public_binary_outputs": [],
+  "successful_parent_admission": false,
+  "originals": {
+    "report": {
+      "file": "artifacts/paired-nor-status-known-20261014/report.json",
+      "bytes": 84078,
+      "sha256": "95903f2ed549f9f676af35be6504c5f8517262455f013abdde52ca02d812be21"
+    },
+    "plan": {
+      "file": "artifacts/paired-nor-status-known-20261014/plan.json",
+      "bytes": 8100,
+      "sha256": "68dda7fef8722ec5969bb0af9628e4b0081dd9d3d50d9cebf6953e5e64cc89b2"
+    },
+    "hci": {
+      "file": "artifacts/paired-nor-status-known-20261014/session.btsnoop",
+      "bytes": 25227,
+      "sha256": "9a41204bb945c80491e7d78155aa8f14231d151694799384aa03561002c51cfa"
+    },
+    "monitor_stderr": {
+      "file": "artifacts/paired-nor-status-known-20261014/btmon.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "rings": [
+      {
+        "file": "artifacts/paired-nor-status-known-20261014/page0-000000/baseline/download.bin",
+        "bytes": 4096,
+        "sha256": "87146b6b9e18eca8af8c09e3fcfe074260386d38ebed08aefbab91c98b34d364"
+      },
+      {
+        "file": "artifacts/paired-nor-status-known-20261014/page0-000000/first/download.bin",
+        "bytes": 4096,
+        "sha256": "d835f27f5b61572d51643068782a6247cd267c1393721f67069f2381073359ab"
+      },
+      {
+        "file": "artifacts/paired-nor-status-known-20261014/page0-000000/second/download.bin",
+        "bytes": 4096,
+        "sha256": "02c4d169642728323622c3369455be5d7b71a448eb6898cfb6394fcf9976a6c4"
+      }
+    ],
+    "first_private_candidate_sector": {
+      "file": "artifacts/paired-nor-status-known-20261014/page0-000000/first/sector.bin",
+      "bytes": 512,
+      "sha256": "72952b98341a3089765c6cc8dd35ddc93ae699698d1455ce74dea1071cc277ec"
+    }
+  },
+  "frozen_source": {
+    "manifest": {
+      "file": "artifacts/paired-nor-status-known-20261014/source-snapshot/manifest.json",
+      "bytes": 44803,
+      "sha256": "545c5f014b4d895da3586ada36acad87958d05285740eb4ae8df28cd2d64d2c4"
+    },
+    "source_files": 140,
+    "test_files": 122,
+    "created_at": "2026-10-14T10:48:18.926882+00:00",
+    "manifest_check_claim": {
+      "passed": 2294,
+      "subtests_passed": 159,
+      "formatted": 319,
+      "lint": "passed",
+      "uv_build": "passed",
+      "root_pre_io_execution_not_independent_full_suite_rerun": true
+    },
+    "all262_snapshot_file_lengths_and_hashes_verified": true,
+    "imported_project_modules": 98,
+    "all_module_origins_from_snapshot": true,
+    "prior_source_check_counts_unchanged": true
+  },
+  "chronology": {
+    "planned_at": "2026-10-14T10:49:23.012360+00:00",
+    "started_at": "2026-10-14T10:49:37.208304+00:00",
+    "failed_second_started_at": "2026-10-14T10:49:59.461505+00:00",
+    "failed_second_ended_at": "2026-10-14T10:50:06.362024+00:00",
+    "ended_at": "2026-10-14T10:50:08.889093+00:00",
+    "manifest_before_checkpoint_creation_before_plan_before_start": true
+  },
+  "failure": {
+    "error": "ValueError: Current chain depends on tail outside difference-proven written prefix",
+    "capture_error": "ValueError: Current chain depends on tail outside difference-proven written prefix",
+    "failure_stage": "group0 second payload after complete download/SLOW/immediate real identity",
+    "original_prefix_policy": "canonical-row-padding-and-status-interior-literals-v4",
+    "original_status4_payload_error_reproduced": true,
+    "exception_local_difference_prefix": 4095,
+    "exception_local_first_unproven_physical_byte": 4095,
+    "row": 25,
+    "column": 42,
+    "column_expression": "12+3*10",
+    "current_ascii": "space",
+    "previous_ascii": "space",
+    "byte_role": "fixed row trailing separator, still strict in original STATUS4",
+    "new_mask_reparse_or_second_oracle_comparison": false,
+    "second_sector_file_present": false,
+    "full4096_overwrite_or_root_cause_proven": false
+  },
+  "distinct_failed_receipt_communication": {
+    "success_audit_not_modified_or_relabelled": true,
+    "original_envelope_transactions_argument": 9,
+    "original_transfer_group_operation_count": 2,
+    "original_final_identity_transactions_argument": 9,
+    "att_packets": 182,
+    "hci_records": 319,
+    "hci_bytes": 25227,
+    "complete_transactions": 9,
+    "pending_transactions": 0,
+    "status_events": 0,
+    "all_att_hci_gatt_and_final_state_bound": true,
+    "downloads": 3,
+    "download_bytes_each": 4096,
+    "producer_attempts": 2,
+    "existing_file_overwrite_attempts": 2,
+    "new_files": 0,
+    "deletions": 0,
+    "actions_each": {
+      "acks": 6,
+      "f1": true,
+      "pending_bytes": 0,
+      "f0_frames": 0
+    },
+    "normal_disconnect": {
+      "status": 0,
+      "reason": 22,
+      "record": 318,
+      "after_final_identity_att": true,
+      "passive_observation_us": 2167256,
+      "maximum_wait_seconds": 8
+    },
+    "monitor_exit": 0,
+    "monitor_stop": {
+      "signal": "SIGINT",
+      "requested": true,
+      "delivery": "sent"
+    }
+  },
+  "groups": {
+    "group0": {
+      "physical_offset": 0,
+      "original_candidate": false,
+      "original_live_complete": false,
+      "first_original_ok": true,
+      "first_original_live_complete": true,
+      "first_independent_boot0_oracle_matched": true,
+      "second_original_ok": false,
+      "second_original_live_complete": false,
+      "second_barrier_complete": true,
+      "pair_accepted": false,
+      "baseline_matches_actual_offline_checkpoint_8714": true,
+      "first_prefix_bytes": 4096,
+      "first_status_literal_exemptions": []
+    },
+    "group1": {
+      "physical_offset": 16896,
+      "original_candidate": false,
+      "original_live_complete": false,
+      "extra_baseline_present": false,
+      "continuation": null,
+      "first_started": false,
+      "second_started": false,
+      "commands": 0,
+      "files": 0
+    }
+  },
+  "current_observation": {
+    "at": "2026-10-14T10:50:08.889093+00:00",
+    "owned_ring_bytes": 4096,
+    "owned_ring_sha256": "02c4d169642728323622c3369455be5d7b71a448eb6898cfb6394fcf9976a6c4",
+    "firmware": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "bound": false,
+    "charging": true,
+    "battery": 100,
+    "free_capacity_mib": 59589,
+    "complete_current_file_and_final_state_verified": true,
+    "parent_admission": false,
+    "successful_ancestor_prior_names": 38,
+    "failed_plan_reserved_names": 4,
+    "union_reserved_names": 42,
+    "union_is_not_successful_parent_history": true
+  },
+  "unchanged_coverage": {
+    "bulk_receipt": {
+      "file": "docs/evidence/paired-nor25000-four-live-2026-10-14.json",
+      "bytes": 14630,
+      "sha256": "0a5f8a8722a20f728468513485df9bc85f301d7c1e1b1ef0a5642c564a11b314"
+    },
+    "bulk_raw2048": {
+      "file": "docs/evidence/paired-nor25000-four-live-2026-10-14/nor25000-25800.bin",
+      "bytes": 2048,
+      "sha256": "5cc9f32531c5c4fe543d63ea8e8896752d7f19c2c43d3d6b0dc05475a3191edb"
+    },
+    "first4k_receipt": {
+      "file": "docs/evidence/system-first4k-raw-live-2026-10-14.json",
+      "bytes": 20247,
+      "sha256": "6baaeb4752a03ae29db0549fa371eb270a6f110c05e4ad8484ed5e57a1b17ce5"
+    },
+    "strong_bytes": 41232,
+    "potential_available_bytes": 196436,
+    "system_contiguous_raw_range": [
+      147456,
+      153600
+    ],
+    "system_contiguous_raw_bytes": 6144,
+    "complete_4mib_backup_restore_own_firmware": false,
+    "original_v3_failure_receipt": {
+      "file": "docs/evidence/continuous-known-failed-2026-10-14.json",
+      "bytes": 8119,
+      "sha256": "b16901dad347a42168f2d9e50fe03a87a023efd557eb7a07d9f90e48acfdfe8c"
+    }
+  },
+  "limits": [
+    "Current full4096/state verified, but original failed STATUS4 wholejob is not an admissible parent.",
+    "Nine communication transactions do not satisfy the original fifteen-transaction/two-group success contract.",
+    "Original STATUS4 second remains rejected; no new-mask parse, second oracle/codec comparison, publication or coverage.",
+    "Original strict/v3/17transaction failures remain unchanged; actual parent checkpoint adopts communication/current bytes only.",
+    "Generic communication-checkpoint support for completed STATUS failures is implementation work; next full formatter constant mask under review, not live.",
+    "Static deletion document/tool/evidence section preserved; no deletion authorization or operation.",
+    "All originals/source/old receipts unchanged; no source/test/device edits by this review."
+  ],
+  "actual_offline_parent_checkpoint": {
+    "checkpoint": {
+      "file": "artifacts/paired-nor-content-checkpoint-20261014/checkpoint.json",
+      "bytes": 11864,
+      "sha256": "53f83b23e3d73498882972ecdd018172f479141148393ad9548d3e857bd6e299"
+    },
+    "baseline_private": {
+      "file": "artifacts/paired-nor-content-checkpoint-20261014/baseline.bin",
+      "bytes": 4096,
+      "sha256": "87146b6b9e18eca8af8c09e3fcfe074260386d38ebed08aefbab91c98b34d364"
+    },
+    "attached_source_manifest": {
+      "file": "artifacts/paired-nor-content-checkpoint-20261014/source-snapshot/manifest.json",
+      "bytes": 44803,
+      "sha256": "545c5f014b4d895da3586ada36acad87958d05285740eb4ae8df28cd2d64d2c4"
+    },
+    "profile": "verified-content-failure-communication-checkpoint-v2",
+    "failure_role": "complete-second-transfer-content-proof-only",
+    "created_at": "2026-10-14T10:48:19.459016+00:00",
+    "original_observation_ended_at": "2026-10-14T10:20:56.749642+00:00",
+    "baseline_sha256": "87146b6b9e18eca8af8c09e3fcfe074260386d38ebed08aefbab91c98b34d364",
+    "prior_names": 38,
+    "original_failed_job_ok": false,
+    "original_failed_operation_ok": false,
+    "live_capture_performed": false,
+    "new_raw_nor_coverage_bytes": 0,
+    "full_original_v3_error_and_nine_transaction_communication_replayed": true,
+    "new_fresh_live_observation": false,
+    "following_status_control_baseline_matches_exactly": true,
+    "all_attached262_source_test_lengths_and_hashes_verified": true
+  }
+}

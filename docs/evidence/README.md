@@ -1,9 +1,118 @@
 # 证据索引
 
-日期：2026-10-12。当前工具已迁入uv包，旧脚本路径对应各轮历史提交；现用命令见[CLI](../cli.md)。历史说明、源码事实和本轮实测分开；历史文本中的绝对路径只用于追溯，不是运行依赖。
+更新至2026-10-14。当前工具已迁入uv包，旧脚本路径对应各轮历史提交；现用命令见[CLI](../cli.md)。历史说明、源码事实和本轮实测分开；历史文本中的绝对路径只用于追溯，不是运行依赖。
 
 本页是证据历史，不是待办清单；执行优先级只看[当前路线](../research-routes.md)。
+
+[较大binary NOR出口有界收据](nor-binary-export-boundary-2026-10-14.json)、[具名入口与边界](../nor-binary-export-boundary-2026-10-14.md)：20段实际bytes/3固定SDK文件复验通过；`snort`完整路径含64KiB erase和512B pattern write，不可作为读取实验。已审fread/dumpbuf/Boyi/driver/recovery入口仍无安全较大raw出口；结论不覆盖未审路径，无设备操作。
 Wi-Fi的实际固件、App与精确型号证据由[专题汇总](../wifi-capability-2026-10-13.md)串联。
+
+[常驻导出命令静态收据](resident-export-command-inventory-2026-10-14.json)、[具名入口与副作用](../resident-export-command-inventory-2026-10-14.md)：28段actualbytes/3固定来源复验，固定coredump4096B常驻读缓冲/文本输出及RAM恢复链闭合；无可选任意NOR地址/长度，该已审路径未建立安全通用binary出口，未实测该命令。
+
+[冻结覆盖库存](nor-backup-coverage-2026-10-14.json)、[来源层级与缺口](../nor-backup-coverage-2026-10-14.md)仍ASOF24200 A36112/B155204/available191316B；后续10页5120B加privatefactory6144B只作索引overlay，当前强来源**47376B**、可用潜在**202580B**。System连续raw首6144B`[24000,25800)`完整，剩余system raw未完整备份；B来源不完整不升级，factory累计6144B完整pair、余2048B缺完整覆盖，DSPextra444B缺raw，禁止mapped/reencoded/FF填补。冻结库存/旧收据不改。
+
+## 下载窗口参数控制与7.5ms/CE1策略，2026-10-14
+
+[activity next4b失败/accepted-prefix收据](prefilled-factory-activity-next4b-live-2026-10-15.json)、[冻结原whole拒绝与首512独立审计](../prefilled-factory-activity-next4b-live-2026-10-15.md)：仅page0-1ed600成功pair新增512，两RAMoracle+NORstrict4096/512相等/fullsource-state-HCI；page1-1ed800 LEconnect成功后21ATT58HCI discovery timeout/reason08，零identity/download/Actions/SD，后两页零I/O。总283ATT510HCI40977B/15complete/0pending/status；原whole/page1false、parentgate拒绝。最新actualpage0second4096/identity18:57:20.885464UTC14/free59589，失败后独立无HCI info不能补after或验证SD；all90plannednonce reserved/cohortmax72另计。aa5a153source140tests293继承2786+159/351formatlint/build/357inputs/new_full_check_run=false；新helper review非正式CP/plan/live。全factory/carrier/sectorhash/hex/nonces私有，无binary；覆盖47376/202580/factory6144missing2048/system6144。旧4a/ONE及失败receipts不改，不自动retry。
+
+[activity next4a四页成功收据](prefilled-factory-activity-next4a-live-2026-10-15.json)、[全冻结chain/pairs与private首段格式复验](../prefilled-factory-activity-next4a-live-2026-10-15.md)：新2048私有raw`[1ece00,1ed600)`，4actualFAST/no pulse，1053ATT1811HCI155077B/60complete/0pending/1boundstatus(page2ATT96)/4normal16。20DL8RAM8NOR16samefile覆盖0newfiles/NORwrites；8RAMoracle+8strict4096/4equal512pairs/parentstate完整通过，current4096/history82/identity18:52:05.581566UTC14=02:52:05HKT15/free59589。plain+oldcomposer各4，DEFAULT integrated/wake新form未radio；aa5a153source140tests继承2786+159/351formatbuild/357inputs/new_full_check_run=false。首段八actualpair sectors共4096/12recordsCRC+namehash/padding/empty416/actualtail3680FF，无fill/新coverage/full8K或restoreclaim。全factory/carrier/sectorhash/hex/nonces私有，无binary；覆盖46864/202068/factory5632missing2560/system6144/cohortmax72；旧ONE及失败receipts不改，后续另fixedplan。
+
+[activity单1ecc00成功收据](prefilled-factory-activity-one-live-2026-10-15.json)、[冻结全chain/pair复验](../prefilled-factory-activity-one-live-2026-10-15.md)：新512私有raw，两RAM4096独立oracle+两NORstrictprefix4096/512相等；freshbaseline==defaultCPf870 ownedobject，当前4096/parentgate通过。261ATT451HCI38700B/15complete/0pending/status/normal16，actualFAST/no pulse；gap plain/composer-before-crlf，DEFAULT集成和新增wake form未radio实测。5DL/2RAM/2NOR/4samefileSD覆盖/0newfiles/NORwrites，非0storagewrite；finalidentity18:44:21.057460UTC14=02:44:21HKT15/free59589/NOTEidle/unboundcharging100。history74与cohortmax72不同；CP f8700deviceI/O/coverage、原notice/NEXT3失败保持。aa5a153source140tests/fresh2786+159/56.73s351formatbuild/357inputs一致；全factory/carrier/sectorhash/hex/nonces私有，无binary。当前覆盖44816/200020/factory3584missing4608/system6144；后续另fixedplan，不自动retry/扩展。host吞吐理想81.16h/4MiB非ETA或新binary出口。
+
+[notice单1ecc00失败收据](prefilled-factory-notice-one-live-2026-10-15.json)、[冻结startup拒绝/全wire复验](../prefilled-factory-notice-one-live-2026-10-15.md)：legacyFAST-only拒绝实际完整DEFAULT24..40/0/500→36，wakegap-v3未达到；0completed/下载/Actions/RAMexport/NORproducer/SDwrite/newfiles/coverage。61ATT123HCI5123B/1complete/0pending/status/normal16，setup→before→inventory→after全消费，finalidentity18:13:06.952796UTC14=02:13:06HKT15/free59589/NOTEidle/unboundcharging100。formalhostCP5eb2采纳原NEXT3 observedSD4096/state/history70、0deviceI/Ocoverage、原9comm/旧gap失败复现；不假定residentring不变，本轮未baseline reread。two plannedunsent→futureReserved72，与cohortmax72不同；CP ASOF70/所有旧失败保持。dd58冻结151source138tests/fresh2745+159/48.62s347formatbuild/353inputs一致。全factory/carrier/sectorhash/hex/nonces私有，无binary；覆盖44304/199508/factory3072missing5120/system6144不变；新live/计划/扩展停止，下一步仅host DEFAULT→actualFAST beforebaseline，不重连碰FAST/补判。
+
+[BOOT0 direct F0失败收据](actions-fread-boot0-live-2026-10-15.json)、[冻结原错误与rawHCI独立诊断](../actions-fread-boot0-live-2026-10-15.md)：DEFAULT36→FAST12→host6CE1/1，update113在marker115/fread119前；host64ATT/raw66ATT TX27相同/RX37为39前缀，差仅STOPACK/F1。原wholefalse/32rows错误/session-retired after_error/RX mismatch保留，无finalidentity；raw143HCI6143B/7ACK/2FULLF0text533/terminalF1/0pending/0canonicalNORrows/2fillers/normal16。非旧244B缺片，不推断NOR硬件读取失败；不补尾/比较payload/发布binary。后续独立无HCI CLI info59589/NOTEidle/unbound/charging100，观察上界17:52:24.863939UTC14，不替代原after。64e7冻结150source136tests/fresh2704+159/344formatbuild/350inputs一致；conditionalimage29regions DMA/raw先于BLEcallback，livepointer/init未知，不把MDB ring读当稳定被动snapshot。0SD/write/coverage/history70；ownedfile未复核/未admitted/最后NEXT3failedfirst，覆盖44304/199508/factory3072missing5120/system6144不变；stream/frame/marker/factoryhash私有。
+
+[Actions applied6 RAM256成功收据](actions-fast-ram256-live-2026-10-15.json)、[冻结全stream/关键byteRX复验](../actions-fast-ram256-live-2026-10-15.md)：STARTACK+settledFAST后host6CEhints1/1真实生效再afc/MDB；4FULLF0/5ACK/terminalF1/0pending，16连续RAMrows256匹配独立oracle、每byteRX在commandTX后，0fillers。72ATT144HCI/2complete/0status/normal16，17:32:49.553447UTC14=01:32:49HKT15 identity59589/NOTEidlecharging100。0SDaccess/write/rawcoverage/新files；historicalONE仅IDENTITYONLY/current_owned_file_verifiedFalse，最后ownedSD仍NEXT3failedfirst未复核/未admitted/history70，不能当旧ONE current。e5aa149source135tests/fresh2675+159/342formatbuild/348inputs一致；fullstreamhash/hex/afc/factorycarrier私有，无binary。oldloss45/45/60ms不同于newap6，单control非causalrepair/可靠性/NOR路线；覆盖44304/199508/factory3072missing5120/system6144不变。
+
+[factory NEXT3失败脱敏收据](prefilled-factory-next3-failed-2026-10-15.json)、[接受512与原53B OSgap拒绝](../prefilled-factory-next3-failed-2026-10-15.md)：仅1eca00完整pair新增512；1ecc00 first完整4096/SLOW/barrier/identity后原three-gap grammar拒绝`Ble wake lock 0` notice，无sector/oracle/newpolicy/覆盖；该页后2stage及1ece00零I/O。437ATT761HCI/24txn0pending/status/8DL6覆写0newfiles/2normal16；finalidentity17:09:26.871464UTC14=01:09:26HKT15，pageend29.041263/wholeend29.041613。当时failedfirstprivate4096不同于旧ONE，state59589已观察但whole/parentgate拒绝/无新CP；后续RAM-only linkcontrol成功不复核/采纳SDfile；70reserved含3unsent。32c147source133tests继承2634+159/338formatbuild/344原inputs/new_full_check_run=false；当前hostcode另行实现。所有factory/carrier/sectorhash/hex/nonces私有，无binary；强44304/潜在199508/factory3072missing5120/system6144/cohortmax72；不自动retry。
+
+[fresh单1ec800成功脱敏收据](prefilled-factory-one-live-2026-10-15.json)、[全冻结重放与linkCP边界](../prefilled-factory-one-live-2026-10-15.md)：新baseline全4096实读匹配hostCP639e采纳旧thirdsecond，fresh身份确认后两NOR各独立RAM4096预填充/strictprefix4096/两512相等，新增512私有raw。266ATT456HCI/15txn/0pending/1boundstatus atATT230/normal16，5DL4覆写0newfiles；两gapPLAIN，新CRLFcomposer未radio。finalidentity17:01:10.006458UTC14=01:01:10HKT15，pageend12.176809/wholeend12.184642；当时currentprivate4096/state59589/history64/wholeparentgate通过，后被NEXT3failedfirst覆盖。CPunknown-only/0I/Ocoverage/原failed4保持，old42identity/44pageend/52failureend分离；32c147source133tests/fresh2634+159/338format/build/344inputs一致。Factorysector/carrierhash/hex/nonces不公开/无binary；强43792/潜在198996/factory2560missing5632/system6144/cohortmax72，后续另固定计划。
+
+[RAM预填充factory四页失败脱敏收据](prefilled-factory-four-live-2026-10-15.json)、[三完整pair/第四GATT timeout边界](../prefilled-factory-four-live-2026-10-15.md)：1ec200/400/600各完整pair新增1536私有raw/全六NORstrictprefix4096/六RAMoracle通过；第四LE已连但21ATT仅MTU/discovery，reason08/errno110，零identity/CCC/application/download/SD/NOR/coverage。全808ATT1415HCI/45txn/15DL12覆写/0status/newfiles，3normal16+1timeout08；原wholefalse/parentgate拒绝。当时最后身份16:40:42.033534UTC14=00:40:42HKT15，thirdpageend44.229530；wholeend52.894850无新身份。当时expected第三secondprivate4096/last59589、无postfailure新读回/CP；后续正式unknown-onlyCP639e仅ownership/0I/Ocoverage，freshone新实读确认后成功，原whole仍false；62reserved含第四2unsent，cohortmax72。ab99冻结146source132tests/fresh2610+159/336format/build/342inputs一致；所有factorybytes/sector/carrierhash/hex/nonces私有，无binary。强43280/潜在198484/factorytotal2048missing6144/system6144；no retry。
+
+[RAM预填充known-v2成功收据](prefilled-known-v2-live-2026-10-15.json)、[全冻结重放/方法边界](../prefilled-known-v2-live-2026-10-15.md)：两次全4096RAMoracle预填充后，known0/4200均strictprefix4096/criticalchain无exemption/独立sectororacle通过；dualprevious角色分离。266ATT/456HCI/15txn/0pending/**1boundstatus atATT97**/normal16，5DL/4覆写/0newfiles/0coverage。实际两gap都是PLAIN，新composer分支仅hosttested；当时16:11:31UTC14=00:11:31HKT15 privatecurrent4096/state59589/history54/wholeparentgate已验，后续factory部分失败见上方，所有carrier/baselinehash仍私有/无新binary。actualCP3a35仅采纳原v1通信/0I/Ocoverage/原failed保持；cf72冻结145source129tests/继承2547+159/331format/build/337inputs一致。强41744/潜在196948/system6144/factory余7680/cohortmax72不变；后续未知范围另固定计划。
+
+[RAM预填充known失败脱敏收据](prefilled-known-failed-2026-10-14.json)、[冻结重放/精确原separator失败](../prefilled-known-failed-2026-10-14.md)：baseline全4096匹配实际factoryCONTENTCP36db，RAMprefill4096独立oracle通过；firstNOR0完整下载/SLOW/barrier/finalafter后原54B分隔语法拒绝，无sector/oracle比较。后两stage零I/O，175ATT/310HCI/9txn/3DL/2覆写/0newfiles/0coverage/normal16；当时11:52:36Z当前private4096/真实59589/52reserved已观察，wholefailed/parentgate拒绝。factorybaseline和新currentcarrierhash均私有，SDprefill不清residentring。9139冻结144source127tests/继承2445+159/328format/build，334inputs一致；CP只通信/ownership0I/Ocoverage/原factory失败保留。强41744/潜在196948/system6144/factory余7680/cohortmax72不变；随后actualCP3a35仅通信/ownership0I/Ocoverage；新freshv2控制另成功，原v1仍failed。
+
+[privatefactory四页失败脱敏收据](factory-first4-failed-2026-10-14.json)、[全冻结source重放与隐私边界](../factory-first4-failed-2026-10-14.md)：首`[1ec000,1ec200)`完整pair新增512私有raw；1ec200first单份0coverage，secondfull4096/barrier/finalafter后原v3prefix4095拒绝，physical4095col41未变`f`为变量lowhex，常量formatter-mask不能证明。后两页零I/O，无raw/config/contenthash/publicbinary；364ATT/636HCI/18txn/0pending/status/2normal16，6DL/4覆写/0newfiles/cohortmax72。当时11:16:39Z privatecurrent4096/真实59589/NOTEidlecharging100已观察，wholefailed/parentgate拒绝、50reserved；后续factoryCP36db仅采纳通信/ownership/0I/Ocoverage，原failed不改。实际Stage1 STATUSCP4467仅采纳旧STATUS4通信/ownership/0I/Ocoverage；9af140source/122tests/继承2301+159/319format/build/new_full_check_run=false。强41744/潜在196948/factory余7680未完整，system6144保持；精确用户controls“只有电源键和录音滑键”，独立退出仍未证。 [RAM预填充known0/4200对照](../verified-prefill-control-plan-2026-10-14.md)计划原v1现已实测失败，结果见[最新脱敏收据](../prefilled-known-failed-2026-10-14.md)；不补判此前变量尾部。
+
+[STATUS4known失败收据](status-known-failed-2026-10-14.json)、[实际offlineCP与原9comm重放](../status-known-failed-2026-10-14.md)：g0baseline/first完整，second4096/barrier/finalafter全过但原STATUS4prefix4095拒绝，physical4095未变space/row25col42separator仍strict；无secondsector/新maskparse/secondoraclecodeccompare/新binary/coverage，g0candidatefalse/g1零I/O。182ATT/319HCI/9complete/0pending/status/normal16；当时10:50:08Z ring`02c4d169642728323622c3369455be5d7b71a448eb6898cfb6394fcf9976a6c4`，现被factoryprivate对象替代/真实59589/NOTEidle/charging100已观察、wholejob/parentgate拒绝，42reserved，3DL/2覆写/0newfiles/cohortmax72。545c140source/122tests/preIO2294+159/319format/lint/build；actualofflineCONTENTcheckpoint53f8采纳原v3failure9comm/current8714/history38/0I/Ocoverage，旧failed不翻案。后续actualStage1CP0coverage+factory失败见上方，变量byte不能靠常量mask证明；该轮当时41232/196436/system6144不变。
+
+[continuous known15失败收据](continuous-known-failed-2026-10-14.json)、[原9事务communication与v3拒绝重放](../continuous-known-failed-2026-10-14.md)：g0baseline/first完整、second4096/真实barrier后原prefix4095拒绝，physical4095ASCII0/status`buf=0x`非v3row-space豁免；无secondsector/新policyparse/secondoraclecodeccompare/新publicbinary/coverage。181ATT/317HCI/9complete/0pending/status/normal16，g0candidatefalse/g1两producer零I/O，无额外baseline。当时10:20:56Z ring`87146b6b9e18eca8af8c09e3fcfe074260386d38ebed08aefbab91c98b34d364`，现被STATUS4second替代/真实59589/NOTEidle/charging100已观察，wholejob/parentgate拒绝；34+4=38reserved、非admittedhistory。3DL/2同文件覆盖/0newfiles/cohortmax72，de1e139source/119tests/preIO2216+159/314format/lint/build冻结。旧bulk/首4K/41232/196436不变；后续actualofflineCONTENTcheckpoint采纳通信/0coverage、新STATUS4仍失败见上方；完整formattermask尚无live。
+
+[25000四页v3成功收据](paired-nor25000-four-live-2026-10-14.json)、[全链复验](../paired-nor25000-four-live-2026-10-14.md)、[actual新raw2048](paired-nor25000-four-live-2026-10-14/nor25000-25800.bin)：4完整pair新增`[25000,25800)`2048/SHA5cc9…91edb，727ATT/1269HCI/36complete/0pending/status/4normal16。25200second prefix3827/其余7份4096/关键链内/无豁免，8次6ACKF1/F0各0，composerF,T,F,T,F,F,F,T。当时10:17:24Z ring`f6781e2966e47b548c6b2f0f5ccd2c48d19b97cd172c1d1b4dd7d7b08a28c2a8`，现被上方failed15second替代/真实free59589/NOTEidle/charging100/history34；4连接/12DL/8覆写/0新files/cohortmax72。未修改W0隔离副本139+117/3055执行，继承2137+159/build/new_full_check_run=false；后验fixed32各512匹配mapped、非raworacle/key。旧首4K/失败/W0收据不改，强41232/潜在196436，system连续首6144；后续continuous15已失败见上方，旧成功不受影响；下一窄formatter proof/checkpoint仅review。
+
+[独立只读owned-file恢复收据](owned-file-recovery-live-2026-10-14.json)、[全链复验](../owned-file-recovery-live-2026-10-14.md)：成功完整4096下载/真实finalidentity，当时10:07:03Z ring`a5d8e2e773a38954f35d8b2f919fa585e09df0a13c7a9c29a6ac6da4a76f5a48`，现已被上方bulk替代/NOTEidle/unbound/charging100/free59589，90ATT/168HCI/3complete/0pending/status/normal16，0Actions/producer/SD写/新文件/NOR覆盖。current不同于旧f0b5，未NORparse/oracle；旧known控制仍false/group0candidate不升级。parent admission通过/26history，139source/117tests/3055/preIO2137+159/build冻结，额外postIOtests不混入；后续控制source实现中无新live结果。W0当时首4K/39184/194388/cohortmax72不变，无新publicbinary；后来bulk新增见上方。
+
+[known同连接控制失败收据](two-known-session-failed-2026-10-14.json)、[失败时对象未知与复验](../two-known-session-failed-2026-10-14.md)：group0两boot0候选完整/oracle匹配，group1 baseline完整匹配前second；第三次覆盖有6ACK/F1/F0=0，但无新FAST/host归一/下载，inner8s超时，second未开始。222ATT/377HCI/11complete/0pending/status、normal16；wholefalse/candidate不升级/0新coverage/files。最后09:40:32.022126Z f0b5…ffd3/free59589在第三次尝试前；09:40:43Z当时结束后**文件未知、设备状态未验证**（后续新W0只读观察见上方），未finalidentity，不能继续称a16e或f0b5为current。92e2冻结138source/116tests/2107+159/build，原件全wire/真实barrier重放；无新raw。随后独立只读checkpoint已成功见上方，旧失败不补判；该失败当时原首4K和39184/194388覆盖不变，后续bulk叠加见上方，cohortmax72未变。
+
+[system首4KiB原始收据](system-first4k-raw-live-2026-10-14.json)、[8页来源与完整复验](../system-first4k-raw-live-2026-10-14.md)、[actual raw4096](system-first4k-raw-live-2026-10-14/system-first4k-raw.bin)：新24c/e两个pair全过新增1024B，18txn/364ATT/634HCI、全4prefix4096/noexemptions/F0各0、composer[T,T,F,T]/实际身份/两normal16通过。旧24000原44窗口及其他7pair全source重放，8实际512顺序拼接SHA74807d16…7d83a5c，非原子/fullsystem/4MiB/restore证明；旧failedjob/24a候选不补判。当时09:10:35Z ownedring a16e83146f8957a06240a781df08f476cdcfd8dd76d6843aa26ce60eb6a14609/free59589，现已历史化，当前新W0只读观察见上方，新4overwrite/0新files/cohort仍70+1+1=max72。d546冻结138source/114tests继承2062+159/build、此次未新跑fullcheck；该capture用原冻结source，后续known同连接控制实际失败见上方；后续只读checkpoint已成功、下一控制代码另行实现，不当原capture语义或已验。
+
+[新v3固定24a00成功收据](paired-nor24a00-v3-live-2026-10-14.json)、[完整重放与prefix界限](../paired-nor24a00-v3-live-2026-10-14.md)：[actual512](paired-nor24a00-v3-live-2026-10-14/nor24a00.bin)两freshproducer结果相等SHA6234e0aa…4ebdb9f、新增512B；first4095仅physical4095/row30/col2已知地址space豁免，second3872/noexemptions/allcritical已在内，不能声称whole4096write。offlinecheckpoint0coverage/0设备I/O，原四页failed及旧24a候选不补判。180ATT/316HCI/9txn/0pending/status/F0、normaldisconnect16/实际身份全过；当时08:48:38Z ownedring6249…2258a/free59589，现被上方新pair覆盖，新2覆盖0新files/cohort仍70+1+1=max72。138source/114tests冻结/2062+159/build；后验fixed32匹配预声明mapped512，非raworacle。随后24c/e按新固定计划完成首4KiB，见上方；原收据不改。
+
+[固定四页失败收据](paired-nor-system4-live-2026-10-14.json)、[完整原prefix与失败边界](../paired-nor-system4-live-2026-10-14.md)：planned2048B，仅24600/24800各完整双读通过，[actual24600](paired-nor-system4-live-2026-10-14/nor24600.bin)/[actual24800](paired-nor-system4-live-2026-10-14/nor24800.bin)共新增1024B。24a00 first完整4096/6ACKF1F0=0/6txn/真实barrier，但原strictprefix4095拒绝、无512候选输出/零覆盖；不证actualshortwrite，second零命令、24c00零I/O，wholejobfalse保持。该批501ATT/881HCI/24complete/0pending/status0，3normaldisconnect16；当时07:53:40Z/ownedring4c5e92d9…dd4ae96/free59589，现已被上方freshv3覆盖。3连接/8下载/5同文件覆盖/0新文件，cohort70+1+1=max72。原137source/112tests沿用v2冻结2021+159/build；后续v3/checkpoint及新24a成功见上方，旧失败不改判。
+
+[首个genericv2单24400收据](paired-nor24400-live-2026-10-14.json)、[全原件重放](../paired-nor24400-live-2026-10-14.md)：182ATT/318HCI/9txn、两6ACKF1/F0=0、两完整4096及全HCI/identity/normaldisconnect16后，两[actualraw512](paired-nor24400-live-2026-10-14/nor24400.bin)相等SHAd3a2b556…797ce2e，新增`[24400,24600)`512B。2同文件覆盖/0新文件；当时ring513cf…49ab/free59589，现已被后续任务覆盖。固定32reset后验512/512匹配预声明mapped，非raworacle。137source/112tests/2021+159/build记录冻结，不能当当前开发source通过声明。
+
+[未知系统24200双读收据](system24200-live-2026-10-14.json)、[真机验收与后验解码](../system24200-live-2026-10-14.md)：同一owned文件两freshnonce/producer/覆盖、三完整4096下载，180ATT/316HCI/九完整事务/0pending/0status、两prefix4096与最终状态/normaldisconnect16全过。[actual raw512](system24200-live-2026-10-14/system24200.bin)两份逐字相等SHAf9337ab9…cc3227e，新增`[24200,24400)`，无独立oracle；后验固定32reset解码512/512匹配mapped向量页，预期未参与raw验收。134source+108tests/1953+159/build，root/Astra归档重放通过；当时59589保持、当时ring96a615…9ef9c，现已被后续任务覆盖，零新文件/cohort仍max72。旧失败保持；整片备份/恢复/自写固件未完成。
+
+[scratch已知4200单覆盖成功收据](scratch-4200-live-2026-10-14.json)、[真机方法与界限](../scratch-4200-live-2026-10-14.md)：baseline完整匹配postmortem当前boot0文件，freshnonce/一次同路径覆写/完整下载后512B匹配独立raw4200 oracle；136ATT/243HCI/6txn/0pending/0status、6ACK/F1/F0=0、prefix4096与producer-gap exactcomposer全过。新ring10bd351c…33e1，零新文件/已分别观察两不同known内容；旧F0失败不补判、0uniqueNOR增量、不推整片效率/恢复。131source+104tests/1886+159/build；latest59589/normaldisconnect16，cohort70+1+1=max72。
+
+[scratch只读postmortem成功收据](scratch-postmortem-live-2026-10-14.json)、[原文件保留内容新观察](../scratch-postmortem-live-2026-10-14.md)：单连接/4096B新hash3621a69c…60360、89ATT/167HCI/3txn/正常disconnect；零Actions/producer/SD写。原nonce→status/32rows跨wrap/producer/dump/prefix4096全部过，boot0匹配独立oracle，确认上一同路径覆盖后内容已更新；原F0失败不翻案，未完成两target/无新增NOR覆盖。128source+101tests/1833+159/build；latest59589不变/cohort仍70+1+1=max72，fullring/HCI私有。
+
+[scratch首次复用失败收据](scratch-reuse-live-2026-10-14.json)、[实测与只读接续](../scratch-reuse-live-2026-10-14.md)：原baseline完整4096/hash一致、first真实6ACK/F1/pending0/F0=0，一次producer/同路径SD覆盖已尝试；在覆盖后下载前停止，second零I/O、整体保持失败。125source+98tests/1766+159/build；107ATT/192HCI/3txn/normaldisconnect16，最终59589身份未变，0新files。更新内容未确认，不能将旧device对象继续当原baseline，也不推断uptime未执行。
+
+[最后2e00与完整boot1收据](final-boot-sector-live-2026-10-14.json)、[真机验收与边界](../final-boot-sector-live-2026-10-14.md)：新独立pair真实FAST、148ATT/255HCI/六完整参数/0pending/0status、两个freshproducer及完整4096环全验。旧3584来源重放后保存[actual boot1全4096B](final-boot-sector-live-2026-10-14/fw1_boot.bin)与[最后sector](final-boot-sector-live-2026-10-14/sector2e00.bin)，实际全FF，无有效备用boot代码；未知块无独立oracle、非完整4MiB备份/恢复。120source/1641+159/build；latest59589，70confirmed+1declared+1possible=max72，原失败保持。
+
+[受控三地址任务收据](startup-boot-tail-live-2026-10-14.json)、[两pair成功与最后特性交换失败](../startup-boot-tail-live-2026-10-14.md)：actual2a/2c各完整双读、freshness/6txn/barrier/HCI全通过；各自[sector2a](startup-boot-tail-live-2026-10-14/sector2a00.bin)、[sector2c](startup-boot-tail-live-2026-10-14/sector2c00.bin)来源独立，不以相同FFhash替代。新增1024→前3584/4096B；两NOR实际startupFAST、0status，不声称NORDEFAULT实测。2e零ATT/identity/Actions/SD，23HCI特性交换status3e→errno38，原job失败无fullbin；119源码/1627+159/build及全部旧来源/control重放通过。latest2c59590，cohort68+1declared+1possible=max70。
+
+[Linux LE特性错误映射收据](linux-le-features-error-2026-10-14.json)、[本机模块与原始HCI闭环](../linux-le-features-error-2026-10-14.md)：本机bluetooth.ko实际指令及v6.14 primary源码证明status3e→defaultENOSYS38；23rec原件/feature event/零ATT逐项核对。未运行模块/设备程序，不推断RF原因或称ATT不支持，不改判原失败。
+
+[DEFAULT已知RAM真机成功收据](startup-ram-default-live-2026-10-14.json)、[两连接控制与适用边界](../startup-ram-default-live-2026-10-14.md)：seed真实FAST12/normaldisconnect后，新连接DEFAULT36，两个3ACK/F1日志pulse后均真实FAST→host6/0/500→4096B独立oracle→EOF SLOW/身份barrier；46+137ATT、107+251HCI、1+7完整事务/0pending，两次normaldisconnect。实际F0/status均0；排序不唯一归因trigger，所有旧失败保持。118源码归档重放通过，1605+159/build；latest59590、零SD/新scratch/NOR增量，覆盖仍前2560/4096B。
+
+[默认参数与日志pulse静态收据](ble-default-parameter-path-2026-10-14.json)、[路径及对照门槛](../ble-default-parameter-path-2026-10-14.md)：30段actual bytes固定hash，100ba772默认24..40/0/500、FAST no-op清pending bit9、delayed worker默认分支及日志活动可安排FAST。3ACK/F1 pulse无shell/文件/NOR路径，但改临时日志RAM/timer，PREPARE标志至disconnect清；仍需完整F0解析/真实FAST/因果索引，不由静态宣称pulse已成功。
+
+[同scratch复用静态收据](nor-scratch-reuse-static-2026-10-14.json)、[新nonce与覆盖试验计划](../nor-scratch-reuse-plan.md)：36段actual bytes核uptime额外argv/原echo、dumpbuf0x12从cursor0同长覆盖及Boyi重新open。只允许既有owned专用4096对象，覆盖前完整hash、两个fresh只读nonce、已知boot0→4200oracle；此静态收据不证明live；后续复用实测与原失败分别见上方，不增加该静态收据的NOR覆盖或声称无SD写。
+
+[剩余三地址任务启动参数收据](status-remaining-live-2026-10-14.json)、[完整default事务与零执行失败](../status-remaining-live-2026-10-14.md)：首2a00完成61ATT/GATT/身份/列表后，remote24..40/0/500→applied36与固定FAST门槛不同，主动拒绝，1complete/0pending。final身份HCI111..119在update110后，严格等于before/expected/health/free59590。零Actions/producer/SD写/新增覆盖，后三剩余范围仍未知，原job失败无fullbin。113源码冻结，1516+159/build及旧2560prefix来源全重放通过；不改判历史失败。
+
+[新四地址任务收据](status-boot-tail-live-2026-10-14.json)、[新2800成功与2a00 GATT超时](../status-boot-tail-live-2026-10-14.md)：新2800完整双读新增512B→前2560/4096B，[actual安全chunk](status-boot-tail-live-2026-10-14/sector2800.bin)独立来源已验。255HCI/148ATT/六参数/零pending；显式状态策略启用但实际0事件。2a00已建立连接，19ATT发现中监督超时，无producer/SD写；后两未执行、原job失败无fullbin。110源码冻结，旧前缀与state链原版本全重放；两新scratch下载确认。随后只读health恢复正常，不改判旧失败。
+
+[只读GATT/身份健康收据](status-link-health-2026-10-14.json)、[当前通信复验](../status-link-health-2026-10-14.md)：46ATT逐包绑定107HCI/4201B，完整GATT、前后身份严格等于新2800.after/free59590，单次远端FAST完整结算。关闭后2.023812s捕获disconnect0x16，位于最终ATT之后。零Actions/SD写/状态事件，无新增覆盖；当前通信恢复不证明先前超时根因或修复。
+
+[五扇区窗口任务收据](window-boot-tail-live-2026-10-14.json)、[2600成功与2800事件边界](../window-boot-tail-live-2026-10-14.md)：2600完整独立双读通过，[actual512安全chunk](window-boot-tail-live-2026-10-14/sector2600.bin)新增512B→fw1_boot前2048/4096B。2800两份完整候选及六参数/barriers保留，但额外状态0F使原finalaudit拒绝，原pair/job失败，后三未执行、无fullbin。107件原源码快照，旧prefix22窗口原始来源全重放；latest实际state59590，Ubuntu62已下载scratch+1旧声明+1可能。后续事件策略与状态checkpoint不改判该失败。
+
+[限定composer语法的新2400双读成功收据](window-nor2400-composer-2026-10-14.json)、[完整复验与边界](../window-nor2400-composer-2026-10-14.md)：两次新producer/nonce、完整4096B、六事务全结算、严格freshness/second previous-dump锚及真实身份/state通过。149 ATT/256 HCI、零pending，second实际接受33B精确显示计数行（有静态来源，非任意日志忽略）。[512B原始安全chunk](window-nor2400-composer-2026-10-14/sector.bin)来自新first，双读相等、无独立字节oracle，新增512B→fw1_boot前1536/4096B；其余五扇区未知。34件新源码快照；Ubuntu58已下载scratch+1旧声明+1可能。原失败收据不改判。
+
+[新窗口策略2400双读失败收据](window-nor2400-live-2026-10-14.json)、[日志新鲜度边界](../window-nor2400-live-2026-10-14.md)：两份4096B下载完整，first严格512B/slow/identity barrier通过；second producer→dump间精确composer异步行导致拒绝，second slow尚待Update、无第二barrier，pair原失败。141 ATT/245 HCI及34件源码快照保留；final状态通过不替代fullaudit；新增raw覆盖0，Ubuntu56份已下载scratch+1旧声明+1可能。
+
+[按下载窗口控制参数的收据](download-window-live-2026-10-14.json)、[真机时序与适用边界](../download-window-live-2026-10-14.md)：同一既有RAM文件连续两次完整4096B匹配独立oracle；115 ATT逐字节绑定205 HCI记录，五次参数事务完整结算。两次host归一6/0/500均在实际GET_FILE前完成；EOF slow请求可早于End，但更新均在完整End后生效；每次再通过真实identity/state barrier。18件private源码快照；零新增SD文件、零新增raw覆盖。原tail失败保持，下一步适配有界NOR双读，不推断worker退出/隐藏缓存清空。
+
+[固定备份boot tail失败收据](backup-boot-tail-2026-10-14.json)、[真机结果与参数边界](../backup-boot-tail-2026-10-14.md)：固定六地址任务只执行2400，第一份完整通过，第二GET_FILE已声明4096但offline0B，额外更新请求使pair/job失败；后五无producer。14件源码快照、first checkpoint及完整191-record HCI保留。新增双读覆盖0，无完整分区输出；旧1024B配对覆盖保持。独立后续health free59591不替代失败after；不重跑相同early计划。
+
+[未知0x2200双读收据](dual-unknown2200-2026-10-14.json)、[严格新鲜度、失败诊断与early成功](../dual-unknown2200-2026-10-14.md)：首轮失败原件保留；新early6/0/500 trial两次独立producer/文件/4096环、148 ATT/HCI及真实barrier全通过，两份512B全FF相等，新增pair-verified覆盖512B，无独立字节oracle。[原始安全chunk](dual-unknown2200-2026-10-14/sector.bin)来自新成功首读，不挪用旧2000样本。`fw1_boot`已覆盖前1024/4096B；53份scratch下载确认、另1可能，未删除。完整原始报告/抓包/源码快照私有，公开metadata不替代全父链replay。
+
+[单连接连续导出收据](dual-known-nor-live-2026-10-14.json)、[真机原型与完整replay](../dual-known-nor-live-2026-10-14.md)：一连接boot0→4200，各5ACK/F1、完整4096下载及512独立oracle；224 HCI记录与150 ATT包双方向逐字节绑定，一次参数更新/真实identity barrier通过。两个独立checkpoint保留，完整最终replay通过；已知目标不增加历史raw覆盖。该阶段Ubuntu系列50份测试文件下载已确认、另一次可能残留。
+
+[完整RAM4096下载收据](sd-interval-live-2026-10-14.json)、[边界与复验](../sd-interval-live-2026-10-14.md)：实际HCI一次更新至interval6/latency0/timeout500、CE hints1/1，下载4096B逐字节匹配独立系统初始化oracle，前后状态相同。基线45ms；不能称纯interval单变量或历史15ms受控比较。原认证stdinEOF失败发生于设备I/O之前，仍保留；新目录b为首次实际试验。完整HCI/report私有，公开必要参数事件及hash。
+
+[新ring基线与boot0收据](sd-nor-interval-live-2026-10-14.json)、[原始NOR闭环与边界](../sd-nor-interval-live-2026-10-14.md)：fresh context28、完整ring基线4096及boot0结果4096分别通过；原始512B匹配旧独立oracle。首次context发现超时零写仍失败，独立context-b通过。新增三份SD测试文件，累计45；无NOR写/ROM进入，不是整片备份或恢复证明。
+
+[非零offset4200双读收据](sd-nor-offset4200-live-2026-10-14.json)、[重复性及监控早收尾](../sd-nor-offset4200-live-2026-10-14.md)：两个新producer/文件/连接，完整512B分别匹配既有raw recovery oracle；public安全片段4194B、private33源全链复验。两capture112/113记录均正常SIGINT sent/exit0，无cleanup disconnect记录仍据实保留；完整下载区间门槛通过。新增两SD文件，累计47；已知sector交叉验证不增加旧raw覆盖。
+
+[boot1 block1单读状态收据](backup-boot-block1-2026-10-14.json)、[早期重连失败的边界](../backup-boot-block1-2026-10-14.md)：当时2200单读512B全FF完整通过；第二份连接失败零写，没有pair-verified新增覆盖。原首次下载连接失败也保留。三个原报告hash固定；新增一份文件下载已确认，另一次SD写尝试可能留文件，该阶段Ubuntu系列48份已确认、最多49。原方法停止；后续early成功独立记录于上方。
+
+## Actions官方测试盒/板级/DUT材料，2026-10-13
+
+[官方U2引脚/网络复验](actions-official-u2-pin-links-2026-10-15.json)、[有界符号恢复与适用边界](../actions-official-u2-pin-links-2026-10-15.md)：固定PADS源/目录与KiCad schema/mapper恢复ATS3085C_SOCKET全部69个声明引脚及69个typedwire端点，345pin切片及4结构切片hex/SHA独立复核。WIO1=31/WIO0=34、UART0TX/GPIO28=49/RX/GPIO29=50、USBDM=51/DP=52仅官方参考原理图符号/网络事实；不证明CoMi芯片/焊盘/PCB铜连接/磁吸线/独立RESET或ROM退出，无设备/厂商程序执行。
+
+[下载收据/原始成员](actions-official-acquisition-2026-10-13.json)固定三个7z、两个FW、SCH/PCB/BOM及说明页；[包结构](actions-official-packages-2026-10-13.json)记录ACTTEST0而非Q、tester八成员CRC全通过、DUT另一头布局/一项零CRC未验、type100和108个FAT输出（7个原始编码块）。[SDK/helper/recovery对照](actions-official-lineage-2026-10-13.json)保留指令/54文件基线；[硬件证据](actions-official-hardware-2026-10-13.json)包含精确BOM单元格和PADS类型记录/原始字节，并注明BOM修订不一致。复现工具和适用边界见[官方材料报告](../actions-official-tester-2026-10-13.md)；没有设备操作或厂商程序执行。
+
+## maker内层与随包宿主，2026-10-13
+
+[封装/native读取证据](maker-package-static-2026-10-13.json)核对legacy/type100、独立CompoundFW格式及FAT/XOR分支；DB转换未实现。[样例恢复清单](maker-sample-2026-10-13.json)绑定固定SDK源hash与43项恢复文件hash，31项宿主名称/长度匹配SQLite表；2 MiB/11项布局、空芯片/USB配置及与既有LARK helper逐字节相同，排除把样例作为CoMi恢复包。工具和复现见[生产包专题](../production-package-contract.md#随包样例43个文件已恢复但不是comi恢复包)。全离线，无vendor代码或设备执行。
+[宿主选择/31 B包头](host-maker-selection-2026-10-13.json)与[18段原始字节](host-maker-regions-2026-10-13.json)核对USBDevice→指定DLL→family0/CClassical、13上传/20切换及函数内未校验状态；port为既有transport对象，没有CoMi选择链。两份host DLL可从固定RAR/CAB重复恢复，三模块Ghidra全新项目复验通过。[结论](../host-selection-followup.md#2026-10-13-recovered-maker-host-conditional-default-now-identified)。
 
 ## Android第三主机与完整HCI，2026-10-13
 
@@ -94,6 +203,11 @@ ADC接线、USB数据或独立复位。已有测试录音本轮离线完整解�
 两次新连接完整导出字节一致且留本地；删除后再新连接完整列表等于原列表，
 结束idle。原有录音未作为删除目标；不证明原录音字节一致、安全擦除、重启
 持久性或固件恢复。音频和原录音列表不进Git。
+
+[隐藏scratch删除静态线索](owned-scratch-delete-static-2026-10-14.json)：
+固定映像中0d callee先Call-、失败才Note-；空请求仍走byte00响应构造。
+精确长度拷贝后未见显式NUL存储，allocator尾部与两个前置helper效果未定。
+未删除隐藏文件；不能据此绕过现有可见列表守卫。
 
 ## 首轮实测（419b628）
 
@@ -301,3 +415,23 @@ c733e0b, ownedFW010004, exit130,4,416 B exact baseline prefix; fresh full56,912 
 and explicit offset suffix52,496 B match independent old export. Idle/settings/
 7-file list unchanged. Raw audio/logs ignored; no automatic resume, worker-exit,
 firmware backup or flashing claim. [Method and limits](../download-cancel-contract.md#actual-cli-sigint-validation-2026-10-13).
+
+## 新增真机小文件通道，2026-10-13
+
+[实测边界与复现](../live-board-tests-2026-10-13.md)：固定RAM4096大下载失败，尾128B通过；两份独立XIP32B及handler160B与原镜像匹配。公开[原始小样本与收据](sd-bootstrap-2026-10-13/)去掉私人录音列表。
+[实际FatFs分支](comi-file-write-2026-10-13.json)支持<512B CPU复制路径；不认定旧全零的DMA根因。
+[MTU128独立HCI收据](linux-mtu128-2026-10-13.json)确认降MTU仍缺125B；STOP未上wire，禁止将意图当发送证据。
+
+## SD/NOR实测接续，2026-10-14
+
+[收据](sd-nor-progress-2026-10-14.json)及[原始字节与离线复验](sd-nor-progress-2026-10-14/README.md)：七处代码守卫、历史printk上下文28B、尾512B、预热尾128B及失败3852B。baseline HCI17条通知与partial一致；boot/NOR producer未执行。保留失败报告、后置独立状态及派生父链，禁止补片或把历史数据称新快照。公开复验与36项私有原件hash复验均通过。
+
+[CPU/DMA冻结边界](../log-ring-freeze-boundary-2026-10-14.md)及[静态证据](log-ring-freeze-boundary-2026-10-14.json)：实际19段代码、7段静态数据；独立复验通过。无超时排空/UART等待、恢复错误忽略及writer/PM静止合同缺失，不能把CPU模式当分段ring稳定锁；无实机切换或实际挂死结论。
+
+[logsrv实际指针/上下文](../logsrv-context-live-2026-10-14.md)：三处新代码守卫96B、global4B、context32B；两次现场采样整体成功。rd=wr204、slot4长度139仅为历史元数据，未读槽正文。公开紧凑收据固定原件SHA，不公开录音列表/完整日志；复验只用仓库文件，无设备I/O。
+
+[logsrv已知短读→slot→新SD512](../logsrv-slot-live-2026-10-14.md)及[固定收据](logsrv-slot-live-2026-10-14.json)：唯一一次真机整体通过，7ACK/F1、4/32/512B完整下载、nonce→完整已知代码行在L431内、容量下降1MiB其余状态相同。公开284B（guards/元数据/标记/代码行）；完整512私有保存并固定SHA。公开复验及12项私有原件hash复验通过，不等同完整私有packet重放，不声明一般512可靠性或NOR能力。
+
+[GPIO28 CTRL首次LDR32实读](../gpio28-word-live-2026-10-14.md)及[固定收据](gpio28-word-live-2026-10-14.json)：当前槽6完整观测1805，nonce→55B单字行在L406内，7ACK/F1、4/32/512B与前后完整info一致。首次连接发现超时、一次离线路径错误原件均保留；只有成功c执行GPIO读取。公开214B，fullslot512私有。公开复验/16私有hash通过；[后续1805配置表和路径](gpio28-remux-static-2026-10-14.json)9段实际镜像字节复验通过，未证明本次写入历史或物理UART可用。
+
+[slot0映射两字实读](../map0-entry-live-2026-10-14.md)及[收据](map0-entry-live-2026-10-14.json)：1000000f/00024000两个独立时点，各自完整验收。失败context32及后续新context-b分开保留；公开392B，两个fullslot512仅hash。公开/19私有源hash复验通过，actual recovery读取/OR1/caller低f模板原字节复验通过。不声明原子entry、窗口尺寸、raw alias或整片备份。

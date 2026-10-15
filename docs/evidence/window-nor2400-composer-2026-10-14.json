@@ -1,0 +1,332 @@
+{
+  "schema": 1,
+  "status": "final-independent-composer-opt-window-pair-success",
+  "profile": "fixed-fw1-boot-tail-window-pair",
+  "owned_serial": "C261CF0430",
+  "started_at": "2026-10-14T02:05:27.442518+00:00",
+  "ended_at": "2026-10-14T02:05:51.009195+00:00",
+  "result": {
+    "original_ok": true,
+    "pair_verified": true,
+    "final_audit_complete": true,
+    "independent_oracle": false,
+    "independent_producer_executions": 2,
+    "connections": 1,
+    "new_verified_raw_coverage_bytes": 512,
+    "nor_range": ["0x2400", "0x2600"],
+    "sector_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+    "sector_all_ff": true,
+    "fw1_boot_verified_prefix": ["0x2000", "0x2600"],
+    "fw1_boot_verified_bytes": 1536,
+    "fw1_boot_partition_bytes": 4096,
+    "remaining_unknown_range": ["0x2600", "0x3000"],
+    "remaining_unknown_sectors": 5,
+    "remaining_bytes_assumed_ff": false,
+    "full_partition_or_nor_backup_proven": false,
+    "restore_flash_or_worker_exit_proven": false
+  },
+  "original_report": {
+    "file": "artifacts/window-nor2400-composer-20261014/report.json",
+    "bytes": 62375,
+    "sha256": "7b0b2e8366df265499be45eae8061db7fe98609447089d49073eba129f47e852"
+  },
+  "private_hci_capture": {
+    "file": "artifacts/window-nor2400-composer-20261014/session.btsnoop",
+    "bytes": 18683,
+    "sha256": "8b97473dc252637a5d63715791e0ab20a91dd2fba24361740c2b22c785fdb214",
+    "records": 256,
+    "reported_drops": 0
+  },
+  "att_hci_binding": {
+    "verified": true,
+    "packets": 149,
+    "comparison": "exact within each direction"
+  },
+  "monitor_exit": 0,
+  "monitor_stop": {
+    "signal": "SIGINT",
+    "requested": true,
+    "delivery": "sent"
+  },
+  "parents": {
+    "successful_early2200_report_sha256": "77f75c84d50e1f03b1a698ac1cd610f897a0242d07d7a600463ec8dbcd1822b0",
+    "successful_window_ram_report_sha256": "8ffa203974b1f939ba3365186c771bc4128fa37aeba8efbb5133f9c5ab8aaa6e",
+    "both_full_parent_chains_replayed": true
+  },
+  "parameter_time_origin": {
+    "event": "Owned Connection Complete",
+    "record": 18,
+    "timestamp_us": 63960199537624862,
+    "initial_interval": 48,
+    "initial_latency": 4,
+    "initial_timeout": 600
+  },
+  "completed_parameter_transactions": 6,
+  "pending_parameter_transactions": [],
+  "captured_disconnects": [],
+  "parameter_transactions": [
+    {"stage": "startup-fast", "origin": "remote", "remote_request": {"record": 104, "relative_us": 5133587, "identifier": 242, "min": 6, "max": 12, "latency": 0, "timeout": 500}, "remote_accept": {"record": 106, "relative_us": 5133632, "identifier": 242, "result": 0}, "request": {"record": 107, "relative_us": 5133655, "min": 6, "max": 12, "latency": 0, "timeout": 500, "min_length": 0, "max_length": 0}, "status": {"record": 108, "relative_us": 5134955, "status": 0}, "update": {"record": 110, "relative_us": 6092983, "latency": 0, "timeout": 500, "interval": 12, "status": 0}},
+    {"stage": "first-host-normalization", "origin": "host", "remote_request": null, "remote_accept": null, "request": {"record": 133, "relative_us": 6416935, "min": 6, "max": 6, "latency": 0, "timeout": 500, "min_length": 1, "max_length": 1}, "status": {"record": 134, "relative_us": 6417975, "status": 0}, "update": {"record": 135, "relative_us": 6528071, "latency": 0, "timeout": 500, "interval": 6, "status": 0}},
+    {"stage": "first-slow-settlement", "origin": "remote", "remote_request": {"record": 159, "relative_us": 6717589, "identifier": 243, "min": 32, "max": 48, "latency": 4, "timeout": 600}, "remote_accept": {"record": 162, "relative_us": 6717620, "identifier": 243, "result": 0}, "request": {"record": 163, "relative_us": 6717637, "min": 32, "max": 48, "latency": 4, "timeout": 600, "min_length": 0, "max_length": 0}, "status": {"record": 164, "relative_us": 6718978, "status": 0}, "update": {"record": 166, "relative_us": 6813006, "latency": 4, "timeout": 600, "interval": 48, "status": 0}},
+    {"stage": "second-required-fast", "origin": "remote", "remote_request": {"record": 197, "relative_us": 11133594, "identifier": 244, "min": 6, "max": 12, "latency": 0, "timeout": 500}, "remote_accept": {"record": 199, "relative_us": 11133633, "identifier": 244, "result": 0}, "request": {"record": 200, "relative_us": 11133649, "min": 6, "max": 12, "latency": 0, "timeout": 500, "min_length": 0, "max_length": 0}, "status": {"record": 201, "relative_us": 11135056, "status": 0}, "update": {"record": 203, "relative_us": 12093121, "latency": 0, "timeout": 500, "interval": 12, "status": 0}},
+    {"stage": "second-host-normalization", "origin": "host", "remote_request": null, "remote_accept": null, "request": {"record": 205, "relative_us": 12109679, "min": 6, "max": 6, "latency": 0, "timeout": 500, "min_length": 1, "max_length": 1}, "status": {"record": 206, "relative_us": 12110116, "status": 0}, "update": {"record": 207, "relative_us": 12333080, "latency": 0, "timeout": 500, "interval": 6, "status": 0}},
+    {"stage": "second-slow-settlement", "origin": "remote", "remote_request": {"record": 231, "relative_us": 12529589, "identifier": 245, "min": 32, "max": 48, "latency": 4, "timeout": 600}, "remote_accept": {"record": 233, "relative_us": 12529739, "identifier": 245, "result": 0}, "request": {"record": 234, "relative_us": 12529754, "min": 32, "max": 48, "latency": 4, "timeout": 600, "min_length": 0, "max_length": 0}, "status": {"record": 235, "relative_us": 12531070, "status": 0}, "update": {"record": 238, "relative_us": 12633094, "latency": 4, "timeout": 600, "interval": 48, "status": 0}}
+  ],
+  "operations": [
+    {
+      "id": "first",
+      "original_ok": true,
+      "single_operation_pair_flag": false,
+      "barrier_complete": true,
+      "live_complete": true,
+      "actions": {"confirmed_writes": 5, "ack_count": 5, "f1_received": true, "pending_bytes": 0},
+      "download": {
+        "file": "artifacts/window-nor2400-composer-20261014/first/download.bin",
+        "bytes": 4096,
+        "sha256": "aab4a2b76fec7da862f0266fe26d1c39de90d408c0941329813748bb177ec826"
+      },
+      "sector": {
+        "file": "artifacts/window-nor2400-composer-20261014/first/sector.bin",
+        "bytes": 512,
+        "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+      },
+      "received_bytes": 4096,
+      "download_bytes": 4096,
+      "freshness": {
+        "rule": "nearest-producer-exact-status32rows-prefix-dump-v1",
+        "ring_sha256": "aab4a2b76fec7da862f0266fe26d1c39de90d408c0941329813748bb177ec826",
+        "sector_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+        "nor_offset": 9216,
+        "bytes": 512,
+        "rows": 32,
+        "status_span": [539, 584],
+        "rows_span": [590, 2510],
+        "producer_span": [2530, 2575],
+        "dump_span": [2596, 2677],
+        "bounded_chain_bytes": 2138,
+        "previous_dump_required": false,
+        "previous_dump_span": null,
+        "one_status_one_producer": true,
+        "failure_text_absent": true
+      },
+      "pre_download_fast_count": 0,
+      "actions_hci_records": [111, 131],
+      "download_hci_records": [137, 161],
+      "download_relative_us": [6530417, 6717590],
+      "request_tx_to_boyi_end_us": 187173,
+      "slow_request_minus_boyi_end_us": -1,
+      "slow_update_minus_boyi_end_us": 95416,
+      "identity_barrier_hci_records": [167, 175],
+      "state_verification": {
+        "other_state_equal": true,
+        "free_capacity_unit": "MiB (integer firmware report)",
+        "free_capacity_before": 59591,
+        "free_capacity_after": 59591,
+        "free_capacity_decrease": 0,
+        "allowed_decrease": 1
+      },
+      "checkpoint": {
+        "file": "artifacts/window-nor2400-composer-20261014/first/checkpoint.json",
+        "bytes": 35440,
+        "sha256": "1928cdc4dc4560c538b1f20d6dff87869018d90717cbcf92d6d143cdbd23b280"
+      }
+    },
+    {
+      "id": "second",
+      "original_ok": true,
+      "single_operation_pair_flag": false,
+      "barrier_complete": true,
+      "live_complete": true,
+      "actions": {"confirmed_writes": 5, "ack_count": 5, "f1_received": true, "pending_bytes": 0},
+      "download": {
+        "file": "artifacts/window-nor2400-composer-20261014/second/download.bin",
+        "bytes": 4096,
+        "sha256": "a5ec81cfd3de98d683cf930062bf24362ce325e8cc8aec039b3a2701a567958a"
+      },
+      "sector": {
+        "file": "artifacts/window-nor2400-composer-20261014/second/sector.bin",
+        "bytes": 512,
+        "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+      },
+      "received_bytes": 4096,
+      "download_bytes": 4096,
+      "freshness": {
+        "rule": "nearest-producer-exact-status32rows-prefix-dump-composer-fps2-v1",
+        "ring_sha256": "a5ec81cfd3de98d683cf930062bf24362ce325e8cc8aec039b3a2701a567958a",
+        "sector_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+        "nor_offset": 9216,
+        "bytes": 512,
+        "rows": 32,
+        "status_span": [143, 188],
+        "rows_span": [194, 2114],
+        "producer_span": [2134, 2179],
+        "dump_span": [2233, 2314],
+        "bounded_chain_bytes": 2171,
+        "previous_dump_required": true,
+        "previous_dump_span": [2596, 2677],
+        "one_status_one_producer": true,
+        "failure_text_absent": true,
+        "composer_notice": {
+          "hex": "5b636f6d706f7365725d5b495d5b3734325d3a20706f73742066707320320a0d0a",
+          "span": [2180, 2213],
+          "sha256": "5a3ac148d446b5fdc3250152b6e17821a411fde6f6b67fb6088ca6d6c91f2d76"
+        }
+      },
+      "pre_download_fast_count": 1,
+      "actions_hci_records": [176, 196],
+      "download_hci_records": [209, 236],
+      "download_relative_us": [12335379, 12532584],
+      "request_tx_to_boyi_end_us": 197205,
+      "slow_request_minus_boyi_end_us": -2995,
+      "slow_update_minus_boyi_end_us": 100510,
+      "identity_barrier_hci_records": [239, 247],
+      "state_verification": {
+        "other_state_equal": true,
+        "free_capacity_unit": "MiB (integer firmware report)",
+        "free_capacity_before": 59591,
+        "free_capacity_after": 59591,
+        "free_capacity_decrease": 0,
+        "allowed_decrease": 1
+      },
+      "checkpoint": {
+        "file": "artifacts/window-nor2400-composer-20261014/second/checkpoint.json",
+        "bytes": 59697,
+        "sha256": "5845a8ba112a0bfec17c9ceda6c17d5fa00441aa3c7984b293c4c524d47d3a03"
+      }
+    }
+  ],
+  "composer_policy": {
+    "scope": "Explicit window-only exact opt; default parser remains strict",
+    "rule_actually_exercised_by_second": "nearest-producer-exact-status32rows-prefix-dump-composer-fps2-v1",
+    "notice": {
+      "hex": "5b636f6d706f7365725d5b495d5b3734325d3a20706f73742066707320320a0d0a",
+      "span": [2180, 2213],
+      "sha256": "5a3ac148d446b5fdc3250152b6e17821a411fde6f6b67fb6088ca6d6c91f2d76"
+    },
+    "only_exact_known_fps2_line_accepted": true,
+    "arbitrary_log_skipping_or_byte_deletion": false,
+    "previous_dump_anchor_and_32_rows_still_mandatory": true,
+    "decoding_after_actual_slow_settlement_and_identity": true,
+    "physical_worker_exit_or_hidden_cache_clear_observed": false
+  },
+  "final_state": {
+    "version": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "charging": true,
+    "battery": 100,
+    "free_capacity": 59591
+  },
+  "final_state_verification": {
+    "other_state_equal": true,
+    "free_capacity_unit": "MiB (integer firmware report)",
+    "free_capacity_before": 59591,
+    "free_capacity_after": 59591,
+    "free_capacity_decrease": 0,
+    "allowed_decrease": 0
+  },
+  "public_sector": {
+    "file": "window-nor2400-composer-2026-10-14/sector.bin",
+    "bytes": 512,
+    "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+    "nor_range": ["0x2400", "0x2600"],
+    "source": {
+      "file": "artifacts/window-nor2400-composer-20261014/first/sector.bin",
+      "bytes": 512,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    "source_report_sha256": "7b0b2e8366df265499be45eae8061db7fe98609447089d49073eba129f47e852",
+    "copied_byte_for_byte": true,
+    "all_bytes_ff_checked_before_publication": true,
+    "reused_old_prefix_or_oracle": false
+  },
+  "source_snapshot": {
+    "manifest": {
+      "file": "artifacts/window-nor2400-composer-20261014/source-snapshot/manifest.json",
+      "bytes": 5934,
+      "sha256": "bf750ad730ae6aaec8a57159f8b7aa8797ea6826f610e2fa80b783eb7e6a3c43"
+    },
+    "files": 34,
+    "scope": "New successful trial version; distinct from original failed snapshot",
+    "source_files": [
+      {"path": "src/rcominote/experiments/window_nor_probe.py", "bytes": 11310, "sha256": "bdad9378a32c9f13a627428d030fd53f91c12e6f4f4d16e922aa3e1004a4c939"},
+      {"path": "src/rcominote/experiments/window_nor_audit.py", "bytes": 8935, "sha256": "6b864ade8a464c618e10ace865eb7a648e126878093caa2577190f9ac78686a5"},
+      {"path": "src/rcominote/experiments/window_nor_contract.py", "bytes": 3536, "sha256": "da6dc78512d7ca0a23ea1dcf7674d8955d9a9e421e577f265f793384ff2d08be"},
+      {"path": "src/rcominote/experiments/window_ram_probe.py", "bytes": 11254, "sha256": "49b49179c13fa6c4c5aa64aa85249cefa2c59fa9746a4cfdb2fee2ccfc4bdf49"},
+      {"path": "src/rcominote/experiments/window_ram_audit.py", "bytes": 11042, "sha256": "846ac5c306c9c1bc392e08522b0d1ddfb3ed462932ca8ee0a005005956c32250"},
+      {"path": "src/rcominote/experiments/param_window.py", "bytes": 13004, "sha256": "54cf3ec892edb98a05cc78fa9196d1bd3fc89c5b9926728affe5debc70fd151c"},
+      {"path": "src/rcominote/experiments/boot_tail_contract.py", "bytes": 7710, "sha256": "5b7e6b2bdff70e3e02cd338735618a0c8bf86ca1940174c78398b4a10e841bd1"},
+      {"path": "src/rcominote/experiments/dual_unknown_pair.py", "bytes": 10580, "sha256": "7161c62988f9ccbf9991126ec4d159d0945246180ecd0526fd3a2dd2c36d8009"},
+      {"path": "src/rcominote/experiments/dual_nor_probe.py", "bytes": 17662, "sha256": "d25c4f66d2e60b0f1f99f2317ad349ddd88eb5fc6d0d06ab68dbe2e31a1152ff"},
+      {"path": "src/rcominote/experiments/dual_client.py", "bytes": 7691, "sha256": "673445a29e3b1208cd14c8a3786068904cc377271741626bf8a7ee63cc9c8163"},
+      {"path": "src/rcominote/experiments/dual_audit.py", "bytes": 14349, "sha256": "b977b34a083e12d5753d9b3ffb780a9a5268b33146f02dd69dd9d51145337a49"},
+      {"path": "src/rcominote/experiments/dual_hci.py", "bytes": 3856, "sha256": "6164a5a2dfdfae7faf79008b626fb4992984c09fc09ff7bdede92a2e8f8cfc8f"},
+      {"path": "src/rcominote/experiments/dual_interval.py", "bytes": 1834, "sha256": "bfff2103c65b9b93cb5ce144c4737e99bbd7571c5083351640b0d197c4299ea5"},
+      {"path": "src/rcominote/experiments/sd_warm_download.py", "bytes": 6050, "sha256": "f58f8d8cb9f67397c5fbd930c407c9815bf04d4376a64c9d0c71c14604a89102"},
+      {"path": "src/rcominote/experiments/sd_nor_probe.py", "bytes": 20783, "sha256": "62f9bae44a5e205bd167bdd0827e81c73f20cadccb1ee0b2e598eda1f917cb4b"},
+      {"path": "src/rcominote/experiments/sd_nor_targets.py", "bytes": 7445, "sha256": "176f60c522839afa584b4e4371f819f7181e9b87498663a68afda58591cdc358"},
+      {"path": "src/rcominote/experiments/sd_nor_unknown.py", "bytes": 5094, "sha256": "d6cff4a2662d222b30d1803367158e048879f723081be02310097464653b0d23"},
+      {"path": "src/rcominote/experiments/sd_bootstrap.py", "bytes": 14847, "sha256": "e7847be080d6dc96b351a26b7b184e6a130b812634dbd7bfb52040f2ebc0faf7"},
+      {"path": "src/rcominote/experiments/sd_interval_download.py", "bytes": 8321, "sha256": "0ef7b8ecd6422e23c53ca3705a55c14ee239dbe9f6c8429baadfaebf11e8a274"},
+      {"path": "src/rcominote/experiments/hci_interval.py", "bytes": 8425, "sha256": "3120e3939d38185861259b3ca61772fcbe81cb1682b2921e1f92203009d282d9"},
+      {"path": "src/rcominote/experiments/hci_interval_io.py", "bytes": 7462, "sha256": "366c06104a507ce01299366b044f55d8bd1b9aa3127dc17686468c8fcef10783"},
+      {"path": "src/rcominote/experiments/hci_monitor.py", "bytes": 3738, "sha256": "f3632128e2ec96e890339ba43ba8d8e9e8d04199971d20df9603693a516956d2"},
+      {"path": "src/rcominote/experiments/nor_freshness.py", "bytes": 8161, "sha256": "edaf3dd3a1198659b1db56ec52e3cca44a2bff07508a7278742d4853156acc0d"},
+      {"path": "src/rcominote/experiments/sd_bridge.py", "bytes": 18187, "sha256": "e6747ed4d79ca390652e36bc5ce87630c36932e7342f84c16c0bac76cc9efe3a"},
+      {"path": "src/rcominote/linux_att.py", "bytes": 12563, "sha256": "2570b758c881b37057210bc8554e536d2b67b207a4948a31bcec1fa5b9d71537"},
+      {"path": "src/rcominote/linux_client.py", "bytes": 9444, "sha256": "4e0c975d8e66a83a31d4852e7c5d90a517f4b5286ad80681e454c8839a6845ab"},
+      {"path": "src/rcominote/connection.py", "bytes": 17634, "sha256": "5024ddb82b9eec10f2ae7eca98b16fe0258dfc7ef7109eb704121e15362423dc"},
+      {"path": "src/rcominote/protocol.py", "bytes": 5113, "sha256": "9c8c55fff945202dbf6efb06be03026779eb023fdae94c3c5f5357e0a6ac1db2"},
+      {"path": "src/rcominote/ble_target.py", "bytes": 930, "sha256": "9672df4fbe601df81b340318b2414ecd945e3b4ad906f9b4952363de67102362"},
+      {"path": "src/rcominote/device_commands.py", "bytes": 10639, "sha256": "72ad5a31743e210010d247c1474a39421f37bdeba5c3b032f670f214e82f3f4b"},
+      {"path": "src/rcominote/log_stream.py", "bytes": 1813, "sha256": "1723ab9677e5823ba73c94be518b353699b5976ffa77ae3c86ce1216d873fc2c"},
+      {"path": "src/rcominote/log_probe.py", "bytes": 3273, "sha256": "24ca8c0042bf83974654620b1bf06e12551f6dd7c1d16bbdf909db3b2c80b7b1"},
+      {"path": "src/rcominote/log_capture.py", "bytes": 23598, "sha256": "ba1d4848e0fc9ebfe70976d08165a70869db36b9b24d475200c8381c54fdd427"},
+      {"path": "src/rcominote/printk_ring.py", "bytes": 2959, "sha256": "4d50623f284b2822853da26d4291cf08497bdf87ad1e194d64deb17561f37132"}
+    ]
+  },
+  "old_failed_trial_preserved": {
+    "report": {
+      "file": "artifacts/window-nor2400-20261014/report.json",
+      "bytes": 55749,
+      "sha256": "682b95fe57703a7ad03f18ad11b9ba0314f0505e53b8e9b583fe372735c64c47"
+    },
+    "original_replay_still_rejected": true,
+    "original_doc_and_metadata_hashes": [
+      {
+        "file": "docs/window-nor2400-live-2026-10-14.md",
+        "bytes": 6894,
+        "sha256": "c910771f6e58c5b92300bea1a681052cd7a895600818428ab8113575e7c26594"
+      },
+      {
+        "file": "docs/evidence/window-nor2400-live-2026-10-14.json",
+        "bytes": 17978,
+        "sha256": "109312ae919b04fa78bf2e2e33381061fe7f5cc53e46b799059666eeedf2c2fa"
+      }
+    ],
+    "original_status_or_missing_events_promoted": false
+  },
+  "scratch_accounting": {
+    "download_confirmed_files": 58,
+    "old_device_declared4096_unverified_file": 1,
+    "historical_additional_possible_file": 1,
+    "maximum_retained_test_files": 60,
+    "new_download_confirmed_files_this_trial": 2,
+    "automatic_deletion": false
+  },
+  "offline_validation": {
+    "device_io": false,
+    "full_new_N_replay_and_pair_verification_passed": true,
+    "all34_new_snapshot_hashes_checked": true,
+    "both_real_sector_files_equal_and_512ff_checked": true,
+    "actual_second_composer_notice_and_previous_anchor_verified": true,
+    "old_failed_replay_rejected": true,
+    "old_failure_doc_and_metadata_unchanged": true
+  },
+  "publication": {
+    "only_new_binary": "Actual new first sector512; no assembled partition or padding",
+    "complete_att_hci_rings_info_audio_inventory_published": false,
+    "new_verifier_created": false,
+    "original_files_modified": false
+  }
+}

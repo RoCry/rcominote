@@ -1,0 +1,2 @@
+logsrv: cmd(27) dbg fread spi_flash 0x4200
+

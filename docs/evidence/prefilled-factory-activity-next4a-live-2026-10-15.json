@@ -1,0 +1,309 @@
+{
+  "schema": "fixed-prefilled-factory-activity-next4a-success-receipt-v1",
+  "date": "2026-10-15",
+  "date_timezone": "Asia/Hong_Kong",
+  "capture_utc_date": "2026-10-14",
+  "outcome": "Original finitefour-page whole succeeded;2048 new privatephysicalbytes; no laterplan/capture included",
+  "references": {
+    "whole_report": {
+      "file": "artifacts/prefilled-factory-activity-next4a-20261015/report.json",
+      "bytes": 23830,
+      "sha256": "5dc165e9c50ec4299354f5da6256b43c1430b06eb54e1ade5a257e88e5f803cd"
+    },
+    "plan": {
+      "file": "artifacts/prefilled-factory-activity-next4a-20261015/plan.json",
+      "bytes": 13383,
+      "sha256": "49e0ea56171f5c85671d83dc6942b7eb66b79ce7df50554d58d735fc74920625"
+    },
+    "source_manifest": {
+      "file": "artifacts/prefilled-factory-activity-next4a-20261015/source-snapshot/manifest.json",
+      "bytes": 50655,
+      "sha256": "aa5a0b4faf2bc4c49db74e08ecf50b9124f929d7c8c9a02d25cb5bc30b58818e"
+    },
+    "preflight_review": {
+      "file": "artifacts/prefilled-factory-activity-next4a-20261015/preflight-review.json",
+      "bytes": 1613,
+      "sha256": "3415b1d43ddab077bf29e78eb04578709c5517fe9b2c944459555fdcd47b960d"
+    },
+    "inherited_checks_before": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/prefilled-factory-activity-preflight-20261015/checks-before.json",
+      "bytes": 38536,
+      "sha256": "cc1c7b3ea77073aedb508d283a31b8057e169e5398e9c28aa5ae30c9186efe5b"
+    },
+    "inherited_checks_after": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/prefilled-factory-activity-preflight-20261015/checks-after.json",
+      "bytes": 38536,
+      "sha256": "cc1c7b3ea77073aedb508d283a31b8057e169e5398e9c28aa5ae30c9186efe5b"
+    },
+    "inherited_just_check_log": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/prefilled-factory-activity-preflight-20261015/just-check.log",
+      "bytes": 3215,
+      "sha256": "7d48b74d05ca40a4ead2d7e4c70b820cdeb62c11c5cd27afbb3ef7b6cc2f284f"
+    },
+    "inherited_build_log": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/prefilled-factory-activity-preflight-20261015/uv-build.log",
+      "bytes": 179,
+      "sha256": "937bcf6f77f21fd510d0bc6ebfcac53235c976fc096e61be3a67efeb891e959c"
+    },
+    "first_segment_sanitized_summary": {
+      "file": "artifacts/factory-first-segment-format-20261015/sanitized-summary.json",
+      "bytes": 1129,
+      "sha256": "b15c00b85f7e8674063ef69eab6ac232cff7aeb374341c7afba921d5f97d56a5"
+    }
+  },
+  "pages": [
+    {
+      "physical_range": [
+        "0x1ece00",
+        "0x1ed000"
+      ],
+      "report": {
+        "file": "artifacts/prefilled-factory-activity-next4a-20261015/page0-1ece00/report.json",
+        "bytes": 128233,
+        "sha256": "e5e0879f58b5cc0e5e09bd1bb0ab39565e61298bc1d35dbe8b4acb793de5678d"
+      },
+      "hci": {
+        "file": "artifacts/prefilled-factory-activity-next4a-20261015/page0-1ece00/session.btsnoop",
+        "bytes": 38670,
+        "sha256": "ae3a4dbfc6981f99e2777a714ce06ed3661a151aaa564d02b6e21b5a713e8349"
+      },
+      "started_at": "2026-10-14T18:49:35.154422+00:00",
+      "ended_at": "2026-10-14T18:50:13.901430+00:00",
+      "original_ok": true,
+      "paired_bytes": 512,
+      "ATT_packets": 262,
+      "HCI_records": 450,
+      "HCI_bytes": 38670,
+      "complete_parameter_transactions": 15,
+      "status_events": 0,
+      "startup_mode": "fast",
+      "pulse_performed": false,
+      "NOR_gap_forms": [
+        "plain",
+        "composer-before-crlf"
+      ]
+    },
+    {
+      "physical_range": [
+        "0x1ed000",
+        "0x1ed200"
+      ],
+      "report": {
+        "file": "artifacts/prefilled-factory-activity-next4a-20261015/page1-1ed000/report.json",
+        "bytes": 128292,
+        "sha256": "0925bebf4231e53e28660deeaf386d8aec2080cda42e0b3c8aea5b5e8501c3ca"
+      },
+      "hci": {
+        "file": "artifacts/prefilled-factory-activity-next4a-20261015/page1-1ed000/session.btsnoop",
+        "bytes": 38770,
+        "sha256": "de4054ed78839831efb3205e225a06794f4176689ffb5d4071a262a24fdff63f"
+      },
+      "started_at": "2026-10-14T18:50:14.597497+00:00",
+      "ended_at": "2026-10-14T18:50:52.392199+00:00",
+      "original_ok": true,
+      "paired_bytes": 512,
+      "ATT_packets": 263,
+      "HCI_records": 453,
+      "HCI_bytes": 38770,
+      "complete_parameter_transactions": 15,
+      "status_events": 0,
+      "startup_mode": "fast",
+      "pulse_performed": false,
+      "NOR_gap_forms": [
+        "composer-before-crlf",
+        "plain"
+      ]
+    },
+    {
+      "physical_range": [
+        "0x1ed200",
+        "0x1ed400"
+      ],
+      "report": {
+        "file": "artifacts/prefilled-factory-activity-next4a-20261015/page2-1ed200/report.json",
+        "bytes": 128957,
+        "sha256": "ddc9ecdc5cde26828561e31daff82c00f87f5bfa33696d48bc64ad97655a53ab"
+      },
+      "hci": {
+        "file": "artifacts/prefilled-factory-activity-next4a-20261015/page2-1ed200/session.btsnoop",
+        "bytes": 38797,
+        "sha256": "1c3907e2d0284b53ba97d4f2b373e7806983814de949b1f19a795b689a0a1227"
+      },
+      "started_at": "2026-10-14T18:50:53.127430+00:00",
+      "ended_at": "2026-10-14T18:51:29.675371+00:00",
+      "original_ok": true,
+      "paired_bytes": 512,
+      "ATT_packets": 263,
+      "HCI_records": 453,
+      "HCI_bytes": 38797,
+      "complete_parameter_transactions": 15,
+      "status_events": 1,
+      "startup_mode": "fast",
+      "pulse_performed": false,
+      "NOR_gap_forms": [
+        "composer-before-crlf",
+        "plain"
+      ]
+    },
+    {
+      "physical_range": [
+        "0x1ed400",
+        "0x1ed600"
+      ],
+      "report": {
+        "file": "artifacts/prefilled-factory-activity-next4a-20261015/page3-1ed400/report.json",
+        "bytes": 128384,
+        "sha256": "ff0173a1ed8b959afe2cc9a55bb5e1c3e763775ab1ae753e3be124664ea1dac5"
+      },
+      "hci": {
+        "file": "artifacts/prefilled-factory-activity-next4a-20261015/page3-1ed400/session.btsnoop",
+        "bytes": 38840,
+        "sha256": "027eaa10832553f579ca2e0587c7edd940bc3b111b6dabb3de59ddbf299021d1"
+      },
+      "started_at": "2026-10-14T18:51:30.413498+00:00",
+      "ended_at": "2026-10-14T18:52:07.769037+00:00",
+      "original_ok": true,
+      "paired_bytes": 512,
+      "ATT_packets": 265,
+      "HCI_records": 455,
+      "HCI_bytes": 38840,
+      "complete_parameter_transactions": 15,
+      "status_events": 0,
+      "startup_mode": "fast",
+      "pulse_performed": false,
+      "NOR_gap_forms": [
+        "composer-before-crlf",
+        "plain"
+      ]
+    }
+  ],
+  "source": {
+    "source_files": 153,
+    "test_files": 140,
+    "snapshot_files": 293,
+    "snapshot_and_isolated_all_lengths_hashes_equal": true,
+    "isolated_source": "/home/rocry/w/_tmp/rcominote-prefilled-activity-frozen-20261015",
+    "inherited_preIO_checks": "2786tests+159subtests56.73s/351formatlint/build in originalcheckwindow",
+    "inherited_declared_inputs_before_equal_after": 357,
+    "new_full_check_run": false,
+    "independent_snapshot_modules_with_format_validator": 107,
+    "current_source_checks_claimed": false
+  },
+  "chronology": {
+    "manifest_created_at": "2026-10-14T18:40:49.763403+00:00",
+    "parent_actual_ONE_ended_at": "2026-10-14T18:44:23.255244+00:00",
+    "planned_at": "2026-10-14T18:46:40.715882+00:00",
+    "whole_started_at": "2026-10-14T18:49:29.122987+00:00",
+    "final_identity_response_at": "2026-10-14T18:52:05.581566+00:00",
+    "last_page_ended_at": "2026-10-14T18:52:07.769037+00:00",
+    "whole_ended_at": "2026-10-14T18:52:07.798133+00:00",
+    "time_fields_not_interchanged": true
+  },
+  "full_success_proof": {
+    "original_whole_ok": true,
+    "all_four_original_pages_ok": true,
+    "completed_pairs": 4,
+    "new_private_physical_range": [
+      "0x1ece00",
+      "0x1ed600"
+    ],
+    "new_private_physical_bytes": 2048,
+    "each_pair_two_separate_fresh512_files_equal": true,
+    "independent_NOR_byte_oracle": false,
+    "all_eight_NOR_strict_difference_prefix_bytes": 4096,
+    "all_eight_RAM_prefills_complete4096_match_independent_oracle": true,
+    "each_live_baseline_matches_complete_actual_predecessor": true,
+    "full_source_parent_plan_content_GATT_ATT_HCI_epoch_state_disconnect_replayed": true,
+    "actual_startup_modes": [
+      "fast",
+      "fast",
+      "fast",
+      "fast"
+    ],
+    "startup_pulses": 0,
+    "new_integrated_DEFAULT_branch_radio_exercised": false,
+    "new_exact_wake_notice_gap_radio_exercised": false,
+    "new_CRLF_before_composer_gap_radio_exercised": false,
+    "actual_gap_forms_count": {
+      "plain": 4,
+      "composer-before-crlf": 4
+    }
+  },
+  "actual_totals": {
+    "connections": 4,
+    "ATT_packets": 1053,
+    "HCI_records": 1811,
+    "HCI_bytes": 155077,
+    "complete_parameter_transactions": 60,
+    "pending_parameter_transactions": 0,
+    "status_events": 1,
+    "status_event_binding": "page2-1ed200 ATT96, original unchanged-status20 USB-connected policy",
+    "normal_local_disconnects_reason0x16": 4,
+    "downloads": 20,
+    "RAM_exports": 8,
+    "NOR_producers": 8,
+    "same_owned_file_SD_overwrites": 16,
+    "new_files": 0,
+    "NOR_writes": 0,
+    "explicit_RAM_writes": 0,
+    "deletes": 0,
+    "active_seconds_per_page_limit": 60
+  },
+  "current_and_coverage": {
+    "current_owned_file_complete_bytes": 4096,
+    "successful_parent_gate_admitted": true,
+    "firmware_version": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "bound": false,
+    "charging": true,
+    "battery_percent": 100,
+    "free_capacity": 59589,
+    "reserved_nonce_history_before": 74,
+    "fresh_NOR_names": 8,
+    "reserved_nonce_history_after": 82,
+    "scratch_cohort_upper_bound": 72,
+    "nonce_history_and_file_cohort_distinct": true,
+    "strong_A_bytes": 46864,
+    "historical_B_bytes": 155204,
+    "potential_available_bytes": 202068,
+    "factory_complete_pair_bytes": 5632,
+    "factory_missing_bytes": 2560,
+    "system_contiguous_raw_bytes": 6144,
+    "system_physical_range": [
+      "0x24000",
+      "0x25800"
+    ],
+    "frozen_ASOF24200_inventory_unchanged_overlay_only": true
+  },
+  "host_first_segment_format": {
+    "source": "eight actualaccepted first==second512 sectors;sourcepairdirectories in sanitizedsummary",
+    "captured_physical_range": [
+      "0x1ec000",
+      "0x1ed000"
+    ],
+    "actual_bytes": 4096,
+    "full_ancestor_source_and_current_four_page_gates_verified": true,
+    "raw4096_assembled_bytes_equal_private_file": true,
+    "NVSR_version1_header_CRC_valid": true,
+    "header_CRC_not_whole_segment_checksum": true,
+    "bounded_item_count": 12,
+    "all_item_CRC_name_hash_spans_and_padding_valid": true,
+    "first_measured_empty_header_offset": 416,
+    "actual_FF_tail_bytes": 3680,
+    "padding_fill_or_unread_bytes_inferred": false,
+    "additional_coverage_from_format_check": 0,
+    "complete_factory8192_claimed": false,
+    "atomic_snapshot_runtime_selection_restore_proven": false,
+    "keys_values_record_and_raw_hashes_private": true
+  },
+  "privacy_and_limits": {
+    "factory_carrier_sector_content_bytes_hashes_hex_and_nonces_withheld": true,
+    "metadata_only_no_public_binary": true,
+    "old_ONE_notice_BOOT0_and_all_frozen_receipts_unchanged": true,
+    "old_failed_jobs_replay_rejected": true,
+    "later4b_plan_or_capture_not_part_of_this_receipt": true,
+    "no_automatic_retry_or_extension": true,
+    "full4MiB_backup_restore_own_runtime_incomplete": true
+  }
+}

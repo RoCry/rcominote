@@ -12,8 +12,11 @@ from rcominote.experiments.linux_att import AttError, AttLink
 
 class AttTests(unittest.IsolatedAsyncioTestCase):
     async def asyncSetUp(self):
+        self.open_packet_link()
+
+    def open_packet_link(self, *, local_mtu=247):
         self.report = {}
-        self.link = AttLink("12:34:56:78:9A:BC", self.report)
+        self.link = AttLink("12:34:56:78:9A:BC", self.report, local_mtu=local_mtu)
         local, self.peer = socket.socketpair(socket.AF_UNIX, socket.SOCK_DGRAM)
         local.setblocking(False)
         self.peer.setblocking(False)
@@ -81,6 +84,51 @@ class AttTests(unittest.IsolatedAsyncioTestCase):
         await self.recv()
         await self.send("0b436f4d69")
         self.assertEqual(await request, b"\x0bCoMi")
+
+    async def test_local_128_request_caps_large_peer_and_notification_boundary(self):
+        self.open_packet_link(local_mtu=128)
+        request = self.task("028000", 0x03)
+        self.assertEqual(await self.recv(), bytes.fromhex("028000"))
+        await self.send("03f700")
+        self.assertEqual(await request, bytes.fromhex("03f700"))
+        self.assertEqual(self.link.mtu, 128)
+        await self.send("1b1700" + "ab" * 125)
+        self.assertEqual(await self.link.next_notification(), (0x17, b"\xab" * 125))
+        await self.send("1b1700" + "ab" * 126)
+        with self.assertRaisesRegex(ConnectionError, "exceeds negotiated MTU: 129 > 128"):
+            await self.link.next_notification()
+
+    async def test_local_128_peer_exchange_advertises_local_even_when_peer_is_smaller(self):
+        self.open_packet_link(local_mtu=128)
+        await self.send("02b900")
+        self.assertEqual(await self.recv(), bytes.fromhex("038000"))
+        self.assertEqual(self.link.mtu, 128)
+        await self.send("025000")
+        self.assertEqual(await self.recv(), bytes.fromhex("038000"))
+        self.assertEqual(self.link.mtu, 80)
+
+    async def test_mismatched_own_mtu_claim_fails_before_sending_and_preserves_link(self):
+        self.open_packet_link(local_mtu=128)
+        with self.assertRaisesRegex(ValueError, "configured local ATT MTU"):
+            await self.link.request(bytes.fromhex("02f700"), 0x03)
+        self.assertEqual(self.report["att_packets"], [])
+        request = self.task("028000", 0x03)
+        self.assertEqual(await self.recv(), bytes.fromhex("028000"))
+        await self.send("038000")
+        await request
+        self.assertEqual(self.link.mtu, 128)
+
+    def test_local_mtu_validation_precedes_report_mutation(self):
+        for value in (True, False, None, "128", 128.0, 0, 22, 248, 517):
+            with self.subTest(local_mtu=value):
+                report = {}
+                with self.assertRaisesRegex(ValueError, "integer from 23 through 247"):
+                    AttLink("12:34:56:78:9A:BC", report, local_mtu=value)
+                self.assertEqual(report, {})
+        for value in (23, 128, 247):
+            with self.subTest(local_mtu=value):
+                self.assertEqual(AttLink("12:34:56:78:9A:BC", {}, local_mtu=value).local_mtu, value)
+        self.assertEqual(AttLink("12:34:56:78:9A:BC", {}).local_mtu, 247)
 
     async def test_unrelated_error_cannot_complete_pending_request(self):
         request = self.task("100100ffff0028", 0x11)

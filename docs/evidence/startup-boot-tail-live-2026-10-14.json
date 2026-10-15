@@ -1,0 +1,176 @@
+{
+  "schema": "startup-boot-tail-live-v1",
+  "scope": "Frozen failed controlled three-slot job; separately verified2a00/2c00 pairs add1024bytes, failed2e00 contributes none",
+  "result": {
+    "original_job_ok": false,
+    "original_error": "OSError: [Errno 38] LE ATT connect failed",
+    "completed_slots": ["2a00", "2c00"],
+    "failed_slot": "2e00",
+    "new_verified_bytes": 1024,
+    "new_verified_range": [10752, 11776],
+    "verified_partition_prefix": [8192, 11776],
+    "verified_partition_bytes": 3584,
+    "verified_prefix_sha256": "92feb2e31d43ffb2ce5935a4a58559c35aa422cf7e6f829ddaa5aef1a69190c9",
+    "partition_bytes": 4096,
+    "remaining_unverified_range": [11776, 12288],
+    "remaining_unverified_bytes": 512,
+    "assembled_outputs": false,
+    "independent_content_oracle": false,
+    "nor_flash_write_attempted": false
+  },
+  "job": {
+    "report": {
+      "file": "artifacts/startup-boot-tail-20261014/report.json",
+      "bytes": 1498,
+      "sha256": "f4ce4eb4523d353d15375ed16f358ef1467cf3de5b6e9c3cce5102e6f012f46e"
+    },
+    "plan": {
+      "file": "artifacts/startup-boot-tail-20261014/job-plan.json",
+      "bytes": 39762,
+      "sha256": "d947f4d3ab6b91ead5aeddfd57e826476fe9dcac4b484e8ccf7d54f77dd1b79d"
+    },
+    "planned_at": "2026-10-14T04:46:04.581683+00:00",
+    "started_at": "2026-10-14T04:46:04.582063+00:00",
+    "ended_at": "2026-10-14T04:46:48.442899+00:00",
+    "fixed_slots": [10752, 11264, 11776],
+    "max_connections": 3,
+    "max_producer_executions": 6,
+    "max_sd_test_files": 6,
+    "planned_nonce_count": 6,
+    "executed_nonce_count": 4,
+    "completed_checkpoint_pairs": 2,
+    "original_checkpoints_equal_actual_job_progress": true,
+    "target_nonce_parent_policy_prestate_chronology_verified": true
+  },
+  "source_snapshot": {
+    "manifest": {
+      "file": "artifacts/startup-boot-tail-20261014/source-snapshot/manifest.json",
+      "bytes": 16990,
+      "sha256": "f6289e63f29600a7b17497f88d9f82c446c23c4989d698c2b376018d49e99d11"
+    },
+    "record": {
+      "file": "artifacts/startup-boot-tail-20261014/source-snapshot/record.json",
+      "bytes": 482,
+      "sha256": "aec6b5633a861a7ea32834be55d1ac45f4f36150745fc4f6776468295184d979"
+    },
+    "created_at": "2026-10-14T04:45:53.951704+00:00",
+    "source_count": 119,
+    "all_archived_lengths_hashes_verified": true,
+    "recorded_checks": {
+      "just_check": {
+        "passed": 1627,
+        "subtests_passed": 159
+      },
+      "uv_build": "passed"
+    },
+    "record_precedes_plan_and_io": true,
+    "archived_dependencies_used_for_independent_replay": true,
+    "future_current_source_equality_claimed": false
+  },
+  "previous_sources": {
+    "state_parent_report": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/status-remaining-20261014/report.json",
+      "bytes": 471,
+      "sha256": "3f98ac2ba0ffa9edad7e0f02a29fec24d7623fac9b20a116454e9be8ad74eedf"
+    },
+    "old2560prefix_and_full_state_chain_replayed": true,
+    "full_summary_equals_immutable_plan_checkpoint": true,
+    "prefix_bytes": 2560,
+    "prefix_sha256": "2b6e99ee899e1515e0cc44b220424cd9da6906b39490504bdcca2236755db51c",
+    "ram_control_report": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/startup-ram-default-20261014/report.json",
+      "bytes": 921,
+      "sha256": "48ec93559b6702abe67c0a00298bcc8abf5d555710a9896fb183c81da76b7da4"
+    },
+    "ram_control_replay_and_exact_wrapper_equals_plan": true,
+    "ram_control_actual_default_tested": true,
+    "ram_control_new_nor_coverage_bytes": 0
+  },
+  "attempts": [{"slot": "2a00", "nor_range": [10752, 11264], "report": {"file": "artifacts/startup-boot-tail-20261014/2a00/report.json", "bytes": 66720, "sha256": "9e7c334b722f7370b66f05c523584f1f4fca487bc203bdc6a193f7833ff5b441"}, "capture": {"file": "artifacts/startup-boot-tail-20261014/2a00/session.btsnoop", "bytes": 18648, "sha256": "853521a9964f99a4b51613e9572badf761d68ffacd81762f84c9f838fe666c2a"}, "checkpoint": {"file": "artifacts/startup-boot-tail-20261014/checkpoint-2a00.json", "bytes": 861, "sha256": "199280ecd978d092a7cc4710897dbab4d2aa28473c9b1d976e6353056afaa7cb"}, "original_flags": {"ok": true, "pair_verified": true, "final_audit_complete": true}, "original_offline_replay": "pass", "new_unique_verified_bytes": 512, "records": 255, "att_packets": 148, "att_binding": {"verified": true, "packets": 148, "comparison": "exact within each direction"}, "initial_connection_parameters": [48, 4, 600], "startup_classification": {"policy": "startup-remote-fast-or-default-once", "mode": "fast", "parameters": [6, 12, 0, 500], "requires_fast_before_normalization": false}, "parameter_transactions": [{"origin": "remote", "request_record": 107, "status_record": 108, "update_record": 110, "applied": [12, 0, 500]}, {"origin": "host", "request_record": 133, "status_record": 134, "update_record": 135, "applied": [6, 0, 500]}, {"origin": "remote", "request_record": 163, "status_record": 164, "update_record": 166, "applied": [48, 4, 600]}, {"origin": "remote", "request_record": 200, "status_record": 201, "update_record": 203, "applied": [12, 0, 500]}, {"origin": "host", "request_record": 205, "status_record": 206, "update_record": 207, "applied": [6, 0, 500]}, {"origin": "remote", "request_record": 234, "status_record": 235, "update_record": 237, "applied": [48, 4, 600]}], "pending_transactions": 0, "status_events_observed": 0, "monitor_exit": 0, "monitor_stop": {"signal": "SIGINT", "requested": true, "delivery": "sent"}, "started_at": "2026-10-14T04:46:10.522009+00:00", "ended_at": "2026-10-14T04:46:26.987071+00:00", "initial_free_mib": 59590, "final_free_mib": 59590, "operations": [{"operation": "first", "original_ok": true, "live_complete": true, "sd_write_attempted": true, "actions_span": [55, 71], "actions_verified": {"acks": 5, "end": true, "pending_bytes": 0, "trace_span": [55, 71]}, "download_span": [71, 93], "download": {"file": "artifacts/startup-boot-tail-20261014/2a00/first/download.bin", "bytes": 4096, "sha256": "a048957da6f53e08660358402442d4f325630d3e09f93763f9d562b5eeeb5633"}, "download_ms": 195.987, "sector": {"file": "artifacts/startup-boot-tail-20261014/2a00/first/sector.bin", "bytes": 512, "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"}, "freshness": {"rule": "nearest-producer-exact-status32rows-prefix-dump-v1", "ring_sha256": "a048957da6f53e08660358402442d4f325630d3e09f93763f9d562b5eeeb5633", "sector_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d", "nor_offset": 10752, "bytes": 512, "rows": 32, "status_span": [916, 961], "rows_span": [967, 2887], "producer_span": [2907, 2952], "dump_span": [2973, 3054], "bounded_chain_bytes": 2138, "previous_dump_required": false, "previous_dump_span": null, "one_status_one_producer": true, "failure_text_absent": true}, "identity_barrier_span": [93, 99], "state_verification": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59590, "free_capacity_after": 59590, "free_capacity_decrease": 0, "allowed_decrease": 1}}, {"operation": "second", "original_ok": true, "live_complete": true, "sd_write_attempted": true, "actions_span": [99, 115], "actions_verified": {"acks": 5, "end": true, "pending_bytes": 0, "trace_span": [99, 115]}, "download_span": [115, 136], "download": {"file": "artifacts/startup-boot-tail-20261014/2a00/second/download.bin", "bytes": 4096, "sha256": "13189986f2c312fcebad6aa10ff085fb130a2d857afdcc8d2e3b9cf5333c6815"}, "download_ms": 189.781, "sector": {"file": "artifacts/startup-boot-tail-20261014/2a00/second/sector.bin", "bytes": 512, "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"}, "freshness": {"rule": "nearest-producer-exact-status32rows-prefix-dump-composer-fps2-v1", "ring_sha256": "13189986f2c312fcebad6aa10ff085fb130a2d857afdcc8d2e3b9cf5333c6815", "sector_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d", "nor_offset": 10752, "bytes": 512, "rows": 32, "status_span": [520, 565], "rows_span": [571, 2491], "producer_span": [2511, 2556], "dump_span": [2610, 2691], "bounded_chain_bytes": 2171, "previous_dump_required": true, "previous_dump_span": [2973, 3054], "one_status_one_producer": true, "failure_text_absent": true, "composer_notice": {"hex": "5b636f6d706f7365725d5b495d5b3734325d3a20706f73742066707320320a0d0a", "span": [2557, 2590], "sha256": "5a3ac148d446b5fdc3250152b6e17821a411fde6f6b67fb6088ca6d6c91f2d76"}}, "identity_barrier_span": [136, 142], "state_verification": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59590, "free_capacity_after": 59590, "free_capacity_decrease": 0, "allowed_decrease": 1}}], "public_sector": {"file": "docs/evidence/startup-boot-tail-live-2026-10-14/sector2a00.bin", "bytes": 512, "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d", "copied_from": {"file": "artifacts/startup-boot-tail-20261014/2a00/first/sector.bin", "bytes": 512, "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"}, "second_actual_sector_equal": true, "all_ff_checked": true}}, {"slot": "2c00", "nor_range": [11264, 11776], "report": {"file": "artifacts/startup-boot-tail-20261014/2c00/report.json", "bytes": 66714, "sha256": "33a08b30bb8eba47d00888f8e70b584001244cab36a7db6adb1491d8f5ab8ebd"}, "capture": {"file": "artifacts/startup-boot-tail-20261014/2c00/session.btsnoop", "bytes": 18676, "sha256": "5154b8a6e75431cd7ab4a6dfbe3e8a4c184ae37301d5169b24d211be50b50b57"}, "checkpoint": {"file": "artifacts/startup-boot-tail-20261014/checkpoint-2c00.json", "bytes": 1392, "sha256": "87dcea34259a7a2151b29d067e8a58c058edc534bd325c2bf8f6b439cfb31623"}, "original_flags": {"ok": true, "pair_verified": true, "final_audit_complete": true}, "original_offline_replay": "pass", "new_unique_verified_bytes": 512, "records": 256, "att_packets": 148, "att_binding": {"verified": true, "packets": 148, "comparison": "exact within each direction"}, "initial_connection_parameters": [48, 4, 600], "startup_classification": {"policy": "startup-remote-fast-or-default-once", "mode": "fast", "parameters": [6, 12, 0, 500], "requires_fast_before_normalization": false}, "parameter_transactions": [{"origin": "remote", "request_record": 108, "status_record": 109, "update_record": 111, "applied": [12, 0, 500]}, {"origin": "host", "request_record": 134, "status_record": 135, "update_record": 136, "applied": [6, 0, 500]}, {"origin": "remote", "request_record": 164, "status_record": 165, "update_record": 167, "applied": [48, 4, 600]}, {"origin": "remote", "request_record": 201, "status_record": 202, "update_record": 204, "applied": [12, 0, 500]}, {"origin": "host", "request_record": 206, "status_record": 207, "update_record": 208, "applied": [6, 0, 500]}, {"origin": "remote", "request_record": 235, "status_record": 236, "update_record": 238, "applied": [48, 4, 600]}], "pending_transactions": 0, "status_events_observed": 0, "monitor_exit": 0, "monitor_stop": {"signal": "SIGINT", "requested": true, "delivery": "sent"}, "started_at": "2026-10-14T04:46:27.232507+00:00", "ended_at": "2026-10-14T04:46:45.487122+00:00", "initial_free_mib": 59590, "final_free_mib": 59590, "operations": [{"operation": "first", "original_ok": true, "live_complete": true, "sd_write_attempted": true, "actions_span": [55, 71], "actions_verified": {"acks": 5, "end": true, "pending_bytes": 0, "trace_span": [55, 71]}, "download_span": [71, 93], "download": {"file": "artifacts/startup-boot-tail-20261014/2c00/first/download.bin", "bytes": 4096, "sha256": "e173ec9b549ef69316fba7f895e02b56fc7f57f0483e13a7ab2b384edd8a3ffa"}, "download_ms": 190.672, "sector": {"file": "artifacts/startup-boot-tail-20261014/2c00/first/sector.bin", "bytes": 512, "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"}, "freshness": {"rule": "nearest-producer-exact-status32rows-prefix-dump-v1", "ring_sha256": "e173ec9b549ef69316fba7f895e02b56fc7f57f0483e13a7ab2b384edd8a3ffa", "sector_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d", "nor_offset": 11264, "bytes": 512, "rows": 32, "status_span": [2912, 2957], "rows_span": [2963, 4883], "producer_span": [807, 852], "dump_span": [873, 954], "bounded_chain_bytes": 2138, "previous_dump_required": false, "previous_dump_span": null, "one_status_one_producer": true, "failure_text_absent": true}, "identity_barrier_span": [93, 99], "state_verification": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59590, "free_capacity_after": 59590, "free_capacity_decrease": 0, "allowed_decrease": 1}}, {"operation": "second", "original_ok": true, "live_complete": true, "sd_write_attempted": true, "actions_span": [99, 115], "actions_verified": {"acks": 5, "end": true, "pending_bytes": 0, "trace_span": [99, 115]}, "download_span": [115, 136], "download": {"file": "artifacts/startup-boot-tail-20261014/2c00/second/download.bin", "bytes": 4096, "sha256": "1dd282f53a71a6cb23d3f5bc9c22ba1a1b1ca57f87963bfc9a4bc2992dbd719a"}, "download_ms": 184.273, "sector": {"file": "artifacts/startup-boot-tail-20261014/2c00/second/sector.bin", "bytes": 512, "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"}, "freshness": {"rule": "nearest-producer-exact-status32rows-prefix-dump-composer-fps2-v1", "ring_sha256": "1dd282f53a71a6cb23d3f5bc9c22ba1a1b1ca57f87963bfc9a4bc2992dbd719a", "sector_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d", "nor_offset": 11264, "bytes": 512, "rows": 32, "status_span": [2601, 2646], "rows_span": [2652, 4572], "producer_span": [496, 541], "dump_span": [595, 676], "bounded_chain_bytes": 2171, "previous_dump_required": true, "previous_dump_span": [873, 954], "one_status_one_producer": true, "failure_text_absent": true, "composer_notice": {"hex": "5b636f6d706f7365725d5b495d5b3734325d3a20706f73742066707320320a0d0a", "span": [542, 575], "sha256": "5a3ac148d446b5fdc3250152b6e17821a411fde6f6b67fb6088ca6d6c91f2d76"}}, "identity_barrier_span": [136, 142], "state_verification": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59590, "free_capacity_after": 59590, "free_capacity_decrease": 0, "allowed_decrease": 1}}], "public_sector": {"file": "docs/evidence/startup-boot-tail-live-2026-10-14/sector2c00.bin", "bytes": 512, "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d", "copied_from": {"file": "artifacts/startup-boot-tail-20261014/2c00/first/sector.bin", "bytes": 512, "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"}, "second_actual_sector_equal": true, "all_ff_checked": true}}],
+  "failed2e00": {
+    "report": {
+      "file": "artifacts/startup-boot-tail-20261014/2e00/report.json",
+      "bytes": 8207,
+      "sha256": "588bc0a2d304e97af1754d9e79ed4dc96a795285783953672df7d5e4365898a6"
+    },
+    "capture": {
+      "file": "artifacts/startup-boot-tail-20261014/2e00/session.btsnoop",
+      "bytes": 950,
+      "sha256": "e029bbe3a153db7c183e9555e5fbc05afbbd122d21ef83c527a941b9f32ab060"
+    },
+    "original_flags": {
+      "ok": false,
+      "pair_verified": false,
+      "final_audit_complete": false
+    },
+    "error": "OSError: [Errno 38] LE ATT connect failed",
+    "started_at": "2026-10-14T04:46:45.728621+00:00",
+    "ended_at": "2026-10-14T04:46:48.442735+00:00",
+    "stage": "ATT socket connection establishment; no ATT packet or GATT discovery; LE remote-features-complete event reports status3e",
+    "records": 23,
+    "att_packets": 0,
+    "acl_packets": 0,
+    "identity_observations": 0,
+    "actions_commands": 0,
+    "producer_executions": 0,
+    "sd_write_attempts": 0,
+    "download_confirmed_new_files": 0,
+    "new_raw_nor_coverage_bytes": 0,
+    "hci_connect_status": 0,
+    "hci_connect_record": 18,
+    "read_remote_features_command_record": 21,
+    "command_status_record": 22,
+    "command_status": 0,
+    "features_complete_record": 23,
+    "features_complete_event_code": 62,
+    "features_complete_subevent": 4,
+    "features_complete_status": 62,
+    "features_complete_packet_sha256": "101bbc1b67b93cad23485dcc2ac2852ed9384150e08af6a79b604d0824269a05",
+    "unsupported_att_error_observed": false,
+    "monitor_exit": 0,
+    "monitor_stop": {
+      "signal": "SIGINT",
+      "requested": true,
+      "delivery": "sent"
+    },
+    "error_mapping_evidence": {
+      "file": "docs/evidence/linux-le-features-error-2026-10-14.json",
+      "bytes": 6164,
+      "sha256": "e3b24227a852a2d91f0e01c45d4ea2498f69c077ed6187b803ce7b8461903e77"
+    },
+    "host_errno_mapping": "Separate installed-module/static-source evidence establishes HCI status0x3e→Linux default ENOSYS38; RF/device cause remains unknown"
+  },
+  "latest_actual_state": {
+    "source": "Successful2c00 final actual HCI-bound identity; failed2e00 has no newer identity",
+    "source_report": {
+      "file": "artifacts/startup-boot-tail-20261014/2c00/report.json",
+      "bytes": 66714,
+      "sha256": "33a08b30bb8eba47d00888f8e70b584001244cab36a7db6adb1491d8f5ab8ebd"
+    },
+    "owned_serial_verified": true,
+    "bound": false,
+    "firmware": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "charging": true,
+    "battery": 100,
+    "free_capacity_mib": 59590,
+    "actual_all2a00_2c00_identities_equal_expected": true,
+    "device_state_after2e00_unknown": true
+  },
+  "sd_scratch_cohort": {
+    "new_download_confirmed_files": 4,
+    "failed2e00_attempted_files": 0,
+    "ubuntu_download_confirmed_total": 68,
+    "previous_declared_without_download": 1,
+    "historical_possible": 1,
+    "maximum_total": 70,
+    "deleted": 0
+  },
+  "original_replay_rejections": {
+    "job": "Archived job requires original success and original end timestamp",
+    "failed2e00_pair": "Original NOR-window pair failed; retain without promotion"
+  },
+  "original_private_input_files_unchanged_at_review": 655,
+  "limits": ["Each target supplies512unique bytes despite two reads; identical FF hashes do not substitute address-specific original provenance.", "Both new NOR captures observed startupFAST; actual DEFAULT branch was demonstrated by prior RAM control, not by these two NOR connections.", "Failed2e00 has zero ATT/identity/producer/SDwrite; hosterrno38 is not evidence of unsupported ATT command.", "LE connect-complete status0 alone did not yield a usable ATT socket; later LE features status3e is retained.", "Latest observed device identity ends at2c00.after; subsequent state is unknown.", "Raw HCI failure does not establish RF cause or device-side root cause.", "No assembled fw1_boot/fullNOR backup, restoration/flashing guarantee, physical worker exit or hidden queue clearing proof.", "Full raw HCI/ATT/rings/device identity/inventory and scratch nonces remain private."]
+}

@@ -1,0 +1,451 @@
+{
+  "schema": 1,
+  "serial": "C261CF0430",
+  "scope": "Fresh fixed boot0 NOR-to-printk-ring-to-SD-to-Boyi chain;512 bytes only; no NOR write, ROM entry or arbitrary offset",
+  "guard_bundle": {
+    "file": "sd-nor-progress-2026-10-14.json",
+    "sha256": "9a527138f5c92942d6f3ef2a0e4c4402cbdd7136b813ea43a93586ee01c0996f"
+  },
+  "boot_oracle": {
+    "file": "boot-complete-2026-10-12/raw.bin",
+    "bytes": 4096,
+    "sha256": "782c26c3ba9bee07a8b0b464898fb963a76eb35a2916586b854f8f45993f4166",
+    "slice_offset": 0,
+    "slice_bytes": 512,
+    "slice_sha256": "72952b98341a3089765c6cc8dd35ddc93ae699698d1455ce74dea1071cc277ec"
+  },
+  "parser_sources": {
+    "src/rcominote/experiments/hci_interval.py": "3120e3939d38185861259b3ca61772fcbe81cb1682b2921e1f92203009d282d9"
+  },
+  "failed_context": {
+    "source_report": {
+      "file": "artifacts/nor-sd-interval6-20261014/context/report.json",
+      "sha256": "2643862ffdab3f0bc9a3c90e04cb7a24b86f069c32ca3e6189bd1c614d69c052"
+    },
+    "original_ok": false,
+    "error": "TimeoutError: [Errno 110] Connection timed out",
+    "sd_write_attempted": false,
+    "actions_commands": 0,
+    "state": {
+      "other_state_equal": true,
+      "free_capacity_unit": "MiB (integer firmware report)",
+      "free_capacity_before": 59593,
+      "free_capacity_after": 59593,
+      "free_capacity_decrease": 0,
+      "allowed_decrease": 0
+    },
+    "payload_reused": false
+  },
+  "phases": {
+    "context-b": {
+      "source_report": {
+        "file": "artifacts/nor-sd-interval6-20261014/context-b/report.json",
+        "sha256": "d6db78dee18e38f7aa1f13a525c6233e6ae2df6c334f7dc32af5651ba6588b60"
+      },
+      "original_ok": true,
+      "source_address": "0x1800e008",
+      "source_bytes": 28,
+      "dump_command": "dbg dumpbuf 402710536 28 /SD:/RECORDER/Call-rc83d6ca05f9.mp3",
+      "actions": {
+        "confirmed_writes": 4,
+        "ack_count": 4,
+        "f1_received": true,
+        "pending_bytes": 0
+      },
+      "state": {
+        "other_state_equal": true,
+        "free_capacity_unit": "MiB (integer firmware report)",
+        "free_capacity_before": 59593,
+        "free_capacity_after": 59593,
+        "free_capacity_decrease": 0,
+        "allowed_decrease": 1
+      },
+      "download": {
+        "file": "artifacts/nor-sd-interval6-20261014/context-b/download.bin",
+        "sha256": "03d7aac52c273a41fee0d48afd96b6a5091618af81a7fb16e5a18ef3ba437afb"
+      },
+      "guards_report_sha256": [
+        "d7f2657718e45ccd14c52c9ac6b1371d544c8c489337d0525bcbca04f6f46bff",
+        "c6d47a956cf952edcb3c116879eb7da07502f39f029160679dedb8346ab29376",
+        "755527b171e70842f36e0a3437cff11714bc4cb3e4efd1bf1485fc2c6d22f89d",
+        "f2311da2a613b77e915829e00f09fa9c9ac83e831d05883298290deb466e4b51",
+        "523b2adecec8a207827a05830f1428c46c7dc545db57ab8e2066fc8c2aaf502d",
+        "1cf1c8a2d53bff61dc9f9e2397ea56b7b07091d46b83acef3b5f025a04cf77fb",
+        "5d1c6747a859892d9d8ae126b829e2e1e01f5f17e33735185602fd3dc14163b5"
+      ],
+      "raw": {
+        "file": "sd-nor-interval-live-2026-10-14/context.bin",
+        "bytes": 28,
+        "sha256": "03d7aac52c273a41fee0d48afd96b6a5091618af81a7fb16e5a18ef3ba437afb"
+      },
+      "fields": {
+        "read": 1284,
+        "write": 1284,
+        "used": 0,
+        "capacity": 4096,
+        "buffer": "0x1803ee09",
+        "init": 1,
+        "panic": 0,
+        "raw_hex": "0405000004050000000000000010000009ee03180100000000000000"
+      }
+    },
+    "baseline": {
+      "source_report": {
+        "file": "artifacts/nor-sd-interval6-20261014/baseline/report.json",
+        "sha256": "e385b125f236acf8cf75b51d556b1d4b81310c97e708b4aebd5ee778eb1d01c7"
+      },
+      "original_ok": true,
+      "source_address": "0x1803ee09",
+      "source_bytes": 4096,
+      "dump_command": "dbg dumpbuf 402910729 4096 /SD:/RECORDER/Call-rccd9c3eeff3.mp3",
+      "actions": {
+        "confirmed_writes": 4,
+        "ack_count": 4,
+        "f1_received": true,
+        "pending_bytes": 0
+      },
+      "state": {
+        "other_state_equal": true,
+        "free_capacity_unit": "MiB (integer firmware report)",
+        "free_capacity_before": 59593,
+        "free_capacity_after": 59593,
+        "free_capacity_decrease": 0,
+        "allowed_decrease": 1
+      },
+      "download": {
+        "file": "artifacts/nor-sd-interval6-20261014/baseline/download.bin",
+        "sha256": "d56181d9ad8ac3727fc33616c3af95281655e9f2504f4d9c7e9aa795ddf6657d"
+      },
+      "guards_report_sha256": [
+        "d7f2657718e45ccd14c52c9ac6b1371d544c8c489337d0525bcbca04f6f46bff",
+        "c6d47a956cf952edcb3c116879eb7da07502f39f029160679dedb8346ab29376",
+        "755527b171e70842f36e0a3437cff11714bc4cb3e4efd1bf1485fc2c6d22f89d",
+        "f2311da2a613b77e915829e00f09fa9c9ac83e831d05883298290deb466e4b51",
+        "523b2adecec8a207827a05830f1428c46c7dc545db57ab8e2066fc8c2aaf502d",
+        "1cf1c8a2d53bff61dc9f9e2397ea56b7b07091d46b83acef3b5f025a04cf77fb",
+        "5d1c6747a859892d9d8ae126b829e2e1e01f5f17e33735185602fd3dc14163b5"
+      ],
+      "previous_report_sha256": "d6db78dee18e38f7aa1f13a525c6233e6ae2df6c334f7dc32af5651ba6588b60",
+      "transport": {
+        "profile": "interval6-ce1",
+        "condition": "verified-through-download",
+        "update_requested_us": 63960172446457291,
+        "download_start_us": 63960172446819606,
+        "download_end_us": 63960172447003296,
+        "link": {
+          "handle": 2048,
+          "local": "AC:19:8E:26:2B:F8",
+          "peer": "50:C0:F0:AE:7C:0E",
+          "controller": "hci0"
+        },
+        "baseline": {
+          "kind": "connect",
+          "status": 0,
+          "handle": 2048,
+          "role": 0,
+          "address_type": 0,
+          "address": "50:C0:F0:AE:7C:0E",
+          "interval": 36,
+          "latency": 0,
+          "timeout": 500,
+          "record": 18,
+          "timestamp_us": 63960172444833324
+        },
+        "applied": {
+          "kind": "update",
+          "status": 0,
+          "handle": 2048,
+          "interval": 6,
+          "latency": 0,
+          "timeout": 500,
+          "record": 79,
+          "timestamp_us": 63960172446814258
+        },
+        "actual_hci_request": {
+          "handle": 2048,
+          "min": 6,
+          "max": 6,
+          "latency": 0,
+          "timeout": 500,
+          "min_length": 1,
+          "max_length": 1,
+          "kind": "request",
+          "record": 77,
+          "timestamp_us": 63960172446478229
+        },
+        "hci_capture": {
+          "bytes": 8589,
+          "sha256": "99cb49ed67185a28a32506f400cecbc6c6ec2b00e66781dcce4152be4e0dbd0a",
+          "records": 116
+        },
+        "state_verification": {
+          "other_state_equal": true,
+          "free_capacity_unit": "MiB (integer firmware report)",
+          "free_capacity_before": 59593,
+          "free_capacity_after": 59593,
+          "free_capacity_decrease": 0,
+          "allowed_decrease": 0
+        },
+        "parameter_records": [
+          {
+            "record": 3,
+            "timestamp_us": 63960172444231736,
+            "monitor_opcode": 0,
+            "packet_hex": "0001f82b268e19ac6863693000000000"
+          },
+          {
+            "record": 18,
+            "timestamp_us": 63960172444833324,
+            "monitor_opcode": 3,
+            "packet_hex": "3e1f0a00000800000e7caef0c05000000000000000000000000024000000f40100"
+          },
+          {
+            "record": 77,
+            "timestamp_us": 63960172446478229,
+            "monitor_opcode": 2,
+            "packet_hex": "13200e0008060006000000f40101000100"
+          },
+          {
+            "record": 78,
+            "timestamp_us": 63960172446479208,
+            "monitor_opcode": 3,
+            "packet_hex": "0f0400011320"
+          },
+          {
+            "record": 79,
+            "timestamp_us": 63960172446814258,
+            "monitor_opcode": 3,
+            "packet_hex": "3e0a0300000806000000f401"
+          },
+          {
+            "record": 115,
+            "timestamp_us": 63960172449086244,
+            "monitor_opcode": 3,
+            "packet_hex": "050400000816"
+          }
+        ]
+      },
+      "full_ring_published": false,
+      "dump_marker": {
+        "file": "sd-nor-interval-live-2026-10-14/baseline-dump-marker.bin",
+        "bytes": 81,
+        "sha256": "afb080e50c44023f11721a7933033f85a34cec59601ec1f5f848651be144968b",
+        "ring_span": [
+          1158,
+          1239
+        ]
+      },
+      "full_private_payload_verification": {
+        "unique_current_marker": true,
+        "no_nor_rows": true
+      }
+    },
+    "boot": {
+      "source_report": {
+        "file": "artifacts/nor-sd-interval6-20261014/boot/report.json",
+        "sha256": "2464090da54d985bb05c0ec90d5a693d60c65bd6443176b066bf2c71da78da99"
+      },
+      "original_ok": true,
+      "source_address": "0x1803ee09",
+      "source_bytes": 4096,
+      "dump_command": "dbg dumpbuf 402910729 4096 /SD:/RECORDER/Call-rc489479e9f0.mp3",
+      "actions": {
+        "confirmed_writes": 5,
+        "ack_count": 5,
+        "f1_received": true,
+        "pending_bytes": 0
+      },
+      "state": {
+        "other_state_equal": true,
+        "free_capacity_unit": "MiB (integer firmware report)",
+        "free_capacity_before": 59593,
+        "free_capacity_after": 59593,
+        "free_capacity_decrease": 0,
+        "allowed_decrease": 1
+      },
+      "download": {
+        "file": "artifacts/nor-sd-interval6-20261014/boot/download.bin",
+        "sha256": "2133f89e5b1449931b045a62e113d46dd1f2d0acf2e322651f7105defe4430f2"
+      },
+      "guards_report_sha256": [
+        "d7f2657718e45ccd14c52c9ac6b1371d544c8c489337d0525bcbca04f6f46bff",
+        "c6d47a956cf952edcb3c116879eb7da07502f39f029160679dedb8346ab29376",
+        "755527b171e70842f36e0a3437cff11714bc4cb3e4efd1bf1485fc2c6d22f89d",
+        "f2311da2a613b77e915829e00f09fa9c9ac83e831d05883298290deb466e4b51",
+        "523b2adecec8a207827a05830f1428c46c7dc545db57ab8e2066fc8c2aaf502d",
+        "1cf1c8a2d53bff61dc9f9e2397ea56b7b07091d46b83acef3b5f025a04cf77fb",
+        "5d1c6747a859892d9d8ae126b829e2e1e01f5f17e33735185602fd3dc14163b5"
+      ],
+      "previous_report_sha256": "e385b125f236acf8cf75b51d556b1d4b81310c97e708b4aebd5ee778eb1d01c7",
+      "transport": {
+        "profile": "interval6-ce1",
+        "condition": "verified-through-download",
+        "update_requested_us": 63960172543973200,
+        "download_start_us": 63960172544334063,
+        "download_end_us": 63960172544512290,
+        "link": {
+          "handle": 2048,
+          "local": "AC:19:8E:26:2B:F8",
+          "peer": "50:C0:F0:AE:7C:0E",
+          "controller": "hci0"
+        },
+        "baseline": {
+          "kind": "connect",
+          "status": 0,
+          "handle": 2048,
+          "role": 0,
+          "address_type": 0,
+          "address": "50:C0:F0:AE:7C:0E",
+          "interval": 36,
+          "latency": 0,
+          "timeout": 500,
+          "record": 18,
+          "timestamp_us": 63960172542434731
+        },
+        "applied": {
+          "kind": "update",
+          "status": 0,
+          "handle": 2048,
+          "interval": 6,
+          "latency": 0,
+          "timeout": 500,
+          "record": 79,
+          "timestamp_us": 63960172544329760
+        },
+        "actual_hci_request": {
+          "handle": 2048,
+          "min": 6,
+          "max": 6,
+          "latency": 0,
+          "timeout": 500,
+          "min_length": 1,
+          "max_length": 1,
+          "kind": "request",
+          "record": 77,
+          "timestamp_us": 63960172543995999
+        },
+        "hci_capture": {
+          "bytes": 8589,
+          "sha256": "55c8a6faac88351c4d7f71f387f35f732c63bcb0f7c93c590d791641513dd6fd",
+          "records": 116
+        },
+        "state_verification": {
+          "other_state_equal": true,
+          "free_capacity_unit": "MiB (integer firmware report)",
+          "free_capacity_before": 59593,
+          "free_capacity_after": 59593,
+          "free_capacity_decrease": 0,
+          "allowed_decrease": 0
+        },
+        "parameter_records": [
+          {
+            "record": 3,
+            "timestamp_us": 63960172541818756,
+            "monitor_opcode": 0,
+            "packet_hex": "0001f82b268e19ac6863693000000000"
+          },
+          {
+            "record": 18,
+            "timestamp_us": 63960172542434731,
+            "monitor_opcode": 3,
+            "packet_hex": "3e1f0a00000800000e7caef0c05000000000000000000000000024000000f40100"
+          },
+          {
+            "record": 77,
+            "timestamp_us": 63960172543995999,
+            "monitor_opcode": 2,
+            "packet_hex": "13200e0008060006000000f40101000100"
+          },
+          {
+            "record": 78,
+            "timestamp_us": 63960172543996735,
+            "monitor_opcode": 3,
+            "packet_hex": "0f0400011320"
+          },
+          {
+            "record": 79,
+            "timestamp_us": 63960172544329760,
+            "monitor_opcode": 3,
+            "packet_hex": "3e0a0300000806000000f401"
+          },
+          {
+            "record": 115,
+            "timestamp_us": 63960172546624775,
+            "monitor_opcode": 3,
+            "packet_hex": "050400000816"
+          }
+        ]
+      },
+      "full_ring_published": false,
+      "dump_marker": {
+        "file": "sd-nor-interval-live-2026-10-14/boot-dump-marker.bin",
+        "bytes": 81,
+        "sha256": "af1927b42f860aafac6bab6d3f18f93646cb623f03589f8d937f4eb297dede4f",
+        "ring_span": [
+          3657,
+          3738
+        ]
+      },
+      "status_and_rows": {
+        "file": "sd-nor-interval-live-2026-10-14/boot-status-rows.bin",
+        "bytes": 1968,
+        "sha256": "763b01f1939c0f17fa781940bdce00a2877dbdc1250b1048b4f9017f0a7ca30e",
+        "ring_span": [
+          1608,
+          3576
+        ]
+      },
+      "producer_marker": {
+        "file": "sd-nor-interval-live-2026-10-14/boot-producer-marker.bin",
+        "bytes": 40,
+        "sha256": "abaa3a1900faaefecd05b46409bdfafcdd45fc2789bf193aa32bf4b448b17476",
+        "ring_span": [
+          3596,
+          3636
+        ]
+      },
+      "producer": "dbg fread spi_flash 0",
+      "sector": {
+        "file": "artifacts/nor-sd-interval6-20261014/boot/sector.bin",
+        "sha256": "72952b98341a3089765c6cc8dd35ddc93ae699698d1455ce74dea1071cc277ec"
+      }
+    }
+  },
+  "new_sd_files": 3,
+  "retained_sd_test_files_total": 45,
+  "public_new_raw_bytes": 2198,
+  "private_audit": {
+    "performed_offline": true,
+    "device_io": false,
+    "full_actions_and_identity": true,
+    "full_hci_parameter_condition": true,
+    "complete_private_payloads": true
+  },
+  "private_sources": {
+    "/home/rocry/w/_hw/rcominote/artifacts/nor-sd-guards-20261013/fread/report.json": {"bytes": 9929, "sha256": "d7f2657718e45ccd14c52c9ac6b1371d544c8c489337d0525bcbca04f6f46bff"},
+    "/home/rocry/w/_hw/rcominote/artifacts/nor-sd-guards-20261013/fread/download.bin": {"bytes": 16, "sha256": "f963f951c6085970a59c89a6a90f1c90b1f1abceb8fd10b6ba733bfa637d3037"},
+    "/home/rocry/w/_hw/rcominote/artifacts/nor-sd-guards-20261013/fread-descriptor/report.json": {"bytes": 9940, "sha256": "c6d47a956cf952edcb3c116879eb7da07502f39f029160679dedb8346ab29376"},
+    "/home/rocry/w/_hw/rcominote/artifacts/nor-sd-guards-20261013/fread-descriptor/download.bin": {"bytes": 16, "sha256": "6548f374ecdc04cd71f88fbaca9dca03d00d2b2ad3d363785b2a8ef7f2d0d5e3"},
+    "/home/rocry/w/_hw/rcominote/artifacts/live-sd-handler160-read-b-20261013/report.json": {"bytes": 4325, "sha256": "755527b171e70842f36e0a3437cff11714bc4cb3e4efd1bf1485fc2c6d22f89d"},
+    "/home/rocry/w/_hw/rcominote/artifacts/live-sd-handler160-read-b-20261013/download.bin": {"bytes": 160, "sha256": "3f76f18c95ed6dfd6711681465491669ee48448b229eacfefb85aa9033ce68ab"},
+    "/home/rocry/w/_hw/rcominote/artifacts/live-sd-handler160-20261013/report.json": {"bytes": 9834, "sha256": "0052c1abe23014cf35cfab7a5035e8b028c31f39060955e65d63a2d2bd3f80a9"},
+    "/home/rocry/w/_hw/rcominote/artifacts/live-sd-xip32-c-20261013/report.json": {"bytes": 9930, "sha256": "f2311da2a613b77e915829e00f09fa9c9ac83e831d05883298290deb466e4b51"},
+    "/home/rocry/w/_hw/rcominote/artifacts/live-sd-xip32-c-20261013/download.bin": {"bytes": 32, "sha256": "2337540c74a6aa8984eb481c2fea27a80d12cfd4c24c5300db820f86a733f486"},
+    "/home/rocry/w/_hw/rcominote/artifacts/nor-sd-guards-20261013/printk-code-b/report.json": {"bytes": 10192, "sha256": "523b2adecec8a207827a05830f1428c46c7dc545db57ab8e2066fc8c2aaf502d"},
+    "/home/rocry/w/_hw/rcominote/artifacts/nor-sd-guards-20261013/printk-code-b/download.bin": {"bytes": 104, "sha256": "1f76a5f857d1d05fa1e471dadb84ae75101ada9c3df7de9ce259394a1caff71a"},
+    "/home/rocry/w/_hw/rcominote/artifacts/nor-sd-guards-20261013/printk-hook/report.json": {"bytes": 9935, "sha256": "1cf1c8a2d53bff61dc9f9e2397ea56b7b07091d46b83acef3b5f025a04cf77fb"},
+    "/home/rocry/w/_hw/rcominote/artifacts/nor-sd-guards-20261013/printk-hook/download.bin": {"bytes": 16, "sha256": "6bf44ef7941d301c1df0a211ca48afe2dd39025490e677dc66023d717cae9bd5"},
+    "/home/rocry/w/_hw/rcominote/artifacts/nor-sd-guards-20261013/ring-code/report.json": {"bytes": 9933, "sha256": "5d1c6747a859892d9d8ae126b829e2e1e01f5f17e33735185602fd3dc14163b5"},
+    "/home/rocry/w/_hw/rcominote/artifacts/nor-sd-guards-20261013/ring-code/download.bin": {"bytes": 68, "sha256": "45e99cb13e49aacfb67d18187540906be7bda7cffc71c5e907c7df602e0c9132"},
+    "artifacts/nor-sd-interval6-20261014/context-b/report.json": {"bytes": 13391, "sha256": "d6db78dee18e38f7aa1f13a525c6233e6ae2df6c334f7dc32af5651ba6588b60"},
+    "artifacts/nor-sd-interval6-20261014/context-b/download.bin": {"bytes": 28, "sha256": "03d7aac52c273a41fee0d48afd96b6a5091618af81a7fb16e5a18ef3ba437afb"},
+    "artifacts/nor-sd-interval6-20261014/baseline/report.json": {"bytes": 16591, "sha256": "e385b125f236acf8cf75b51d556b1d4b81310c97e708b4aebd5ee778eb1d01c7"},
+    "artifacts/nor-sd-interval6-20261014/baseline/download.bin": {"bytes": 4096, "sha256": "d56181d9ad8ac3727fc33616c3af95281655e9f2504f4d9c7e9aa795ddf6657d"},
+    "artifacts/nor-sd-interval6-20261014/baseline/session.btsnoop": {"bytes": 8589, "sha256": "99cb49ed67185a28a32506f400cecbc6c6ec2b00e66781dcce4152be4e0dbd0a"},
+    "artifacts/nor-sd-interval6-20261014/boot/report.json": {"bytes": 18312, "sha256": "2464090da54d985bb05c0ec90d5a693d60c65bd6443176b066bf2c71da78da99"},
+    "artifacts/nor-sd-interval6-20261014/boot/download.bin": {"bytes": 4096, "sha256": "2133f89e5b1449931b045a62e113d46dd1f2d0acf2e322651f7105defe4430f2"},
+    "artifacts/nor-sd-interval6-20261014/boot/session.btsnoop": {"bytes": 8589, "sha256": "55c8a6faac88351c4d7f71f387f35f732c63bcb0f7c93c590d791641513dd6fd"},
+    "artifacts/nor-sd-interval6-20261014/boot/sector.bin": {"bytes": 512, "sha256": "72952b98341a3089765c6cc8dd35ddc93ae699698d1455ce74dea1071cc277ec"},
+    "artifacts/nor-sd-interval6-20261014/context/report.json": {"bytes": 9452, "sha256": "2643862ffdab3f0bc9a3c90e04cb7a24b86f069c32ca3e6189bd1c614d69c052"}
+  }
+}

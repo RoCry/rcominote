@@ -1,0 +1,126 @@
+{
+  "scope": "Fixed raw0x2200..0x2400; complete single acquisition only, not independent paired backup",
+  "serial": "C261CF0430",
+  "coverage_basis": {
+    "acpt_sha256": "a071b0cdafad355eb05a71e96fc2cb6a5348ec8b5e11d0ac4dfe54d83671a144",
+    "entry": {
+      "index": 2,
+      "name": "fw1_boot",
+      "type": 1,
+      "file_id": 1,
+      "storage_id": 0,
+      "mirror_id": 1,
+      "flags": 0,
+      "offset": "0x2000",
+      "size_bytes": 4096,
+      "end_exclusive": "0x3000",
+      "file_offset": "0x2000"
+    },
+    "previously_covered": [
+      8192,
+      8704
+    ],
+    "prefix_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+    "new_range": [
+      8704,
+      9216
+    ],
+    "bytes": 512
+  },
+  "acquisitions": [
+    {
+      "ok": false,
+      "error": "OSError: [Errno 38] LE ATT connect failed",
+      "after_error": null,
+      "sd_write_attempted": true,
+      "ack_count": 5,
+      "end_received": true,
+      "received_bytes": null,
+      "state_verification": {
+        "other_state_equal": true,
+        "free_capacity_unit": "MiB (integer firmware report)",
+        "free_capacity_before": 59593,
+        "free_capacity_after": 59592,
+        "free_capacity_decrease": 1,
+        "allowed_decrease": 1
+      },
+      "name": "first",
+      "original_report": "artifacts/backup-boot-block1-20261014/first/report.json",
+      "report_sha256": "adeb83bc78a5ff1f0bad114685571e15a013018c9ce2cfd598999c4a512d9bd6",
+      "independent_oracle": false,
+      "pair_verified": false
+    },
+    {
+      "ok": true,
+      "error": null,
+      "after_error": null,
+      "sd_write_attempted": true,
+      "ack_count": 5,
+      "end_received": true,
+      "received_bytes": 4096,
+      "state_verification": {
+        "other_state_equal": true,
+        "free_capacity_unit": "MiB (integer firmware report)",
+        "free_capacity_before": 59592,
+        "free_capacity_after": 59592,
+        "free_capacity_decrease": 0,
+        "allowed_decrease": 1
+      },
+      "name": "first-b",
+      "original_report": "artifacts/backup-boot-block1-20261014/first-b/report.json",
+      "report_sha256": "b78ccc61ce8b4bc374dca816f407c0e5255693451ccbc984e9fc4eff09df79e9",
+      "independent_oracle": false,
+      "pair_verified": false,
+      "sector_bytes": 512,
+      "sector_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+      "all_ff": true,
+      "full_private_single_audit_replayed": true,
+      "transport_condition": "verified-through-download",
+      "hci_capture": {
+        "bytes": 8496,
+        "sha256": "c8cbbd53186da383ba4f3b332a190999598ca64e558062d3b9f6b38f48863122",
+        "records": 113
+      },
+      "monitor_stop": {
+        "signal": "SIGINT",
+        "requested": true,
+        "delivery": "sent"
+      },
+      "monitor_exit": 0
+    },
+    {
+      "ok": false,
+      "error": "OSError: [Errno 38] LE ATT connect failed",
+      "after_error": null,
+      "sd_write_attempted": false,
+      "ack_count": null,
+      "end_received": null,
+      "received_bytes": null,
+      "state_verification": {
+        "other_state_equal": true,
+        "free_capacity_unit": "MiB (integer firmware report)",
+        "free_capacity_before": 59592,
+        "free_capacity_after": 59592,
+        "free_capacity_decrease": 0,
+        "allowed_decrease": 0
+      },
+      "name": "second",
+      "original_report": "artifacts/backup-boot-block1-20261014/second/report.json",
+      "report_sha256": "8cd38427e36ddf92f667304f0143c330b154a36a00418816818464f9ffeeaacf",
+      "independent_oracle": false,
+      "pair_verified": false
+    }
+  ],
+  "pair_verified": false,
+  "pair_replay_rejection": "Previous receipt phase, guards or identity mismatch",
+  "new_single_sample_bytes": 512,
+  "new_pair_verified_bytes": 0,
+  "nor_write": false,
+  "rom_entry": false,
+  "next": "Stop reconnect-heavy unknown reads; prototype one connection with boot0 and recovery0x4200 independent known oracles",
+  "new_sd_test_files_confirmed_by_download": 1,
+  "additional_sd_write_attempts_without_download": 1,
+  "current_ubuntu_sequence_confirmed_test_files": 48,
+  "current_ubuntu_sequence_possible_test_files_max": 49,
+  "residue_boundary": "Boyi audio list omits scratch files; first-b downloaded file confirmed, first failed-download write attempt may leave another file; do not treat ACK or capacity delta as file proof"
+}

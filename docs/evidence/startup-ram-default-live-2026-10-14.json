@@ -1,0 +1,474 @@
+{
+  "schema": "startup-ram-default-live-v1",
+  "scope": "Frozen successful seed→actualDEFAULT→two ordered activity/FAST/normalized-oracle-download/SLOW windows; no storage write or new NOR evidence",
+  "result": {
+    "original_ok": true,
+    "offline_original_replay": "pass",
+    "actual_default_tested": true,
+    "connections": 2,
+    "activity_pulses": 2,
+    "existing_ram_downloads": 2,
+    "exact_bytes_each": 4096,
+    "complete_parameter_transactions_total": 8,
+    "sd_write_attempts": 0,
+    "new_sd_files": 0,
+    "producer_executions": 0,
+    "new_raw_nor_coverage_bytes": 0,
+    "verified_fw1_boot_bytes_unchanged": 2560,
+    "fw1_boot_bytes": 4096,
+    "pulse_unique_fast_trigger_proven": false,
+    "actual_status_events_total": 0,
+    "actual_background_f0_frames_total": 0
+  },
+  "job": {
+    "report": {
+      "file": "artifacts/startup-ram-default-20261014/report.json",
+      "bytes": 921,
+      "sha256": "48ec93559b6702abe67c0a00298bcc8abf5d555710a9896fb183c81da76b7da4"
+    },
+    "plan": {
+      "file": "artifacts/startup-ram-default-20261014/plan.json",
+      "bytes": 35910,
+      "sha256": "a0bb68e17fd9bcce85e128c0170c8544eeeafa0969aebfe9e6f1bb7d6f94e9a0"
+    },
+    "planned_at": "2026-10-14T04:27:12.290188+00:00",
+    "started_at": "2026-10-14T04:27:12.290486+00:00",
+    "ended_at": "2026-10-14T04:27:48.803411+00:00",
+    "immutable_plan_sources_and_all_phase_provenance_verified": true,
+    "seed_actual_disconnect_precedes_data_connect": true
+  },
+  "source_snapshot": {
+    "manifest": {
+      "file": "artifacts/startup-ram-default-20261014/source-snapshot/manifest.json",
+      "bytes": 16832,
+      "sha256": "c39d570cc2215bc2c60611dd8b10e934e21419fbca8ea63490ac5b84e2f06781"
+    },
+    "record": {
+      "file": "artifacts/startup-ram-default-20261014/source-snapshot/record.json",
+      "bytes": 479,
+      "sha256": "f2618f5a7fe7c10816789703ad3e01fd7504ace6320fef6b05b71b10b1f68194"
+    },
+    "created_at": "2026-10-14T04:27:05.130868+00:00",
+    "source_count": 118,
+    "all_archived_length_hashes_verified": true,
+    "record_precedes_plan_and_io": true,
+    "recorded_checks": {
+      "just_check": {
+        "passed": 1605,
+        "subtests_passed": 159
+      },
+      "uv_build": "passed"
+    },
+    "archived_dependencies_used_for_independent_replay": true,
+    "future_current_source_equality_claimed": false
+  },
+  "existing_ram_oracle": {
+    "image": {
+      "file": "artifacts/mapped-system-20261012.bin",
+      "bytes": 927632,
+      "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f"
+    },
+    "fixed_image_bytes": 927632,
+    "oracle_bytes": 4096,
+    "oracle_sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b",
+    "original_bootstrap_report": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/live-sd-bootstrap-20261013/report.json",
+      "bytes": 9787,
+      "sha256": "a76e99224ef2482f8749f1a4d7036774cd9eda761171ff5cd97c7ae83ffbd8a9"
+    },
+    "original_actions_and_state_source_verified": true,
+    "no_new_device_file_created": true
+  },
+  "latest_precontrol_state_source": {
+    "report": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/status-remaining-20261014/report.json",
+      "bytes": 471,
+      "sha256": "3f98ac2ba0ffa9edad7e0f02a29fec24d7623fac9b20a116454e9be8ad74eedf"
+    },
+    "failed2a00_report": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/status-remaining-20261014/2a00/report.json",
+      "bytes": 15295,
+      "sha256": "03165ecada9f4d8bf178eec4b8e94352b0f5f34d0b4e8fdc3d34b3711cc08be6"
+    },
+    "all_old_state_and_coverage_sources_replayed": true,
+    "source_original_failed_flags_retained": true,
+    "verified_prefix_bytes": 2560,
+    "verified_prefix_sha256": "2b6e99ee899e1515e0cc44b220424cd9da6906b39490504bdcca2236755db51c",
+    "state_new_raw_nor_coverage_bytes": 0,
+    "actual_state_equals_seed_and_data_before_after": true
+  },
+  "phases": {
+    "seed": {
+      "report": {
+        "file": "artifacts/startup-ram-default-20261014/seed/report.json",
+        "bytes": 11122,
+        "sha256": "819c230097d813bf3c866c65f3b61b947b1cf00b060314c157acec55da87468c"
+      },
+      "capture": {
+        "file": "artifacts/startup-ram-default-20261014/seed/session.btsnoop",
+        "bytes": 4201,
+        "sha256": "c047e44e6529e1eadccb8e55b613dd3ebb752889cd238ddc90d84e372577f419"
+      },
+      "original_ok": true,
+      "started_at": "2026-10-14T04:27:18.486824+00:00",
+      "ended_at": "2026-10-14T04:27:29.359947+00:00",
+      "initial_connection_parameters": [
+        36,
+        0,
+        500
+      ],
+      "records": 107,
+      "att_packets": 46,
+      "att_binding": {
+        "verified": true,
+        "packets": 46,
+        "comparison": "exact within each direction"
+      },
+      "startup_classification": {
+        "policy": "startup-remote-fast-only",
+        "mode": "fast",
+        "parameters": [
+          6,
+          12,
+          0,
+          500
+        ],
+        "requires_fast_before_normalization": false
+      },
+      "complete_parameter_transactions": 1,
+      "pending_transactions": 0,
+      "status_events_observed": 0,
+      "before_identity_span": [34, 40],
+      "final_identity_span": [40, 46],
+      "final_att_hci_record": 103,
+      "monitor_exit": 0,
+      "monitor_stop": {
+        "signal": "SIGINT",
+        "requested": true,
+        "delivery": "sent"
+      },
+      "disconnect": {
+        "status": 0,
+        "reason": 22,
+        "reason_hex": "0x16",
+        "record": 106,
+        "after_final_att": true,
+        "after_close_requested_us": 2053379,
+        "passive_observation_max_seconds": 8,
+        "observed_within_bound": true
+      }
+    },
+    "data": {
+      "report": {
+        "file": "artifacts/startup-ram-default-20261014/data/report.json",
+        "bytes": 54686,
+        "sha256": "48ac2921d95c78449b68b877c64c7a909f9ebb56f9b7e435b109922dcdacc546"
+      },
+      "capture": {
+        "file": "artifacts/startup-ram-default-20261014/data/session.btsnoop",
+        "bytes": 18281,
+        "sha256": "1d990035568dea10dc852ea2bb000fffe430ad23d490f07451b0dd8696f2e2a5"
+      },
+      "original_ok": true,
+      "started_at": "2026-10-14T04:27:29.475448+00:00",
+      "ended_at": "2026-10-14T04:27:48.692863+00:00",
+      "initial_connection_parameters": [
+        12,
+        0,
+        500
+      ],
+      "records": 251,
+      "att_packets": 137,
+      "att_binding": {
+        "verified": true,
+        "packets": 137,
+        "comparison": "exact within each direction"
+      },
+      "startup_classification": {
+        "policy": "startup-remote-fast-or-default-once",
+        "mode": "default",
+        "parameters": [
+          24,
+          40,
+          0,
+          500
+        ],
+        "requires_fast_before_normalization": true
+      },
+      "complete_parameter_transactions": 7,
+      "pending_transactions": 0,
+      "status_events_observed": 0,
+      "before_identity_span": [34, 40],
+      "final_identity_span": [131, 137],
+      "final_att_hci_record": 247,
+      "monitor_exit": 0,
+      "monitor_stop": {
+        "signal": "SIGINT",
+        "requested": true,
+        "delivery": "sent"
+      },
+      "disconnect": {
+        "status": 0,
+        "reason": 22,
+        "reason_hex": "0x16",
+        "record": 250,
+        "after_final_att": true,
+        "after_close_requested_us": 2155969,
+        "passive_observation_max_seconds": 8,
+        "observed_within_bound": true
+      },
+      "parameter_transactions": [
+        {
+          "origin": "remote",
+          "request_parameters": [
+            24,
+            40,
+            0,
+            500
+          ],
+          "applied_parameters": [
+            36,
+            0,
+            500
+          ],
+          "remote_request_records": [
+            104
+          ],
+          "controller_command_record": 107,
+          "status_record": 108,
+          "update_record": 110
+        },
+        {
+          "origin": "remote",
+          "request_parameters": [
+            6,
+            12,
+            0,
+            500
+          ],
+          "applied_parameters": [
+            12,
+            0,
+            500
+          ],
+          "remote_request_records": [
+            124
+          ],
+          "controller_command_record": 127,
+          "status_record": 128,
+          "update_record": 130
+        },
+        {
+          "origin": "host",
+          "request_parameters": [
+            6,
+            6,
+            0,
+            500
+          ],
+          "applied_parameters": [
+            6,
+            0,
+            500
+          ],
+          "remote_request_records": null,
+          "controller_command_record": 132,
+          "status_record": 133,
+          "update_record": 134
+        },
+        {
+          "origin": "remote",
+          "request_parameters": [
+            32,
+            48,
+            4,
+            600
+          ],
+          "applied_parameters": [
+            48,
+            4,
+            600
+          ],
+          "remote_request_records": [
+            159
+          ],
+          "controller_command_record": 162,
+          "status_record": 163,
+          "update_record": 166
+        },
+        {
+          "origin": "remote",
+          "request_parameters": [
+            6,
+            12,
+            0,
+            500
+          ],
+          "applied_parameters": [
+            12,
+            0,
+            500
+          ],
+          "remote_request_records": [
+            189
+          ],
+          "controller_command_record": 192,
+          "status_record": 193,
+          "update_record": 195
+        },
+        {
+          "origin": "host",
+          "request_parameters": [
+            6,
+            6,
+            0,
+            500
+          ],
+          "applied_parameters": [
+            6,
+            0,
+            500
+          ],
+          "remote_request_records": null,
+          "controller_command_record": 197,
+          "status_record": 198,
+          "update_record": 199
+        },
+        {
+          "origin": "remote",
+          "request_parameters": [
+            32,
+            48,
+            4,
+            600
+          ],
+          "applied_parameters": [
+            48,
+            4,
+            600
+          ],
+          "remote_request_records": [
+            222
+          ],
+          "controller_command_record": 225,
+          "status_record": 226,
+          "update_record": 229
+        }
+      ],
+      "operations": [
+        {
+          "operation": "first",
+          "original_ok": true,
+          "live_complete": true,
+          "actions_span": [55, 65],
+          "actions_proof": {
+            "acks": 3,
+            "end": true,
+            "pending_bytes": 0,
+            "trace_span": [55, 65]
+          },
+          "ack_frames": 3,
+          "end_frames": 1,
+          "background_f0_frames": 0,
+          "pulse_console_body_packets": 0,
+          "sd_write_attempted": false,
+          "fast_ordering_proof": {
+            "pulse_first_record": 111,
+            "remote_request_first_record": 124,
+            "request_not_before_pulse": true
+          },
+          "download_span": [65, 88],
+          "download_wire_record_range": [136, 164],
+          "download": {
+            "file": "artifacts/startup-ram-default-20261014/data/first/download.bin",
+            "bytes": 4096,
+            "sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b"
+          },
+          "download_ms": 190.749,
+          "complete_oracle_equal": true,
+          "identity_barrier_span": [88, 94],
+          "readonly_state_verification": {
+            "other_state_equal": true,
+            "free_capacity_unit": "MiB (integer firmware report)",
+            "free_capacity_before": 59590,
+            "free_capacity_after": 59590,
+            "free_capacity_decrease": 0,
+            "allowed_decrease": 0
+          }
+        },
+        {
+          "operation": "second",
+          "original_ok": true,
+          "live_complete": true,
+          "actions_span": [94, 104],
+          "actions_proof": {
+            "acks": 3,
+            "end": true,
+            "pending_bytes": 0,
+            "trace_span": [94, 104]
+          },
+          "ack_frames": 3,
+          "end_frames": 1,
+          "background_f0_frames": 0,
+          "pulse_console_body_packets": 0,
+          "sd_write_attempted": false,
+          "fast_ordering_proof": {
+            "pulse_first_record": 176,
+            "remote_request_first_record": 189,
+            "request_not_before_pulse": true
+          },
+          "download_span": [104, 125],
+          "download_wire_record_range": [201, 227],
+          "download": {
+            "file": "artifacts/startup-ram-default-20261014/data/second/download.bin",
+            "bytes": 4096,
+            "sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b"
+          },
+          "download_ms": 186.614,
+          "complete_oracle_equal": true,
+          "identity_barrier_span": [125, 131],
+          "readonly_state_verification": {
+            "other_state_equal": true,
+            "free_capacity_unit": "MiB (integer firmware report)",
+            "free_capacity_before": 59590,
+            "free_capacity_after": 59590,
+            "free_capacity_decrease": 0,
+            "allowed_decrease": 0
+          }
+        }
+      ]
+    }
+  },
+  "final_actual_state": {
+    "source": "Data final HCI-bound three-request/reply identity before normal close",
+    "owned_serial_verified": true,
+    "bound": false,
+    "firmware": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "charging": true,
+    "battery": 100,
+    "free_capacity_mib": 59590,
+    "all_seed_data_per_window_and_final_info_equal": true,
+    "readonly_capacity_decrease": 0
+  },
+  "historical_original_replay_rejections": {
+    "previous_failed_three_job": "Archived job requires original success and original end timestamp",
+    "previous_failed_three2a00": "Original NOR-window pair failed; retain without promotion",
+    "previous_failed_four_job": "Original status job failed; preserve checkpoints without promotion",
+    "previous_failed_discovery2a00": "Original NOR-window pair failed; retain without promotion",
+    "old_failed_five_job": "Original window job failed; preserve checkpoints without promotion",
+    "old_failed2800": "Original NOR-window pair failed; retain without promotion"
+  },
+  "original_private_input_files_unchanged_at_review": 510,
+  "limits": [
+    "Ordering proves actual FAST remote requests are not earlier than pulse first TX; earlier identity traffic may have scheduled deferred FAST, so pulse is not established as unique trigger.",
+    "Exactly one fixed two-connection control; success does not establish stable future behavior or complete remaining NOR sectors.",
+    "Two complete4096-byte reads match an independently fixed image oracle of the existing RAM file; these are not new NOR reads or producer executions.",
+    "PREPARE/START/STOP changes temporary Actions/log RAM state; zero persistent SD write does not mean zero RAM side effect.",
+    "Actual F0 background frames and cmd0F status events are both zero; bounded full parsers are enabled but these event paths were not exercised here.",
+    "Normal disconnect capture does not prove hidden deferred queue cleared or physical firmware worker exit.",
+    "Every historical failed original remains failed; no full fw1_boot/full NOR backup, restoration or flashing guarantee.",
+    "Full raw HCI/ATT, Actions text, identity, existing file bytes and inventory remain private."
+  ]
+}

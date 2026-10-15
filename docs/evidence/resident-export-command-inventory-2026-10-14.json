@@ -1,0 +1,360 @@
+{
+  "scope": "Static, one previously untraced registered coredump print path; no device I/O or vendor execution. Not an exhaustive absence claim.",
+  "image": {
+    "path": "artifacts/mapped-system-20261012.bin",
+    "bytes": 927632,
+    "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+    "cpu_base": "10000000"
+  },
+  "method": "struct inventory cross-check and Capstone Thumb/MCLASS; full literal ranges preserved separately; SDK comparison only",
+  "inventory": {
+    "path": "docs/evidence/normal-ram-entry-2026-10-13.json",
+    "sha256": "a0a11c62e45277f6a4ac1c11ea7fea0c9856dda87d252ae8a5982da9b0755314",
+    "counts": {
+      "roots": 13,
+      "tables": 15,
+      "subcommands": 81
+    },
+    "all_94_descriptors_and_15_terminators_match": true,
+    "all_15_selectors_dynamic_zero_and_array_match": true,
+    "novelty": "Complete command inventory already published; new work is the coredump print consumer trace"
+  },
+  "cached_partition": {
+    "path": "docs/evidence/partition-analysis-2026-10-12.json",
+    "sha256": "37f435b144c7d607835bc168d29da3932435f3844df6b7edecacf079b1b510e7",
+    "table_sha256": "a071b0cdafad355eb05a71e96fc2cb6a5348ec8b5e11d0ac4dfe54d83671a144",
+    "entry_address": "01000188",
+    "entry_hex": "636f726564756d7004fd000000601f0000a0000000601f00",
+    "entry_sha256": "55e7364b068e14a022b1b24aac43fd4006b79fe4053573330715f4c21ae458bb",
+    "entry": {
+      "index": 13,
+      "name": "coredump",
+      "type": 4,
+      "file_id": 253,
+      "storage_id": 0,
+      "mirror_id": 0,
+      "flags": 0,
+      "offset": "0x1f6000",
+      "size_bytes": 40960,
+      "end_exclusive": "0x200000",
+      "file_offset": "0x1f6000"
+    },
+    "limit": "Historical independently matched runtime ACPT; not a new coredump header or live backend-context sample"
+  },
+  "sdk": {
+    "commit": "26f51e584940d5b141cd1d09d2629d69b595f579",
+    "path": "/home/rocry/w/_tmp/lv_port_actions_technology/action_technology_sdk/zephyr/subsys/debug/coredump/coredump_backend_flash_dev.c",
+    "sha256": "d1ed55577650012028799ab1b931f906a808abbe3cf70fdbe487e33e50ecf7d7",
+    "comparison_ranges": [
+      "138-165 region init",
+      "192-239 data_read",
+      "273-309 process_stored_dump",
+      "748-858 fixed backtrace/hex formatting",
+      "862-929 transfer and output callback"
+    ]
+  },
+  "chain": [
+    "100bc014 handler Thumb1002e875 -> 1002e874 ignores argc/argv, callback1002e6d8 -> 1002e75c",
+    "1002e774 verify1002e598 -> process1002e540 -> data_read1002e4a4 header at relative0, payload at1000",
+    "1002e7d0 process1002e540 with callback1002e120 -> read API device+8/table+0 at1002e4f2",
+    "1002e638 init fileIDfd -> partition_get_part1002766c -> ctx1800f7b4+2c/+30 base/size; spi_flash binding at1002e67c",
+    "1002e4be static4096buf18040632; 1002e4ee driver length always1000; consumer min(remaining,1000)",
+    "1002e120 formats up to32 input bytes per #CD: hex64 CRLF line -> output1002e6d8 -> printk1009ff86; busy_wait1009c4dc(500)",
+    "1002e226 and1002e23e -> fixed RAM copy10027250, requires stored start1800e02c, caps atc88; transfer1002e7f4 may invoke backtrace10027280"
+  ],
+  "header_boundaries": [
+    "16-byte header: size at+4, checksum uint16 at+10, error at+12; payload relative1000",
+    "1002e55c..566 accepts C in byte0 OR D in byte1; header read return not checked before inspecting stack",
+    "No hdr.size versus ctx.total_size check in the preserved process/data_read functions; do not infer a bounded safe live command from partition size",
+    "data_read always asks driver for4096 including header/tail; callback finalization may replace read-error return"
+  ],
+  "decision": "A resident 4096-byte raw-read buffer exists, but this registered command has no arbitrary-address/size interface and produces formatted stored-dump text, with fixed backtrace RAM mutation. It does not establish safe general binary NOR export; do not execute it for backup.",
+  "limits": [
+    "No live coredump contents, backend context or command execution observed",
+    "No arbitrary RAM-write claim: copy gate exact destination1800e02c, at mostc88 bytes",
+    "Backtrace decoder10027280 not expanded beyond callsite; no full-command safety claim",
+    "No repetition of snort/fread/dumpbuf/rawalias/recovery audits; no claim that all other firmware paths are exhausted"
+  ],
+  "regions": [
+    {
+      "label": "coredump root descriptor",
+      "kind": "descriptor",
+      "start": "100bbfc4",
+      "end_exclusive": "100bbfd8",
+      "file_offset": 769988,
+      "bytes": 20,
+      "hex": "20940c10aa930c108cc00b100000000000000000",
+      "sha256": "71b4990fd57bcae938e0e44f4db5c84c5ac05d4d7e9a1d8687af181c97b3d601"
+    },
+    {
+      "label": "coredump children and null terminator",
+      "kind": "descriptor",
+      "start": "100bbfd8",
+      "end_exclusive": "100bc050",
+      "file_offset": 770008,
+      "bytes": 120,
+      "hex": "74bd0c10d6930c1094c00b1000000000000000002fb90c10ef930c10000000002de70210000000009fba0c1005940c1000000000c1e502100000000029940c102f940c100000000075e80210000000004e940c1055940c1000000000fde50210000000000000000000000000000000000000000000000000",
+      "sha256": "e49ad9953799a06ccf9a591ec40f5a04a6bb55733188be4901055ce472d41373"
+    },
+    {
+      "label": "coredump static selector",
+      "kind": "selector",
+      "start": "100bc08c",
+      "end_exclusive": "100bc094",
+      "file_offset": 770188,
+      "bytes": 8,
+      "hex": "00000000d8bf0b10",
+      "sha256": "8a727addaf22e59fe5904f1669e1d07986bd1d1611b64fe59eff7b79fa29ca94"
+    },
+    {
+      "label": "print wrapper",
+      "kind": "code",
+      "start": "1002e874",
+      "end_exclusive": "1002e880",
+      "file_offset": 190580,
+      "bytes": 12,
+      "hex": "08b50248fff770ff002008bd",
+      "sha256": "d89f85057e0eabd77a5de48242a1501dc1aac4bf4e190f2b37713845ae82dd60"
+    },
+    {
+      "label": "print callback literal",
+      "kind": "literal",
+      "start": "1002e880",
+      "end_exclusive": "1002e884",
+      "file_offset": 190592,
+      "bytes": 4,
+      "hex": "d9e60210",
+      "sha256": "c5d6295b3482c9252b9b42b9fe1655f56252f1ef35961c953a6202708900a58f"
+    },
+    {
+      "label": "transfer complete",
+      "kind": "code",
+      "start": "1002e75c",
+      "end_exclusive": "1002e83c",
+      "file_offset": 190300,
+      "bytes": 224,
+      "hex": "2de9f34105460024002867d0344b354f1c70354b3c701c70fff710ff58b9334933488bf098f832482221a8472224204602b0bde8f08101280bd0009021462d4b2b4847228bf039f8044601462848a847ede7294bdff8bc8001934722274b2448cdf8008021468bf028f80c212048a84729462348fff7b6fe224b4722cde9008321461e4b06461a488bf017f818480a21a8473b7883b12846f8f744fd00f11607012e0bd1184912488bf055f81a2421460f48a8473c44bae71627f1e72eb913490b488bf048f81524f1e7114b08480096472200218af0f1ff0446e8e70446a6e7",
+      "sha256": "8d4ada29c8d26a3b5c0b18bc154a8b516dca70ade6dee224e42cbb8c8630314a"
+    },
+    {
+      "label": "transfer literals",
+      "kind": "literal",
+      "start": "1002e83c",
+      "end_exclusive": "1002e874",
+      "file_offset": 190524,
+      "bytes": 56,
+      "hex": "310604182f0604183006041812930c103d16041835930c1069910c105c930c1021e102102e910c1063930c107e930c1094930c1043910c10",
+      "sha256": "f46ab3233bc995d5b159d96f356b9ee15bfd455c8827d4d5b1b733b8f19587cc"
+    },
+    {
+      "label": "process stored dump complete",
+      "kind": "code",
+      "start": "1002e540",
+      "end_exclusive": "1002e594",
+      "file_offset": 189760,
+      "bytes": 84,
+      "hex": "70b586b00024234605460e460094102202a92046fff7a6ff9df80830432b03d09df80930442b13d1059989b9094c039aa1842b4600964ff48050fff793ff28b9a08cbdf81230c31a5842584106b070bd0020fbe7",
+      "sha256": "e8353b27662cc19d92e6a13e0d1ef8db3af1354b2798447360c58fcd16953fba"
+    },
+    {
+      "label": "process context literal",
+      "kind": "literal",
+      "start": "1002e594",
+      "end_exclusive": "1002e598",
+      "file_offset": 189844,
+      "bytes": 4,
+      "hex": "b4f70018",
+      "sha256": "c4ff7f338491da993d8cbe7a8667ea75356b42986249bb1dc4091adc34850af2"
+    },
+    {
+      "label": "verify wrapper",
+      "kind": "code",
+      "start": "1002e598",
+      "end_exclusive": "1002e5a0",
+      "file_offset": 189848,
+      "bytes": 8,
+      "hex": "01480021fff7d0bf",
+      "sha256": "334ef7901ec688d524756931ac405126fc120d0a1f6f3ce9af67edd17392ccf7"
+    },
+    {
+      "label": "verify checksum callback literal",
+      "kind": "literal",
+      "start": "1002e5a0",
+      "end_exclusive": "1002e5a4",
+      "file_offset": 189856,
+      "bytes": 4,
+      "hex": "f9df0210",
+      "sha256": "b94855e166fe6381235da52795c493f186ff1a40619ad7e4075ae609e42bbe67"
+    },
+    {
+      "label": "checksum callback",
+      "kind": "code",
+      "start": "1002dff8",
+      "end_exclusive": "1002e012",
+      "file_offset": 188408,
+      "bytes": 26,
+      "hex": "10b506480a44914201d1002010bd11f8013b848c23448384f5e7",
+      "sha256": "4ee58c04fe6d157e2bf1143e08e1673d5b6bb9737273739fb07a26b264bc42b4"
+    },
+    {
+      "label": "checksum context literal",
+      "kind": "literal",
+      "start": "1002e014",
+      "end_exclusive": "1002e018",
+      "file_offset": 188436,
+      "bytes": 4,
+      "hex": "b4f70018",
+      "sha256": "c4ff7f338491da993d8cbe7a8667ea75356b42986249bb1dc4091adc34850af2"
+    },
+    {
+      "label": "data read complete",
+      "kind": "code",
+      "start": "1002e4a4",
+      "end_exclusive": "1002e536",
+      "file_offset": 189604,
+      "bytes": 146,
+      "hex": "2de9f74f1f46234bddf830a0019114461a689b46002a39d0dd6adff87c902b18009388464ff4805624b9204637bb03b0bde8f08fdbf80000b4f5805f38bf2646836800991b684a461d464ff48053a8470028ebd1019b23b13246494640468bf0a6f82fb9009b3344b0440093a41bdbe7324649465046b8470028f3d00022114650463b4603b0bde8f04f18476ff01200cde7",
+      "sha256": "9dacaf39e090e700984f875c8e0e9053da3dbbeb5594b889fb724a31980f8922"
+    },
+    {
+      "label": "data read literals",
+      "kind": "literal",
+      "start": "1002e538",
+      "end_exclusive": "1002e540",
+      "file_offset": 189752,
+      "bytes": 8,
+      "hex": "b4f7001832060418",
+      "sha256": "d49aa7d5b1368258751e93463132cddad7f40ab5b1eefdd7b3e13cbc65cbaa00"
+    },
+    {
+      "label": "format and memory block parsing callback",
+      "kind": "code",
+      "start": "1002e120",
+      "end_exclusive": "1002e292",
+      "file_offset": 188704,
+      "bytes": 370,
+      "hex": "2de9f74f80460e461546002a3bd0594b1c7899464cb9584a1378002b43d109785a2934d0012389f80030544c54495548544f042323608bf0acfb2a4631464046fff74aff3544b9464ff00d0a216816f8010b4b1c00093944236071f07ffe002865da6ff015052368042b0cd00d2209f80320991c4b440a225a70002309f8013040482160c047284603b0bde8f08f317b4129c7d10121b6f80f4011703a4a13603a4a11341360dff8e0a0dff8e8b0a542bbd9daf8003031195bb9325d4d2ab1d18bf80020314a01210134caf800101360ede70b2b07d05a1ccaf800200a780bf803200134e3e7dbf80770dbf80300a7eb000c264f3a682b1b03eb020ef4450dd8aceb02073b46f9f713f810b1204b01221a7000233c44caf80030c8e70193f9f707f83a68019b13443b602c46bfe7216816f8010c4b1c00f00f003944236071f00dfe00288ddb2368442b0dd10a23462187f84530002387f8463087f844a021603846c04704232360ae427ff46faf002579e7",
+      "sha256": "f427cceff84f3eeecc23375a529b2eb025b8be928aab2ef6c1214f6d3d44ee0f"
+    },
+    {
+      "label": "formatter literals",
+      "kind": "literal",
+      "start": "1002e294",
+      "end_exclusive": "1002e2b8",
+      "file_offset": 189076,
+      "bytes": 36,
+      "hex": "3006041831060418f4f7001843910c103d160418f0f70018ecf700182f06041832160418",
+      "sha256": "b65209bd80d2e800498f32cca07ed7886d48f97b306a17127fee7f355d110423"
+    },
+    {
+      "label": "fixed backtrace copy gate",
+      "kind": "code",
+      "start": "10027250",
+      "end_exclusive": "1002727a",
+      "file_offset": 160336,
+      "bytes": 42,
+      "hex": "38b50a4d854214460dd140f68842944207d828191d19954294bf1a46121b92f0f0f9012000e0002038bd",
+      "sha256": "3849c3f23476b80776a8e702cd31d83b8e50615f197b6cbeb207348b201d82ef"
+    },
+    {
+      "label": "backtrace destination literal",
+      "kind": "literal",
+      "start": "1002727c",
+      "end_exclusive": "10027280",
+      "file_offset": 160380,
+      "bytes": 4,
+      "hex": "2ce00018",
+      "sha256": "3b621ce3ab9664a60b81862708ebdd912084b54ea016bf3630784881d0e263f7"
+    },
+    {
+      "label": "output callback",
+      "kind": "code",
+      "start": "1002e6d8",
+      "end_exclusive": "1002e6ee",
+      "file_offset": 190168,
+      "bytes": 22,
+      "hex": "08b50146044871f052fc4ff4fa706df0f9fe002008bd",
+      "sha256": "d7a3c26546fbecc6378f51e306d6e120c5f8529ec42b43fd21e4a1959dcfc10d"
+    },
+    {
+      "label": "output format literal",
+      "kind": "literal",
+      "start": "1002e6f0",
+      "end_exclusive": "1002e6f4",
+      "file_offset": 190192,
+      "bytes": 4,
+      "hex": "cb4a0c10",
+      "sha256": "a60a668564d2c515612d8887ac3e70ee1674edb0f8892b185bbb71a731aba1e9"
+    },
+    {
+      "label": "busy wait complete",
+      "kind": "code",
+      "start": "1009c4dc",
+      "end_exclusive": "1009c504",
+      "file_offset": 640220,
+      "bytes": 40,
+      "hex": "38b5044678b18df735fb05460648074aa4fb0001002364f76dfa04468df72afb431ba342fad338bd",
+      "sha256": "db830391159d1a05abb5d07b589a72c041983bf040ec9dd28af14b83a34ba32a"
+    },
+    {
+      "label": "busy wait conversion literals",
+      "kind": "literal",
+      "start": "1009c504",
+      "end_exclusive": "1009c50c",
+      "file_offset": 640260,
+      "bytes": 8,
+      "hex": "0048e80140420f00",
+      "sha256": "7de0ccb2eccd29f8fc29ce43adf167774868f209edb18a00747457eb440b1d4d"
+    },
+    {
+      "label": "region initialization complete",
+      "kind": "code",
+      "start": "1002e638",
+      "end_exclusive": "1002e6b4",
+      "file_offset": 190008,
+      "bytes": 124,
+      "hex": "10b51e4b1e4c1f49e41a640104f47f4444f40f0040f0310027f09efcfd20f9f709f8e8b11849c268ca6203690b6344f41500164940f0320027f08efc144871f086fc14486cf0cef890b944f4fa0040f01100104a104927f07ffc6ff0120010bd44f417000d4940f0110027f075fce5e7054b1860002083f83400f0e7",
+      "sha256": "6844f045b1601f9826b20cf0ac4d3ad0c9615bcda08cd71624eddf98ee0ec841"
+    },
+    {
+      "label": "region initialization literals",
+      "kind": "literal",
+      "start": "1002e6b4",
+      "end_exclusive": "1002e6d8",
+      "file_offset": 190132,
+      "bytes": 36,
+      "hex": "6ca30b10c4a40b105e920c10b4f7001873920c10a3920c10e9100c10ba920c1087920c10",
+      "sha256": "2fb22f0d449f36c192d216723431024e285fe37fc6fd0c4b90fc83cc0608b0b9"
+    },
+    {
+      "label": "printk format",
+      "kind": "string",
+      "start": "100c4acb",
+      "end_exclusive": "100c4ace",
+      "file_offset": 805579,
+      "bytes": 3,
+      "hex": "257300",
+      "sha256": "2f3a3f9b55f5df846abf81c7d13ff74998bdda8664df664173220675150020ff"
+    },
+    {
+      "label": "hex prefix",
+      "kind": "string",
+      "start": "100c9143",
+      "end_exclusive": "100c9148",
+      "file_offset": 823619,
+      "bytes": 5,
+      "hex": "2343443a00",
+      "sha256": "326234213b2a9738a235f3eb8e1c9e8cb1552d6e677c16bb581807d2cd220a12"
+    },
+    {
+      "label": "NOR device name",
+      "kind": "string",
+      "start": "100c10e9",
+      "end_exclusive": "100c10f3",
+      "file_offset": 790761,
+      "bytes": 10,
+      "hex": "7370695f666c61736800",
+      "sha256": "5122565825c5ffb86c9f50364c5ef094a0dacd74c0801b61dac09672a4e6dfb1"
+    }
+  ]
+}

@@ -1,0 +1,362 @@
+{
+  "schema": "scratch-4200-live-v1",
+  "scope": "Frozen successful unique independent known4200 same-owned-file overwrite control; original uptime-gated two-target trial remains failed; metadata only",
+  "result": {
+    "original_new_job_ok": true,
+    "original_baseline_ok": true,
+    "original_overwrite_ok": true,
+    "independent_archived_full_replay": "pass",
+    "same_owned_file_changed_from_observed_boot0_to_observed4200_content": true,
+    "new4200_candidate_matches_independent_oracle": true,
+    "original_scratch_reuse_trial_ok": false,
+    "original_uptime_f0_gate_passed": false,
+    "original_two_target_reuse_trial_complete": false,
+    "new_unique_nor_coverage_bytes": 0,
+    "new_file_names": 0,
+    "nor_flash_write_attempted": false,
+    "restoration_or_post_restore_boot_tested": false,
+    "large_scale_reuse_reliability_proven": false
+  },
+  "job": {
+    "report": {
+      "file": "artifacts/scratch-4200-20261014/report.json",
+      "bytes": 56031,
+      "sha256": "1aeaec193999c0443e14f85ab95d31a2ce9fcd164e9ce11be17afbc0b41914ef"
+    },
+    "plan": {
+      "file": "artifacts/scratch-4200-20261014/plan.json",
+      "bytes": 30272,
+      "sha256": "bcf21844af658985e624f29ecd99632e84dfd412f36487c1dcbf04b7fd3815bd"
+    },
+    "profile": "known-scratch-4200-single-overwrite-v1",
+    "planned_at": "2026-10-14T06:17:36.769043+00:00",
+    "started_at": "2026-10-14T06:17:36.769302+00:00",
+    "ended_at": "2026-10-14T06:18:01.574225+00:00",
+    "budget": {
+      "connections": 1,
+      "downloads": 2,
+      "producers": 1,
+      "sd_writes": 1,
+      "new_files": 0,
+      "stage_seconds": 18,
+      "active_seconds": 60,
+      "monitor_seconds": 70,
+      "cleanup_stop_seconds": 2,
+      "disconnect_observation_seconds": 8,
+      "new_raw_nor_coverage_bytes": 0
+    },
+    "actions_policy": "exact-six-acks-f1-pending-empty-all-f0-retained",
+    "policy_fixed_before_authorization_and_io": true,
+    "stage_timeout_scope": "post-startup-baseline-and-one-complete-overwrite-transfer",
+    "target_offset": 16896,
+    "fixed_owned_path_fresh_nonce_parent_policy_prestate_and_chronology_verified": true,
+    "nonce_excluded_from_all_prior_planned_names_and_owned_name": true,
+    "fresh_nonce_absent_in_actual_live_baseline": true
+  },
+  "source_snapshot": {
+    "manifest": {
+      "file": "artifacts/scratch-4200-20261014/source-snapshot/manifest.json",
+      "bytes": 39998,
+      "sha256": "bbceab5e736952592793062ab756f17e189aba2ddf371e03fd2872e27150b697"
+    },
+    "declared_created_at": "2026-10-14T06:17:28.847340+00:00",
+    "source_count": 131,
+    "test_count": 104,
+    "all_archived_lengths_and_hashes_verified": true,
+    "manifest_precedes_plan_and_io": true,
+    "archived_sources_imported": true,
+    "loaded_project_modules_all_from_snapshot": 89,
+    "recorded_root_check_claims": {
+      "just_check": {
+        "passed": 1886,
+        "subtests_passed": 159
+      },
+      "uv_build": "passed"
+    },
+    "full_check_counts_independently_rerun_by_this_review": false,
+    "future_current_source_equality_claimed": false,
+    "selected_archived_source_references": [
+      {"file": "artifacts/scratch-4200-20261014/source-snapshot/src/rcominote/experiments/dual_audit.py", "bytes": 14881, "sha256": "62ee2efea019547fcc21771c556ebf2a333fa5c2c65abe06367b21d5c72caf80"},
+      {"file": "artifacts/scratch-4200-20261014/source-snapshot/src/rcominote/experiments/dual_hci.py", "bytes": 3856, "sha256": "6164a5a2dfdfae7faf79008b626fb4992984c09fc09ff7bdede92a2e8f8cfc8f"},
+      {"file": "artifacts/scratch-4200-20261014/source-snapshot/src/rcominote/experiments/param_window.py", "bytes": 13004, "sha256": "54cf3ec892edb98a05cc78fa9196d1bd3fc89c5b9926728affe5debc70fd151c"},
+      {"file": "artifacts/scratch-4200-20261014/source-snapshot/src/rcominote/experiments/scratch_4200_contract.py", "bytes": 13918, "sha256": "ea28e43b48da8d17c4c39f2d67ec4b2ca1db440aff413ef839cb72a759ae3b5f"},
+      {"file": "artifacts/scratch-4200-20261014/source-snapshot/src/rcominote/experiments/scratch_4200_probe.py", "bytes": 12337, "sha256": "40e2087b796d87da6accdfdb5ee17001109f09ed1b663121bdd275c167464d98"},
+      {"file": "artifacts/scratch-4200-20261014/source-snapshot/src/rcominote/experiments/scratch_4200_sources.py", "bytes": 3157, "sha256": "fdfc59d072e94a51ad07b77e9cccc86d0e44acc40111e26dbc9429da229885a2"},
+      {"file": "artifacts/scratch-4200-20261014/source-snapshot/src/rcominote/experiments/scratch_postmortem_contract.py", "bytes": 9991, "sha256": "a70b235a90ae51fa928257c32f64930edf6157139a457d4c20f3d58e777db638"},
+      {"file": "artifacts/scratch-4200-20261014/source-snapshot/src/rcominote/experiments/scratch_postmortem_probe.py", "bytes": 9863, "sha256": "4ac48172884df721b7c8f24b8370501181df9588e9414a8dad37b5e650f25ee6"},
+      {"file": "artifacts/scratch-4200-20261014/source-snapshot/src/rcominote/experiments/scratch_postmortem_sources.py", "bytes": 11104, "sha256": "1586dcb56f363220a90c395a836549d7bcdff4f938d10b9ec976051e145ee50e"},
+      {"file": "artifacts/scratch-4200-20261014/source-snapshot/src/rcominote/experiments/scratch_reuse_audit.py", "bytes": 12574, "sha256": "d94d7ab31aaed079f096512dbbaa26405cd952117604be4f1a97427324e3360b"},
+      {"file": "artifacts/scratch-4200-20261014/source-snapshot/src/rcominote/experiments/scratch_reuse_parser.py", "bytes": 6121, "sha256": "5af5ea2f3e7ea6a29730e04a950615bc902ed39932d6a10db4250684a6a3fb1b"},
+      {"file": "artifacts/scratch-4200-20261014/source-snapshot/src/rcominote/experiments/startup_policy.py", "bytes": 7055, "sha256": "68a920ecfbcbf5cc848ebf9abe60b1ecdf0ed7c1db34615fe6e14277116a909c"}
+    ]
+  },
+  "admission": {
+    "successful_readonly_postmortem_transport_and_content_fully_replayed": true,
+    "original_failed_trial_full_partial_evidence_and_latest_actual_state_replayed": true,
+    "original_failed_trial_replay_still_rejects_promotion": true,
+    "original_failed_first6_ack_F1_zeroF0_and_zero_second_commands_preserved": true,
+    "old_known_pair_and_independent_oracles_replayed": true,
+    "old_final4096_backup_and_nested3584_control_state_source_chain_replayed": true,
+    "static_identity_regions_verified": 36,
+    "full_parent_summary_equals_immutable_original_plan": true,
+    "required_actual_free_mib": 59589,
+    "private_source_references": [
+      {"file": "/home/rocry/w/_hw/rcominote/artifacts/scratch-postmortem-20261014/report.json", "bytes": 32994, "sha256": "aef13eb53fad9c25584e0a4dd23c9eb4b041316b02b06ef9587c98f796a03e54"},
+      {"file": "/home/rocry/w/_hw/rcominote/artifacts/scratch-postmortem-20261014/plan.json", "bytes": 26881, "sha256": "d0493d3241e56af45cf0f5a730b361ef1748824c35d2f386cd16c6aec171409a"},
+      {"file": "/home/rocry/w/_hw/rcominote/artifacts/scratch-postmortem-20261014/session.btsnoop", "bytes": 10928, "sha256": "02e600215d0b2259a3604c86b4dd104abaac7703beb8c35325dd6563507d85b4"},
+      {"file": "/home/rocry/w/_hw/rcominote/artifacts/scratch-postmortem-20261014/retained/download.bin", "bytes": 4096, "sha256": "3621a69cc9215acf435ecab311088f53e8eb65d28f3d3a80cce6aca892560360"},
+      {"file": "/home/rocry/w/_hw/rcominote/artifacts/dual-known-nor-20261014/boot/download.bin", "bytes": 4096, "sha256": "a2f7c04b495717e5b851f911f6dbf24471dfbde567c8124da65eb8c9e43b446d"},
+      {"file": "/home/rocry/w/_hw/rcominote/artifacts/dual-known-nor-20261014/report.json", "bytes": 51618, "sha256": "0f74ac3023f5635740e214ecc9b05bc5b84153dee89c5bb8d2c3201c1c28985d"},
+      {"file": "/home/rocry/w/_hw/rcominote/artifacts/dual-known-nor-20261014/session.btsnoop", "bytes": 17460, "sha256": "fec7195c55d2df3ebe583a08357e54881e89f5115c5faa49ab6cab10284050ff"},
+      {"file": "/home/rocry/w/_hw/rcominote/artifacts/final-boot-sector-20261014/report.json", "bytes": 1785, "sha256": "2becbfbe0845666929794e41f34763ff68d0d8f1b19f899a523e0a36f317cbcb"},
+      {"file": "/home/rocry/w/_hw/rcominote/artifacts/final-boot-sector-20261014/2e00/report.json", "bytes": 66714, "sha256": "bb6829e10d6a0fd3b5e718a13357bea81b3df4ad5121f6eb9f895f553d7d943b"},
+      {"file": "/home/rocry/w/_hw/rcominote/artifacts/final-boot-sector-20261014/2e00/session.btsnoop", "bytes": 18648, "sha256": "4bcfd7739788efcddddd96714834ebeda641c8b8760b32feb78d107936da364f"},
+      {"file": "/home/rocry/w/_hw/rcominote/docs/evidence/nor-scratch-reuse-static-2026-10-14.json", "bytes": 15197, "sha256": "44dcbfd27c270b44701a765874e1a3bd47388735ff4482f0d78c583d40826d36"},
+      {"file": "/home/rocry/w/_hw/rcominote/artifacts/mapped-system-20261012.bin", "bytes": 927632, "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f"},
+      {"file": "/home/rocry/w/_hw/rcominote/docs/evidence/boot-complete-2026-10-12/raw.bin", "bytes": 4096, "sha256": "782c26c3ba9bee07a8b0b464898fb963a76eb35a2916586b854f8f45993f4166"},
+      {"file": "/home/rocry/w/_hw/rcominote/docs/evidence/recovery-complete-2026-10-13/recovery-raw.bin", "bytes": 63288, "sha256": "14a899d181c38430931649169671a4812fa44e7a32978f2c3beded51472b1a01"},
+      {"file": "/home/rocry/w/_hw/rcominote/artifacts/scratch-reuse-20261014/report.json", "bytes": 35731, "sha256": "58da00f07685e90b564b1f26f6046fdefd724cf25bd0ae616c13bcf49d2be280"},
+      {"file": "/home/rocry/w/_hw/rcominote/artifacts/scratch-reuse-20261014/plan.json", "bytes": 23895, "sha256": "52b9b028a646ec24e80cac05de3bbe426ad1b7a78b57ad74f479a987aa06005e"},
+      {"file": "/home/rocry/w/_hw/rcominote/artifacts/scratch-reuse-20261014/session.btsnoop", "bytes": 12003, "sha256": "82daa2ab80229a16326b4e646352e62ec58372b0155b004e0290301ac24a1010"},
+      {"file": "/home/rocry/w/_hw/rcominote/artifacts/scratch-reuse-20261014/baseline/download.bin", "bytes": 4096, "sha256": "a2f7c04b495717e5b851f911f6dbf24471dfbde567c8124da65eb8c9e43b446d"}
+    ]
+  },
+  "baseline": {
+    "download": {
+      "file": "artifacts/scratch-4200-20261014/baseline/download.bin",
+      "bytes": 4096,
+      "sha256": "3621a69cc9215acf435ecab311088f53e8eb65d28f3d3a80cce6aca892560360"
+    },
+    "checkpoint": {
+      "file": "artifacts/scratch-4200-20261014/baseline/checkpoint.json",
+      "bytes": 27639,
+      "sha256": "398bb26da5c67d473f196eed6c53af400a72c362aa92ea77c2144456cdb1b744"
+    },
+    "original_ok": true,
+    "original_live_complete": true,
+    "original_checkpoint_aggregate_ok": false,
+    "actual4096_exactly_equals_successful_postmortem_object": true,
+    "sha256": "3621a69cc9215acf435ecab311088f53e8eb65d28f3d3a80cce6aca892560360",
+    "started_at": "2026-10-14T06:17:52.321868+00:00",
+    "ended_at": "2026-10-14T06:17:53.122415+00:00",
+    "download_att_span": [55, 78],
+    "download_duration_us": 191052,
+    "after_identity_att_span": [78, 84],
+    "actual_eof_slow_and_readonly_identity_barrier_verified": true,
+    "actions_producers_sd_writes": 0
+  },
+  "overwrite": {
+    "download": {
+      "file": "artifacts/scratch-4200-20261014/overwrite/download.bin",
+      "bytes": 4096,
+      "sha256": "10bd351c52d1d8560ad28929b9d8b34002ebe8398586bdf988595dc0d3f433e1"
+    },
+    "sector": {
+      "file": "artifacts/scratch-4200-20261014/overwrite/sector.bin",
+      "bytes": 512,
+      "sha256": "51327e9d7a7d8d4c3538c83688753b5f99735b85e981756effb63efd1dc33713"
+    },
+    "checkpoint": {
+      "file": "artifacts/scratch-4200-20261014/overwrite/checkpoint.json",
+      "bytes": 52776,
+      "sha256": "73b16c92a9829ebb933b970541390e08f519acec29566f6b6f49d3a726a2ff7f"
+    },
+    "original_ok": true,
+    "original_live_complete": true,
+    "original_checkpoint_aggregate_ok": false,
+    "started_at": "2026-10-14T06:17:53.123435+00:00",
+    "ended_at": "2026-10-14T06:17:59.001434+00:00",
+    "nor_offset": 16896,
+    "producer_attempted": true,
+    "sd_write_attempted": true,
+    "fixed_sequence": ["PREPARE", "START", "kernel uptime with fresh fixed nonce", "dbg fread spi_flash 0x4200", "dbg dumpbuf4096 to same original owned Call path", "STOP"],
+    "actions": {
+      "acks": 6,
+      "end": true,
+      "pending_bytes": 0,
+      "trace_span": [84, 103],
+      "f0_frames": 0,
+      "uptime_body_required": false,
+      "policy": "exact-six-acks-f1-pending-empty-all-f0-retained"
+    },
+    "f0_frames": 0,
+    "uptime_output_body_required_by_new_policy": false,
+    "original_missing_F0_contract_changed_or_reclassified": false,
+    "actions_first_hci_record": 156,
+    "actions_last_hci_record": 180,
+    "actual_new_fast_request_first_record": 181,
+    "new_fast_request_after_complete_actions": true,
+    "ordering_proof_establishes_unique_trigger": false,
+    "download_att_span": [103, 124],
+    "download_duration_us": 197664,
+    "after_identity_att_span": [124, 130],
+    "actual_eof_slow_and_write_bounded_identity_barrier_verified": true,
+    "new_ring_bytes": 4096,
+    "new_ring_sha256": "10bd351c52d1d8560ad28929b9d8b34002ebe8398586bdf988595dc0d3f433e1",
+    "current_ring_differs_from_live_baseline": true,
+    "candidate_bytes": 512,
+    "candidate_sha256": "51327e9d7a7d8d4c3538c83688753b5f99735b85e981756effb63efd1dc33713",
+    "independent_oracle": {
+      "nor_offset": 16896,
+      "bytes": 512,
+      "sha256": "51327e9d7a7d8d4c3538c83688753b5f99735b85e981756effb63efd1dc33713",
+      "proof": {
+        "path": "docs/evidence/recovery-complete-2026-10-13/recovery-raw.bin",
+        "bytes": 63288,
+        "sha256": "14a899d181c38430931649169671a4812fa44e7a32978f2c3beded51472b1a01",
+        "slice": [512, 1024],
+        "nor_offset": 16896,
+        "sector_sha256": "51327e9d7a7d8d4c3538c83688753b5f99735b85e981756effb63efd1dc33713"
+      },
+      "source": {
+        "file": "/home/rocry/w/_hw/rcominote/docs/evidence/recovery-complete-2026-10-13/recovery-raw.bin",
+        "bytes": 63288,
+        "sha256": "14a899d181c38430931649169671a4812fa44e7a32978f2c3beded51472b1a01"
+      },
+      "slice": [512, 1024]
+    },
+    "freshness": {
+      "rule": "same-scratch-unique-fresh-nonce-new-physical-dump-status32rows-v1",
+      "previous_ring_sha256": "3621a69cc9215acf435ecab311088f53e8eb65d28f3d3a80cce6aca892560360",
+      "ring_sha256": "10bd351c52d1d8560ad28929b9d8b34002ebe8398586bdf988595dc0d3f433e1",
+      "sector_sha256": "51327e9d7a7d8d4c3538c83688753b5f99735b85e981756effb63efd1dc33713",
+      "nor_offset": 16896,
+      "bytes": 512,
+      "rows": 32,
+      "nonce_span": [1278, 1323],
+      "status_span": [1324, 1369],
+      "rows_span": [1375, 3295],
+      "producer_span": [3315, 3360],
+      "dump_span": [3414, 3495],
+      "historical_dump_spans": [],
+      "composer_fps2": true,
+      "new_physical_dump_required": true,
+      "oracle_used_to_select_chain": false,
+      "difference_proven_written_prefix_bytes": 4096,
+      "critical_chain_inside_written_prefix": true
+    },
+    "nonce_to_status_gap": {
+      "physical_span": [1323, 1324],
+      "bytes": 1,
+      "exact_lf_verified": true
+    },
+    "producer_to_dump_gap": {
+      "physical_span": [3360, 3414],
+      "bytes": 54,
+      "exact_lf_composer_notice_log_prefix_verified": true,
+      "composer_notice_bytes": 33,
+      "composer_flag": true
+    },
+    "difference_prefix_is_lower_bound_under_original_contiguous_offset0_write_model": true,
+    "all4096_bytes_individually_changed_claimed": false
+  },
+  "wire": {
+    "capture": {
+      "file": "artifacts/scratch-4200-20261014/session.btsnoop",
+      "bytes": 18086,
+      "sha256": "7b3b8448971b1f3c405b7fbe2100bf25c0ba572cf2c34b469f8506a1329d2510"
+    },
+    "hci_records": 243,
+    "att_packets": 136,
+    "full_original_gatt_setup_verified": true,
+    "all_original_host_att_bound_exactly_within_direction": true,
+    "all_original_att_consumed_in_disjoint_transaction_spans": true,
+    "att_partitions": {
+      "setup": [0, 34],
+      "initial_identity": [34, 40],
+      "inventory": [40, 55],
+      "baseline_download": [55, 78],
+      "baseline_identity": [78, 84],
+      "overwrite_actions": [84, 103],
+      "overwrite_download": [103, 124],
+      "overwrite_identity": [124, 130],
+      "final_identity": [130, 136]
+    },
+    "status_events": 0,
+    "complete_parameter_transactions": 6,
+    "pending_parameter_transactions": 0,
+    "startup_mode": "fast",
+    "default_exercised": false,
+    "parameter_transactions": [
+      {"stage": "startup FAST", "origin": "remote", "requested": [6, 12, 0, 500], "applied": [12, 0, 500], "remote_request_records": [104], "remote_accept_records": [106], "command_record": 107, "status_record": 108, "update_record": 110, "command_timestamp_us": 63960214670658606, "update_timestamp_us": 63960214672277724, "status": 0, "update_status": 0},
+      {"stage": "baseline host normalization", "origin": "host", "requested": [6, 6, 0, 500], "applied": [6, 0, 500], "remote_request_records": [], "remote_accept_records": [], "command_record": 112, "status_record": 113, "update_record": 114, "command_timestamp_us": 63960214672336402, "update_timestamp_us": 63960214672457655, "status": 0, "update_status": 0},
+      {"stage": "baseline EOF SLOW", "origin": "remote", "requested": [32, 48, 4, 600], "applied": [48, 4, 600], "remote_request_records": [139], "remote_accept_records": [142], "command_record": 143, "status_record": 144, "update_record": 146, "command_timestamp_us": 63960214672654524, "update_timestamp_us": 63960214672757655, "status": 0, "update_status": 0},
+      {"stage": "overwrite activity FAST", "origin": "remote", "requested": [6, 12, 0, 500], "applied": [12, 0, 500], "remote_request_records": [181], "remote_accept_records": [183], "command_record": 184, "status_record": 185, "update_record": 187, "command_timestamp_us": 63960214676898611, "update_timestamp_us": 63960214677857735, "status": 0, "update_status": 0},
+      {"stage": "overwrite host normalization", "origin": "host", "requested": [6, 6, 0, 500], "applied": [6, 0, 500], "remote_request_records": [], "remote_accept_records": [], "command_record": 189, "status_record": 190, "update_record": 191, "command_timestamp_us": 63960214677912600, "update_timestamp_us": 63960214678104734, "status": 0, "update_status": 0},
+      {"stage": "overwrite EOF SLOW", "origin": "remote", "requested": [32, 48, 4, 600], "applied": [48, 4, 600], "remote_request_records": [214], "remote_accept_records": [217], "command_record": 218, "status_record": 219, "update_record": 221, "command_timestamp_us": 63960214678304567, "update_timestamp_us": 63960214678397736, "status": 0, "update_status": 0}
+    ],
+    "monitor_exit": 0,
+    "monitor_stop": {
+      "signal": "SIGINT",
+      "requested": true,
+      "delivery": "sent"
+    },
+    "last_att_hci_record": 239,
+    "normal_disconnect": {
+      "kind": "disconnect",
+      "status": 0,
+      "handle": 2048,
+      "reason": 22,
+      "record": 242,
+      "timestamp_us": 63960214681517868
+    },
+    "close_requested_us": 63960214679359440,
+    "close_completed_us": 63960214679359539,
+    "disconnect_observed_us": 63960214681568536,
+    "close_observation_us": 2208997,
+    "bounded_close_observation_seconds": 8,
+    "disconnect_after_final_att": true
+  },
+  "latest_actual_state": {
+    "initial_baseline_after_overwrite_after_and_final_identities_exactly_equal": true,
+    "equals_required_previous_postmortem_state": true,
+    "owned_identity_verified": true,
+    "firmware": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "bound": false,
+    "charging": true,
+    "battery": 100,
+    "free_capacity_mib": 59589,
+    "overwrite_state_verification": {
+      "other_state_equal": true,
+      "free_capacity_unit": "MiB (integer firmware report)",
+      "free_capacity_before": 59589,
+      "free_capacity_after": 59589,
+      "free_capacity_decrease": 0,
+      "allowed_decrease": 1
+    },
+    "final_readonly_state_verification": {
+      "other_state_equal": true,
+      "free_capacity_unit": "MiB (integer firmware report)",
+      "free_capacity_before": 59589,
+      "free_capacity_after": 59589,
+      "free_capacity_decrease": 0,
+      "allowed_decrease": 0
+    }
+  },
+  "retention": {
+    "connections": 1,
+    "downloads": 2,
+    "producer_executions": 1,
+    "existing_file_sd_overwrites": 1,
+    "new_file_names": 0,
+    "confirmed_ubuntu_cohort": 70,
+    "older_device_declared_without_download": 1,
+    "historical_possible": 1,
+    "maximum_cohort": 72,
+    "deletions": 0,
+    "prior_full_backup_partition_verified_bytes": 4096,
+    "prior_backup_independent_content_oracle": false,
+    "new_unique_nor_coverage_bytes": 0
+  },
+  "integrity": {
+    "private_original_files_hashed_before_and_after": 868,
+    "all_checked_original_hashes_unchanged": true,
+    "prior_failed_receipt_sha256": "ead31d037057752ff1f720337724125f158ee72ae82e12b6d645dddfaaaf76db",
+    "prior_postmortem_receipt_sha256": "6364cbd2f492972d3aa0a7a35733a38d201564d05ce176bd8e6eb962124deb2d",
+    "raw_hci_att_identity_inventory_ring_and_nonce_not_published": true,
+    "new_public_binary_created": false,
+    "historical_failed_flags_not_promoted": true
+  }
+}

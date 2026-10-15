@@ -25,13 +25,15 @@ class AttError(ValueError):
 
 
 class AttLink:
-    local_mtu = 247
     timeout = 10.0
     record_limit = 4096
 
-    def __init__(self, address: str, report: dict):
+    def __init__(self, address: str, report: dict, *, local_mtu: int = 247):
         if not re.fullmatch(r"(?:[0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}", address):
             raise ValueError("Expected six colon-separated MAC octets")
+        if isinstance(local_mtu, bool) or not isinstance(local_mtu, int) or not 23 <= local_mtu <= 247:
+            raise ValueError("Local ATT MTU must be an integer from 23 through 247")
+        self.local_mtu = local_mtu
         self.address = address
         self.report = report
         if "att_packets" in report:
@@ -168,7 +170,7 @@ class AttLink:
                 opcode = pdu[0]
                 if opcode == 0x02:
                     self._exchange_mtu(pdu)
-                    await self._send(b"\x03\xf7\x00")
+                    await self._send(b"\x03" + self.local_mtu.to_bytes(2, "little"))
                 elif opcode in (0x1B, 0x1D):
                     if len(pdu) < 3 or pdu[1:3] == b"\0\0":
                         raise ValueError(f"Malformed ATT notification/indication: {pdu.hex()}")
@@ -198,6 +200,8 @@ class AttLink:
     async def request(self, pdu: bytes, expected: int) -> bytes:
         if not isinstance(pdu, bytes) or not pdu or len(pdu) > self.mtu:
             raise ValueError("ATT request must be nonempty bytes within negotiated MTU")
+        if pdu[0] == 0x02 and pdu != b"\x02" + self.local_mtu.to_bytes(2, "little"):
+            raise ValueError("Exchange MTU request must advertise the configured local ATT MTU")
         async with self._request_lock:
             self._check()
             self._pending = asyncio.get_running_loop().create_future()

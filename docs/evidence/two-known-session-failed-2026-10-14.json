@@ -1,0 +1,280 @@
+{
+  "kind": "frozen-failed-single-connection-two-known-pairs",
+  "date": "2026-10-14",
+  "original_ok": false,
+  "original_failed_flags_retained": true,
+  "successful_parent_admission": false,
+  "new_raw_nor_coverage_bytes": 0,
+  "public_binary_outputs": [],
+  "originals": {
+    "report": {
+      "file": "artifacts/paired-nor-two-known-session-20261014/report.json",
+      "bytes": 107493,
+      "sha256": "ff24dee4e05c0a17e9ab29fd60aa2e89feb2dbd937562baf11c510085c68917b"
+    },
+    "plan": {
+      "file": "artifacts/paired-nor-two-known-session-20261014/plan.json",
+      "bytes": 10012,
+      "sha256": "1be029f508a9f037a962af0d49c74fa3fa6f73cf64465f426094bf7cd690e016"
+    },
+    "hci": {
+      "file": "artifacts/paired-nor-two-known-session-20261014/session.btsnoop",
+      "bytes": 31648,
+      "sha256": "f60ee8f383f3f9ec4d38b4c05481c41cd30c4b3f13725b29a07e2a2f15fa9b06"
+    },
+    "monitor_stderr": {
+      "file": "artifacts/paired-nor-two-known-session-20261014/btmon.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "frozen_source": {
+    "manifest": {
+      "file": "artifacts/paired-nor-two-known-session-20261014/source-snapshot/manifest.json",
+      "bytes": 43514,
+      "sha256": "92e2ec882e0ff5cdfcd11e18c6045b24b4d052aecb67666c96fdb3a256845051"
+    },
+    "pre_io_manifest": {
+      "file": "artifacts/paired-nor-two-known-session-preflight-20261014/source-snapshot/manifest.json",
+      "bytes": 43514,
+      "sha256": "92e2ec882e0ff5cdfcd11e18c6045b24b4d052aecb67666c96fdb3a256845051"
+    },
+    "source_files": 138,
+    "test_files": 116,
+    "created_at": "2026-10-14T09:39:38.882560+00:00",
+    "manifest_check_claim": {
+      "just_check_passed": 2107,
+      "subtests_passed": 159,
+      "uv_build": "passed",
+      "counts_from_root_pre_io_execution_not_independent_full_suite_rerun": true
+    },
+    "independent_snapshot_replay_modules": 96,
+    "all_module_origins_from_frozen_snapshot": true,
+    "live_current_source_not_used": true,
+    "core": [
+      {
+        "file": "artifacts/paired-nor-two-known-session-20261014/source-snapshot/src/rcominote/experiments/paired_nor_plan.py",
+        "bytes": 18461,
+        "sha256": "a05b84c34a6630a272011f759fce21e4ebe713678b63fea20bae7f50a9d48317"
+      },
+      {
+        "file": "artifacts/paired-nor-two-known-session-20261014/source-snapshot/src/rcominote/experiments/paired_nor_audit.py",
+        "bytes": 21508,
+        "sha256": "1f47d4f8d4d9702372db04caa2111b4af9c912ae993a7b15f4b031db9c6ae67d"
+      },
+      {
+        "file": "artifacts/paired-nor-two-known-session-20261014/source-snapshot/src/rcominote/experiments/paired_nor_runtime.py",
+        "bytes": 19921,
+        "sha256": "019d2535694a7738ef1396c29f31bc8189b78b4749f43ad57d1965d8b193f472"
+      },
+      {
+        "file": "artifacts/paired-nor-two-known-session-20261014/source-snapshot/src/rcominote/experiments/scratch_reuse_parser.py",
+        "bytes": 8253,
+        "sha256": "471c517b5ad6e62cd3698a7018a47befec2f51e6b62607b05b62670a05c7915f"
+      },
+      {
+        "file": "artifacts/paired-nor-two-known-session-20261014/source-snapshot/src/rcominote/experiments/window_nor_probe.py",
+        "bytes": 14197,
+        "sha256": "25694b11a5fe59c8dffdbe1693a15ea633ccbec67bb0d4a1aba5d129e57956e2"
+      }
+    ]
+  },
+  "chronology": {
+    "planned_at": "2026-10-14T09:39:39.363744+00:00",
+    "started_at": "2026-10-14T09:40:00.172309+00:00",
+    "last_complete_identity_at": "2026-10-14T09:40:32.022126+00:00",
+    "failed_operation_started_at": "2026-10-14T09:40:32.025972+00:00",
+    "timeout_at": "2026-10-14T09:40:41.148774+00:00",
+    "ended_at": "2026-10-14T09:40:43.428948+00:00",
+    "manifest_before_plan_before_start": true,
+    "timeout_stage": "group1 first after complete Actions, waiting for required actual remote FAST",
+    "timeout_type": "TimeoutError",
+    "inner_fast_wait_seconds": 8,
+    "stage_cap_seconds": 18,
+    "outer_active_cap_seconds": 60,
+    "outer_active_cap_not_reached": true
+  },
+  "wire": {
+    "att_packets": 222,
+    "hci_records": 377,
+    "hci_bytes": 31648,
+    "complete_parameter_transactions": 11,
+    "pending_transactions": 0,
+    "status_events": 0,
+    "gatt_setup_and_all_att_hci_binding_verified": true,
+    "all_owned_wire_inside_original_epoch": true,
+    "transactions_consumed_by_stages": [
+      1,
+      2,
+      3,
+      3,
+      2,
+      0
+    ],
+    "monitor_exit": 0,
+    "monitor_stop": {
+      "signal": "SIGINT",
+      "requested": true,
+      "delivery": "sent"
+    },
+    "disconnect": {
+      "status": 0,
+      "reason": 22,
+      "record": 376,
+      "after_last_att": true,
+      "passive_observation_us": 2268731,
+      "maximum_wait_seconds": 8
+    }
+  },
+  "actual_budget": {
+    "connections": 1,
+    "complete_downloads": 4,
+    "download_bytes_each": 4096,
+    "exact_actions_sessions": 3,
+    "producer_attempts": 3,
+    "sd_existing_file_overwrite_attempts": 3,
+    "overwrite_contents_confirmed_by_subsequent_download": 2,
+    "new_files": 0,
+    "deletions": 0,
+    "cohort": {
+      "confirmed": 70,
+      "older_declared": 1,
+      "historical_possible": 1,
+      "maximum": 72,
+      "unchanged": true
+    }
+  },
+  "completed_candidate": {
+    "group_index": 0,
+    "physical_offset": 0,
+    "candidate_only": true,
+    "original_live_complete": true,
+    "separately_accepted_pair": false,
+    "baseline": {
+      "file": "artifacts/paired-nor-two-known-session-20261014/page0-000000/baseline/download.bin",
+      "bytes": 4096,
+      "sha256": "a16e83146f8957a06240a781df08f476cdcfd8dd76d6843aa26ce60eb6a14609"
+    },
+    "candidate_snapshot": {
+      "file": "artifacts/paired-nor-two-known-session-20261014/page0-000000/candidate.json",
+      "bytes": 84125,
+      "sha256": "0dc7e89f22a275219b7425b8b10304dfff467ae978ad545c8f87db29d047d34f"
+    },
+    "first_ring": {
+      "file": "artifacts/paired-nor-two-known-session-20261014/page0-000000/first/download.bin",
+      "bytes": 4096,
+      "sha256": "202ae8da093e0abfdc8bac6542ad184d4707763864a0059f43181506218d880f"
+    },
+    "second_ring": {
+      "file": "artifacts/paired-nor-two-known-session-20261014/page0-000000/second/download.bin",
+      "bytes": 4096,
+      "sha256": "f0b5c8c193b519d6a5695345fc1bcdecea01541b9f775f58420ba476e7a6ffd3"
+    },
+    "candidate_sectors": [
+      {
+        "file": "artifacts/paired-nor-two-known-session-20261014/page0-000000/first/sector.bin",
+        "bytes": 512,
+        "sha256": "72952b98341a3089765c6cc8dd35ddc93ae699698d1455ce74dea1071cc277ec"
+      },
+      {
+        "file": "artifacts/paired-nor-two-known-session-20261014/page0-000000/second/sector.bin",
+        "bytes": 512,
+        "sha256": "72952b98341a3089765c6cc8dd35ddc93ae699698d1455ce74dea1071cc277ec"
+      }
+    ],
+    "independent_oracle_sha256": "72952b98341a3089765c6cc8dd35ddc93ae699698d1455ce74dea1071cc277ec",
+    "both_match_oracle": true,
+    "each_difference_proven_prefix_bytes": 4096,
+    "address_padding_exemptions": [],
+    "actions_each": {
+      "acks": 6,
+      "f1": true,
+      "pending_bytes": 0,
+      "f0_frames": 0
+    }
+  },
+  "failed_group": {
+    "group_index": 1,
+    "physical_offset": 16896,
+    "original_candidate": false,
+    "original_live_complete": false,
+    "baseline": {
+      "file": "artifacts/paired-nor-two-known-session-20261014/page1-004200/baseline/download.bin",
+      "bytes": 4096,
+      "sha256": "f0b5c8c193b519d6a5695345fc1bcdecea01541b9f775f58420ba476e7a6ffd3"
+    },
+    "baseline_exact_previous_group_second": true,
+    "first": {
+      "original_ok": false,
+      "original_live_complete": false,
+      "producer_attempted": true,
+      "sd_write_attempted": true,
+      "acks": 6,
+      "f1": true,
+      "pending_bytes": 0,
+      "f0_frames": 0,
+      "required_new_fast_observed": false,
+      "host_normalization_attempted": false,
+      "download_attempted": false,
+      "download_or_sector_output_present": false,
+      "content_update_confirmed": false
+    },
+    "second": {
+      "original_ok": false,
+      "original_live_complete": false,
+      "started": false,
+      "commands": 0,
+      "output_files": 0
+    }
+  },
+  "current_knowledge": {
+    "last_observed_identity": {
+      "at": "2026-10-14T09:40:32.022126+00:00",
+      "firmware": "010004",
+      "mode": "note",
+      "recording_state": "idle",
+      "bound": false,
+      "charging": true,
+      "battery": 100,
+      "free_capacity_mib": 59589,
+      "observed_before_third_overwrite_attempt": true
+    },
+    "last_observed_ring_sha256": "f0b5c8c193b519d6a5695345fc1bcdecea01541b9f775f58420ba476e7a6ffd3",
+    "last_observed_ring_is_current_baseline": false,
+    "post_attempt_owned_file": "unknown; no download after third attempted overwrite",
+    "post_attempt_device_state": "unverified; final identity omitted after timeout",
+    "normal_disconnect_does_not_supply_identity_or_file_contents": true
+  },
+  "unchanged_backup": {
+    "prior_frozen_doc": {
+      "file": "docs/system-first4k-raw-live-2026-10-14.md",
+      "bytes": 10383,
+      "sha256": "19b3a39c3a141f6124627ab953da3dd2bf4420034e89909a4cf43834def0ed73"
+    },
+    "prior_frozen_receipt": {
+      "file": "docs/evidence/system-first4k-raw-live-2026-10-14.json",
+      "bytes": 20247,
+      "sha256": "6baaeb4752a03ae29db0549fa371eb270a6f110c05e4ad8484ed5e57a1b17ce5"
+    },
+    "actual_system_first4k": {
+      "file": "docs/evidence/system-first4k-raw-live-2026-10-14/system-first4k-raw.bin",
+      "bytes": 4096,
+      "sha256": "74807d164370bd3d4ded53ac191414a1f5ff9a50ca04647b898179a1e7d83a5c"
+    },
+    "physical_range": [
+      147456,
+      151552
+    ],
+    "strong_available_bytes": 39184,
+    "potential_available_bytes": 194388,
+    "new_coverage_from_this_control": 0,
+    "complete_4mib_backup_restore_own_firmware": false
+  },
+  "limits": [
+    "Neither group nor whole session promoted to success; original replay and parent gate reject.",
+    "Six ACKs/F1 prove exact command exchange, not completed FAST, updated SD contents, NOR coverage, or restored state.",
+    "Absence of observed FAST does not identify hidden deferred-queue or firmware root cause.",
+    "No new raw/ring/HCI/nonce/identity binary publication; full inputs remain private.",
+    "Next independent readonly checkpoint is implementation work only; no live result claimed."
+  ]
+}

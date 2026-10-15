@@ -1,0 +1,276 @@
+{
+  "schema": 1,
+  "status": "final-failed-second-freshness-plus-unsettled-second-slow",
+  "profile": "fixed-fw1-boot-tail-window-pair",
+  "owned_serial": "C261CF0430",
+  "nor_range": ["0x2400", "0x2600"],
+  "started_at": "2026-10-14T01:53:34.581326+00:00",
+  "ended_at": "2026-10-14T01:53:55.694313+00:00",
+  "result": {
+    "original_ok": false,
+    "pair_verified": false,
+    "final_audit_complete": false,
+    "new_verified_raw_coverage_bytes": 0,
+    "current_verified_fw1_boot_bytes": 1024,
+    "full_partition_or_nor_backup": false,
+    "binary_published": false
+  },
+  "original_report": {
+    "file": "artifacts/window-nor2400-20261014/report.json",
+    "bytes": 55749,
+    "sha256": "682b95fe57703a7ad03f18ad11b9ba0314f0505e53b8e9b583fe372735c64c47"
+  },
+  "private_hci_capture": {
+    "file": "artifacts/window-nor2400-20261014/session.btsnoop",
+    "bytes": 18244,
+    "sha256": "4d87c3fb4615b8e8b08c568de76d19ba48c079efb00ed002b34bf1fe8696971b",
+    "records": 245,
+    "reported_drops": 0
+  },
+  "att_hci_binding": {
+    "verified": true,
+    "packets": 141,
+    "comparison": "exact within each direction"
+  },
+  "monitor_exit": 0,
+  "monitor_stop": {
+    "signal": "SIGINT",
+    "requested": true,
+    "delivery": "sent"
+  },
+  "original_error": "ValueError: Unexpected text/status/failure between current producer and dump",
+  "original_capture_error": "ValueError: Unexpected text/status/failure between current producer and dump",
+  "final_after_error": null,
+  "parents": {
+    "successful_early2200_report_sha256": "77f75c84d50e1f03b1a698ac1cd610f897a0242d07d7a600463ec8dbcd1822b0",
+    "successful_window_ram_report_sha256": "8ffa203974b1f939ba3365186c771bc4128fa37aeba8efbb5133f9c5ab8aaa6e",
+    "both_full_parent_chain_replays_passed": true
+  },
+  "parameter_time_origin": {
+    "event": "Owned Connection Complete",
+    "record": 18,
+    "timestamp_us": 63960198823116610,
+    "initial_interval": 48,
+    "initial_latency": 4,
+    "initial_timeout": 600
+  },
+  "completed_parameter_transactions": 5,
+  "pending_parameter_transactions": 1,
+  "parameter_transactions": [
+    {"stage": "startup-fast", "origin": "remote", "settlement": "complete", "remote_request": {"record": 105, "relative_us": 5073933, "identifier": 238, "min": 6, "max": 12, "latency": 0, "timeout": 500}, "remote_accept": {"record": 107, "relative_us": 5073998, "identifier": 238, "result": 0}, "request": {"record": 108, "relative_us": 5074023, "min": 6, "max": 12, "latency": 0, "timeout": 500, "min_length": 0, "max_length": 0}, "status": {"record": 109, "relative_us": 5075032, "status": 0}, "update": {"record": 111, "relative_us": 6033077, "latency": 0, "timeout": 500, "interval": 12, "status": 0}},
+    {"stage": "first-host-normalization", "origin": "host", "settlement": "complete", "remote_request": null, "remote_accept": null, "request": {"record": 134, "relative_us": 6403048, "min": 6, "max": 6, "latency": 0, "timeout": 500, "min_length": 1, "max_length": 1}, "status": {"record": 135, "relative_us": 6403985, "status": 0}, "update": {"record": 136, "relative_us": 6513086, "latency": 0, "timeout": 500, "interval": 6, "status": 0}},
+    {"stage": "first-slow-settlement", "origin": "remote", "settlement": "complete", "remote_request": {"record": 159, "relative_us": 6695850, "identifier": 239, "min": 32, "max": 48, "latency": 4, "timeout": 600}, "remote_accept": {"record": 162, "relative_us": 6695966, "identifier": 239, "result": 0}, "request": {"record": 163, "relative_us": 6695988, "min": 32, "max": 48, "latency": 4, "timeout": 600, "min_length": 0, "max_length": 0}, "status": {"record": 164, "relative_us": 6696993, "status": 0}, "update": {"record": 166, "relative_us": 6753077, "latency": 4, "timeout": 600, "interval": 48, "status": 0}},
+    {"stage": "second-required-fast", "origin": "remote", "settlement": "complete", "remote_request": {"record": 197, "relative_us": 11133938, "identifier": 240, "min": 6, "max": 12, "latency": 0, "timeout": 500}, "remote_accept": {"record": 199, "relative_us": 11133998, "identifier": 240, "result": 0}, "request": {"record": 200, "relative_us": 11134021, "min": 6, "max": 12, "latency": 0, "timeout": 500, "min_length": 0, "max_length": 0}, "status": {"record": 201, "relative_us": 11135132, "status": 0}, "update": {"record": 203, "relative_us": 12093140, "latency": 0, "timeout": 500, "interval": 12, "status": 0}},
+    {"stage": "second-host-normalization", "origin": "host", "settlement": "complete", "remote_request": null, "remote_accept": null, "request": {"record": 205, "relative_us": 12123821, "min": 6, "max": 6, "latency": 0, "timeout": 500, "min_length": 1, "max_length": 1}, "status": {"record": 206, "relative_us": 12125167, "status": 0}, "update": {"record": 207, "relative_us": 12333173, "latency": 0, "timeout": 500, "interval": 6, "status": 0}},
+    {"stage": "second-slow-pending", "origin": "remote", "settlement": "awaiting-update", "remote_request": {"record": 230, "relative_us": 12522839, "identifier": 241, "min": 32, "max": 48, "latency": 4, "timeout": 600}, "remote_accept": {"record": 232, "relative_us": 12522877, "identifier": 241, "result": 0}, "request": {"record": 233, "relative_us": 12522888, "min": 32, "max": 48, "latency": 4, "timeout": 600, "min_length": 0, "max_length": 0}, "status": {"record": 234, "relative_us": 12524074, "status": 0}, "update": null}
+  ],
+  "operations": [
+    {
+      "id": "first",
+      "original_ok": false,
+      "single_operation_pair_flag": false,
+      "live_complete": true,
+      "sd_write_attempted": true,
+      "actions": {"confirmed_writes": 5, "ack_count": 5, "f1_received": true, "pending_bytes": 0},
+      "download": {
+        "file": "artifacts/window-nor2400-20261014/first/download.bin",
+        "bytes": 4096,
+        "sha256": "794e45d39ecaa85c6bad35e8a772dcac4bed4bc3f4091958196e54452244b5e1"
+      },
+      "received_bytes": 4096,
+      "actual_complete_boyi_audit_passed": true,
+      "actions_trace_verified": true,
+      "window_start_hci_record": 138,
+      "window_end_hci_record": 161,
+      "window_relative_us": [6519076, 6695850],
+      "request_tx_to_boyi_end_us": 176774,
+      "pre_download_fast_count": 0,
+      "strict_freshness_passed": true,
+      "sector_candidate": {
+        "file": "artifacts/window-nor2400-20261014/first/sector.bin",
+        "bytes": 512,
+        "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+      },
+      "freshness": {
+        "rule": "nearest-producer-exact-status32rows-prefix-dump-v1",
+        "ring_sha256": "794e45d39ecaa85c6bad35e8a772dcac4bed4bc3f4091958196e54452244b5e1",
+        "sector_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+        "nor_offset": 9216,
+        "bytes": 512,
+        "rows": 32,
+        "status_span": [1586, 1631],
+        "rows_span": [1637, 3557],
+        "producer_span": [3577, 3622],
+        "dump_span": [3643, 3724],
+        "bounded_chain_bytes": 2138,
+        "previous_dump_required": false,
+        "previous_dump_span": null,
+        "one_status_one_producer": true,
+        "failure_text_absent": true
+      },
+      "identity_barrier_hci_records": [167, 175],
+      "state_verification": {
+        "other_state_equal": true,
+        "free_capacity_unit": "MiB (integer firmware report)",
+        "free_capacity_before": 59591,
+        "free_capacity_after": 59591,
+        "free_capacity_decrease": 0,
+        "allowed_decrease": 1
+      },
+      "checkpoint": {
+        "file": "artifacts/window-nor2400-20261014/first/checkpoint.json",
+        "bytes": 35311,
+        "sha256": "6b3da63878d4ac2aa840e48d02d7b3f87e61a92ff75d5ca3d64f33ec26405cbc"
+      }
+    },
+    {
+      "id": "second",
+      "original_ok": false,
+      "single_operation_pair_flag": false,
+      "live_complete": false,
+      "sd_write_attempted": true,
+      "actions": {"confirmed_writes": 5, "ack_count": 5, "f1_received": true, "pending_bytes": 0},
+      "download": {
+        "file": "artifacts/window-nor2400-20261014/second/download.bin",
+        "bytes": 4096,
+        "sha256": "4f1ee8b104f8c541b597d8ccf0a1040079d94d1c3459eec978a5b9c2ecb91347"
+      },
+      "received_bytes": 4096,
+      "actual_complete_boyi_audit_passed": true,
+      "actions_trace_verified": true,
+      "window_start_hci_record": 209,
+      "window_end_hci_record": 235,
+      "window_relative_us": [12339559, 12524866],
+      "request_tx_to_boyi_end_us": 185307,
+      "pre_download_fast_count": 1,
+      "strict_freshness_passed": false,
+      "sector_file_present": false,
+      "slow_settlement_completed": false,
+      "own_identity_barrier_completed": false
+    }
+  ],
+  "strict_second_freshness_failure": {
+    "rule": "nearest-producer-exact-status32rows-prefix-dump-v1",
+    "expected_producer_to_dump_gap_hex": "0a0d0a5b6c6f677372765d5b495d5b3637395d3a20",
+    "actual_selected_gap_ascii": "\n[composer][I][742]: post fps 2\n\r\n\r\n[logsrv][I][679]: ",
+    "actual_gap_ring_span": [3226, 3280],
+    "actual_gap_bytes": 54,
+    "actual_gap_sha256": "6e90c546f667fcc46f73275f5036d5c4460e146b26051b07c00179ff7a7d5dfe",
+    "selected_extra_line_ascii": "[composer][I][742]: post fps 2\n\r\n",
+    "selected_extra_line_ring_span": [3227, 3260],
+    "selected_extra_line_bytes": 33,
+    "selected_extra_line_sha256": "5a3ac148d446b5fdc3250152b6e17821a411fde6f6b67fb6088ca6d6c91f2d76",
+    "strict_parser_accepts_original_second_ring": false,
+    "extra_line_removed_or_bytes_repaired": false,
+    "second_sector_file_created": false,
+    "original_failed_pair_promoted": false
+  },
+  "composer_static_comparison": {
+    "source": "Actual mapped FW010004 bytes; Astra inference with independently checked region hashes",
+    "image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+    "log_module": "composer",
+    "encoded_source_line": 742,
+    "actual_format": "post fps %u\\n",
+    "supports": "Display post-count statistics logging; extra line itself is not fread failure text",
+    "does_not_prove": "Actual caller thread/branch execution or display correctness",
+    "regions": [
+      {"start": "0x1002cbdc", "end_exclusive": "0x1002cc2c", "bytes": 80, "sha256": "22f21932cabf8b5263edf459439759e5ba40323abc14b141fc680de2b5a6f73c"},
+      {"start": "0x1002ce8c", "end_exclusive": "0x1002cea4", "bytes": 24, "sha256": "3e32a6b3e00d4b0917231d5cbac7e839aaa7d2c67108565a2dca8881ade7f41f"},
+      {"start": "0x100c89c9", "end_exclusive": "0x100c89d6", "bytes": 13, "sha256": "c4c21461d4f2371caae06e72cbdfd43e5ff72ffc49df6d328fa0279f30ab8e88"},
+      {"start": "0x100ba4bc", "end_exclusive": "0x100ba4c4", "bytes": 8, "sha256": "f4a9a701540490546039e7981325ef114f31e288f1ea5614eaf9cc2dcc47532c"}
+    ]
+  },
+  "final_identity": {
+    "wire_hci_records": [236, 245],
+    "wire_trace_verified": true,
+    "state": {
+      "version": "010004",
+      "mode": "note",
+      "recording_state": "idle",
+      "charging": true,
+      "battery": 100,
+      "free_capacity": 59591
+    },
+    "state_verification": {
+      "other_state_equal": true,
+      "free_capacity_unit": "MiB (integer firmware report)",
+      "free_capacity_before": 59591,
+      "free_capacity_after": 59591,
+      "free_capacity_decrease": 0,
+      "allowed_decrease": 1
+    },
+    "substitutes_for_missing_second_stage_barrier": false,
+    "proves_slow2_update_complete": false,
+    "promotes_full_window_audit": false
+  },
+  "source_snapshot": {
+    "manifest": {
+      "file": "artifacts/window-nor2400-20261014/source-snapshot/manifest.json",
+      "bytes": 5934,
+      "sha256": "834ec103f639c924473c26b2cee26b483790c232c47fbdf87a7bac311acc185f"
+    },
+    "files": 34,
+    "scope": "Original observed implementation, copied before later grammar/sequencing changes; not current evolving code",
+    "source_files": [
+      {"path": "src/rcominote/experiments/window_nor_probe.py", "bytes": 10732, "sha256": "ddaf83abb9d8bd33e015df121bcb5af93b99e7211b3356ee234c81c1c8f3fe2f"},
+      {"path": "src/rcominote/experiments/window_nor_audit.py", "bytes": 8935, "sha256": "6b864ade8a464c618e10ace865eb7a648e126878093caa2577190f9ac78686a5"},
+      {"path": "src/rcominote/experiments/window_nor_contract.py", "bytes": 3509, "sha256": "89bf09240d494ebc2a5ea157afe26f24a6ec6da2afc65448abb31b86f6b75cda"},
+      {"path": "src/rcominote/experiments/window_ram_probe.py", "bytes": 11254, "sha256": "49b49179c13fa6c4c5aa64aa85249cefa2c59fa9746a4cfdb2fee2ccfc4bdf49"},
+      {"path": "src/rcominote/experiments/window_ram_audit.py", "bytes": 11042, "sha256": "846ac5c306c9c1bc392e08522b0d1ddfb3ed462932ca8ee0a005005956c32250"},
+      {"path": "src/rcominote/experiments/param_window.py", "bytes": 13004, "sha256": "54cf3ec892edb98a05cc78fa9196d1bd3fc89c5b9926728affe5debc70fd151c"},
+      {"path": "src/rcominote/experiments/boot_tail_contract.py", "bytes": 7623, "sha256": "d2599ae542c0800ddb07eaaa5698479279449f6cc99fb973b5e6a5d1f021556e"},
+      {"path": "src/rcominote/experiments/dual_unknown_pair.py", "bytes": 10580, "sha256": "7161c62988f9ccbf9991126ec4d159d0945246180ecd0526fd3a2dd2c36d8009"},
+      {"path": "src/rcominote/experiments/dual_nor_probe.py", "bytes": 17662, "sha256": "d25c4f66d2e60b0f1f99f2317ad349ddd88eb5fc6d0d06ab68dbe2e31a1152ff"},
+      {"path": "src/rcominote/experiments/dual_client.py", "bytes": 7691, "sha256": "673445a29e3b1208cd14c8a3786068904cc377271741626bf8a7ee63cc9c8163"},
+      {"path": "src/rcominote/experiments/dual_audit.py", "bytes": 14349, "sha256": "b977b34a083e12d5753d9b3ffb780a9a5268b33146f02dd69dd9d51145337a49"},
+      {"path": "src/rcominote/experiments/dual_hci.py", "bytes": 3856, "sha256": "6164a5a2dfdfae7faf79008b626fb4992984c09fc09ff7bdede92a2e8f8cfc8f"},
+      {"path": "src/rcominote/experiments/dual_interval.py", "bytes": 1834, "sha256": "bfff2103c65b9b93cb5ce144c4737e99bbd7571c5083351640b0d197c4299ea5"},
+      {"path": "src/rcominote/experiments/sd_warm_download.py", "bytes": 6050, "sha256": "f58f8d8cb9f67397c5fbd930c407c9815bf04d4376a64c9d0c71c14604a89102"},
+      {"path": "src/rcominote/experiments/sd_nor_probe.py", "bytes": 20783, "sha256": "62f9bae44a5e205bd167bdd0827e81c73f20cadccb1ee0b2e598eda1f917cb4b"},
+      {"path": "src/rcominote/experiments/sd_nor_targets.py", "bytes": 7445, "sha256": "176f60c522839afa584b4e4371f819f7181e9b87498663a68afda58591cdc358"},
+      {"path": "src/rcominote/experiments/sd_nor_unknown.py", "bytes": 5094, "sha256": "d6cff4a2662d222b30d1803367158e048879f723081be02310097464653b0d23"},
+      {"path": "src/rcominote/experiments/sd_bootstrap.py", "bytes": 14847, "sha256": "e7847be080d6dc96b351a26b7b184e6a130b812634dbd7bfb52040f2ebc0faf7"},
+      {"path": "src/rcominote/experiments/sd_interval_download.py", "bytes": 8321, "sha256": "0ef7b8ecd6422e23c53ca3705a55c14ee239dbe9f6c8429baadfaebf11e8a274"},
+      {"path": "src/rcominote/experiments/hci_interval.py", "bytes": 8425, "sha256": "3120e3939d38185861259b3ca61772fcbe81cb1682b2921e1f92203009d282d9"},
+      {"path": "src/rcominote/experiments/hci_interval_io.py", "bytes": 7462, "sha256": "366c06104a507ce01299366b044f55d8bd1b9aa3127dc17686468c8fcef10783"},
+      {"path": "src/rcominote/experiments/hci_monitor.py", "bytes": 3738, "sha256": "f3632128e2ec96e890339ba43ba8d8e9e8d04199971d20df9603693a516956d2"},
+      {"path": "src/rcominote/experiments/nor_freshness.py", "bytes": 7304, "sha256": "3087ce074c6c6e14c571e41e7f923ff44a4676bdb2e6e1437502016ecd6f6ff3"},
+      {"path": "src/rcominote/experiments/sd_bridge.py", "bytes": 18187, "sha256": "e6747ed4d79ca390652e36bc5ce87630c36932e7342f84c16c0bac76cc9efe3a"},
+      {"path": "src/rcominote/linux_att.py", "bytes": 12563, "sha256": "2570b758c881b37057210bc8554e536d2b67b207a4948a31bcec1fa5b9d71537"},
+      {"path": "src/rcominote/linux_client.py", "bytes": 9444, "sha256": "4e0c975d8e66a83a31d4852e7c5d90a517f4b5286ad80681e454c8839a6845ab"},
+      {"path": "src/rcominote/connection.py", "bytes": 17634, "sha256": "5024ddb82b9eec10f2ae7eca98b16fe0258dfc7ef7109eb704121e15362423dc"},
+      {"path": "src/rcominote/protocol.py", "bytes": 5113, "sha256": "9c8c55fff945202dbf6efb06be03026779eb023fdae94c3c5f5357e0a6ac1db2"},
+      {"path": "src/rcominote/ble_target.py", "bytes": 930, "sha256": "9672df4fbe601df81b340318b2414ecd945e3b4ad906f9b4952363de67102362"},
+      {"path": "src/rcominote/device_commands.py", "bytes": 10639, "sha256": "72ad5a31743e210010d247c1474a39421f37bdeba5c3b032f670f214e82f3f4b"},
+      {"path": "src/rcominote/log_stream.py", "bytes": 1813, "sha256": "1723ab9677e5823ba73c94be518b353699b5976ffa77ae3c86ce1216d873fc2c"},
+      {"path": "src/rcominote/log_probe.py", "bytes": 3273, "sha256": "24ca8c0042bf83974654620b1bf06e12551f6dd7c1d16bbdf909db3b2c80b7b1"},
+      {"path": "src/rcominote/log_capture.py", "bytes": 23598, "sha256": "ba1d4848e0fc9ebfe70976d08165a70869db36b9b24d475200c8381c54fdd427"},
+      {"path": "src/rcominote/printk_ring.py", "bytes": 2959, "sha256": "4d50623f284b2822853da26d4291cf08497bdf87ad1e194d64deb17561f37132"}
+    ]
+  },
+  "scratch_accounting": {
+    "download_confirmed_files": 56,
+    "old_device_declared4096_unverified_file": 1,
+    "historical_additional_possible_file": 1,
+    "maximum_retained_test_files": 58,
+    "new_download_confirmed_files_this_trial": 2,
+    "automatic_deletion": false
+  },
+  "offline_validation": {
+    "device_io": false,
+    "both_actions_and_complete_downloads_verified": true,
+    "first_fresh512_and_actual_identity_barrier_verified": true,
+    "all141_att_bound_to_hci": true,
+    "parameter_transactions_and_pending_state_reconstructed": true,
+    "final_identity_and_state_verified": true,
+    "full_window_audit_passed": false,
+    "failed_replay_rejection": "Original NOR-window pair failed; retain without promotion",
+    "all34_source_snapshot_hashes_checked": true
+  },
+  "publication": {
+    "metadata_and_exact_nonprivate_composer_gap_only": true,
+    "complete_att_hci_rings_info_audio_inventory_published": false,
+    "new_binary_or_verifier_created": false,
+    "original_files_modified": false
+  }
+}

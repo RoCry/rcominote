@@ -1,0 +1,156 @@
+{
+  "schema": "status-link-health-live-v1",
+  "scope": "Frozen one-shot GATT and read-only identity health observation after failed2a00 discovery",
+  "result": {
+    "original_ok": true,
+    "offline_audit": "pass; exact original verification equality",
+    "current_gatt_identity_communication_verified": true,
+    "timeout_root_cause_identified": false,
+    "timeout_root_cause_repaired": false,
+    "new_nor_coverage_bytes": 0,
+    "verified_fw1_boot_bytes_unchanged": 2560,
+    "fw1_boot_bytes": 4096,
+    "actions_commands": 0,
+    "producer_executions": 0,
+    "sd_write_attempts": 0,
+    "downloaded_files": 0,
+    "host_origin_parameter_normalizations": 0,
+    "status_events_observed": 0
+  },
+  "inputs": {
+    "report": {
+      "file": "artifacts/status-link-health-20261014/report.json",
+      "bytes": 10676,
+      "sha256": "20133998df7c702e36bd6f01eba06caeabd79a0251466a4380b144e031bdbaa8"
+    },
+    "capture": {
+      "file": "artifacts/status-link-health-20261014/session.btsnoop",
+      "bytes": 4201,
+      "sha256": "db073382d26242da08a7567418ed4676f25588f5f133ed9f8cf7c3816f5d3552"
+    },
+    "private_probe_source": {
+      "file": "artifacts/status-link-health-20261014/probe.py",
+      "bytes": 7620,
+      "sha256": "6bab70df911d71bea7ced9b204eefb061a2ce4ec4e72012eb5718d98b61d13e4"
+    },
+    "monitor_stderr": {
+      "file": "artifacts/status-link-health-20261014/btmon.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "parent_report": {
+      "file": "artifacts/status-boot-tail-20261014/2800/report.json",
+      "bytes": 63390,
+      "sha256": "6e2dc06d842b55a8d34ac345d4596374e14bf44a342c98d052ebdd9bf5208d4a"
+    },
+    "source_snapshot_manifest": {
+      "file": "artifacts/status-boot-tail-20261014/source-snapshot/manifest.json",
+      "bytes": 15583,
+      "sha256": "e5e805f7138133390f6413411c26f5f5cf9c672a05117ce2865588170f26205a"
+    }
+  },
+  "source_verification": {
+    "private_probe_sha_equals_recorded_source_sha": true,
+    "audit_loaded_via": "runpy.run_path; called audit only; main and capture not executed",
+    "dependencies_imported_from_previous_frozen_source_snapshot": true,
+    "snapshot_files_verified": 110,
+    "current_source_equality_claimed": false,
+    "original_health_input_files_unchanged": 4
+  },
+  "chronology": {
+    "parent_ended_at": "2026-10-14T03:31:28.697141+00:00",
+    "started_at": "2026-10-14T03:42:54.408578+00:00",
+    "ended_at": "2026-10-14T03:43:12.860150+00:00",
+    "parent_before_health": true,
+    "final_att_record": 103,
+    "disconnect_record": 106,
+    "disconnect_after_final_att_us": 2023812,
+    "post_close_passive_observation_max_seconds": 8
+  },
+  "capture": {
+    "records": 107,
+    "att_packets": 46,
+    "att_binding": {
+      "verified": true,
+      "packets": 46,
+      "comparison": "exact within each direction"
+    },
+    "full_gatt_setup_verified": true,
+    "setup_span": [
+      0,
+      34
+    ],
+    "before_identity_span": [
+      34,
+      40
+    ],
+    "after_identity_span": [
+      40,
+      46
+    ],
+    "monitor_exit": 0,
+    "monitor_stop": {
+      "signal": "SIGINT",
+      "requested": true,
+      "delivery": "sent"
+    }
+  },
+  "state": {
+    "before_equals_after_equals_expected_parent": true,
+    "complete_actual_readonly_identity_pairs": 2,
+    "free_capacity_mib": 59590,
+    "allowed_capacity_decrease": 0,
+    "owned_serial_verified": true,
+    "bound": false,
+    "firmware": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "charging": true,
+    "battery": 100
+  },
+  "parameters": {
+    "complete_transactions": 1,
+    "pending_transactions": 0,
+    "origin": "remote",
+    "remote_request_records": [
+      88
+    ],
+    "host_controller_command_record": 91,
+    "status_record": 92,
+    "update_record": 94,
+    "requested": [
+      6,
+      12,
+      0,
+      500
+    ],
+    "applied": [
+      12,
+      0,
+      500
+    ],
+    "final_identity_follows_startup_settlement": true,
+    "status_event_proof": {
+      "policy": "unchanged-status20-usb-connected-max8",
+      "events": 0,
+      "indices": []
+    }
+  },
+  "disconnect": {
+    "observed": true,
+    "status": 0,
+    "reason": 22,
+    "reason_hex": "0x16",
+    "after_all_original_att": true,
+    "same_owned_connection_handle": true
+  },
+  "limits": [
+    "One successful connection proves current full-GATT/identity communication at observation time; earlier discovery timeout cause and permanent repair remain unknown.",
+    "Only discovery, notification configuration, identity reads and remote-requested startup settlement; no Actions producer, SD export or NOR read/write.",
+    "One remote startup negotiation includes a controller update command; zero host-origin normalization transactions does not mean zero HCI commands.",
+    "Zero actual status events; live insertion path not exercised.",
+    "Disconnect captured after final ATT and explicit connection-context close; no physical worker-exit or cache-clear proof.",
+    "Original failed2a00/new aggregate and previous failed2800/aggregate evidence remain failed.",
+    "Full probe/HCI/ATT/device raw identity and peer identifiers remain private."
+  ]
+}

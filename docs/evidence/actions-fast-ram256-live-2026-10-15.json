@@ -1,0 +1,260 @@
+{
+  "schema": "fixed-actions-fast-ram256-success-receipt-v1",
+  "date": "2026-10-15",
+  "date_timezone": "Asia/Hong_Kong",
+  "capture_utc_date": "2026-10-14",
+  "outcome": "single fixed RAM256 Actions stream succeeded under actually applied6; no storage verification/admission or rawcoverage",
+  "references": {
+    "report": {
+      "file": "artifacts/actions-fast-ram256-20261015/report.json",
+      "bytes": 30233,
+      "sha256": "2f88353129df638763eeca0cb39610b5350f0933107054cef6d68df3c84d0b3e"
+    },
+    "plan": {
+      "file": "artifacts/actions-fast-ram256-20261015/plan.json",
+      "bytes": 5348,
+      "sha256": "9b5decbbadc29940f05ea861bc7f69303185f02ba21bed4d8f3e5976a6c87e1d"
+    },
+    "hci": {
+      "file": "artifacts/actions-fast-ram256-20261015/session.btsnoop",
+      "bytes": 7202,
+      "sha256": "e26c967ca318025d96a9d6c32b32bc286f291285f9eac2966a84a420afafcdab"
+    },
+    "source_manifest": {
+      "file": "artifacts/actions-fast-ram256-20261015/source-snapshot/manifest.json",
+      "bytes": 48861,
+      "sha256": "e5aa1bfda26bebc0ca8399ac6c167f5fb5c88ff5bbd58f80a1700feb2ff3f495"
+    },
+    "preflight_review": {
+      "file": "artifacts/actions-fast-ram256-20261015/preflight-review.json",
+      "bytes": 1392,
+      "sha256": "db2b4865eb59c20c9c1aa9f4c5f9dc5cbd299f12709c28fd2c420ce9f638e88d"
+    },
+    "checks_before": {
+      "file": "artifacts/actions-fast-preflight-20261015/checks-before.json",
+      "bytes": 37477,
+      "sha256": "fecf86abb6030eb7af04961b168df7606c11d85e8f3be0c1f58a3e7646de173d"
+    },
+    "checks_after": {
+      "file": "artifacts/actions-fast-preflight-20261015/checks-after.json",
+      "bytes": 37477,
+      "sha256": "fecf86abb6030eb7af04961b168df7606c11d85e8f3be0c1f58a3e7646de173d"
+    },
+    "just_check_log": {
+      "file": "artifacts/actions-fast-preflight-20261015/just-check.log",
+      "bytes": 3135,
+      "sha256": "ba59beaa285a0c7fc9a816cdc4e1bb96e312da011889148ca2f7eaccb40022a6"
+    },
+    "build_log": {
+      "file": "artifacts/actions-fast-preflight-20261015/uv-build.log",
+      "bytes": 179,
+      "sha256": "937bcf6f77f21fd510d0bc6ebfcac53235c976fc096e61be3a67efeb891e959c"
+    },
+    "sanitized_root_replay": {
+      "file": "artifacts/actions-fast-ram256-20261015/sanitized-root-replay.json",
+      "bytes": 1571,
+      "sha256": "69b91ef6c1d1678089ac1df389e147b091d6a04301444ce26fcb0b45a207a5b1"
+    },
+    "historical_interval_host_review": {
+      "file": "artifacts/actions-interval-host-review-20261015/astra.json",
+      "bytes": 6579,
+      "sha256": "f988a6608aa824371d5f27120d6814be94adf442827e0bf7335025a3df19708b"
+    }
+  },
+  "source": {
+    "source_files": 149,
+    "test_files": 135,
+    "snapshot_files": 284,
+    "snapshot_and_isolated_all_lengths_hashes_equal": true,
+    "isolated_source": "/home/rocry/w/_tmp/rcominote-actions-fast-frozen-20261015",
+    "fresh_preIO_checks": "2675 tests +159 subtests in43.17s;342format/lint;sdist+wheel passed",
+    "check_inputs_unchanged": 348,
+    "new_full_check_run": true,
+    "independent_replay_snapshot_modules": 104,
+    "current_root_source_equality_claimed": false
+  },
+  "chronology": {
+    "manifest_created_at": "2026-10-14T17:29:47.042159+00:00",
+    "planned_at": "2026-10-14T17:29:47.971123+00:00",
+    "started_at": "2026-10-14T17:32:34.920695+00:00",
+    "final_identity_response_at": "2026-10-14T17:32:49.553447+00:00",
+    "ended_at": "2026-10-14T17:32:51.616471+00:00",
+    "started_hkt": "2026-10-15T01:32:34.920695+08:00",
+    "ended_hkt": "2026-10-15T01:32:51.616471+08:00"
+  },
+  "historical_identity_reference": {
+    "directory": "artifacts/prefilled-factory-one-20261015",
+    "report_sha256": "faea542373793c9bdcd59637d35ef6f15ce7cd13c1f024c4558a9271cc1138f7",
+    "historical_identity_only": true,
+    "current_owned_file_verified": false,
+    "latest_actual_identity_equals_expected_reference_state": true,
+    "reference_does_not_claim_historical_one_file_current": true
+  },
+  "fixed_plan": {
+    "profile": "fixed-known-ram256-actions-applied6-v1",
+    "command": "dbg mdb 18000000 100",
+    "known_ram_address": "0x18000000",
+    "known_ram_bytes": 256,
+    "afc_non_rc_marker_value_withheld": true,
+    "one_fresh_marker": true,
+    "filler_command": "kernel version",
+    "max_fillers": 8,
+    "max_actions_writes": 13,
+    "actual_fillers": 0,
+    "actual_actions_writes": 5,
+    "budget": {
+      "connections": 1,
+      "ram_read_bytes": 256,
+      "max_fillers": 8,
+      "max_actions_writes": 13,
+      "sd_writes": 0,
+      "nor_writes": 0,
+      "mmio_writes": 0,
+      "ram_writes": 0,
+      "new_files": 0,
+      "active_seconds": 60,
+      "monitor_seconds": 70,
+      "cleanup_stop_seconds": 2,
+      "new_raw_nor_coverage_bytes": 0
+    },
+    "independent_ram_oracle_sha256": "50d25421991dfb7981b06ab522dd6bbecba648df10fa33e7ae91cd82ff61e05b",
+    "oracle_used_to_select_chain": false
+  },
+  "actual": {
+    "original_ok": true,
+    "operation_phase": "complete",
+    "condition_applied": true,
+    "connections": 1,
+    "att_packets": 72,
+    "hci_records": 144,
+    "hci_bytes": 7202,
+    "complete_parameter_transactions": 2,
+    "pending": 0,
+    "status_events": 0,
+    "startup_mode": "fast",
+    "startup_applied_interval": 12,
+    "host_applied_interval": 6,
+    "host_interval_ms": 7.5,
+    "latency": 0,
+    "supervision_timeout": 500,
+    "requested_CE_hints": [
+      1,
+      1
+    ],
+    "actual_event_length_guaranteed": false,
+    "START_ack_and_settledFAST_before_host_request": true,
+    "host_applied6_before_marker_and_mdb": true,
+    "full_f0_frames": 4,
+    "acks": 5,
+    "terminal_f1": true,
+    "empty_pending": true,
+    "version_fillers": 0,
+    "one_unique_marker_then16_contiguous_RAM_rows": true,
+    "ram_bytes": 256,
+    "exact_independent_oracle_match": true,
+    "all_marker_rows_echo_bytes_RX_after_originating_TX": true,
+    "text_origin": {
+      "marker_span": {
+        "first_att_index": 51,
+        "last_att_index": 51,
+        "command_att_index": 46
+      },
+      "rows_span": {
+        "first_att_index": 51,
+        "last_att_index": 58,
+        "command_att_index": 49
+      },
+      "mdb_echo_span": {
+        "first_att_index": 59,
+        "last_att_index": 60,
+        "command_att_index": 49
+      }
+    },
+    "normal_disconnect": {
+      "status": 0,
+      "reason": 22,
+      "record": 143,
+      "after_final_att": true,
+      "bounded_close_verified": true
+    },
+    "clean_owned_monitor_stop": true
+  },
+  "latest_state_and_storage_boundary": {
+    "identity_response_at": "2026-10-14T17:32:49.553447+00:00",
+    "firmware": "010004",
+    "mode": "NOTE",
+    "running": "idle",
+    "bound": false,
+    "charging": true,
+    "battery_percent": 100,
+    "free_capacity": 59589,
+    "before_after_equal": true,
+    "device_storage_access": 0,
+    "device_sd_writes": 0,
+    "device_nor_writes": 0,
+    "device_mmio_writes": 0,
+    "explicit_ram_memory_writes": 0,
+    "actions_transient_log_RAM_state_changes": true,
+    "new_files": 0,
+    "new_raw_nor_coverage_bytes": 0,
+    "last_observed_owned_sd_file": "artifacts/prefilled-factory-next3-20261015/page1-1ecc00/first/download.bin",
+    "last_owned_file_observation_at": "2026-10-14T17:09:26.871464+00:00",
+    "current_owned_file_read_back_in_this_control": false,
+    "current_owned_file_verified": false,
+    "storage_parent_admission": false,
+    "original_next3_whole_remains_failed": true,
+    "reserved_owned_nonce_history": 70,
+    "afc_marker_not_added_to_rc_owned_history": true
+  },
+  "historical_timing_context": {
+    "old_pinned_captures": 3,
+    "old_loss_bursts_applied_interval_units": [
+      36,
+      36,
+      48
+    ],
+    "old_loss_bursts_applied_interval_ms": [
+      45,
+      45,
+      60
+    ],
+    "none_old_loss_bursts_applied6": true,
+    "later_FAST_requests_where_present_after_loss": true,
+    "earlier_hostnote_proposal_not_actual_policy": true,
+    "actual_new_order": "START ACK + settled FAST -> host6 applied -> afc marker/MDB -> STOP/F1",
+    "causal_single_variable_repair_proven": false,
+    "general_reliability_proven": false
+  },
+  "coverage_unchanged": {
+    "strong_available_bytes": 44304,
+    "potential_available_bytes": 199508,
+    "historical_B_bytes_not_upgraded": 155204,
+    "factory_total_fully_paired_bytes": 3072,
+    "factory_remaining_missing_full_pair_bytes": 5120,
+    "system_contiguous_range": [
+      147456,
+      153600
+    ],
+    "system_bytes": 6144,
+    "cohort_confirmed": 70,
+    "cohort_older_declared": 1,
+    "cohort_historical_possible": 1,
+    "cohort_upper_bound": 72,
+    "complete_4MiB_backup_restore_own_runtime": false
+  },
+  "privacy": {
+    "full_stream_hex_and_hash_withheld": true,
+    "afc_marker_value_and_hash_withheld": true,
+    "factory_carrier_sector_bytes_hashes_nonces_withheld": true,
+    "published_binary": false,
+    "only_transport_report_plan_source_file_digests_and_known_RAM_oracle_published": true
+  },
+  "limits": [
+    "One fixed knownRAM256 successful stream, not NOR or wholeflash route.",
+    "Both old loss timing and new condition observed; multiple changed conditions prevent causal repair/reliability claim.",
+    "CE1/1 are requested host hints, not measured event-length guarantees.",
+    "No storage access/readback/parent admission; latest SD object remains unverified after NEXT3 failure.",
+    "Transient Actions log RAM/session state changed, no explicit memory writes or SD changes.",
+    "No reboot, independentROMexit, reliable restore or ownfirmware completion evidence."
+  ]
+}

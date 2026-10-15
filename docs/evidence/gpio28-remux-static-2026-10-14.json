@@ -1,0 +1,213 @@
+{
+  "image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "scope": "Static actual GPIO28 remux candidate, no device I/O or vendor execution",
+  "facts": {
+    "later_gpio_table": {
+      "address": "0x100bb4f4",
+      "pairs": [
+        [
+          28,
+          "0x1805"
+        ],
+        [
+          29,
+          "0x1805"
+        ]
+      ]
+    },
+    "preceding_table": {
+      "address": "0x100bb4e4",
+      "pairs": [
+        [
+          28,
+          "0x1817"
+        ],
+        [
+          29,
+          "0x1817"
+        ]
+      ]
+    },
+    "path": [
+      "1002264c function start; r5=1800bff8",
+      "1002268a..10022696: if *(u32*)r5==0, apply preceding table via100a086e(count2)",
+      "10022698..1002269a: indirect call Thumb01000871; not expanded",
+      "1002269c..100226a8: if *(u32*)r5==0, apply later table via100a086e(count2)",
+      "100a086e table loop→100219f8 GPIO setter",
+      "setter selects40068004+pin*4; new=(old & ~0x7f3f)|tablemode"
+    ],
+    "known_uart_init": "1002fb84..1002fbc8 has no direct GPIO store or pinmux call; calls clock/reset,1002fab0 UART config and config+18 IRQ callback100a441f",
+    "difference": {
+      "early_mode": "0x4125",
+      "observed": "0x1805",
+      "xor": "0x5920",
+      "both_low5_mux": "0x5",
+      "all_differences_within_setter_mask": true
+    }
+  },
+  "interpretation": "Actual later table produces observed configured bits. Source path corresponds to UART switch around sleep entry/return. Not proof this path executed before sample, or sole writer. No physical UART/pad/signal claim. SDK preceding-table TX lacks pullup while actual preceding table sets1817 for both; source is comparison, not identical binary.",
+  "source_git_commit": "26f51e584940d5b141cd1d09d2629d69b595f579",
+  "sources": [
+    {
+      "path": "action_technology_sdk/zephyr/soc/arm/actions/leopard/soc_sleep.c",
+      "sha256": "09a6afad066fc6fe2d1d630fc8705fe5e10b9fa238579deacce71d28ed32a994",
+      "lines": [
+        [
+          1664,
+          1687
+        ],
+        [
+          1819,
+          1844
+        ]
+      ]
+    },
+    {
+      "path": "action_technology_sdk/zephyr/drivers/serial/uart_acts.c",
+      "sha256": "175272bd5708f0b06499bc692fe823d9b4f463d66bea57999b664e66034a8a6d",
+      "lines": [
+        [
+          878,
+          936
+        ]
+      ]
+    },
+    {
+      "path": "action_technology_sdk/zephyr/soc/arm/actions/leopard/soc_gpio.h",
+      "sha256": "8e64dfba31ae10936e7af1bfd1adc15e7e6d97fb048442380dcf28935d995a5e",
+      "lines": [
+        [
+          145,
+          169
+        ]
+      ]
+    }
+  ],
+  "regions": [
+    {
+      "address": "0x1002264c",
+      "end_exclusive": "0x100226a8",
+      "file_offset": 140876,
+      "hex": "2de9f041294d2a48fff7d2ff7ef0d7f92868b0fa80f04009fff712ff96f0c6fd244c254f254ec4e916011220fef7fcff04233b603368a3641220fef7cfff2b68b8461bb91e4802217ef0ebf81d4b98472b681bb91c4802217ef0e3f8",
+      "sha256": "370d4616421cd7f5553a4e16c81df91064b988dece967ca70e3fd8c1abd7b1f6",
+      "disassembly": [
+        "1002264c 2de9f041 push.w {r4, r5, r6, r7, r8, lr}",
+        "10022650 294d ldr r5, [pc, #0xa4]",
+        "10022652 2a48 ldr r0, [pc, #0xa8]",
+        "10022654 fff7d2ff bl #0x100225fc",
+        "10022658 7ef0d7f9 bl #0x100a0a0a",
+        "1002265c 2868 ldr r0, [r5]",
+        "1002265e b0fa80f0 clz r0, r0",
+        "10022662 4009 lsrs r0, r0, #5",
+        "10022664 fff712ff bl #0x1002248c",
+        "10022668 96f0c6fd bl #0x100b91f8",
+        "1002266c 244c ldr r4, [pc, #0x90]",
+        "1002266e 254f ldr r7, [pc, #0x94]",
+        "10022670 254e ldr r6, [pc, #0x94]",
+        "10022672 c4e91601 strd r0, r1, [r4, #0x58]",
+        "10022676 1220 movs r0, #0x12",
+        "10022678 fef7fcff bl #0x10021674",
+        "1002267c 0423 movs r3, #4",
+        "1002267e 3b60 str r3, [r7]",
+        "10022680 3368 ldr r3, [r6]",
+        "10022682 a364 str r3, [r4, #0x48]",
+        "10022684 1220 movs r0, #0x12",
+        "10022686 fef7cfff bl #0x10021628",
+        "1002268a 2b68 ldr r3, [r5]",
+        "1002268c b846 mov r8, r7",
+        "1002268e 1bb9 cbnz r3, #0x10022698",
+        "10022690 1e48 ldr r0, [pc, #0x78]",
+        "10022692 0221 movs r1, #2",
+        "10022694 7ef0ebf8 bl #0x100a086e",
+        "10022698 1d4b ldr r3, [pc, #0x74]",
+        "1002269a 9847 blx r3",
+        "1002269c 2b68 ldr r3, [r5]",
+        "1002269e 1bb9 cbnz r3, #0x100226a8",
+        "100226a0 1c48 ldr r0, [pc, #0x70]",
+        "100226a2 0221 movs r1, #2",
+        "100226a4 7ef0e3f8 bl #0x100a086e"
+      ]
+    },
+    {
+      "address": "0x100226f8",
+      "end_exclusive": "0x10022718",
+      "file_offset": 141048,
+      "hex": "f8bf001829560c10d00b00014810004048c10040e4b40b1071080001f4b40b10",
+      "sha256": "b0b0acf6c4ebb23a73d735e12961bab694713f1e84f799375ac4d9e4e7315f43"
+    },
+    {
+      "address": "0x100bb4e4",
+      "end_exclusive": "0x100bb504",
+      "file_offset": 767204,
+      "hex": "1c000000171800001d000000171800001c000000051800001d00000005180000",
+      "sha256": "c8c1c60a41d1d20eba7f1a14d3480e53db7617b846d7685d13b6c488b007e2be"
+    },
+    {
+      "address": "0x100a086e",
+      "end_exclusive": "0x100a088e",
+      "file_offset": 657518,
+      "hex": "f8b505460e460024071db44200dbf8bd57f8341055f8340081f7b7f80134f4e7",
+      "sha256": "67f7de6668cb6e2a7d7fabd3c5d4b04c163506898d8bd02a4463f2b0ee7c4c73",
+      "disassembly": [
+        "100a086e f8b5 push {r3, r4, r5, r6, r7, lr}",
+        "100a0870 0546 mov r5, r0",
+        "100a0872 0e46 mov r6, r1",
+        "100a0874 0024 movs r4, #0",
+        "100a0876 071d adds r7, r0, #4",
+        "100a0878 b442 cmp r4, r6",
+        "100a087a 00db blt #0x100a087e",
+        "100a087c f8bd pop {r3, r4, r5, r6, r7, pc}",
+        "100a087e 57f83410 ldr.w r1, [r7, r4, lsl #3]",
+        "100a0882 55f83400 ldr.w r0, [r5, r4, lsl #3]",
+        "100a0886 81f7b7f8 bl #0x100219f8",
+        "100a088a 0134 adds r4, #1",
+        "100a088c f4e7 b #0x100a0878"
+      ]
+    },
+    {
+      "address": "0x100219f8",
+      "end_exclusive": "0x10021a38",
+      "file_offset": 137720,
+      "hex": "4d2810b517d84ff02003eff3118483f31288bff36f8f094a02449000036823f4fe4323f03f031943016084f31188bff36f8f002010bd6ff01500fbe701a00110",
+      "sha256": "f041c3cf67b131850cba967bf5e7eebba37cca7faf1694bb1bf0a6f7ed130fdb"
+    },
+    {
+      "address": "0x1002fb84",
+      "end_exclusive": "0x1002fbd0",
+      "file_offset": 195460,
+      "hex": "f8b5456807696e680446287cf1f74afd687cf1f723fd336813f4004f03d0f36813f4001ffae7074b33606b693b60064b7b602046fff77aff636820469b6998470020f8bd038000f000010300",
+      "sha256": "bc44d5a70a1f8e91597716a168e806500abec3729ae1eabb0880ad169333b2ca"
+    },
+    {
+      "address": "0x100a441e",
+      "end_exclusive": "0x100a4434",
+      "file_offset": 672798,
+      "hex": "08b500221620114688f731febde80840162088f708be",
+      "sha256": "bd13f30121fb88a0a6829fe3f351e6a2dd2e2d913f5fe2ad290da8021667d7c7",
+      "disassembly": [
+        "100a441e 08b5 push {r3, lr}",
+        "100a4420 0022 movs r2, #0",
+        "100a4422 1620 movs r0, #0x16",
+        "100a4424 1146 mov r1, r2",
+        "100a4426 88f731fe bl #0x1002d08c",
+        "100a442a bde80840 pop.w {r3, lr}",
+        "100a442e 1620 movs r0, #0x16",
+        "100a4430 88f708be b.w #0x1002d044"
+      ]
+    },
+    {
+      "address": "0x100bc0f0",
+      "end_exclusive": "0x100bc10c",
+      "file_offset": 770288,
+      "hex": "0000000000800340dd7c0c1001ff01ff1818030080841e001f440a10",
+      "sha256": "436cd1d72f39079778de55f434fb2898100d3b03ef8a57a74dc3612cb0a5155d"
+    },
+    {
+      "address": "0x100bbf2c",
+      "end_exclusive": "0x100bbf3c",
+      "file_offset": 769836,
+      "hex": "1c000000254100001d00000025410000",
+      "sha256": "f90eacf4c5aa75206a07563351aad0b02daf341b88281c567671f0742b4d9f14"
+    }
+  ]
+}

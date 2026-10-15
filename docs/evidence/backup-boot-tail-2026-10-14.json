@@ -1,0 +1,298 @@
+{
+  "schema": 1,
+  "status": "final-failed-first-slot-no-hardware-retry",
+  "scope": "Fixed six-sector fw1_boot tail job stopped at first pair failure; preserve original single-read checkpoint without promotion",
+  "owned_serial": "C261CF0430",
+  "firmware": "010004",
+  "job_profile": "fixed-fw1-boot-tail-job",
+  "pair_profile": "fixed-fw1-boot-tail-pair",
+  "partition": {
+    "name": "fw1_boot",
+    "storage_id": 0,
+    "mirror_id": 1,
+    "range": ["0x2000", "0x3000"],
+    "bytes": 4096,
+    "actual_acpt_sha256": "a071b0cdafad355eb05a71e96fc2cb6a5348ec8b5e11d0ac4dfe54d83671a144"
+  },
+  "prior_verified_coverage": {
+    "range": ["0x2000", "0x2400"],
+    "bytes": 1024,
+    "basis": "Original512-byte backup-boot prefix plus separately pair-verified raw0x2200 sector; no oracle inferred for tail"
+  },
+  "fixed_plan": {
+    "source": {
+      "file": "artifacts/backup-boot-tail-20261014/job-plan.json",
+      "bytes": 2693,
+      "sha256": "35dd7791569983dc458e6c9293f9bcb03cce28180f7e4ae7a5a200e1fff8a5a7"
+    },
+    "offsets": ["0x2400", "0x2600", "0x2800", "0x2a00", "0x2c00", "0x2e00"],
+    "new_range": ["0x2400", "0x3000"],
+    "bytes_if_all_complete": 3072,
+    "max_connections": 6,
+    "max_producer_executions": 12,
+    "max_new_sd_test_files": 12,
+    "policy": "One ordered fresh two-operation early session per offset; stop on first failure; no retries, padding or partial assembly"
+  },
+  "result": {
+    "job_ok": false,
+    "completed_pairs": 0,
+    "job_completed_list": [],
+    "attempted_offsets": ["0x2400"],
+    "unexecuted_offsets": ["0x2600", "0x2800", "0x2a00", "0x2c00", "0x2e00"],
+    "pair_verified": false,
+    "new_verified_bytes": 0,
+    "current_verified_fw1_boot_bytes": 1024,
+    "full_partition_completed": false,
+    "full_nor_backup": false,
+    "restore_or_flash_proven": false,
+    "public_partition_binary": null,
+    "hardware_retries": 0
+  },
+  "job_original": {
+    "file": "artifacts/backup-boot-tail-20261014/report.json",
+    "bytes": 440,
+    "sha256": "78b49cfcd8d719c2992741481fe9209e44cb6c66d8814a08474dccaa5f185ce5"
+  },
+  "pair_original": {
+    "file": "artifacts/backup-boot-tail-20261014/2400/report.json",
+    "bytes": 38534,
+    "sha256": "1e0e0ce09f2bc48eca2c7fa553918239d6b5ae4525b04dafb9a75e1ab84d89cf"
+  },
+  "source_snapshot": {
+    "manifest": {
+      "file": "artifacts/backup-boot-tail-20261014/source-snapshot/manifest.json",
+      "bytes": 2178,
+      "sha256": "0d8eb6661b070fbc8050499b8343d838148ba8d32013ce1e279b3c3de932863c"
+    },
+    "files": 14,
+    "source_hashes": {
+      "src/rcominote/experiments/boot_tail_job.py": {"bytes": 13760, "sha256": "93771baf0af44cec37499c87e3a025e3873f42bb69f8f1dc04559edbed7da126"},
+      "src/rcominote/experiments/boot_tail_contract.py": {"bytes": 7078, "sha256": "ea5a6ca0f8390ee8a74461c48e6daf5c6ede88dcedc378537a3ad4884537ac69"},
+      "src/rcominote/experiments/dual_nor_probe.py": {"bytes": 17662, "sha256": "d25c4f66d2e60b0f1f99f2317ad349ddd88eb5fc6d0d06ab68dbe2e31a1152ff"},
+      "src/rcominote/experiments/dual_unknown_pair.py": {"bytes": 10580, "sha256": "7161c62988f9ccbf9991126ec4d159d0945246180ecd0526fd3a2dd2c36d8009"},
+      "src/rcominote/experiments/dual_client.py": {"bytes": 7691, "sha256": "673445a29e3b1208cd14c8a3786068904cc377271741626bf8a7ee63cc9c8163"},
+      "src/rcominote/experiments/dual_audit.py": {"bytes": 14258, "sha256": "50f70bba26d45aef69d3cab4dd40d55dd3c84b858dbc176c144400ea639fd136"},
+      "src/rcominote/experiments/dual_hci.py": {"bytes": 3856, "sha256": "6164a5a2dfdfae7faf79008b626fb4992984c09fc09ff7bdede92a2e8f8cfc8f"},
+      "src/rcominote/experiments/dual_interval.py": {"bytes": 1834, "sha256": "bfff2103c65b9b93cb5ce144c4737e99bbd7571c5083351640b0d197c4299ea5"},
+      "src/rcominote/experiments/sd_nor_targets.py": {"bytes": 7445, "sha256": "176f60c522839afa584b4e4371f819f7181e9b87498663a68afda58591cdc358"},
+      "src/rcominote/experiments/sd_nor_unknown.py": {"bytes": 5094, "sha256": "d6cff4a2662d222b30d1803367158e048879f723081be02310097464653b0d23"},
+      "src/rcominote/experiments/nor_freshness.py": {"bytes": 7304, "sha256": "3087ce074c6c6e14c571e41e7f923ff44a4676bdb2e6e1437502016ecd6f6ff3"},
+      "src/rcominote/experiments/hci_interval.py": {"bytes": 8425, "sha256": "3120e3939d38185861259b3ca61772fcbe81cb1682b2921e1f92203009d282d9"},
+      "src/rcominote/experiments/hci_interval_io.py": {"bytes": 7462, "sha256": "366c06104a507ce01299366b044f55d8bd1b9aa3127dc17686468c8fcef10783"},
+      "src/rcominote/experiments/hci_monitor.py": {"bytes": 3738, "sha256": "f3632128e2ec96e890339ba43ba8d8e9e8d04199971d20df9603693a516956d2"}
+    }
+  },
+  "failed_pair": {
+    "nor_range": ["0x2400", "0x2600"],
+    "original_ok": false,
+    "error": "ValueError: Second parameter request/update: experimental condition changed",
+    "after_error": "ConnectionError: CoMi request did not finish; reconnect before another request",
+    "final_audit_complete": false,
+    "final_identity_available": false,
+    "hci_capture": {
+      "file": "artifacts/backup-boot-tail-20261014/2400/session.btsnoop",
+      "bytes": 12040,
+      "sha256": "0a16f0ac150fcd6fc162196ec438fc8eba3e5556f18fc57e68b66700b49aa67c",
+      "records": 191,
+      "reported_drops": 0,
+      "timestamp_inversions": []
+    },
+    "att_hci_binding": {
+      "verified": true,
+      "packets": 117,
+      "comparison": "exact within each direction"
+    },
+    "transport": {
+      "policy": "early-before-identity-interval6-latency0-timeout500-ce1",
+      "baseline": {
+        "kind": "connect",
+        "status": 0,
+        "handle": 2048,
+        "role": 0,
+        "address_type": 0,
+        "address": "50:C0:F0:AE:7C:0E",
+        "interval": 48,
+        "latency": 4,
+        "timeout": 600,
+        "record": 18,
+        "timestamp_us": 63960195504216283
+      },
+      "applied": {
+        "kind": "update",
+        "status": 0,
+        "handle": 2048,
+        "interval": 6,
+        "latency": 0,
+        "timeout": 500,
+        "record": 82,
+        "timestamp_us": 63960195508240376
+      },
+      "actual_hci_request": {
+        "handle": 2048,
+        "min": 6,
+        "max": 6,
+        "latency": 0,
+        "timeout": 500,
+        "min_length": 1,
+        "max_length": 1,
+        "kind": "request",
+        "record": 80,
+        "timestamp_us": 63960195506337006
+      }
+    },
+    "monitor_exit": 0,
+    "monitor_stop": {
+      "signal": "SIGINT",
+      "requested": true,
+      "delivery": "sent"
+    },
+    "operations": [
+      {
+        "id": "first",
+        "original_ok": true,
+        "single_operation_pair_flag": false,
+        "live_complete": true,
+        "actions": {"confirmed_writes": 5, "ack_count": 5, "f1_received": true, "pending_bytes": 0},
+        "download": {
+          "file": "artifacts/backup-boot-tail-20261014/2400/first/download.bin",
+          "bytes": 4096,
+          "sha256": "0b0ca27c9ac95206999c33782150b958a3db95507b5204faba77913dbc83bbe0"
+        },
+        "sector_candidate": {
+          "file": "artifacts/backup-boot-tail-20261014/2400/first/sector.bin",
+          "bytes": 512,
+          "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+        },
+        "candidate_all_ff": true,
+        "freshness": {
+          "rule": "nearest-producer-exact-status32rows-prefix-dump-v1",
+          "ring_sha256": "0b0ca27c9ac95206999c33782150b958a3db95507b5204faba77913dbc83bbe0",
+          "sector_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+          "nor_offset": 9216,
+          "bytes": 512,
+          "rows": 32,
+          "status_span": [1385, 1430],
+          "rows_span": [1436, 3356],
+          "producer_span": [3376, 3421],
+          "dump_span": [3442, 3523],
+          "bounded_chain_bytes": 2138,
+          "previous_dump_required": false,
+          "previous_dump_span": null,
+          "one_status_one_producer": true,
+          "failure_text_absent": true
+        },
+        "state_verification": {
+          "other_state_equal": true,
+          "free_capacity_unit": "MiB (integer firmware report)",
+          "free_capacity_before": 59592,
+          "free_capacity_after": 59592,
+          "free_capacity_decrease": 0,
+          "allowed_decrease": 1
+        },
+        "checkpoint": {
+          "file": "artifacts/backup-boot-tail-20261014/2400/first/checkpoint.json",
+          "bytes": 32530,
+          "sha256": "340c1aedcc54a6013e9d4fceba21177b2564b1d47a53c4281843f75b9e21dfaf"
+        },
+        "offline_complete_single_read_audit_passed": true,
+        "independent_oracle": false,
+        "promoted_to_pair_verified_coverage": false
+      },
+      {
+        "id": "second",
+        "original_ok": false,
+        "single_operation_pair_flag": false,
+        "sd_write_attempted": true,
+        "actions": {"confirmed_writes": 5, "ack_count": 5, "f1_received": true, "pending_bytes": 0},
+        "get_file_request_transmitted": true,
+        "request_matches_exact_new_nonce": true,
+        "crc_valid_device_declaration_bytes": 4096,
+        "retained_download": {
+          "file": "artifacts/backup-boot-tail-20261014/2400/second/download.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "offline_payload_received_bytes": 0,
+        "sector_available": false,
+        "identity_checkpoint_passed": false,
+        "file_classification": "device-declared4096; content unverified, not merely a historical possible file"
+      }
+    ]
+  },
+  "diagnosis": {
+    "time_origin": "Owned Connection Complete record18; original microsecond timestamps",
+    "parameter_records": [
+      {"record": 18, "event": "initial-connect", "relative_us": 0, "parameters": {"interval": 48, "latency": 4, "timeout": 600, "status": 0}},
+      {"record": 80, "event": "experiment-hci-request", "relative_us": 2120723, "parameters": {"min": 6, "max": 6, "latency": 0, "timeout": 500, "min_length": 1, "max_length": 1}},
+      {"record": 82, "event": "experiment-update-complete", "relative_us": 4024093, "parameters": {"interval": 6, "latency": 0, "timeout": 500, "status": 0}},
+      {"record": 130, "event": "first-download-request-tx", "relative_us": 4446629},
+      {"record": 183, "event": "second-download-request-tx", "relative_us": 4926292},
+      {"record": 185, "event": "second-device-declaration4096", "relative_us": 4970179},
+      {"record": 186, "event": "remote-l2cap-slow-request", "relative_us": 5015178, "parameters": {"min": 32, "max": 48, "latency": 4, "timeout": 600}},
+      {"record": 188, "event": "host-l2cap-accept", "relative_us": 5015291, "result": "accepted"},
+      {"record": 189, "event": "second-host-hci-request", "relative_us": 5015313, "parameters": {"min": 32, "max": 48, "latency": 4, "timeout": 600, "min_length": 0, "max_length": 0}},
+      {"record": 190, "event": "second-hci-command-status", "relative_us": 5016081, "parameters": {"status": 0}},
+      {"record": 191, "event": "last-captured-event", "relative_us": 5023098}
+    ],
+    "first_actions_to_end_us": [4177194, 4445171],
+    "first_download_tx_to_end_us": [4446629, 4641171],
+    "first_identity_barrier_us": 4694177,
+    "second_actions_to_end_us": [4696083, 4925195],
+    "second_declaration_us": 4970179,
+    "slow_update_complete_observed": false,
+    "captured_disconnect_observed": false,
+    "strict_one_request_contract_passed": false,
+    "ingestion_passed": true,
+    "sort_or_timestamp_repair_performed": false,
+    "static_inference_only": "Prior EOF slow request can be cached until deferred transmission; second-file worker delay100 precedes fast entry. Observed timing is compatible; no actual CPU flags/branch or universal5s delay observed."
+  },
+  "independent_later_health": {
+    "source": {
+      "file": "artifacts/backup-boot-tail-health-20261014.json",
+      "bytes": 521,
+      "sha256": "64a06024fd8fc0aab1a2e531634b2516c38c47e6972c317702f39fef84c0d3c0"
+    },
+    "query_successful": true,
+    "serial": "C261CF0430",
+    "bound": false,
+    "state": {
+      "version": "010004",
+      "mode": "note",
+      "recording_state": "idle",
+      "charging": true,
+      "battery": 100,
+      "free_capacity": 59591
+    },
+    "substitutes_for_failed_session_after": false,
+    "promotes_original_pair": false
+  },
+  "scratch_accounting": {
+    "scope": "Ubuntu experiment cohort after this job",
+    "download_confirmed_files": 54,
+    "additional_current_device_declared4096_but_zero_offline_payload": 1,
+    "historical_additional_possible_file": 1,
+    "maximum_retained_test_files": 56,
+    "current_job_download_confirmed_files": 1,
+    "current_job_device_declared_unverified_files": 1,
+    "no_automatic_deletion": true
+  },
+  "offline_validation": {
+    "device_io": false,
+    "immutable_plan_checked": true,
+    "all14_source_snapshot_hashes_checked": true,
+    "first_actions_boyi_identity_hci_freshness_and_bytes_checked": true,
+    "second_actions_and_crc_valid_exact_nonce_declaration_checked": true,
+    "remaining_five_slots_only_empty_precreated_directories": true,
+    "tail_and_partition_outputs_absent": true,
+    "expected_replay_rejections": {
+      "job": "Original full job did not succeed; preserve completed checkpoints without promotion",
+      "pair": "Original pair failed or is incomplete; never reclassify it"
+    }
+  },
+  "publication": {
+    "metadata_only": true,
+    "public_full_partition_binary": false,
+    "complete_private_rings_reports_hci_info_audio_inventory_published": false,
+    "original_files_modified": false
+  }
+}

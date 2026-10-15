@@ -36,6 +36,7 @@ class AttLink:
         disconnected_callback: Callable[[Exception], None] | None = None,
         notification_limit: int = 256,
         timeout: float = 10.0,
+        trace: Callable[[str, bytes], None] | None = None,
     ):
         if not re.fullmatch(r"(?:[0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}", address):
             raise ValueError("Expected six colon-separated MAC octets")
@@ -59,6 +60,7 @@ class AttLink:
         self._request_opcode: int | None = None
         self._failure: BaseException | None = None
         self._entered = False
+        self._trace_callback = trace
 
     def _sockaddr(self, *, local: bool = False) -> bytes:
         # Native Linux little-endian sockaddr_l2, including ABI trailing alignment byte.
@@ -160,6 +162,16 @@ class AttLink:
             assert self._socket is not None
             async with asyncio.timeout(self.timeout):
                 await asyncio.get_running_loop().sock_sendall(self._socket, pdu)
+            self._trace("tx", pdu)
+
+    def _trace(self, direction: str, pdu: bytes) -> None:
+        if self._trace_callback is not None:
+            try:
+                self._trace_callback(direction, pdu)
+            except Exception as error:
+                failure = RuntimeError("ATT trace callback failed")
+                self._fail(failure)
+                raise failure from error
 
     def _exchange_mtu(self, pdu: bytes):
         if len(pdu) != 3:
@@ -176,6 +188,7 @@ class AttLink:
                 pdu = await asyncio.get_running_loop().sock_recv(self._socket, 518)
                 if not pdu:
                     raise ConnectionError("ATT socket closed by peer")
+                self._trace("rx", pdu)
                 if len(pdu) > self.mtu:
                     raise ValueError(f"ATT PDU exceeds negotiated MTU: {len(pdu)} > {self.mtu}")
                 opcode = pdu[0]

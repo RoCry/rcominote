@@ -1,0 +1,241 @@
+{
+  "schema": "final-boot-sector-live-v1",
+  "scope": "Frozen successful new final2e00 pair and exact assembled4096-byte backup fw1_boot partition; no full NOR or restoration claim",
+  "result": {
+    "original_job_ok": true,
+    "original_pair_ok": true,
+    "offline_job_and_pair_replay": "pass",
+    "new_verified_range": [11776, 12288],
+    "new_unique_verified_bytes": 512,
+    "verified_partition_range": [8192, 12288],
+    "verified_partition_bytes": 4096,
+    "remaining_unverified_partition_bytes": 0,
+    "partition_sha256": "f47a8ec3e9aff2318d896942282ad4fe37d6391c82914f54a5da8a37de1300c6",
+    "all_ff_checked": true,
+    "assembled_actual_outputs_verified": true,
+    "independent_content_oracle": false,
+    "nor_flash_write_attempted": false,
+    "restoration_or_boot_after_restore_tested": false,
+    "full_nor_backup_complete": false
+  },
+  "job": {
+    "report": {
+      "file": "artifacts/final-boot-sector-20261014/report.json",
+      "bytes": 1785,
+      "sha256": "2becbfbe0845666929794e41f34763ff68d0d8f1b19f899a523e0a36f317cbcb"
+    },
+    "plan": {
+      "file": "artifacts/final-boot-sector-20261014/job-plan.json",
+      "bytes": 52730,
+      "sha256": "3ca52bf819868370ba43e93ce5f64acc8af7694ca30f79b1da48570809dc3acf"
+    },
+    "checkpoint": {
+      "file": "artifacts/final-boot-sector-20261014/checkpoint-2e00.json",
+      "bytes": 868,
+      "sha256": "d499a674deb895dbaa79165f17bb60aeb077092da3f826ab47ce9ba2dc9e3a4e"
+    },
+    "planned_at": "2026-10-14T05:08:19.936998+00:00",
+    "started_at": "2026-10-14T05:08:19.937351+00:00",
+    "ended_at": "2026-10-14T05:08:41.755729+00:00",
+    "max_connections": 1,
+    "max_producer_executions": 2,
+    "max_sd_test_files": 2,
+    "planned_fresh_nonce_count": 2,
+    "excluded_prior_planned_nonce_count": 37,
+    "nonce_target_parent_policy_prestate_chronology_verified": true
+  },
+  "source_snapshot": {
+    "manifest": {
+      "file": "artifacts/final-boot-sector-20261014/source-snapshot/manifest.json",
+      "bytes": 20802,
+      "sha256": "7512c71c527beb8c30e703894d3a086581f7654347ab19838e50e7c860f22006"
+    },
+    "declared_created_at": "2026-10-14T05:08:14.514017+00:00",
+    "source_count": 120,
+    "all_archived_length_hashes_verified": true,
+    "manifest_precedes_plan_and_io": true,
+    "recorded_root_check_claims": {
+      "just_check": {
+        "passed": 1641,
+        "subtests_passed": 159
+      },
+      "uv_build": "passed"
+    },
+    "full_check_counts_independently_rerun_by_this_review": false,
+    "archived_dependencies_used_for_independent_replay": true,
+    "future_current_source_equality_claimed": false
+  },
+  "prior_admission": {
+    "partial_controlled_job_report": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/startup-boot-tail-20261014/report.json",
+      "bytes": 1498,
+      "sha256": "f4ce4eb4523d353d15375ed16f358ef1467cf3de5b6e9c3cce5102e6f012f46e"
+    },
+    "all3584_coverage_and_latest_state_sources_replayed": true,
+    "full_summary_equals_immutable_plan_checkpoint": true,
+    "prefix_bytes": 3584,
+    "prefix_sha256": "92feb2e31d43ffb2ce5935a4a58559c35aa422cf7e6f829ddaa5aef1a69190c9",
+    "latest_before_free_mib": 59590,
+    "original_partial_job_failed_flags_retained": true,
+    "exact_prior_ram_control_and_original_state_parent_replayed": true,
+    "ram_control_report": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/startup-ram-default-20261014/report.json",
+      "bytes": 921,
+      "sha256": "48ec93559b6702abe67c0a00298bcc8abf5d555710a9896fb183c81da76b7da4"
+    },
+    "ram_control_nor_coverage_bytes": 0
+  },
+  "coverage_sources": [
+    {"nor_range":[8192,8704],"source_kind":"Historical22 non-atomic windows;32 rows each double-covered","sector":{"file":"docs/evidence/boot-recovery-prefixes-2026-10-12/backup-boot.bin","bytes":512,"sha256":"9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"},"report":{"file":"docs/evidence/boot-recovery-prefixes-2026-10-12/backup-boot-report.json","bytes":6720,"sha256":"71aec0c983c6ab379c37c14aaf1249b8a17215c1e2c4506377097e68e4c1f4d4"},"capture_or_archive":{"file":"docs/evidence/boot-recovery-prefixes-2026-10-12/windows.tar.gz","bytes":582795,"sha256":"39cf27f47ed3c7375f9f2c779129cbe92c177678954ed09358fdc63a87ef4509"},"full_source_replay_verified":true},
+    {"nor_range":[8704,9216],"source_kind":"Separately targeted original successful fresh pair","sector":{"file":"artifacts/dual-unknown2200-early-20261014/first/sector.bin","bytes":512,"sha256":"9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"},"report":{"file":"artifacts/dual-unknown2200-early-20261014/report.json","bytes":54198,"sha256":"77f75c84d50e1f03b1a698ac1cd610f897a0242d07d7a600463ec8dbcd1822b0"},"capture_or_archive":{"file":"artifacts/dual-unknown2200-early-20261014/session.btsnoop","bytes":17395,"sha256":"6cb3671a79982b7bdb4f2de0374d8d42dbc1ed540e6f48cfc1ed30021d8ad184"},"full_source_replay_verified":true},
+    {"nor_range":[9216,9728],"source_kind":"Separately targeted original successful fresh pair","sector":{"file":"artifacts/window-nor2400-composer-20261014/first/sector.bin","bytes":512,"sha256":"9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"},"report":{"file":"artifacts/window-nor2400-composer-20261014/report.json","bytes":62375,"sha256":"7b0b2e8366df265499be45eae8061db7fe98609447089d49073eba129f47e852"},"capture_or_archive":{"file":"artifacts/window-nor2400-composer-20261014/session.btsnoop","bytes":18683,"sha256":"8b97473dc252637a5d63715791e0ab20a91dd2fba24361740c2b22c785fdb214"},"full_source_replay_verified":true},
+    {"nor_range":[9728,10240],"source_kind":"Separately targeted original successful fresh pair","sector":{"file":"artifacts/window-boot-tail-20261014/2600/first/sector.bin","bytes":512,"sha256":"9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"},"report":{"file":"artifacts/window-boot-tail-20261014/2600/report.json","bytes":62863,"sha256":"8d2a053191b36ee55a9520f4a323be8cb68f6e55f4e5521f310ca7dc1d6b4918"},"capture_or_archive":{"file":"artifacts/window-boot-tail-20261014/2600/session.btsnoop","bytes":18648,"sha256":"926b044c1bbc5b091f8b31d3b77ea05c36c04c4b2fa624efc25f7081db39bb23"},"full_source_replay_verified":true},
+    {"nor_range":[10240,10752],"source_kind":"Separately targeted original successful fresh pair","sector":{"file":"artifacts/status-boot-tail-20261014/2800/first/sector.bin","bytes":512,"sha256":"9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"},"report":{"file":"artifacts/status-boot-tail-20261014/2800/report.json","bytes":63390,"sha256":"6e2dc06d842b55a8d34ac345d4596374e14bf44a342c98d052ebdd9bf5208d4a"},"capture_or_archive":{"file":"artifacts/status-boot-tail-20261014/2800/session.btsnoop","bytes":18648,"sha256":"e961f9efe7ae814a622d0fcf0e1f3057a4b53e5056f67d90f47131fc9fcf6c0b"},"full_source_replay_verified":true},
+    {"nor_range":[10752,11264],"source_kind":"Separately targeted original successful fresh pair","sector":{"file":"artifacts/startup-boot-tail-20261014/2a00/first/sector.bin","bytes":512,"sha256":"9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"},"report":{"file":"artifacts/startup-boot-tail-20261014/2a00/report.json","bytes":66720,"sha256":"9e7c334b722f7370b66f05c523584f1f4fca487bc203bdc6a193f7833ff5b441"},"capture_or_archive":{"file":"artifacts/startup-boot-tail-20261014/2a00/session.btsnoop","bytes":18648,"sha256":"853521a9964f99a4b51613e9572badf761d68ffacd81762f84c9f838fe666c2a"},"full_source_replay_verified":true},
+    {"nor_range":[11264,11776],"source_kind":"Separately targeted original successful fresh pair","sector":{"file":"artifacts/startup-boot-tail-20261014/2c00/first/sector.bin","bytes":512,"sha256":"9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"},"report":{"file":"artifacts/startup-boot-tail-20261014/2c00/report.json","bytes":66714,"sha256":"33a08b30bb8eba47d00888f8e70b584001244cab36a7db6adb1491d8f5ab8ebd"},"capture_or_archive":{"file":"artifacts/startup-boot-tail-20261014/2c00/session.btsnoop","bytes":18676,"sha256":"5154b8a6e75431cd7ab4a6dfbe3e8a4c184ae37301d5169b24d211be50b50b57"},"full_source_replay_verified":true},
+    {"nor_range":[11776,12288],"source_kind":"Separately targeted original successful fresh pair","sector":{"file":"artifacts/final-boot-sector-20261014/2e00/first/sector.bin","bytes":512,"sha256":"9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"},"report":{"file":"artifacts/final-boot-sector-20261014/2e00/report.json","bytes":66714,"sha256":"bb6829e10d6a0fd3b5e718a13357bea81b3df4ad5121f6eb9f895f553d7d943b"},"capture_or_archive":{"file":"artifacts/final-boot-sector-20261014/2e00/session.btsnoop","bytes":18648,"sha256":"4bcfd7739788efcddddd96714834ebeda641c8b8760b32feb78d107936da364f"},"full_source_replay_verified":true}
+  ],
+  "final_pair": {
+    "report": {
+      "file": "artifacts/final-boot-sector-20261014/2e00/report.json",
+      "bytes": 66714,
+      "sha256": "bb6829e10d6a0fd3b5e718a13357bea81b3df4ad5121f6eb9f895f553d7d943b"
+    },
+    "capture": {
+      "file": "artifacts/final-boot-sector-20261014/2e00/session.btsnoop",
+      "bytes": 18648,
+      "sha256": "4bcfd7739788efcddddd96714834ebeda641c8b8760b32feb78d107936da364f"
+    },
+    "original_flags": {
+      "ok": true,
+      "pair_verified": true,
+      "final_audit_complete": true
+    },
+    "verification": {
+      "pair_verified": true,
+      "independent_oracle": false,
+      "independent_producer_executions": 2,
+      "connections": 1,
+      "nor_range": [11776, 12288],
+      "bytes": 512,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    "started_at": "2026-10-14T05:08:24.922417+00:00",
+    "ended_at": "2026-10-14T05:08:41.353502+00:00",
+    "initial_connection_parameters": [48, 4, 600],
+    "startup_classification": {
+      "policy": "startup-remote-fast-or-default-once",
+      "mode": "fast",
+      "parameters": [6, 12, 0, 500],
+      "requires_fast_before_normalization": false
+    },
+    "records": 255,
+    "att_packets": 148,
+    "att_binding": {
+      "verified": true,
+      "packets": 148,
+      "comparison": "exact within each direction"
+    },
+    "complete_parameter_transactions": 6,
+    "parameter_transactions": [
+      {"origin":"remote","request_record":107,"status_record":108,"update_record":110,"applied":[12,0,500]},
+      {"origin":"host","request_record":133,"status_record":134,"update_record":135,"applied":[6,0,500]},
+      {"origin":"remote","request_record":163,"status_record":164,"update_record":166,"applied":[48,4,600]},
+      {"origin":"remote","request_record":200,"status_record":201,"update_record":203,"applied":[12,0,500]},
+      {"origin":"host","request_record":205,"status_record":206,"update_record":207,"applied":[6,0,500]},
+      {"origin":"remote","request_record":234,"status_record":235,"update_record":237,"applied":[48,4,600]}
+    ],
+    "pending_transactions": 0,
+    "status_events_observed": 0,
+    "captured_disconnects": 0,
+    "monitor_exit": 0,
+    "monitor_stop": {
+      "signal": "SIGINT",
+      "requested": true,
+      "delivery": "sent"
+    },
+    "operations": [
+      {"operation":"first","original_ok":true,"live_complete":true,"sd_write_attempted":true,"actions_span":[55,71],"actions_proof":{"acks":5,"end":true,"pending_bytes":0,"trace_span":[55,71]},"download_span":[71,93],"download":{"file":"artifacts/final-boot-sector-20261014/2e00/first/download.bin","bytes":4096,"sha256":"8cae333798af728f1febce4874716d1ebedb23218e7ef59b496131b67c843998"},"download_ms":185.924,"sector":{"file":"artifacts/final-boot-sector-20261014/2e00/first/sector.bin","bytes":512,"sha256":"9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"},"freshness":{"rule":"nearest-producer-exact-status32rows-prefix-dump-v1","ring_sha256":"8cae333798af728f1febce4874716d1ebedb23218e7ef59b496131b67c843998","sector_sha256":"9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d","nor_offset":11776,"bytes":512,"rows":32,"status_span":[2728,2773],"rows_span":[2779,4699],"producer_span":[623,668],"dump_span":[689,770],"bounded_chain_bytes":2138,"previous_dump_required":false,"previous_dump_span":null,"one_status_one_producer":true,"failure_text_absent":true},"identity_barrier_span":[93,99],"state_verification":{"other_state_equal":true,"free_capacity_unit":"MiB (integer firmware report)","free_capacity_before":59590,"free_capacity_after":59590,"free_capacity_decrease":0,"allowed_decrease":1}},
+      {"operation":"second","original_ok":true,"live_complete":true,"sd_write_attempted":true,"actions_span":[99,115],"actions_proof":{"acks":5,"end":true,"pending_bytes":0,"trace_span":[99,115]},"download_span":[115,136],"download":{"file":"artifacts/final-boot-sector-20261014/2e00/second/download.bin","bytes":4096,"sha256":"4e8d4cdccd680976a5de8fc07f9517caae5d5a6a14004bf6fda82fe0dde8d960"},"download_ms":175.933,"sector":{"file":"artifacts/final-boot-sector-20261014/2e00/second/sector.bin","bytes":512,"sha256":"9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"},"freshness":{"rule":"nearest-producer-exact-status32rows-prefix-dump-composer-fps2-v1","ring_sha256":"4e8d4cdccd680976a5de8fc07f9517caae5d5a6a14004bf6fda82fe0dde8d960","sector_sha256":"9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d","nor_offset":11776,"bytes":512,"rows":32,"status_span":[2332,2377],"rows_span":[2383,4303],"producer_span":[227,272],"dump_span":[326,407],"bounded_chain_bytes":2171,"previous_dump_required":true,"previous_dump_span":[689,770],"one_status_one_producer":true,"failure_text_absent":true,"composer_notice":{"hex":"5b636f6d706f7365725d5b495d5b3734325d3a20706f73742066707320320a0d0a","span":[273,306],"sha256":"5a3ac148d446b5fdc3250152b6e17821a411fde6f6b67fb6088ca6d6c91f2d76"}},"identity_barrier_span":[136,142],"state_verification":{"other_state_equal":true,"free_capacity_unit":"MiB (integer firmware report)","free_capacity_before":59590,"free_capacity_after":59589,"free_capacity_decrease":1,"allowed_decrease":1}}
+    ],
+    "final_identity_span": [142, 148],
+    "final_identity_hci_record_range": [247, 255]
+  },
+  "final_actual_state": {
+    "source": "New final2e00 actual final read-only identity after both successful SD exports",
+    "owned_serial_verified": true,
+    "bound": false,
+    "firmware": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "charging": true,
+    "battery": 100,
+    "initial_free_capacity_mib": 59590,
+    "final_free_capacity_mib": 59589,
+    "per_write_free_capacity_decreases": [0, 1],
+    "each_write_allowed_decrease": 1,
+    "final_readonly_state_verification": {
+      "other_state_equal": true,
+      "free_capacity_unit": "MiB (integer firmware report)",
+      "free_capacity_before": 59589,
+      "free_capacity_after": 59589,
+      "free_capacity_decrease": 0,
+      "allowed_decrease": 0
+    },
+    "integer_capacity_report_is_not_exact_file_allocation_bytes": true
+  },
+  "actual_outputs": {
+    "tail": {
+      "file": "artifacts/final-boot-sector-20261014/tail.bin",
+      "bytes": 512,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    "fw1_boot": {
+      "file": "artifacts/final-boot-sector-20261014/fw1_boot.bin",
+      "bytes": 4096,
+      "sha256": "f47a8ec3e9aff2318d896942282ad4fe37d6391c82914f54a5da8a37de1300c6"
+    },
+    "output_equals_exact_original_ordered_sources": true,
+    "last_sector_equals_both_independent_reads": true
+  },
+  "public_safe_copies": {
+    "fw1_boot": {
+      "file": "docs/evidence/final-boot-sector-live-2026-10-14/fw1_boot.bin",
+      "bytes": 4096,
+      "sha256": "f47a8ec3e9aff2318d896942282ad4fe37d6391c82914f54a5da8a37de1300c6",
+      "copied_from": {
+        "file": "artifacts/final-boot-sector-20261014/fw1_boot.bin",
+        "bytes": 4096,
+        "sha256": "f47a8ec3e9aff2318d896942282ad4fe37d6391c82914f54a5da8a37de1300c6"
+      }
+    },
+    "sector2e00": {
+      "file": "docs/evidence/final-boot-sector-live-2026-10-14/sector2e00.bin",
+      "bytes": 512,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+      "copied_from": {
+        "file": "artifacts/final-boot-sector-20261014/2e00/first/sector.bin",
+        "bytes": 512,
+        "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+      }
+    },
+    "all_original_bytes_equal": true,
+    "no_ff_fabrication_or_prior_sector_substitution": true
+  },
+  "sd_scratch_cohort": {
+    "new_download_confirmed_files": 2,
+    "ubuntu_download_confirmed_total": 70,
+    "previous_device_declared_without_download": 1,
+    "historical_possible": 1,
+    "maximum_total": 72,
+    "deleted": 0
+  },
+  "historical_failed_pair_replay_rejections": {
+    "old_failed2800": "Original NOR-window pair failed; retain without promotion",
+    "old_discovery2a00": "Original NOR-window pair failed; retain without promotion",
+    "old_startup_mismatch2a00": "Original NOR-window pair failed; retain without promotion",
+    "old_features2e00": "Original NOR-window pair failed; retain without promotion"
+  },
+  "original_private_input_files_unchanged_at_review": 886,
+  "limits": ["Raw4096-byte backup fw1_boot range is now complete; this is not a full NOR backup.", "All captured backup-slot bytes areFF, with no boot-program content in this dump; no independent content oracle exists.", "Historical2000 is22 non-atomic double-coverage windows; modern remaining sectors retain separate targeted successful pair provenance.", "Last new pair observed startupFAST; prior RAM control demonstrated DEFAULT, not a live DEFAULT-startup NOR producer here.", "Free-capacity report decreases by1 integerMiB after second export, within per-write accounting; no other device-state changes verified.", "No flash write, restore, post-restore boot, recovery success, physical worker exit or hidden deferred-queue clearing established.", "Every original historical failed job/pair remains failed; final success is a new independent job.", "Full raw HCI/ATT/rings/device identity/inventory and scratch names remain private."]
+}

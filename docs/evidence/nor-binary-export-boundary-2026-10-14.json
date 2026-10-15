@@ -1,0 +1,315 @@
+{
+  "schema": 1,
+  "scope": "Bounded offline audit of existing fread/dumpbuf/snort, mapped-window and held recovery routes; not a whole-image proof of absence. No target execution or register/Flash writes.",
+  "image": {
+    "path": "artifacts/mapped-system-20261012.bin",
+    "bytes": 927632,
+    "cpu_base": "0x10000000",
+    "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f"
+  },
+  "decision": {
+    "larger_binary_export_established": false,
+    "snort_live_execution_allowed": false,
+    "reason": "Actual snort unconditionally calls the erase/write/readback test after read-speed test; size argument is not an export length contract."
+  },
+  "sdk": {
+    "commit": "26f51e584940d5b141cd1d09d2629d69b595f579",
+    "role": "Semantic/API comparison only; actual command binding and control flow come from fixed image bytes",
+    "files": [
+      {
+        "path": "/home/rocry/w/_tmp/lv_port_actions_technology/action_technology_sdk/zephyr/subsys/shell/shell_dbg.c",
+        "repository_path": "action_technology_sdk/zephyr/subsys/shell/shell_dbg.c",
+        "sha256": "e189f3db46481fc0579e2fc8a1448c3830d339efc7d0487d6977bbff2a045b5b",
+        "lines_inclusive": [
+          [
+            310,
+            436
+          ]
+        ]
+      },
+      {
+        "path": "/home/rocry/w/_tmp/lv_port_actions_technology/action_technology_sdk/zephyr/include/drivers/flash.h",
+        "repository_path": "action_technology_sdk/zephyr/include/drivers/flash.h",
+        "sha256": "185b4cbbd920d4727b0117169bffb04def9d66515cf6cd7c3e78cc7f16fd2e29",
+        "lines_inclusive": [
+          [
+            141,
+            148
+          ]
+        ]
+      },
+      {
+        "path": "/home/rocry/w/_tmp/lv_port_actions_technology/action_technology_sdk/zephyr/drivers/flash/spi_flash.h",
+        "repository_path": "action_technology_sdk/zephyr/drivers/flash/spi_flash.h",
+        "sha256": "56963228df514ae369e3a9a09f028e2fc3d0adbcc078e9aa0c82399e8a03a457",
+        "lines_inclusive": [
+          [
+            63,
+            85
+          ]
+        ]
+      }
+    ]
+  },
+  "actual_control_flow": [
+    "100bb94c descriptor syntax100c6b3f=snort, help100c6b45, handler100257d5; Thumb code100257d4",
+    "100257de literal points100c10e9 spi_flash;100257e0 calls binding1009a81c; NULL reports error/returns22",
+    "100257f8 argc==3 parses offset/size base0 via1009d48c; otherwise1002583e/842 uses size0xe0000/offset0x20000",
+    "1002582a calls10025564 read-speed;10025836 immediately calls10025628 erase/write/readback, with no test of first result",
+    "10025564 allocates512;100255b6..ca API+0 reads512 into temporary heap repeatedly, no byte-content output;100255ea frees;only timing/error strings",
+    "10025656..60 fills128 words with indices0..127, not original NOR data",
+    "10025686..8a iterates erase stage;10025756..64 calls API+8(offset+progress,0x10000)",
+    "10025766..78 logs negative erase result then increments0x10000 and continues; failures do not prevent subsequent write stage",
+    "100256ba..d2 calls API+4(offset+progress,buffer,512);success advances512 at1002577a;negative exits write loop and continues timing/readback",
+    "10025718..32 API+0 reads512 then10025780..a8 compares128 words to index pattern;first mismatch emits diagnostic, continues next512",
+    "1002574e frees buffer;10025752 returns0 even after logged test failures; snort itself also returns0",
+    "API observed prefix18001aa4=1800006d,180000b1,180000c5,180000d1; initialized image payload100defa4 agrees",
+    "RAM write wrapper180000b0 forwards to NOR table100bc294+18=18000ead; erase wrapper180000c4 forwards+1c=18001075. These are captured initialized code/table values, not fresh live call evidence."
+  ],
+  "regions": [
+    {
+      "name": "snort_descriptor",
+      "start": "0x100bb94c",
+      "end_exclusive": "0x100bb960",
+      "file_offset": 768332,
+      "bytes": 20,
+      "kind": "descriptor",
+      "hex": "3f6b0c10456b0c1000000000d557021000000000",
+      "sha256": "e38f323762a6a80075b4aaa7b31e87074a4574494ff9c59c6c0df7afa60e20af"
+    },
+    {
+      "name": "snort_handler",
+      "start": "0x100257d4",
+      "end_exclusive": "0x10025848",
+      "file_offset": 153556,
+      "bytes": 116,
+      "kind": "code",
+      "hex": "f0b5044685b00e4617461a4875f01cf8054638b90146184a20467bf0f2fa162005b0f0bd032e20d17868002203a977f043fe0022064603a9b86877f03dfe07460e4a00973346002120467bf0dafa3b46324629462046fff79bfe3b46324629462046fff7f7fe0020dae74ff460274ff40036e5e7",
+      "sha256": "7ad9daf7b9dbe80111d77b752209212fc26574f15694d74bf11055931a27a875",
+      "complete_decoded_instructions": 49
+    },
+    {
+      "name": "snort_handler_literals",
+      "start": "0x10025848",
+      "end_exclusive": "0x10025854",
+      "file_offset": 153672,
+      "bytes": 12,
+      "kind": "literal_pool",
+      "hex": "e9100c1041660c10ba690c10",
+      "sha256": "84309a16a20580bdb3ee71cf68e21a0d97cdc70fba9f959bd206db2987a33e0a"
+    },
+    {
+      "name": "read_speed",
+      "start": "0x10025564",
+      "end_exclusive": "0x10025618",
+      "file_offset": 152932,
+      "bytes": 180,
+      "kind": "code",
+      "hex": "2de9f04f85b004464ff4007088469146039394f011f8054648b90146254a20467bf027fc4ff0ff3005b0bde8f08f039b214acdf800904fea932a5346002120467bf017fc93f026fe00278346039b9f4211d2d8f808301b682a461e4607eb09014ff400734046b047002820da134a002120467bf0fefb93f00dfea0eb0b06012e284638bf012693f0d0ff4ff47a7303fb0afabafbf6f301934ff4007300932046074a334600217bf0e4fb0020bce707f50077cbe7",
+      "sha256": "995ad8da19355524d68aab5c05e98890de5a9524bcc3acd6512fedfd8e9e968b",
+      "complete_decoded_instructions": 67
+    },
+    {
+      "name": "read_speed_literals",
+      "start": "0x10025618",
+      "end_exclusive": "0x10025628",
+      "file_offset": 153112,
+      "bytes": 16,
+      "kind": "literal_pool",
+      "hex": "d4670c1060680c10d0660c1089680c10",
+      "sha256": "6b8fcd030d3fbaf649eca8c858d30dd017d49ca40ced4b81f7e38b79528bcf62"
+    },
+    {
+      "name": "erase_write_readback_speed",
+      "start": "0x10025628",
+      "end_exclusive": "0x100257ac",
+      "file_offset": 153128,
+      "bytes": 388,
+      "kind": "code",
+      "hex": "2de9f04f85b004464ff400700e469046039393f0afff054648b90146594a20467bf0c5fb4ff0ff3005b0bde8f08f002345f823300133802bfad1039b524acdf800804fea932a5346002120467bf0affb93f0befddff84cb107464ff00009039b994564d393f0b4fdc31b012b4ff47a7238bf012302fb0afa0021bafbf3f220460092424a7bf093fb93f0a2fd4ff000098346039b994510d2b3685b682a461f4609eb08014ff400733046b847002850da374a002120467bf07afb93f089fda0eb0b03012b38bf0123bafbf3f201924ff40072009200212f4adff8cca020467bf066fb2d4a002120467bf061fb4ff00009039b994509eb080b0fd2b3681b682a461f4659464ff400733046b847002823da224a002120467bf04afb214a002120467bf045fb284693f01eff00207ce7b3684ff480329b6809eb080130469847002804da5a46002120467bf031fb09f5803985e709f500799ce7002255f8220090424fea82030ad0cde900025b445246002120467bf01cfb09f50079b9e70132802aebd1f8e7",
+      "sha256": "f667fb594f21454c0543ea19ebc925d52612a34a8d9ed5116152569665abe272",
+      "complete_decoded_instructions": 148
+    },
+    {
+      "name": "erase_write_readback_literals",
+      "start": "0x100257ac",
+      "end_exclusive": "0x100257d4",
+      "file_offset": 153516,
+      "bytes": 40,
+      "kind": "literal_pool",
+      "hex": "d4670c10b8680c10fb680c1022690c1035690c1065690c10d0660c10a5690c10e8680c107f690c10",
+      "sha256": "b6844ab8ee71f76397ad6cc2c0aa118a5c573799b3e22740b1056f3be9451e77"
+    },
+    {
+      "name": "spi_flash_device",
+      "start": "0x100ba000",
+      "end_exclusive": "0x100ba014",
+      "file_offset": 761856,
+      "bytes": 20,
+      "kind": "device_prefix",
+      "hex": "e9100c1058c20b10a41a0018702e00187c1a0018",
+      "sha256": "85f4ebf45f253eb6b61da5c000b9368bc5cd31dfcc72fffa90945203be69fce8"
+    },
+    {
+      "name": "nor_operation_table",
+      "start": "0x100bc294",
+      "end_exclusive": "0x100bc2b4",
+      "file_offset": 770708,
+      "bytes": 32,
+      "kind": "pointer_table",
+      "hex": "0000000000000000dd0b0018c30a0018b70b0018110d0018ad0e001875100018",
+      "sha256": "316619294a23933479c33e45ab42a0800cbab4b21f885cb1a1438c4102a15cbf"
+    },
+    {
+      "name": "startup_api_initial_values",
+      "start": "0x100defa4",
+      "end_exclusive": "0x100defb4",
+      "file_offset": 913316,
+      "bytes": 16,
+      "kind": "initialized_data",
+      "hex": "6d000018b1000018c5000018d1000018",
+      "sha256": "5859ed28d64761d5aec626fc335b74e5977aa7b00758d002eb9ab2fb44b865e1"
+    },
+    {
+      "name": "ram_write_wrapper_code",
+      "start": "0x100dd5b0",
+      "end_exclusive": "0x100dd5c0",
+      "file_offset": 906672,
+      "bytes": 16,
+      "kind": "ram_copy_code",
+      "hex": "10b4034c0069a469a4465df8044b6047",
+      "sha256": "f0266e7baf2d3955f06979749df488f07c72c8fc4045071e032eaa71d694e5b4",
+      "runtime_destination": "0x180000b0"
+    },
+    {
+      "name": "ram_write_wrapper_literal",
+      "start": "0x100dd5c0",
+      "end_exclusive": "0x100dd5c4",
+      "file_offset": 906688,
+      "bytes": 4,
+      "kind": "literal_pool",
+      "hex": "94c20b10",
+      "sha256": "90018da8bb0a034555ad2e55a6e244edc35192c33df9747d0089e190db485960"
+    },
+    {
+      "name": "ram_erase_wrapper_code",
+      "start": "0x100dd5c4",
+      "end_exclusive": "0x100dd5cc",
+      "file_offset": 906692,
+      "bytes": 8,
+      "kind": "ram_copy_code",
+      "hex": "014b0069db691847",
+      "sha256": "57fcb3d71ea141f0562d48d4866605159fc54534c8bbe4084b0e46df0daa0b89",
+      "runtime_destination": "0x180000c4"
+    },
+    {
+      "name": "ram_erase_wrapper_literal",
+      "start": "0x100dd5cc",
+      "end_exclusive": "0x100dd5d0",
+      "file_offset": 906700,
+      "bytes": 4,
+      "kind": "literal_pool",
+      "hex": "94c20b10",
+      "sha256": "90018da8bb0a034555ad2e55a6e244edc35192c33df9747d0089e190db485960"
+    },
+    {
+      "name": "snort_name",
+      "start": "0x100c6b3f",
+      "end_exclusive": "0x100c6b45",
+      "file_offset": 813887,
+      "bytes": 6,
+      "kind": "nul_string",
+      "hex": "736e6f727400",
+      "sha256": "43cb6ab95486a1eca3580bd9583417975ce452e4f34d3a4b8d9652bbebcce7be"
+    },
+    {
+      "name": "snort_help",
+      "start": "0x100c6b45",
+      "end_exclusive": "0x100c6b63",
+      "file_offset": 813893,
+      "bytes": 30,
+      "kind": "nul_string",
+      "hex": "6e6f722074657374203a20736e6f727420616464726573732073697a6500",
+      "sha256": "15fc2169887f9f40112e2361d0f3d316a9a6c1a15f9c907f4587ea206e4a4e4a"
+    },
+    {
+      "name": "spi_flash_name",
+      "start": "0x100c10e9",
+      "end_exclusive": "0x100c10f3",
+      "file_offset": 790761,
+      "bytes": 10,
+      "kind": "nul_string",
+      "hex": "7370695f666c61736800",
+      "sha256": "5122565825c5ffb86c9f50364c5ef094a0dacd74c0801b61dac09672a4e6dfb1"
+    },
+    {
+      "name": "write_speed_format",
+      "start": "0x100c68b8",
+      "end_exclusive": "0x100c68e8",
+      "file_offset": 813240,
+      "bytes": 48,
+      "kind": "nul_string",
+      "hex": "6e6f7220777269746520737065656420746573742c2073697a653d2564206b622c206f66667365743d307825780a0a00",
+      "sha256": "4aa6ffc216c0c27c61938a826a684e068f3d5a6f2e110466569e1d6a5fea3eef"
+    },
+    {
+      "name": "erase_failure_format",
+      "start": "0x100c68e8",
+      "end_exclusive": "0x100c68fb",
+      "file_offset": 813288,
+      "bytes": 19,
+      "kind": "nul_string",
+      "hex": "666c617368206572617365206661696c0a0a00",
+      "sha256": "9c722431c5be647275f5d789d9da81910e1681e34045a31a6ba5da0535dfe574"
+    },
+    {
+      "name": "snort_format",
+      "start": "0x100c69ba",
+      "end_exclusive": "0x100c69dd",
+      "file_offset": 813498,
+      "bytes": 35,
+      "kind": "nul_string",
+      "hex": "6e6f7220746573743a206f66667365743d307825782c2073697a653d307825780a0a00",
+      "sha256": "7f71aa04f032009677f717e5be8f67135608b0d8830100977fd0c2cd805182d3"
+    }
+  ],
+  "other_route_boundaries": [
+    {
+      "route": "fread10025348..100253fa",
+      "boundary": "spi_flash fixed512, successful bytes formatted through100252e4; heap freed before return. No user-selectable binary length/output path.",
+      "evidence": "docs/raw-read-handler-followup.md"
+    },
+    {
+      "route": "dumpbuf10024a28..10024aaa",
+      "boundary": "fs_write of given memory pointer/length only; no NOR driver invocation or owned-buffer lifecycle bridge.",
+      "evidence": "docs/evidence/comi-file-write-2026-10-13.json"
+    },
+    {
+      "route": "NOR RAM read1800006c /18000d10",
+      "boundary": "Parameterized driver read exists; known shell producer still fixed512. No audited reachable binary export caller established.",
+      "evidence": "docs/nor-driver-readback.md"
+    },
+    {
+      "route": "slot0 mapping40010300/304",
+      "boundary": "Observed1000000f/24000 not complete raw-chip alias/invertibility proof. Small XIP CPU-copy exports remain mapped representation.",
+      "evidence": "docs/map0-entry-live-2026-10-14.md"
+    },
+    {
+      "route": "Boyi1009edd6..ee0e→worker1000b5b4",
+      "boundary": "Existing Call/Note SD file offset→EOF; no demonstrated raw NOR address/length mode.",
+      "evidence": "docs/nor-scratch-reuse-plan.md"
+    },
+    {
+      "route": "actual recovery1100442c→11004248",
+      "boundary": "TEMP-partition input to OTA consumer; init has protection/state side effects, no safe external backup dispatcher established.",
+      "evidence": "artifacts/actions-official-20261013/astra-backup-route/route-summary.json"
+    }
+  ],
+  "limits": [
+    "Negative result limited to named held entry points and traced chains; not an exhaustive proof that no other firmware path exists.",
+    "No released-heap reading, new MMIO alias, mode switching, ROM/helper or injected code proposed.",
+    "snort is excluded from read-only experiments regardless of misleading size-capable help. No destructive command was executed.",
+    "Scratch reuse can bound file count but still writes4096 SD bytes per512 NOR payload;4MiB needs8192 single reads or16384 for independent double reads before existing coverage deductions.",
+    "No throughput ETA, full backup, NOR programming or restoration claim."
+  ]
+}

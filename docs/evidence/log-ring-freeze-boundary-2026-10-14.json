@@ -1,0 +1,228 @@
+{
+  "schema": 1,
+  "scope": "Static original CoMi FW010004 bytes only; no runtime captures or target execution. Function names are analysis labels.",
+  "image": {
+    "path": "docs/evidence/minimal-image-2026-10-13/original-system.bin.gz",
+    "base": "0x10000000",
+    "uncompressed_bytes": 927632,
+    "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f"
+  },
+  "regions": [
+    {
+      "name": "dbgsw_handler",
+      "address": "0x10024c40",
+      "length": 74,
+      "sha256": "a5cf20d275955c64da9d7ce79d1444410e6e9503f765ff2f9201a92d2611c235",
+      "hex": "022938b5054607d0104a00217cf0c3f86ff01504204638bd0d495068dcf734f8044640b901460b4a28467cf0b4f8204602f04ef9eee7084a002128467cf0abf8012002f045f90024e4e7",
+      "disassembly": "10024c40: cmp r1, #2\n10024c42: push {r3, r4, r5, lr}\n10024c44: mov r5, r0\n10024c46: beq #0x10024c58\n10024c48: ldr r2, [pc, #0x40]\n10024c4a: movs r1, #0\n10024c4c: bl #0x100a0dd6\n10024c50: mvn r4, #0x15\n10024c54: mov r0, r4\n10024c56: pop {r3, r4, r5, pc}\n10024c58: ldr r1, [pc, #0x34]\n10024c5a: ldr r0, [r2, #4]\n10024c5c: bl #0x10000cc8\n10024c60: mov r4, r0\n10024c62: cbnz r0, #0x10024c76\n10024c64: mov r1, r0\n10024c66: ldr r2, [pc, #0x2c]\n10024c68: mov r0, r5\n10024c6a: bl #0x100a0dd6\n10024c6e: mov r0, r4\n10024c70: bl #0x10026f10\n10024c74: b #0x10024c54\n10024c76: ldr r2, [pc, #0x20]\n10024c78: movs r1, #0\n10024c7a: mov r0, r5\n10024c7c: bl #0x100a0dd6\n10024c80: movs r0, #1\n10024c82: bl #0x10026f10\n10024c86: movs r4, #0\n10024c88: b #0x10024c54"
+    },
+    {
+      "name": "switch_entry",
+      "address": "0x10026f10",
+      "length": 64,
+      "sha256": "97f19694b7d2d320b53dd626f737cf54fd7b4b0eda9c0c1cb49bea4bca7c9c14",
+      "hex": "38b50f4d2b6804465bb158b10d4b0e4800221a7079f02ff80120fff7a1fe01232b7638bd094879f026f8fff779ff4ff47a7075f0cbfa2046fff792fe2c76f0e7",
+      "disassembly": "10026f10: push {r3, r4, r5, lr}\n10026f12: ldr r5, [pc, #0x3c]\n10026f14: ldr r3, [r5]\n10026f16: mov r4, r0\n10026f18: cbz r3, #0x10026f32\n10026f1a: cbz r0, #0x10026f34\n10026f1c: ldr r3, [pc, #0x34]\n10026f1e: ldr r0, [pc, #0x38]\n10026f20: movs r2, #0\n10026f22: strb r2, [r3]\n10026f24: bl #0x1009ff86\n10026f28: movs r0, #1\n10026f2a: bl #0x10026c70\n10026f2e: movs r3, #1\n10026f30: strb r3, [r5, #0x18]\n10026f32: pop {r3, r4, r5, pc}\n10026f34: ldr r0, [pc, #0x24]\n10026f36: bl #0x1009ff86\n10026f3a: bl #0x10026e30\n10026f3e: mov.w r0, #0x3e8\n10026f42: bl #0x1009c4dc\n10026f46: mov r0, r4\n10026f48: bl #0x10026c70\n10026f4c: strb r4, [r5, #0x18]\n10026f4e: b #0x10026f32"
+    },
+    {
+      "name": "uart_mode_switch",
+      "address": "0x10026c70",
+      "length": 50,
+      "sha256": "6076cad0fe7d52c5cdb4e94e700972a380964340a561ad256509c67ce4f77d34",
+      "hex": "38b50c4d0446286864b10b492a4608f0d7ff044650b901222868012108f0a0ff204638bd7df00ffc2246f5e74ff0ff34f6e7",
+      "disassembly": "10026c70: push {r3, r4, r5, lr}\n10026c72: ldr r5, [pc, #0x30]\n10026c74: mov r4, r0\n10026c76: ldr r0, [r5]\n10026c78: cbz r4, #0x10026c94\n10026c7a: ldr r1, [pc, #0x2c]\n10026c7c: mov r2, r5\n10026c7e: bl #0x1002fc30\n10026c82: mov r4, r0\n10026c84: cbnz r0, #0x10026c9c\n10026c86: movs r2, #1\n10026c88: ldr r0, [r5]\n10026c8a: movs r1, #1\n10026c8c: bl #0x1002fbd0\n10026c90: mov r0, r4\n10026c92: pop {r3, r4, r5, pc}\n10026c94: bl #0x100a44b6\n10026c98: mov r2, r4\n10026c9a: b #0x10026c88\n10026c9c: mov.w r4, #-1\n10026ca0: b #0x10026c90"
+    },
+    {
+      "name": "sync_drain",
+      "address": "0x10026e30",
+      "length": 56,
+      "sha256": "d9562008f430fc111447f957f5df1413fec7a772b570d3d529d453b1376e831d",
+      "hex": "38b57af0fdff0c4c054620687df02dfb0028fad020467bf020f8e36913b120467bf037f820467af0f4ff0028edd185f31188bff36f8f38bd",
+      "disassembly": "10026e30: push {r3, r4, r5, lr}\n10026e32: bl #0x100a1e30\n10026e36: ldr r4, [pc, #0x30]\n10026e38: mov r5, r0\n10026e3a: ldr r0, [r4]\n10026e3c: bl #0x100a449a\n10026e40: cmp r0, #0\n10026e42: beq #0x10026e3a\n10026e44: mov r0, r4\n10026e46: bl #0x100a1e8a\n10026e4a: ldr r3, [r4, #0x1c]\n10026e4c: cbz r3, #0x10026e54\n10026e4e: mov r0, r4\n10026e50: bl #0x100a1ec2\n10026e54: mov r0, r4\n10026e56: bl #0x100a1e42\n10026e5a: cmp r0, #0\n10026e5c: bne #0x10026e3a\n10026e5e: msr basepri, r5\n10026e62: isb sy\n10026e66: pop {r3, r4, r5, pc}"
+    },
+    {
+      "name": "irq_threshold",
+      "address": "0x100a1e30",
+      "length": 18,
+      "sha256": "c1465fda991d2e1b7dd40fed8b6bf7b50fa647d753b124423b8fca1bd9113220",
+      "hex": "4ff02003eff3118083f31288bff36f8f7047",
+      "disassembly": "100a1e30: mov.w r3, #0x20\n100a1e34: mrs r0, basepri\n100a1e38: msr basepri_max, r3\n100a1e3c: isb sy\n100a1e40: bx lr"
+    },
+    {
+      "name": "uart_fifo_switch",
+      "address": "0x1002fbd0",
+      "length": 90,
+      "sha256": "10971baf253c737c4a675b8ab7a975151d465fe17a2db72534357e0ec4c758a6",
+      "hex": "f8b543685f6806463c681546b1b1012a20d8b3681b6b1bb1304698470028f8d00e492140012d41ea85610abf41f400320a4642f400723a600020f8bd012a09d824f0417323f4863343ea026208bf42f48032f0e76ff01500efe7",
+      "disassembly": "1002fbd0: push {r3, r4, r5, r6, r7, lr}\n1002fbd2: ldr r3, [r0, #4]\n1002fbd4: ldr r7, [r3, #4]\n1002fbd6: mov r6, r0\n1002fbd8: ldr r4, [r7]\n1002fbda: mov r5, r2\n1002fbdc: cbz r1, #0x1002fc0c\n1002fbde: cmp r2, #1\n1002fbe0: bhi #0x1002fc24\n1002fbe2: ldr r3, [r6, #8]\n1002fbe4: ldr r3, [r3, #0x30]\n1002fbe6: cbz r3, #0x1002fbf0\n1002fbe8: mov r0, r6\n1002fbea: blx r3\n1002fbec: cmp r0, #0\n1002fbee: beq #0x1002fbe2\n1002fbf0: ldr r1, [pc, #0x38]\n1002fbf2: ands r1, r4\n1002fbf4: cmp r5, #1\n1002fbf6: orr.w r1, r1, r5, lsl #26\n1002fbfa: itet eq\n1002fbfc: orreq r2, r1, #0x20000\n1002fc00: movne r2, r1\n1002fc02: orreq r2, r2, #0x200\n1002fc06: str r2, [r7]\n1002fc08: movs r0, #0\n1002fc0a: pop {r3, r4, r5, r6, r7, pc}\n1002fc0c: cmp r2, #1\n1002fc0e: bhi #0x1002fc24\n1002fc10: bic r3, r4, #0x3040000\n1002fc14: bic r3, r3, #0x10c00\n1002fc18: orr.w r2, r3, r2, lsl #24\n1002fc1c: it eq\n1002fc1e: orreq r2, r2, #0x10000\n1002fc22: b #0x1002fc06\n1002fc24: mvn r0, #0x15\n1002fc28: b #0x1002fc0a"
+    },
+    {
+      "name": "cpu_uart_poll",
+      "address": "0x1002dca8",
+      "length": 12,
+      "sha256": "260ba7c4e414d13271ab018ead5e2117073bae094a4a216f441a7e5d6f8c75bb",
+      "hex": "024bda685206fcd498607047",
+      "disassembly": "1002dca8: ldr r3, [pc, #8]\n1002dcaa: ldr r2, [r3, #0xc]\n1002dcac: lsls r2, r2, #0x19\n1002dcae: bmi #0x1002dcaa\n1002dcb0: str r0, [r3, #8]\n1002dcb2: bx lr"
+    },
+    {
+      "name": "initial_putchar",
+      "address": "0x100a42aa",
+      "length": 24,
+      "sha256": "b197e3f40a83187512dae7e271115c0eaf14135a818c5884d87011c3f75c5b9b",
+      "hex": "0a2808b5014602d10d2089f7f8fc084689f7f5fc002008bd",
+      "disassembly": "100a42aa: cmp r0, #0xa\n100a42ac: push {r3, lr}\n100a42ae: mov r1, r0\n100a42b0: bne #0x100a42b8\n100a42b2: movs r0, #0xd\n100a42b4: bl #0x1002dca8\n100a42b8: mov r0, r1\n100a42ba: bl #0x1002dca8\n100a42be: movs r0, #0\n100a42c0: pop {r3, pc}"
+    },
+    {
+      "name": "fallback_hook",
+      "address": "0x10020628",
+      "length": 12,
+      "sha256": "238fdf99163eec481fedaad19c061d6c2278caff542a2484c708ea7cf0977d43",
+      "hex": "0b6801330b60014b1b681847",
+      "disassembly": "10020628: ldr r3, [r1]\n1002062a: adds r3, #1\n1002062c: str r3, [r1]\n1002062e: ldr r3, [pc, #4]\n10020630: ldr r3, [r3]\n10020632: bx r3"
+    },
+    {
+      "name": "direct_ring_append",
+      "address": "0x10026d4c",
+      "length": 94,
+      "sha256": "796a7284fc8486b7ea4f10b6c33745a80615fe9a079b5c26a35b7c4565b9ec1c",
+      "hex": "f8b507460c46e9b1154d7bf06bf8d5e903239b1a9c42064617d3eb692344eb6180f31188bff36f8feb69b3f5803f09d928687df08cfb28b16b6a1bb12846fff7cbffe2e700242046f8bd2246394605487bf003f886f31188bff36f8ff3e7",
+      "disassembly": "10026d4c: push {r3, r4, r5, r6, r7, lr}\n10026d4e: mov r7, r0\n10026d50: mov r4, r1\n10026d52: cbz r1, #0x10026d90\n10026d54: ldr r5, [pc, #0x54]\n10026d56: bl #0x100a1e30\n10026d5a: ldrd r2, r3, [r5, #0xc]\n10026d5e: subs r3, r3, r2\n10026d60: cmp r4, r3\n10026d62: mov r6, r0\n10026d64: blo #0x10026d96\n10026d66: ldr r3, [r5, #0x1c]\n10026d68: add r3, r4\n10026d6a: str r3, [r5, #0x1c]\n10026d6c: msr basepri, r0\n10026d70: isb sy\n10026d74: ldr r3, [r5, #0x1c]\n10026d76: cmp.w r3, #0x10000\n10026d7a: bls #0x10026d90\n10026d7c: ldr r0, [r5]\n10026d7e: bl #0x100a449a\n10026d82: cbz r0, #0x10026d90\n10026d84: ldr r3, [r5, #0x24]\n10026d86: cbz r3, #0x10026d90\n10026d88: mov r0, r5\n10026d8a: bl #0x10026d24\n10026d8e: b #0x10026d56\n10026d90: movs r4, #0\n10026d92: mov r0, r4\n10026d94: pop {r3, r4, r5, r6, r7, pc}\n10026d96: mov r2, r4\n10026d98: mov r1, r7\n10026d9a: ldr r0, [pc, #0x14]\n10026d9c: bl #0x100a1da6\n10026da0: msr basepri, r6\n10026da4: isb sy\n10026da8: b #0x10026d92"
+    },
+    {
+      "name": "formatted_gate",
+      "address": "0x10026e6c",
+      "length": 22,
+      "sha256": "89a2733856b3bb9cda1b50410f4c5e4586a88e2c1a1ea0fa085287317fb156cd",
+      "hex": "30b5184d2c7e95b002460b461cb9f9f7e3fb15b030bd",
+      "disassembly": "10026e6c: push {r4, r5, lr}\n10026e6e: ldr r5, [pc, #0x60]\n10026e70: ldrb r4, [r5, #0x18]\n10026e72: sub sp, #0x54\n10026e74: mov r2, r0\n10026e76: mov r3, r1\n10026e78: cbnz r4, #0x10026e82\n10026e7a: bl #0x10020644\n10026e7e: add sp, #0x54\n10026e80: pop {r4, r5, pc}"
+    },
+    {
+      "name": "stdout_gate",
+      "address": "0x10026db4",
+      "length": 10,
+      "sha256": "6d28051bafe5322c82fb395cf18e439f048c276cc6f0fb6efde3be67870472a3",
+      "hex": "38b51a4b1b7e054673b3",
+      "disassembly": "10026db4: push {r3, r4, r5, lr}\n10026db6: ldr r3, [pc, #0x68]\n10026db8: ldrb r3, [r3, #0x18]\n10026dba: mov r5, r0\n10026dbc: cbz r3, #0x10026e1c"
+    },
+    {
+      "name": "raw_gate",
+      "address": "0x10026edc",
+      "length": 32,
+      "sha256": "1cff9e3da6789d3e631fc5f14ef7f596773e4ca4e0dd2d36fa1b68bd3979c3ea",
+      "hex": "38b5074d2b7e0c461bb9f9f7bbfb204638bdfff72dff044628467af0a4fff6e7",
+      "disassembly": "10026edc: push {r3, r4, r5, lr}\n10026ede: ldr r5, [pc, #0x1c]\n10026ee0: ldrb r3, [r5, #0x18]\n10026ee2: mov r4, r1\n10026ee4: cbnz r3, #0x10026eee\n10026ee6: bl #0x10020660\n10026eea: mov r0, r4\n10026eec: pop {r3, r4, r5, pc}\n10026eee: bl #0x10026d4c\n10026ef2: mov r4, r0\n10026ef4: mov r0, r5\n10026ef6: bl #0x100a1e42\n10026efa: b #0x10026eea"
+    },
+    {
+      "name": "drop_marker_append",
+      "address": "0x100a1ec2",
+      "length": 142,
+      "sha256": "b2bbad848b84af46d6c3f6df5785c25da1ec4708670e2149200904c3b0ded71a",
+      "hex": "73b50446fff7b3ff0546201d37d0d4e903239b1a082b32dde16944f20a03adf8003042f21073b1fbf3f203fb12134ff47a71b3fbf1f202f1300601fb123264218df80260b2fbf1f301fb132203f130060a218df80360b2fbf1f303f1300601fb1323e36130338df8053008224ff4246369468df80460adf80630fff733ff0023e36185f31188bff36f8f02b070bd",
+      "disassembly": "100a1ec2: push {r0, r1, r4, r5, r6, lr}\n100a1ec4: mov r4, r0\n100a1ec6: bl #0x100a1e30\n100a1eca: mov r5, r0\n100a1ecc: adds r0, r4, #4\n100a1ece: beq #0x100a1f40\n100a1ed0: ldrd r2, r3, [r4, #0xc]\n100a1ed4: subs r3, r3, r2\n100a1ed6: cmp r3, #8\n100a1ed8: ble #0x100a1f40\n100a1eda: ldr r1, [r4, #0x1c]\n100a1edc: movw r3, #0x400a\n100a1ee0: strh.w r3, [sp]\n100a1ee4: movw r3, #0x2710\n100a1ee8: udiv r2, r1, r3\n100a1eec: mls r3, r3, r2, r1\n100a1ef0: mov.w r1, #0x3e8\n100a1ef4: udiv r2, r3, r1\n100a1ef8: add.w r6, r2, #0x30\n100a1efc: mls r2, r1, r2, r3\n100a1f00: movs r1, #0x64\n100a1f02: strb.w r6, [sp, #2]\n100a1f06: udiv r3, r2, r1\n100a1f0a: mls r2, r1, r3, r2\n100a1f0e: add.w r6, r3, #0x30\n100a1f12: movs r1, #0xa\n100a1f14: strb.w r6, [sp, #3]\n100a1f18: udiv r3, r2, r1\n100a1f1c: add.w r6, r3, #0x30\n100a1f20: mls r3, r1, r3, r2\n100a1f24: str r3, [r4, #0x1c]\n100a1f26: adds r3, #0x30\n100a1f28: strb.w r3, [sp, #5]\n100a1f2c: movs r2, #8\n100a1f2e: mov.w r3, #0xa40\n100a1f32: mov r1, sp\n100a1f34: strb.w r6, [sp, #4]\n100a1f38: strh.w r3, [sp, #6]\n100a1f3c: bl #0x100a1da6\n100a1f40: movs r3, #0\n100a1f42: str r3, [r4, #0x1c]\n100a1f44: msr basepri, r5\n100a1f48: isb sy\n100a1f4c: add sp, #8\n100a1f4e: pop {r4, r5, r6, pc}"
+    },
+    {
+      "name": "pm_callbacks",
+      "address": "0x100a1f8a",
+      "length": 12,
+      "sha256": "8ed486e86f8fd8127d5f12dbfe108e3fe4ddfc6ec8c94183bdeeae36f3332338",
+      "hex": "012084f7c0bf002084f7bdbf",
+      "disassembly": "100a1f8a: movs r0, #1\n100a1f8c: b.w #0x10026f10\n100a1f90: movs r0, #0\n100a1f92: b.w #0x10026f10"
+    },
+    {
+      "name": "init_register",
+      "address": "0x10026cee",
+      "length": 18,
+      "sha256": "6148b4e787e4cc847f7f12da3fc285b237e705807e88f12bae3ee8e8540c1dd7",
+      "hex": "0b4806f0eefd01230a482b76fff7c5fae7e7",
+      "disassembly": "10026cee: ldr r0, [pc, #0x2c]\n10026cf0: bl #0x1002d8d0\n10026cf4: movs r3, #1\n10026cf6: ldr r0, [pc, #0x28]\n10026cf8: strb r3, [r5, #0x18]\n10026cfa: bl #0x10026288\n10026cfe: b #0x10026cd0"
+    },
+    {
+      "name": "cbuf_init",
+      "address": "0x100a1e14",
+      "length": 28,
+      "sha256": "a5e540e8b19e6bf51ace5b95d850c44ff5c11a7eb6780ca861da813c3493bf06",
+      "hex": "10b50446fff790ff0023c4e90321c4e90033a360bde81040fff78fbf",
+      "disassembly": "100a1e14: push {r4, lr}\n100a1e16: mov r4, r0\n100a1e18: bl #0x100a1d3c\n100a1e1c: movs r3, #0\n100a1e1e: strd r2, r1, [r4, #0xc]\n100a1e22: strd r3, r3, [r4]\n100a1e26: str r3, [r4, #8]\n100a1e28: pop.w {r4, lr}\n100a1e2c: b.w #0x100a1d4e"
+    },
+    {
+      "name": "dma_init_configure_return",
+      "address": "0x1002fcca",
+      "length": 58,
+      "sha256": "77bedcc95029c7217a65c1b564d2fd429649474db561c3e9389c1ddd5270da69",
+      "hex": "002464f386138df83c300d942b7b7069317e22f47f7222f0030243f080031343adf804300123adf80a3004938368cde908441b6801aa9847a4e7",
+      "disassembly": "1002fcca: movs r4, #0\n1002fccc: bfi r3, r4, #6, #1\n1002fcd0: strb.w r3, [sp, #0x3c]\n1002fcd4: str r4, [sp, #0x34]\n1002fcd6: ldrb r3, [r5, #0xc]\n1002fcd8: ldr r0, [r6, #0x14]\n1002fcda: ldrb r1, [r6, #0x18]\n1002fcdc: bic r2, r2, #0x3fc\n1002fce0: bic r2, r2, #3\n1002fce4: orr r3, r3, #0x80\n1002fce8: orrs r3, r2\n1002fcea: strh.w r3, [sp, #4]\n1002fcee: movs r3, #1\n1002fcf0: strh.w r3, [sp, #0xa]\n1002fcf4: str r3, [sp, #0x10]\n1002fcf6: ldr r3, [r0, #8]\n1002fcf8: strd r4, r4, [sp, #0x20]\n1002fcfc: ldr r3, [r3]\n1002fcfe: add r2, sp, #4\n1002fd00: blx r3\n1002fd02: b #0x1002fc4e"
+    },
+    {
+      "name": "dma_init_return",
+      "address": "0x1002fc4a",
+      "length": 12,
+      "sha256": "4b2dbca7a6ccbfb8b5c02a9c68dc3bbacbb5c1958955309f60bfdb710b71d90e",
+      "hex": "4ff0ff34204611b0bde8f083",
+      "disassembly": "1002fc4a: mov.w r4, #-1\n1002fc4e: mov r0, r4\n1002fc50: add sp, #0x44\n1002fc52: pop.w {r4, r5, r6, r7, r8, sb, pc}"
+    }
+  ],
+  "data": [
+    {
+      "name": "pm_callback_initializers",
+      "address": "0x180019c8",
+      "image_offset": "0xdeec8",
+      "hex": "00000000911f0a108b1f0a10",
+      "sha256": "bd20f98865e4219f61afb6804896d146e93606d96f24bbbf0b00a46a2a76dcb0",
+      "initial_ram_not_live": true
+    },
+    {
+      "name": "putchar_initial_hook",
+      "address": "0x180018c8",
+      "image_offset": "0xdedc8",
+      "hex": "ab420a10",
+      "sha256": "38857a73b8bd6ba5dffdcfda5f0d5c0fb332844f39d50fc02bcc61d2697d3555",
+      "initial_ram_not_live": true
+    },
+    {
+      "name": "cpu_string",
+      "address": "0x100c64b5",
+      "image_offset": "0xc64b5",
+      "hex": "63707500",
+      "sha256": "6a8eb4e33f11b0ac2602220f937ca9ec12104524b5a8d6772455ab788aa251c6",
+      "initial_ram_not_live": false
+    },
+    {
+      "name": "uart_base_literal",
+      "address": "0x1002dcb4",
+      "image_offset": "0x2dcb4",
+      "hex": "00800340",
+      "sha256": "b9e9278add5547305a2f7b7673691f74169221b2ef6abbccf76d072992cc6d40",
+      "initial_ram_not_live": false
+    },
+    {
+      "name": "switch_literals",
+      "address": "0x10026f50",
+      "image_offset": "0x26f50",
+      "hex": "04e00018e018010108750c1018750c10",
+      "sha256": "866ce82333e42d887fd881ee561975006451079e1c5f9561859473f8c0bf9ccb",
+      "initial_ram_not_live": false
+    },
+    {
+      "name": "init_literals",
+      "address": "0x10026d1c",
+      "image_offset": "0x26d1c",
+      "hex": "b56d0210c8190018",
+      "sha256": "a8842b1f0b8a67275e5fd7169f17840a96aef541535b77f9e1ea1cc4ac02c4c5",
+      "initial_ram_not_live": false
+    },
+    {
+      "name": "writer_literals",
+      "address": "0x10026dac",
+      "image_offset": "0x26dac",
+      "hex": "04e0001808e00018",
+      "sha256": "1c27b0b7b0eae9b218f19727b239c248ec7155d6a470366140a8bcb9625c6661",
+      "initial_ram_not_live": false
+    }
+  ],
+  "limits": [
+    "Direct writer and entry gates do not establish quiescence of in-flight or indirect writers.",
+    "PM callback initializers and fallback hook are image initialization values, not live RAM observations.",
+    "Busy loops prove absence of software timeout in these bodies, not an observed device hang.",
+    "Mode restore ignores lower-level failure; no mode-switch experiment was performed."
+  ]
+}

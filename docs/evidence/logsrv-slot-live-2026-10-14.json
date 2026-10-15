@@ -1,0 +1,169 @@
+{
+  "schema": "rcominote.logsrv-slot-live.v1",
+  "date_local": "2026-10-14",
+  "serial": "C261CF0430",
+  "image": {"file": "minimal-image-2026-10-13/original-system.bin.gz", "decompressed_bytes": 927632, "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f"},
+  "context_guard_bundle": {"file": "logsrv-context-live-2026-10-14.json", "sha256": "90473a21b77b898c9e96b449208ab409bb831b03684e21f6e7d3c63bbcca3051"},
+  "new_code_guards": [
+    {
+      "source_report": {"file": "artifacts/logsrv-slot-live-20261014/layout/report.json", "bytes": 10191, "sha256": "2c7c8f2815fa6e29386bbac15c775a366ec68de004e090d866e90297f5370976"},
+      "source_address": "0x1000bd30",
+      "source_bytes": 32,
+      "test_path": "/SD:/RECORDER/Call-rce4e52b9330.mp3",
+      "original_ok": true,
+      "raw": {"file": "logsrv-slot-live-2026-10-14/layout.bin", "bytes": 32, "sha256": "3c7d8a419cae4cb98a9ce8bd71d88c0320d7a59915a2cf9e6019cedfe8224e22"},
+      "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0},
+      "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59596, "free_capacity_after": 59596, "free_capacity_decrease": 0, "allowed_decrease": 1},
+      "fields": null
+    },
+    {
+      "source_report": {"file": "artifacts/logsrv-slot-live-20261014/copy/report.json", "bytes": 10189, "sha256": "b2fc1901116c7880f751cfc2d115ce765402fe708b67f9ea89e1c907532a1b81"},
+      "source_address": "0x1000bd80",
+      "source_bytes": 48,
+      "test_path": "/SD:/RECORDER/Call-rcd7fcc41dba.mp3",
+      "original_ok": true,
+      "raw": {"file": "logsrv-slot-live-2026-10-14/copy.bin", "bytes": 48, "sha256": "83ab94a1f56f4838115b4eb7a2e4e6fbe128cb4331f32c8073abce0e1d6849ab"},
+      "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0},
+      "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59596, "free_capacity_after": 59596, "free_capacity_decrease": 0, "allowed_decrease": 1},
+      "fields": null
+    }
+  ],
+  "fresh_preflight": {
+    "pointer": {
+      "source_report": {"file": "artifacts/logsrv-slot-live-20261014/pointer/report.json", "bytes": 11989, "sha256": "1d731cfe7d2dc25a549af9881aa5786f6de5a88113c952cd0e585f4a5cd3c999"},
+      "source_address": "0x1800a9ac",
+      "source_bytes": 4,
+      "test_path": "/SD:/RECORDER/Call-rc50edaf0d24.mp3",
+      "original_ok": true,
+      "raw": {"file": "logsrv-slot-live-2026-10-14/pointer.bin", "bytes": 4, "sha256": "bef3c9bd2822c533b9a289ba840911bb8fc9312f2b07a0326af9dbe10265f97d"},
+      "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0},
+      "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59596, "free_capacity_after": 59596, "free_capacity_decrease": 0, "allowed_decrease": 1},
+      "fields": {"pointer": "0x180111fc", "allocation_bound_bytes": 80}
+    },
+    "context": {
+      "source_report": {"file": "artifacts/logsrv-slot-live-20261014/context/report.json", "bytes": 12516, "sha256": "ad1b5090032e6d13759ff553a8475c0a5bb69e304b58afeafd3044a30fb4d723"},
+      "source_address": "0x180111fc",
+      "source_bytes": 32,
+      "test_path": "/SD:/RECORDER/Call-rc0f6f051eb1.mp3",
+      "original_ok": true,
+      "raw": {"file": "logsrv-slot-live-2026-10-14/context.bin", "bytes": 32, "sha256": "34acd832e967e3929230d4154241bebd9a87e7f8c4de55211a6ebc2994576f56"},
+      "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0},
+      "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59596, "free_capacity_after": 59596, "free_capacity_decrease": 0, "allowed_decrease": 1},
+      "fields": {
+        "stream_pointer": "0x18011254",
+        "flags_byte": 3,
+        "log_type": 0,
+        "new_log_type": 0,
+        "rd": 204,
+        "wr": 204,
+        "slot_lengths": [0, 0, 0, 0, 139, 0, 0, 0],
+        "drop_count": 0,
+        "interpretation": "Historical pre-STOP bytes; no atomicity/current pointer/partial-slot claim"
+      },
+      "pointer_parent_sha256": "1d731cfe7d2dc25a549af9881aa5786f6de5a88113c952cd0e585f4a5cd3c999"
+    }
+  },
+  "trial": {
+    "source_report": {"file": "artifacts/logsrv-slot-live-20261014/trial/report.json", "bytes": 21788, "sha256": "46d6022942924b3c55892e386b6835f8afbbf8ce8d6140ba7c9caff47d09e01f"},
+    "original_ok": true,
+    "started_at": "2026-10-13T17:14:42.421499+00:00",
+    "ended_at": "2026-10-13T17:15:08.307747+00:00",
+    "commands": ["dbg dumpbuf 402696620 4 /SD:/RECORDER/Call-rcae99e9afd1.mp3", "dbg mdb 1000ab40 10", "dbg dumpbuf 402723324 32 /SD:/RECORDER/Call-rc9b0d7eba70.mp3", "dbg dumpbuf 402698672 512 /SD:/RECORDER/Call-rcdc3fbc8961.mp3"],
+    "actions": {"confirmed_writes": 7, "ack_count": 7, "f1_received": true, "pending_bytes": 0},
+    "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59596, "free_capacity_after": 59595, "free_capacity_decrease": 1, "allowed_decrease": 1},
+    "pointer_parent_sha256": "1d731cfe7d2dc25a549af9881aa5786f6de5a88113c952cd0e585f4a5cd3c999",
+    "context_parent_sha256": "ad1b5090032e6d13759ff553a8475c0a5bb69e304b58afeafd3044a30fb4d723",
+    "slot_guard_report_sha256": ["2c7c8f2815fa6e29386bbac15c775a366ec68de004e090d866e90297f5370976", "b2fc1901116c7880f751cfc2d115ce765402fe708b67f9ea89e1c907532a1b81"],
+    "files": [
+      {
+        "role": "global",
+        "source_address": "0x1800a9ac",
+        "source_bytes": 4,
+        "test_path": "/SD:/RECORDER/Call-rcae99e9afd1.mp3",
+        "received_bytes": 4,
+        "download_bytes": 4,
+        "sha256": "bef3c9bd2822c533b9a289ba840911bb8fc9312f2b07a0326af9dbe10265f97d",
+        "raw": {"file": "logsrv-slot-live-2026-10-14/trial-global.bin", "bytes": 4, "sha256": "bef3c9bd2822c533b9a289ba840911bb8fc9312f2b07a0326af9dbe10265f97d"}
+      },
+      {
+        "role": "metadata",
+        "source_address": "0x180111fc",
+        "source_bytes": 32,
+        "test_path": "/SD:/RECORDER/Call-rc9b0d7eba70.mp3",
+        "received_bytes": 32,
+        "download_bytes": 32,
+        "sha256": "8f4f9432e82111020aa303751b1ad2d1e81a822df738043d57bf225a105b0f17",
+        "raw": {"file": "logsrv-slot-live-2026-10-14/trial-metadata.bin", "bytes": 32, "sha256": "8f4f9432e82111020aa303751b1ad2d1e81a822df738043d57bf225a105b0f17"}
+      },
+      {
+        "role": "slot",
+        "source_address": "0x1800b1b0",
+        "source_bytes": 512,
+        "test_path": "/SD:/RECORDER/Call-rcdc3fbc8961.mp3",
+        "received_bytes": 512,
+        "download_bytes": 512,
+        "sha256": "f66ea7d4f7f24ce96684c7f6c5ea630701c3905aa1c5591678985ba0fa829e1e",
+        "full_raw_published": false,
+        "body_length": 431,
+        "selected_spans": [
+          {
+            "kind": "nonce-marker",
+            "body_span": [138, 191],
+            "slot_span": [146, 199],
+            "raw": {"file": "logsrv-slot-live-2026-10-14/nonce-marker.bin", "bytes": 53, "sha256": "b876911b5b3b97862536797a030347f5cb40853077f8db0e5f5de9ec64a7c11e"}
+          },
+          {
+            "kind": "known-mdb16-row",
+            "body_span": [195, 274],
+            "slot_span": [203, 282],
+            "raw": {"file": "logsrv-slot-live-2026-10-14/known-row.bin", "bytes": 79, "sha256": "effbb4720cffe87d0eec702e52f3aa17693d8c1f4fca72e347f232218503f12d"}
+          }
+        ]
+      }
+    ],
+    "verification": {
+      "pointer_matches_historical": true,
+      "metadata": {
+        "stream_pointer": "0x18011254",
+        "flags_byte": 3,
+        "log_type": 0,
+        "new_log_type": 0,
+        "rd": 204,
+        "wr": 204,
+        "slot_lengths": [0, 0, 0, 0, 431, 0, 0, 0],
+        "drop_count": 0,
+        "interpretation": "Historical pre-STOP bytes; no atomicity/current pointer/partial-slot claim"
+      },
+      "body_length": 431,
+      "marker_body_span": [138, 191],
+      "row_body_span": [195, 274],
+      "known_bytes_hex": "5e348df8123094f87034bdf800208df8",
+      "known_bytes_sha256": "d189dd2643c977534f18711d4a2f247fb69d2c7a55f94a9190c83043b07706b0",
+      "scope": "Fresh-marker-associated known row in saved prefix; no atomic/current-pointer/partial-state proof"
+    }
+  },
+  "public_new_raw_bytes": 284,
+  "retained_sd_test_files": {"new_this_round": 7, "earlier": 17, "total": 24, "deleted": 0},
+  "private_audit": {
+    "performed_offline": true,
+    "device_io": false,
+    "methods": ["contract.validate_parents against original fullimage,5contextguards,2slotguards,freshpointer/context and handler write-parent", "contract.commands and validate_actions reconstruct7 confirmed ATT writes,7ACK,oneF1,pending0", "same_identity,downloaded(global4,metadata32,slot512),contract.verify_payload exact unique nonce then one pinned row withinL"],
+    "public_replay_scope": "Pinned compact receipt, image/codeguards/rawsmall snapshots and two selected slot spans; no full512 or private packet audit replay",
+    "privacy": "Only exact random test-path completion marker53B and already-public known code row79B selected from slot; all other slot bytes withheld"
+  },
+  "private_sources": {
+    "artifacts/logsrv-slot-live-20261014/layout/report.json": {"bytes": 10191, "sha256": "2c7c8f2815fa6e29386bbac15c775a366ec68de004e090d866e90297f5370976"},
+    "artifacts/logsrv-slot-live-20261014/copy/report.json": {"bytes": 10189, "sha256": "b2fc1901116c7880f751cfc2d115ce765402fe708b67f9ea89e1c907532a1b81"},
+    "artifacts/logsrv-slot-live-20261014/pointer/report.json": {"bytes": 11989, "sha256": "1d731cfe7d2dc25a549af9881aa5786f6de5a88113c952cd0e585f4a5cd3c999"},
+    "artifacts/logsrv-slot-live-20261014/context/report.json": {"bytes": 12516, "sha256": "ad1b5090032e6d13759ff553a8475c0a5bb69e304b58afeafd3044a30fb4d723"},
+    "artifacts/logsrv-slot-live-20261014/trial/report.json": {"bytes": 21788, "sha256": "46d6022942924b3c55892e386b6835f8afbbf8ce8d6140ba7c9caff47d09e01f"},
+    "artifacts/live-sd-xip32-c-20261013/report.json": {"bytes": 9930, "sha256": "f2311da2a613b77e915829e00f09fa9c9ac83e831d05883298290deb466e4b51"},
+    "artifacts/logsrv-context-live-20261014/global-code/report.json": {"bytes": 10191, "sha256": "d54d9f3a6b5cc5e147efd9c42f1b234838ce176bcf448899fba0c108b1239edc"},
+    "artifacts/logsrv-context-live-20261014/global-literal/report.json": {"bytes": 10194, "sha256": "b27951155486b3577a43bd041f51f2861b61dd888154d5dc59105eef20b48c1a"},
+    "artifacts/live-sd-handler160-read-b-20261013/report.json": {"bytes": 4325, "sha256": "755527b171e70842f36e0a3437cff11714bc4cb3e4efd1bf1485fc2c6d22f89d"},
+    "artifacts/logsrv-context-live-20261014/heap-bounds/report.json": {"bytes": 10184, "sha256": "b1b56d1fd60e6015c9f3b57bba3bc5b049955bbb0b22c525323f8eeb6e4edcd7"},
+    "artifacts/live-sd-handler160-20261013/report.json": {"bytes": 9834, "sha256": "0052c1abe23014cf35cfab7a5035e8b028c31f39060955e65d63a2d2bd3f80a9"},
+    "artifacts/logsrv-slot-live-20261014/trial/slot/download.bin": {"bytes": 512, "sha256": "f66ea7d4f7f24ce96684c7f6c5ea630701c3905aa1c5591678985ba0fa829e1e"}
+  },
+  "limitations": ["One trial only: no general512B transfer reliability guarantee", "Metadata and slot copied at different times; rd==wr and length431 do not establish atomicity or that slot stayed partial", "Current global equality verified after snapshots/downloads, not as a gate before dereferencing; no allocator ownership proof", "Full slot SHA binds private512B; public spans alone cannot independently reproduce complete private-slot uniqueness or original ATT trace", "No raw NOR extraction, firmware writing, code injection or recovery claim; no stale tail or other slot body published"]
+}

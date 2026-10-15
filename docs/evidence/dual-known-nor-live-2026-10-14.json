@@ -1,0 +1,304 @@
+{
+  "schema": "rcominote-dual-known-nor-status-v1",
+  "date": "2026-10-14",
+  "scope": "One actual owned connection: known boot0 then known recovery0x4200. Compact status; full private replay required.",
+  "ok": true,
+  "profile": "dual-known-boot0-recovery4200",
+  "source_image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "private_directory": "artifacts/dual-known-nor-20261014",
+  "private_sources": {
+    "report.json": {
+      "bytes": 51618,
+      "sha256": "0f74ac3023f5635740e214ecc9b05bc5b84153dee89c5bb8d2c3201c1c28985d"
+    },
+    "session.btsnoop": {
+      "bytes": 17460,
+      "sha256": "fec7195c55d2df3ebe583a08357e54881e89f5115c5faa49ab6cab10284050ff"
+    },
+    "boot/checkpoint.json": {
+      "bytes": 30042,
+      "sha256": "e87d6c4a20e57acc2af28e94192e182347cf2d175a21a3f536d2e3423408688a"
+    },
+    "boot/download.bin": {
+      "bytes": 4096,
+      "sha256": "a2f7c04b495717e5b851f911f6dbf24471dfbde567c8124da65eb8c9e43b446d"
+    },
+    "boot/sector.bin": {
+      "bytes": 512,
+      "sha256": "72952b98341a3089765c6cc8dd35ddc93ae699698d1455ce74dea1071cc277ec"
+    },
+    "recovery-block1/checkpoint.json": {
+      "bytes": 48898,
+      "sha256": "a2b9d47ebaf81be52106bde8720c6e7fc66a6bb114fa3d056c4a4d04eb42ab1e"
+    },
+    "recovery-block1/download.bin": {
+      "bytes": 4096,
+      "sha256": "3885e602db1826a32c316fece2c2ca3076e9a9e33d0fcb2fb0d59de56bb242cf"
+    },
+    "recovery-block1/sector.bin": {
+      "bytes": 512,
+      "sha256": "51327e9d7a7d8d4c3538c83688753b5f99735b85e981756effb63efd1dc33713"
+    }
+  },
+  "replay_sources": {
+    "src/rcominote/experiments/dual_nor_probe.py": {
+      "bytes": 15778,
+      "sha256": "e56e3eda54832aefe2ae5566b9b65a3458b3370fe61706e2be1b9a3a183762b6"
+    },
+    "src/rcominote/experiments/dual_client.py": {
+      "bytes": 7691,
+      "sha256": "673445a29e3b1208cd14c8a3786068904cc377271741626bf8a7ee63cc9c8163"
+    },
+    "src/rcominote/experiments/dual_audit.py": {
+      "bytes": 13776,
+      "sha256": "13cb34c7eea1aadc37c09c5023993e7cb04c84dfdf05034dcf924fa1cff09f9d"
+    },
+    "src/rcominote/experiments/dual_hci.py": {
+      "bytes": 3806,
+      "sha256": "1c4978a0493ecbdb3b56d9580589ba4c2bda51722cfa897500904f98a7ba5f3b"
+    },
+    "src/rcominote/experiments/sd_nor_targets.py": {
+      "bytes": 7445,
+      "sha256": "176f60c522839afa584b4e4371f819f7181e9b87498663a68afda58591cdc358"
+    },
+    "src/rcominote/experiments/hci_interval.py": {
+      "bytes": 8425,
+      "sha256": "3120e3939d38185861259b3ca61772fcbe81cb1682b2921e1f92203009d282d9"
+    }
+  },
+  "session": {
+    "connections": 1,
+    "owned_handle": 2048,
+    "hci_capture": {
+      "bytes": 17460,
+      "sha256": "fec7195c55d2df3ebe583a08357e54881e89f5115c5faa49ab6cab10284050ff",
+      "records": 224
+    },
+    "att_binding": {
+      "verified": true,
+      "packets": 150,
+      "comparison": "exact within each direction"
+    },
+    "gatt_cccd_proof": "One real initial discovery/subscription sequence; both operations reference it, no copied prefix",
+    "initial_identity_att_span": [
+      34,
+      40
+    ],
+    "final_identity_att_span": [
+      144,
+      150
+    ],
+    "monitor_stop": {
+      "signal": "SIGINT",
+      "requested": true,
+      "delivery": "sent"
+    },
+    "monitor_exit": 0,
+    "final_state_verification": {
+      "other_state_equal": true,
+      "free_capacity_unit": "MiB (integer firmware report)",
+      "free_capacity_before": 59592,
+      "free_capacity_after": 59592,
+      "free_capacity_decrease": 0,
+      "allowed_decrease": 0
+    }
+  },
+  "interval": {
+    "policy": "First Actions before update; interval6/CE1 through both downloads, second Actions and barriers",
+    "baseline_ms": 45,
+    "applied_ms": 7.5,
+    "latency": 0,
+    "supervision_timeout_ms": 5000,
+    "ce_length_hints": [
+      1,
+      1
+    ],
+    "events": [
+      {
+        "kind": "connect",
+        "status": 0,
+        "handle": 2048,
+        "role": 0,
+        "address_type": 0,
+        "address": "50:C0:F0:AE:7C:0E",
+        "interval": 36,
+        "latency": 0,
+        "timeout": 500,
+        "record": 18,
+        "timestamp_us": 63960191835730948
+      },
+      {
+        "handle": 2048,
+        "min": 6,
+        "max": 6,
+        "latency": 0,
+        "timeout": 500,
+        "min_length": 1,
+        "max_length": 1,
+        "kind": "request",
+        "record": 126,
+        "timestamp_us": 63960191838712784
+      },
+      {
+        "kind": "status",
+        "status": 0,
+        "record": 127,
+        "timestamp_us": 63960191838713974
+      },
+      {
+        "kind": "update",
+        "status": 0,
+        "handle": 2048,
+        "interval": 6,
+        "latency": 0,
+        "timeout": 500,
+        "record": 128,
+        "timestamp_us": 63960191839055999
+      }
+    ]
+  },
+  "timing": {
+    "clock": "Actual btsnoop microseconds, including btsnoop epoch; not host authentication/start time",
+    "observed_active_span": {
+      "start_us": 63960191835730948,
+      "end_us": 63960191839800451,
+      "elapsed_us": 4069503,
+      "end_reason": "Final owned ATT response; no Disconnect Complete retained"
+    },
+    "workload_first_prepare_through_final_identity": {
+      "start_us": 63960191838023471,
+      "end_us": 63960191839800451,
+      "elapsed_us": 1776980
+    }
+  },
+  "operations": [
+    {
+      "phase": "boot",
+      "nor_offset": 0,
+      "ok": true,
+      "actions": {
+        "acks": 5,
+        "f1": true,
+        "pending_bytes": 0,
+        "att_span": [
+          55,
+          71
+        ]
+      },
+      "download": {
+        "bytes": 4096,
+        "sha256": "a2f7c04b495717e5b851f911f6dbf24471dfbde567c8124da65eb8c9e43b446d",
+        "size_declared": true,
+        "explicit_end": true,
+        "att_span": [
+          71,
+          94
+        ],
+        "wire_timing": {
+          "start_us": 63960191839061459,
+          "end_us": 63960191839242451,
+          "elapsed_us": 180992
+        }
+      },
+      "known_sector": {
+        "bytes": 512,
+        "sha256": "72952b98341a3089765c6cc8dd35ddc93ae699698d1455ce74dea1071cc277ec",
+        "oracle_exact": true
+      },
+      "post_identity_att_span": [
+        94,
+        100
+      ],
+      "state_verification": {
+        "other_state_equal": true,
+        "free_capacity_unit": "MiB (integer firmware report)",
+        "free_capacity_before": 59592,
+        "free_capacity_after": 59592,
+        "free_capacity_decrease": 0,
+        "allowed_decrease": 1
+      },
+      "checkpoint": {
+        "bytes": 30042,
+        "sha256": "e87d6c4a20e57acc2af28e94192e182347cf2d175a21a3f536d2e3423408688a"
+      }
+    },
+    {
+      "phase": "recovery-block1",
+      "nor_offset": 16896,
+      "ok": true,
+      "actions": {
+        "acks": 5,
+        "f1": true,
+        "pending_bytes": 0,
+        "att_span": [
+          100,
+          116
+        ]
+      },
+      "download": {
+        "bytes": 4096,
+        "sha256": "3885e602db1826a32c316fece2c2ca3076e9a9e33d0fcb2fb0d59de56bb242cf",
+        "size_declared": true,
+        "explicit_end": true,
+        "att_span": [
+          116,
+          138
+        ],
+        "wire_timing": {
+          "start_us": 63960191839530594,
+          "end_us": 63960191839710455,
+          "elapsed_us": 179861
+        }
+      },
+      "known_sector": {
+        "bytes": 512,
+        "sha256": "51327e9d7a7d8d4c3538c83688753b5f99735b85e981756effb63efd1dc33713",
+        "oracle_exact": true
+      },
+      "post_identity_att_span": [
+        138,
+        144
+      ],
+      "state_verification": {
+        "other_state_equal": true,
+        "free_capacity_unit": "MiB (integer firmware report)",
+        "free_capacity_before": 59592,
+        "free_capacity_after": 59592,
+        "free_capacity_decrease": 0,
+        "allowed_decrease": 1
+      },
+      "checkpoint": {
+        "bytes": 48898,
+        "sha256": "a2b9d47ebaf81be52106bde8720c6e7fc66a6bb114fa3d056c4a4d04eb42ab1e"
+      }
+    }
+  ],
+  "independent_private_replay": {
+    "verified": true,
+    "connections": 1,
+    "targets": [
+      0,
+      16896
+    ],
+    "att_all_bytes_exact_within_each_direction": true,
+    "both_actions_complete": true,
+    "both_downloads_complete": true,
+    "both_sectors_match_existing_oracles": true,
+    "identity_barriers_redecoded_from_wire": true
+  },
+  "residue": {
+    "new_confirmed_scratch_files": 2,
+    "cumulative_confirmed_scratch_files": 50,
+    "earlier_possible_unknown_scratch_files": 1,
+    "cumulative_upper_bound": 51,
+    "policy": "Retained, no deletion; audio-list visibility is not evidence of scratch absence"
+  },
+  "limitations": [
+    "Compact public status does not replay private ATT/HCI/data or prove uniqueness from selected event metadata.",
+    "Checkpoint is an immediate session-prefix snapshot, not independently finalized HCI audit.",
+    "4096-byte downloads contain a printk ring; fixed producer/marker/hex-row parsing recovers each known512-byte NOR sector. Ring bytes are not raw NOR bytes; full rings remain private.",
+    "Two already-known sectors, one trial: no new raw coverage, unknown-address, bulk, general reliability or causal interval claim.",
+    "First Actions precedes the update. Requested CE hints do not measure actual event duration.",
+    "Observed active span ends at final ATT, not a captured disconnect."
+  ]
+}

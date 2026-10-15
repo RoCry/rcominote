@@ -114,15 +114,17 @@ async def short_read(send, stream: Stream, report: dict) -> None:
         await text("kernel version")
 
 
-async def capture(report: dict, *, read_short: bool = False) -> None:
+async def capture(report: dict, *, read_short: bool = False, small_mtu: bool = False) -> None:
     if sys.platform != "linux":
         raise RuntimeError("Direct LE experiment requires Linux; no device access attempted")
     if read_short:
         guard_bytes()  # Reject a changed oracle before any device access.
     device = await find_device(serial=OWNED_SERIAL, seconds=10)
     report["address"] = device.address
-    async with AttLink(device.address, report) as link:
-        await link.request(bytes.fromhex("02f700"), 0x03)
+    local_mtu = 128 if small_mtu else 247
+    report["local_mtu"] = local_mtu
+    async with AttLink(device.address, report, local_mtu=local_mtu) as link:
+        await link.request(b"\x02" + local_mtu.to_bytes(2, "little"), 0x03)
         write, notify, cccd = await discover(link, report)
         await link.request(b"\x12" + struct.pack("<HH", cccd, 1), 0x13)
         stream = Stream()
@@ -193,7 +195,11 @@ async def capture(report: dict, *, read_short: bool = False) -> None:
         )
 
 
-def main(out: Path, read_short: bool = typer.Option(False, "--short-read")):
+def main(
+    out: Path,
+    read_short: bool = typer.Option(False, "--short-read"),
+    small_mtu: bool = typer.Option(False, "--small-mtu"),
+):
     new_output(out)
     report = {
         "serial": OWNED_SERIAL,
@@ -206,7 +212,7 @@ def main(out: Path, read_short: bool = typer.Option(False, "--short-read")):
         ),
     }
     try:
-        asyncio.run(capture(report, read_short=read_short))
+        asyncio.run(capture(report, read_short=read_short, small_mtu=small_mtu))
         report["ok"] = True
     except BaseException as error:
         report["error"] = f"{type(error).__name__}: {error}"

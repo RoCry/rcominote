@@ -1,0 +1,268 @@
+{
+  "scope": "Pinned owned CoMi Linux MTU128 ATT/HCI comparison; offline verification, no dropped-byte reconstruction",
+  "sources": {
+    "report.json": {
+      "bytes": 11935,
+      "sha256": "c9ca29c3d096367851c50f8f646e35b043e7579fac00533f39103b476f2141d6"
+    },
+    "after.json": {
+      "bytes": 521,
+      "sha256": "50722dbf1e51f0290c58fd78ec7e166e5432799c8db42688f92c8030bb608195"
+    },
+    "session.btsnoop": {
+      "bytes": 8295,
+      "sha256": "8fd163278d3c5bae3c2331aa79ef4c3991ccdad3deb1e9afc04ed5cf44136427"
+    },
+    "session.btmon.txt": {
+      "bytes": 70624,
+      "sha256": "dc9bafdc15c237c8765f54cfea0f77a569b846fb01d8456d852fb223e68c7ba4"
+    },
+    "live-board-check-20261013-before.json": {
+      "bytes": 521,
+      "sha256": "50722dbf1e51f0290c58fd78ec7e166e5432799c8db42688f92c8030bb608195"
+    }
+  },
+  "connection": {
+    "monitor_records": 172,
+    "index": 0,
+    "connection_handle": 2048,
+    "connection_record": 77,
+    "disconnect_record": 171,
+    "reported_drops": 0,
+    "truncated_records": 0,
+    "reassembled_l2cap_record_groups": [
+      [
+        104,
+        105
+      ]
+    ]
+  },
+  "mtu_exchange": [
+    {
+      "direction": "tx",
+      "hex": "028000",
+      "hci_records": [
+        83
+      ]
+    },
+    {
+      "direction": "rx",
+      "hex": "03f700",
+      "hci_records": [
+        85
+      ]
+    },
+    {
+      "direction": "rx",
+      "hex": "02f700",
+      "hci_records": [
+        89
+      ]
+    },
+    {
+      "direction": "tx",
+      "hex": "038000",
+      "hci_records": [
+        90
+      ]
+    }
+  ],
+  "effective_att_mtu": 128,
+  "notification_value_limit": 125,
+  "all_owned_hci_att_pdus_equal_socket_trace": true,
+  "all14_actions_hci_notifications_equal_socket_values": true,
+  "owned_actions_hci_notifications": [
+    {
+      "hex": "1d108107007f0400a0860100",
+      "hci_records": [
+        115
+      ]
+    },
+    {
+      "hex": "1d108107007f0400a0860100",
+      "hci_records": [
+        121
+      ]
+    },
+    {
+      "hex": "1d108107007f0400a0860100",
+      "hci_records": [
+        125
+      ]
+    },
+    {
+      "hex": "1d108107007f0400a0860100",
+      "hci_records": [
+        129
+      ]
+    },
+    {
+      "hex": "1d108107007f0400a0860100",
+      "hci_records": [
+        133
+      ]
+    },
+    {
+      "hex": "1d108107007f0400a0860100",
+      "hci_records": [
+        137
+      ]
+    },
+    {
+      "hex": "1d108107007f0400a0860100",
+      "hci_records": [
+        141
+      ]
+    },
+    {
+      "hex": "1d108107007f0400a0860100",
+      "hci_records": [
+        145
+      ]
+    },
+    {
+      "hex": "1df081fb0100f8015b6c6f677372765d5b495d5b3634325d3a206c6f677372763a20636f646520307832300a0d0a000d0a31303030616234303a203565203334203864206638203132203330203934206638203730203334206264206638203030203230203864206638202020205e342e2e2e302e2e70342e2e2e202e",
+      "hci_records": [
+        146
+      ]
+    },
+    {
+      "hex": "2e0d0a5b6c6f677372765d5b495d5b3637395d3a206c6f677372763a20636d642831392920646267206d64622031303030616234302031300d0a0a0d0a5a65706879722076657273696f6e20322e372e300d0a5b6c6f677372765d5b495d5b3637395d3a206c6f677372763a20636d6428313429206b65726e656c2076",
+      "hci_records": [
+        148
+      ]
+    },
+    {
+      "hex": "206c6f677372763a20636d6428313429206b65726e656c2076657273696f6e0d0a0a0d0a5a65706879722076657273696f6e20322e372e300d0a5b6c6f677372765d5b495d5b3637395d3a206c6f677372763a20636d6428313429206b65726e656c2076657273696f6e0d0a0a0d0a5a65706879722076657273696f6e",
+      "hci_records": [
+        149
+      ]
+    },
+    {
+      "hex": "20322e372e300d0a5b6c6f67",
+      "hci_records": [
+        150
+      ]
+    },
+    {
+      "hex": "1df0813200002f007372765d5b495d5b3637395d3a206c6f677372763a20636d6428313429206b65726e656c2076657273696f6e0d0a0a",
+      "hci_records": [
+        152
+      ]
+    },
+    {
+      "hex": "1d108107007f0400a0860100",
+      "hci_records": [
+        154
+      ]
+    }
+  ],
+  "owned_actions_hci_write_requests": [
+    {
+      "hex": "1d108105000002000100",
+      "hci_records": [
+        112
+      ]
+    },
+    {
+      "hex": "1d108105000002002000",
+      "hci_records": [
+        116
+      ]
+    },
+    {
+      "hex": "1d10811600011300646267206d6462203130303061623430203130",
+      "hci_records": [
+        122
+      ]
+    },
+    {
+      "hex": "1d10811100010e006b65726e656c2076657273696f6e",
+      "hci_records": [
+        126
+      ]
+    },
+    {
+      "hex": "1d10811100010e006b65726e656c2076657273696f6e",
+      "hci_records": [
+        130
+      ]
+    },
+    {
+      "hex": "1d10811100010e006b65726e656c2076657273696f6e",
+      "hci_records": [
+        134
+      ]
+    },
+    {
+      "hex": "1d10811100010e006b65726e656c2076657273696f6e",
+      "hci_records": [
+        138
+      ]
+    },
+    {
+      "hex": "1d10811100010e006b65726e656c2076657273696f6e",
+      "hci_records": [
+        142
+      ]
+    },
+    {
+      "hex": "1d10811100010e006b65726e656c2076657273696f6e",
+      "hci_records": [
+        147
+      ]
+    }
+  ],
+  "incomplete_first_f0": {
+    "declared_total_bytes": 512,
+    "observed_value_lengths": [
+      125,
+      125,
+      125,
+      12
+    ],
+    "observed_total_bytes": 387,
+    "deficit_before_next_independent_frame": 125,
+    "next_independent_frame_bytes": 55,
+    "missing_byte_position_known": false,
+    "reconstructed": false
+  },
+  "commands": {
+    "wire_actions_write_requests": 9,
+    "intent_list_entries": 10,
+    "mapped_read": "dbg mdb 1000ab40 10",
+    "kernel_version_fillers": 6,
+    "gpio_nor_sd_recording_write_commands_on_wire": false,
+    "verified_by": "Exact ordered allowlist of every owned application ATT write, plus CCCD enable only"
+  },
+  "cleanup": {
+    "stop_in_intent_list": true,
+    "stop_att_write_request_observed": false,
+    "stop_hci_write_request_observed": false,
+    "stop_sent_successfully": false,
+    "capture_error": "TimeoutError: ",
+    "stop_error": "ConnectionError: ATT link unusable: ",
+    "reason": "Capture timeout invalidated/closed ATT link; STOP attempt failed before wire send",
+    "raw_ack_notifications": 9,
+    "strict_decoded_ack_frames": 8,
+    "f1_end_observed": false,
+    "strict_session_success": false
+  },
+  "info": {
+    "before_after_entire_json_equal": true,
+    "raw52_hex": "0000e8f20000e8ce0264000100040101ff78696e6b5f746573740000000000000000000000000009ff0300010000000000000000",
+    "raw52_sha256": "730d9c259459be46ddadfe5ecf038a87bea9370556f05777c786f667230e254e",
+    "recording_state": "idle",
+    "firmware_version": "010004"
+  },
+  "experiment_ok": false,
+  "comparison_verified": true,
+  "limits": [
+    "Fixed pinned capture/profile only; full Linux monitor/text include unrelated devices and remain ignored",
+    "Only actual ACL fragmentation is reassembled; missing Actions chunks are never synthesized or repaired",
+    "Zero reported monitor drops does not prove controller/logger completeness or establish over-the-air loss",
+    "125-byte deficit does not establish its offset, missing packet count, or device-side root cause",
+    "STOP in report writes records intent; absence from both socket/HCI excludes successful on-wire cleanup",
+    "Unchanged full device info/idle state does not establish all internal state or independent hardware recovery"
+  ]
+}

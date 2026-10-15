@@ -96,3 +96,54 @@ executing installer code.
 Follow-up: [LARK retained M4 artifacts](lark-helper-candidate.md) select01010000 and include a different in-image NOR driver. UART/USB initialization comparisons are complete within their static scope; unchanged init is not a read-only backup route. Do not restart that audit.
 
 2026-10-13: [default production generation](production-package-contract.md) separates outer ACTTEST0, inner maker, raw and AOTA outputs. Default include selects fw_product rather than the legacy fw_maker_ext/mp_usb configuration; neither supplies a CoMi chip-to-host mapping. Prioritize the matching final production directory and effective configuration before another generic host/helper investigation.
+
+## 2026-10-13: recovered maker host, conditional default now identified
+
+[Sample recovery](production-package-contract.md#随包样例43个文件已恢复但不是comi恢复包) supplied actual `Launch.pyo`, `Upgrade.pyd`, `usb_operate.pyd` and `usb_switch.pyd`.
+[Static selection/packet evidence](evidence/host-maker-selection-2026-10-13.json) and [18 raw regions](evidence/host-maker-regions-2026-10-13.json) bind five file hashes. Ghidra inference checked against Cython string globals, constants, register calling conventions and disassembly. No module imported, DLL loaded, driver installed or device contacted.
+
+**New result: this USB class chooses CClassical when explicitly given the held Hardware_C/HardwareEx pair. No recovered caller selects that class or DLL pair for CoMi.**
+
+| Edge | Observed static behavior | Limit |
+|---|---|---|
+| `Launch.ProductionThread → UpgradeFW` | Forwards `port`; UpgradeFW immediately reads `port.sdk_reliable` | `port` is an already-constructed transport object. Launch does not choose USB/UART from a name |
+| `USBDevice(usb_port, log, usb_dll)` | All three constructor arguments required; index0, connectionFalse, connect_typeUSB, sdk_reliableFalse | `Hardware_C.dll` string alone does not establish the supplied DLL path; an already-set usb_op bypasses loading |
+| `open_port@10009600` | Calls `Py_ADFU_Enum()` with no arguments; parses numeric index after ADFU/USB in usb_port; calls `Py_ADFU_Open(index)` | Rejects enum==0 and handle==-1 specifically; do not infer stronger error validation |
+| Held DLL `Py_ADFU_Open@10001e00` | `GetDeviceInfo`, then `CCommUSB(0)`, then Open | Constructor family0 is separate from the device-info type passed into Open |
+| Held `HardwareEx` family0 | Dispatch1000e93c → constructor10001020 → vtable10023b74 → RTTI `CClassical` | Host implementation name, not a chip mapping or measured CoMi transport |
+| `connect_com@10005780` | Returns Python True without I/O | Calling this method cannot prove a working connection |
+
+The recovered `usb_switch.ExtCmdParam(subcode,length,addr,cmd,log)` body@10003340 zeroes a31-byte buffer, then builds:
+
+| Offset | Bytes | Value |
+|---|---|---|
+| 0 | 4 | `55 53 42 43` (`USBC`) |
+| 4 | 4 | zero tag |
+| 8 | 4 | length, LE32 on this x86 module |
+| 12 | 2 | zero flags/LUN |
+| 14 | 1 | `10` |
+| 15 | 1 | `cd` |
+| 16 | 1 | subcode |
+| 20 | 4 | same length |
+| 24 | 4 | address via c_uint32 |
+| other | — | zero |
+
+`adfu_protocol_switch@10005960` builds subcode13 with `sizeof(adfus_data)`/download_addr, writes command and helper, reads13 bytes; then builds subcode20 with length0/run_addr, writes command, reads13 bytes, returnsTrue.
+This function discards write/read results and does not inspect CSW signature/tag/residue/status or short reads; exceptions propagate. Lower transport may impose checks outside this slice. **True is not evidence of accepted upload or successful execution.**
+
+Packet construction independently supports the 13/20 portion of the older MSC-style host reference in [transport distinctions](recovery-transport.md). It establishes neither CoMi ROM acceptance/endpoints/authentication nor arbitrary flash readback.
+The reference sample still has empty chip/board/USB selection tables and a different2MiB layout. Next decisive evidence remains a matched production package/caller and observed download-mode USB descriptors, plus verified data wiring and independent exit.
+
+Reproduce the held DLL extraction without Windows/MSI execution:
+
+```sh
+uv run tools/extract_host_reference.py \
+  "$HOME/w/_tmp/lv_port_actions_technology/tools/config_tool.rar" \
+  artifacts/host-reference-NEW
+objdump -d -Mintel --start-address=0x10001e00 --stop-address=0x10001f10 \
+  artifacts/host-reference-NEW/Hardware_C.dll
+```
+
+Extractor verifies original RAR, English CAB and both DLL hashes before writing a new directory. CAB members recovered by exact identifiers; no installer launched. Full Ghidra outputs/reproduction scripts remain under ignored `artifacts/flashing-route-20261013/astra/`; public raw ranges permit independent byte/disassembly checks.
+
+Later [official tester/DUT packages](actions-official-tester-2026-10-13.md) each supplied29 host files. Only c_math_lib matches across both and the old sample; tester Upgrade/usb_operate/usb_switch identify a different Cython build. The CClassical selection above remains bound to the old sample plus explicitly supplied DLL pair; it is not automatically inherited by the newly acquired modules. New package board identity is ATS3085C tester, not CoMi.

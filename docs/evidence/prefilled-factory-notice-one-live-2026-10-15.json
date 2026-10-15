@@ -1,0 +1,234 @@
+{
+  "schema": "fixed-prefilled-factory-notice-startup-failed-receipt-v1",
+  "date": "2026-10-15",
+  "date_timezone": "Asia/Hong_Kong",
+  "capture_utc_date": "2026-10-14",
+  "outcome": "Original single1ecc00 whole failed at legacyFAST startup classification; no transfer/write or newgap execution",
+  "references": {
+    "job_report": {
+      "file": "artifacts/prefilled-factory-notice-one-20261015/report.json",
+      "bytes": 692,
+      "sha256": "cd342e8f91b1efcedb4fa8322553ff5070f8dbbb3d4b9798c43e1af6b2f56ae3"
+    },
+    "plan": {
+      "file": "artifacts/prefilled-factory-notice-one-20261015/plan.json",
+      "bytes": 8048,
+      "sha256": "31aa34bcfa141d258f36366cb27735bffd5bfc4e372c253c1a3e9f6ed66e00b9"
+    },
+    "page_report": {
+      "file": "artifacts/prefilled-factory-notice-one-20261015/page0-1ecc00/report.json",
+      "bytes": 15177,
+      "sha256": "cd42f081c4b208c8c860856f89cd28d917a0df05b8a8e394a3b357919f557d23"
+    },
+    "hci": {
+      "file": "artifacts/prefilled-factory-notice-one-20261015/page0-1ecc00/session.btsnoop",
+      "bytes": 5123,
+      "sha256": "0430812dfff8e9a52da0546e5194d20728e82b384a3403926da7a82728118076"
+    },
+    "source_manifest": {
+      "file": "artifacts/prefilled-factory-notice-one-20261015/source-snapshot/manifest.json",
+      "bytes": 49746,
+      "sha256": "dd58df82ee91e6f4807df2f372b1609eff8b86d5e13bd744aa0125e108966669"
+    },
+    "preflight_review": {
+      "file": "artifacts/prefilled-factory-notice-one-20261015/preflight-review.json",
+      "bytes": 1598,
+      "sha256": "581092e63f075651f12e64c1e236eceed7d9e4b038dc06c290323654ae4861ba"
+    },
+    "sanitized_root_replay": {
+      "file": "artifacts/prefilled-factory-notice-one-20261015/sanitized-root-replay.json",
+      "bytes": 1299,
+      "sha256": "ecafe380de305004c02a694f25a3869f4167edfaf9ad04d738984d6a7f54de97"
+    },
+    "notice_ownership_checkpoint": {
+      "file": "artifacts/prefilled-factory-notice-checkpoint-20261015/checkpoint.json",
+      "bytes": 11315,
+      "sha256": "5eb25bddf858cc4453e692470114048da81c7811153d2fab36f2d16ea894f21b"
+    },
+    "checks_before": {
+      "file": "artifacts/prefilled-factory-notice-preflight-20261015/checks-before.json",
+      "bytes": 38064,
+      "sha256": "8d0e3facc2033b3fc7176f00d84f9a200ee173b02bee0249f91cc92002c9ea78"
+    },
+    "checks_after": {
+      "file": "artifacts/prefilled-factory-notice-preflight-20261015/checks-after.json",
+      "bytes": 38064,
+      "sha256": "8d0e3facc2033b3fc7176f00d84f9a200ee173b02bee0249f91cc92002c9ea78"
+    },
+    "just_check_log": {
+      "file": "artifacts/prefilled-factory-notice-preflight-20261015/just-check.log",
+      "bytes": 3207,
+      "sha256": "332ab58d8b9ac1796d435d6d0838ad75fcc424faad620a093312d0d88e537f83"
+    },
+    "build_log": {
+      "file": "artifacts/prefilled-factory-notice-preflight-20261015/uv-build.log",
+      "bytes": 179,
+      "sha256": "937bcf6f77f21fd510d0bc6ebfcac53235c976fc096e61be3a67efeb891e959c"
+    }
+  },
+  "source": {
+    "source_files": 151,
+    "test_files": 138,
+    "snapshot_files": 289,
+    "snapshot_and_isolated_all_lengths_hashes_equal": true,
+    "isolated_source": "/home/rocry/w/_tmp/rcominote-prefilled-notice-frozen-20261015",
+    "fresh_preIO_checks": "2745tests+159subtests48.62s/347formatlint/build",
+    "declared_check_inputs_before_equal_after": 353,
+    "new_full_check_run": true,
+    "independent_snapshot_modules": 104,
+    "later_current_source_checks_claimed": false
+  },
+  "chronology": {
+    "manifest_created_at": "2026-10-14T18:11:11.256548+00:00",
+    "checkpoint_created_at": "2026-10-14T18:11:29.460591+00:00",
+    "planned_at": "2026-10-14T18:11:30.181168+00:00",
+    "whole_started_at": "2026-10-14T18:12:53.718677+00:00",
+    "page_started_at": "2026-10-14T18:12:58.973261+00:00",
+    "actual_final_identity_response_at": "2026-10-14T18:13:06.952796+00:00",
+    "page_ended_at": "2026-10-14T18:13:09.027036+00:00",
+    "whole_ended_at": "2026-10-14T18:13:09.027473+00:00",
+    "time_fields_not_interchanged": true
+  },
+  "offline_checkpoint": {
+    "device_io": 0,
+    "new_raw_nor_coverage_bytes": 0,
+    "original_NEXT3_job_and_content_false_retained": true,
+    "original_NEXT3_nine_transaction_communication_replayed": true,
+    "original_three_gap_content_error_reproduced": true,
+    "owned_SD_object_bytes": 4096,
+    "free_capacity": 59589,
+    "historical_reserved_names": 70,
+    "resident_printk_ring_unchanged_assumed": false,
+    "checkpoint_does_not_claim_fresh_live_baseline_this_trial": true,
+    "checkpoint_ASOF_output_unchanged": true
+  },
+  "fixed_plan": {
+    "physical_offset": "0x1ecc00",
+    "gap_policy": "prefill-exact-four-layouts-wake-lock-zero-v3",
+    "content_policy": "all-critical-chain-bytes-in-difference-prefix-v2",
+    "target_wake_gap_policy_reached": false,
+    "planned_connections": 1,
+    "planned_downloads": 5,
+    "planned_RAM_exports": 2,
+    "planned_NOR_producers": 2,
+    "planned_samefile_overwrites": 4,
+    "planned_parameter_transactions": 15,
+    "planned_max_new_raw_bytes": 512,
+    "actual_new_raw_bytes": 0,
+    "no_automatic_retry_or_extension": true
+  },
+  "original_failure": {
+    "whole_ok": false,
+    "completed_pairs": 0,
+    "page_ok": false,
+    "error": "ValueError: Startup tuple is outside its explicit FAST/DEFAULT policy",
+    "capture_error": "ValueError: Startup tuple is outside its explicit FAST/DEFAULT policy",
+    "error_role": "startup policy classification before baseline start",
+    "original_startup_policy": "startup-remote-fast-only",
+    "original_startup_settlement_and_classification_not_saved": true,
+    "original_failed_replay_and_parent_gate_reject": true,
+    "baseline_and_four_stages_exact_untouched_slots": true,
+    "no_stage_started_at_or_attempt_flags": true,
+    "all_five_stage_directories_empty": true,
+    "no_new_content_parse_or_oracle_comparison": true
+  },
+  "actual_communication": {
+    "att_packets": 61,
+    "hci_records": 123,
+    "hci_bytes": 5123,
+    "complete_parameter_transactions": 1,
+    "pending_parameter_transactions": 0,
+    "status_events": 0,
+    "actual_complete_remote_request": [
+      24,
+      40,
+      0,
+      500
+    ],
+    "actual_applied_interval": 36,
+    "default_classification_is_diagnostic_explicit_broad_policy_only": true,
+    "original_legacyFAST_rejection_reproduced": true,
+    "no_actual_FAST_or_host_normalization": true,
+    "setup_end": 34,
+    "before_span": [
+      34,
+      40
+    ],
+    "file_list_span": [
+      40,
+      55
+    ],
+    "after_span": [
+      55,
+      61
+    ],
+    "full_GATT_host_ATT_HCI_binding": true,
+    "all_application_ATT_partitioned_into_identity_inventory_identity": true,
+    "normal_disconnect_reason": "0x16",
+    "normal_disconnect_record": 122,
+    "disconnect_after_final_ATT_within_bounded_close": true
+  },
+  "actual_state": {
+    "before_equals_after_equals_expected_checkpoint_state": true,
+    "firmware_version": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "bound": false,
+    "charging": true,
+    "battery_percent": 100,
+    "free_capacity": 59589,
+    "current_owned_SD_object_freshly_verified": false,
+    "no_live_baseline_download": true,
+    "last_verified_owned_object_provenance": "NEXT3 failedfirst via formal host-only notice checkpoint; thistrial0SDwrites",
+    "owned_SD_unchanged_by_this_trial": true
+  },
+  "actual_budget": {
+    "connections": 1,
+    "identity_reads": 2,
+    "file_inventory_reads": 1,
+    "downloads": 0,
+    "Actions_commands": 0,
+    "RAM_exports": 0,
+    "NOR_producers": 0,
+    "SD_writes": 0,
+    "NOR_writes": 0,
+    "new_files": 0,
+    "deletes": 0,
+    "new_raw_NOR_coverage_bytes": 0
+  },
+  "history_and_coverage": {
+    "checkpoint_reserved_names_ASOF": 70,
+    "new_planned_unsent_NOR_names": 2,
+    "future_reserved_nonce_history": 72,
+    "reserved_history_not_observed_producer_count": true,
+    "scratch_cohort_confirmed": 70,
+    "scratch_cohort_old_declared": 1,
+    "scratch_cohort_historical_possible": 1,
+    "scratch_cohort_upper_bound": 72,
+    "cohort_upper_bound_distinct_from_reserved_nonce_history": true,
+    "strong_A_bytes": 44304,
+    "historical_B_bytes": 155204,
+    "potential_available_bytes": 199508,
+    "factory_complete_pair_bytes": 3072,
+    "factory_missing_bytes": 5120,
+    "system_contiguous_raw_bytes": 6144,
+    "system_physical_range": [
+      "0x24000",
+      "0x25800"
+    ]
+  },
+  "future_boundary": {
+    "all_live_trials_and_new_plans_stopped_after_terminal": true,
+    "host_design_needed": "Explicit DEFAULT admission then actual FAST settlement before baseline; include all72reserved names",
+    "reconnect_until_FAST_or_relax_old_failed_policy_not_authorized": true,
+    "no_new_checkpoint_created_from_this_failure": true,
+    "new_wake_gap_radio_validation_not_established": true
+  },
+  "privacy_and_limits": {
+    "factory_carrier_sector_content_bytes_hashes_hex_and_nonces_withheld": true,
+    "metadata_only_no_public_binary": true,
+    "old_receipts_captures_and_checkpoints_unchanged": true,
+    "no_hardware_NOR_read_failure_inferred": true,
+    "full_4MiB_backup_restore_own_runtime_incomplete": true
+  }
+}

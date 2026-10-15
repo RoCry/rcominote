@@ -1,0 +1,117 @@
+{
+  "schema": "rcominote.sd-interval-live.v1",
+  "date_local": "2026-10-14",
+  "image": {"file": "minimal-image-2026-10-13/original-system.bin.gz", "bytes": 927632, "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f", "ram_oracle_offset": 906496, "ram_oracle_bytes": 4096, "ram_oracle_sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b"},
+  "parser_sources": {"src/rcominote/experiments/hci_interval.py": "3120e3939d38185861259b3ca61772fcbe81cb1682b2921e1f92203009d282d9", "src/rcominote/protocol.py": "9c8c55fff945202dbf6efb06be03026779eb023fdae94c3c5f5357e0a6ac1db2", "tools/verify_linux_mtu128.py": "5ba78792093c295e4333e606fe35260ce6ee2390e4cc5378f7c1cab1eb6ec209", "tools/verify_sd_bootstrap.py": "562a9609aa1800d06c4822c87aa743d4a925b32b3157ecd831104fb61de9170b"},
+  "parent": {
+    "source_report": {"file": "artifacts/live-sd-bootstrap-20261013/report.json", "bytes": 9787, "sha256": "a76e99224ef2482f8749f1a4d7036774cd9eda761171ff5cd97c7ae83ffbd8a9"},
+    "original_ok": false,
+    "historical_download_error": "RuntimeError: Short download: 3852/4096 bytes",
+    "test_path": "/SD:/RECORDER/Call-rc6ae65544fe.mp3",
+    "dump_command": "dbg dumpbuf 402653184 4096 /SD:/RECORDER/Call-rc6ae65544fe.mp3",
+    "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0},
+    "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59598, "free_capacity_after": 59598, "free_capacity_decrease": 0, "allowed_decrease": 1},
+    "boundary": "OriginalRAMfilecreationActions/statecomplete;originalBoyi3852/4096failureisnotrewritten"
+  },
+  "offline_failure": {
+    "source_report": {"file": "artifacts/live-sd-interval6-20261014/report.json", "bytes": 1284, "sha256": "0abb053e37625d0c68b5f461054bb4f4d73888bb2fef1633d86987e7b1d5cdc9"},
+    "original_ok": false,
+    "device_io": false,
+    "update_attempted": false,
+    "sd_write_attempted": false,
+    "error": "ValueError: Expected one nonempty password line",
+    "reason": "stdinEOF beforeauthorization/capture;notactualdeviceattempt"
+  },
+  "experiment": {
+    "started_at": "2026-10-13T18:26:48.293601+00:00",
+    "ended_at": "2026-10-13T18:27:48.381200+00:00",
+    "link": {"handle": 2048, "local": "AC:19:8E:26:2B:F8", "peer": "50:C0:F0:AE:7C:0E", "controller": "hci0"},
+    "baseline": {"kind": "connect", "status": 0, "handle": 2048, "role": 0, "address_type": 0, "address": "50:C0:F0:AE:7C:0E", "interval": 36, "latency": 0, "timeout": 500, "record": 18, "timestamp_us": 63960172014337537},
+    "actual_hci_request": {"handle": 2048, "min": 6, "max": 6, "latency": 0, "timeout": 500, "min_length": 1, "max_length": 1, "kind": "request", "record": 77, "timestamp_us": 63960172015860890},
+    "applied": {"kind": "update", "status": 0, "handle": 2048, "interval": 6, "latency": 0, "timeout": 500, "record": 79, "timestamp_us": 63960172016204553},
+    "update_requested_us": 63960172015847942,
+    "download_start_us": 63960172016210745,
+    "download_end_us": 63960172016401664,
+    "full": {"offset": 0, "expected_bytes": 4096, "started_ns": 2976726200419060, "download_bytes": 4096, "transfer_complete": true, "exact_match": true, "received_bytes": 4096, "sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b", "ended_ns": 2976726390761569},
+    "condition": "verified-through-download",
+    "sd_write_attempted": false,
+    "hci_capture": {"bytes": 8554, "sha256": "da5319b1cc6c83fd48d8676046d68a00a04849c6a4abc951644cd6235635ef94", "records": 115},
+    "monitor_exit": 124,
+    "original_ok": true,
+    "source_directory": "artifacts/live-sd-interval6-20261014-b",
+    "source_report": {"file": "artifacts/live-sd-interval6-20261014-b/report.json", "bytes": 4101, "sha256": "fa0c07e18122186f62a969ad9fea491dc286adad0347dbee5f8bceb8ab2071ad"},
+    "source_hci": {"file": "artifacts/live-sd-interval6-20261014-b/session.btsnoop", "bytes": 8554, "sha256": "da5319b1cc6c83fd48d8676046d68a00a04849c6a4abc951644cd6235635ef94"},
+    "source_full": {"file": "artifacts/live-sd-interval6-20261014-b/full.bin", "bytes": 4096, "sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b"},
+    "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59593, "free_capacity_after": 59593, "free_capacity_decrease": 0, "allowed_decrease": 0}
+  },
+  "parameter_records": [
+    {
+      "record": 3,
+      "controller_index": 0,
+      "monitor_opcode": 0,
+      "timestamp_us": 63960172013378464,
+      "packet_hex": "0001f82b268e19ac6863693000000000",
+      "decoded": {"kind": "controller", "address": "AC:19:8E:26:2B:F8", "record": 3, "timestamp_us": 63960172013378464}
+    },
+    {
+      "record": 18,
+      "controller_index": 0,
+      "monitor_opcode": 3,
+      "timestamp_us": 63960172014337537,
+      "packet_hex": "3e1f0a00000800000e7caef0c05000000000000000000000000024000000f40100",
+      "decoded": {"kind": "connect", "status": 0, "handle": 2048, "role": 0, "address_type": 0, "address": "50:C0:F0:AE:7C:0E", "interval": 36, "latency": 0, "timeout": 500, "record": 18, "timestamp_us": 63960172014337537}
+    },
+    {
+      "record": 77,
+      "controller_index": 0,
+      "monitor_opcode": 2,
+      "timestamp_us": 63960172015860890,
+      "packet_hex": "13200e0008060006000000f40101000100",
+      "decoded": {"handle": 2048, "min": 6, "max": 6, "latency": 0, "timeout": 500, "min_length": 1, "max_length": 1, "kind": "request", "record": 77, "timestamp_us": 63960172015860890}
+    },
+    {
+      "record": 78,
+      "controller_index": 0,
+      "monitor_opcode": 3,
+      "timestamp_us": 63960172015861475,
+      "packet_hex": "0f0400011320",
+      "decoded": {"kind": "status", "status": 0, "record": 78, "timestamp_us": 63960172015861475}
+    },
+    {
+      "record": 79,
+      "controller_index": 0,
+      "monitor_opcode": 3,
+      "timestamp_us": 63960172016204553,
+      "packet_hex": "3e0a0300000806000000f401",
+      "decoded": {"kind": "update", "status": 0, "handle": 2048, "interval": 6, "latency": 0, "timeout": 500, "record": 79, "timestamp_us": 63960172016204553}
+    },
+    {
+      "record": 114,
+      "controller_index": 0,
+      "monitor_opcode": 3,
+      "timestamp_us": 63960172018499506,
+      "packet_hex": "050400000816",
+      "decoded": {"kind": "disconnect", "status": 0, "handle": 2048, "reason": 22, "record": 114, "timestamp_us": 63960172018499506}
+    }
+  ],
+  "owned_transfer": {
+    "notifications": 18,
+    "lengths": [244, 244, 24, 244, 244, 244, 244, 244, 244, 244, 244, 244, 244, 244, 244, 244, 244, 168],
+    "bytes": 4096,
+    "sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b",
+    "declaration_record": 83,
+    "end_record": 102,
+    "application_commands": [1, 2, 5, 11, 1, 2, 5],
+    "actions_commands": 0
+  },
+  "attempt_accounting": {"invocations": 2, "device_trials": 1, "offline_failures": 1, "retries_after_device_trial": 0},
+  "sd_residue": {"new_files": 0, "existing_file": "/SD:/RECORDER/Call-rc6ae65544fe.mp3", "deleted": 0},
+  "private_sources": {
+    "artifacts/live-sd-interval6-20261014-b/report.json": {"bytes": 4101, "sha256": "fa0c07e18122186f62a969ad9fea491dc286adad0347dbee5f8bceb8ab2071ad"},
+    "artifacts/live-sd-interval6-20261014-b/session.btsnoop": {"bytes": 8554, "sha256": "da5319b1cc6c83fd48d8676046d68a00a04849c6a4abc951644cd6235635ef94"},
+    "artifacts/live-sd-interval6-20261014-b/full.bin": {"bytes": 4096, "sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b"},
+    "artifacts/live-sd-interval6-20261014/report.json": {"bytes": 1284, "sha256": "0abb053e37625d0c68b5f461054bb4f4d73888bb2fef1633d86987e7b1d5cdc9"},
+    "artifacts/live-sd-bootstrap-20261013/report.json": {"bytes": 9787, "sha256": "a76e99224ef2482f8749f1a4d7036774cd9eda761171ff5cd97c7ae83ffbd8a9"}
+  },
+  "limits": ["Oneobservedinterval6/latency0/currenttimeout/CEhints1policytrial;notpureinterval-onlysinglevariablecomparison", "Baselineactually36units=45ms;no15msto7.5mscontrolledcomparisonwithhistoricalcaptures", "Publicminimal6eventbytes+fullsourcehashes+knownimageoracle;doesnotreplaycompleteprivateHCIorverifyglobalabsenceofotherupdatesalone", "Private mode replayscomplete115recordcapture,ownedHCI4096oracle/controlend/fullreportstate/parentActions;fullHCIandprivateinfo/reportnotpublished", "Cleanupdisconnectrecord114afterdownloadenddoesnotinvalidateprovedtransferwindow;doesnotestablishgeneralbulkdownloadreliability", "Historicalpartialtransfersunchanged;nojoining/repair/retry/newSDwrite/Actions/NORclaim"]
+}

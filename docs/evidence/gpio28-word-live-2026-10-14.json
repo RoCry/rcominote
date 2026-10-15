@@ -1,0 +1,236 @@
+{
+  "schema": "rcominote.gpio28-word-live.v1",
+  "date_local": "2026-10-14",
+  "serial": "C261CF0430",
+  "image": {"file": "minimal-image-2026-10-13/original-system.bin.gz", "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f"},
+  "prior_slot_bundle": {"file": "logsrv-slot-live-2026-10-14.json", "sha256": "8f00e34196d409df3ffd129f5863d9f2a1a0dcc003d20806ef770244b4d26006"},
+  "later_static_evidence": {"file": "gpio28-remux-static-2026-10-14.json", "sha256": "ffbb9eddde47d67a0e4ea7f773efd860f0f02d5df21993f4ac4e4dce88dd074c"},
+  "prior_guards_latest_end": "2026-10-13T17:10:59.139865+00:00",
+  "word_code_guards": [
+    {
+      "source_report": {"file": "artifacts/gpio28-word-live-20261014/mdw-wrapper/report.json", "bytes": 10184, "sha256": "6794bc7da3794e437881c9dd3ebacefa73a639434ed6ecdf4a64d05548c5b853"},
+      "started_at": "2026-10-13T17:24:23.140578+00:00",
+      "ended_at": "2026-10-13T17:24:42.423701+00:00",
+      "source_address": "0x100a18ee",
+      "source_bytes": 10,
+      "test_path": "/SD:/RECORDER/Call-rc62540dce05.mp3",
+      "original_ok": true,
+      "raw": {"file": "gpio28-word-live-2026-10-14/mdw-wrapper.bin", "bytes": 10, "sha256": "ef2254597ceef840444ac5ce10fec25ef9000ae85933091c6471da7c88f95e5d"},
+      "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0},
+      "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59595, "free_capacity_after": 59595, "free_capacity_decrease": 0, "allowed_decrease": 1},
+      "fields": null
+    },
+    {
+      "source_report": {"file": "artifacts/gpio28-word-live-20261014/mdw-load/report.json", "bytes": 10181, "sha256": "f6e83ff655404aedab95e93a0ff6c9f1cc88f41bfb9ebcedc605692aa2972989"},
+      "started_at": "2026-10-13T17:24:48.201578+00:00",
+      "ended_at": "2026-10-13T17:25:02.944351+00:00",
+      "source_address": "0x100251aa",
+      "source_bytes": 24,
+      "test_path": "/SD:/RECORDER/Call-rc448232856b.mp3",
+      "original_ok": true,
+      "raw": {"file": "gpio28-word-live-2026-10-14/mdw-load.bin", "bytes": 24, "sha256": "87d7998f04c81ecf3e7e980d5093f76e9eb93888ffe8ccca47915a933fcf58db"},
+      "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0},
+      "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59595, "free_capacity_after": 59595, "free_capacity_decrease": 0, "allowed_decrease": 1},
+      "fields": null
+    }
+  ],
+  "fresh_preflight": {
+    "pointer": {
+      "source_report": {"file": "artifacts/gpio28-word-live-20261014/pointer/report.json", "bytes": 11989, "sha256": "093c7c814d8ea04b094f1629a55da0b398247ccb17a9d6496f52fd2fe8acbc59"},
+      "started_at": "2026-10-13T17:26:15.888200+00:00",
+      "ended_at": "2026-10-13T17:26:31.414681+00:00",
+      "source_address": "0x1800a9ac",
+      "source_bytes": 4,
+      "test_path": "/SD:/RECORDER/Call-rcb22e558c49.mp3",
+      "original_ok": true,
+      "raw": {"file": "gpio28-word-live-2026-10-14/pointer.bin", "bytes": 4, "sha256": "bef3c9bd2822c533b9a289ba840911bb8fc9312f2b07a0326af9dbe10265f97d"},
+      "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0},
+      "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59595, "free_capacity_after": 59595, "free_capacity_decrease": 0, "allowed_decrease": 1},
+      "fields": {"pointer": "0x180111fc", "allocation_bound_bytes": 80}
+    },
+    "context": {
+      "source_report": {"file": "artifacts/gpio28-word-live-20261014/context/report.json", "bytes": 12516, "sha256": "35554651cda0072a72a20075e27f9a23e5c1e37f299657b6dfaab5252bad5473"},
+      "started_at": "2026-10-13T17:27:16.165790+00:00",
+      "ended_at": "2026-10-13T17:27:32.660684+00:00",
+      "source_address": "0x180111fc",
+      "source_bytes": 32,
+      "test_path": "/SD:/RECORDER/Call-rc632e1b99c9.mp3",
+      "original_ok": true,
+      "raw": {"file": "gpio28-word-live-2026-10-14/context.bin", "bytes": 32, "sha256": "e1cd0d16af09acc236d53f1dc794917a1cbe8c52234492e994d46f7e223c621e"},
+      "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0},
+      "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59595, "free_capacity_after": 59595, "free_capacity_decrease": 0, "allowed_decrease": 1},
+      "fields": {
+        "stream_pointer": "0x18011254",
+        "flags_byte": 3,
+        "log_type": 0,
+        "new_log_type": 0,
+        "rd": 206,
+        "wr": 206,
+        "slot_lengths": [0, 0, 0, 0, 0, 0, 139, 0],
+        "drop_count": 0,
+        "interpretation": "Historical pre-STOP bytes; no atomicity/current pointer/partial-slot claim"
+      },
+      "pointer_parent_sha256": "093c7c814d8ea04b094f1629a55da0b398247ccb17a9d6496f52fd2fe8acbc59"
+    }
+  },
+  "failed_attempts": [
+    {
+      "kind": "discovery-timeout",
+      "source_report": {"file": "artifacts/gpio28-word-live-20261014/trial/report.json", "bytes": 11383, "sha256": "a06b240aaf81d3bad48bbc6735a939e83936b3cb06422dd5ac206c254e03986e"},
+      "original_ok": false,
+      "device_io": true,
+      "sd_write_attempted": false,
+      "actual_att_writes": 0,
+      "actual_gpio_reads": 0,
+      "downloaded_files": 0,
+      "before_present": true,
+      "att_packets": 13,
+      "last_tx": "08140019000328",
+      "error_class": "TimeoutError",
+      "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59595, "free_capacity_after": 59595, "free_capacity_decrease": 0, "allowed_decrease": 0}
+    },
+    {
+      "kind": "offline-invocation-error",
+      "source_report": {"file": "artifacts/gpio28-word-live-20261014/trial-connect-b/report.json", "bytes": 892, "sha256": "9ce36ba076942afd9096d84ceccabe40af34f9a391b7a88ab0d397950e78d2cf"},
+      "original_ok": false,
+      "device_io": false,
+      "sd_write_attempted": false,
+      "actual_att_writes": 0,
+      "actual_gpio_reads": 0,
+      "downloaded_files": 0,
+      "before_present": false,
+      "att_packets": 0,
+      "last_tx": null,
+      "error_class": "FileNotFoundError",
+      "state": null
+    }
+  ],
+  "trial": {
+    "source_report": {"file": "artifacts/gpio28-word-live-20261014/trial-connect-c/report.json", "bytes": 23722, "sha256": "9b400a19f9f01049dc46c55bde442ead7af7b06c963c5e95224c217fe10b2c54"},
+    "original_ok": true,
+    "started_at": "2026-10-13T17:34:58.540117+00:00",
+    "ended_at": "2026-10-13T17:35:24.131819+00:00",
+    "commands": ["dbg dumpbuf 402696620 4 /SD:/RECORDER/Call-rcf8ef74b5b1.mp3", "dbg mdw 40068074 1", "dbg dumpbuf 402723324 32 /SD:/RECORDER/Call-rc36c3c7ba61.mp3", "dbg dumpbuf 402699696 512 /SD:/RECORDER/Call-rcc94a6eb2ac.mp3"],
+    "actions": {"confirmed_writes": 7, "ack_count": 7, "f1_received": true, "pending_bytes": 0},
+    "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59595, "free_capacity_after": 59595, "free_capacity_decrease": 0, "allowed_decrease": 1},
+    "pointer_parent_sha256": "093c7c814d8ea04b094f1629a55da0b398247ccb17a9d6496f52fd2fe8acbc59",
+    "context_parent_sha256": "35554651cda0072a72a20075e27f9a23e5c1e37f299657b6dfaab5252bad5473",
+    "word_guard_report_sha256": ["f6e83ff655404aedab95e93a0ff6c9f1cc88f41bfb9ebcedc605692aa2972989", "6794bc7da3794e437881c9dd3ebacefa73a639434ed6ecdf4a64d05548c5b853"],
+    "files": [
+      {
+        "role": "global",
+        "source_address": "0x1800a9ac",
+        "source_bytes": 4,
+        "test_path": "/SD:/RECORDER/Call-rcf8ef74b5b1.mp3",
+        "received_bytes": 4,
+        "download_bytes": 4,
+        "sha256": "bef3c9bd2822c533b9a289ba840911bb8fc9312f2b07a0326af9dbe10265f97d",
+        "raw": {"file": "gpio28-word-live-2026-10-14/trial-global.bin", "bytes": 4, "sha256": "bef3c9bd2822c533b9a289ba840911bb8fc9312f2b07a0326af9dbe10265f97d"}
+      },
+      {
+        "role": "metadata",
+        "source_address": "0x180111fc",
+        "source_bytes": 32,
+        "test_path": "/SD:/RECORDER/Call-rc36c3c7ba61.mp3",
+        "received_bytes": 32,
+        "download_bytes": 32,
+        "sha256": "9d7f925150620d2f516eb9afdacc6642e98dc9a7cea1e8faab22828af44144ab",
+        "raw": {"file": "gpio28-word-live-2026-10-14/trial-metadata.bin", "bytes": 32, "sha256": "9d7f925150620d2f516eb9afdacc6642e98dc9a7cea1e8faab22828af44144ab"}
+      },
+      {
+        "role": "slot",
+        "source_address": "0x1800b5b0",
+        "source_bytes": 512,
+        "test_path": "/SD:/RECORDER/Call-rcc94a6eb2ac.mp3",
+        "received_bytes": 512,
+        "download_bytes": 512,
+        "sha256": "b041a727b40775916c42c3cbd4a8a9664a0e57bca909798d0142381a714e84fe",
+        "full_raw_published": false,
+        "body_length": 406,
+        "selected_spans": [
+          {
+            "kind": "nonce-marker",
+            "body_span": [138, 191],
+            "slot_span": [146, 199],
+            "raw": {"file": "gpio28-word-live-2026-10-14/nonce-marker.bin", "bytes": 53, "sha256": "b1a4fbf15a67b9d3faf57fab319ab14242c8beddaf219e64664624520364752d"}
+          },
+          {
+            "kind": "gpio28-word-row",
+            "body_span": [195, 250],
+            "slot_span": [203, 258],
+            "raw": {"file": "gpio28-word-live-2026-10-14/gpio28-row.bin", "bytes": 55, "sha256": "2fbc0f6a1a5ebe881462de29f7bbf686c47d5dddf3fb377bfb8d8970fde86bdf"}
+          }
+        ]
+      }
+    ],
+    "verification": {
+      "address": "0x40068074",
+      "observed_word": 6149,
+      "observed_hex": "0x00001805",
+      "word_bytes_le": "05180000",
+      "metadata": {
+        "stream_pointer": "0x18011254",
+        "flags_byte": 3,
+        "log_type": 0,
+        "new_log_type": 0,
+        "rd": 206,
+        "wr": 206,
+        "slot_lengths": [0, 0, 0, 0, 0, 0, 406, 0],
+        "drop_count": 0,
+        "interpretation": "Historical pre-STOP bytes; no atomicity/current pointer/partial-slot claim"
+      },
+      "geometry": {"pointer": 402723324, "stream": 402723412, "counter": 206, "index": 6, "slot_address": 402699696},
+      "body_length": 406,
+      "marker_body_span": [138, 191],
+      "row_body_span": [195, 250],
+      "row_sha256": "2fbc0f6a1a5ebe881462de29f7bbf686c47d5dddf3fb377bfb8d8970fde86bdf",
+      "scope": "One observed GPIO28 CTRL word; no physical pin identity, atomicity or still-partial claim"
+    }
+  },
+  "static_pinmux": {
+    "actual_image_blocks": [
+      {"address": "0x100219f8", "bytes": 60, "sha256": "1d7345391039d020dae53da7935aa6349e7f3ce4d6cfe8727fb1c31df13d57b2"},
+      {"address": "0x10021a34", "bytes": 4, "sha256": "80eb09c3f9ee1e94e035de366cb68699162d0b5883657cc939618ce261082c8e"},
+      {"address": "0x100bbf2c", "bytes": 8, "sha256": "2b1657b3a1df088462458171b0c9b0a927c580b904b5eed21255d2b791d9b5d3"}
+    ],
+    "address_formula": "(0x1001a001 + 28) << 2 = 0x40068074",
+    "setter_rmw": "new = (old & ~0x7f3f) | mode; ordinaryLDR32/STR32",
+    "mask": 32575,
+    "expected_mode": 16677,
+    "observed_masked": 6149,
+    "matches_static_mode": false,
+    "lark_source": "https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/include/drivers/cfg_drv/pinctrl_lark.h#L14-L27",
+    "uart_source_lines": "L232-L237:UART0function5/GPIO28TX/29RX/config4125",
+    "observed_fields": {"mfp_function": 5, "smit_bit5": false, "pull_mask0xf00": 2048, "pull_name": "GPIO_CTL_PULLUP (bit11); strong pullup bit8 is clear", "paddrv_level_bits12_14": 1},
+    "boundary": "Static early mode differs; later actual1805table matches observed configured bits, but execution/solewriter not proven; no siliconmanual read-clear guarantee"
+  },
+  "public_new_raw_bytes": 214,
+  "retained_sd_test_files": {"new_this_round": 7, "earlier": 24, "total": 31, "deleted": 0},
+  "attempt_accounting": {"invocations": 3, "radio_connections": 2, "gpio_read_invocations": 1, "offline_invocation_failures": 1},
+  "private_audit": {
+    "performed_offline": true,
+    "device_io": false,
+    "methods": ["gpio_word_contract.validate_parents:5+2+2codeguards/image,explicitwrite-parent,freshpointer/context,chronology", "commands,validate_actions,same_identity,downloaded3files,verify_payload:7confirmedwrites/7ACK/F1/pending0,unique nonce→word55 inL406,ASCIIconsistent", "Bothfailedattempts:actualwirewrite0,SDwritefalse,no3raw; discoverytimeoutstateequal; offlineerror nobefore/ATT/deviceI/O"],
+    "public_replay_scope": "Pinned compact receipt, image/guards/rawsmall samples and exact nonce53/word55; full private512/ATT uniqueness audit recorded,notrerun",
+    "privacy": "Only exact random test-path completion marker and one observed config-word row exported from slot; all other body/staletail withheld"
+  },
+  "private_sources": {
+    "artifacts/gpio28-word-live-20261014/mdw-wrapper/report.json": {"bytes": 10184, "sha256": "6794bc7da3794e437881c9dd3ebacefa73a639434ed6ecdf4a64d05548c5b853"},
+    "artifacts/gpio28-word-live-20261014/mdw-load/report.json": {"bytes": 10181, "sha256": "f6e83ff655404aedab95e93a0ff6c9f1cc88f41bfb9ebcedc605692aa2972989"},
+    "artifacts/gpio28-word-live-20261014/pointer/report.json": {"bytes": 11989, "sha256": "093c7c814d8ea04b094f1629a55da0b398247ccb17a9d6496f52fd2fe8acbc59"},
+    "artifacts/gpio28-word-live-20261014/context/report.json": {"bytes": 12516, "sha256": "35554651cda0072a72a20075e27f9a23e5c1e37f299657b6dfaab5252bad5473"},
+    "artifacts/gpio28-word-live-20261014/trial-connect-c/report.json": {"bytes": 23722, "sha256": "9b400a19f9f01049dc46c55bde442ead7af7b06c963c5e95224c217fe10b2c54"},
+    "artifacts/gpio28-word-live-20261014/trial/report.json": {"bytes": 11383, "sha256": "a06b240aaf81d3bad48bbc6735a939e83936b3cb06422dd5ac206c254e03986e"},
+    "artifacts/gpio28-word-live-20261014/trial-connect-b/report.json": {"bytes": 892, "sha256": "9ce36ba076942afd9096d84ceccabe40af34f9a391b7a88ab0d397950e78d2cf"},
+    "artifacts/live-sd-xip32-c-20261013/report.json": {"bytes": 9930, "sha256": "f2311da2a613b77e915829e00f09fa9c9ac83e831d05883298290deb466e4b51"},
+    "artifacts/logsrv-context-live-20261014/global-code/report.json": {"bytes": 10191, "sha256": "d54d9f3a6b5cc5e147efd9c42f1b234838ce176bcf448899fba0c108b1239edc"},
+    "artifacts/logsrv-context-live-20261014/global-literal/report.json": {"bytes": 10194, "sha256": "b27951155486b3577a43bd041f51f2861b61dd888154d5dc59105eef20b48c1a"},
+    "artifacts/live-sd-handler160-read-b-20261013/report.json": {"bytes": 4325, "sha256": "755527b171e70842f36e0a3437cff11714bc4cb3e4efd1bf1485fc2c6d22f89d"},
+    "artifacts/logsrv-context-live-20261014/heap-bounds/report.json": {"bytes": 10184, "sha256": "b1b56d1fd60e6015c9f3b57bba3bc5b049955bbb0b22c525323f8eeb6e4edcd7"},
+    "artifacts/logsrv-slot-live-20261014/layout/report.json": {"bytes": 10191, "sha256": "2c7c8f2815fa6e29386bbac15c775a366ec68de004e090d866e90297f5370976"},
+    "artifacts/logsrv-slot-live-20261014/copy/report.json": {"bytes": 10189, "sha256": "b2fc1901116c7880f751cfc2d115ce765402fe708b67f9ea89e1c907532a1b81"},
+    "artifacts/live-sd-handler160-20261013/report.json": {"bytes": 9834, "sha256": "0052c1abe23014cf35cfab7a5035e8b028c31f39060955e65d63a2d2bd3f80a9"},
+    "artifacts/gpio28-word-live-20261014/trial-connect-c/slot/download.bin": {"bytes": 512, "sha256": "b041a727b40775916c42c3cbd4a8a9664a0e57bca909798d0142381a714e84fe"}
+  },
+  "limitations": ["Observed one GPIO28 CTRLword at this sample time; no UART electrical/physicalCoMi pad/voltage claim", "Read-clear or other hardware sideeffects not excluded by siliconmanual; ordinary firmwareLDR/RMW is softwareevidence only", "Metadata/body non-atomic; pointer equality checked afterward; no allocatorownership or stillpartial claim", "One512Bsuccess not generalreliability; fullslot privatehash and selectedspans alone cannot reproduce private uniqueness audit", "No otherGPIO/PMU/NOR/flashwrite/codeinjection/recoveryclaim; originalfailed reports preserved"]
+}

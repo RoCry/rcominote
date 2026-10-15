@@ -1,0 +1,455 @@
+{
+  "schema": "bounded-private-prefilled-factory-prefix-receipt-v1",
+  "date": "2026-10-15",
+  "date_timezone": "Asia/Hong_Kong",
+  "capture_utc_date": "2026-10-14",
+  "outcome": "original whole job failed; three independently complete private pairs accepted separately; fourth GATT timeout before application I/O",
+  "references": {
+    "job_report": {
+      "file": "artifacts/prefilled-factory-four-20261015/report.json",
+      "bytes": 12465,
+      "sha256": "5c8d1b61681f1a8fce3f7d1bfb0c4185d644f90f87d2a0351b7fdc79ee0269a0"
+    },
+    "plan": {
+      "file": "artifacts/prefilled-factory-four-20261015/plan.json",
+      "bytes": 11894,
+      "sha256": "96ad9ddeb5768af833cb7f88eb57bb570f7e69a067b1e288ede475ce96f709fc"
+    },
+    "source_manifest": {
+      "file": "artifacts/prefilled-factory-four-20261015/source-snapshot/manifest.json",
+      "bytes": 47721,
+      "sha256": "ab996996de7b2da0c35153fd79b872da95a6c7fe1ca6d97f15f513b465198635"
+    },
+    "preflight_review": {
+      "file": "artifacts/prefilled-factory-four-20261015/preflight-review.json",
+      "bytes": 964,
+      "sha256": "bd18752ab480eb0468ca916a505509d6d2dc8ab2ec13422da12193a6d291fa64"
+    },
+    "checks_before": {
+      "file": "artifacts/prefilled-factory-four-preflight-20261015/checks-before.json",
+      "bytes": 36774,
+      "sha256": "bd2696ad9d893b55ca90be8f4e8aa6365905879fecfd99fe57c81aa54d79971a"
+    },
+    "checks_after": {
+      "file": "artifacts/prefilled-factory-four-preflight-20261015/checks-after.json",
+      "bytes": 36774,
+      "sha256": "bd2696ad9d893b55ca90be8f4e8aa6365905879fecfd99fe57c81aa54d79971a"
+    },
+    "just_check_log": {
+      "file": "artifacts/prefilled-factory-four-preflight-20261015/just-check.log",
+      "bytes": 3039,
+      "sha256": "623860d4de3d8ad164ef0ff2dc50d4f375e2f18818aaea8aaffaa1fe3d26e9a4"
+    },
+    "build_log": {
+      "file": "artifacts/prefilled-factory-four-preflight-20261015/uv-build.log",
+      "bytes": 179,
+      "sha256": "937bcf6f77f21fd510d0bc6ebfcac53235c976fc096e61be3a67efeb891e959c"
+    },
+    "sanitized_root_replay": {
+      "file": "artifacts/prefilled-factory-four-20261015/sanitized-root-replay.json",
+      "bytes": 1472,
+      "sha256": "741e73e51999fabbe0145523c6ef015c0ced40c1689533165747476f75779c25"
+    }
+  },
+  "source": {
+    "source_files": 146,
+    "test_files": 132,
+    "snapshot_files": 278,
+    "snapshot_and_isolated_all_lengths_hashes_equal": true,
+    "isolated_source": "/home/rocry/w/_tmp/rcominote-prefilled-factory-frozen-20261015",
+    "full_checks": "2610 tests +159 subtests in45.77s;336format/lint;sdist+wheel passed",
+    "check_inputs_unchanged": 342,
+    "new_full_check_run": true,
+    "independent_replay_snapshot_modules": 102,
+    "current_source_equality_claimed": false
+  },
+  "chronology": {
+    "manifest_created_at": "2026-10-14T16:36:17.517423+00:00",
+    "planned_at": "2026-10-14T16:36:36.005475+00:00",
+    "job_started_at": "2026-10-14T16:38:49.868992+00:00",
+    "job_ended_at": "2026-10-14T16:40:52.894850+00:00",
+    "last_verified_identity_response_at": "2026-10-14T16:40:42.033534+00:00",
+    "last_successful_page_ended_at": "2026-10-14T16:40:44.229530+00:00",
+    "failed_fourth_started_at": "2026-10-14T16:40:44.857300+00:00",
+    "failed_fourth_ended_at": "2026-10-14T16:40:52.894702+00:00",
+    "job_started_hkt": "2026-10-15T00:38:49.868992+08:00",
+    "job_ended_hkt": "2026-10-15T00:40:52.894850+08:00"
+  },
+  "plan": {
+    "profile": "bounded-physical-nor-ram-prefilled-pairs-v1",
+    "offsets": [
+      2015744,
+      2016256,
+      2016768,
+      2017280
+    ],
+    "max_new_private_bytes": 2048,
+    "parent_successful_known_v2_report_sha256": "f188a4e10784dff8e6c54d1fbb64db69c38fcb724e4881652c1571e558855989",
+    "parent_history_names": 54,
+    "planned_nor_nonce_count": 8,
+    "nonce_values_withheld": true,
+    "strict_content_policy": "all-critical-chain-bytes-in-difference-prefix-v2",
+    "gap_policy": "prefill-exact-three-producer-dump-layouts-v2",
+    "independent_nor_oracle_used": false,
+    "independent_ram_oracle_bytes": 4096,
+    "independent_ram_oracle_sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b",
+    "ram_prefill_before_each_nor": true,
+    "distinct_sd_difference_and_nor_marker_predecessors": true
+  },
+  "pages": [
+    {
+      "page_index": 0,
+      "physical_range": [
+        2015744,
+        2016256
+      ],
+      "report": {
+        "file": "artifacts/prefilled-factory-four-20261015/page0-1ec200/report.json",
+        "bytes": 127834,
+        "sha256": "a94a6046083f3de555e49152f247acff5d88993fa378502aac2ffefd4c49dd57"
+      },
+      "hci": {
+        "file": "artifacts/prefilled-factory-four-20261015/page0-1ec200/session.btsnoop",
+        "bytes": 38735,
+        "sha256": "bb4011d2c4290dc23446839be18d53144ced67f59782ca6efd6e5f2c63352a90"
+      },
+      "original_ok": true,
+      "started_at": "2026-10-14T16:38:54.445309+00:00",
+      "ended_at": "2026-10-14T16:39:31.195529+00:00",
+      "att_packets": 262,
+      "hci_records": 452,
+      "hci_bytes": 38735,
+      "paired_bytes": 512,
+      "independent_nor_oracle": false,
+      "all_five_stages_original_ok": true,
+      "parameter_transactions": 15,
+      "pending": 0,
+      "status_events": 0,
+      "downloads": 5,
+      "ram_exports": 2,
+      "nor_producers": 2,
+      "same_file_overwrites": 4,
+      "new_files": 0,
+      "acks": [
+        4,
+        6,
+        4,
+        6
+      ],
+      "f0_frames": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "strict_nor_prefix_bytes": [
+        4096,
+        4096
+      ],
+      "nor_gap_forms": [
+        "plain",
+        "plain"
+      ],
+      "formatter_exemptions": false,
+      "two_actual_sector_results_equal": true,
+      "nonce_values_withheld": true,
+      "carrier_and_sector_hashes_withheld": true,
+      "normal_disconnect": {
+        "status": 0,
+        "reason": 22,
+        "record": 451
+      },
+      "all_state_observations_free59589_unchanged": true
+    },
+    {
+      "page_index": 1,
+      "physical_range": [
+        2016256,
+        2016768
+      ],
+      "report": {
+        "file": "artifacts/prefilled-factory-four-20261015/page1-1ec400/report.json",
+        "bytes": 127795,
+        "sha256": "11bbc0832e3fcaafba1cfd88ffab0a3db0d778adb7dcca9055d8838369a788ab"
+      },
+      "hci": {
+        "file": "artifacts/prefilled-factory-four-20261015/page1-1ec400/session.btsnoop",
+        "bytes": 38735,
+        "sha256": "a9df97e156b5bd58ff69345f41ed778be9fb0f350a9a8d28d0fe240b3470cf75"
+      },
+      "original_ok": true,
+      "started_at": "2026-10-14T16:39:31.817815+00:00",
+      "ended_at": "2026-10-14T16:40:06.782499+00:00",
+      "att_packets": 262,
+      "hci_records": 452,
+      "hci_bytes": 38735,
+      "paired_bytes": 512,
+      "independent_nor_oracle": false,
+      "all_five_stages_original_ok": true,
+      "parameter_transactions": 15,
+      "pending": 0,
+      "status_events": 0,
+      "downloads": 5,
+      "ram_exports": 2,
+      "nor_producers": 2,
+      "same_file_overwrites": 4,
+      "new_files": 0,
+      "acks": [
+        4,
+        6,
+        4,
+        6
+      ],
+      "f0_frames": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "strict_nor_prefix_bytes": [
+        4096,
+        4096
+      ],
+      "nor_gap_forms": [
+        "plain",
+        "plain"
+      ],
+      "formatter_exemptions": false,
+      "two_actual_sector_results_equal": true,
+      "nonce_values_withheld": true,
+      "carrier_and_sector_hashes_withheld": true,
+      "normal_disconnect": {
+        "status": 0,
+        "reason": 22,
+        "record": 451
+      },
+      "all_state_observations_free59589_unchanged": true
+    },
+    {
+      "page_index": 2,
+      "physical_range": [
+        2016768,
+        2017280
+      ],
+      "report": {
+        "file": "artifacts/prefilled-factory-four-20261015/page2-1ec600/report.json",
+        "bytes": 127939,
+        "sha256": "a19cc75773fa7664982cd479e3652743fe9bdb482182c80eb6610ce2d80493ca"
+      },
+      "hci": {
+        "file": "artifacts/prefilled-factory-four-20261015/page2-1ec600/session.btsnoop",
+        "bytes": 38770,
+        "sha256": "2b3be94fb10f99f4e6d49e449047f537edc6f9dbaef830592f2349b37e1cada9"
+      },
+      "original_ok": true,
+      "started_at": "2026-10-14T16:40:07.424859+00:00",
+      "ended_at": "2026-10-14T16:40:44.229530+00:00",
+      "att_packets": 263,
+      "hci_records": 453,
+      "hci_bytes": 38770,
+      "paired_bytes": 512,
+      "independent_nor_oracle": false,
+      "all_five_stages_original_ok": true,
+      "parameter_transactions": 15,
+      "pending": 0,
+      "status_events": 0,
+      "downloads": 5,
+      "ram_exports": 2,
+      "nor_producers": 2,
+      "same_file_overwrites": 4,
+      "new_files": 0,
+      "acks": [
+        4,
+        6,
+        4,
+        6
+      ],
+      "f0_frames": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "strict_nor_prefix_bytes": [
+        4096,
+        4096
+      ],
+      "nor_gap_forms": [
+        "composer-before-crlf",
+        "plain"
+      ],
+      "formatter_exemptions": false,
+      "two_actual_sector_results_equal": true,
+      "nonce_values_withheld": true,
+      "carrier_and_sector_hashes_withheld": true,
+      "normal_disconnect": {
+        "status": 0,
+        "reason": 22,
+        "record": 452
+      },
+      "all_state_observations_free59589_unchanged": true
+    },
+    {
+      "page_index": 3,
+      "physical_range": [
+        2017280,
+        2017792
+      ],
+      "report": {
+        "file": "artifacts/prefilled-factory-four-20261015/page3-1ec800/report.json",
+        "bytes": 7048,
+        "sha256": "468ab327dc0b7a9cb1bb4944f6bc50253b1b7890000f0e1ed3aed3f9d0751720"
+      },
+      "hci": {
+        "file": "artifacts/prefilled-factory-four-20261015/page3-1ec800/session.btsnoop",
+        "bytes": 2242,
+        "sha256": "23c57119fb9f6a1718d8d0c8cebd329c27d1d88a4243596a8390d12f8a63892d"
+      },
+      "original_ok": false,
+      "started_at": "2026-10-14T16:40:44.857300+00:00",
+      "ended_at": "2026-10-14T16:40:52.894702+00:00",
+      "att_packets": 21,
+      "hci_records": 58,
+      "hci_bytes": 2242,
+      "paired_bytes": 0,
+      "error": "TimeoutError: [Errno 110] Connection timed out",
+      "capture_error": "TimeoutError: [Errno 110] Connection timed out",
+      "transport": {},
+      "before_identity": null,
+      "after_identity": null,
+      "complete_gatt_setup": false,
+      "original_baseline_ok": false,
+      "all_four_original_operation_slots_untouched": true,
+      "download_files": 0,
+      "actions": 0,
+      "nor_producers": 0,
+      "ram_exports": 0,
+      "sd_writes": 0,
+      "new_files": 0,
+      "parameter_transactions": 0,
+      "pending": 0,
+      "status_events": 0,
+      "derived_owned_hci_link": {
+        "successful_connect_record": 18,
+        "handle": 2048,
+        "initial_interval": 48,
+        "latency": 4,
+        "supervision_timeout": 600,
+        "disconnect_record": 57,
+        "disconnect_status": 0,
+        "disconnect_reason": 8
+      },
+      "all21att_exactly_bound_within_direction": true,
+      "tx_att_opcodes": [
+        2,
+        16,
+        3,
+        16,
+        16,
+        16,
+        8,
+        8,
+        4,
+        4,
+        4
+      ],
+      "write_request_prepare_execute_command_opcodes_absent": true,
+      "last_tx_find_information_unanswered": true,
+      "classification": "LE established; incomplete GATT MTU/discovery; supervision timeout before identity/CCC/application/transfer"
+    }
+  ],
+  "totals": {
+    "connection_attempts": 4,
+    "complete_pairs": 3,
+    "accepted_private_bytes": 1536,
+    "att_packets": 808,
+    "hci_records": 1415,
+    "hci_bytes": 118482,
+    "complete_parameter_transactions": 45,
+    "pending": 0,
+    "status_events": 0,
+    "downloads": 15,
+    "ram_exports": 6,
+    "nor_producers": 6,
+    "same_file_sd_overwrites": 12,
+    "new_files": 0,
+    "deletions": 0,
+    "nor_memory_writes": 0,
+    "ram_memory_writes": 0,
+    "normal_disconnects": 3,
+    "supervision_disconnects": 1,
+    "original_whole_ok": false,
+    "failed_fourth_bytes_counted": 0,
+    "no_automatic_retry": true
+  },
+  "last_verified_observation": {
+    "identity_response_at": "2026-10-14T16:40:42.033534+00:00",
+    "successful_page_end": "2026-10-14T16:40:44.229530+00:00",
+    "firmware": "010004",
+    "mode": "NOTE",
+    "running": "idle",
+    "bound": false,
+    "charging": true,
+    "battery_percent": 100,
+    "free_capacity": 59589,
+    "retained_file_bytes": 4096,
+    "last_complete_file": "artifacts/prefilled-factory-four-20261015/page2-1ec600/second/download.bin",
+    "content_hash_withheld": true,
+    "fourth_capture_shows_no_application_overwrite": true,
+    "expected_retained_file_still_third_second": true,
+    "post_failure_current_readback_or_identity_exists": false,
+    "whole_failed_job_admissible_parent": false,
+    "new_failure_checkpoint_exists": false,
+    "reserved_names": 62,
+    "ancestor_names": 54,
+    "planned_new_names": 8,
+    "unsent_fourth_names_reserved": 2
+  },
+  "coverage_overlay": {
+    "previous_strong_bytes": 41744,
+    "previous_potential_bytes": 196948,
+    "new_private_bytes": 1536,
+    "strong_available_bytes": 43280,
+    "potential_available_bytes": 198484,
+    "historical_B_bytes_not_upgraded": 155204,
+    "new_private_raw_range": [
+      2015744,
+      2017280
+    ],
+    "factory_total_fully_paired_bytes": 2048,
+    "factory_paired_union": [
+      2015232,
+      2017280
+    ],
+    "factory_remaining_missing_full_pair_bytes": 6144,
+    "system_contiguous_range": [
+      147456,
+      153600
+    ],
+    "system_bytes": 6144,
+    "frozen_ASOF_inventory_unchanged": true,
+    "cross_capture_union_not_atomic_snapshot": true,
+    "cohort_confirmed": 70,
+    "cohort_older_declared": 1,
+    "cohort_historical_possible": 1,
+    "cohort_upper_bound": 72,
+    "complete_4MiB_backup_restore_own_runtime": false
+  },
+  "privacy": {
+    "factory_raw_config_values_withheld": true,
+    "factory_sector_and_carrier_hex_withheld": true,
+    "factory_sector_and_carrier_content_hashes_withheld": true,
+    "nonce_values_and_nonce_hashes_withheld": true,
+    "published_binary": false,
+    "system_codec_decode_or_comparison": false,
+    "only_transport_report_plan_source_file_digests_published": true
+  },
+  "limits": [
+    "Original whole job and fourth page remain failed; only three original complete pairs add1536.",
+    "Fourth LE connected; MTU/discovery traffic is not complete GATT or application readiness.",
+    "State59589 is last observed on the third page, not a fresh observation at whole failure end.",
+    "Current retained third-second file expected from zero application writes on fourth; new whole parent/checkpoint admission has not occurred.",
+    "Logical strict4096 freshness does not establish SD atomicity, clear resident history, or prove general reliability.",
+    "No retry, deletion, new hidden reset evidence, full factory backup, full4MiB backup, reliable restore or own firmware completion."
+  ]
+}

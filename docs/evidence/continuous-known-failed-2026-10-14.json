@@ -1,0 +1,214 @@
+{
+  "kind": "failed-continuous-known-control-with-complete-nine-transaction-communication",
+  "date": "2026-10-14",
+  "original_ok": false,
+  "original_failed_retained": true,
+  "new_raw_nor_coverage_bytes": 0,
+  "public_binary_outputs": [],
+  "successful_parent_admission": false,
+  "originals": {
+    "report": {
+      "file": "artifacts/paired-nor-continuous-known-20261014/report.json",
+      "bytes": 83862,
+      "sha256": "cf756524d4d95db28f135a419a5881d39cee25dc07286aa9aa370b8aea01bc87"
+    },
+    "plan": {
+      "file": "artifacts/paired-nor-continuous-known-20261014/plan.json",
+      "bytes": 13007,
+      "sha256": "5d11450e6239d96b182c85f1711f374b16f513f167dc942f41618c933ac2239c"
+    },
+    "hci": {
+      "file": "artifacts/paired-nor-continuous-known-20261014/session.btsnoop",
+      "bytes": 25164,
+      "sha256": "2f06088f01477e9f96ceeae38c32b9cd24931bdc4a77f61ea2556f622b04ef96"
+    },
+    "monitor_stderr": {
+      "file": "artifacts/paired-nor-continuous-known-20261014/btmon.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "rings": [
+      {
+        "file": "artifacts/paired-nor-continuous-known-20261014/page0-000000/baseline/download.bin",
+        "bytes": 4096,
+        "sha256": "f6781e2966e47b548c6b2f0f5ccd2c48d19b97cd172c1d1b4dd7d7b08a28c2a8"
+      },
+      {
+        "file": "artifacts/paired-nor-continuous-known-20261014/page0-000000/first/download.bin",
+        "bytes": 4096,
+        "sha256": "661f723af57e679b87c7a101859fb1cab2a0f07594fce19db9ac7dcdbf497c44"
+      },
+      {
+        "file": "artifacts/paired-nor-continuous-known-20261014/page0-000000/second/download.bin",
+        "bytes": 4096,
+        "sha256": "87146b6b9e18eca8af8c09e3fcfe074260386d38ebed08aefbab91c98b34d364"
+      }
+    ],
+    "first_private_candidate_sector": {
+      "file": "artifacts/paired-nor-continuous-known-20261014/page0-000000/first/sector.bin",
+      "bytes": 512,
+      "sha256": "72952b98341a3089765c6cc8dd35ddc93ae699698d1455ce74dea1071cc277ec"
+    }
+  },
+  "frozen_source": {
+    "manifest": {
+      "file": "artifacts/paired-nor-continuous-known-20261014/source-snapshot/manifest.json",
+      "bytes": 44095,
+      "sha256": "de1e5023031b69a370b918c77f082594ca37451172568df0376333817c8e3a35"
+    },
+    "source_files": 139,
+    "test_files": 119,
+    "created_at": "2026-10-14T10:20:12.347186+00:00",
+    "manifest_check_claim": {
+      "passed": 2216,
+      "subtests_passed": 159,
+      "formatted": 314,
+      "lint": "passed",
+      "uv_build": "passed",
+      "root_pre_io_execution_not_independent_full_suite_rerun": true
+    },
+    "all_snapshot_file_lengths_and_hashes_verified": true,
+    "imported_project_modules": 97,
+    "all_module_origins_from_snapshot": true,
+    "no_retrospective_change_to_w0_2137_count": true
+  },
+  "chronology": {
+    "planned_at": "2026-10-14T10:20:12.872372+00:00",
+    "started_at": "2026-10-14T10:20:24.389882+00:00",
+    "failed_second_started_at": "2026-10-14T10:20:47.747241+00:00",
+    "failed_second_ended_at": "2026-10-14T10:20:54.219256+00:00",
+    "ended_at": "2026-10-14T10:20:56.749642+00:00",
+    "manifest_before_plan_before_start": true
+  },
+  "failure": {
+    "error": "ValueError: Current chain depends on tail outside difference-proven written prefix",
+    "capture_error": "ValueError: Current chain depends on tail outside difference-proven written prefix",
+    "failure_stage": "group0 second payload after complete download/SLOW/immediate real identity",
+    "original_prefix_policy": "canonical-row-address-leading-spaces-only-v3",
+    "original_payload_error_reproduced": true,
+    "exception_local_difference_prefix": 4095,
+    "exception_local_first_unproven_physical_byte": 4095,
+    "current_byte_ascii": "0",
+    "previous_byte_ascii": "0",
+    "byte_within_exact_status_literal": "buf=0x",
+    "status_literal_is_not_v3_row_address_space_exemption": true,
+    "new_policy_reparse_or_second_oracle_comparison": false,
+    "second_sector_file_present": false,
+    "full4096_overwrite_or_root_cause_proven": false
+  },
+  "distinct_failed_receipt_communication": {
+    "success_audit_not_modified_or_relabelled": true,
+    "original_envelope_transactions_argument": 9,
+    "original_transfer_group_operation_count": 2,
+    "original_final_identity_transactions_argument": 9,
+    "att_packets": 181,
+    "hci_records": 317,
+    "hci_bytes": 25164,
+    "complete_transactions": 9,
+    "pending_transactions": 0,
+    "status_events": 0,
+    "all_att_hci_gatt_and_final_state_bound": true,
+    "downloads": 3,
+    "download_bytes_each": 4096,
+    "producer_attempts": 2,
+    "existing_file_overwrite_attempts": 2,
+    "new_files": 0,
+    "deletions": 0,
+    "actions_each": {
+      "acks": 6,
+      "f1": true,
+      "pending_bytes": 0,
+      "f0_frames": 0
+    },
+    "normal_disconnect": {
+      "status": 0,
+      "reason": 22,
+      "record": 316,
+      "after_final_identity_att": true,
+      "passive_observation_us": 2166227,
+      "maximum_wait_seconds": 8
+    },
+    "monitor_exit": 0,
+    "monitor_stop": {
+      "signal": "SIGINT",
+      "requested": true,
+      "delivery": "sent"
+    }
+  },
+  "groups": {
+    "group0": {
+      "physical_offset": 0,
+      "original_candidate": false,
+      "original_live_complete": false,
+      "baseline_matches_successful_bulk_current_f678": true,
+      "first_original_ok": true,
+      "first_original_live_complete": true,
+      "first_independent_boot0_oracle_matched": true,
+      "second_original_ok": false,
+      "second_original_live_complete": false,
+      "second_barrier_complete": true,
+      "pair_accepted": false
+    },
+    "group1": {
+      "physical_offset": 16896,
+      "original_candidate": false,
+      "original_live_complete": false,
+      "extra_baseline_present": false,
+      "continuation": null,
+      "first_started": false,
+      "second_started": false,
+      "commands": 0,
+      "files": 0
+    }
+  },
+  "current_observation": {
+    "at": "2026-10-14T10:20:56.749642+00:00",
+    "owned_ring_bytes": 4096,
+    "owned_ring_sha256": "87146b6b9e18eca8af8c09e3fcfe074260386d38ebed08aefbab91c98b34d364",
+    "firmware": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "bound": false,
+    "charging": true,
+    "battery": 100,
+    "free_capacity_mib": 59589,
+    "complete_current_file_and_final_state_verified": true,
+    "parent_admission": false,
+    "successful_ancestor_prior_names": 34,
+    "failed_plan_reserved_names": 4,
+    "union_reserved_names": 38,
+    "union_is_not_successful_parent_history": true
+  },
+  "unchanged_coverage": {
+    "bulk_receipt": {
+      "file": "docs/evidence/paired-nor25000-four-live-2026-10-14.json",
+      "bytes": 14630,
+      "sha256": "0a5f8a8722a20f728468513485df9bc85f301d7c1e1b1ef0a5642c564a11b314"
+    },
+    "bulk_raw2048": {
+      "file": "docs/evidence/paired-nor25000-four-live-2026-10-14/nor25000-25800.bin",
+      "bytes": 2048,
+      "sha256": "5cc9f32531c5c4fe543d63ea8e8896752d7f19c2c43d3d6b0dc05475a3191edb"
+    },
+    "first4k_receipt": {
+      "file": "docs/evidence/system-first4k-raw-live-2026-10-14.json",
+      "bytes": 20247,
+      "sha256": "6baaeb4752a03ae29db0549fa371eb270a6f110c05e4ad8484ed5e57a1b17ce5"
+    },
+    "strong_bytes": 41232,
+    "potential_available_bytes": 196436,
+    "system_contiguous_raw_range": [
+      147456,
+      153600
+    ],
+    "system_contiguous_raw_bytes": 6144,
+    "complete_4mib_backup_restore_own_firmware": false
+  },
+  "limits": [
+    "Unlike prior17transaction timeout, current file/state are observed, but the original failed control is not an admissible parent.",
+    "The failed second original v3 payload remains rejected; no new policy, second oracle/codec comparison, publication or coverage.",
+    "Nine complete communication transactions do not satisfy the original fifteen-transaction/two-group success contract.",
+    "Future formatter proof/communication checkpoint under review only; no implementation or live result claimed.",
+    "All captures/source snapshots/old frozen receipts unchanged; no device/source/test edits by this review."
+  ]
+}

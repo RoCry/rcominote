@@ -1,0 +1,196 @@
+{
+  "kind": "live-readonly-owned-file-recovery",
+  "date": "2026-10-14",
+  "original_ok": true,
+  "ownership_only": true,
+  "public_binary_outputs": [],
+  "new_raw_nor_coverage_bytes": 0,
+  "originals": {
+    "report": {
+      "file": "artifacts/owned-file-recovery-20261014/report.json",
+      "bytes": 30716,
+      "sha256": "266bedb77ff98338d353a890cfb6c6d9236edc2d75c0fd1b75715383d8fc5eb2"
+    },
+    "plan": {
+      "file": "artifacts/owned-file-recovery-20261014/plan.json",
+      "bytes": 9585,
+      "sha256": "81a28bc5db68e1a635457567243684a99bfb603a5cfcae45f92be81e0fa8784c"
+    },
+    "hci": {
+      "file": "artifacts/owned-file-recovery-20261014/session.btsnoop",
+      "bytes": 10963,
+      "sha256": "4d87becb8a7922f6e92ec632af36d1727c6d671f78c4b4056c98c914c880bb57"
+    },
+    "current_owned_ring_private": {
+      "file": "artifacts/owned-file-recovery-20261014/retained/download.bin",
+      "bytes": 4096,
+      "sha256": "a5d8e2e773a38954f35d8b2f919fa585e09df0a13c7a9c29a6ac6da4a76f5a48"
+    },
+    "monitor_stderr": {
+      "file": "artifacts/owned-file-recovery-20261014/btmon.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "frozen_source": {
+    "manifest": {
+      "file": "artifacts/owned-file-recovery-20261014/source-snapshot/manifest.json",
+      "bytes": 43727,
+      "sha256": "305534f3786003fe3c59a2e4917218c658ac54ec7f82d039d484b280e3b63313"
+    },
+    "source_files": 139,
+    "test_files": 117,
+    "created_at": "2026-10-14T10:06:38.167861+00:00",
+    "manifest_check_claim": {
+      "just_check_passed": 2137,
+      "subtests_passed": 159,
+      "uv_build": "passed",
+      "counts_from_root_pre_io_execution_not_independent_full_suite_rerun": true
+    },
+    "all_snapshot_lengths_and_hashes_verified": true,
+    "imported_project_modules": 96,
+    "all_module_origins_from_frozen_snapshot": true,
+    "post_io_extra_tests_not_in_pre_io_claim": true
+  },
+  "chronology": {
+    "planned_at": "2026-10-14T10:06:38.652552+00:00",
+    "started_at": "2026-10-14T10:06:45.405280+00:00",
+    "download_stage_started_at": "2026-10-14T10:06:59.529382+00:00",
+    "download_stage_ended_at": "2026-10-14T10:07:00.640381+00:00",
+    "ended_at": "2026-10-14T10:07:03.237946+00:00",
+    "manifest_before_plan_before_start": true
+  },
+  "wire": {
+    "att_packets": 90,
+    "hci_records": 168,
+    "hci_bytes": 10963,
+    "complete_parameter_transactions": 3,
+    "parameter_order": [
+      "actual remote startup FAST",
+      "host6/0/500 normalization",
+      "remote EOF SLOW after complete End"
+    ],
+    "pending_transactions": 0,
+    "status_events": 0,
+    "full_gatt_att_hci_binding": true,
+    "all_owned_wire_within_original_epoch": true,
+    "complete_final_identity": true,
+    "normal_disconnect": {
+      "status": 0,
+      "reason": 22,
+      "record": 167,
+      "after_final_att": true,
+      "passive_observation_us": 2163670,
+      "maximum_wait_seconds": 8
+    },
+    "monitor_exit": 0,
+    "monitor_stop": {
+      "signal": "SIGINT",
+      "requested": true,
+      "delivery": "sent"
+    }
+  },
+  "actual_budget": {
+    "connections": 1,
+    "downloads": 1,
+    "download_bytes": 4096,
+    "actions": 0,
+    "producers": 0,
+    "sd_writes": 0,
+    "new_files": 0,
+    "deletions": 0,
+    "new_raw_nor_coverage_bytes": 0,
+    "cohort_maximum": 72,
+    "cohort_confirmed": 70,
+    "cohort_older_declared": 1,
+    "cohort_historical_possible": 1
+  },
+  "current_observation": {
+    "at": "2026-10-14T10:07:03.237946+00:00",
+    "firmware": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "bound": false,
+    "charging": true,
+    "battery": 100,
+    "free_capacity_mib": 59589,
+    "owned_ring_bytes": 4096,
+    "owned_ring_sha256": "a5d8e2e773a38954f35d8b2f919fa585e09df0a13c7a9c29a6ac6da4a76f5a48",
+    "whole_file_download_and_final_barriers_verified": true,
+    "differs_from_historical_failed_session_last_download": true,
+    "whole_file_equality_to_old_baseline_required": false,
+    "initial_capacity_allowance_for_one_prior_unverified_write_mib": 1,
+    "actual_initial_capacity_decrease_mib": 0,
+    "readonly_final_capacity_allowance_mib": 0,
+    "actual_readonly_capacity_decrease_mib": 0,
+    "successful_parent_admission": true,
+    "prior_planned_names": 26,
+    "ring_parsed_as_nor_content": false,
+    "bounded_ascii_observation": {
+      "exact_failed_third_uptime_command_offset": 1007,
+      "exact_failed_third_producer_command_offset": 3044,
+      "exact_failed_third_dump_command_offset": 3110,
+      "private_nonce_omitted": true,
+      "nor_parser_or_oracle_not_used": true,
+      "full_intended_contents_confirmed": false
+    }
+  },
+  "original_failure_preserved": {
+    "report": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/paired-nor-two-known-session-20261014/report.json",
+      "bytes": 107493,
+      "sha256": "ff24dee4e05c0a17e9ab29fd60aa2e89feb2dbd937562baf11c510085c68917b"
+    },
+    "plan": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/paired-nor-two-known-session-20261014/plan.json",
+      "bytes": 10012,
+      "sha256": "1be029f508a9f037a962af0d49c74fa3fa6f73cf64465f426094bf7cd690e016"
+    },
+    "hci": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/paired-nor-two-known-session-20261014/session.btsnoop",
+      "bytes": 31648,
+      "sha256": "f60ee8f383f3f9ec4d38b4c05481c41cd30c4b3f13725b29a07e2a2f15fa9b06"
+    },
+    "manifest": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/paired-nor-two-known-session-20261014/source-snapshot/manifest.json",
+      "bytes": 43514,
+      "sha256": "92e2ec882e0ff5cdfcd11e18c6045b24b4d052aecb67666c96fdb3a256845051"
+    },
+    "receipt": {
+      "file": "docs/evidence/two-known-session-failed-2026-10-14.json",
+      "bytes": 10355,
+      "sha256": "42dc9f718b104748095e7a177cf9bdbcd413eafaf0cbbb94833552568e33e91d"
+    },
+    "source_gate_full_failed_communication_replayed": true,
+    "original_ok": false,
+    "two_known_group_control_accepted": false,
+    "failed_4200_content_accepted": false,
+    "direct_replay_and_parent_admission_still_reject": true,
+    "historical_ring_sha256": "f0b5c8c193b519d6a5695345fc1bcdecea01541b9f775f58420ba476e7a6ffd3"
+  },
+  "unchanged_backup": {
+    "system_first4k_receipt": {
+      "file": "docs/evidence/system-first4k-raw-live-2026-10-14.json",
+      "bytes": 20247,
+      "sha256": "6baaeb4752a03ae29db0549fa371eb270a6f110c05e4ad8484ed5e57a1b17ce5"
+    },
+    "actual_system_first4k": {
+      "file": "docs/evidence/system-first4k-raw-live-2026-10-14/system-first4k-raw.bin",
+      "bytes": 4096,
+      "sha256": "74807d164370bd3d4ded53ac191414a1f5ff9a50ca04647b898179a1e7d83a5c"
+    },
+    "physical_range": [
+      147456,
+      151552
+    ],
+    "strong_available_bytes": 39184,
+    "potential_available_bytes": 194388,
+    "complete_4mib_backup_restore_own_firmware": false
+  },
+  "limits": [
+    "New live readonly observation recovers ownership/state; no NOR parser/oracle/sector equality applied to current ring.",
+    "Changed bytes do not promote prior failed control or confirm a known4200 sector.",
+    "Admitted current parent is a baseline for a separate future immutable plan, not authorization for more I/O.",
+    "Original captures, failed flags, source snapshots and frozen receipts unchanged; no new raw/ring/HCI publication."
+  ]
+}

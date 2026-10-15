@@ -48,7 +48,7 @@ DMA callback `100a1f56`在count≥62时调用`10026d4c`并清count；遇LF先追
 
 space≤length时，向context+1c累加请求长度，通常返回0；累计>65536还检查`100a449a(context[0])`及context+24，可能调`10026d24`后重试。与SDK [cbuf_output的FULL_LOST分支](https://github.com/lvgl/lv_port_actions_technology/blob/26f51e584940d5b141cd1d09d2629d69b595f579/action_technology_sdk/zephyr/subsys/trace/printk_dma.c#L179-L223)逐项对应。
 
-这些是明确的静态丢弃条件，不是这次fread运行时命中它们的证据。`1800e004`这套cbuf与已分析的[BLE logsrv](log-buffer-wrap.md) context=`1800a9b0`、8×504 B saver=`1000bcec`不同；不可混淆两种drop机制。
+这些是明确的静态丢弃条件，不是这次fread运行时命中它们的证据。`1800e004`这套cbuf与已分析的[BLE logsrv](log-buffer-wrap.md)不同；后者`1800a9b0`是8×512B slot数组base，8×504B正文由saver=`1000bcec`管理，不能把数组base当context。两种drop机制不可混淆。
 
 ## 初始化载荷不等于当前指针
 

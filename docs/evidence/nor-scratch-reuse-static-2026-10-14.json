@@ -1,0 +1,350 @@
+{
+  "schema": "nor-scratch-reuse-static-v1",
+  "date": "2026-10-14",
+  "status": "offline-static-candidate-not-live-validated",
+  "image": {
+    "path": "artifacts/mapped-system-20261012.bin",
+    "cpu_base": "0x10000000",
+    "bytes": 927632,
+    "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f"
+  },
+  "method": "Actual fixed image slices; ARM Thumb MCLASS disassembly inspected. Function names are behavioral labels, not vendor symbols. End addresses exclusive. No private runtime payloads.",
+  "scope": [
+    "kernel uptime accepts one unused ASCII nonce argument: selected descriptor zero-argc guard and complete handler ignore argv",
+    "logsrv length-limited original-text echo includes nonce; call order does not guarantee physical ring retention/order",
+    "dumpbuf opens0x12 at position0, no truncate/append, ignores write and close return; only fixed full4096 candidate",
+    "Boyi opens Call-name first, Note fallback; no file-list membership check or per-packet filename token"
+  ],
+  "unproven": [
+    "Current live code guards for new uptime/dispatcher path",
+    "Fresh nonce position and retention in same4096 physical circle with full fread chain",
+    "Same-file overwrite followed by independent full known-oracle read on actual device",
+    "Atomic snapshot, unknown-page integrity beyond existing fread grammar, scalable backup or restoration"
+  ],
+  "regions": [
+    {
+      "id": "kernel_descriptor",
+      "start": "0x100bb59c",
+      "end_exclusive": "0x100bb5b0",
+      "bytes": 20,
+      "sha256": "eb243fb95df96e7bf6d0d534f0b294af3bd1885ea70111278bc61ce7c48d789a",
+      "hex": "1f590c1026590c1028b60b100000000000000000",
+      "observation": "20B root descriptor points at selector100bb628; handler null."
+    },
+    {
+      "id": "kernel_selector",
+      "start": "0x100bb628",
+      "end_exclusive": "0x100bb630",
+      "bytes": 8,
+      "sha256": "347778f0947124b65b828460e6e8839501f6d0259027548b6abd2520bd10c9b3",
+      "hex": "00000000b0b50b10",
+      "observation": "Static selector points at child array100bb5b0."
+    },
+    {
+      "id": "uptime_descriptor",
+      "start": "0x100bb5ec",
+      "end_exclusive": "0x100bb600",
+      "bytes": 20,
+      "sha256": "274ff5ab43ca10ca6494434af993db86dc18ad251c5f59135b9fa26e52f11c77",
+      "hex": "8a590c1091590c1000000000ad29021000000000",
+      "observation": "Handler Thumb100229ad; mandatory and optional argument bytes both0."
+    },
+    {
+      "id": "uptime_handler_complete",
+      "start": "0x100229ac",
+      "end_exclusive": "0x100229c4",
+      "bytes": 24,
+      "sha256": "08b0d1293f9a912683002a87866bf0aac28f4e27a06c1ab14b2cc2f5d26a9034",
+      "hex": "10b5044696f022fc034a0346002120467ef00bfa002010bd",
+      "observation": "Complete24B handler; ignores incoming argc/argv, obtains uptime, prints format, returns0."
+    },
+    {
+      "id": "uptime_format_pointer",
+      "start": "0x100229c4",
+      "end_exclusive": "0x100229c8",
+      "bytes": 4,
+      "sha256": "9cf2614b92d1698805949d75ba3f4cd0a48384593b65c21a59b7ed721357e82f",
+      "hex": "91570c10",
+      "observation": "Literal points at Uptime format100c5791."
+    },
+    {
+      "id": "uptime_thunk",
+      "start": "0x100b91f8",
+      "end_exclusive": "0x100b91fc",
+      "bytes": 4,
+      "sha256": "f496303ff0d4bc9d5a5f5d3fd0222c2a416b0568618429e632b53650c7f5f791",
+      "hex": "e3f756b9",
+      "observation": "Thumb branch to1009c4a8."
+    },
+    {
+      "id": "uptime_clock_wrapper",
+      "start": "0x1009c4a8",
+      "end_exclusive": "0x1009c4dc",
+      "bytes": 52,
+      "sha256": "445eb67af76dda1ccc4f52088551e7ba6170fa3c46197a4f239de098bdbc556c",
+      "hex": "10b54ff02003eff3118483f31288bff36f8f8df725fb064bd3e90023121843f1000384f31188bff36f8f1046194610bde0a70018",
+      "observation": "48B code plus4B literal; BASEPRI lock, clock call10029b08, read/add counter, restore mask."
+    },
+    {
+      "id": "dispatcher_copy_descriptor",
+      "start": "0x1002315c",
+      "end_exclusive": "0x1002317c",
+      "bytes": 32,
+      "sha256": "78ac8c5f3fa2929261f6cea70a37c55d867ce2d07688d69e8d372c72e5409dfe",
+      "hex": "eb68cbb1a368ddf81490ae4603f1080cbee80f00ace80f00def80030ccf80030",
+      "observation": "Copy selected20B descriptor to context+8."
+    },
+    {
+      "id": "dispatcher_arg_gate_and_call",
+      "start": "0x1002323e",
+      "end_exclusive": "0x1002329a",
+      "bytes": 92,
+      "sha256": "9ab397b97f81819b9de25a1ee2654f1452d15207d6faf0067f1b4fde924b212d",
+      "hex": "037ea5eb0905b3b1427e4ff6ff71ff2a08bf0a469d4202d313449d420bd98368204a022120467df0f9ff2046fff753fe6ff015051fe74ff4803100f518707df093fca06800f53d707df0e8fca36811aa294602eb89025b6920469847",
+      "observation": "Mandatory byte context+18==0 skips argc bounds to23274; call handler context+14 at23298."
+    },
+    {
+      "id": "logsrv_echo_execute",
+      "start": "0x1000c2cc",
+      "end_exclusive": "0x1000c306",
+      "bytes": 58,
+      "sha256": "1c922fd5a12d3c6882182e298817f586e0ba18eb60bfe637150e33e1af17c8e4",
+      "hex": "3f2c23461d4a244928bf3f230027d75450461346224649f055fe29461f4817f0e1ff17f0dbff154994f091fd3946384617f0d8ff2846fff789fc",
+      "observation": "NUL at min(len,63); log original buffer using length and%s before shell_execute100a0e1a."
+    },
+    {
+      "id": "logsrv_buffer_literal",
+      "start": "0x1000c348",
+      "end_exclusive": "0x1000c34c",
+      "bytes": 4,
+      "sha256": "b3ee6f2a14e674d5bd6be52f10004ca47482ef9b04c600cc40268c5ff2f0ad81",
+      "hex": "96d90318",
+      "observation": "Original text buffer1803d996."
+    },
+    {
+      "id": "logsrv_echo_format_literal",
+      "start": "0x1000c364",
+      "end_exclusive": "0x1000c368",
+      "bytes": 4,
+      "sha256": "7bd6f9aabd424a96967fb899c3d8fb7126bf8129adfcaad2e2157e3ae1a81dce",
+      "hex": "50260c10",
+      "observation": "Format pointer100c2650."
+    },
+    {
+      "id": "shell_execute_copy",
+      "start": "0x100a0e1a",
+      "end_exclusive": "0x100a0e58",
+      "bytes": 62,
+      "sha256": "d5cef9ff8af45af9d988df6334aa3f65c406859f89209fab36d7d770a072efa4",
+      "hex": "37b5044608460191fff71cff0199054611b3ff2823d82cb3a068423018f03cfda0684ff0ff324ff0ff338587c58700f53d70fff784ff204682f7e5f80546",
+      "observation": "Validate <=255 bytes; copy original text to shell context before dispatcher10023020."
+    },
+    {
+      "id": "dumpbuf_handler_complete",
+      "start": "0x10024a28",
+      "end_exclusive": "0x10024abc",
+      "bytes": 148,
+      "sha256": "9efb2d90ff249bda445c5ec8c6cac58a51393a8271eb876a8f4b5cfea8d2eb10",
+      "hex": "f0b5032985b0074615460dd81d4a00217cf0cdf91c4a002138467cf0c8f96ff01506304605b0f0bd0024e9680394122201a8cde9014409f08bff061e06daeb68124a214638467cf0b2f9eae722462146686878f007fd224606462146a86878f001fd3146024601a80af08af801a80af03bf8eb68064a214638467cf098f92646cfe700bfec630c10f5630c100f640c1021640c10",
+      "observation": "130B code,2B alignment,16B literals. Open0x12; write requested bytes; close; ignores write/close returns."
+    },
+    {
+      "id": "vfs_open_flags",
+      "start": "0x1002e978",
+      "end_exclusive": "0x1002e988",
+      "bytes": 16,
+      "sha256": "750741113a7a3cd3289b7c63566043be170d5c4b5b85a21a391d67bd5bb74de7",
+      "hex": "7fb505461646027289b92f4b2f483049",
+      "observation": "Save requested flags at file+8."
+    },
+    {
+      "id": "vfs_open_dispatch",
+      "start": "0x1002e9e8",
+      "end_exclusive": "0x1002ea08",
+      "bytes": 32,
+      "sha256": "8af32aa2216fe3b6b754ed458364700e374229fddda4e59daadfb4d006c2da13",
+      "hex": "039b93f82020920702d516f0120f1cd1da691468e4b16b6032462846a047041e",
+      "observation": "Mount ops+0 open receives flags."
+    },
+    {
+      "id": "vfs_write_dispatch",
+      "start": "0x1002eba8",
+      "end_exclusive": "0x1002ebb8",
+      "bytes": 16,
+      "sha256": "a30c7ef55203a322151a80a365140743c3bd1f4de04b4195a696f8d5f1d10f69",
+      "hex": "436810b5abb1db699b68abb19847041e",
+      "observation": "Mount ops+8 write."
+    },
+    {
+      "id": "fatfs_ops",
+      "start": "0x100bc09c",
+      "end_exclusive": "0x100bc0ac",
+      "bytes": 16,
+      "sha256": "74df63e447f995807a5b59f8efa0d06aa065442ba22b1607765437310daead34",
+      "hex": "c1f9021099f8021051f80210c1f70210",
+      "observation": "First4 callbacks open1002f9c1/read1002f899/write1002f851/seek1002f7c1."
+    },
+    {
+      "id": "fatfs_open_adapter",
+      "start": "0x1002f9c0",
+      "end_exclusive": "0x1002fa16",
+      "bytes": 86,
+      "sha256": "83563bc93ad2198e32e5ec5c53f50bf3800cc9ccbda28d70e96be727163a6c40",
+      "hex": "f7b5002306460c461348174601a900226bf032f90546b8b901465022019889f073fe01983060611c07f0130210f09afa044630b1084801a988f0c1ff132c356006d8064b185701e06ff00b0003b0f0bd6ff00400fae7",
+      "observation": "Allocate/zero80B file object; flags&0x13; drop leading slash; f_open1003ff24."
+    },
+    {
+      "id": "f_open_existing_mode",
+      "start": "0x100400d0",
+      "end_exclusive": "0x100400e8",
+      "bytes": 24,
+      "sha256": "e72f221fccd7419c03b73d6c00a2590ec9b3f1a4f4f88827e7633b5fd3010ff0",
+      "hex": "9df8163013f0110f59d17c0700f1ce8038073ff574af039b",
+      "observation": "Existing object: modebit2 reject, modebit3 truncate; neither set by0x12."
+    },
+    {
+      "id": "f_open_initial_cursor",
+      "start": "0x100401d2",
+      "end_exclusive": "0x100401f4",
+      "bytes": 34,
+      "sha256": "f19bdc19ada1bf9c4651135c20823bb3c27509ef05fab2ec7e948af7a42f7ab0",
+      "hex": "e388ab800023002285f831306b640023c5e90e23b2062c6085f830600dd400245ae7",
+      "observation": "Zero64bit fptr+38; append branch tests bit5, clear for0x12."
+    },
+    {
+      "id": "fatfs_write_adapter",
+      "start": "0x1002f850",
+      "end_exclusive": "0x1002f894",
+      "bytes": 68,
+      "sha256": "bbd47d3161fb2173b0ad2179ed69de1271250fb0ace3b1a8c965486928983b21",
+      "hex": "30b5037a9b0685b0044615460bd4206803ab2a4677f072fc78b113280fdc094b185605b030bd006801910269d31777f010fe01990028ead0efe70398f1e76ff00400eee7",
+      "observation": "Append seek only if original flags bit5; otherwise f_write100a714c immediately."
+    },
+    {
+      "id": "f_write_position_size",
+      "start": "0x100a7296",
+      "end_exclusive": "0x100a72cc",
+      "bytes": 54,
+      "sha256": "0cc7723da939e2363739a9de3d658b61882d56e711fc22d703d4ff95ba52ce2d",
+      "hex": "d5e90e01d5e9042310eb080041f100018b4208bf82423cbf02460b46c5e90423029b029a1b684344c5e90e01c1441360aaeb080a69e7",
+      "observation": "Size=max(oldsize,newpos); update64bit cursor. Full4096 overwrite preserves4096; shortwrite cannot truncate tail."
+    },
+    {
+      "id": "boyi_get_file_handler",
+      "start": "0x1009edd6",
+      "end_exclusive": "0x1009ee0e",
+      "bytes": 56,
+      "sha256": "8c37f575ebd3cb052d955c64404886c9dea1abbe5d509f6bf034f1413d45372d",
+      "hex": "f8b50c1f0646204662f705fd2246054600211af06efc00272246314628461af02dfc2f553159284609ba6cf7cafd284662f7f9fc3846f8bd",
+      "observation": "Copy requested name; decode trailing32bit BE offset; call1000b998; no file-list capability argument."
+    },
+    {
+      "id": "boyi_worker_open_paths",
+      "start": "0x1000b5b4",
+      "end_exclusive": "0x1000b630",
+      "bytes": 124,
+      "sha256": "5731ca444d820baf7c56c0c5181f58aabb45fbe7ddba6c9ef758636d79ca2b7d",
+      "hex": "3046cde907668df81060099605f14908a2f0ecfa704b01934ff400726f4bcdf80880314600970aa8aef01bf944f4a0006b490aaa40f031004af0d0fc03220aa907a823f0bff9b04244da664bcdf80880cde900734ff40072604b31460aa8aef000f944f4a8005e490aaa40f031004af0b5fc03220aa907a823f0a4f9",
+      "observation": "Fresh local file object; Call path first; open flags3; Note fallback only after first open failure."
+    },
+    {
+      "id": "boyi_worker_path_literals",
+      "start": "0x1000b788",
+      "end_exclusive": "0x1000b79c",
+      "bytes": 20,
+      "sha256": "f3c1993cc3f6bf4413c9538ad35626da23bbac5df9c7acde450acafeaccbbe00",
+      "hex": "89160c1044220c105a230c1066230c103e220c10",
+      "observation": "Directory/Call-/format/log-format/Note- literal pointers."
+    },
+    {
+      "id": "boyi_worker_size_seek",
+      "start": "0x1000b688",
+      "end_exclusive": "0x1000b6c8",
+      "bytes": 64,
+      "sha256": "cc4baa9f8215578b678ed49f34d6c96ad2ae9b2e8c56d0d86ad5cebf50effb91",
+      "hex": "0222002107a823f0b1fa07a823f0d4fa002603bacdf815308146052305aa31460b208df81460fff731fd0021642090f0b9fcd5f84c11324607a823f097fa071e",
+      "observation": "SeekEOF/tell/declaration; sleep100ms; seek requested offset from origin."
+    },
+    {
+      "id": "boyi_worker_end_close",
+      "start": "0x1000b666",
+      "end_exclusive": "0x1000b680",
+      "bytes": 26,
+      "sha256": "773541c1e9cd5965caac239d8a78e2089fc0a352d02202a678d8b26754ea0f3d",
+      "hex": "012304aa0c20fff752fd0020a2f098fa07a823f04afa0023ab61",
+      "observation": "Send command0c termination; close file via1002eb10 before clearing worker state."
+    },
+    {
+      "id": "uptime_name",
+      "start": "0x100c598a",
+      "end_exclusive": "0x100c5991",
+      "bytes": 7,
+      "sha256": "5ab3fdf731c66132024d2d256d4d02c65194e66c6a7c2d19cc7db0adb6044402",
+      "hex": "757074696d6500",
+      "observation": "b'uptime\\x00'"
+    },
+    {
+      "id": "uptime_help",
+      "start": "0x100c5991",
+      "end_exclusive": "0x100c59a0",
+      "bytes": 15,
+      "sha256": "cb56532a38f5882a065a2c4c562c2daae047b137367fd47cf14e0caed41471d0",
+      "hex": "4b65726e656c20757074696d652e00",
+      "observation": "b'Kernel uptime.\\x00'"
+    },
+    {
+      "id": "uptime_format",
+      "start": "0x100c5791",
+      "end_exclusive": "0x100c57a0",
+      "bytes": 15,
+      "sha256": "739e522ca1d731c8583dfae848cbb06e1fbab2a43ab6ad65767775a007bc6648",
+      "hex": "557074696d653a202575206d730a00",
+      "observation": "b'Uptime: %u ms\\n\\x00'"
+    },
+    {
+      "id": "logsrv_echo_format",
+      "start": "0x100c2650",
+      "end_exclusive": "0x100c2663",
+      "bytes": 19,
+      "sha256": "bcd8f146f983e902cccc662cb27ee35d9b4b43b7381560242bb5e4d0ce6ea010",
+      "hex": "6c6f677372763a20636d642825642920257300",
+      "observation": "b'logsrv: cmd(%d) %s\\x00'"
+    },
+    {
+      "id": "recording_directory",
+      "start": "0x100c1689",
+      "end_exclusive": "0x100c1697",
+      "bytes": 14,
+      "sha256": "2ce0fd23dec6f6a4506c42c7c14b6b891f03e08832d1a738b8684d09e873411f",
+      "hex": "2f53443a2f5245434f5244455200",
+      "observation": "b'/SD:/RECORDER\\x00'"
+    },
+    {
+      "id": "call_prefix",
+      "start": "0x100c2244",
+      "end_exclusive": "0x100c224a",
+      "bytes": 6,
+      "sha256": "e1e29ce22d5506d79eacea2971dc4e4b4ef8f73e040200a58802f04b8c6a12f1",
+      "hex": "43616c6c2d00",
+      "observation": "b'Call-\\x00'"
+    },
+    {
+      "id": "note_prefix",
+      "start": "0x100c223e",
+      "end_exclusive": "0x100c2244",
+      "bytes": 6,
+      "sha256": "147d666a961befcc25c84ba7b2dd1aa57a5f09b195ecc135d5b27d596aa1cc88",
+      "hex": "4e6f74652d00",
+      "observation": "b'Note-\\x00'"
+    },
+    {
+      "id": "recording_path_format",
+      "start": "0x100c235a",
+      "end_exclusive": "0x100c2366",
+      "bytes": 12,
+      "sha256": "30d42cb5d785ab22c6accba10c46b5057f32a7b007b87bdf54dfce1ec05c7de9",
+      "hex": "25732f257325732e6d703300",
+      "observation": "b'%s/%s%s.mp3\\x00'"
+    }
+  ]
+}

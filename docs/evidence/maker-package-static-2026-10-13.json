@@ -1,0 +1,201 @@
+{
+  "schema": 1,
+  "scope": "Static producer bytecode/native reader analysis; no vendor code or device execution",
+  "sdk_commit": "26f51e584940d5b141cd1d09d2629d69b595f579",
+  "files": {
+    "libScript.so": {
+      "size": 721871,
+      "sha256": "91190bdba1561f67fe2070472a03edf14d203ff6713d14c8e702d9ba9dc3d274"
+    },
+    "CompoundFW": {
+      "size": 1059100,
+      "sha256": "c5bdc3b69e928aee238db7bdffb0026f4e30aeb5821b4ea56ce3faab8c18fcd0"
+    },
+    "libFileSystem.so": {
+      "size": 312617,
+      "sha256": "ed073d9e40f5bc831c94c1a4c25d5fc889390cdcf4e3d1ce387aed39ea27ca1d"
+    },
+    "PyMaker.pyo": {
+      "size": 17259,
+      "sha256": "0cc1c1cb5283517b280653c75b1fce672feaf79cea1f0352b6a2dcc138619355"
+    }
+  },
+  "producer": {
+    "version": "PyMaker 1.1.170825.1",
+    "static_tools": [
+      "uncompyle6 3.9.3",
+      "xdis pydisasm",
+      "objdump"
+    ],
+    "routines": [
+      "CombineDbNImg",
+      "CombineDbNImg100",
+      "LoadBaseFile",
+      "EncryptFw"
+    ],
+    "legacy_layout": "12-byte SFDNABDWFTCA + native signed int DB length + DB + image (shipped Linux LE32)",
+    "type100_layout": "12-byte 100TMFWFSTCA + native signed int image length + rewritten image + DB",
+    "selection": "AUTO retains type100 only when BASEFILE detects type100; explicit --type=100 forces it, other --type values choose legacy",
+    "fast_mode": "--mf sets Py_SetEncryptMode; distinct from --type envelope selector",
+    "windows_boundary": "EncryptFw Windows branch copies DB; Linux invokes Py_106. Do not assume every platform/host transforms identically",
+    "safety": "Do not import/run decompiled module: ctypes loader at top level; ClearTmpFile deletes sample.db/temp.db/temp.img",
+    "decompilation_limit": "Include/parser loops have decompiler control-flow artifacts; envelope selection/write order independently checked in bytecode"
+  },
+  "consumer": {
+    "legacy_envelope": {
+      "reader": "libScript.so ExtraFirmware 0x11f44; independently same magic check CompoundFW 0x404460",
+      "magic": {
+        "offset": 0,
+        "size": 12,
+        "ascii": "SFDNABDWFTCA",
+        "hex": "5346444e4142445746544341"
+      },
+      "correction": "12 non-NUL bytes; native literal includes a 13th NUL but comparison excludes it.",
+      "db_length": {
+        "offset": 12,
+        "size": 4,
+        "endianness": "little",
+        "consumer_interpretation": "uint32 allocation/read; later signed int arithmetic"
+      },
+      "database": {
+        "offset": 16,
+        "size": "db_length",
+        "form": "XYZ_108-wrapped database, not assumed plaintext SQLite"
+      },
+      "image": {
+        "offset": "16 + db_length",
+        "size": "file_size - 16 - db_length",
+        "form": "separate image file subsequently opened via libFileSystem"
+      },
+      "checks": "ExtraFirmware checks magic only; no reliable read-length/bounds validation before allocation. Independent reader should reject truncation/oversize.",
+      "not_fields": "No chip/version field in this 16-byte envelope. Do not transplant ACTTEST0 or 100TMFWFSTCA layouts.",
+      "new_format": "Neither inspected ExtraFirmware implementation recognizes 100TMFWFSTCA. Parent producer analysis contains distinct new-format branch."
+    },
+    "database_transform": {
+      "caller": "GetFirmwareBin 0x1245c -> XYZ_108 0x1baa9 -> XYZ_107 0x1b120; OpenFirmware 0x125e4 writes resulting bytes then sqlite3_open and sqlite3_backup into :memory:",
+      "wrapper_identity": "First16 bytes must equal FileID@0x29a9e0 = 112233445566778899aabbccddeeff75",
+      "visible_header_checks": [
+        {
+          "offset": 16,
+          "size": 4,
+          "test": "equals input byte count",
+          "at": "0x1b369"
+        },
+        {
+          "offset": 20,
+          "size": 4,
+          "test": "equals0x200",
+          "at": "0x1b377"
+        },
+        {
+          "offset": 24,
+          "size": 1,
+          "test": "equals0x7e",
+          "at": "0x1b35b"
+        },
+        {
+          "offset": 25,
+          "size": 1,
+          "test": "equals0xe1",
+          "at": "0x1b388"
+        }
+      ],
+      "selector_fields": "a=byte[0x1ee]&15; b=byte[0x1fe]&15; verified at0x1b256/264",
+      "reconstruction": "On successful XYZ_107, XYZ_108 removes total0x800 overhead: concatenate [0x200,0x200+A), [0x600+A,0x600+A+B), [0x800+A+B,end), where A=(a+1)*512 and B=(b+1)*512. Then transforms concatenation via XYZ_062/XYZ_063.",
+      "remaining_boundary": "XYZ_107 performs additional certificate/key/device metadata checks and transformations. Primitives intentionally not expanded; reconstruction is not a standalone decryptor.",
+      "chip_identity": "GetChipId returns object+0xb0; DWARF labels it m_pChipID[512]. XYZ_107 fills this through transformed metadata, not an exposed chip-name field in outer header. No ATS3085L binding established."
+    },
+    "file_extraction": {
+      "call": "ReadFileInFW 0x10ed8 dynamically resolves FSOpen, FatReadEncryptFile, FSClose in %slibFileSystem.so",
+      "open_arguments": "FSOpen(2, extracted_img_path,0,0,0x40000000,0x500000,0); type2 selects CSysfs32 at libFileSystem0x27e31",
+      "read_arguments": "FatReadEncryptFile(image_path, backslash, logical_offset, output, requested_length, logical_filename)",
+      "logical_blocks": "10MiB (0xa00000) blocks; ReadBlock opens path format backslash + %s~%d, e.g. \\Launch.pyo~0. Format literal0x38265.",
+      "transform_dispatch": "ReadBlock0x26d92 reads whole block; first15 bytes112233445566778899aabbccddeeff selects XYZ_121, otherwise XorEncrypt; zero transformation return means success.",
+      "optional_alignment": "ReadFileInFW may zero-pad returned output to caller alignment. SaveBinFile requests10MiB chunks with alignment0.",
+      "remaining_boundary": "FAT32/XOR branch independently decoded for shipped sample (43files). XYZ_121 remains unsupported."
+    },
+    "compound_format_side_observation": {
+      "reason_in_scope": "Avoid confusing CompoundFW-produced format with legacy inner envelope; one function plus DWARF inspected.",
+      "writer": "CompoundFW 0x405d60, DWARF main source line527",
+      "magic_hex": "5746444e554f504d4f43535443410000",
+      "magic_ascii": "WFDNUOPMOCSTCA followed by2 zero bytes",
+      "header": [
+        {
+          "offset": 0,
+          "size": 16,
+          "name": "magic"
+        },
+        {
+          "offset": 16,
+          "size": 4,
+          "name": "header_size = 64*(count+1)"
+        },
+        {
+          "offset": 20,
+          "size": 16,
+          "name": "md5"
+        },
+        {
+          "offset": 36,
+          "size": 4,
+          "name": "entry_count"
+        },
+        {
+          "offset": 40,
+          "size": 24,
+          "name": "reserved"
+        }
+      ],
+      "entry": [
+        {
+          "offset": 0,
+          "size": 16,
+          "name": "name"
+        },
+        {
+          "offset": 16,
+          "size": 8,
+          "name": "fs"
+        },
+        {
+          "offset": 24,
+          "size": 8,
+          "name": "offset"
+        },
+        {
+          "offset": 32,
+          "size": 8,
+          "name": "entry_size"
+        },
+        {
+          "offset": 40,
+          "size": 16,
+          "name": "md5"
+        },
+        {
+          "offset": 56,
+          "size": 8,
+          "name": "reserved"
+        }
+      ],
+      "semantics": "64-byte entries begin at64; payload starts atheader_size. Writer sets offsets/lengths, pads each payload length to512 (zero added when already aligned). Header/entry md5 fields remainzero in inspected function; name alone does not prove MD5 validation.",
+      "not_default_upgrade": "No claim this compound format is current default innerupgrade.fw, raw NOR, or CoMi accepted container."
+    }
+  },
+  "xor": {
+    "file": "libFileSystem.so",
+    "va_start": "0x26c72",
+    "va_end_exclusive": "0x26c93",
+    "file_offset": "0x26c72",
+    "raw_hex": "8b0e85c97e15b8000000004863d048031780323883c00139c17ff0b800000000c3",
+    "raw_sha256": "0104ba92a0ddbcceb1ad85fd5a46dc9e4b61134e2e2bc0c0cefe62dcfec98012",
+    "semantics": "signed32 length; each byte XOR 0x38; no size/header/trailer change; return0",
+    "dispatch": "ReadBlock0x26d92: first15 bytes112233445566778899aabbccddeeff -> XYZ_121; otherwise XorEncrypt at0x26f32"
+  },
+  "sample_evidence": "maker-sample-2026-10-13.json",
+  "limits": [
+    "No real CoMi production envelope acquired",
+    "DB XYZ_108 and per-file XYZ_121 not implemented",
+    "No matched BSP, ROM transfer, full NOR backup or restoration proved"
+  ]
+}

@@ -1,0 +1,496 @@
+{
+  "schema": 1,
+  "status": "final-original-failure-plus-independent-early-success",
+  "target": {
+    "owned_serial": "C261CF0430",
+    "firmware": "010004",
+    "profile": "dual-unknown-backup2200-pair",
+    "nor_range": ["0x2200", "0x2400"],
+    "requested_bytes": 512,
+    "independent_oracle": false,
+    "intended_producer_executions": 2,
+    "intended_connections": 1,
+    "successful_profile": "dual-unknown-backup2200-early-pair"
+  },
+  "result": {
+    "fully_successful_attempts": 1,
+    "pair_verified": true,
+    "new_verified_bytes": 512,
+    "historical_raw_coverage_increased": true,
+    "finalized": true,
+    "verified_attempt_id": "early-normalized-independent",
+    "independent_oracle": false
+  },
+  "attempts": [
+    {
+      "id": "original",
+      "started_at": "2026-10-14T00:18:00.927422+00:00",
+      "ended_at": "2026-10-14T00:18:19.172364+00:00",
+      "original_ok": false,
+      "original_report": {
+        "file": "artifacts/dual-unknown2200-20261014/report.json",
+        "bytes": 30321,
+        "sha256": "a3f257886ff1747ae95f3003160b573504358e382960d12759d48440975464e9"
+      },
+      "hci_capture": {
+        "file": "artifacts/dual-unknown2200-20261014/session.btsnoop",
+        "bytes": 11200,
+        "sha256": "9adb014c6eb907ec5cac2d7b4442f6eec67b8f9a3ffee3e192db809719afe63e"
+      },
+      "error": "ValueError: Truncated/dropped/nonmonotonic HCI record",
+      "after_error": "ConnectionError: CoMi request did not finish; reconnect before another request",
+      "final_evidence_error": "ValueError: Truncated/dropped/nonmonotonic HCI record",
+      "final_audit_complete": false,
+      "final_identity_available": false,
+      "strict_full_hci_replay_passed": false,
+      "before_state": {
+        "recording_state": "idle",
+        "firmware": "010004",
+        "free_capacity_mib": 59592
+      },
+      "operations": [
+        {
+          "id": "first",
+          "original_ok": false,
+          "sd_write_attempted": true,
+          "actions_summary": {"confirmed_writes": 5, "ack_count": 5, "f1_received": true, "pending_bytes": 0},
+          "download": {
+            "file": "artifacts/dual-unknown2200-20261014/first/download.bin",
+            "bytes": 4096,
+            "sha256": "65ba11d98dafab8e80c944a5871f0f9b6659ab8dafc3dc96c3cd63a478737298"
+          },
+          "sector_candidate": {
+            "file": "artifacts/dual-unknown2200-20261014/first/sector.bin",
+            "bytes": 512,
+            "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+          },
+          "candidate_bytes": 512,
+          "candidate_all_ff": true,
+          "candidate_freshness_parser_passed_offline": true,
+          "candidate_verification_level": "fresh-complete-single-read-no-independent-oracle",
+          "freshness": {
+            "rule": "nearest-producer-exact-status32rows-prefix-dump-v1",
+            "ring_sha256": "65ba11d98dafab8e80c944a5871f0f9b6659ab8dafc3dc96c3cd63a478737298",
+            "sector_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+            "nor_offset": 8704,
+            "bytes": 512,
+            "rows": 32,
+            "status_span": [233, 278],
+            "rows_span": [284, 2204],
+            "producer_span": [2224, 2269],
+            "dump_span": [2290, 2371],
+            "bounded_chain_bytes": 2138,
+            "previous_dump_required": false,
+            "previous_dump_span": null,
+            "one_status_one_producer": true,
+            "failure_text_absent": true
+          },
+          "independent_oracle": false,
+          "final_identity_and_hci_audit_passed": false,
+          "promoted_to_verified_coverage": false
+        },
+        {
+          "id": "second",
+          "original_ok": false,
+          "executed": false,
+          "sd_write_attempted": false,
+          "new_download_present": false
+        }
+      ],
+      "new_sd_test_files_written": 1,
+      "pair_verified": false,
+      "new_verified_bytes": 0,
+      "original_files_modified": false,
+      "original_source_snapshot": {
+        "manifest": {
+          "file": "artifacts/dual-unknown2200-20261014/source-snapshot/manifest.json",
+          "bytes": 1554,
+          "sha256": "564085efbefdf287a02c4db563a6e5828edd173a88d8ce6a0eebe8a7b2d9add1"
+        },
+        "files": 10,
+        "scope": "Preserved original-run source; distinct from post-run diagnosis parser",
+        "run_hci_parser": {
+          "bytes": 8425,
+          "sha256": "3120e3939d38185861259b3ca61772fcbe81cb1682b2921e1f92203009d282d9"
+        },
+        "run_freshness_parser": {
+          "bytes": 7304,
+          "sha256": "3087ce074c6c6e14c571e41e7f923ff44a4676bdb2e6e1437502016ecd6f6ff3"
+        }
+      }
+    },
+    {
+      "id": "early-normalized-independent",
+      "profile": "dual-unknown-backup2200-early-pair",
+      "started_at": "2026-10-14T00:33:33.163122+00:00",
+      "ended_at": "2026-10-14T00:33:46.160658+00:00",
+      "original_ok": true,
+      "original_report": {
+        "file": "artifacts/dual-unknown2200-early-20261014/report.json",
+        "bytes": 54198,
+        "sha256": "77f75c84d50e1f03b1a698ac1cd610f897a0242d07d7a600463ec8dbcd1822b0"
+      },
+      "hci_capture": {
+        "file": "artifacts/dual-unknown2200-early-20261014/session.btsnoop",
+        "bytes": 17395,
+        "sha256": "6cb3671a79982b7bdb4f2de0374d8d42dbc1ed540e6f48cfc1ed30021d8ad184",
+        "records": 222
+      },
+      "final_audit_complete": true,
+      "att_hci_binding": {
+        "verified": true,
+        "packets": 148,
+        "comparison": "exact within each direction"
+      },
+      "transport": {
+        "policy": "early-before-identity-interval6-latency0-timeout500-ce1",
+        "baseline": {
+          "kind": "connect",
+          "status": 0,
+          "handle": 2048,
+          "role": 0,
+          "address_type": 0,
+          "address": "50:C0:F0:AE:7C:0E",
+          "interval": 48,
+          "latency": 4,
+          "timeout": 600,
+          "record": 18,
+          "timestamp_us": 63960194021852696
+        },
+        "applied": {
+          "kind": "update",
+          "status": 0,
+          "handle": 2048,
+          "interval": 6,
+          "latency": 0,
+          "timeout": 500,
+          "record": 82,
+          "timestamp_us": 63960194024956768
+        },
+        "actual_hci_request": {
+          "handle": 2048,
+          "min": 6,
+          "max": 6,
+          "latency": 0,
+          "timeout": 500,
+          "min_length": 1,
+          "max_length": 1,
+          "kind": "request",
+          "record": 80,
+          "timestamp_us": 63960194024014201
+        }
+      },
+      "normalization_before_initial_identity": true,
+      "host_hci_update_requests": 1,
+      "monitor_exit": 0,
+      "monitor_stop": {
+        "signal": "SIGINT",
+        "requested": true,
+        "delivery": "sent"
+      },
+      "before_and_final_state": {"version": "010004", "mode": "note", "recording_state": "idle", "charging": true, "battery": 100, "free_capacity": 59592},
+      "state_verification": {
+        "other_state_equal": true,
+        "free_capacity_unit": "MiB (integer firmware report)",
+        "free_capacity_before": 59592,
+        "free_capacity_after": 59592,
+        "free_capacity_decrease": 0,
+        "allowed_decrease": 0
+      },
+      "operations": [
+        {
+          "id": "first",
+          "original_ok": true,
+          "single_operation_pair_flag": false,
+          "sd_write_attempted": true,
+          "live_complete": true,
+          "actions": {"confirmed_writes": 5, "ack_count": 5, "f1_received": true, "pending_bytes": 0},
+          "download": {
+            "file": "artifacts/dual-unknown2200-early-20261014/first/download.bin",
+            "bytes": 4096,
+            "sha256": "7aaf5b5ba34f9352de251a8016dc51956f1ee58ea2d4652c33ba6f8d254d30a9"
+          },
+          "sector": {
+            "file": "artifacts/dual-unknown2200-early-20261014/first/sector.bin",
+            "bytes": 512,
+            "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+          },
+          "freshness": {
+            "rule": "nearest-producer-exact-status32rows-prefix-dump-v1",
+            "ring_sha256": "7aaf5b5ba34f9352de251a8016dc51956f1ee58ea2d4652c33ba6f8d254d30a9",
+            "sector_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+            "nor_offset": 8704,
+            "bytes": 512,
+            "rows": 32,
+            "status_span": [1906, 1951],
+            "rows_span": [1957, 3877],
+            "producer_span": [3897, 3942],
+            "dump_span": [3963, 4044],
+            "bounded_chain_bytes": 2138,
+            "previous_dump_required": false,
+            "previous_dump_span": null,
+            "one_status_one_producer": true,
+            "failure_text_absent": true
+          },
+          "identity_checkpoint_passed": true,
+          "verified_end_att_index": 99
+        },
+        {
+          "id": "second",
+          "original_ok": true,
+          "single_operation_pair_flag": false,
+          "sd_write_attempted": true,
+          "live_complete": true,
+          "actions": {"confirmed_writes": 5, "ack_count": 5, "f1_received": true, "pending_bytes": 0},
+          "download": {
+            "file": "artifacts/dual-unknown2200-early-20261014/second/download.bin",
+            "bytes": 4096,
+            "sha256": "11de3137e475089b0c1f1f2de31e04185ebffacc6cb8172fab995e7dc541693d"
+          },
+          "sector": {
+            "file": "artifacts/dual-unknown2200-early-20261014/second/sector.bin",
+            "bytes": 512,
+            "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+          },
+          "freshness": {
+            "rule": "nearest-producer-exact-status32rows-prefix-dump-v1",
+            "ring_sha256": "11de3137e475089b0c1f1f2de31e04185ebffacc6cb8172fab995e7dc541693d",
+            "sector_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+            "nor_offset": 8704,
+            "bytes": 512,
+            "rows": 32,
+            "status_span": [1446, 1491],
+            "rows_span": [1497, 3417],
+            "producer_span": [3437, 3482],
+            "dump_span": [3503, 3584],
+            "bounded_chain_bytes": 2138,
+            "previous_dump_required": true,
+            "previous_dump_span": [3963, 4044],
+            "one_status_one_producer": true,
+            "failure_text_absent": true
+          },
+          "identity_checkpoint_passed": true,
+          "verified_end_att_index": 142
+        }
+      ],
+      "pair_verification": {
+        "pair_verified": true,
+        "independent_oracle": false,
+        "independent_producer_executions": 2,
+        "connections": 1,
+        "nor_range": [8704, 9216],
+        "bytes": 512,
+        "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+      },
+      "new_verified_bytes": 512,
+      "new_sd_test_files_written": 2,
+      "offline_full_parent_chain_replay_passed": true,
+      "source_hashes": {
+        "src/rcominote/experiments/dual_nor_probe.py": "8245820f0e094e1da3bda17780e78133ea7664f4937e995e67e0b4b3a10e624b",
+        "src/rcominote/experiments/dual_unknown_pair.py": "92f2b0ecf0416ec362f80ab83a47249bdb508bc97ce34780c483ebf32769dfa4",
+        "src/rcominote/experiments/dual_client.py": "673445a29e3b1208cd14c8a3786068904cc377271741626bf8a7ee63cc9c8163",
+        "src/rcominote/experiments/dual_audit.py": "32bcb5075ee2c8319875065306351a2e3cb0035b1eb5561e1c764d6d1824e1e2",
+        "src/rcominote/experiments/dual_hci.py": "6164a5a2dfdfae7faf79008b626fb4992984c09fc09ff7bdede92a2e8f8cfc8f",
+        "src/rcominote/experiments/dual_interval.py": "1688203dca90d35f90ad4c41ca920225277dc47bb1c1b4f66c6a9d582e75a0c7",
+        "src/rcominote/experiments/hci_monitor.py": "f3632128e2ec96e890339ba43ba8d8e9e8d04199971d20df9603693a516956d2",
+        "src/rcominote/experiments/hci_interval.py": "3120e3939d38185861259b3ca61772fcbe81cb1682b2921e1f92203009d282d9",
+        "src/rcominote/experiments/hci_interval_io.py": "366c06104a507ce01299366b044f55d8bd1b9aa3127dc17686468c8fcef10783",
+        "src/rcominote/experiments/sd_nor_probe.py": "62f9bae44a5e205bd167bdd0827e81c73f20cadccb1ee0b2e598eda1f917cb4b",
+        "src/rcominote/experiments/sd_nor_targets.py": "176f60c522839afa584b4e4371f819f7181e9b87498663a68afda58591cdc358",
+        "src/rcominote/experiments/sd_nor_unknown.py": "d6cff4a2662d222b30d1803367158e048879f723081be02310097464653b0d23",
+        "src/rcominote/experiments/nor_freshness.py": "3087ce074c6c6e14c571e41e7f923ff44a4676bdb2e6e1437502016ecd6f6ff3"
+      },
+      "source_snapshot_manifest": {"file": "artifacts/dual-unknown2200-early-20261014/source-snapshot/manifest.json", "bytes": 1862, "sha256": "fc769f6d599969abce1072bcc09d490d35e63aecd40db8b1f2d727be162931ba", "files": 12},
+      "actual_update_request_status_complete_records": [80, 81, 82],
+      "no_owned_disconnect_observed": true,
+      "timing_us": {"initial_identity_tx_after_applied": 6034, "connection_to_last_att": 4282762, "first_actions_to_final_info": 1011964, "wire_downloads": [183913, 185830], "software_downloads": [184523, 186402]}
+    }
+  ],
+  "freshness_policy": {
+    "rule": "nearest-producer-exact-status32rows-prefix-dump-v1",
+    "current_dump_echo": "exact unique nonce and newline-terminated command length",
+    "producer": "most recent complete producer of any target; exact current target and command length required",
+    "status": "most recent fread status before producer; exact target required",
+    "rows": "exact32 consecutive canonical FW010004 rows, sixteen bytes each",
+    "formatter": "exact observed prefix/delimiters within one circular4096-byte window",
+    "second_read_anchor": "first dump must be unique, present and precede second status inside same circle",
+    "rejection": "failure/error text, extra status/producer, missing/duplicate/truncated markers or rows; no old-candidate fallback",
+    "scope": "text association only; not proof of hardware read correctness, final identity/HCI or pair equality"
+  },
+  "offline_validation": {
+    "device_io": false,
+    "first_full_ring_candidate_reparsed": true,
+    "candidate_matches_retained_sector": true,
+    "target_tests": {
+      "command": "uv run pytest -q tests/test_nor_freshness.py tests/test_dual_unknown_pair.py",
+      "passed": 63,
+      "failed": 0
+    },
+    "source_hashes": {
+      "src/rcominote/experiments/nor_freshness.py": "3087ce074c6c6e14c571e41e7f923ff44a4676bdb2e6e1437502016ecd6f6ff3",
+      "tests/test_nor_freshness.py": "ac93fdc9741e744f9c6d0c669d5ece313f5dae0ed0ed2c01d81959834393a59b",
+      "tests/test_dual_unknown_pair.py": "a0ac338d03a4c8f06763acecd769391d280fa1b63546cbd662a6981b116e6aa1"
+    },
+    "early_success_validation": {
+      "command": "uv run python -c 'from pathlib import Path; from rcominote.experiments.dual_unknown_pair import replay; print(replay(Path(\"artifacts/dual-unknown2200-early-20261014\"), Path(\"artifacts/mapped-system-20261012.bin\")))'",
+      "full_replay_passed": true,
+      "target_tests_command": "uv run pytest -q tests/test_nor_freshness.py tests/test_dual_unknown_pair.py tests/test_dual_interval.py",
+      "target_tests_passed": 69
+    }
+  },
+  "publication": {
+    "raw_ring_published": false,
+    "complete_hci_published": false,
+    "complete_info_published": false,
+    "audio_inventory_published": false,
+    "metadata_only": false,
+    "only_new_public_binary": "512-byte verified allFF sector from successful early first operation; no other payload published"
+  },
+  "diagnosis": {
+    "scope": "Offline diagnosis of original failed attempt only; independent later success does not promote original",
+    "capture_bytes": 11200,
+    "complete_records": 174,
+    "structurally_complete": true,
+    "truncated_records": 0,
+    "reported_drop_fields": [0],
+    "timestamp_inversions": [
+      {
+        "previous_record": 162,
+        "record": 163,
+        "previous_flags": 17,
+        "flags": 5,
+        "delta_us": -100
+      }
+    ],
+    "same_owned_acl_rx_161_to_163_delta_us": 1,
+    "postrun_monitor_ingestion_passed": true,
+    "postrun_diagnostic_sources": {
+      "monitor_ingestion": {
+        "file": "src/rcominote/experiments/hci_monitor.py",
+        "bytes": 3738,
+        "sha256": "f3632128e2ec96e890339ba43ba8d8e9e8d04199971d20df9603693a516956d2"
+      },
+      "legacy_decode_and_condition_gate": {
+        "file": "src/rcominote/experiments/hci_interval.py",
+        "bytes": 8425,
+        "sha256": "3120e3939d38185861259b3ca61772fcbe81cb1682b2921e1f92203009d282d9"
+      }
+    },
+    "sort_or_timestamp_repair_performed": false,
+    "strict_one_request_contract_passed": false,
+    "strict_contract_error": "Second parameter request/update: experimental condition changed",
+    "host_hci_connection_update_request_records": [129, 134, 165],
+    "post_experiment_request_records": [134, 165],
+    "slow_update_complete_observed": false,
+    "slow_parameters_claimed_effective": false,
+    "timeline_time_origin": "Owned Connection Complete record18; microseconds from that original timestamp",
+    "timeline": [
+      {"record": 18, "kind": "initial-connect", "relative_us": 0, "parameters": {"interval": 48, "latency": 4, "timeout": 600, "status": 0}},
+      {"record": 126, "kind": "remote-l2cap-fast-request", "relative_us": 5061579, "parameters": {"min": 6, "max": 12, "latency": 0, "timeout": 500}},
+      {"record": 129, "kind": "host-natural-hci-request", "relative_us": 5061719, "parameters": {"min": 6, "max": 12, "latency": 0, "timeout": 500, "min_length": 0, "max_length": 0}},
+      {"record": 132, "kind": "natural-update-complete", "relative_us": 6021084, "parameters": {"interval": 12, "latency": 0, "timeout": 500, "status": 0}},
+      {"record": 134, "kind": "experiment-hci-request", "relative_us": 6083371, "parameters": {"min": 6, "max": 6, "latency": 0, "timeout": 500, "min_length": 1, "max_length": 1}},
+      {"record": 136, "kind": "experiment-update-complete", "relative_us": 6201087, "parameters": {"interval": 6, "latency": 0, "timeout": 500, "status": 0}},
+      {"record": 138, "kind": "boyi-download-request-tx", "relative_us": 6206206},
+      {"record": 161, "kind": "remote-l2cap-slow-request", "relative_us": 6419517, "parameters": {"min": 32, "max": 48, "latency": 4, "timeout": 600}},
+      {"record": 163, "kind": "boyi-download-end-rx", "relative_us": 6419518},
+      {"record": 165, "kind": "second-host-hci-request", "relative_us": 6419658, "parameters": {"min": 32, "max": 48, "latency": 4, "timeout": 600, "min_length": 0, "max_length": 0}}
+    ],
+    "host_versions": {
+      "kernel": "6.14.0-36-generic",
+      "btmon": "5.72"
+    },
+    "timestamp_explanation": "Same realtime clock; RX stamped before deferred rx_work monitor delivery, CTRL_EVENT newly stamped later; mixed delivery queue need not be globally timestamp-monotonic",
+    "primary_source_comparison": [
+      {"url": "https://github.com/torvalds/linux/blob/v6.14/net/bluetooth/mgmt_util.c#L89", "supports": "Management event gets new timestamp before control monitor delivery"},
+      {"url": "https://github.com/torvalds/linux/blob/v6.14/net/bluetooth/hci_sock.c#L419", "supports": "CTRL_EVENT monitor copy preserves supplied timestamp"},
+      {"url": "https://github.com/torvalds/linux/blob/v6.14/net/bluetooth/hci_core.c#L2923", "supports": "Incoming RX timestamp precedes rx_q and later rx_work monitor copy"},
+      {"url": "https://github.com/bluez/bluez/blob/5.72/monitor/control.c#L936", "supports": "Monitor recvmsg SCM_TIMESTAMP passed unchanged to btsnoop writer"},
+      {"url": "https://github.com/torvalds/linux/blob/v6.14/include/linux/skbuff.h#L4340", "supports": "__net_timestamp uses ktime_get_real for the shared realtime timestamp source"}
+    ],
+    "source_comparison_boundary": "Upstream version comparison explains a compatible mechanism; not instruction-level tracing of this Ubuntu kernel"
+  },
+  "independent_later_health": {
+    "source": {
+      "file": "artifacts/dual-unknown2200-health-20261014.json",
+      "bytes": 521,
+      "sha256": "503ee455f4f193fd2051b6a22bb0d8408905754b4322605698ca9264daa901af"
+    },
+    "query_successful": true,
+    "serial": "C261CF0430",
+    "bound": false,
+    "state": {
+      "version": "010004",
+      "mode": "note",
+      "recording_state": "idle",
+      "charging": true,
+      "battery": 100,
+      "free_capacity": 59592
+    },
+    "substitutes_for_failed_session_after": false,
+    "promotes_original_attempt": false
+  },
+  "retained_scratch_accounting": {
+    "scope": "Current Ubuntu experiment cohort, not full device inventory",
+    "download_confirmed_files": 53,
+    "additional_possible_file": 1,
+    "maximum_retained_test_files": 54,
+    "no_automatic_deletion": true
+  },
+  "static_parameter_path_comparison": {
+    "source": "Pinned actual mapped FW010004 bytes; Astra disassembly inference plus independent region hash checks",
+    "image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+    "get_file_data_entry": "0x1000b698",
+    "fast_request_call": "0x1000b70e",
+    "eof_stop_read_error_common_slow_call": "0x1000b74a",
+    "parameter_selector": "0x1006bdbc",
+    "parameter_table": "0x100c0550",
+    "slow_profile_both_phone_variants": {
+      "min": 32,
+      "max": 48,
+      "latency": 4,
+      "timeout": 600
+    },
+    "matches_observed_remote_slow_request": true,
+    "actual_cpu_execution_observed": false,
+    "initial_delay_numeric_value_established": false,
+    "regions": [
+      {"start": "0x1000b698", "end_exclusive": "0x1000b712", "bytes": 122, "sha256": "c8a008ccb2eb752fc397cb72238bc36b1efa210b2ba654cbd3ff5592ad4c446d"},
+      {"start": "0x1000b712", "end_exclusive": "0x1000b77c", "bytes": 106, "sha256": "e2d3d2671ee484c527173da6fd9a821b97a0980f89930f00b4f6df582c8c6ecb"},
+      {"start": "0x1006bdbc", "end_exclusive": "0x1006be24", "bytes": 104, "sha256": "3ee844e25d96138a44a96e454bf0bff58a0d00d1bbc20965fb909bb8bde7d809"},
+      {"start": "0x100b37d2", "end_exclusive": "0x100b385a", "bytes": 136, "sha256": "2b5d79ba412c70b26b6cd7cef0a28b69af79f715b3cb15e8f5fb295fa41534ca"},
+      {"start": "0x10074764", "end_exclusive": "0x100747e4", "bytes": 128, "sha256": "f827032ef7b60fafa5b8588f4a24a5c809253b012522a0a2e4256d754f184d4f"},
+      {"start": "0x100c0550", "end_exclusive": "0x100c0580", "bytes": 48, "sha256": "997c514c92e51fb478663bc6888629932da51edf33639e37b1b13053559e30d7"}
+    ]
+  },
+  "verified_coverage": {
+    "source_attempt_id": "early-normalized-independent",
+    "new_range": ["0x2200", "0x2400"],
+    "new_bytes": 512,
+    "fw1_boot_partition": ["0x2000", "0x3000"],
+    "covered_prefix": ["0x2000", "0x2400"],
+    "covered_bytes": 1024,
+    "partition_bytes": 4096,
+    "unread_range": ["0x2400", "0x3000"],
+    "unread_sectors": 6,
+    "whole_nor_bytes": 4194304,
+    "full_nor_backup": false,
+    "restore_or_flash_proven": false
+  },
+  "public_sector": {
+    "file": "dual-unknown2200-2026-10-14/sector.bin",
+    "bytes": 512,
+    "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+    "nor_range": ["0x2200", "0x2400"],
+    "source": {
+      "file": "artifacts/dual-unknown2200-early-20261014/first/sector.bin",
+      "bytes": 512,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    "source_report_sha256": "77f75c84d50e1f03b1a698ac1cd610f897a0242d07d7a600463ec8dbcd1822b0",
+    "copied_byte_for_byte": true,
+    "all_bytes_ff_checked_before_publication": true,
+    "reused_old_0x2000_file": false,
+    "verification": "Two fresh complete executions with final full Actions/Boyi/HCI/identity audit; no independent byte oracle"
+  }
+}

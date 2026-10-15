@@ -1,0 +1,236 @@
+{
+  "schema": "fixed-boot0-actions-visibility-failed-receipt-v1",
+  "date": "2026-10-15",
+  "date_timezone": "Asia/Hong_Kong",
+  "capture_utc_date": "2026-10-14",
+  "outcome": "Original single BOOT0 direct F0 visibility control failed; no canonical NOR body accepted; no storage admission or new coverage",
+  "references": {
+    "report": {
+      "file": "artifacts/actions-fread-boot0-20261015/report.json",
+      "bytes": 21414,
+      "sha256": "e906c4b96a3c7c4a1457866bfdea570998ffdf8366ba951e33db4fda07ae9894"
+    },
+    "plan": {
+      "file": "artifacts/actions-fread-boot0-20261015/plan.json",
+      "bytes": 4939,
+      "sha256": "5324694e8ba98e6af83de60b06a7ba7931c183a178856de773090b8307aea2ec"
+    },
+    "hci": {
+      "file": "artifacts/actions-fread-boot0-20261015/session.btsnoop",
+      "bytes": 6143,
+      "sha256": "0d32e16d8a03e022d2308892ba74422744356e30b7e9333341c68ae4b5bad48e"
+    },
+    "source_manifest": {
+      "file": "artifacts/actions-fread-boot0-20261015/source-snapshot/manifest.json",
+      "bytes": 49213,
+      "sha256": "64e7e4c0a3e9ccfbbda5b1ba2d96193641e5e6b389c30a988bb6d68d739b2d26"
+    },
+    "preflight_review": {
+      "file": "artifacts/actions-fread-boot0-20261015/preflight-review.json",
+      "bytes": 1403,
+      "sha256": "e21e472c004c979b53fda6464300a82a384365edc52df09da440d3380b180324"
+    },
+    "root_forensic_note": {
+      "file": "artifacts/actions-fread-boot0-20261015/sanitized-root-replay.json",
+      "bytes": 2074,
+      "sha256": "0ff2bcdf2df7f671947cf29672b2ad63779a882424f9936a9c125e0e6cd7f3a6"
+    },
+    "separate_info": {
+      "file": "artifacts/actions-fread-boot0-20261015/post-failure-info.json",
+      "bytes": 521,
+      "sha256": "2cda9f67062901cfa0e4199f945bd6982e0bd415b2fb3a4e681e5bcf31e0a80b"
+    },
+    "checks_before": {
+      "file": "artifacts/actions-fread-preflight-20261015/checks-before.json",
+      "bytes": 37710,
+      "sha256": "cf7d11fcaf5248003967ff736c6f98f0eea58987cd7aab9de8a5cd76038f8b7b"
+    },
+    "checks_after": {
+      "file": "artifacts/actions-fread-preflight-20261015/checks-after.json",
+      "bytes": 37710,
+      "sha256": "cf7d11fcaf5248003967ff736c6f98f0eea58987cd7aab9de8a5cd76038f8b7b"
+    },
+    "just_check_log": {
+      "file": "artifacts/actions-fread-preflight-20261015/just-check.log",
+      "bytes": 3135,
+      "sha256": "b87157e4857f1a6212478463e424dae25855a33d276a61e354a7466aa6713f60"
+    },
+    "build_log": {
+      "file": "artifacts/actions-fread-preflight-20261015/uv-build.log",
+      "bytes": 179,
+      "sha256": "937bcf6f77f21fd510d0bc6ebfcac53235c976fc096e61be3a67efeb891e959c"
+    },
+    "conditional_ring_route_static": {
+      "file": "artifacts/actions-ring-route-static-20261015/evidence.json",
+      "bytes": 23844,
+      "sha256": "92c4eda4728a89b634d286db957afc6da4822cba6b06d88459ed52884173714f"
+    }
+  },
+  "source": {
+    "source_files": 150,
+    "test_files": 136,
+    "snapshot_files": 286,
+    "snapshot_and_isolated_lengths_hashes_equal": true,
+    "isolated_source": "/home/rocry/w/_tmp/rcominote-actions-fread-frozen-20261015",
+    "fresh_preIO_checks": "2704 tests +159 subtests in43.54s;344format/lint;sdist+wheel passed",
+    "check_inputs_before_equal_after": 350,
+    "new_full_check_run": true,
+    "independent_snapshot_modules": 105,
+    "current_root_source_equality_claimed": false
+  },
+  "chronology": {
+    "manifest_created_at": "2026-10-14T17:46:52.090915+00:00",
+    "planned_at": "2026-10-14T17:46:52.993679+00:00",
+    "started_at": "2026-10-14T17:48:36.309993+00:00",
+    "ended_at": "2026-10-14T17:48:56.018215+00:00",
+    "original_after_identity_present": false,
+    "separate_info_file_mtime_ns": 1792000344863938209,
+    "separate_info_observation_upper_bound_utc": "2026-10-14T17:52:24.863939+00:00",
+    "mtime_is_observation_upper_bound_not_capture_timestamp": true
+  },
+  "original_failure": {
+    "whole_ok": false,
+    "error": "ValueError: Requires exactly32 complete contiguous fixed-width NOR rows",
+    "capture_error": "ValueError: Requires exactly32 complete contiguous fixed-width NOR rows",
+    "after_error": "RuntimeError: Fixed Actions control failed; session retired",
+    "final_evidence_error": "ValueError: Owned HCI/host ATT rx sequence differs",
+    "original_host_trace_modified": false,
+    "original_failed_replay_and_storage_parent_rejected": true,
+    "original_after_span": [
+      64,
+      64
+    ],
+    "original_after_missing": true,
+    "raw_tail_does_not_repair_original_after_or_promote_control": true
+  },
+  "fixed_control": {
+    "command": "dbg fread spi_flash 0",
+    "target_physical_offset": 0,
+    "planned_nor_bytes": 512,
+    "one_fread_command": true,
+    "one_fresh_afc_non_rc_marker_value_withheld": true,
+    "actual_version_fillers": 2,
+    "max_version_fillers": 8,
+    "actual_actions_writes": 7,
+    "no_retry": true,
+    "no_SD_access_or_write": true,
+    "no_explicit_NOR_MMIO_RAM_memory_writes": true,
+    "actions_changes_transient_log_RAM_and_session_state": true
+  },
+  "wire_diagnostic": {
+    "host_att_packets": 64,
+    "raw_owned_hci_att_packets": 66,
+    "tx_host_and_wire_exact": 27,
+    "rx_host": 37,
+    "rx_wire": 39,
+    "host_rx_is_strict_wire_prefix": true,
+    "hci_only_two_tail_packets": [
+      "STOP ACK",
+      "terminal F1"
+    ],
+    "original_bind_rejects_rx_mismatch": true,
+    "hci_records": 143,
+    "hci_bytes": 6143,
+    "host_acks": 6,
+    "host_end_received": false,
+    "raw_complete_acks": 7,
+    "raw_complete_F0_frames": 2,
+    "raw_F0_text_bytes": [
+      504,
+      29
+    ],
+    "raw_text_total_bytes": 533,
+    "raw_terminal_F1": true,
+    "raw_pending_bytes": 0,
+    "complete_parameter_transactions": 3,
+    "pending_parameter_transactions": 0,
+    "status_events": 0,
+    "actual_update_intervals": [
+      36,
+      12,
+      6
+    ],
+    "startup_mode": "default",
+    "host_requested_CE_hints": [
+      1,
+      1
+    ],
+    "host_CE_hints_not_measured_event_length": true,
+    "host_interval6_update_record": 113,
+    "marker_tx_record": 115,
+    "fread_tx_record": 119,
+    "applied6_before_marker_and_fread": true,
+    "normal_disconnect_reason": "0x16",
+    "disconnect_after_last_actual_ATT": true,
+    "before_identity_GATT_and_epoch_verified": true
+  },
+  "content_boundary": {
+    "one_exact_marker_echo": true,
+    "one_exact_fread_echo": true,
+    "one_offset0_status": true,
+    "canonical_complete_NOR_rows": 0,
+    "required_contiguous_rows": 32,
+    "raw_HCI_stream_and_original_host_stream_reproduce_same_original_rows_error": true,
+    "no_payload_returned_or_compared_to_oracle": true,
+    "no_sector_binary": true,
+    "not_historical_244_byte_fragment_loss": true,
+    "missing_body_does_not_prove_hardware_NOR_read_failure": true,
+    "PRINTK_output_visibility_route_unresolved": true
+  },
+  "separate_post_failure_info": {
+    "execution_exit0_reported_by_root": true,
+    "independent_connection": true,
+    "HCI_captured": false,
+    "serial_matches_original_before_without_publication": true,
+    "firmware_version": "010004",
+    "bound": false,
+    "mode": "note",
+    "recording_state": "idle",
+    "charging": true,
+    "battery_percent": 100,
+    "free_capacity": 59589,
+    "observation_upper_bound_utc": "2026-10-14T17:52:24.863939+00:00",
+    "cannot_replace_original_missing_after_identity": true,
+    "does_not_make_original_single_connection_successful": true
+  },
+  "ownership_and_coverage": {
+    "historical_ONE_reference_identity_only": true,
+    "current_owned_file_verified": false,
+    "last_observed_SD_object": "NEXT3 failed1ecc00first; private; not read back by this control",
+    "NEXT3_original_failed_retained": true,
+    "owned_nonce_history": 70,
+    "new_files": 0,
+    "new_raw_NOR_coverage_bytes": 0,
+    "strong_A_bytes": 44304,
+    "historical_B_bytes": 155204,
+    "potential_available_bytes": 199508,
+    "factory_complete_pair_bytes": 3072,
+    "factory_missing_bytes": 5120,
+    "system_contiguous_raw_bytes": 6144,
+    "system_physical_range": [
+      "0x24000",
+      "0x25800"
+    ],
+    "scratch_cohort_upper_bound": 72,
+    "NEXT3_final_identity_response_utc": "2026-10-14T17:09:26.871464+00:00"
+  },
+  "conditional_static_followup": {
+    "private_evidence_regions_verified": 29,
+    "SDK_file_hashes_verified": 6,
+    "SDK_commit_verified": true,
+    "initialized_shell_transport": "0x100a1364 calls DMA/raw0x10026edc before BLE callback; nonzero DMA init can write shared printk body0x1803ee09",
+    "live_RAM_pointers_and_init_not_observed": true,
+    "MDB_ring_reads_not_proven_passive_stable_snapshot": true,
+    "self_overwrite_not_established_as_actual_failure_cause": true,
+    "no_new_live_probe_or_coverage": true
+  },
+  "privacy_and_limits": {
+    "full_stream_frame_text_hex_and_hashes_withheld": true,
+    "afc_marker_and_hash_withheld": true,
+    "factory_carrier_sector_prefix_hashes_hex_and_nonces_withheld": true,
+    "no_public_binary": true,
+    "old_receipts_and_originals_unchanged": true,
+    "no_automatic_retry_output_mode_change_heap_probe_or_delete": true,
+    "full_4MiB_backup_restore_own_runtime_incomplete": true
+  }
+}

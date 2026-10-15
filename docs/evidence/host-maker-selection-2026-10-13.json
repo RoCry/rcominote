@@ -1,0 +1,323 @@
+{
+  "scope": "Static evidence only; no vendor execution, driver loading, USB or device actions.",
+  "sdk_commit": "26f51e584940d5b141cd1d09d2629d69b595f579",
+  "supersedes": "usb-switch-followup.json incomplete constructor/status interpretation",
+  "files": [
+    {
+      "path": "astra/decoded/Upgrade.pyd",
+      "size": 117760,
+      "sha256": "773282b49ef19aefe7d16dc120b487471a3f38a956462a1b66333c7c1760d444"
+    },
+    {
+      "path": "astra/decoded/usb_operate.pyd",
+      "size": 126464,
+      "sha256": "a3eb255c33d21552819d462321a75f324918a872b176051cae5c5680b007a8c3"
+    },
+    {
+      "path": "astra/decoded/usb_switch.pyd",
+      "size": 38400,
+      "sha256": "fe5635078e61d3c863f7134f3c84d79307d6bc0bf2f224a65bf1407f1dba3e69"
+    },
+    {
+      "path": "host-dlls/HardwareEx.dll",
+      "size": 165888,
+      "sha256": "986582c243fb0f300c41c483cbc3100f6ff897057b4cace0d30510624a769aa3"
+    },
+    {
+      "path": "host-dlls/Hardware_C.dll",
+      "size": 13312,
+      "sha256": "541df654824561537be4e0a500ad7a7997ba9df848dfae4c9202a29dc65fcc5b"
+    }
+  ],
+  "upper_boundary": [
+    "Launch.ProductionThread forwards port into Upgrade.UpgradeFW(port,log,script_dll,fw,int(index)).",
+    "UpgradeFW body VA100085f0 reads port.sdk_reliable before branching; port is already a transport object, not parsed as a USB name here.",
+    "USBDevice.__init__(self,usb_port,log,usb_dll) requires all four arguments. No default Hardware_C path is established by its string literal.",
+    "load_usb_op_lib VA10004f80 returns True if usb_op already set; otherwise requires supplied usb_dll string and existing file before loading it.",
+    "No GUI constructor selection or CoMi mapping established. Binding to held Hardware_C is conditional on supplied DLL path selecting that exact file."
+  ],
+  "usb_device": {
+    "constructor": "VA10008600 sets usb_dev_index=0, connection=False, connect_type=USB, sdk_reliable=False; usb_port and usb_dll copied from required arguments.",
+    "open": "VA10009600 calls load_usb_op_lib(), then self.usb_op.Py_ADFU_Enum() with zero arguments.",
+    "enum_check": "enum result ==0 is rejected; >1 logs selection. No claim negative results are rejected.",
+    "index": "Regex object usb_device_name_p searches usb_port; on match int(match.groups()[1]) becomes usb_dev_index; no match retains current index (initial0). Pattern literal is verbose word-boundary (ADFU|USB)(digits+) word-boundary.",
+    "open_call": "self.usb_op.Py_ADFU_Open(self.usb_dev_index); result ==-1 rejected, otherwise connection=True and usb_op_handle=result, then resume rx thread.",
+    "non_probe": "connect_com VA10005780 simply returns Python True, without transport I/O."
+  },
+  "conditional_native_binding": {
+    "enum": "Hardware_C Py_ADFU_Enum VA10001880 allocates CEnumUSB(), calls EnumDevice(global output[256],256), stores enumerator only when count>0, returns count.",
+    "open": "Py_ADFU_Open VA10001e00 indexes global enumeration array, GetDeviceInfo, constructs CCommUSB(0), calls Open(path,info,type), returns -1 if Open false or object handle otherwise.",
+    "decisive_bytes": "VA10001e7c: 6a00 push0; VA10001e84: ff1508300010 call IAT CCommUSB(int).",
+    "family0": "HardwareEx CCommUSB VA1000e910 table[0]@1000ea30=1000e93c, alloc0x454, calls constructor10001020; vtable10023b74; RTTI .?AVCClassical@@ via10023b70→10023ff4→10027094.",
+    "boundary": "Family0/CClassical is a host implementation class, not an ATS3085L chip mapping or proof that CoMi exposes compatible USB. Numeric Open type from GetDeviceInfo is distinct from constructor family0."
+  },
+  "ext_command": {
+    "entry": "usb_switch.ExtCmdParam(subcode,length,addr,cmd,log): wrapper100056b0, body10003340; log unused in body.",
+    "initialization": "ct.memset(ct.addressof(cmd),0,31).",
+    "fields": [
+      {
+        "offset": 0,
+        "size": 4,
+        "value": "55 53 42 43 (USBC)"
+      },
+      {
+        "offset": 4,
+        "size": 4,
+        "value": "zero tag"
+      },
+      {
+        "offset": 8,
+        "size": 4,
+        "value": "length via ct.c_uint32, x86 little endian"
+      },
+      {
+        "offset": 12,
+        "size": 2,
+        "value": "zero flags and LUN"
+      },
+      {
+        "offset": 14,
+        "size": 1,
+        "value": "0x10"
+      },
+      {
+        "offset": 15,
+        "size": 1,
+        "value": "0xcd"
+      },
+      {
+        "offset": 16,
+        "size": 1,
+        "value": "subcode"
+      },
+      {
+        "offset": 20,
+        "size": 4,
+        "value": "same length"
+      },
+      {
+        "offset": 24,
+        "size": 4,
+        "value": "addr assigned to c_uint32.value, copied4bytes"
+      }
+    ],
+    "other_bytes": "Remain zero from memset.",
+    "sequence": [
+      "Allocate ct.c_byte*31 command.",
+      "ExtCmdParam(0x13,ct.sizeof(adfus_data),download_addr,cmd,log).",
+      "usb_op.write(cmd); usb_op.write(adfus_data); usb_op.read(13).",
+      "ExtCmdParam(0x20,0,run_addr,cmd,log).",
+      "usb_op.write(cmd); usb_op.read(13); return True."
+    ],
+    "validation": "Function discards write/read return values; exceptions propagate. No CSW signature/tag/residue/status or short-read validation in this function. Lower transport implementation may impose its own checks, outside this slice.",
+    "interpretation": "Concrete held helper upload13/execute20 packet construction. Not proof ROM accepts it on CoMi, and not a flash readback/restore contract."
+  },
+  "evidence": {
+    "raw": "host-maker-regions-2026-10-13.json",
+    "raw_sha256": "d359e505d9e52e5a1239d2206fbd02a2095ee85e306d0ec6dc473c6bcc95abd8",
+    "regions": [
+      {
+        "file": "astra/decoded/usb_switch.pyd",
+        "label": "ExtCmdParam body and cleanup",
+        "va_start": "0x10003340",
+        "va_end_exclusive": "0x10004920",
+        "file_offset": "0x2740",
+        "size": 5600,
+        "sha256": "4412eb47a2190ef7c33807d6815c5bd9bc56a33279b702f5927fa97dcaa99103"
+      },
+      {
+        "file": "astra/decoded/usb_switch.pyd",
+        "label": "Python integer initializer",
+        "va_start": "0x100049d0",
+        "va_end_exclusive": "0x10004db0",
+        "file_offset": "0x3dd0",
+        "size": 992,
+        "sha256": "c298779c7c7a3836f456e451f934995a907f4449c73981303d4b546d397df70e"
+      },
+      {
+        "file": "astra/decoded/usb_switch.pyd",
+        "label": "adfu_protocol_switch body",
+        "va_start": "0x10005960",
+        "va_end_exclusive": "0x10006870",
+        "file_offset": "0x4d60",
+        "size": 3856,
+        "sha256": "9a765b13505b8f7e5a637e1a38a4e899625f6605acf947d71130eacf19c32faf"
+      },
+      {
+        "file": "astra/decoded/usb_operate.pyd",
+        "label": "load supplied usb_dll",
+        "va_start": "0x10004f80",
+        "va_end_exclusive": "0x10005630",
+        "file_offset": "0x4380",
+        "size": 1712,
+        "sha256": "e67ef755deeafece9d06b43427141aefbcf1d852f820a3fdc1409340be77ac17"
+      },
+      {
+        "file": "astra/decoded/usb_operate.pyd",
+        "label": "USBDevice constructor body",
+        "va_start": "0x10008600",
+        "va_end_exclusive": "0x100095f0",
+        "file_offset": "0x7a00",
+        "size": 4080,
+        "sha256": "c6bd400f1e3f6cdd53d45535ddda51bfeeb6a8a5c44f9d1d5d33f7932f6a80d1"
+      },
+      {
+        "file": "astra/decoded/usb_operate.pyd",
+        "label": "USBDevice open_port",
+        "va_start": "0x10009600",
+        "va_end_exclusive": "0x1000ac70",
+        "file_offset": "0x8a00",
+        "size": 5744,
+        "sha256": "ee05bb165a1b80399836657a4761de8a941d348fcacc8e4c2f382b81728404ec"
+      },
+      {
+        "file": "astra/decoded/usb_operate.pyd",
+        "label": "constructor wrapper requires usb_dll",
+        "va_start": "0x10016d40",
+        "va_end_exclusive": "0x10016fc0",
+        "file_offset": "0x16140",
+        "size": 640,
+        "sha256": "56de52b68806addcdefc1152af39f11a67ccb7807af54a31812a33c963e7eb44"
+      },
+      {
+        "file": "astra/decoded/usb_operate.pyd",
+        "label": "connect_com True stub",
+        "va_start": "0x10005780",
+        "va_end_exclusive": "0x100057a0",
+        "file_offset": "0x4b80",
+        "size": 32,
+        "sha256": "b3ca0222984dd2fa999e7348fd48a09dfcc74262e4fb783f56973509c53bc702"
+      },
+      {
+        "file": "astra/decoded/usb_operate.pyd",
+        "label": "integer constants 0 1 and -1",
+        "va_start": "0x10007f08",
+        "va_end_exclusive": "0x100081ea",
+        "file_offset": "0x7308",
+        "size": 738,
+        "sha256": "61ca9c67a4974c6fe2275224caff67abfdd55485933466e43910d85236b377b8"
+      },
+      {
+        "file": "astra/decoded/Upgrade.pyd",
+        "label": "UpgradeFW checks port.sdk_reliable",
+        "va_start": "0x100085f0",
+        "va_end_exclusive": "0x1000873c",
+        "file_offset": "0x79f0",
+        "size": 332,
+        "sha256": "2c7d8aefeaa45ee626a97c0b2068a5996828d415c3f49355d3864d90e7efb783"
+      },
+      {
+        "file": "astra/decoded/Upgrade.pyd",
+        "label": "UpgradeFW five-argument wrapper",
+        "va_start": "0x10014810",
+        "va_end_exclusive": "0x10014ae0",
+        "file_offset": "0x13c10",
+        "size": 720,
+        "sha256": "f5b175905c7dd920ce39e34c650762d2c94df308416013c9fc0dd0b45a66ad96"
+      },
+      {
+        "file": "host-dlls/Hardware_C.dll",
+        "label": "Py_ADFU_Enum",
+        "va_start": "0x10001880",
+        "va_end_exclusive": "0x10001930",
+        "file_offset": "0xc80",
+        "size": 176,
+        "sha256": "f748093b64c21b8b3f7aa521f8277310c3d48a3e0cd02829bbdb0e6b240bbc15"
+      },
+      {
+        "file": "host-dlls/Hardware_C.dll",
+        "label": "Py_ADFU_Open",
+        "va_start": "0x10001e00",
+        "va_end_exclusive": "0x10001f10",
+        "file_offset": "0x1200",
+        "size": 272,
+        "sha256": "70fba99e69f0bce250e79bb4242b79397172df635505987564b65ffb8b95dee0"
+      },
+      {
+        "file": "host-dlls/HardwareEx.dll",
+        "label": "CCommUSB family dispatch and table",
+        "va_start": "0x1000e910",
+        "va_end_exclusive": "0x1000ea44",
+        "file_offset": "0xdd10",
+        "size": 308,
+        "sha256": "47d02dc062c708606978461abdc4f9991dc901d579461c8e1a63a250e90b47a3"
+      },
+      {
+        "file": "host-dlls/HardwareEx.dll",
+        "label": "family0 constructor installs vtable",
+        "va_start": "0x10001020",
+        "va_end_exclusive": "0x1000103f",
+        "file_offset": "0x420",
+        "size": 31,
+        "sha256": "ffbb33cb503ac72c91e74c97b0ee0080fd633db3eb788046c3e1347fb898ab9c"
+      },
+      {
+        "file": "host-dlls/HardwareEx.dll",
+        "label": "family0 vtable and RTTI pointer",
+        "va_start": "0x10023b70",
+        "va_end_exclusive": "0x10023bc8",
+        "file_offset": "0x22770",
+        "size": 88,
+        "sha256": "a357279c1af285c63bbdfee53077dd1c89fc0df11d61215c97691ff39d1e423e"
+      },
+      {
+        "file": "host-dlls/HardwareEx.dll",
+        "label": "RTTI complete object locator",
+        "va_start": "0x10023ff4",
+        "va_end_exclusive": "0x10024008",
+        "file_offset": "0x22bf4",
+        "size": 20,
+        "sha256": "e6d86c4b2e7616663fb90e8f508045368883f0b3f0b6e34bbfaec77c6a347d17"
+      },
+      {
+        "file": "host-dlls/HardwareEx.dll",
+        "label": "CClassical RTTI type descriptor",
+        "va_start": "0x10027094",
+        "va_end_exclusive": "0x100270ad",
+        "file_offset": "0x25c94",
+        "size": 25,
+        "sha256": "8538e517f7310ae886c4433d7704b1b12762e26e2e88cb54caee7393e2694c72"
+      }
+    ],
+    "decompiled": [
+      "Ignored artifacts/flashing-route-20261013/astra/usb_switch-fixed.c",
+      "Ignored artifacts/flashing-route-20261013/astra/usb_operate-fixed.c",
+      "Ignored artifacts/flashing-route-20261013/astra/Upgrade-fixed.c"
+    ],
+    "scripts": [
+      "StaticSlice.java",
+      "FixRegisters.java",
+      "save_host_slice.py"
+    ],
+    "caution": "Cython helpers use custom register calling conventions; signatures verified against objdump, then fixed in Ghidra projects. Decompiled variable names alone are not evidence."
+  },
+  "stop": "No further callees needed for assigned header/status/default-family edge. Next missing requirement is CoMi-matched transport/package selection and observed download USB descriptors; this slice supplies neither and authorizes no device commands.",
+  "reproduction": {
+    "sample": "uv run tools/inspect_maker_sample.py SDK_ROOT --output NEW_SAMPLE_DIRECTORY",
+    "dlls": "uv run tools/extract_host_reference.py SDK_ROOT/tools/config_tool.rar NEW_DLL_DIRECTORY",
+    "regions": "Use stored file_offset/size against recovered basename; compare hex and SHA256, or objdump -d -Mintel --start-address=VA --stop-address=VA FILE",
+    "boundary": "Static custom Cython register calling conventions must be verified in assembly; raw regions retained instead of assuming pseudocode is original Python source"
+  },
+  "archive": {
+    "schema": 1,
+    "scope": "Static archive reads only; no installer, DLL, driver or target execution",
+    "archive_sha256": "cec0aa29b8d77ba0a58178bb37d4790f621b2e500c918cd9cdc778094f450bf4",
+    "cab_member": "config_tool_1.28.01_20230825/en/MSI.CAB",
+    "cab_sha256": "d5b2d15da4b270761c5dea3ac01fef2c1d05ed691e95c94dd4c944c4ba023115",
+    "files": [
+      {
+        "name": "HardwareEx.dll",
+        "member": "_4923F4C44C934041949A68CEC2211D57",
+        "sha256": "986582c243fb0f300c41c483cbc3100f6ff897057b4cace0d30510624a769aa3",
+        "bytes": 165888
+      },
+      {
+        "name": "Hardware_C.dll",
+        "member": "_9BCB15E5A1BB42DB86BA70283C2C61AC",
+        "sha256": "541df654824561537be4e0a500ad7a7997ba9df848dfae4c9202a29dc65fcc5b",
+        "bytes": 13312
+      }
+    ],
+    "boundary": "Reference installer host DLLs; not proof that a CoMi package loads these versions"
+  }
+}

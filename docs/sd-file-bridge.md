@@ -18,6 +18,7 @@
 
 - `dbg dumpbuf <address> <length> <path>`；数值base0解析，直接 `fs_write(file,address,length)`，无临时复制/范围保护。
 - `fs_open` flags `0x12`；创建或打开现有文件，无EXCL/TRUNC。随机40-bit名称和可见文件列表碰撞检查不能保证不存在隐藏文件/竞态。
+- 2026-10-14重验：完整静态13root/81命令无`fs/cp/trunc/rename/split`接口；`dumpbuf`没有源文件/offset/seek参数。实际`f_write`的`100a7296..100a72b2`以`max(oldsize,newpos)`更新size；同名短写保留旧尾，不能把既有4096B文件变成512B对象。Boyi仅offset→EOF，无长度参数。因此已有不可变大文件仍无已建立的设备端分片办法；不盲测SDK未编入的fs命令或覆写测试。
 - 只传播open失败；write/close返回值被忽略。因此ACK和“done”不是写入成功证据，必须下载对比。
 - 当前Boyi下载路径使用 `Call-<name>.mp3`；不解析音频，实测可直接下载未列入正常录音列表的测试名称。
 - 原厂console读取最多64 B，NUL覆盖index63。首试68 B命令截断文件名，外层剩余长度错误导致ACK/STOP超时；之后的字节可能才触发截断命令。实验新增发送前长度拒绝，后续固定命令含newline63 B。

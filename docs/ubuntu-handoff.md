@@ -1,6 +1,48 @@
 # Ubuntu 接手：CoMi 真机研究
 
-2026-10-13。仓库`~/w/_hw/rcominote`，分支`main`。保持原目标：实用CLI、实际硬件/固件/SDK理解、完整NOR备份、可靠恢复、自写固件运行；后三项仍未完成。先读本页，再按需查[当前路线](research-routes.md)和[平台地图](device-platform-map.md)，不要重做历史泛搜。
+更新至2026-10-14。仓库`~/w/_hw/rcominote`，分支`main`。保持原目标：实用CLI、实际硬件/固件/SDK理解、完整NOR备份、可靠恢复、自写固件运行；后三项仍未完成。先读本页，再按需查[当前路线](research-routes.md)和[平台地图](device-platform-map.md)，不要重做历史泛搜。
+
+**最新执行点：next4b失败，只接受首pair512**：[activity next4b原whole失败/首pair512接受](prefilled-factory-activity-next4b-live-2026-10-15.md)：仅1ed600完整pair新增512私有raw；1ed800 LE已连但21ATT/58HCI仅MTU-discovery，未应答FindInformation→reason08/errno110，零identity/baseline/Actions/RAM/NOR/SDwrite，后两页零I/O。总283ATT510HCI/15complete/0pending/status；原whole/page1false和parentgate拒绝保持。最后actualcurrent是page0second4096，identityUTC14日18:57:20.885464Z FW010004NOTEidle/unbound/charging100/free59589；失败后未SD重读。独立无HCI post-info不能补原after/whole。90plannednonce全reserved，与cohortmax72不同。实际FAST/no pulse，新DEFAULT集成/wake form未radio；新helper review不等于正式CP/plan/live。factory/carrier/sectorhash/hex/nonces私有，无binary，先commit/push后按交接独立检查接续，不自动retry。
+
+**旧失败与离线checkpoint分开**：[四页v2原job](paired-nor-system4-live-2026-10-14.md)仅246/248两pair新增1024B，失败24a first/wholejob仍false、原strictprefix拒绝可重放，second零命令、24c零I/O。新offlinecommunicationcheckpoint只采纳原failedfirst完整4096/六参数/全wire/真实59589状态，host-only/0设备I/O/0新NOR覆盖；新v3baseline完整匹配该文件后才执行新两producer。此成功不是对旧候选重新解析补判。此前[单24400 v2](paired-nor24400-live-2026-10-14.md)512B成功也独立保留。
+
+**实际current来自accepted页，失败whole未admitted**：4b page0second完整4096为最新actualowned对象，lastidentity18:57:20.885464Z/free59589；failedpage仅discovery无写，后两页无I/O。独立post-info无HCI/未SD读回，不能补原after或修复whole。90nonce全plannedreserved，cohortmax72另计；需正式hostcheckpoint+新plan再接续，不把helper reviewed当执行成功。aa5a153source140tests/293files，继承2786+159/351formatlint/build/357inputs，next4b未新fullcheck；新root代码检查另计。
+
+**覆盖叠加，冻结库存不改**：[ASOF24200库存](nor-backup-coverage-2026-10-14.md)A36112/B155204/潜在191316B，加后来10页5120B及privatefactory6144B overlay，当前A强来源**47376B**、A+B可用潜在**202580B**。System连续raw首6144B`[24000,25800)`已全，余下system raw备份未完；B来源不完整不升级，factory8KiB累计6144B完整pair/余2048B缺完整覆盖，DSPextra444B仍缺raw，不能跳过采集或补mapped/reencoded/FF。完整4MiB备份/恢复/自写固件仍未完成。
+
+**后续按交接独立接续**：先commit/push，再对新helper固定source/checkpoint/仅缺失范围新plan逐项审计；未正式新CP/plan/live，不自动retry、盲批整片、heapprobe、outputmodechange或删除。actualFAST分支成功不证明DEFAULT集成或wake新form。用户仅报电源键和录音滑键；RESET/暴露可拔电池/独立ROMexit仍未证。[hidden scratch删除静态边界](file-deletion.md#hidden-scratch-bounded-static-follow-up-2026-10-14)不授权删除/绕过visible-list守卫。下方历史不当当前计划。[host吞吐审计](../artifacts/raw-export-throughput-host-review-20261015/evidence.json)理想81.16h/4MiB非ETA/binarybridge。
+
+**历史boot1完成点**：[最后2e00独立双读](final-boot-sector-live-2026-10-14.md)真机成功，148ATT/255HCI、六完整参数事务/0pending/0status、startup实际FAST，两个freshproducer/各完整4096环/512B、全部freshness/window/state/HCI通过。120源码冻结，1641回归+159subtests/build；全部3584旧来源/control/新pair重验才保存完整`fw1_boot[2000,3000)`4096B，实际全FF/SHAf47a8ec3e9aff2318d896942282ad4fe37d6391c82914f54a5da8a37de1300c6，无有效备用boot代码。未知块无独立字节oracle，完整4MiB备份/恢复/自写固件仍未完成。当时真实final.after FW010004/NOTE/idle/unbound/charging/battery100/free59589；first写0MiB、second写降1MiB，末次只读barrier不变。Ubuntu70已下载+1旧声明+1历史可能=max72，未删除。原受控3地址job/2e特性交换失败保持，[HCI3e→errno38解释](linux-le-features-error-2026-10-14.md)不证明无线原因已修复。
+
+**只读参数对照仍成功**：[两次既有RAM4096](download-window-live-2026-10-14.md)root与独立agent完整replay通过，各自匹配独立oracle；startup FAST、两次host归一、两次EOF SLOW共五次事务完整结算，slow生效均晚于完整End。该轮无新增SD文件/NOR覆盖；新NOR第二份解析失败不否定该独立对照。
+
+**此前同一scratch已知4200控制成功**：[单次覆写控制](scratch-4200-live-2026-10-14.md)先完整读取并匹配[postmortem当前boot0文件](scratch-postmortem-live-2026-10-14.md)3621…0360，再一个freshnonce/known4200 producer/同长同文件覆盖/完整下载。136ATT/243HCI/六完整参数/0pending/0status、6ACK/F1/F0=0、独立4200oracle与strictnonce/prefix4096全过；producer→dump实际一条exact33B composer。新ring SHA10bd351c52d1d8560ad28929b9d8b34002ebe8398586bdf988595dc0d3f433e1，仍4096B；当时设备文件已不是3621或原a2f7 baseline，现又被24200及上方后续试验覆盖。131source+104tests冻结/1886+159/build，完整归档replay通过；latest真实59589/NOTEidle/charging100不变、normaldisconnect16、1现有文件覆盖/0新文件、cohort70+1+1=max72。已分别观察同路径boot0与4200更新，旧6ACK/0F0失败不翻案、原两cover九事务试验仍失败、0unique NOR增量。随后24200、24400及24600/24800完整配对已完成；最新24a00失败与当前对象见上方。24000旧44窗口/32行双覆盖已重放匹配512B，24200 mapped向量预期不当raw oracle；不直接批量、不读释放heap、不进ROM/写NOR。用户只有power与recordslider，独立退出/磁吸data wiring仍缺。
+
+**首轮新窗口失败仍保留**：[原2400 pair](window-nor2400-live-2026-10-14.md)虽两份4096完整，但second composer插入使旧严格grammar拒绝，未等slow2/未完成second barrier；5complete+1pending、141ATT/245HCI、34件原版本snapshot固定。后续仅window模式启用exact33B notice，并将decode移至slow/identity后；旧默认proof不变、新失败原件不能改判。
+
+**原tail任务失败保持**：[固定备份boot tail计划](backup-boot-tail-2026-10-14.md)首个2400 pair失败即停止：first4096/512/真实barrier/HCI通过，second已请求且收到4096声明但offline0B；后五无producer。early归一耗时1.903370s，第二声明在connect+4.970179s，外设slow在5.015178s出现却未完成Update；短连接不足以避开。job/pair原件仍失败，新验证覆盖0，无完整分区输出。独立后续health不能替代失败after。
+
+**历史覆盖来源保持**：[未知0x2200独立双读](dual-unknown2200-2026-10-14.md)成功仍可完整replay，两份512B全FF相等，无独立字节oracle。该次与既有2000前缀构成前1024B；上方新2400增加至1536B。早期成功只证明该次有界时序，不为新失败提供oracle或免检。
+
+**失败与成功分开**：[早期重连方法](backup-boot-block1-2026-10-14.md)first下载ENOSYS、first-b单份完整、second零写失败保持原判。新dual首轮同样失败：CTRL_EVENT→ACL RX时间戳-100µs触发旧全局单调规则，同时EOF slow导致第二参数请求，不能仅修parser改判。后续新earlytrial在initial identity前明确归一6/0/500，baseline48/4/600原样保留，全epoch仅一个参数请求；与实际Android fast表匹配，可能在deferred请求前完成。观测connect→lastATT4.282762s，非连接已关闭时长；时序机制不等于规模化可靠性保证。两轮原件和源码快照分别保留。
+
+**已实施新鲜度门槛**：`nor_freshness.parse_ring`要求最近精确producer/status、32连续canonical行和真实20B prefix；第二份mandatory上一dump锚，缺失/覆盖/错序即失败。synthetic失败反例及四份已知完整ring回放通过；第二份真实previous marker环绕区间已验。每个operation_id独立目录/nonce；只有最终identity/state/HCI audit完成后允许全512比较。旧generic parser留作历史，未知读取不使用它。
+
+**既有证据可复验**：[四份实际fullring](dual-known-nor-live-2026-10-14.md)经新freshness规则仍匹配各自独立oracle；无旧成功翻案。历史`hci_interval.py`SHA3120…d9保留，旧public/private收据继续通过；新`hci_monitor.Snoop`保留原戳/顺序，分别约束门控事件与ACL方向流，不强制CTRL_EVENT与RX全局单调。`Monitor`可显式选现代parser。known双目标原型源码6件、新failed10件、新early成功12件均各有private source-snapshot。
+
+**最新原始NOR对照**：[新context28→ring基线4096→boot0](sd-nor-interval-live-2026-10-14.md)各阶段完整通过；boot0原始512B SHA72952…7ec匹配独立oracle，5ACK/F1、唯一完整marker/status/连续32行、下载区间HCI和结束状态通过。首次context发现阶段ERR110零写保留，context-b为独立新采样。新增三份SD文件，累计45；无NOR/MMIO写、ROM进入或新代码运行。下一步先解决55s抓包收尾，再有界验证已知非零偏移双读，不自动扩展未知NOR。
+
+**更新：非零offset4200双读完成**：`artifacts/nor-sd-offset4200-20261014/{first,second}`分别新producer/SD文件/连接，完整4096环及原始512B SHA51327…713匹配完整recovery-raw[512:1024]；`sd_nor_targets.verify_pair`重放全链/独立性通过。真实btmon均SIGINT sent/exit0早收尾，final HCI参数门槛通过、前后状态59593一致。新增两文件，累计47。boot1 offset2000首512已有全FF双覆盖oracle；下一缺失目标为同4KiB分区内2200，不把2000重读算新增覆盖。
+
+**传输前置**：[7.5ms/CE1策略](sd-interval-live-2026-10-14.md)完整下载既有RAM4096B，SHA35437a…d7b与独立oracle一致，HCI整个下载区间门槛通过、前后free59593及其他状态一致。原stdinEOF认证失败在任何设备I/O之前；独立新目录b为首实际硬件试验。该只读前置没有新SD文件或Actions/NOR写。三个完整传输的btmon均已按55s超时退出。
+
+**最新映射现场**：[slot0两个独立单word](map0-entry-live-2026-10-14.md)为CPUword1000000f、offsetword00024000；分别counter208/slot0和210/slot2、完整Actions/文件/nonce/最终状态通过。offset首份ctx后置ENOSYS保持失败，另采ctx-b通过。无MMIO/NOR写或新alias探测。
+
+**最新单寄存器现场**：[GPIO28 CTRL](gpio28-word-live-2026-10-14.md)首次实际mdw读取为`00001805`，counter206/slot6，新nonce/完整55B行及4/32/512B文件、7ACK/F1、前后完整info一致。free59595MiB，FW010004/NOTE/idle/charging；SD测试文件累计31。此前服务发现超时未发送Actions，另一次错误路径在离线拒绝；原报告保留，未重读GPIO。未测物理针脚/UART电气；下文更早阶段的文件计数与“未GPIO读取”仅对应当时实验。
+
+**后续现场进展**：[logsrv已知短读→slot→新SD512](logsrv-slot-live-2026-10-14.md)唯一一次真机整体通过，4/32/512B完整下载，7ACK/F1及当前状态检查成功。独立随机done标记之后完整mdb16代码行匹配既有oracle。最新info为FW010004/NOTE/idle/charging、free59595MiB；截至该实验共24个非音频SD测试文件保留。没有GPIO/MMIO读取或刷写；完整NOR/恢复未完成。下段free59597/12文件是更早的14日快照。
+
+**2026-10-14最新现场覆盖下文早期快照**：[新增真机验证](live-board-tests-2026-10-13.md)七处守卫与printk上下文已取得；尾512B完整匹配，但末次info失败，原报告仍失败。4096B预热和ring基线均仅3852B，未执行boot/NOR阶段。后来独立info为FW010004/NOTE/idle/charging、free59597MiB。两轮十二份SD测试文件保留，无固件写/ROM进入。用户确认只有电源键、录音滑键；独立退出未建立。`rg`当前可用。下文“仅发现/MTU”及旧Mac状态是早期历史，不当当前状态；所有本轮btmon均已结束。[最新收据](evidence/sd-nor-progress-2026-10-14/README.md)。
 
 ## 接手范围与现场
 

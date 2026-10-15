@@ -1,0 +1,163 @@
+{
+  "schema": "system-first4k-raw-live-v1",
+  "scope": "Historical actual512 header plus7original fully verified independent raw pairs assemble first4096 of physical system NOR; newest job adds only1024; no full-system/4MiB/restore claim",
+  "result": {
+    "new_job_original_ok": true,
+    "new_completed_pages": 2,
+    "new_unique_raw_bytes": 1024,
+    "new_physical_ranges": [
+      [150528, 151040],
+      [151040, 151552]
+    ],
+    "assembled_physical_range": [147456, 151552],
+    "assembled_bytes": 4096,
+    "assembled_sha256": "74807d164370bd3d4ded53ac191414a1f5ff9a50ca04647b898179a1e7d83a5c",
+    "atomic_snapshot": false,
+    "independent_content_oracle": false,
+    "mapped_reencoded_inferred_fill_bytes": 0,
+    "original_failedsystem4_or_failed24a_promoted": false,
+    "offline_communication_checkpoint_coverage": 0,
+    "full_system_raw_backup_complete": false,
+    "full4MiB_backup_restore_own_runtime_complete": false
+  },
+  "new_job": {
+    "report": {"file": "artifacts/paired-nor-system-first4k-v3-20261014/report.json", "bytes": 10021, "sha256": "a4d7c1d08e9377a84339613e7673ea65efecbc4e4088d3ede5fccfecd8c6d2dd"},
+    "plan": {"file": "artifacts/paired-nor-system-first4k-v3-20261014/plan.json", "bytes": 7066, "sha256": "922beee51c2ccb10d1184acfea4b111c5e4a38de00a8b7f99ef687b3ac540f7c"},
+    "planned_at": "2026-10-14T09:08:06.656070+00:00",
+    "started_at": "2026-10-14T09:09:38.117408+00:00",
+    "ended_at": "2026-10-14T09:10:35.332473+00:00",
+    "budget": {
+      "connections": 2,
+      "downloads": 6,
+      "producers": 4,
+      "sd_writes": 4,
+      "new_files": 0,
+      "parameter_transactions": 18,
+      "max_verified_bytes": 1024
+    },
+    "whole_original_job_and_full_parent_chain_replay": "pass",
+    "latest_successful_parent_original24a_v3": true,
+    "new_pages": [
+      {"physical_range": [150528, 151040], "started_at": "2026-10-14T09:09:44.538969+00:00", "ended_at": "2026-10-14T09:10:10.184345+00:00", "att_packets": 182, "hci_records": 318, "hci_bytes": 25211, "transactions": 9, "pending": [], "baseline_sha256": "6249cf346719e093304b4f8076103822304810022dc29a9bfeff6f4e2062258a", "operations": [{"operation": "first", "ring_sha256": "f4b8d8ad7a9343bce5aa59a9cdec5b8581e93e3cbe5b3b8313ee3e47151848cc", "actual_f0_frames": 0, "written_prefix_lower_bound": 4096, "address_padding_exemptions": [], "composer_producer_to_dump": true, "actual_fast_order": {"actions_first_record": 156, "remote_request_first_record": 181, "request_not_before_actions": true}, "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59589, "free_capacity_after": 59589, "free_capacity_decrease": 0, "allowed_decrease": 1}}, {"operation": "second", "ring_sha256": "e8213085e088a64128fae1f0f263fc9ff2ef80b1c428829ee65112f49d970e23", "actual_f0_frames": 0, "written_prefix_lower_bound": 4096, "address_padding_exemptions": [], "composer_producer_to_dump": true, "actual_fast_order": {"actions_first_record": 231, "remote_request_first_record": 256, "request_not_before_actions": true}, "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59589, "free_capacity_after": 59589, "free_capacity_decrease": 0, "allowed_decrease": 1}}], "normal_disconnect": {"kind": "disconnect", "status": 0, "handle": 2048, "reason": 22, "record": 317, "timestamp_us": 63960225010146229}, "last_att_record": 314, "close_observation_us": 2166325},
+      {"physical_range": [151040, 151552], "started_at": "2026-10-14T09:10:10.648737+00:00", "ended_at": "2026-10-14T09:10:35.320909+00:00", "att_packets": 182, "hci_records": 316, "hci_bytes": 25146, "transactions": 9, "pending": [], "baseline_sha256": "e8213085e088a64128fae1f0f263fc9ff2ef80b1c428829ee65112f49d970e23", "operations": [{"operation": "first", "ring_sha256": "8b76cd8c3e9e89d8b73e354560777632985843b57f75179303859b34c3e03602", "actual_f0_frames": 0, "written_prefix_lower_bound": 4096, "address_padding_exemptions": [], "composer_producer_to_dump": false, "actual_fast_order": {"actions_first_record": 153, "remote_request_first_record": 178, "request_not_before_actions": true}, "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59589, "free_capacity_after": 59589, "free_capacity_decrease": 0, "allowed_decrease": 1}}, {"operation": "second", "ring_sha256": "a16e83146f8957a06240a781df08f476cdcfd8dd76d6843aa26ce60eb6a14609", "actual_f0_frames": 0, "written_prefix_lower_bound": 4096, "address_padding_exemptions": [], "composer_producer_to_dump": true, "actual_fast_order": {"actions_first_record": 228, "remote_request_first_record": 253, "request_not_before_actions": true}, "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59589, "free_capacity_after": 59589, "free_capacity_decrease": 0, "allowed_decrease": 1}}], "normal_disconnect": {"kind": "disconnect", "status": 0, "handle": 2048, "reason": 22, "record": 315, "timestamp_us": 63960225035286549}, "last_att_record": 312, "close_observation_us": 2165916}
+    ]
+  },
+  "source_snapshot": {
+    "manifest": {"file": "artifacts/paired-nor-system-first4k-v3-20261014/source-snapshot/manifest.json", "bytes": 43067, "sha256": "d546d8dccdc58465a8c87d386852b87ecbe80632c62cf1e948bbee6b12cd9428"},
+    "declared_created_at": "2026-10-14T08:47:36.572757+00:00",
+    "source_count": 138,
+    "test_count": 114,
+    "all252archived_lengths_and_hashes_verified": true,
+    "loaded_project_modules_all_from_frozen_snapshot": 96,
+    "pre_io_reuse_record": {"file": "artifacts/paired-nor-system-first4k-v3-preflight-20261014/preflight.json", "bytes": 808, "sha256": "248efe434b93571f59e64f14e42af97f4f45c53dcaff98ba44dbaf262e745452"},
+    "prior_full_check_claim": {
+      "just_check": {
+        "passed": 2062,
+        "subtests_passed": 159
+      },
+      "uv_build": "passed"
+    },
+    "new_full_check_run_for_this_job": false,
+    "current_source_changes_not_used_as_capture_semantics": true,
+    "root_saved_frozen_replay": {"file": "artifacts/paired-nor-system-first4k-v3-20261014/snapshot-replay.json", "bytes": 20094, "sha256": "fb1707ff853866d0dfbe5274880812b4e643bd959dccb860619d681970e4918c"},
+    "future_current_source_equality_claimed": false
+  },
+  "assembly": {
+    "method": "Concatenate actual512 source bytes in physical-address order only after all original gates; require exact8offsets/ranges, no conflicts/gaps/fill/content-hash dedup",
+    "header_provenance": "44 complete original guarded windows,32 independently repeated rows; non-atomic historical acquisition, not a fresh HCI pair",
+    "later_pages": "7original complete independent pairs;246/248 valid completed prefix of original failedjob,24a comes only from freshv3",
+    "source_gates": "Frozen paired_nor_audit.replay/newjob and paired_nor_plan.parent_gate recursively admit full immutable source chain; nor_windows.analyze replays all44 original header windows",
+    "pages": [
+      {"physical_range": [147456, 147968], "output_offset": 0, "bytes": 512, "sha256": "28b2e50ba95630f6485bd5e3ccfbd8ebe5f1406ffa36d6c0c4e35c4c71af0678", "provenance": "non-atomic-original44-guarded-windows-repeated-rows", "raw_sources": [{"file": "docs/evidence/system-raw-header-2026-10-12/raw.bin", "bytes": 512, "sha256": "28b2e50ba95630f6485bd5e3ccfbd8ebe5f1406ffa36d6c0c4e35c4c71af0678"}], "original_readback": {"file": "docs/evidence/system-raw-header-2026-10-12/readback.json", "bytes": 6765, "sha256": "c9041a26860d0208900b87b81a5352f91a900b810219be54f80157e1f39570f6"}, "original_windows": {"file": "docs/evidence/system-raw-header-2026-10-12/windows.tar.gz", "bytes": 395607, "sha256": "275f6bdb4af8a0ba33020c90b2b50adbb22ae30c351a1800e4f20dd7cb5c1c7b"}},
+      {"physical_range": [147968, 148480], "output_offset": 512, "bytes": 512, "sha256": "f9337ab9cd70ccd0f6d5c94c9104a25388b1109ff3af4fc217931ea67cc3227e", "provenance": "original-complete-independent-pair", "raw_sources": [{"file": "artifacts/system24200-20261014/first/sector.bin", "bytes": 512, "sha256": "f9337ab9cd70ccd0f6d5c94c9104a25388b1109ff3af4fc217931ea67cc3227e"}, {"file": "artifacts/system24200-20261014/second/sector.bin", "bytes": 512, "sha256": "f9337ab9cd70ccd0f6d5c94c9104a25388b1109ff3af4fc217931ea67cc3227e"}], "original_report": {"file": "artifacts/system24200-20261014/report.json", "bytes": 81830, "sha256": "6795c06151b1c0d4a902e07ac1e43a52b52dd188ae9a7fce2debcad12e736911"}, "original_capture": {"file": "artifacts/system24200-20261014/session.btsnoop", "bytes": 25141, "sha256": "4bba453a3654e5d60e725d78e77aea0cce74861506503911b175a57206ddb7d3"}, "original_job": {"file": "artifacts/system24200-20261014/report.json", "bytes": 81830, "sha256": "6795c06151b1c0d4a902e07ac1e43a52b52dd188ae9a7fce2debcad12e736911"}, "whole_original_job_ok": true},
+      {"physical_range": [148480, 148992], "output_offset": 1024, "bytes": 512, "sha256": "d3a2b5564684592b84ee83ca186955c4cda909cbb60ce8295df1fc565797ce2e", "provenance": "original-complete-independent-pair", "raw_sources": [{"file": "artifacts/paired-nor24400-20261014/page0-024400/first/sector.bin", "bytes": 512, "sha256": "d3a2b5564684592b84ee83ca186955c4cda909cbb60ce8295df1fc565797ce2e"}, {"file": "artifacts/paired-nor24400-20261014/page0-024400/second/sector.bin", "bytes": 512, "sha256": "d3a2b5564684592b84ee83ca186955c4cda909cbb60ce8295df1fc565797ce2e"}], "original_report": {"file": "artifacts/paired-nor24400-20261014/page0-024400/report.json", "bytes": 82004, "sha256": "e42e09b7dd9fc2955dd3f7d63278aa180d29b94beccd7e76ac911790962ad750"}, "original_capture": {"file": "artifacts/paired-nor24400-20261014/page0-024400/session.btsnoop", "bytes": 25211, "sha256": "3b84f46b59d38e4403d342357356a723c5a7a3033ec3afbe16f1a444d4fdaaaf"}, "original_job": {"file": "artifacts/paired-nor24400-20261014/report.json", "bytes": 5376, "sha256": "dd6f061c32c29e233cb853aadbf1016c4794ab4b0affbae38e633e0775412c16"}, "whole_original_job_ok": true},
+      {"physical_range": [148992, 149504], "output_offset": 1536, "bytes": 512, "sha256": "3243e15bfa66ac634643eea56e50739f57a3a29cc44247356a7749c3bc4759f5", "provenance": "original-complete-independent-pair", "raw_sources": [{"file": "artifacts/paired-nor-system4-20261014/page0-024600/first/sector.bin", "bytes": 512, "sha256": "3243e15bfa66ac634643eea56e50739f57a3a29cc44247356a7749c3bc4759f5"}, {"file": "artifacts/paired-nor-system4-20261014/page0-024600/second/sector.bin", "bytes": 512, "sha256": "3243e15bfa66ac634643eea56e50739f57a3a29cc44247356a7749c3bc4759f5"}], "original_report": {"file": "artifacts/paired-nor-system4-20261014/page0-024600/report.json", "bytes": 82127, "sha256": "bddf148b5dadf7363e1ac701adaabf4ccb4c986a6feb33fc24a6295c0be11531"}, "original_capture": {"file": "artifacts/paired-nor-system4-20261014/page0-024600/session.btsnoop", "bytes": 25239, "sha256": "5bd0eddd7e3366c94a4ea1020624a5bf618a97d7468606947e641c7f8e90ebf6"}, "original_job": {"file": "artifacts/paired-nor-system4-20261014/report.json", "bytes": 7344, "sha256": "18ea9488572527e70f96abfa6ee65c4bbe80297561ca5085a35bc0ab3010b202"}, "whole_original_job_ok": false},
+      {"physical_range": [149504, 150016], "output_offset": 2048, "bytes": 512, "sha256": "41eba1831fd85ec647cbcd9d19a11a49467655a22df613e7647e4cb2c931afd3", "provenance": "original-complete-independent-pair", "raw_sources": [{"file": "artifacts/paired-nor-system4-20261014/page1-024800/first/sector.bin", "bytes": 512, "sha256": "41eba1831fd85ec647cbcd9d19a11a49467655a22df613e7647e4cb2c931afd3"}, {"file": "artifacts/paired-nor-system4-20261014/page1-024800/second/sector.bin", "bytes": 512, "sha256": "41eba1831fd85ec647cbcd9d19a11a49467655a22df613e7647e4cb2c931afd3"}], "original_report": {"file": "artifacts/paired-nor-system4-20261014/page1-024800/report.json", "bytes": 82282, "sha256": "0c6da56798239decf732f4a88d09a207e65c9abb8f46d07a491d6e13cd97da52"}, "original_capture": {"file": "artifacts/paired-nor-system4-20261014/page1-024800/session.btsnoop", "bytes": 25281, "sha256": "ebee6e926215186634c01c01b948044e3ef11bbb5af9a3d976679db388297702"}, "original_job": {"file": "artifacts/paired-nor-system4-20261014/report.json", "bytes": 7344, "sha256": "18ea9488572527e70f96abfa6ee65c4bbe80297561ca5085a35bc0ab3010b202"}, "whole_original_job_ok": false},
+      {"physical_range": [150016, 150528], "output_offset": 2560, "bytes": 512, "sha256": "6234e0aaaa13bbf929045308e789ad7b1a991cda8e99c3652ff6d07304ebdb9f", "provenance": "original-complete-independent-pair", "raw_sources": [{"file": "artifacts/paired-nor24a00-v3-20261014/page0-024a00/first/sector.bin", "bytes": 512, "sha256": "6234e0aaaa13bbf929045308e789ad7b1a991cda8e99c3652ff6d07304ebdb9f"}, {"file": "artifacts/paired-nor24a00-v3-20261014/page0-024a00/second/sector.bin", "bytes": 512, "sha256": "6234e0aaaa13bbf929045308e789ad7b1a991cda8e99c3652ff6d07304ebdb9f"}], "original_report": {"file": "artifacts/paired-nor24a00-v3-20261014/page0-024a00/report.json", "bytes": 82468, "sha256": "7d690af3b8bde39111db0b8d8baa661cef45c6755ff1d7032268c172da5c3550"}, "original_capture": {"file": "artifacts/paired-nor24a00-v3-20261014/page0-024a00/session.btsnoop", "bytes": 25141, "sha256": "c65c9309c71760380a1f0d597d179ca63a9fbebec01269089ab2b8a11135ec61"}, "original_job": {"file": "artifacts/paired-nor24a00-v3-20261014/report.json", "bytes": 5376, "sha256": "e4e45a0d42ce1f853014fd185e287c89befb216fc535b044cce40acb82dc7ede"}, "whole_original_job_ok": true},
+      {"physical_range": [150528, 151040], "output_offset": 3072, "bytes": 512, "sha256": "d2084fec597f060133c9e5344f3aa5318e73e778715ac22f7f16aed88bab0f6c", "provenance": "original-complete-independent-pair", "raw_sources": [{"file": "artifacts/paired-nor-system-first4k-v3-20261014/page0-024c00/first/sector.bin", "bytes": 512, "sha256": "d2084fec597f060133c9e5344f3aa5318e73e778715ac22f7f16aed88bab0f6c"}, {"file": "artifacts/paired-nor-system-first4k-v3-20261014/page0-024c00/second/sector.bin", "bytes": 512, "sha256": "d2084fec597f060133c9e5344f3aa5318e73e778715ac22f7f16aed88bab0f6c"}], "original_report": {"file": "artifacts/paired-nor-system-first4k-v3-20261014/page0-024c00/report.json", "bytes": 82508, "sha256": "b0dc218efa40e5ec2f589c73af33a083a26a889b4738b2946e3ffeac5d1cdae5"}, "original_capture": {"file": "artifacts/paired-nor-system-first4k-v3-20261014/page0-024c00/session.btsnoop", "bytes": 25211, "sha256": "b7f272a20ce13a55071c8b9d5d4a37759f395f28f647cdc2bbb41ea87f0f7978"}, "original_job": {"file": "artifacts/paired-nor-system-first4k-v3-20261014/report.json", "bytes": 10021, "sha256": "a4d7c1d08e9377a84339613e7673ea65efecbc4e4088d3ede5fccfecd8c6d2dd"}, "whole_original_job_ok": true},
+      {"physical_range": [151040, 151552], "output_offset": 3584, "bytes": 512, "sha256": "dc59a1b64691aebb9d079b1c576253f86b82ba6ab16ddd404e8125623f3685c6", "provenance": "original-complete-independent-pair", "raw_sources": [{"file": "artifacts/paired-nor-system-first4k-v3-20261014/page1-024e00/first/sector.bin", "bytes": 512, "sha256": "dc59a1b64691aebb9d079b1c576253f86b82ba6ab16ddd404e8125623f3685c6"}, {"file": "artifacts/paired-nor-system-first4k-v3-20261014/page1-024e00/second/sector.bin", "bytes": 512, "sha256": "dc59a1b64691aebb9d079b1c576253f86b82ba6ab16ddd404e8125623f3685c6"}], "original_report": {"file": "artifacts/paired-nor-system-first4k-v3-20261014/page1-024e00/report.json", "bytes": 82472, "sha256": "290ede4c8e1fa0ccc554c5643e441084ab9f4a936fa227c428e6797c7724842c"}, "original_capture": {"file": "artifacts/paired-nor-system-first4k-v3-20261014/page1-024e00/session.btsnoop", "bytes": 25146, "sha256": "350dc1d9e7b5e3e26a734cb3cca33eb88a013d53b4cd27b293985d41a1b4a08e"}, "original_job": {"file": "artifacts/paired-nor-system-first4k-v3-20261014/report.json", "bytes": 10021, "sha256": "a4d7c1d08e9377a84339613e7673ea65efecbc4e4088d3ede5fccfecd8c6d2dd"}, "whole_original_job_ok": true}
+    ]
+  },
+  "codec_observation": {
+    "predeclared_hypothesis": {"file": "artifacts/paired-nor-system-first4k-v3-preflight-20261014/codec-hypothesis.json", "bytes": 1038, "sha256": "4a04b54073cf4c531bdf54d904944ce7a1953f684ef688525e54dc822f91b582"},
+    "posthoc_comparison": {"file": "artifacts/paired-nor-system-first4k-v3-20261014/codec-comparison.json", "bytes": 2216, "sha256": "194e838bdaa56d14f2dc3ba0f44844fab3df565783bcb608a1b09e221dee7c7a"},
+    "raw_pair_acceptance_precedes_comparison": true,
+    "effective_state": "0x0a15a191",
+    "existing_codec_source_sha256": "81bad4b8eea615ff1198294f1f2540e9c6d9d1f36b572d3d0fadaacb1f278f3a",
+    "primary_reset_bytes": 32,
+    "secondary_reset512_observation_only": true,
+    "new_page_profiles": [
+      {"physical_offset": 150528, "profiles": [{"reset_bytes": 32, "decoded_sha256": "8f07c44404704bddfbc95d01d5f87956c9c24a5253dbd162acb13c8f71b080ff", "mapped_bytes_equal": 512, "mapped_complete_match": true}, {"reset_bytes": 512, "decoded_sha256": "a08d65f83174bd6c57890aab5aa55ee01d997a2d7a75a4d67106071ade77801b", "mapped_bytes_equal": 32, "mapped_complete_match": false}]},
+      {"physical_offset": 151040, "profiles": [{"reset_bytes": 32, "decoded_sha256": "4322395b651ff0b6365af321fa1b271c5d2c80172da45e868448bdf14e797b6d", "mapped_bytes_equal": 512, "mapped_complete_match": true}, {"reset_bytes": 512, "decoded_sha256": "4d9c390f58708b87e153f1651558e33def1ae9ac5982f3bdadf1d1aca7ee5e8c", "mapped_bytes_equal": 33, "mapped_complete_match": false}]}
+    ],
+    "assembled4096_fixed32_decode_equals_mapped_first4096": true,
+    "decoded_first4096_sha256": "f029faa09f76b6bf9bd735984aec23fa8cf26a9167074193e9767fffa96bc647",
+    "first_header32_used_historically_to_solve_effective_state": true,
+    "algorithm_state_profile_fitting_or_raw_substitution_now": false,
+    "efuse_key_fullsystem_checksum_or_flash_restore_proof": false
+  },
+  "latest_actual_state": {
+    "observed_ended_at": "2026-10-14T09:10:35.332473+00:00",
+    "owned_identity_fully_verified": true,
+    "firmware": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "charging": true,
+    "battery": 100,
+    "bound": false,
+    "free_capacity_mib": 59589,
+    "latest_owned4096_ring_sha256": "a16e83146f8957a06240a781df08f476cdcfd8dd76d6843aa26ce60eb6a14609",
+    "all_stage_identity_states_equal": true,
+    "free_capacity_decrease_mib_each_overwrite": [0, 0, 0, 0],
+    "integer_capacity_not_allocation_bytes": true,
+    "historical_planned_names": 22
+  },
+  "retention": {
+    "actual_connections": 2,
+    "full4096_downloads": 6,
+    "nor_read_producers": 4,
+    "existing_file_sd_overwrites": 4,
+    "new_files": 0,
+    "deletions": 0,
+    "complete_parameter_transactions": 18,
+    "pending_parameter_transactions": 0,
+    "status_events": 0,
+    "f0_frames_per_producer": [0, 0, 0, 0],
+    "written_prefix_lower_bounds": [4096, 4096, 4096, 4096],
+    "padding_exemptions": [
+      [],
+      [],
+      [],
+      []
+    ],
+    "composer_producer_to_dump": [true, true, false, true],
+    "confirmed_ubuntu_cohort": 70,
+    "older_declared_without_download": 1,
+    "historical_possible": 1,
+    "maximum_cohort": 72,
+    "nor_flash_write_commands": 0
+  },
+  "coverage_overlay": {
+    "original_frozen_asof24200_A": 36112,
+    "unchanged_historical_B": 155204,
+    "later_verified_unique_bytes": 3072,
+    "current_strong_A_bytes": 39184,
+    "current_potential_A_plus_B_bytes": 194388,
+    "system_first4096_complete": true,
+    "old_frozen_inventory_rewritten": false,
+    "missing_factory8KiB_and_DSPextra444_not_included": true,
+    "decoded_mapped_audio_carrier_bytes_not_added": true
+  },
+  "public_output": {
+    "actual_raw4096": {"file": "docs/evidence/system-first4k-raw-live-2026-10-14/system-first4k-raw.bin", "bytes": 4096, "sha256": "74807d164370bd3d4ded53ac191414a1f5ff9a50ca04647b898179a1e7d83a5c"},
+    "only_new_public_binary": true,
+    "constituent512_bytes_equal_actual_original_sources": true,
+    "raw_ring_hci_identity_inventory_nonces_or_decoded_binary_published": false
+  },
+  "integrity": {
+    "archived_source_and_selected_original_inputs_pinned_checked": 296,
+    "all_final_pinned_hashes_unchanged": true,
+    "original_failures_and_frozen_receipts_unchanged": true,
+    "no_device_or_source_operation_by_this_review": true
+  }
+}

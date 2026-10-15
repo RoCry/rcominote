@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "source_image_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f",
+  "source_image_bytes": 927632,
+  "scope": "Fixed own non-audio SD experiment files only; private recording-file lists omitted",
+  "experiments": [
+    {
+      "experiment": "live-sd-bootstrap-20261013",
+      "source_report_sha256": "a76e99224ef2482f8749f1a4d7036774cd9eda761171ff5cd97c7ae83ffbd8a9",
+      "name": "rc6ae65544fe",
+      "device_path": "/SD:/RECORDER/Call-rc6ae65544fe.mp3",
+      "profile": "ram",
+      "source_address": "0x18000000",
+      "source_bytes": 4096,
+      "image_oracle_offset": 906496,
+      "expected_sha256": "35437a73c3a6087f13ad981be8c5719a93db5ca38ef892bcb87fdc984d207d7b",
+      "dump_command": "dbg dumpbuf 402653184 4096 /SD:/RECORDER/Call-rc6ae65544fe.mp3",
+      "sd_write_attempted": true,
+      "ok": false,
+      "error": "RuntimeError: Short download: 3852/4096 bytes",
+      "actions": {
+        "write_hex": [
+          "1d108105000002000100",
+          "1d108105000002002000",
+          "1d10814200013f006462672064756d70627566203430323635333138342034303936202f53443a2f5245434f524445522f43616c6c2d7263366165363535343466652e6d70330a",
+          "1d108105000002002100"
+        ],
+        "att_write_responses_including_cccd": 5,
+        "notification_hex": [
+          "1d108107007f0400a0860100",
+          "1d108107007f0400a0860100",
+          "1d108107007f0400a0860100",
+          "1d108107007f0400a0860100",
+          "1df1810000"
+        ],
+        "ack_count": 4,
+        "f1_received": true,
+        "pending_hex": ""
+      },
+      "info": {
+        "before_sha256": "54d81bcefe9b3a23e168d12cd72463fa450b2cf1c51ff9d11814c4b17280a481",
+        "after_sha256": "54d81bcefe9b3a23e168d12cd72463fa450b2cf1c51ff9d11814c4b17280a481",
+        "complete_before_after_equal": true,
+        "raw52_sha256": "730d9c259459be46ddadfe5ecf038a87bea9370556f05777c786f667230e254e",
+        "recording_state": "idle",
+        "version": "010004"
+      },
+      "download": null,
+      "download_only": false,
+      "partial_bytes_retained": false,
+      "failed_download": {
+        "reported_received_bytes": 3852,
+        "requested_bytes": 4096,
+        "reported_deficit_bytes": 244,
+        "reconstructed": false
+      }
+    },
+    {
+      "experiment": "live-sd-handler160-20261013",
+      "source_report_sha256": "0052c1abe23014cf35cfab7a5035e8b028c31f39060955e65d63a2d2bd3f80a9",
+      "name": "rca8624ca867",
+      "device_path": "/SD:/RECORDER/Call-rca8624ca867.mp3",
+      "profile": "handler",
+      "source_address": "0x10024a20",
+      "source_bytes": 160,
+      "image_oracle_offset": 150048,
+      "expected_sha256": "3f76f18c95ed6dfd6711681465491669ee48448b229eacfefb85aa9033ce68ab",
+      "dump_command": "dbg dumpbuf 268585504 160 /SD:/RECORDER/Call-rca8624ca867.mp3",
+      "sd_write_attempted": true,
+      "ok": false,
+      "error": "OSError: [Errno 38] LE ATT connect failed",
+      "actions": {
+        "write_hex": [
+          "1d108105000002000100",
+          "1d108105000002002000",
+          "1d10814100013e006462672064756d706275662032363835383535303420313630202f53443a2f5245434f524445522f43616c6c2d7263613836323463613836372e6d70330a",
+          "1d108105000002002100"
+        ],
+        "att_write_responses_including_cccd": 5,
+        "notification_hex": [
+          "1d108107007f0400a0860100",
+          "1d108107007f0400a0860100",
+          "1d108107007f0400a0860100",
+          "1d108107007f0400a0860100",
+          "1df1810000"
+        ],
+        "ack_count": 4,
+        "f1_received": true,
+        "pending_hex": ""
+      },
+      "info": {
+        "before_sha256": "54d81bcefe9b3a23e168d12cd72463fa450b2cf1c51ff9d11814c4b17280a481",
+        "after_sha256": "54d81bcefe9b3a23e168d12cd72463fa450b2cf1c51ff9d11814c4b17280a481",
+        "complete_before_after_equal": true,
+        "raw52_sha256": "730d9c259459be46ddadfe5ecf038a87bea9370556f05777c786f667230e254e",
+        "recording_state": "idle",
+        "version": "010004"
+      },
+      "download": null,
+      "download_only": false,
+      "partial_bytes_retained": false
+    },
+    {
+      "experiment": "live-sd-handler160-read-20261013",
+      "source_report_sha256": "47436e18770417c02fd8d5c04aedae0220ad93157faaacd57ec9c362fe2dc1ea",
+      "name": "rca8624ca867",
+      "device_path": "/SD:/RECORDER/Call-rca8624ca867.mp3",
+      "profile": "handler",
+      "source_address": "0x10024a20",
+      "source_bytes": 160,
+      "image_oracle_offset": 150048,
+      "expected_sha256": "3f76f18c95ed6dfd6711681465491669ee48448b229eacfefb85aa9033ce68ab",
+      "dump_command": "dbg dumpbuf 268585504 160 /SD:/RECORDER/Call-rca8624ca867.mp3",
+      "sd_write_attempted": false,
+      "ok": false,
+      "error": "OSError: [Errno 38] LE ATT connect failed",
+      "actions": null,
+      "info": null,
+      "download": null,
+      "download_only": true,
+      "parent_experiment": "live-sd-handler160-20261013",
+      "parent_report_sha256": "0052c1abe23014cf35cfab7a5035e8b028c31f39060955e65d63a2d2bd3f80a9",
+      "partial_bytes_retained": false
+    },
+    {
+      "experiment": "live-sd-handler160-read-b-20261013",
+      "source_report_sha256": "755527b171e70842f36e0a3437cff11714bc4cb3e4efd1bf1485fc2c6d22f89d",
+      "name": "rca8624ca867",
+      "device_path": "/SD:/RECORDER/Call-rca8624ca867.mp3",
+      "profile": "handler",
+      "source_address": "0x10024a20",
+      "source_bytes": 160,
+      "image_oracle_offset": 150048,
+      "expected_sha256": "3f76f18c95ed6dfd6711681465491669ee48448b229eacfefb85aa9033ce68ab",
+      "dump_command": "dbg dumpbuf 268585504 160 /SD:/RECORDER/Call-rca8624ca867.mp3",
+      "sd_write_attempted": false,
+      "ok": true,
+      "error": null,
+      "actions": null,
+      "info": {
+        "before_sha256": "54d81bcefe9b3a23e168d12cd72463fa450b2cf1c51ff9d11814c4b17280a481",
+        "after_sha256": "54d81bcefe9b3a23e168d12cd72463fa450b2cf1c51ff9d11814c4b17280a481",
+        "complete_before_after_equal": true,
+        "raw52_sha256": "730d9c259459be46ddadfe5ecf038a87bea9370556f05777c786f667230e254e",
+        "recording_state": "idle",
+        "version": "010004"
+      },
+      "download": {
+        "bytes": 160,
+        "sha256": "3f76f18c95ed6dfd6711681465491669ee48448b229eacfefb85aa9033ce68ab",
+        "exact_image_oracle_match": true,
+        "public_file": "sd-bootstrap-2026-10-13/handler160.bin"
+      },
+      "download_only": true,
+      "parent_experiment": "live-sd-handler160-20261013",
+      "parent_report_sha256": "0052c1abe23014cf35cfab7a5035e8b028c31f39060955e65d63a2d2bd3f80a9",
+      "existing_file_offset": 0
+    },
+    {
+      "experiment": "live-sd-tail128-20261013",
+      "source_report_sha256": "201729075c502aaf0459a9f3820f1f35502675eade65dfd36a7cb2bf7c438b1b",
+      "name": "rc6ae65544fe",
+      "device_path": "/SD:/RECORDER/Call-rc6ae65544fe.mp3",
+      "profile": "tail",
+      "source_address": "0x18000000",
+      "source_bytes": 128,
+      "image_oracle_offset": 910464,
+      "expected_sha256": "4df945cc5444f4b5bf12834aa20aac25d070113c55d36ec4e244fadc02c4272f",
+      "dump_command": "dbg dumpbuf 402653184 4096 /SD:/RECORDER/Call-rc6ae65544fe.mp3",
+      "sd_write_attempted": false,
+      "ok": true,
+      "error": null,
+      "actions": null,
+      "info": {
+        "before_sha256": "54d81bcefe9b3a23e168d12cd72463fa450b2cf1c51ff9d11814c4b17280a481",
+        "after_sha256": "54d81bcefe9b3a23e168d12cd72463fa450b2cf1c51ff9d11814c4b17280a481",
+        "complete_before_after_equal": true,
+        "raw52_sha256": "730d9c259459be46ddadfe5ecf038a87bea9370556f05777c786f667230e254e",
+        "recording_state": "idle",
+        "version": "010004"
+      },
+      "download": {
+        "bytes": 128,
+        "sha256": "4df945cc5444f4b5bf12834aa20aac25d070113c55d36ec4e244fadc02c4272f",
+        "exact_image_oracle_match": true,
+        "public_file": "sd-bootstrap-2026-10-13/ram-tail128.bin"
+      },
+      "download_only": true,
+      "parent_experiment": "live-sd-bootstrap-20261013",
+      "parent_report_sha256": "a76e99224ef2482f8749f1a4d7036774cd9eda761171ff5cd97c7ae83ffbd8a9",
+      "existing_file_offset": 3968
+    },
+    {
+      "experiment": "live-sd-xip32-a-20261013",
+      "source_report_sha256": "d15d2cfbd877869b9c495d3351e9066bcc8c6eb07a3734b0a7cd98349fbcfe5d",
+      "name": "rca4b8513887",
+      "device_path": "/SD:/RECORDER/Call-rca4b8513887.mp3",
+      "profile": "header",
+      "source_address": "0x10000000",
+      "source_bytes": 32,
+      "image_oracle_offset": 0,
+      "expected_sha256": "2337540c74a6aa8984eb481c2fea27a80d12cfd4c24c5300db820f86a733f486",
+      "dump_command": "dbg dumpbuf 268435456 32 /SD:/RECORDER/Call-rca4b8513887.mp3",
+      "sd_write_attempted": false,
+      "ok": false,
+      "error": "OSError: [Errno 38] LE ATT connect failed",
+      "actions": null,
+      "info": null,
+      "download": null,
+      "download_only": false,
+      "partial_bytes_retained": false
+    },
+    {
+      "experiment": "live-sd-xip32-b-20261013",
+      "source_report_sha256": "a81ed32e2085c24ec36218a8e5639a2e28ea8bb6a68fcc64a3ed394df6ccb4b3",
+      "name": "rc18333af60a",
+      "device_path": "/SD:/RECORDER/Call-rc18333af60a.mp3",
+      "profile": "header",
+      "source_address": "0x10000000",
+      "source_bytes": 32,
+      "image_oracle_offset": 0,
+      "expected_sha256": "2337540c74a6aa8984eb481c2fea27a80d12cfd4c24c5300db820f86a733f486",
+      "dump_command": "dbg dumpbuf 268435456 32 /SD:/RECORDER/Call-rc18333af60a.mp3",
+      "sd_write_attempted": true,
+      "ok": true,
+      "error": null,
+      "actions": {
+        "write_hex": [
+          "1d108105000002000100",
+          "1d108105000002002000",
+          "1d10814000013d006462672064756d7062756620323638343335343536203332202f53443a2f5245434f524445522f43616c6c2d7263313833333361663630612e6d70330a",
+          "1d108105000002002100"
+        ],
+        "att_write_responses_including_cccd": 5,
+        "notification_hex": [
+          "1d108107007f0400a0860100",
+          "1d108107007f0400a0860100",
+          "1d108107007f0400a0860100",
+          "1d108107007f0400a0860100",
+          "1df1810000"
+        ],
+        "ack_count": 4,
+        "f1_received": true,
+        "pending_hex": ""
+      },
+      "info": {
+        "before_sha256": "54d81bcefe9b3a23e168d12cd72463fa450b2cf1c51ff9d11814c4b17280a481",
+        "after_sha256": "54d81bcefe9b3a23e168d12cd72463fa450b2cf1c51ff9d11814c4b17280a481",
+        "complete_before_after_equal": true,
+        "raw52_sha256": "730d9c259459be46ddadfe5ecf038a87bea9370556f05777c786f667230e254e",
+        "recording_state": "idle",
+        "version": "010004"
+      },
+      "download": {
+        "bytes": 32,
+        "sha256": "2337540c74a6aa8984eb481c2fea27a80d12cfd4c24c5300db820f86a733f486",
+        "exact_image_oracle_match": true,
+        "public_file": "sd-bootstrap-2026-10-13/header-b32.bin"
+      },
+      "download_only": false
+    },
+    {
+      "experiment": "live-sd-xip32-c-20261013",
+      "source_report_sha256": "f2311da2a613b77e915829e00f09fa9c9ac83e831d05883298290deb466e4b51",
+      "name": "rc91c02f71dd",
+      "device_path": "/SD:/RECORDER/Call-rc91c02f71dd.mp3",
+      "profile": "header",
+      "source_address": "0x10000000",
+      "source_bytes": 32,
+      "image_oracle_offset": 0,
+      "expected_sha256": "2337540c74a6aa8984eb481c2fea27a80d12cfd4c24c5300db820f86a733f486",
+      "dump_command": "dbg dumpbuf 268435456 32 /SD:/RECORDER/Call-rc91c02f71dd.mp3",
+      "sd_write_attempted": true,
+      "ok": true,
+      "error": null,
+      "actions": {
+        "write_hex": [
+          "1d108105000002000100",
+          "1d108105000002002000",
+          "1d10814000013d006462672064756d7062756620323638343335343536203332202f53443a2f5245434f524445522f43616c6c2d7263393163303266373164642e6d70330a",
+          "1d108105000002002100"
+        ],
+        "att_write_responses_including_cccd": 5,
+        "notification_hex": [
+          "1d108107007f0400a0860100",
+          "1d108107007f0400a0860100",
+          "1d108107007f0400a0860100",
+          "1d108107007f0400a0860100",
+          "1df1810000"
+        ],
+        "ack_count": 4,
+        "f1_received": true,
+        "pending_hex": ""
+      },
+      "info": {
+        "before_sha256": "54d81bcefe9b3a23e168d12cd72463fa450b2cf1c51ff9d11814c4b17280a481",
+        "after_sha256": "54d81bcefe9b3a23e168d12cd72463fa450b2cf1c51ff9d11814c4b17280a481",
+        "complete_before_after_equal": true,
+        "raw52_sha256": "730d9c259459be46ddadfe5ecf038a87bea9370556f05777c786f667230e254e",
+        "recording_state": "idle",
+        "version": "010004"
+      },
+      "download": {
+        "bytes": 32,
+        "sha256": "2337540c74a6aa8984eb481c2fea27a80d12cfd4c24c5300db820f86a733f486",
+        "exact_image_oracle_match": true,
+        "public_file": "sd-bootstrap-2026-10-13/header-c32.bin"
+      },
+      "download_only": false
+    }
+  ],
+  "comparison_verified": true,
+  "limits": [
+    "RAM4096 full-file transfer failed at3852; missing partial was not retained or patched with tail128",
+    "Successful32-byte XIP headers are mapped system bytes, not raw NOR or an independent recovery backup",
+    "Handler160 initial download connection failed; subsequent parent-bound read-only download exactly matched160-byte oracle",
+    "Actions evidence is retained socket ATT trace; no independent HCI comparison claimed",
+    "Equal complete before/after info does not prove unchanged hidden state; SD test files intentionally retained",
+    "Full reports contain private recording lists and remain ignored; no full btsnoop/monitor published"
+  ]
+}

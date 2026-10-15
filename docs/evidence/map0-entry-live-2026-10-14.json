@@ -1,0 +1,333 @@
+{
+  "schema": "rcominote.map0-entry-live.v1",
+  "date_local": "2026-10-14",
+  "serial": "C261CF0430",
+  "prior_word_bundle": {"file": "gpio28-word-live-2026-10-14.json", "sha256": "986bbdbe1d9b57be02092cd69a51876d50ca77fac0fd9d2dae2c12f322273128"},
+  "recovery_proof": {
+    "file": "recovery-complete-2026-10-13/recovery-decoded.bin",
+    "sha256": "19625b7b70eb8e4a91c889792c0ca383f51ea205629e67565b59c47d15e09906",
+    "regions": [
+      {"offset": 58618, "hex": "134d134a17682968"},
+      {"offset": 58696, "hex": "0003014004030140"},
+      {"offset": 58044, "hex": "41f00101"},
+      {"offset": 58704, "hex": "0f000010"},
+      {"offset": 58632, "hex": "44f00044"}
+    ],
+    "scope": "ActualordinaryLDR32of40010300/304;mapperOR1/caller1000000f;conditionaloffsetbit31;staticnotexecutedhere",
+    "source": "recovery-complete-2026-10-13/handoff.json"
+  },
+  "observations": [
+    {
+      "target": "map0-cpu",
+      "guard_report_sha256": ["2c7c8f2815fa6e29386bbac15c775a366ec68de004e090d866e90297f5370976", "6794bc7da3794e437881c9dd3ebacefa73a639434ed6ecdf4a64d05548c5b853", "755527b171e70842f36e0a3437cff11714bc4cb3e4efd1bf1485fc2c6d22f89d", "b1b56d1fd60e6015c9f3b57bba3bc5b049955bbb0b22c525323f8eeb6e4edcd7", "b27951155486b3577a43bd041f51f2861b61dd888154d5dc59105eef20b48c1a", "b2fc1901116c7880f751cfc2d115ce765402fe708b67f9ea89e1c907532a1b81", "d54d9f3a6b5cc5e147efd9c42f1b234838ce176bcf448899fba0c108b1239edc", "f2311da2a613b77e915829e00f09fa9c9ac83e831d05883298290deb466e4b51", "f6e83ff655404aedab95e93a0ff6c9f1cc88f41bfb9ebcedc605692aa2972989"],
+      "fresh_preflight": {
+        "pointer": {
+          "source_report": {"file": "artifacts/map0-entry-live-20261014/cpu-pointer/report.json", "bytes": 12163, "sha256": "60f02740c0cf5ab1e0559064520db16f880aedb3b3ba5ecd634774a9bd03d3d1"},
+          "started_at": "2026-10-13T17:54:30.230305+00:00",
+          "ended_at": "2026-10-13T17:54:51.039687+00:00",
+          "source_address": "0x1800a9ac",
+          "source_bytes": 4,
+          "test_path": "/SD:/RECORDER/Call-rc01cdcf8741.mp3",
+          "original_ok": true,
+          "raw": {"file": "map0-entry-live-2026-10-14/cpu-pointer.bin", "bytes": 4, "sha256": "bef3c9bd2822c533b9a289ba840911bb8fc9312f2b07a0326af9dbe10265f97d"},
+          "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0},
+          "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59595, "free_capacity_after": 59594, "free_capacity_decrease": 1, "allowed_decrease": 1},
+          "fields": {"pointer": "0x180111fc", "allocation_bound_bytes": 80}
+        },
+        "context": {
+          "source_report": {"file": "artifacts/map0-entry-live-20261014/cpu-context/report.json", "bytes": 12693, "sha256": "80008269e2f538484f4c05f3603fe0a1727844f74d09cfef5cc8280a37c312fe"},
+          "started_at": "2026-10-13T17:56:15.779903+00:00",
+          "ended_at": "2026-10-13T17:56:31.075871+00:00",
+          "source_address": "0x180111fc",
+          "source_bytes": 32,
+          "test_path": "/SD:/RECORDER/Call-rc53be598a04.mp3",
+          "original_ok": true,
+          "raw": {"file": "map0-entry-live-2026-10-14/cpu-context.bin", "bytes": 32, "sha256": "354bd388aaba7f15983c7f009f179833e357b1fedf379135bd4a9583bfdb701b"},
+          "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0},
+          "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59594, "free_capacity_after": 59594, "free_capacity_decrease": 0, "allowed_decrease": 1},
+          "fields": {
+            "stream_pointer": "0x18011254",
+            "flags_byte": 3,
+            "log_type": 0,
+            "new_log_type": 0,
+            "rd": 208,
+            "wr": 208,
+            "slot_lengths": [139, 0, 0, 0, 0, 0, 0, 0],
+            "drop_count": 0,
+            "interpretation": "Historical pre-STOP bytes; no atomicity/current pointer/partial-slot claim"
+          },
+          "pointer_parent_sha256": "60f02740c0cf5ab1e0559064520db16f880aedb3b3ba5ecd634774a9bd03d3d1"
+        }
+      },
+      "trial": {
+        "source_report": {"file": "artifacts/map0-entry-live-20261014/cpu-trial/report.json", "bytes": 24139, "sha256": "4bc84183a49a05610b4826888c572f6f07912cbbf40158db293056331650605d"},
+        "original_ok": true,
+        "started_at": "2026-10-13T17:56:51.806355+00:00",
+        "ended_at": "2026-10-13T17:57:16.932338+00:00",
+        "commands": ["dbg dumpbuf 402696620 4 /SD:/RECORDER/Call-rcdb697ce199.mp3", "dbg mdw 40010300 1", "dbg dumpbuf 402723324 32 /SD:/RECORDER/Call-rccb35e643a2.mp3", "dbg dumpbuf 402696624 512 /SD:/RECORDER/Call-rca83626f2dc.mp3"],
+        "actions": {"confirmed_writes": 7, "ack_count": 7, "f1_received": true, "pending_bytes": 0},
+        "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59594, "free_capacity_after": 59594, "free_capacity_decrease": 0, "allowed_decrease": 1},
+        "pointer_parent_sha256": "60f02740c0cf5ab1e0559064520db16f880aedb3b3ba5ecd634774a9bd03d3d1",
+        "context_parent_sha256": "80008269e2f538484f4c05f3603fe0a1727844f74d09cfef5cc8280a37c312fe",
+        "files": [
+          {
+            "role": "global",
+            "source_address": "0x1800a9ac",
+            "source_bytes": 4,
+            "test_path": "/SD:/RECORDER/Call-rcdb697ce199.mp3",
+            "received_bytes": 4,
+            "download_bytes": 4,
+            "sha256": "bef3c9bd2822c533b9a289ba840911bb8fc9312f2b07a0326af9dbe10265f97d",
+            "raw": {"file": "map0-entry-live-2026-10-14/cpu-global.bin", "bytes": 4, "sha256": "bef3c9bd2822c533b9a289ba840911bb8fc9312f2b07a0326af9dbe10265f97d"}
+          },
+          {
+            "role": "metadata",
+            "source_address": "0x180111fc",
+            "source_bytes": 32,
+            "test_path": "/SD:/RECORDER/Call-rccb35e643a2.mp3",
+            "received_bytes": 32,
+            "download_bytes": 32,
+            "sha256": "f993ec76fa81a93162f8395c1673c9732cc29f3053906b210421d85279c64cad",
+            "raw": {"file": "map0-entry-live-2026-10-14/cpu-metadata.bin", "bytes": 32, "sha256": "f993ec76fa81a93162f8395c1673c9732cc29f3053906b210421d85279c64cad"}
+          },
+          {
+            "role": "slot",
+            "source_address": "0x1800a9b0",
+            "source_bytes": 512,
+            "test_path": "/SD:/RECORDER/Call-rca83626f2dc.mp3",
+            "received_bytes": 512,
+            "download_bytes": 512,
+            "sha256": "02b36eebc278a71aedba467ec0e00500750a1a76241b9d5f177102f7cc2f461d",
+            "full_raw_published": false,
+            "body_length": 406,
+            "selected_spans": [
+              {
+                "kind": "nonce-marker",
+                "body_span": [138, 191],
+                "slot_span": [146, 199],
+                "raw": {"file": "map0-entry-live-2026-10-14/cpu-marker.bin", "bytes": 53, "sha256": "85422265aae760f4370082960df5eb2887e9aa29db5da1f9934fe066309dc90b"}
+              },
+              {
+                "kind": "word-row",
+                "body_span": [195, 250],
+                "slot_span": [203, 258],
+                "raw": {"file": "map0-entry-live-2026-10-14/cpu-row.bin", "bytes": 55, "sha256": "fa0333ee8a1d8da383c1958d64b62f6929e7161acdc5ae0f2f8ee285ca027f80"}
+              }
+            ]
+          }
+        ],
+        "verification": {
+          "address": "0x40010300",
+          "observed_word": 268435471,
+          "observed_hex": "0x1000000f",
+          "word_bytes_le": "0f000010",
+          "metadata": {
+            "stream_pointer": "0x18011254",
+            "flags_byte": 3,
+            "log_type": 0,
+            "new_log_type": 0,
+            "rd": 208,
+            "wr": 208,
+            "slot_lengths": [406, 0, 0, 0, 0, 0, 0, 0],
+            "drop_count": 0,
+            "interpretation": "Historical pre-STOP bytes; no atomicity/current pointer/partial-slot claim"
+          },
+          "geometry": {"pointer": 402723324, "stream": 402723412, "counter": 208, "index": 0, "slot_address": 402696624},
+          "body_length": 406,
+          "marker_body_span": [138, 191],
+          "row_body_span": [195, 250],
+          "row_sha256": "fa0333ee8a1d8da383c1958d64b62f6929e7161acdc5ae0f2f8ee285ca027f80",
+          "scope": "One observed slot0 configuration word; no raw alias, complete mapping or atomicity claim"
+        }
+      }
+    },
+    {
+      "target": "map0-offset",
+      "guard_report_sha256": ["2c7c8f2815fa6e29386bbac15c775a366ec68de004e090d866e90297f5370976", "6794bc7da3794e437881c9dd3ebacefa73a639434ed6ecdf4a64d05548c5b853", "755527b171e70842f36e0a3437cff11714bc4cb3e4efd1bf1485fc2c6d22f89d", "b1b56d1fd60e6015c9f3b57bba3bc5b049955bbb0b22c525323f8eeb6e4edcd7", "b27951155486b3577a43bd041f51f2861b61dd888154d5dc59105eef20b48c1a", "b2fc1901116c7880f751cfc2d115ce765402fe708b67f9ea89e1c907532a1b81", "d54d9f3a6b5cc5e147efd9c42f1b234838ce176bcf448899fba0c108b1239edc", "f2311da2a613b77e915829e00f09fa9c9ac83e831d05883298290deb466e4b51", "f6e83ff655404aedab95e93a0ff6c9f1cc88f41bfb9ebcedc605692aa2972989"],
+      "fresh_preflight": {
+        "pointer": {
+          "source_report": {"file": "artifacts/map0-entry-live-20261014/offset-pointer/report.json", "bytes": 12163, "sha256": "c8e80324ada645cd60b66f1f6f3c70dc1bc1493265cdd87daea84d025eeed006"},
+          "started_at": "2026-10-13T17:58:42.546866+00:00",
+          "ended_at": "2026-10-13T17:58:58.633099+00:00",
+          "source_address": "0x1800a9ac",
+          "source_bytes": 4,
+          "test_path": "/SD:/RECORDER/Call-rca4cb6b04d0.mp3",
+          "original_ok": true,
+          "raw": {"file": "map0-entry-live-2026-10-14/offset-pointer.bin", "bytes": 4, "sha256": "bef3c9bd2822c533b9a289ba840911bb8fc9312f2b07a0326af9dbe10265f97d"},
+          "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0},
+          "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59594, "free_capacity_after": 59594, "free_capacity_decrease": 0, "allowed_decrease": 1},
+          "fields": {"pointer": "0x180111fc", "allocation_bound_bytes": 80}
+        },
+        "context": {
+          "source_report": {"file": "artifacts/map0-entry-live-20261014/offset-context-b/report.json", "bytes": 12696, "sha256": "d8aaf5251bd5c86620b5e968a6f4cb43d3fe913fe23c0ec74cd9fe2ce45643f0"},
+          "started_at": "2026-10-13T18:06:42.446734+00:00",
+          "ended_at": "2026-10-13T18:06:58.068427+00:00",
+          "source_address": "0x180111fc",
+          "source_bytes": 32,
+          "test_path": "/SD:/RECORDER/Call-rcc5843b8c9f.mp3",
+          "original_ok": true,
+          "raw": {"file": "map0-entry-live-2026-10-14/offset-context.bin", "bytes": 32, "sha256": "d5b4825ff5300c441a5cd950064359b23ed746b0f23dc97c7732c00a7c2a9677"},
+          "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0},
+          "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59594, "free_capacity_after": 59594, "free_capacity_decrease": 0, "allowed_decrease": 1},
+          "fields": {
+            "stream_pointer": "0x18011254",
+            "flags_byte": 3,
+            "log_type": 0,
+            "new_log_type": 0,
+            "rd": 210,
+            "wr": 210,
+            "slot_lengths": [0, 0, 139, 0, 0, 0, 0, 0],
+            "drop_count": 0,
+            "interpretation": "Historical pre-STOP bytes; no atomicity/current pointer/partial-slot claim"
+          },
+          "pointer_parent_sha256": "c8e80324ada645cd60b66f1f6f3c70dc1bc1493265cdd87daea84d025eeed006"
+        }
+      },
+      "trial": {
+        "source_report": {"file": "artifacts/map0-entry-live-20261014/offset-trial/report.json", "bytes": 24150, "sha256": "b631e3b815b79e78e66623d3ffc90482c18268759605c8b9d85351b7981a0800"},
+        "original_ok": true,
+        "started_at": "2026-10-13T18:09:24.182912+00:00",
+        "ended_at": "2026-10-13T18:09:50.329666+00:00",
+        "commands": ["dbg dumpbuf 402696620 4 /SD:/RECORDER/Call-rcd1d5a77a49.mp3", "dbg mdw 40010304 1", "dbg dumpbuf 402723324 32 /SD:/RECORDER/Call-rcdb6169aead.mp3", "dbg dumpbuf 402697648 512 /SD:/RECORDER/Call-rc19983b9451.mp3"],
+        "actions": {"confirmed_writes": 7, "ack_count": 7, "f1_received": true, "pending_bytes": 0},
+        "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59594, "free_capacity_after": 59593, "free_capacity_decrease": 1, "allowed_decrease": 1},
+        "pointer_parent_sha256": "c8e80324ada645cd60b66f1f6f3c70dc1bc1493265cdd87daea84d025eeed006",
+        "context_parent_sha256": "d8aaf5251bd5c86620b5e968a6f4cb43d3fe913fe23c0ec74cd9fe2ce45643f0",
+        "files": [
+          {
+            "role": "global",
+            "source_address": "0x1800a9ac",
+            "source_bytes": 4,
+            "test_path": "/SD:/RECORDER/Call-rcd1d5a77a49.mp3",
+            "received_bytes": 4,
+            "download_bytes": 4,
+            "sha256": "bef3c9bd2822c533b9a289ba840911bb8fc9312f2b07a0326af9dbe10265f97d",
+            "raw": {"file": "map0-entry-live-2026-10-14/offset-global.bin", "bytes": 4, "sha256": "bef3c9bd2822c533b9a289ba840911bb8fc9312f2b07a0326af9dbe10265f97d"}
+          },
+          {
+            "role": "metadata",
+            "source_address": "0x180111fc",
+            "source_bytes": 32,
+            "test_path": "/SD:/RECORDER/Call-rcdb6169aead.mp3",
+            "received_bytes": 32,
+            "download_bytes": 32,
+            "sha256": "641f9d238e4ffcabe1712f1ec3261b9372e1caefe27fca1b14a7888275eac4fc",
+            "raw": {"file": "map0-entry-live-2026-10-14/offset-metadata.bin", "bytes": 32, "sha256": "641f9d238e4ffcabe1712f1ec3261b9372e1caefe27fca1b14a7888275eac4fc"}
+          },
+          {
+            "role": "slot",
+            "source_address": "0x1800adb0",
+            "source_bytes": 512,
+            "test_path": "/SD:/RECORDER/Call-rc19983b9451.mp3",
+            "received_bytes": 512,
+            "download_bytes": 512,
+            "sha256": "a228f1eb1217e359e41d34ada73c44f2a88ea4d86f18a8ec06337fa538e15678",
+            "full_raw_published": false,
+            "body_length": 406,
+            "selected_spans": [
+              {
+                "kind": "nonce-marker",
+                "body_span": [138, 191],
+                "slot_span": [146, 199],
+                "raw": {"file": "map0-entry-live-2026-10-14/offset-marker.bin", "bytes": 53, "sha256": "9207211e3f303f1e32188470deb0e5173aa807ef655076e972f48be579f78d6a"}
+              },
+              {
+                "kind": "word-row",
+                "body_span": [195, 250],
+                "slot_span": [203, 258],
+                "raw": {"file": "map0-entry-live-2026-10-14/offset-row.bin", "bytes": 55, "sha256": "96cce066b42fd0710d1256c87b8a7257dfd322e769128ddddef216f2ac6508d1"}
+              }
+            ]
+          }
+        ],
+        "verification": {
+          "address": "0x40010304",
+          "observed_word": 147456,
+          "observed_hex": "0x00024000",
+          "word_bytes_le": "00400200",
+          "metadata": {
+            "stream_pointer": "0x18011254",
+            "flags_byte": 3,
+            "log_type": 0,
+            "new_log_type": 0,
+            "rd": 210,
+            "wr": 210,
+            "slot_lengths": [0, 0, 406, 0, 0, 0, 0, 0],
+            "drop_count": 0,
+            "interpretation": "Historical pre-STOP bytes; no atomicity/current pointer/partial-slot claim"
+          },
+          "geometry": {"pointer": 402723324, "stream": 402723412, "counter": 210, "index": 2, "slot_address": 402697648},
+          "body_length": 406,
+          "marker_body_span": [138, 191],
+          "row_body_span": [195, 250],
+          "row_sha256": "96cce066b42fd0710d1256c87b8a7257dfd322e769128ddddef216f2ac6508d1",
+          "scope": "One observed slot0 configuration word; no raw alias, complete mapping or atomicity claim"
+        }
+      }
+    }
+  ],
+  "failed_contexts": [
+    {
+      "source_report": {"file": "artifacts/map0-entry-live-20261014/offset-context/report.json", "bytes": 10841, "sha256": "6edf27f18421764a63f90114eb22b0c55cc332707e6efb78e471ede16cf64fff"},
+      "started_at": "2026-10-13T18:02:12.337204+00:00",
+      "ended_at": "2026-10-13T18:02:25.633466+00:00",
+      "original_ok": false,
+      "source_address": "0x180111fc",
+      "source_bytes": 32,
+      "test_path": "/SD:/RECORDER/Call-rccc45bc96ec.mp3",
+      "raw": {"file": "map0-entry-live-2026-10-14/offset-context-failed-historical.bin", "bytes": 32, "sha256": "d5b4825ff5300c441a5cd950064359b23ed746b0f23dc97c7732c00a7c2a9677"},
+      "fields": {
+        "stream_pointer": "0x18011254",
+        "flags_byte": 3,
+        "log_type": 0,
+        "new_log_type": 0,
+        "rd": 210,
+        "wr": 210,
+        "slot_lengths": [0, 0, 139, 0, 0, 0, 0, 0],
+        "drop_count": 0,
+        "interpretation": "Historical pre-STOP bytes; no atomicity/current pointer/partial-slot claim"
+      },
+      "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0},
+      "error": "OSError: [Errno 38] LE ATT connect failed",
+      "after_error": "OSError: [Errno 38] LE ATT connect failed",
+      "final_state_verified": false,
+      "used_as_parent": false,
+      "download_reused": false,
+      "pointer_parent_sha256": "c8e80324ada645cd60b66f1f6f3c70dc1bc1493265cdd87daea84d025eeed006",
+      "scope": "Original32B historical sample,completeActions/download,butfinalinfofailed;notcurrentcontext/notpromoted"
+    }
+  ],
+  "atomic_pair": false,
+  "public_new_raw_bytes": 392,
+  "retained_sd_test_files": {"new_this_round": 11, "earlier": 31, "total": 42, "deleted": 0},
+  "interpretation": {"cpu_word": "0x1000000f", "cpu_upper_bits_excluding_low_nibble": "0x10000000", "cpu_low_nibble": "0xf", "offset_word": "0x00024000", "offset_bit31": false, "offset_without_bit31": "0x24000", "crc_scope": "Mappingoffsetbit31namedCRCattributeinreferenceSDK;clearisnotpartitionencryptionflagclear", "cpu_scope": "Matchesactualhandoffcaller1000000f;helperOR1;nohardwarewindow-sizeinference", "pair_scope": "Independenttimes,notatomicorproofmappingstablebetweenreads", "boundary": "Noaliasprobe/mappingwrite/rawNORrepresentationorwholeflashinversion/encryptionproof"},
+  "private_audit": {
+    "performed_offline": true,
+    "device_io": false,
+    "methods": ["gpio_word_contract.validate_parents exact5+2+2guards/image+writeparent,chronology/freshP/context for eachtarget", "read_basis checksumverifiedactualrecoveryLDR/literals;commands exacttarget,count1", "validate_actions7ACK/F1,pending0,same_identity,downloaded4/32/512,verify_payload unique nonce→word55withinL406,ASCIIconsistent", "Originaloffset-contextfailed:validate_actions4/download32/fields/beforeidentityonly,afterErr38preserved;freshcontext-bindependentnewfile"],
+    "public_replay_scope": "Pinned compactreceipt+prior9guardbundle+recoveryproof+smallraw/two safe slotspans;privateATT/state/fullslotuniquenessauditrecordednotrerun",
+    "privacy": "Onlyexactrandomtestpathmarker53Bandobservedconfigword55Bfromeachslot;allotherbody/staletailwithheld"
+  },
+  "private_sources": {
+    "artifacts/map0-entry-live-20261014/cpu-pointer/report.json": {"bytes": 12163, "sha256": "60f02740c0cf5ab1e0559064520db16f880aedb3b3ba5ecd634774a9bd03d3d1"},
+    "artifacts/map0-entry-live-20261014/cpu-context/report.json": {"bytes": 12693, "sha256": "80008269e2f538484f4c05f3603fe0a1727844f74d09cfef5cc8280a37c312fe"},
+    "artifacts/map0-entry-live-20261014/cpu-trial/slot/download.bin": {"bytes": 512, "sha256": "02b36eebc278a71aedba467ec0e00500750a1a76241b9d5f177102f7cc2f461d"},
+    "artifacts/map0-entry-live-20261014/cpu-trial/report.json": {"bytes": 24139, "sha256": "4bc84183a49a05610b4826888c572f6f07912cbbf40158db293056331650605d"},
+    "artifacts/live-sd-xip32-c-20261013/report.json": {"bytes": 9930, "sha256": "f2311da2a613b77e915829e00f09fa9c9ac83e831d05883298290deb466e4b51"},
+    "artifacts/logsrv-context-live-20261014/global-code/report.json": {"bytes": 10191, "sha256": "d54d9f3a6b5cc5e147efd9c42f1b234838ce176bcf448899fba0c108b1239edc"},
+    "artifacts/logsrv-context-live-20261014/global-literal/report.json": {"bytes": 10194, "sha256": "b27951155486b3577a43bd041f51f2861b61dd888154d5dc59105eef20b48c1a"},
+    "artifacts/live-sd-handler160-read-b-20261013/report.json": {"bytes": 4325, "sha256": "755527b171e70842f36e0a3437cff11714bc4cb3e4efd1bf1485fc2c6d22f89d"},
+    "artifacts/logsrv-context-live-20261014/heap-bounds/report.json": {"bytes": 10184, "sha256": "b1b56d1fd60e6015c9f3b57bba3bc5b049955bbb0b22c525323f8eeb6e4edcd7"},
+    "artifacts/logsrv-slot-live-20261014/layout/report.json": {"bytes": 10191, "sha256": "2c7c8f2815fa6e29386bbac15c775a366ec68de004e090d866e90297f5370976"},
+    "artifacts/logsrv-slot-live-20261014/copy/report.json": {"bytes": 10189, "sha256": "b2fc1901116c7880f751cfc2d115ce765402fe708b67f9ea89e1c907532a1b81"},
+    "artifacts/gpio28-word-live-20261014/mdw-load/report.json": {"bytes": 10181, "sha256": "f6e83ff655404aedab95e93a0ff6c9f1cc88f41bfb9ebcedc605692aa2972989"},
+    "artifacts/gpio28-word-live-20261014/mdw-wrapper/report.json": {"bytes": 10184, "sha256": "6794bc7da3794e437881c9dd3ebacefa73a639434ed6ecdf4a64d05548c5b853"},
+    "artifacts/live-sd-handler160-20261013/report.json": {"bytes": 9834, "sha256": "0052c1abe23014cf35cfab7a5035e8b028c31f39060955e65d63a2d2bd3f80a9"},
+    "artifacts/map0-entry-live-20261014/offset-pointer/report.json": {"bytes": 12163, "sha256": "c8e80324ada645cd60b66f1f6f3c70dc1bc1493265cdd87daea84d025eeed006"},
+    "artifacts/map0-entry-live-20261014/offset-context-b/report.json": {"bytes": 12696, "sha256": "d8aaf5251bd5c86620b5e968a6f4cb43d3fe913fe23c0ec74cd9fe2ce45643f0"},
+    "artifacts/map0-entry-live-20261014/offset-trial/slot/download.bin": {"bytes": 512, "sha256": "a228f1eb1217e359e41d34ada73c44f2a88ea4d86f18a8ec06337fa538e15678"},
+    "artifacts/map0-entry-live-20261014/offset-trial/report.json": {"bytes": 24150, "sha256": "b631e3b815b79e78e66623d3ffc90482c18268759605c8b9d85351b7981a0800"},
+    "artifacts/map0-entry-live-20261014/offset-context/report.json": {"bytes": 10841, "sha256": "6edf27f18421764a63f90114eb22b0c55cc332707e6efb78e471ede16cf64fff"}
+  },
+  "limitations": ["Twohistoricalwordsareindependentnon-atomicobservations", "CRCmappingbit31distinctfromACPTencryptionbit1/headerflag4/OTAwriteaddressbit31;clearflagdoesnotproveunencryptedphysicalNOR", "CPUlowfcallerencodingplushelperOR1doesnotestablishhardwarewindowextent", "Metadata/bodycopiesnon-atomic,pointerequalitycheckedafterward,noallocatorownership/stillpartialclaim", "Fullprivate512hashesandselectedspanscannotindependentlyreplayprivateuniqueness/ATTaudit", "Failedhistoricalcontextremainsoverallfalse,notpostcheckedorparentreused;replacementcontext-bisnewSDsample", "NoaliasorotherMMIOprobe/mappingchange/NORwrite/recoveryexecution;nodeviceoperationsbypublicationtools"]
+}

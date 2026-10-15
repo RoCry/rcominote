@@ -1,0 +1,204 @@
+{
+  "kind": "four-original-v3-physical-nor-pairs",
+  "date": "2026-10-14",
+  "original_ok": true,
+  "physical_range": [
+    151552,
+    153600
+  ],
+  "new_unique_raw_bytes": 2048,
+  "independent_raw_oracle": false,
+  "originals": {
+    "report": {
+      "file": "artifacts/paired-nor25000-four-v3-20261014/report.json",
+      "bytes": 19306,
+      "sha256": "b61421ca03e9a9fbdb5d934582e8f664a10a8dc343adc27218a3173911d13882"
+    },
+    "plan": {
+      "file": "artifacts/paired-nor25000-four-v3-20261014/plan.json",
+      "bytes": 8564,
+      "sha256": "d36dd2f42aa2572c969bb6e0dd4d2ba82f135ad911ccc987ce4fd67eacf92710"
+    },
+    "preflight_review": {
+      "file": "artifacts/paired-nor25000-four-v3-20261014/preflight-review.json",
+      "bytes": 831,
+      "sha256": "f847ba1cd5baba5eacbc6ef0036bef8851f0e08fd8171fc39448da1e1d58d12f"
+    },
+    "actual_preflight_plan": {
+      "file": "artifacts/paired-nor25000-four-v3-preflight-20261014-b/plan.json",
+      "bytes": 8564,
+      "sha256": "d36dd2f42aa2572c969bb6e0dd4d2ba82f135ad911ccc987ce4fd67eacf92710"
+    },
+    "earlier_host_only_empty_plan": {
+      "file": "artifacts/paired-nor25000-four-v3-preflight-20261014/plan.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "frozen_source": {
+    "manifest": {
+      "file": "artifacts/paired-nor25000-four-v3-20261014/source-snapshot/manifest.json",
+      "bytes": 43727,
+      "sha256": "305534f3786003fe3c59a2e4917218c658ac54ec7f82d039d484b280e3b63313"
+    },
+    "source_files": 139,
+    "test_files": 117,
+    "all_snapshot_and_isolated_copy_bytes_verified": true,
+    "isolated_execution_directory": "/home/rocry/w/_tmp/rcominote-w0-frozen-20261014",
+    "manifest_created_at": "2026-10-14T10:06:38.167861+00:00",
+    "inherited_checks": {
+      "passed": 2137,
+      "subtests_passed": 159,
+      "uv_build": "passed",
+      "new_full_check_run": false,
+      "root_pre_io_claim_verified_not_independent_full_suite_rerun": true
+    },
+    "snapshot_imported_project_modules": 97,
+    "all_import_origins_frozen": true,
+    "current_evolving_source_not_used": true
+  },
+  "chronology": {
+    "planned_at": "2026-10-14T10:15:25.695761+00:00",
+    "started_at": "2026-10-14T10:15:41.851223+00:00",
+    "ended_at": "2026-10-14T10:17:24.815922+00:00",
+    "manifest_before_plan_before_start": true,
+    "earlier_serialization_failure_was_host_only_per_preflight_review": true,
+    "actual_hardware_plan_is_preflight_b": true
+  },
+  "public_output": {
+    "file": "docs/evidence/paired-nor25000-four-live-2026-10-14/nor25000-25800.bin",
+    "bytes": 2048,
+    "sha256": "5cc9f32531c5c4fe543d63ea8e8896752d7f19c2c43d3d6b0dc05475a3191edb"
+  },
+  "pages": [
+    {"physical_range": [151552, 152064], "output_offset": 0, "bytes": 512, "sha256": "5333a1d92559a32fe94bb1df84189b8f9e6cd19b18c54f1a9e8aa09e9ea716a9", "report": {"file": "artifacts/paired-nor25000-four-v3-20261014/page0-025000/report.json", "bytes": 82486, "sha256": "67124dd0ef0c682b9a5d466416e2c003ee840ca4e1c4fedee85aee2089058773"}, "hci": {"file": "artifacts/paired-nor25000-four-v3-20261014/page0-025000/session.btsnoop", "bytes": 25111, "sha256": "aae675fda7938ae1d7b69604d3338a891679a7e1a7a8841d84e6ea47a7fd5b94"}, "rings": [{"file": "artifacts/paired-nor25000-four-v3-20261014/page0-025000/baseline/download.bin", "bytes": 4096, "sha256": "a5d8e2e773a38954f35d8b2f919fa585e09df0a13c7a9c29a6ac6da4a76f5a48"}, {"file": "artifacts/paired-nor25000-four-v3-20261014/page0-025000/first/download.bin", "bytes": 4096, "sha256": "aec21613f1357c650d2d15584a4b55fd6d8b63261eebe2428d59186e687366a3"}, {"file": "artifacts/paired-nor25000-four-v3-20261014/page0-025000/second/download.bin", "bytes": 4096, "sha256": "b5e16a9d8c02fedcb96a652bd39eb1f489c2491ed06747711127b89f273f0233"}], "actual_raw_sources": [{"file": "artifacts/paired-nor25000-four-v3-20261014/page0-025000/first/sector.bin", "bytes": 512, "sha256": "5333a1d92559a32fe94bb1df84189b8f9e6cd19b18c54f1a9e8aa09e9ea716a9"}, {"file": "artifacts/paired-nor25000-four-v3-20261014/page0-025000/second/sector.bin", "bytes": 512, "sha256": "5333a1d92559a32fe94bb1df84189b8f9e6cd19b18c54f1a9e8aa09e9ea716a9"}], "started_at": "2026-10-14T10:15:47.271782+00:00", "ended_at": "2026-10-14T10:16:12.532357+00:00", "att_packets": 181, "hci_records": 315, "complete_transactions": 9, "pending": 0, "status_events": 0, "actions_each": {"acks": 6, "f1": true, "pending_bytes": 0, "f0_frames": 0}, "prefixes": [4096, 4096], "all_critical_chain_inside_prefix": true, "padding_exemptions": [], "composer_producer_to_dump": [false, true], "normal_disconnect": {"status": 0, "reason": 22, "record": 314}},
+    {"physical_range": [152064, 152576], "output_offset": 512, "bytes": 512, "sha256": "f58a386271ef1076f9290dbae487c1d2170d90ee3dfa652f066bb9f4cd6faccd", "report": {"file": "artifacts/paired-nor25000-four-v3-20261014/page1-025200/report.json", "bytes": 82449, "sha256": "4542764f86441189dc2c5395c5f2a8d278576657232379071022e4190d511f55"}, "hci": {"file": "artifacts/paired-nor25000-four-v3-20261014/page1-025200/session.btsnoop", "bytes": 25176, "sha256": "012aade8db294cc53f138b5ac164caf9387f9856ca179480709eca27012dae50"}, "rings": [{"file": "artifacts/paired-nor25000-four-v3-20261014/page1-025200/baseline/download.bin", "bytes": 4096, "sha256": "b5e16a9d8c02fedcb96a652bd39eb1f489c2491ed06747711127b89f273f0233"}, {"file": "artifacts/paired-nor25000-four-v3-20261014/page1-025200/first/download.bin", "bytes": 4096, "sha256": "b6519d814b450e0b677ba63c6b2e99de20e83d68170da9c3fb4442024002e799"}, {"file": "artifacts/paired-nor25000-four-v3-20261014/page1-025200/second/download.bin", "bytes": 4096, "sha256": "e0326711a194398c73aa0fd3f562acf5ac332e692cc86b54e6be76b44a5fb5df"}], "actual_raw_sources": [{"file": "artifacts/paired-nor25000-four-v3-20261014/page1-025200/first/sector.bin", "bytes": 512, "sha256": "f58a386271ef1076f9290dbae487c1d2170d90ee3dfa652f066bb9f4cd6faccd"}, {"file": "artifacts/paired-nor25000-four-v3-20261014/page1-025200/second/sector.bin", "bytes": 512, "sha256": "f58a386271ef1076f9290dbae487c1d2170d90ee3dfa652f066bb9f4cd6faccd"}], "started_at": "2026-10-14T10:16:13.007791+00:00", "ended_at": "2026-10-14T10:16:36.755954+00:00", "att_packets": 181, "hci_records": 317, "complete_transactions": 9, "pending": 0, "status_events": 0, "actions_each": {"acks": 6, "f1": true, "pending_bytes": 0, "f0_frames": 0}, "prefixes": [4096, 3827], "all_critical_chain_inside_prefix": true, "padding_exemptions": [], "composer_producer_to_dump": [false, true], "normal_disconnect": {"status": 0, "reason": 22, "record": 316}},
+    {"physical_range": [152576, 153088], "output_offset": 1024, "bytes": 512, "sha256": "325f5104a8f1512bd969df3b57a6266fc35afbe6a5557b13d39e763e17e55fcb", "report": {"file": "artifacts/paired-nor25000-four-v3-20261014/page2-025400/report.json", "bytes": 82629, "sha256": "b29e93110a6284a6b88fd6c5ad709f87b061e7c04b1f72c2a78081c6409cb202"}, "hci": {"file": "artifacts/paired-nor25000-four-v3-20261014/page2-025400/session.btsnoop", "bytes": 25246, "sha256": "5e665311c33aba20446f2329aefc4f78df830ab1b765408aa55b7ec48666ec54"}, "rings": [{"file": "artifacts/paired-nor25000-four-v3-20261014/page2-025400/baseline/download.bin", "bytes": 4096, "sha256": "e0326711a194398c73aa0fd3f562acf5ac332e692cc86b54e6be76b44a5fb5df"}, {"file": "artifacts/paired-nor25000-four-v3-20261014/page2-025400/first/download.bin", "bytes": 4096, "sha256": "53159ef7bf5b23903788676e11da83e3820524990de91fabf6195a6c637fef7a"}, {"file": "artifacts/paired-nor25000-four-v3-20261014/page2-025400/second/download.bin", "bytes": 4096, "sha256": "7606f3493b3d95a914f18400c952febe96a00c15f5d37d95def2c9826703ed93"}], "actual_raw_sources": [{"file": "artifacts/paired-nor25000-four-v3-20261014/page2-025400/first/sector.bin", "bytes": 512, "sha256": "325f5104a8f1512bd969df3b57a6266fc35afbe6a5557b13d39e763e17e55fcb"}, {"file": "artifacts/paired-nor25000-four-v3-20261014/page2-025400/second/sector.bin", "bytes": 512, "sha256": "325f5104a8f1512bd969df3b57a6266fc35afbe6a5557b13d39e763e17e55fcb"}], "started_at": "2026-10-14T10:16:37.271517+00:00", "ended_at": "2026-10-14T10:17:00.659896+00:00", "att_packets": 183, "hci_records": 319, "complete_transactions": 9, "pending": 0, "status_events": 0, "actions_each": {"acks": 6, "f1": true, "pending_bytes": 0, "f0_frames": 0}, "prefixes": [4096, 4096], "all_critical_chain_inside_prefix": true, "padding_exemptions": [], "composer_producer_to_dump": [false, false], "normal_disconnect": {"status": 0, "reason": 22, "record": 318}},
+    {"physical_range": [153088, 153600], "output_offset": 1536, "bytes": 512, "sha256": "dcd122125237a09f4f679be49b3b80c54fcefd6b71c3bdb01740a73745c49d75", "report": {"file": "artifacts/paired-nor25000-four-v3-20261014/page3-025600/report.json", "bytes": 82480, "sha256": "da019ca9c2000670a0c0e111ed8a01ec86bc3806e67b9177c68a18e61bd95a76"}, "hci": {"file": "artifacts/paired-nor25000-four-v3-20261014/page3-025600/session.btsnoop", "bytes": 25211, "sha256": "5fa5fb739886af1e4f22550b726c3fa5380b75c1db0509f90c995917ad746043"}, "rings": [{"file": "artifacts/paired-nor25000-four-v3-20261014/page3-025600/baseline/download.bin", "bytes": 4096, "sha256": "7606f3493b3d95a914f18400c952febe96a00c15f5d37d95def2c9826703ed93"}, {"file": "artifacts/paired-nor25000-four-v3-20261014/page3-025600/first/download.bin", "bytes": 4096, "sha256": "2e2deaf44ce8cefde5e0cd38d571952c17c4fb75b2f5d4b29c425516a84fae84"}, {"file": "artifacts/paired-nor25000-four-v3-20261014/page3-025600/second/download.bin", "bytes": 4096, "sha256": "f6781e2966e47b548c6b2f0f5ccd2c48d19b97cd172c1d1b4dd7d7b08a28c2a8"}], "actual_raw_sources": [{"file": "artifacts/paired-nor25000-four-v3-20261014/page3-025600/first/sector.bin", "bytes": 512, "sha256": "dcd122125237a09f4f679be49b3b80c54fcefd6b71c3bdb01740a73745c49d75"}, {"file": "artifacts/paired-nor25000-four-v3-20261014/page3-025600/second/sector.bin", "bytes": 512, "sha256": "dcd122125237a09f4f679be49b3b80c54fcefd6b71c3bdb01740a73745c49d75"}], "started_at": "2026-10-14T10:17:01.167021+00:00", "ended_at": "2026-10-14T10:17:24.788486+00:00", "att_packets": 182, "hci_records": 318, "complete_transactions": 9, "pending": 0, "status_events": 0, "actions_each": {"acks": 6, "f1": true, "pending_bytes": 0, "f0_frames": 0}, "prefixes": [4096, 4096], "all_critical_chain_inside_prefix": true, "padding_exemptions": [], "composer_producer_to_dump": [false, true], "normal_disconnect": {"status": 0, "reason": 22, "record": 317}}
+  ],
+  "actual_budget": {
+    "connections": 4,
+    "complete_downloads": 12,
+    "download_bytes_each": 4096,
+    "producers": 8,
+    "existing_file_overwrites": 8,
+    "new_files": 0,
+    "deletions": 0,
+    "complete_transactions": 36,
+    "att_packets": 727,
+    "hci_records": 1269,
+    "pending_transactions": 0,
+    "status_events": 0,
+    "normal_disconnects": 4,
+    "f0_frames_each": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "cohort": {
+      "confirmed": 70,
+      "older_declared": 1,
+      "historical_possible": 1,
+      "maximum": 72
+    }
+  },
+  "current_observation": {
+    "ended_at": "2026-10-14T10:17:24.815922+00:00",
+    "owned_ring_bytes": 4096,
+    "owned_ring_sha256": "f6781e2966e47b548c6b2f0f5ccd2c48d19b97cd172c1d1b4dd7d7b08a28c2a8",
+    "firmware": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "bound": false,
+    "charging": true,
+    "battery": 100,
+    "free_capacity_mib": 59589,
+    "all_stage_identities_and_final_barriers_verified": true,
+    "all_overwrite_observed_capacity_decreases_mib": 0,
+    "prior_planned_names": 34,
+    "successful_parent_admission": true
+  },
+  "fixed_posthoc_codec": {
+    "comparison": {
+      "file": "artifacts/paired-nor25000-four-v3-20261014/fixed-codec-comparison.json",
+      "bytes": 1469,
+      "sha256": "67f9a1842faa4722d22ab3c6634364ad091d0732aea5ec1f0f7e6e852ac0d36f"
+    },
+    "mapped_image": {
+      "file": "artifacts/mapped-system-20261012.bin",
+      "bytes": 927632,
+      "sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f"
+    },
+    "codec": {
+      "file": "artifacts/paired-nor25000-four-v3-20261014/source-snapshot/src/rcominote/nor_codec.py",
+      "bytes": 950,
+      "sha256": "81bad4b8eea615ff1198294f1f2540e9c6d9d1f36b572d3d0fadaacb1f278f3a"
+    },
+    "existing_effective_state": "0x0a15a191",
+    "primary_reset32_matches_each": [
+      512,
+      512,
+      512,
+      512
+    ],
+    "secondary_reset512_matches_each": [
+      34,
+      34,
+      32,
+      33
+    ],
+    "used_for_raw_acceptance": false,
+    "new_fitting_or_oracle_selection": false,
+    "key_fullsystem_flash_restore_proof": false
+  },
+  "unchanged_history": {
+    "first4k_receipt": {
+      "file": "docs/evidence/system-first4k-raw-live-2026-10-14.json",
+      "bytes": 20247,
+      "sha256": "6baaeb4752a03ae29db0549fa371eb270a6f110c05e4ad8484ed5e57a1b17ce5"
+    },
+    "first4k_raw": {
+      "file": "docs/evidence/system-first4k-raw-live-2026-10-14/system-first4k-raw.bin",
+      "bytes": 4096,
+      "sha256": "74807d164370bd3d4ded53ac191414a1f5ff9a50ca04647b898179a1e7d83a5c"
+    },
+    "w0_receipt": {
+      "file": "docs/evidence/owned-file-recovery-live-2026-10-14.json",
+      "bytes": 7350,
+      "sha256": "93c167f27f2ff13a44f19e068fd00863721b96b6967046e9c12e4c0ab3d8083d"
+    },
+    "failed_known_control_receipt": {
+      "file": "docs/evidence/two-known-session-failed-2026-10-14.json",
+      "bytes": 10355,
+      "sha256": "42dc9f718b104748095e7a177cf9bdbcd413eafaf0cbbb94833552568e33e91d"
+    },
+    "original_failed_whole_jobs_still_reject": true
+  },
+  "coverage_overlay": {
+    "asof24200_frozen_inventory_unchanged": true,
+    "previous_strong_bytes": 39184,
+    "previous_potential_available_bytes": 194388,
+    "new_unique_bytes": 2048,
+    "strong_bytes": 41232,
+    "potential_available_bytes": 196436,
+    "system_contiguous_raw_range": [
+      147456,
+      153600
+    ],
+    "system_contiguous_raw_bytes": 6144,
+    "old_first4k_not_regenerated": true,
+    "complete_4mib_backup_restore_own_firmware": false
+  },
+  "limits": [
+    "25200 second prefix3827; all critical chain bytes proven inside; no whole4096 overwrite claim.",
+    "Physical raw assembly uses actual first sectors only after both original independent reads and all gates pass.",
+    "Historical sources plus new batch are not an atomic full-chip snapshot.",
+    "Only new2048 physicalraw published; private rings/HCI/nonces/identity raw withheld.",
+    "Next continuous known control requires separate source/checks/freeze/plan; no live result claimed."
+  ]
+}

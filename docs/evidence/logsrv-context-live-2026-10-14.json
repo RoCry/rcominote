@@ -1,0 +1,121 @@
+{
+  "schema": "rcominote.logsrv-context-live.v1",
+  "date_local": "2026-10-14",
+  "timezone": "Asia/Hong_Kong",
+  "serial": "C261CF0430",
+  "image": {"file": "minimal-image-2026-10-13/original-system.bin.gz", "decompressed_bytes": 927632, "decompressed_sha256": "ce2ddd3271b7856915dd3b564257a5bf5e99c7d88d651a392c19a2aa8e2a1e2f"},
+  "private_audit": {
+    "performed_offline": true,
+    "device_io": false,
+    "methods": ["validate_guards: all5 raw/image, strict original ATT Actions and state, explicit handler write-parent", "previous(pointer): complete Actions/raw4/boundedP/state and guards", "request(context), validate_actions, same_identity, downloaded32, context_fields: exact pointer-parent/fields"],
+    "portable_scope": "Pinned compact receipt and public raw/image replay; private ATT/state audit recorded, not rerun"
+  },
+  "guards": [
+    {
+      "address": "0x10000000",
+      "bytes": 32,
+      "raw": {"file": "sd-bootstrap-2026-10-13/header-c32.bin", "bytes": 32, "sha256": "2337540c74a6aa8984eb481c2fea27a80d12cfd4c24c5300db820f86a733f486"},
+      "source_report": {"file": "artifacts/live-sd-xip32-c-20261013/report.json", "bytes": 9930, "sha256": "f2311da2a613b77e915829e00f09fa9c9ac83e831d05883298290deb466e4b51"},
+      "write_parent": null,
+      "original_ok": true,
+      "download_only": false,
+      "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0, "sequence": "PREPARE,START,one fixed dumpbuf,STOP"},
+      "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59598, "free_capacity_after": 59598, "free_capacity_decrease": 0, "allowed_decrease": 1},
+      "test_path": "/SD:/RECORDER/Call-rc91c02f71dd.mp3"
+    },
+    {
+      "address": "0x1000bf82",
+      "bytes": 32,
+      "raw": {"file": "logsrv-context-live-2026-10-14/global-code.bin", "bytes": 32, "sha256": "5449b76de4e56be7eb16821f0270a92c0de44093dedbf4cf2fdd99d8653a5b1a"},
+      "source_report": {"file": "artifacts/logsrv-context-live-20261014/global-code/report.json", "bytes": 10191, "sha256": "d54d9f3a6b5cc5e147efd9c42f1b234838ce176bcf448899fba0c108b1239edc"},
+      "write_parent": null,
+      "original_ok": true,
+      "download_only": false,
+      "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0, "sequence": "PREPARE,START,one fixed dumpbuf,STOP"},
+      "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59597, "free_capacity_after": 59597, "free_capacity_decrease": 0, "allowed_decrease": 1},
+      "test_path": "/SD:/RECORDER/Call-rc1dca87aba1.mp3"
+    },
+    {
+      "address": "0x1000c0c8",
+      "bytes": 16,
+      "raw": {"file": "logsrv-context-live-2026-10-14/global-literal.bin", "bytes": 16, "sha256": "30e7f5fd79dd665f1d7ea6a59894238bd16958c8fba1cce94a16665a91584b78"},
+      "source_report": {"file": "artifacts/logsrv-context-live-20261014/global-literal/report.json", "bytes": 10194, "sha256": "b27951155486b3577a43bd041f51f2861b61dd888154d5dc59105eef20b48c1a"},
+      "write_parent": null,
+      "original_ok": true,
+      "download_only": false,
+      "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0, "sequence": "PREPARE,START,one fixed dumpbuf,STOP"},
+      "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59597, "free_capacity_after": 59597, "free_capacity_decrease": 0, "allowed_decrease": 1},
+      "test_path": "/SD:/RECORDER/Call-rc73a0ed03fd.mp3"
+    },
+    {
+      "address": "0x10024a20",
+      "bytes": 160,
+      "raw": {"file": "sd-bootstrap-2026-10-13/handler160.bin", "bytes": 160, "sha256": "3f76f18c95ed6dfd6711681465491669ee48448b229eacfefb85aa9033ce68ab"},
+      "source_report": {"file": "artifacts/live-sd-handler160-read-b-20261013/report.json", "bytes": 4325, "sha256": "755527b171e70842f36e0a3437cff11714bc4cb3e4efd1bf1485fc2c6d22f89d"},
+      "write_parent": {"file": "artifacts/live-sd-handler160-20261013/report.json", "bytes": 9834, "sha256": "0052c1abe23014cf35cfab7a5035e8b028c31f39060955e65d63a2d2bd3f80a9"},
+      "original_ok": true,
+      "download_only": true,
+      "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0, "sequence": "PREPARE,START,one fixed dumpbuf,STOP"},
+      "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59598, "free_capacity_after": 59598, "free_capacity_decrease": 0, "allowed_decrease": 0},
+      "test_path": "/SD:/RECORDER/Call-rca8624ca867.mp3"
+    },
+    {
+      "address": "0x1009aa24",
+      "bytes": 48,
+      "raw": {"file": "logsrv-context-live-2026-10-14/heap-bounds.bin", "bytes": 48, "sha256": "2b4dfa7dc0566246d4b0cf9ca112e7384848f042e2f62297878270cc1926ac75"},
+      "source_report": {"file": "artifacts/logsrv-context-live-20261014/heap-bounds/report.json", "bytes": 10184, "sha256": "b1b56d1fd60e6015c9f3b57bba3bc5b049955bbb0b22c525323f8eeb6e4edcd7"},
+      "write_parent": null,
+      "original_ok": true,
+      "download_only": false,
+      "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0, "sequence": "PREPARE,START,one fixed dumpbuf,STOP"},
+      "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59597, "free_capacity_after": 59597, "free_capacity_decrease": 0, "allowed_decrease": 1},
+      "test_path": "/SD:/RECORDER/Call-rc7ba360f60c.mp3"
+    }
+  ],
+  "pointer": {
+    "source_report": {"file": "artifacts/logsrv-context-live-20261014/pointer/report.json", "bytes": 11989, "sha256": "4cff88bc1e087bacd2a8f33ac291011cfba2e12be7bc9c68b4c3fdcd3117f539"},
+    "started_at": "2026-10-13T17:01:20.115773+00:00",
+    "ended_at": "2026-10-13T17:01:36.227895+00:00",
+    "original_ok": true,
+    "source_address": "0x1800a9ac",
+    "source_bytes": 4,
+    "test_path": "/SD:/RECORDER/Call-rc464a17eaec.mp3",
+    "raw": {"file": "logsrv-context-live-2026-10-14/pointer.bin", "bytes": 4, "sha256": "bef3c9bd2822c533b9a289ba840911bb8fc9312f2b07a0326af9dbe10265f97d"},
+    "guard_report_sha256": ["f2311da2a613b77e915829e00f09fa9c9ac83e831d05883298290deb466e4b51", "d54d9f3a6b5cc5e147efd9c42f1b234838ce176bcf448899fba0c108b1239edc", "b27951155486b3577a43bd041f51f2861b61dd888154d5dc59105eef20b48c1a", "755527b171e70842f36e0a3437cff11714bc4cb3e4efd1bf1485fc2c6d22f89d", "b1b56d1fd60e6015c9f3b57bba3bc5b049955bbb0b22c525323f8eeb6e4edcd7"],
+    "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0, "sequence": "PREPARE,START,one fixed dumpbuf,STOP"},
+    "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59597, "free_capacity_after": 59596, "free_capacity_decrease": 1, "allowed_decrease": 1},
+    "fields": {"pointer": "0x180111fc", "allocation_bound_bytes": 80},
+    "snapshot_before_stop": true,
+    "download_reused": false
+  },
+  "context": {
+    "source_report": {"file": "artifacts/logsrv-context-live-20261014/context/report.json", "bytes": 12519, "sha256": "c87c5503b5f309359d78d3ff1f525bacb92038d927c4a8fd12836492fb650a6b"},
+    "started_at": "2026-10-13T17:01:49.384410+00:00",
+    "ended_at": "2026-10-13T17:02:04.803096+00:00",
+    "original_ok": true,
+    "source_address": "0x180111fc",
+    "source_bytes": 32,
+    "test_path": "/SD:/RECORDER/Call-rc2c37c1b191.mp3",
+    "raw": {"file": "logsrv-context-live-2026-10-14/context.bin", "bytes": 32, "sha256": "34acd832e967e3929230d4154241bebd9a87e7f8c4de55211a6ebc2994576f56"},
+    "guard_report_sha256": ["f2311da2a613b77e915829e00f09fa9c9ac83e831d05883298290deb466e4b51", "d54d9f3a6b5cc5e147efd9c42f1b234838ce176bcf448899fba0c108b1239edc", "b27951155486b3577a43bd041f51f2861b61dd888154d5dc59105eef20b48c1a", "755527b171e70842f36e0a3437cff11714bc4cb3e4efd1bf1485fc2c6d22f89d", "b1b56d1fd60e6015c9f3b57bba3bc5b049955bbb0b22c525323f8eeb6e4edcd7"],
+    "actions": {"confirmed_writes": 4, "ack_count": 4, "f1_received": true, "pending_bytes": 0, "sequence": "PREPARE,START,one fixed dumpbuf,STOP"},
+    "state": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59596, "free_capacity_after": 59596, "free_capacity_decrease": 0, "allowed_decrease": 1},
+    "fields": {
+      "stream_pointer": "0x18011254",
+      "flags_byte": 3,
+      "log_type": 0,
+      "new_log_type": 0,
+      "rd": 204,
+      "wr": 204,
+      "slot_lengths": [0, 0, 0, 0, 139, 0, 0, 0],
+      "drop_count": 0,
+      "interpretation": "Historical pre-STOP bytes; no atomicity/current pointer/partial-slot claim"
+    },
+    "snapshot_before_stop": true,
+    "download_reused": false,
+    "pointer_parent_sha256": "4cff88bc1e087bacd2a8f33ac291011cfba2e12be7bc9c68b4c3fdcd3117f539"
+  },
+  "public_new_raw_bytes": 132,
+  "retained_sd_test_files": {"new_this_round": 5, "earlier": 12, "total": 17, "deleted": 0},
+  "limitations": ["Two independent historical snapshots; pointer bounds do not establish current allocator ownership or pointer stability between sessions", "32B copied before STOP, then downloaded after complete Actions; no post-STOP live lengths interpretation", "rd/wr are uint8 cyclic counters, not restricted to0..7; reported lengths are metadata only, no slot body sampled", "Sampling emits logs; no atomicity, partial-slot payload freshness, known-mdb output, raw NOR or firmware-write claim", "Original reports, recording lists and full logs/HCI remain private; portable replay does not rerun private packet audit"]
+}

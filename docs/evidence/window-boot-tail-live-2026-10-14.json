@@ -1,0 +1,352 @@
+{
+  "schema": "window-boot-tail-live-v1",
+  "scope": "Actual fixed five-slot raw fw1_boot backup job; original aggregate failure retained",
+  "result": {
+    "original_job_ok": false,
+    "original_job_error": "ValueError: Incomplete operation or a gap/reused boundary in actual Actions/download trace",
+    "completed_slots": ["2600"],
+    "failed_slot": "2800",
+    "unexecuted_slots": ["2a00", "2c00", "2e00"],
+    "new_verified_bytes": 512,
+    "new_verified_range": [9728, 10240],
+    "verified_partition_prefix": [8192, 10240],
+    "verified_partition_bytes": 2048,
+    "partition_bytes": 4096,
+    "remaining_unverified_range": [10240, 12288],
+    "remaining_unverified_bytes": 2048,
+    "assembled_outputs": false,
+    "independent_content_oracle": false,
+    "nor_flash_write_attempted": false
+  },
+  "job": {
+    "report": {
+      "file": "artifacts/window-boot-tail-20261014/report.json",
+      "bytes": 994,
+      "sha256": "981603275a1468731dead831556e38a0000be3becc8246ada2bf6cad22555c34"
+    },
+    "plan": {
+      "file": "artifacts/window-boot-tail-20261014/job-plan.json",
+      "bytes": 5523,
+      "sha256": "e10eb713d8a094a7fca8066930b088901e125a778e6e34d521047f01e8ad78bc"
+    },
+    "checkpoint": {
+      "file": "artifacts/window-boot-tail-20261014/checkpoint-2600.json",
+      "bytes": 839,
+      "sha256": "798a0b6cddda527cbff138457f4b13c1d0bea38dd36c22aa6d752ceef3bb5410"
+    },
+    "started_at": "2026-10-14T02:40:24.852285+00:00",
+    "ended_at": "2026-10-14T02:41:12.705591+00:00",
+    "planned_at": "2026-10-14T02:40:24.850952+00:00",
+    "fixed_slots": [9728, 10240, 10752, 11264, 11776],
+    "max_connections": 5,
+    "max_producer_executions": 10,
+    "max_sd_test_files": 10,
+    "planned_nonce_count": 10,
+    "executed_nonce_count": 4,
+    "original_checkpoint_complete_pairs": 1,
+    "original_replay": "reject: Original window job failed; preserve checkpoints without promotion",
+    "plan_hash_verified": true,
+    "plan_unique_nonce_target_and_chronology_verified": true,
+    "unexecuted_host_directories_empty": true
+  },
+  "source_snapshot": {
+    "manifest": {
+      "file": "artifacts/window-boot-tail-20261014/source-snapshot/manifest.json",
+      "bytes": 15120,
+      "sha256": "4f618f74d9e50c2289d82b1569b861efcf818ab8864fb33eab8736b15a4b685c"
+    },
+    "source_count": 107,
+    "all_archived_files_verified": true,
+    "current_sources_equal_at_review": true,
+    "selected_source_files": [
+      {"path": "src/rcominote/experiments/boot_prefix_evidence.py", "bytes": 4423, "sha256": "f853e6466f5833b4e38f4e52bb8e867d8355143e9d19085c47ebde8fa280cfbf"},
+      {"path": "src/rcominote/experiments/dual_audit.py", "bytes": 14349, "sha256": "b977b34a083e12d5753d9b3ffb780a9a5268b33146f02dd69dd9d51145337a49"},
+      {"path": "src/rcominote/experiments/dual_hci.py", "bytes": 3856, "sha256": "6164a5a2dfdfae7faf79008b626fb4992984c09fc09ff7bdede92a2e8f8cfc8f"},
+      {"path": "src/rcominote/experiments/hci_monitor.py", "bytes": 3738, "sha256": "f3632128e2ec96e890339ba43ba8d8e9e8d04199971d20df9603693a516956d2"},
+      {"path": "src/rcominote/experiments/nor_freshness.py", "bytes": 8161, "sha256": "edaf3dd3a1198659b1db56ec52e3cca44a2bff07508a7278742d4853156acc0d"},
+      {"path": "src/rcominote/experiments/param_window.py", "bytes": 13004, "sha256": "54cf3ec892edb98a05cc78fa9196d1bd3fc89c5b9926728affe5debc70fd151c"},
+      {"path": "src/rcominote/experiments/window_nor_audit.py", "bytes": 9385, "sha256": "09a54e01f644c7b2fa81eb29abefd117e0dbad12e659d7d504b3b83b47acb81b"},
+      {"path": "src/rcominote/experiments/window_nor_contract.py", "bytes": 3536, "sha256": "da6dc78512d7ca0a23ea1dcf7674d8955d9a9e421e577f265f793384ff2d08be"},
+      {"path": "src/rcominote/experiments/window_nor_job.py", "bytes": 15314, "sha256": "2ec95f10c5ffb5fd4bae63ce82b5c2186bdde0ab9a59bcf1fb6de25ba60586d9"},
+      {"path": "src/rcominote/experiments/window_nor_probe.py", "bytes": 11509, "sha256": "1cc3d1bd7f4df9ee65edae6e91b9e14b09093bf899995983f17d316cf7c18afe"}
+    ]
+  },
+  "coverage_basis": {
+    "acpt_early_basis": {
+      "acpt_sha256": "a071b0cdafad355eb05a71e96fc2cb6a5348ec8b5e11d0ac4dfe54d83671a144",
+      "entry": {
+        "index": 2,
+        "name": "fw1_boot",
+        "type": 1,
+        "file_id": 1,
+        "storage_id": 0,
+        "mirror_id": 1,
+        "flags": 0,
+        "offset": "0x2000",
+        "size_bytes": 4096,
+        "end_exclusive": "0x3000",
+        "file_offset": "0x2000"
+      },
+      "previously_covered": [8192, 9216],
+      "prefix_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+      "chunk2200": {
+        "path": "docs/evidence/dual-unknown2200-2026-10-14/sector.bin",
+        "bytes": 512,
+        "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+      },
+      "new_range": [9216, 12288],
+      "bytes": 3072,
+      "independent_oracle": false
+    },
+    "verified_prefix": [8192, 9728],
+    "remaining_range": [9728, 12288],
+    "remaining_bytes": 2560,
+    "progress_report_sha256": "7b0b2e8366df265499be45eae8061db7fe98609447089d49073eba129f47e852"
+  },
+  "historical_prefix": {
+    "target": "backup-boot",
+    "producer": "dbg fread spi_flash 0x2000",
+    "nor_range": [8192, 8704],
+    "bytes": 512,
+    "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+    "complete": true,
+    "input_windows": 22,
+    "distinct_sources": 22,
+    "confirmed_rows": 32,
+    "min_sources_per_row": 2,
+    "source_kind": "Historical guarded non-atomic per-row double coverage",
+    "sources": {
+      "archive": {
+        "file": "docs/evidence/boot-recovery-prefixes-2026-10-12/windows.tar.gz",
+        "bytes": 582795,
+        "sha256": "39cf27f47ed3c7375f9f2c779129cbe92c177678954ed09358fdc63a87ef4509"
+      },
+      "report": {
+        "file": "docs/evidence/boot-recovery-prefixes-2026-10-12/backup-boot-report.json",
+        "bytes": 6720,
+        "sha256": "71aec0c983c6ab379c37c14aaf1249b8a17215c1e2c4506377097e68e4c1f4d4"
+      },
+      "prefix": {
+        "file": "docs/evidence/boot-recovery-prefixes-2026-10-12/backup-boot.bin",
+        "bytes": 512,
+        "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+      }
+    }
+  },
+  "modern_prefix_parents": [
+    {
+      "nor_range": [8704, 9216],
+      "report": {
+        "file": "artifacts/dual-unknown2200-early-20261014/report.json",
+        "bytes": 54198,
+        "sha256": "77f75c84d50e1f03b1a698ac1cd610f897a0242d07d7a600463ec8dbcd1822b0"
+      },
+      "capture": {
+        "file": "artifacts/dual-unknown2200-early-20261014/session.btsnoop",
+        "bytes": 17395,
+        "sha256": "6cb3671a79982b7bdb4f2de0374d8d42dbc1ed540e6f48cfc1ed30021d8ad184"
+      },
+      "sector": {
+        "file": "artifacts/dual-unknown2200-early-20261014/first/sector.bin",
+        "bytes": 512,
+        "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+      },
+      "full_replay_verified": true
+    },
+    {
+      "nor_range": [9216, 9728],
+      "report": {
+        "file": "artifacts/window-nor2400-composer-20261014/report.json",
+        "bytes": 62375,
+        "sha256": "7b0b2e8366df265499be45eae8061db7fe98609447089d49073eba129f47e852"
+      },
+      "capture": {
+        "file": "artifacts/window-nor2400-composer-20261014/session.btsnoop",
+        "bytes": 18683,
+        "sha256": "8b97473dc252637a5d63715791e0ab20a91dd2fba24361740c2b22c785fdb214"
+      },
+      "sector": {
+        "file": "artifacts/window-nor2400-composer-20261014/first/sector.bin",
+        "bytes": 512,
+        "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+      },
+      "full_replay_verified": true
+    }
+  ],
+  "attempts": [
+    {
+      "slot": "2600",
+      "nor_range": [9728, 10240],
+      "report": {
+        "file": "artifacts/window-boot-tail-20261014/2600/report.json",
+        "bytes": 62863,
+        "sha256": "8d2a053191b36ee55a9520f4a323be8cb68f6e55f4e5521f310ca7dc1d6b4918"
+      },
+      "capture": {
+        "file": "artifacts/window-boot-tail-20261014/2600/session.btsnoop",
+        "bytes": 18648,
+        "sha256": "926b044c1bbc5b091f8b31d3b77ea05c36c04c4b2fa624efc25f7081db39bb23"
+      },
+      "original_flags": {
+        "ok": true,
+        "pair_verified": true,
+        "final_audit_complete": true
+      },
+      "original_error": null,
+      "records": 255,
+      "att_packets": 148,
+      "att_binding": {
+        "verified": true,
+        "packets": 148,
+        "comparison": "exact within each direction"
+      },
+      "parameter_transactions": [
+        {"origin": "remote", "remote_request_records": [104], "request": 107, "status": 108, "update": 110, "interval": 12, "latency": 0, "timeout": 500},
+        {"origin": "host", "remote_request_records": null, "request": 133, "status": 134, "update": 135, "interval": 6, "latency": 0, "timeout": 500},
+        {"origin": "remote", "remote_request_records": [159], "request": 163, "status": 164, "update": 166, "interval": 48, "latency": 4, "timeout": 600},
+        {"origin": "remote", "remote_request_records": [197], "request": 200, "status": 201, "update": 203, "interval": 12, "latency": 0, "timeout": 500},
+        {"origin": "host", "remote_request_records": null, "request": 205, "status": 206, "update": 207, "interval": 6, "latency": 0, "timeout": 500},
+        {"origin": "remote", "remote_request_records": [230], "request": 234, "status": 235, "update": 237, "interval": 48, "latency": 4, "timeout": 600}
+      ],
+      "pending_transactions": 0,
+      "captured_disconnects": 0,
+      "monitor_exit": 0,
+      "monitor_stop": {
+        "signal": "SIGINT",
+        "requested": true,
+        "delivery": "sent"
+      },
+      "started_at": "2026-10-14T02:40:36.775563+00:00",
+      "ended_at": "2026-10-14T02:40:53.317391+00:00",
+      "initial_free_mib": 59591,
+      "final_free_mib": 59591,
+      "cross_predecessor_gate_verified": true,
+      "parent_chains_verified": true,
+      "operations": [
+        {"operation": "first", "original_ok": true, "individual_pair_verified": false, "live_complete": true, "barrier_complete": true, "actions_span": [55, 71], "five_ack_f1_complete": true, "download_span": [71, 93], "download_wire_first_last": [137, 161], "download_bytes": 4096, "download_ms": 201.105, "download": {"file": "artifacts/window-boot-tail-20261014/2600/first/download.bin", "bytes": 4096, "sha256": "2b9fd320c6b8c0b808fcf609d94e5252d842bcf2fc7be47314b0f4c5cd0e9ab5"}, "sector": {"file": "artifacts/window-boot-tail-20261014/2600/first/sector.bin", "bytes": 512, "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"}, "checkpoint": {"file": "artifacts/window-boot-tail-20261014/2600/first/checkpoint.json", "bytes": 36338, "sha256": "871945aa5255c8d83421f8eb4a47b1d3f3df4b1cf0320446d2eff586f6822bb0"}, "freshness": {"rule": "nearest-producer-exact-status32rows-prefix-dump-v1", "nor_offset": 9728, "bytes": 512, "rows": 32, "previous_dump_required": false, "one_status_one_producer": true, "failure_text_absent": true}, "identity_span": [93, 99], "state_verification": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59591, "free_capacity_after": 59591, "free_capacity_decrease": 0, "allowed_decrease": 1}},
+        {"operation": "second", "original_ok": true, "individual_pair_verified": false, "live_complete": true, "barrier_complete": true, "actions_span": [99, 115], "five_ack_f1_complete": true, "download_span": [115, 136], "download_wire_first_last": [209, 232], "download_bytes": 4096, "download_ms": 188.642, "download": {"file": "artifacts/window-boot-tail-20261014/2600/second/download.bin", "bytes": 4096, "sha256": "fa00918b3ab3e803f463a6974cf393109b8f4f93a21881862e3790568929369b"}, "sector": {"file": "artifacts/window-boot-tail-20261014/2600/second/sector.bin", "bytes": 512, "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"}, "checkpoint": {"file": "artifacts/window-boot-tail-20261014/2600/second/checkpoint.json", "bytes": 60184, "sha256": "6bcc7390c05aa957b4048f42e9bee6c11b385629397aeb45b79de16a63b42466"}, "freshness": {"rule": "nearest-producer-exact-status32rows-prefix-dump-v1", "nor_offset": 9728, "bytes": 512, "rows": 32, "previous_dump_required": true, "one_status_one_producer": true, "failure_text_absent": true}, "identity_span": [136, 142], "state_verification": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59591, "free_capacity_after": 59591, "free_capacity_decrease": 0, "allowed_decrease": 1}}
+      ],
+      "offline_original_replay": "pass"
+    },
+    {
+      "slot": "2800",
+      "nor_range": [10240, 10752],
+      "report": {
+        "file": "artifacts/window-boot-tail-20261014/2800/report.json",
+        "bytes": 62765,
+        "sha256": "cfbfd1c563d546140cea1ccb0a8d4c9d90b1945f961f53794781562bea25e062"
+      },
+      "capture": {
+        "file": "artifacts/window-boot-tail-20261014/2800/session.btsnoop",
+        "bytes": 18710,
+        "sha256": "bda51998e95d604e0ecf3122e563d9a701439986e72d6bd3d62f7ef4fb99be12"
+      },
+      "original_flags": {
+        "ok": false,
+        "pair_verified": false,
+        "final_audit_complete": false
+      },
+      "original_error": "ValueError: Incomplete operation or a gap/reused boundary in actual Actions/download trace",
+      "records": 256,
+      "att_packets": 149,
+      "att_binding": {
+        "verified": true,
+        "packets": 149,
+        "comparison": "exact within each direction"
+      },
+      "parameter_transactions": [
+        {"origin": "remote", "remote_request_records": [104], "request": 107, "status": 108, "update": 110, "interval": 12, "latency": 0, "timeout": 500},
+        {"origin": "host", "remote_request_records": null, "request": 133, "status": 134, "update": 135, "interval": 6, "latency": 0, "timeout": 500},
+        {"origin": "remote", "remote_request_records": [159], "request": 163, "status": 164, "update": 166, "interval": 48, "latency": 4, "timeout": 600},
+        {"origin": "remote", "remote_request_records": [198], "request": 201, "status": 202, "update": 204, "interval": 12, "latency": 0, "timeout": 500},
+        {"origin": "host", "remote_request_records": null, "request": 206, "status": 207, "update": 208, "interval": 6, "latency": 0, "timeout": 500},
+        {"origin": "remote", "remote_request_records": [231], "request": 235, "status": 236, "update": 238, "interval": 48, "latency": 4, "timeout": 600}
+      ],
+      "pending_transactions": 0,
+      "captured_disconnects": 0,
+      "monitor_exit": 0,
+      "monitor_stop": {
+        "signal": "SIGINT",
+        "requested": true,
+        "delivery": "sent"
+      },
+      "started_at": "2026-10-14T02:40:53.339579+00:00",
+      "ended_at": "2026-10-14T02:41:12.705351+00:00",
+      "initial_free_mib": 59591,
+      "final_free_mib": 59590,
+      "cross_predecessor_gate_verified": true,
+      "parent_chains_verified": true,
+      "operations": [
+        {"operation": "first", "original_ok": false, "individual_pair_verified": false, "live_complete": true, "barrier_complete": true, "actions_span": [55, 71], "five_ack_f1_complete": true, "download_span": [71, 93], "download_wire_first_last": [137, 161], "download_bytes": 4096, "download_ms": 182.832, "download": {"file": "artifacts/window-boot-tail-20261014/2800/first/download.bin", "bytes": 4096, "sha256": "2ff08c6b0389c46b167b4dfc62097e7aacb2c6a4f0ddbcd67eca2f007dc06c06"}, "sector": {"file": "artifacts/window-boot-tail-20261014/2800/first/sector.bin", "bytes": 512, "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"}, "checkpoint": {"file": "artifacts/window-boot-tail-20261014/2800/first/checkpoint.json", "bytes": 36341, "sha256": "0e0118685e77360fb6936b7aafe1b477e373d4e0e8003a3597756c916d6df5c3"}, "freshness": {"rule": "nearest-producer-exact-status32rows-prefix-dump-v1", "nor_offset": 10240, "bytes": 512, "rows": 32, "previous_dump_required": false, "one_status_one_producer": true, "failure_text_absent": true}, "identity_span": [93, 99], "state_verification": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59591, "free_capacity_after": 59591, "free_capacity_decrease": 0, "allowed_decrease": 1}},
+        {"operation": "second", "original_ok": false, "individual_pair_verified": false, "live_complete": true, "barrier_complete": true, "actions_span": [99, 115], "five_ack_f1_complete": true, "download_span": [116, 137], "download_wire_first_last": [210, 233], "download_bytes": 4096, "download_ms": 189.208, "download": {"file": "artifacts/window-boot-tail-20261014/2800/second/download.bin", "bytes": 4096, "sha256": "be9f83f54ae3ef0fcccf7c641d1bde2766e122557f1f9b992661fd218f2fd8f1"}, "sector": {"file": "artifacts/window-boot-tail-20261014/2800/second/sector.bin", "bytes": 512, "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"}, "checkpoint": {"file": "artifacts/window-boot-tail-20261014/2800/second/checkpoint.json", "bytes": 60341, "sha256": "895d256f0627d198a639fb2414d12b1e29aa40232116d8f7721c6f97cb2239de"}, "freshness": {"rule": "nearest-producer-exact-status32rows-prefix-dump-v1", "nor_offset": 10240, "bytes": 512, "rows": 32, "previous_dump_required": true, "one_status_one_producer": true, "failure_text_absent": true}, "identity_span": [137, 143], "state_verification": {"other_state_equal": true, "free_capacity_unit": "MiB (integer firmware report)", "free_capacity_before": 59591, "free_capacity_after": 59590, "free_capacity_decrease": 1, "allowed_decrease": 1}}
+      ],
+      "offline_original_replay": "reject: Original NOR-window pair failed; retain without promotion"
+    }
+  ],
+  "failed_gap": {
+    "slot": "2800",
+    "operation": "second",
+    "index_convention": "ATT zero-based half-open spans; HCI records one-based",
+    "actions_end": 115,
+    "download_start": 116,
+    "status_att_index": 115,
+    "status_hci_records": [197, 197],
+    "status_direction": "rx",
+    "status_command": 15,
+    "status_payload_bytes": 20,
+    "status_crc_valid": true,
+    "status_packet_sha256": "0a062316b932a82c8f9341c86deb4f6c4029a14ead6604044b5d63ef96b8a178",
+    "parsed_fields": {
+      "charging": true,
+      "battery": 100,
+      "usb_mode": true,
+      "mode": "note",
+      "power_off_duration": 0,
+      "noise_reduction": 9,
+      "voice_control": null,
+      "indicator_light": null,
+      "segment_duration": 3,
+      "screen_backlight": false,
+      "usb_connected": true
+    },
+    "device_info_shared_equal_fields": ["charging", "battery", "usb_mode", "mode", "noise_reduction", "voice_control", "indicator_light", "segment_duration", "screen_backlight"],
+    "equal_to_second_before_and_after": true,
+    "event_only_fields": ["power_off_duration", "usb_connected"],
+    "strict_audit_reason": "Actions end and Boyi download start must be identical; unrelated status row violates exclusive boundary despite unchanged mapped state",
+    "offline_candidate_semantics_verified": true,
+    "original_pair_promoted": false
+  },
+  "final_state": {
+    "owned_serial_verified": true,
+    "bound": false,
+    "firmware": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "charging": true,
+    "battery": 100,
+    "free_capacity_mib": 59590,
+    "final_identity_complete": true
+  },
+  "sd_scratch_cohort": {
+    "new_download_confirmed_files": 4,
+    "ubuntu_download_confirmed_total": 62,
+    "previous_device_declared_without_download": 1,
+    "historical_possible": 1,
+    "maximum_total": 64,
+    "deleted": 0
+  },
+  "public_sector": {
+    "file": "window-boot-tail-live-2026-10-14/sector2600.bin",
+    "bytes": 512,
+    "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+    "copied_from": {
+      "file": "artifacts/window-boot-tail-20261014/2600/first/sector.bin",
+      "bytes": 512,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    "nor_range": [9728, 10240],
+    "all_ff_checked": true,
+    "second_actual_sector_equal": true
+  },
+  "limits": ["2600 pair supplies one unique512-byte increment; two reads do not count as1024.", "2800 is retained candidate evidence, not verified coverage.", "Historical2000 double coverage is22 non-atomic windows; modern2200/2400/2600 are separately targeted fresh pairs.", "Equal FF hashes never substitute target/provenance verification.", "No full fw1_boot or full NOR backup, recovery guarantee, flashing proof, physical-worker-exit proof, or persistent-cache-clear proof.", "Full HCI/ATT/rings/device info/audio inventory remain private."]
+}

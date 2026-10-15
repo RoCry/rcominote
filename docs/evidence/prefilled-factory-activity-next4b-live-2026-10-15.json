@@ -1,0 +1,278 @@
+{
+  "schema": "finite-prefilled-factory-next4b-failed-accepted-prefix-receipt-v1",
+  "date": "2026-10-15",
+  "date_timezone": "Asia/Hong_Kong",
+  "capture_utc_date": "2026-10-14",
+  "outcome": "Original four-page whole failed;onlypage0 accepted independent512pair;page1 partialGATT timeout before application;page2/3noIO",
+  "references": {
+    "whole_report": {
+      "file": "artifacts/prefilled-factory-activity-next4b-20261015/report.json",
+      "bytes": 4836,
+      "sha256": "b8a3ee5051e3e815c99ceb2096766923be3f80945a853e5524530f603784a1c1"
+    },
+    "plan": {
+      "file": "artifacts/prefilled-factory-activity-next4b-20261015/plan.json",
+      "bytes": 18764,
+      "sha256": "8b42920a0da2d8aa6f940911c2cd2d4d2a61b2c265a93302c6054dbf4ac68ee6"
+    },
+    "accepted_page_report": {
+      "file": "artifacts/prefilled-factory-activity-next4b-20261015/page0-1ed600/report.json",
+      "bytes": 128208,
+      "sha256": "ad67d0e30e9b8fb079f2f02bd9288cef7fc093f027bca2cba303192f0f406a0c"
+    },
+    "accepted_page_hci": {
+      "file": "artifacts/prefilled-factory-activity-next4b-20261015/page0-1ed600/session.btsnoop",
+      "bytes": 38735,
+      "sha256": "918d592d25804b578d11d30f744b0ce686245d76bfc0b75103987d95f4568987"
+    },
+    "failed_page_report": {
+      "file": "artifacts/prefilled-factory-activity-next4b-20261015/page1-1ed800/report.json",
+      "bytes": 7203,
+      "sha256": "dc0144b22f8035784b91e077f74b0423a9b39c4e40b3d74787399ce9d66c1714"
+    },
+    "failed_page_hci": {
+      "file": "artifacts/prefilled-factory-activity-next4b-20261015/page1-1ed800/session.btsnoop",
+      "bytes": 2242,
+      "sha256": "6e850776414bd8bc9ba6e122a33e6a12c7ef5d797ca8f03cf63f3ce46f7022e3"
+    },
+    "source_manifest": {
+      "file": "artifacts/prefilled-factory-activity-next4b-20261015/source-snapshot/manifest.json",
+      "bytes": 50655,
+      "sha256": "aa5a0b4faf2bc4c49db74e08ecf50b9124f929d7c8c9a02d25cb5bc30b58818e"
+    },
+    "preflight_review": {
+      "file": "artifacts/prefilled-factory-activity-next4b-20261015/preflight-review.json",
+      "bytes": 1612,
+      "sha256": "4014ded314bbdc9a39ddb1d5aeaf8682ce3293b2a9eef46b153e3a2dda6c437d"
+    },
+    "inherited_checks_before": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/prefilled-factory-activity-preflight-20261015/checks-before.json",
+      "bytes": 38536,
+      "sha256": "cc1c7b3ea77073aedb508d283a31b8057e169e5398e9c28aa5ae30c9186efe5b"
+    },
+    "inherited_checks_after": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/prefilled-factory-activity-preflight-20261015/checks-after.json",
+      "bytes": 38536,
+      "sha256": "cc1c7b3ea77073aedb508d283a31b8057e169e5398e9c28aa5ae30c9186efe5b"
+    },
+    "inherited_just_check_log": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/prefilled-factory-activity-preflight-20261015/just-check.log",
+      "bytes": 3215,
+      "sha256": "7d48b74d05ca40a4ead2d7e4c70b820cdeb62c11c5cd27afbb3ef7b6cc2f284f"
+    },
+    "inherited_build_log": {
+      "file": "/home/rocry/w/_hw/rcominote/artifacts/prefilled-factory-activity-preflight-20261015/uv-build.log",
+      "bytes": 179,
+      "sha256": "937bcf6f77f21fd510d0bc6ebfcac53235c976fc096e61be3a67efeb891e959c"
+    },
+    "separate_post_failure_info": {
+      "file": "artifacts/prefilled-factory-activity-next4b-20261015/post-failure-info.json",
+      "bytes": 521,
+      "sha256": "2cda9f67062901cfa0e4199f945bd6982e0bd415b2fb3a4e681e5bcf31e0a80b"
+    },
+    "separate_post_failure_info_stdout": {
+      "file": "artifacts/prefilled-factory-activity-next4b-20261015/post-failure-info.stdout.txt",
+      "bytes": 521,
+      "sha256": "2cda9f67062901cfa0e4199f945bd6982e0bd415b2fb3a4e681e5bcf31e0a80b"
+    }
+  },
+  "source": {
+    "source_files": 153,
+    "test_files": 140,
+    "snapshot_files": 293,
+    "snapshot_and_isolated_all_lengths_hashes_equal": true,
+    "isolated_source": "/home/rocry/w/_tmp/rcominote-prefilled-activity-frozen-20261015",
+    "inherited_preIO_checks": "2786tests+159subtests56.73s/351formatlint/build in originalcheckwindow",
+    "inherited_declared_inputs_before_equal_after": 357,
+    "new_full_check_run": false,
+    "independent_snapshot_modules": 106,
+    "later_current_helper_checks_or_execution_claimed": false
+  },
+  "chronology": {
+    "manifest_created_at": "2026-10-14T18:40:49.763403+00:00",
+    "parent_4a_actual_ended_at": "2026-10-14T18:52:07.798133+00:00",
+    "planned_at": "2026-10-14T18:54:26.510845+00:00",
+    "whole_started_at": "2026-10-14T18:56:29.085249+00:00",
+    "accepted_page_started_at": "2026-10-14T18:56:46.076245+00:00",
+    "last_actual_identity_response_at": "2026-10-14T18:57:20.885464+00:00",
+    "accepted_page_ended_at": "2026-10-14T18:57:23.084480+00:00",
+    "failed_page_started_at": "2026-10-14T18:57:23.821348+00:00",
+    "failed_page_ended_at": "2026-10-14T18:57:31.566412+00:00",
+    "whole_ended_at": "2026-10-14T18:57:31.566596+00:00",
+    "separate_info_file_mtime_ns": 1792004439549828530,
+    "separate_info_observation_upper_bound_utc": "2026-10-14T19:00:39.549829+00:00",
+    "time_fields_not_interchanged": true
+  },
+  "original_outcomes": {
+    "whole_ok": false,
+    "whole_error": "TimeoutError: [Errno 110] Connection timed out",
+    "completed_prefix_pairs": 1,
+    "accepted_page0_ok": true,
+    "failed_page1_ok": false,
+    "failed_page1_error": "TimeoutError: [Errno 110] Connection timed out",
+    "failed_page1_capture_error": "TimeoutError: [Errno 110] Connection timed out",
+    "whole_and_failed_page_never_promoted": true,
+    "failed_whole_replay_and_parent_gate_reject": true,
+    "accepted_prefix_role_distinct_from_successful_whole_parent": true,
+    "page2_and_page3_no_report_or_files": true
+  },
+  "accepted_prefix": {
+    "physical_range": [
+      "0x1ed600",
+      "0x1ed800"
+    ],
+    "new_private_physical_bytes": 512,
+    "two_actual_sector_files_equal": true,
+    "independent_NOR_byte_oracle": false,
+    "two_fresh_producers_and_nonces": true,
+    "both_strict_difference_written_prefix_bytes": 4096,
+    "both_full4096_RAM_prefills_equal_independent_oracle": true,
+    "fresh_live_baseline_equals_actual4a_parent": true,
+    "all_five_original_stages_and_full_completed_ledger_entry_replayed": true,
+    "startup_mode": "fast",
+    "startup_pulse_performed": false,
+    "NOR_gap_forms": [
+      "composer-before-crlf",
+      "plain"
+    ],
+    "integrated_DEFAULT_and_new_wake_form_radio_exercised": false,
+    "ATT_packets": 262,
+    "HCI_records": 452,
+    "HCI_bytes": 38735,
+    "complete_parameter_transactions": 15,
+    "pending_parameter_transactions": 0,
+    "status_events": 0,
+    "normal_disconnect_reason": "0x16",
+    "downloads": 5,
+    "RAM_exports": 2,
+    "NOR_producers": 2,
+    "same_owned_file_SD_overwrites": 4,
+    "new_files": 0,
+    "NOR_writes": 0
+  },
+  "failed_page1_boundary": {
+    "physical_target": "0x1ed800",
+    "ATT_packets": 21,
+    "HCI_records": 58,
+    "HCI_bytes": 2242,
+    "original_transport": {},
+    "original_before_and_after_absent": true,
+    "original_setup_and_GATT_proof_absent": true,
+    "baseline_and_four_stages_exact_untouched_slots": true,
+    "all_stage_directories_empty": true,
+    "LE_connect_record": 18,
+    "LE_connect_status": 0,
+    "initial_parameters": [
+      48,
+      4,
+      600
+    ],
+    "disconnect_record": 57,
+    "disconnect_status": 0,
+    "disconnect_reason": "0x08",
+    "TX_ATT_opcodes_hex": [
+      "02",
+      "10",
+      "03",
+      "10",
+      "10",
+      "10",
+      "08",
+      "08",
+      "04",
+      "04",
+      "04"
+    ],
+    "last_TX_Find_Information_unanswered": true,
+    "only_MTU_and_service_discovery": true,
+    "zero_ATT_write_request_prepare_execute_write_command": true,
+    "host_and_HCI_each_direction_exact_not_sorted": true,
+    "derived_diagnostic_link_from_HCI_only_original_transport_unchanged": true,
+    "complete_parameter_transactions": 0,
+    "pending_parameter_transactions": 0,
+    "identity_reads": 0,
+    "file_list_reads": 0,
+    "downloads": 0,
+    "Actions_commands": 0,
+    "RAM_exports": 0,
+    "NOR_producers": 0,
+    "SD_writes": 0,
+    "new_raw_NOR_coverage_bytes": 0
+  },
+  "actual_totals": {
+    "attempted_connections": 2,
+    "ATT_packets": 283,
+    "HCI_records": 510,
+    "HCI_bytes": 40977,
+    "complete_parameter_transactions": 15,
+    "pending_parameter_transactions": 0,
+    "status_events": 0,
+    "normal_disconnects_reason0x16": 1,
+    "timeout_disconnects_reason0x08": 1,
+    "downloads": 5,
+    "RAM_exports": 2,
+    "NOR_producers": 2,
+    "same_owned_file_SD_overwrites": 4,
+    "new_files": 0,
+    "NOR_writes": 0,
+    "deletes": 0
+  },
+  "owned_file_and_history": {
+    "last_actual_complete_file_source": "page0-1ed600/second/download.bin",
+    "complete_file_bytes": 4096,
+    "no_writes_in_failed_page_or_later_pages": true,
+    "fresh_post_failure_SD_read_performed": false,
+    "failed_whole_admitted_parent": false,
+    "reserved_names_before": 82,
+    "all_planned_new_names_reserved": 8,
+    "reserved_history_after": 90,
+    "planned_names_not_observed_producer_count": true,
+    "scratch_cohort_upper_bound": 72,
+    "cohort_distinct_from_nonce_history": true
+  },
+  "separate_post_failure_info": {
+    "independent_connection_exit0_reported_by_root": true,
+    "no_HCI_capture": true,
+    "serial_matches_last_actual_identity_without_publication": true,
+    "firmware_version": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "bound": false,
+    "charging": true,
+    "battery_percent": 100,
+    "free_capacity": 59589,
+    "file_mtime_upper_bound_not_exact_response_timestamp": "2026-10-14T19:00:39.549829+00:00",
+    "does_not_replace_original_missing_after_or_promote_failed_whole": true,
+    "does_not_verify_owned_SD_file": true
+  },
+  "coverage_overlay": {
+    "strong_A_bytes": 47376,
+    "historical_B_bytes": 155204,
+    "potential_available_bytes": 202580,
+    "factory_complete_pair_bytes": 6144,
+    "factory_missing_bytes": 2048,
+    "factory_actual_contiguous_range": [
+      "0x1ec000",
+      "0x1ed800"
+    ],
+    "factory_missing_range": [
+      "0x1ed800",
+      "0x1ee000"
+    ],
+    "system_contiguous_raw_bytes": 6144,
+    "system_physical_range": [
+      "0x24000",
+      "0x25800"
+    ],
+    "ASOF24200_inventory_unchanged": true
+  },
+  "privacy_and_limits": {
+    "all_factory_carrier_sector_bytes_hashes_hex_and_nonces_withheld": true,
+    "metadata_only_no_public_binary": true,
+    "old_receipts_captures_snapshots_unchanged": true,
+    "new_helper_review_not_formal_CP_plan_or_capture": true,
+    "no_new_helper_fullcheck_freeze_or_live_claim_by_this_receipt": true,
+    "no_automatic_retry_or_extension": true,
+    "full4MiB_backup_restore_own_runtime_incomplete": true
+  }
+}

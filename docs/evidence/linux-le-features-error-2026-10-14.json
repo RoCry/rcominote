@@ -1,0 +1,189 @@
+{
+  "schema": 1,
+  "scope": "Static installed Ubuntu module plus upstream v6.14 source and original owned-device failure; no device commands or vendor execution",
+  "host": {
+    "release": "6.14.0-36-generic",
+    "module_path": "/lib/modules/6.14.0-36-generic/kernel/net/bluetooth/bluetooth.ko.zst",
+    "compressed_bytes": 406864,
+    "compressed_sha256": "ed1e14b18580c85e9eebefcb6f5d1c5f5a1a007ac16b00c0aac211a8b7a43b06",
+    "elf_bytes": 2155161,
+    "elf_sha256": "4d0f5586d7fb2ad52ff4782e05e0558efed43035cc737e571f3807d6af33fe2a",
+    "function": "bt_to_errno",
+    "address_kind": "ELF relocatable .text section offset, not live kernel VA",
+    "range_hex": [
+      "0x58900",
+      "0x58926"
+    ],
+    "bytes_hex": "e80000000055b8260000004889e56683ff3c770a0fb7ff0fbe87000000005d31ffe900000000",
+    "region_sha256": "887e15ff9cddd6c675b7b5714ca39ad399fe7d0b2ea411fa554771511c3331e5",
+    "relocations": [
+      ".text+0x58901 __fentry__ -4",
+      ".text+0x5891a .rodata+0x89a0",
+      ".text+0x58922 __x86_return_thunk -4"
+    ],
+    "decisive_instructions": [
+      "+0x06 mov eax,0x26",
+      "+0x0e cmp di,0x3c",
+      "+0x12 ja +0x1e; input0x3e bypasses lookup",
+      "+0x1e pop rbp; xor edi,edi; return thunk preserves eax=38"
+    ],
+    "module_not_loaded_or_executed": true
+  },
+  "sources": [
+    {
+      "path": "artifacts/linux-le-features-error-20261014/lib.c",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.14/net/bluetooth/lib.c",
+      "sha256": "33fd34371278093c791acb47fd274d264d63761a7ffdb76a30996e57563badc8",
+      "bytes": 6738,
+      "regions": [
+        {
+          "lines_inclusive": [
+            66,
+            156
+          ],
+          "sha256": "22b4b13dee902c19a8e1face93dec21e78ac084d59e729690a2fbaa2604cb774"
+        }
+      ]
+    },
+    {
+      "path": "artifacts/linux-le-features-error-20261014/hci_event.c",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.14/net/bluetooth/hci_event.c",
+      "sha256": "a650cba2a291ec0e5b336a5123d96240ceb2c672e26df84bbd3468c29468ecf8",
+      "bytes": 196992,
+      "regions": [
+        {
+          "lines_inclusive": [
+            6453,
+            6493
+          ],
+          "sha256": "33cd4d7a82c64e2489dacb96798f99ab3863e1b2bd199aa2175150f1d81e163d"
+        }
+      ]
+    },
+    {
+      "path": "artifacts/linux-le-features-error-20261014/l2cap_core.c",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.14/net/bluetooth/l2cap_core.c",
+      "sha256": "96de119b675d27ec03cf8c5864aa6975c72bec294649f2352560a5b0318539c1",
+      "bytes": 182452,
+      "regions": [
+        {
+          "lines_inclusive": [
+            646,
+            655
+          ],
+          "sha256": "1000888cee3845f0d69b9ba3b084d710a19439e4991d6157fe412264deb8be03"
+        },
+        {
+          "lines_inclusive": [
+            1751,
+            1791
+          ],
+          "sha256": "90e4e146c957bb9d5fb35791f565dc6c1c6f920b68a98a293aaf0ea0cfb9269f"
+        },
+        {
+          "lines_inclusive": [
+            7185,
+            7200
+          ],
+          "sha256": "d6f1af37b29a9f73eadb13c3f6f129a786b258fb7b0bcff8e140c488c1f30cf6"
+        },
+        {
+          "lines_inclusive": [
+            7567,
+            7572
+          ],
+          "sha256": "370d998988aa93f870bd0d19f1d05fce1336cbe6229826f2ad669f822c5e786f"
+        }
+      ]
+    },
+    {
+      "path": "artifacts/linux-le-features-error-20261014/l2cap_sock.c",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.14/net/bluetooth/l2cap_sock.c",
+      "sha256": "776b3500619f64396ae203826e623269c6c6f619a942a002fb8c5a5ee5c9a08c",
+      "bytes": 44154,
+      "regions": [
+        {
+          "lines_inclusive": [
+            1561,
+            1608
+          ],
+          "sha256": "5c673f73bd3ccbc575d02e1fc762792449696bd4f7f715440d878d19e7997f76"
+        }
+      ]
+    },
+    {
+      "path": "/usr/src/linux-headers-6.14.0-36-generic/include/net/bluetooth/hci_core.h",
+      "sha256": "2a7880a816be90b868eb4f505d2bc19919a7d7f2b6f46a0464c1e282894a2d1a",
+      "bytes": 66865,
+      "regions": [
+        {
+          "lines_inclusive": [
+            2031,
+            2044
+          ],
+          "sha256": "c3655c980a42379d3d188a68b89aab666b002b8109d6475a6e1ad4e7eeb7acd9"
+        }
+      ]
+    },
+    {
+      "path": "src/rcominote/linux_att.py",
+      "sha256": "2570b758c881b37057210bc8554e536d2b67b207a4948a31bcec1fa5b9d71537",
+      "bytes": 12563,
+      "regions": [
+        {
+          "lines_inclusive": [
+            101,
+            123
+          ],
+          "sha256": "73c2feb21652cbedbb343eca20819e210724491309d41cdd126c56af230b312e"
+        }
+      ]
+    }
+  ],
+  "original_hci": {
+    "path": "artifacts/startup-boot-tail-20261014/2e00/session.btsnoop",
+    "bytes": 950,
+    "sha256": "e029bbe3a153db7c183e9555e5fbc05afbbd122d21ef83c527a941b9f32ab060",
+    "records": 23,
+    "acl_records": 0,
+    "att_pdus": 0,
+    "selected_records": [
+      {
+        "record": 18,
+        "monitor_opcode": 3,
+        "timestamp_btsnoop_us": 63960209208118473,
+        "hex": "3e1f0a00000800000e7caef0c05000000000000000000000000030000400580200"
+      },
+      {
+        "record": 21,
+        "monitor_opcode": 2,
+        "timestamp_btsnoop_us": 63960209208132572,
+        "hex": "1620020008"
+      },
+      {
+        "record": 22,
+        "monitor_opcode": 3,
+        "timestamp_btsnoop_us": 63960209208133339,
+        "hex": "0f0400011620"
+      },
+      {
+        "record": 23,
+        "monitor_opcode": 3,
+        "timestamp_btsnoop_us": 63960209208440441,
+        "hex": "3e0c043e00080000000000000000"
+      }
+    ],
+    "connect_to_feature_failure_us": 321968,
+    "read_features_to_failure_us": 307869
+  },
+  "conclusion": {
+    "raw_hci_status_hex": "0x3e",
+    "errno": 38,
+    "errno_name": "ENOSYS",
+    "att_unsupported_proven": false,
+    "rf_root_cause_known": false,
+    "new_nor_coverage_from_failed_connection": 0,
+    "identity_available_on_failed_connection": false,
+    "scope_limit": "Installed module bytes prove mapping; upstream source explains dispatch path, not a full Ubuntu runtime call-stack trace. No loaded-module memory was read."
+  }
+}

@@ -1,0 +1,462 @@
+{
+  "schema": "status-boot-tail-live-v1",
+  "scope": "Frozen actual four-slot job: successful new2800 pair, then GATT discovery timeout; original failures retained",
+  "result": {
+    "original_job_ok": false,
+    "original_job_error": "TimeoutError: [Errno 110] Connection timed out",
+    "completed_slots": [
+      "2800"
+    ],
+    "failed_slot": "2a00",
+    "unexecuted_slots": [
+      "2c00",
+      "2e00"
+    ],
+    "new_verified_bytes": 512,
+    "new_verified_range": [10240, 10752],
+    "verified_partition_prefix": [8192, 10752],
+    "verified_partition_bytes": 2560,
+    "partition_bytes": 4096,
+    "remaining_unverified_range": [10752, 12288],
+    "remaining_unverified_bytes": 1536,
+    "assembled_outputs": false,
+    "independent_content_oracle": false,
+    "nor_flash_write_attempted": false,
+    "verified_prefix_sha256": "2b6e99ee899e1515e0cc44b220424cd9da6906b39490504bdcca2236755db51c"
+  },
+  "job": {
+    "report": {
+      "file": "artifacts/status-boot-tail-20261014/report.json",
+      "bytes": 954,
+      "sha256": "075dcfc01378eec6c56b82071ea65416f715ad3c6989efa86f7aeb2446de4567"
+    },
+    "plan": {
+      "file": "artifacts/status-boot-tail-20261014/job-plan.json",
+      "bytes": 20766,
+      "sha256": "02076a56b1a08c50ed90bfd5abae6aa0f91220d049e3d4c8cad017303da90d05"
+    },
+    "checkpoint": {
+      "file": "artifacts/status-boot-tail-20261014/checkpoint-2800.json",
+      "bytes": 843,
+      "sha256": "1e3a920989692d14cfe0c7435b5aa400eb749a9438d0a5899b884043767de89d"
+    },
+    "planned_at": "2026-10-14T03:31:03.189133+00:00",
+    "started_at": "2026-10-14T03:31:03.189535+00:00",
+    "ended_at": "2026-10-14T03:31:38.734130+00:00",
+    "fixed_slots": [
+      10240,
+      10752,
+      11264,
+      11776
+    ],
+    "max_connections": 4,
+    "max_producer_executions": 8,
+    "max_sd_test_files": 8,
+    "planned_nonce_count": 8,
+    "executed_nonce_count": 2,
+    "nonce_target_parent_prestate_chronology_verified": true,
+    "original_checkpoint_complete_pairs": 1,
+    "unexecuted_host_directories_empty": true
+  },
+  "source_snapshot": {
+    "manifest": {
+      "file": "artifacts/status-boot-tail-20261014/source-snapshot/manifest.json",
+      "bytes": 15583,
+      "sha256": "e5e805f7138133390f6413411c26f5f5cf9c672a05117ce2865588170f26205a"
+    },
+    "record": {
+      "file": "artifacts/status-boot-tail-20261014/source-snapshot/record.json",
+      "bytes": 380,
+      "sha256": "c0ba0ff3af3ccdf1a2bfa923d0f1fb1f1e00b572b8dd97d54dd9a49c02393383"
+    },
+    "created_at": "2026-10-14T03:30:50.345775+00:00",
+    "source_count": 110,
+    "all_archived_files_verified": true,
+    "record_precedes_plan_and_capture": true,
+    "recorded_checks": {
+      "just_check": {
+        "passed": 1452,
+        "subtests_passed": 159
+      },
+      "uv_build": "passed"
+    },
+    "replay_imported_archived_source": true,
+    "current_source_equality_claimed": false
+  },
+  "old_checkpoint": {
+    "job_report": {
+      "file": "artifacts/window-boot-tail-20261014/report.json",
+      "bytes": 994,
+      "sha256": "981603275a1468731dead831556e38a0000be3becc8246ada2bf6cad22555c34"
+    },
+    "verified_prefix": [8192, 10240],
+    "bytes": 2048,
+    "sha256": "d0ff1b294b5288d1ae1421eadf5b2d38a8752b76d472ff30bed9028e25b1c5b8",
+    "state_checkpoint_report": {
+      "file": "artifacts/window-boot-tail-20261014/2800/report.json",
+      "bytes": 62765,
+      "sha256": "cfbfd1c563d546140cea1ccb0a8d4c9d90b1945f961f53794781562bea25e062"
+    },
+    "state_checkpoint_ended_at": "2026-10-14T02:41:12.705351+00:00",
+    "full_summary_equals_immutable_plan_checkpoint": true,
+    "historical_windows": 22,
+    "historical_min_sources_per_row": 2,
+    "coverage_sources": [
+      {
+        "nor_range": [8192, 8704],
+        "source": {
+          "file": "docs/evidence/boot-recovery-prefixes-2026-10-12/backup-boot.bin",
+          "bytes": 512,
+          "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+        },
+        "proof_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+        "full_source_replay_verified": true
+      },
+      {
+        "nor_range": [8704, 9216],
+        "source": {
+          "file": "artifacts/dual-unknown2200-early-20261014/first/sector.bin",
+          "bytes": 512,
+          "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+        },
+        "proof_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+        "full_source_replay_verified": true
+      },
+      {
+        "nor_range": [9216, 9728],
+        "source": {
+          "file": "artifacts/window-nor2400-composer-20261014/first/sector.bin",
+          "bytes": 512,
+          "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+        },
+        "proof_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+        "full_source_replay_verified": true
+      },
+      {
+        "nor_range": [9728, 10240],
+        "source": {
+          "file": "artifacts/window-boot-tail-20261014/2600/first/sector.bin",
+          "bytes": 512,
+          "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+        },
+        "proof_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+        "full_source_replay_verified": true
+      }
+    ],
+    "failed2800_coverage_bytes": 0,
+    "latest_free_capacity_mib": 59590,
+    "latest_state_independently_verified": true
+  },
+  "successful2800": {
+    "report": {
+      "file": "artifacts/status-boot-tail-20261014/2800/report.json",
+      "bytes": 63390,
+      "sha256": "6e2dc06d842b55a8d34ac345d4596374e14bf44a342c98d052ebdd9bf5208d4a"
+    },
+    "capture": {
+      "file": "artifacts/status-boot-tail-20261014/2800/session.btsnoop",
+      "bytes": 18648,
+      "sha256": "e961f9efe7ae814a622d0fcf0e1f3057a4b53e5056f67d90f47131fc9fcf6c0b"
+    },
+    "original_flags": {
+      "ok": true,
+      "pair_verified": true,
+      "final_audit_complete": true
+    },
+    "pair_verification": {
+      "pair_verified": true,
+      "independent_oracle": false,
+      "independent_producer_executions": 2,
+      "connections": 1,
+      "nor_range": [10240, 10752],
+      "bytes": 512,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    "original_offline_replay": "pass",
+    "records": 255,
+    "att_packets": 148,
+    "att_binding": {
+      "verified": true,
+      "packets": 148,
+      "comparison": "exact within each direction"
+    },
+    "status_event_proof": {
+      "policy": "unchanged-status20-usb-connected-max8",
+      "events": 0,
+      "indices": []
+    },
+    "status_events_actually_observed": 0,
+    "live_status_insertion_path_exercised": false,
+    "parameter_transactions": [
+      {
+        "origin": "remote",
+        "request_record": 107,
+        "status_record": 108,
+        "update_record": 110,
+        "interval": 12,
+        "latency": 0,
+        "timeout": 500
+      },
+      {
+        "origin": "host",
+        "request_record": 133,
+        "status_record": 134,
+        "update_record": 135,
+        "interval": 6,
+        "latency": 0,
+        "timeout": 500
+      },
+      {
+        "origin": "remote",
+        "request_record": 162,
+        "status_record": 163,
+        "update_record": 166,
+        "interval": 48,
+        "latency": 4,
+        "timeout": 600
+      },
+      {
+        "origin": "remote",
+        "request_record": 200,
+        "status_record": 201,
+        "update_record": 203,
+        "interval": 12,
+        "latency": 0,
+        "timeout": 500
+      },
+      {
+        "origin": "host",
+        "request_record": 205,
+        "status_record": 206,
+        "update_record": 207,
+        "interval": 6,
+        "latency": 0,
+        "timeout": 500
+      },
+      {
+        "origin": "remote",
+        "request_record": 234,
+        "status_record": 235,
+        "update_record": 237,
+        "interval": 48,
+        "latency": 4,
+        "timeout": 600
+      }
+    ],
+    "pending_transactions": 0,
+    "monitor_exit": 0,
+    "monitor_stop": {
+      "signal": "SIGINT",
+      "requested": true,
+      "delivery": "sent"
+    },
+    "started_at": "2026-10-14T03:31:13.874641+00:00",
+    "ended_at": "2026-10-14T03:31:28.697141+00:00",
+    "initial_free_mib": 59590,
+    "final_free_mib": 59590,
+    "operations": [
+      {
+        "operation": "first",
+        "original_ok": true,
+        "individual_pair_verified": false,
+        "live_complete": true,
+        "barrier_complete": true,
+        "actions_span": [55, 71],
+        "actions_verification": {
+          "acks": 5,
+          "end": true,
+          "pending_bytes": 0,
+          "trace_span": [55, 71]
+        },
+        "download_span": [71, 93],
+        "download": {
+          "file": "artifacts/status-boot-tail-20261014/2800/first/download.bin",
+          "bytes": 4096,
+          "sha256": "048b5a8bfc56c08604663651118882d71ad597ad027eb8a65a831f011ea34615"
+        },
+        "download_ms": 187.662,
+        "sector": {
+          "file": "artifacts/status-boot-tail-20261014/2800/first/sector.bin",
+          "bytes": 512,
+          "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+        },
+        "freshness": {
+          "rule": "nearest-producer-exact-status32rows-prefix-dump-v1",
+          "ring_sha256": "048b5a8bfc56c08604663651118882d71ad597ad027eb8a65a831f011ea34615",
+          "sector_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+          "nor_offset": 10240,
+          "bytes": 512,
+          "rows": 32,
+          "status_span": [1542, 1587],
+          "rows_span": [1593, 3513],
+          "producer_span": [3533, 3578],
+          "dump_span": [3599, 3680],
+          "bounded_chain_bytes": 2138,
+          "previous_dump_required": false,
+          "previous_dump_span": null,
+          "one_status_one_producer": true,
+          "failure_text_absent": true
+        },
+        "identity_span": [93, 99],
+        "state_verification": {
+          "other_state_equal": true,
+          "free_capacity_unit": "MiB (integer firmware report)",
+          "free_capacity_before": 59590,
+          "free_capacity_after": 59590,
+          "free_capacity_decrease": 0,
+          "allowed_decrease": 1
+        }
+      },
+      {
+        "operation": "second",
+        "original_ok": true,
+        "individual_pair_verified": false,
+        "live_complete": true,
+        "barrier_complete": true,
+        "actions_span": [99, 115],
+        "actions_verification": {
+          "acks": 5,
+          "end": true,
+          "pending_bytes": 0,
+          "trace_span": [99, 115]
+        },
+        "download_span": [115, 136],
+        "download": {
+          "file": "artifacts/status-boot-tail-20261014/2800/second/download.bin",
+          "bytes": 4096,
+          "sha256": "780c667751f32ac44ca5591b867776be24444b5c451c4f98d59e7ef5800e39bd"
+        },
+        "download_ms": 185.975,
+        "sector": {
+          "file": "artifacts/status-boot-tail-20261014/2800/second/sector.bin",
+          "bytes": 512,
+          "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+        },
+        "freshness": {
+          "rule": "nearest-producer-exact-status32rows-prefix-dump-composer-fps2-v1",
+          "ring_sha256": "780c667751f32ac44ca5591b867776be24444b5c451c4f98d59e7ef5800e39bd",
+          "sector_sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+          "nor_offset": 10240,
+          "bytes": 512,
+          "rows": 32,
+          "status_span": [1146, 1191],
+          "rows_span": [1197, 3117],
+          "producer_span": [3137, 3182],
+          "dump_span": [3236, 3317],
+          "bounded_chain_bytes": 2171,
+          "previous_dump_required": true,
+          "previous_dump_span": [3599, 3680],
+          "one_status_one_producer": true,
+          "failure_text_absent": true,
+          "composer_notice": {
+            "hex": "5b636f6d706f7365725d5b495d5b3734325d3a20706f73742066707320320a0d0a",
+            "span": [3183, 3216],
+            "sha256": "5a3ac148d446b5fdc3250152b6e17821a411fde6f6b67fb6088ca6d6c91f2d76"
+          }
+        },
+        "identity_span": [136, 142],
+        "state_verification": {
+          "other_state_equal": true,
+          "free_capacity_unit": "MiB (integer firmware report)",
+          "free_capacity_before": 59590,
+          "free_capacity_after": 59590,
+          "free_capacity_decrease": 0,
+          "allowed_decrease": 1
+        }
+      }
+    ]
+  },
+  "failed2a00": {
+    "report": {
+      "file": "artifacts/status-boot-tail-20261014/2a00/report.json",
+      "bytes": 7223,
+      "sha256": "a9f6135cb1ee1b651dab6ff403feb027fc64f50f0974b467bd36dc0a72133eb3"
+    },
+    "capture": {
+      "file": "artifacts/status-boot-tail-20261014/2a00/session.btsnoop",
+      "bytes": 2136,
+      "sha256": "11cbc06a536d823e6f2de3c0c35c42e973271b03ed09bf29f32d73e3358a204e"
+    },
+    "original_flags": {
+      "ok": false,
+      "pair_verified": false,
+      "final_audit_complete": false
+    },
+    "error": "TimeoutError: [Errno 110] Connection timed out",
+    "capture_error": "TimeoutError: [Errno 110] Connection timed out",
+    "started_at": "2026-10-14T03:31:28.718769+00:00",
+    "ended_at": "2026-10-14T03:31:38.733957+00:00",
+    "stage": "Connected; MTU exchanged; partial GATT discovery; final Find Information request had no reply",
+    "connected": true,
+    "hci_connect_status": 0,
+    "hci_disconnect_reason": 8,
+    "hci_disconnect_reason_name": "Connection timeout (supervision timeout)",
+    "records": 55,
+    "att_packets": 19,
+    "att_binding": {
+      "verified": true,
+      "packets": 19,
+      "comparison": "exact within each direction"
+    },
+    "final_att_request_hex": "0428002800",
+    "final_att_response_received": false,
+    "actual_before_identity_observed": false,
+    "actions_executions": 0,
+    "producer_executions": 0,
+    "sd_write_attempts": 0,
+    "download_confirmed_new_files": 0,
+    "monitor_exit": 0,
+    "monitor_stop": {
+      "signal": "SIGINT",
+      "requested": true,
+      "delivery": "sent"
+    },
+    "coverage_bytes": 0
+  },
+  "final_observed_state": {
+    "source": "Successful new2800 final actual read-only identity;2a00 has no later identity",
+    "owned_serial_verified": true,
+    "bound": false,
+    "firmware": "010004",
+    "mode": "note",
+    "recording_state": "idle",
+    "charging": true,
+    "battery": 100,
+    "free_capacity_mib": 59590,
+    "identity_complete": true
+  },
+  "original_failed_replay_rejections": {
+    "new_job": "Original status job failed; preserve checkpoints without promotion",
+    "new_failed2a00": "Original NOR-window pair failed; retain without promotion",
+    "old_job": "Original window job failed; preserve checkpoints without promotion",
+    "old_failed2800": "Original NOR-window pair failed; retain without promotion"
+  },
+  "new_sd_scratch_files": {
+    "download_confirmed": 2,
+    "failed2a00_attempted": 0,
+    "deleted": 0
+  },
+  "public_sector": {
+    "file": "docs/evidence/status-boot-tail-live-2026-10-14/sector2800.bin",
+    "bytes": 512,
+    "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d",
+    "copied_from": {
+      "file": "artifacts/status-boot-tail-20261014/2800/first/sector.bin",
+      "bytes": 512,
+      "sha256": "9f56cda75fefeab90f6fa5d5ddc9601544b121732c5ecccab32e631060453a5d"
+    },
+    "nor_range": [10240, 10752],
+    "all_ff_checked": true,
+    "second_actual_sector_equal": true
+  },
+  "limits": [
+    "One unique512-byte increment despite two reads.",
+    "Old failed2800 still supplies zero NOR coverage; only new successful2800 supplies that target.",
+    "Actual successful connection observed zero status events; live event insertion is not demonstrated.",
+    "Failed2a00 completed neither setup nor identity nor Actions; subsequent device state is unknown.",
+    "Snapshot verifies internal archived length/hash consistency and pre-capture record; no future current-source equality claim.",
+    "No full fw1_boot or full NOR backup, restoration/flashing guarantee, worker-exit or cache-clear proof.",
+    "Full HCI, ATT, rings, raw device info, identities and file inventory remain private."
+  ],
+  "original_input_files_unchanged_at_review": 325
+}
